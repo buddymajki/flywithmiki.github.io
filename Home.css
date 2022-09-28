@@ -1,0 +1,119 @@
+ .u-section-1 {
+  background-image: url("images/cap_YDXJ0590_00_05_20_13.jpg");
+  background-position: 50% 0%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 1135px;
+}
+
+.u-section-1 .u-group-1 {
+  width: 495px;
+  min-height: 257px;
+  height: auto;
+  background-image: none;
+  margin: 568px auto 60px 75px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 0 28px;
+}
+
+.u-section-1 .u-line-1 {
+  width: 218px;
+  transform-origin: left center 0px;
+  margin: 0 auto 0 2px;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 30px 2px 0;
+}
+
+.u-section-1 .u-text-2 {
+  margin: 15px 0 0 4px;
+}
+
+.u-section-1 .u-line-2 {
+  width: 218px;
+  transform-origin: left center 0px;
+  margin: 15px auto 0 2px;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    background-size: 115%;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 694px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 521px;
+    min-height: 546px;
+    margin-top: 60px;
+    height: auto;
+  }
+
+  .u-section-1 .u-line-1 {
+    width: 244px;
+  }
+
+  .u-section-1 .u-text-1 {
+    width: auto;
+    font-size: 2.25rem;
+  }
+
+  .u-section-1 .u-line-2 {
+    width: 244px;
+  }
+}
+
+@media (max-width: 991px) {
+   .u-section-1 {
+    background-size: auto 115%;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 532px;
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    background-position: 100% 8.79%;
+    background-size: auto 135%;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 666px;
+  }
+
+  .u-section-1 .u-group-1 {
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 442px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 1.5rem;
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-left: 0;
+  }
+}
