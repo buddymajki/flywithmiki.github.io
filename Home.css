@@ -143,15 +143,6 @@
   margin: 20px 0 0;
 }
 
-.u-section-2 .u-btn-1 {
-  font-size: 0.875rem;
-  letter-spacing: 1px;
-  border-style: solid;
-  text-transform: uppercase;
-  margin: 20px auto 0 0;
-  padding: 2px 0;
-}
-
 .u-section-2 .u-container-layout-2 {
   padding: 20px 30px;
 }
@@ -170,15 +161,6 @@
   margin: 20px 0 0;
 }
 
-.u-section-2 .u-btn-2 {
-  font-size: 0.875rem;
-  letter-spacing: 1px;
-  border-style: solid;
-  text-transform: uppercase;
-  margin: 20px auto 0 0;
-  padding: 2px 0;
-}
-
 .u-section-2 .u-container-layout-3 {
   padding: 20px 30px;
 }
@@ -195,15 +177,6 @@
 
 .u-section-2 .u-text-6 {
   margin: 20px 0 0;
-}
-
-.u-section-2 .u-btn-3 {
-  font-size: 0.875rem;
-  letter-spacing: 1px;
-  border-style: solid;
-  text-transform: uppercase;
-  margin: 20px auto 0 0;
-  padding: 2px 0;
 }
 
 @media (max-width: 1199px) {
