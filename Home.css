@@ -464,6 +464,10 @@
     margin-right: 0;
     margin-left: 0;
   }
+
+  .u-section-3 .u-text-3 {
+    margin-top: 20px;
+  }
 } .u-section-4 {
   background-image: none;
 }
@@ -708,6 +712,7 @@
   }
 
   .u-section-4 .u-text-2 {
+    margin-top: 20px;
     margin-left: 282px;
   }
 
@@ -885,7 +890,7 @@
 
 .u-section-5 .u-list-item-1 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-1 {
@@ -910,7 +915,7 @@
 
 .u-section-5 .u-list-item-2 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-2 {
@@ -935,7 +940,7 @@
 
 .u-section-5 .u-list-item-3 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-3 {
@@ -960,7 +965,7 @@
 
 .u-section-5 .u-list-item-4 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-4 {
@@ -985,7 +990,7 @@
 
 .u-section-5 .u-list-item-5 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-5 {
@@ -1010,7 +1015,7 @@
 
 .u-section-5 .u-list-item-6 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-6 {
@@ -1035,7 +1040,7 @@
 
 .u-section-5 .u-list-item-7 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-7 {
@@ -1060,7 +1065,7 @@
 
 .u-section-5 .u-list-item-8 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-8 {
@@ -1085,7 +1090,7 @@
 
 .u-section-5 .u-list-item-9 {
   background-image: none;
-  box-shadow: 5px 5px 20px 0 rgba(41,44,51,0.4);
+  box-shadow: 5px 5px 20px 0 rgba(41,47,51,0.4);
 }
 
 .u-section-5 .u-container-layout-9 {
