@@ -320,7 +320,7 @@
 
 .u-section-3 .u-text-4 {
   font-size: 1.125rem;
-  margin: 21px 0 0;
+  margin: 16px 0 0;
 }
 
 @media (max-width: 1199px) {
@@ -520,11 +520,11 @@
 }
 
 .u-section-4 .u-layout-cell-3 {
-  min-height: 351px;
+  min-height: 400px;
 }
 
 .u-section-4 .u-container-layout-3 {
-  padding: 30px;
+  padding: 18px 30px;
 }
 
 .u-section-4 .u-text-10 {
@@ -534,7 +534,7 @@
 .u-section-4 .u-text-11 {
   font-weight: 700;
   text-transform: uppercase;
-  margin: 20px 0 0;
+  margin: 8px 0 0;
 }
 
 .u-section-4 .u-text-12 {
@@ -576,16 +576,16 @@
 }
 
 .u-section-4 .u-container-layout-5 {
-  padding: 30px;
+  padding: 6px 30px;
 }
 
 .u-section-4 .u-text-17 {
-  margin: 0;
+  margin: 12px 0 0;
 }
 
 .u-section-4 .u-text-18 {
   font-weight: 700;
-  margin: 20px 0 0;
+  margin: 8px 0 0;
 }
 
 .u-section-4 .u-text-19 {
@@ -709,7 +709,7 @@
   }
 
   .u-section-4 .u-layout-cell-3 {
-    min-height: 289px;
+    min-height: 330px;
   }
 
   .u-section-4 .u-layout-cell-4 {
