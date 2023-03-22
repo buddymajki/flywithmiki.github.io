@@ -114,6 +114,8 @@
   .u-section-1 .embed-responsive-1 {
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
   }
 
   .u-section-1 .u-video-2 {
@@ -144,7 +146,9 @@
 
   .u-section-1 .embed-responsive-1 {
     width: 178%;
+    left: -39%;
     height: 178%;
+    top: -39%;
   }
 
   .u-section-1 .u-video-2 {
