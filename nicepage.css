@@ -41935,23 +41935,23 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 @media (max-width: 575px) {
   .u-header .u-sheet-1 {
-    min-height: 88px;
+    min-height: 93px;
   }
 
   .u-header .u-menu-1 {
-    margin-right: 68px;
+    margin-top: 51px;
+    margin-right: 26px;
   }
 
   .u-header .u-image-1 {
     width: 321px;
-    height: 30px;
-    margin-top: -48px;
+    height: 29px;
+    margin-top: -68px;
     margin-left: auto;
   }
 
   .u-header .u-language-1 {
-    margin-right: 0;
-    margin-left: 68px;
+    margin: 12px auto 10px 12px;
   }
 }
  .u-footer {
