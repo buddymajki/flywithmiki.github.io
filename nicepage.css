@@ -41923,13 +41923,14 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
-    width: 284px;
-    height: 43px;
-    margin-top: -48px;
-    margin-left: 20px;
+    width: 280px;
+    height: 42px;
+    margin-top: -37px;
+    margin-left: 16px;
   }
 
   .u-header .u-language-1 {
+    margin-top: -32px;
     margin-right: 145px;
   }
 }
