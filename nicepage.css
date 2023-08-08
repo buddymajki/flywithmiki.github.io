@@ -42043,6 +42043,7 @@ a.u-link.u-text-hover-grey-90:hover {
 
 .u-header .u-nav-1 {
   font-size: 1rem;
+  letter-spacing: normal;
 }
 
 .u-header .u-nav-3 {
@@ -42080,10 +42081,6 @@ a.u-link.u-text-hover-grey-90:hover {
     width: auto;
     margin-top: 40px;
     margin-right: 36px;
-  }
-
-  .u-header .u-nav-1 {
-    letter-spacing: normal;
   }
 
   .u-header .u-image-1 {
