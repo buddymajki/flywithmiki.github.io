@@ -42096,7 +42096,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 @media (max-width: 991px) {
   .u-header .u-sheet-1 {
-    min-height: 94px;
+    min-height: 115px;
   }
 
   .u-header .u-menu-1 {
@@ -42105,13 +42105,14 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
-    width: 348px;
-    height: 53px;
-    margin-top: -41px;
+    width: 335px;
+    height: 51px;
+    margin-top: -36px;
+    margin-left: 38px;
   }
 
   .u-header .u-language-1 {
-    margin: -22px 258px 31px auto;
+    margin: -25px 258px 31px auto;
   }
 }
 @media (max-width: 767px) {
