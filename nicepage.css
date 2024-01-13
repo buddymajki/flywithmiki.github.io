@@ -3167,6 +3167,7 @@ html {
 body {
   height: auto;
   min-height: 100%;
+  overflow-y: clip;
 }
 body,
 aside,
@@ -18306,9 +18307,6 @@ p {
 }
 .u-font-roboto-condensed.u-custom-font {
   font-family: 'Roboto Condensed', sans-serif !important;
-}
-.u-font-source-sans-pro.u-custom-font {
-  font-family: 'Source Sans Pro', sans-serif !important;
 }
 .u-font-oswald.u-custom-font {
   font-family: Oswald, sans-serif !important;
@@ -43123,13 +43121,14 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
-    width: 347px;
-    height: 52px;
+    width: 365px;
+    height: 55px;
+    margin-top: 27px;
     margin-left: auto;
   }
 
   .u-header .u-language-1 {
-    margin-top: -70px;
+    margin-top: -71px;
     margin-right: 26px;
   }
 
