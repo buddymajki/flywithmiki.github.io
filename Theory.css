@@ -1,17 +1,21 @@
 .u-section-1 .u-sheet-1 {
-  min-height: 970px;
-}
-
-.u-section-1 .u-image-1 {
-  width: 430px;
-  height: 300px;
-  margin: 20px auto 0;
+  min-height: 1502px;
 }
 
 .u-section-1 .u-text-1 {
+  margin: 15px 104px 0;
+}
+
+.u-section-1 .u-image-1 {
+  width: 350px;
+  height: 244px;
+  margin: 15px auto 0;
+}
+
+.u-section-1 .u-text-2 {
   font-weight: 700;
   font-size: 3.75rem;
-  margin: 20px 104px 0;
+  margin: 0 104px;
 }
 
 .u-section-1 .u-layout-wrap-1 {
@@ -55,12 +59,12 @@
   padding: 30px;
 }
 
-.u-section-1 .u-text-2 {
+.u-section-1 .u-text-3 {
   font-weight: 700;
   margin: 0;
 }
 
-.u-section-1 .u-text-3 {
+.u-section-1 .u-text-4 {
   line-height: 1.8;
   margin: 20px 0 0;
 }
@@ -87,7 +91,7 @@
   padding: 30px;
 }
 
-.u-section-1 .u-text-4 {
+.u-section-1 .u-text-5 {
   line-height: 1.8;
   margin: 0;
 }
@@ -118,7 +122,7 @@
   padding: 30px;
 }
 
-.u-section-1 .u-text-5 {
+.u-section-1 .u-text-6 {
   line-height: 1.8;
   margin: 0;
 }
@@ -177,12 +181,12 @@
   padding: 30px;
 }
 
-.u-section-1 .u-text-6 {
+.u-section-1 .u-text-7 {
   font-weight: 700;
   margin: 0;
 }
 
-.u-section-1 .u-text-7 {
+.u-section-1 .u-text-8 {
   line-height: 1.8;
   margin: 20px 0 0;
 }
@@ -201,7 +205,7 @@
   margin-bottom: 0;
 }
 
-.u-section-1 .u-text-8 {
+.u-section-1 .u-text-9 {
   font-size: 1.25rem;
   line-height: 2;
   margin: 20px 0 0;
@@ -221,10 +225,15 @@
 
 @media (max-width: 1199px) {
   .u-section-1 .u-sheet-1 {
-    min-height: 800px;
+    min-height: 1332px;
   }
 
   .u-section-1 .u-text-1 {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .u-section-1 .u-text-2 {
     margin-left: 4px;
     margin-right: 4px;
   }
@@ -249,10 +258,15 @@
 
 @media (max-width: 991px) {
   .u-section-1 .u-sheet-1 {
-    min-height: 200px;
+    min-height: 732px;
   }
 
   .u-section-1 .u-text-1 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-2 {
     margin-left: 0;
     margin-right: 0;
   }
@@ -327,7 +341,7 @@
 
 @media (max-width: 575px) {
   .u-section-1 .u-sheet-1 {
-    min-height: 137px;
+    min-height: 725px;
   }
 
   .u-section-1 .u-image-1 {
@@ -335,7 +349,7 @@
     height: 237px;
   }
 
-  .u-section-1 .u-text-1 {
+  .u-section-1 .u-text-2 {
     font-size: 2.25rem;
   }
 
