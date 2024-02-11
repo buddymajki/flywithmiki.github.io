@@ -21583,6 +21583,13 @@ a.pswp__share--download:hover {
   
   --animation-custom_in-translate_y: -50% !important;
 }
+.u-animation-fixed {
+  position: fixed;
+}
+.u-animation-sticky {
+  position: sticky;
+  top: 0;
+}
 .u-cookies-consent {
   display: none;
   position: fixed;
@@ -43067,7 +43074,7 @@ a.u-link.u-text-hover-grey-90:hover {
   letter-spacing: normal;
 }
 
-.u-header .u-nav-6 {
+.u-header .u-nav-5 {
   font-size: 1.25rem;
 }
 @media (max-width: 1199px) {
@@ -43076,13 +43083,13 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
-    width: 342px;
-    height: 43px;
-    margin-top: 22px;
+    width: 417px;
+    height: 52px;
+    margin-top: 26px;
   }
 
   .u-header .u-language-1 {
-    margin-top: -27px;
+    margin-top: -39px;
     margin-right: 22px;
   }
 
@@ -43144,13 +43151,13 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
-    width: 321px;
-    height: 29px;
-    margin-top: 13px;
+    width: 298px;
+    height: 27px;
+    margin-top: 21px;
   }
 
   .u-header .u-language-1 {
-    margin-top: 31px;
+    margin-top: 25px;
     margin-right: 0;
     margin-left: 46px;
   }
