@@ -21583,9 +21583,6 @@ a.pswp__share--download:hover {
   
   --animation-custom_in-translate_y: -50% !important;
 }
-.u-animation-fixed {
-  position: fixed;
-}
 .u-animation-sticky {
   position: sticky;
   top: 0;
@@ -43063,19 +43060,23 @@ a.u-link.u-text-hover-grey-90:hover {
   height: 24px;
 }
 
+.u-header .u-icon-2 {
+  height: 24px;
+}
+
 .u-header .u-menu-1 {
   margin: 15px auto 13px;
 }
 
 .u-header .u-nav-1 {
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: normal;
 }
 
-.u-header .u-nav-5 {
-  font-size: 1.25rem;
+.u-header .u-nav-4 {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 @media (max-width: 1199px) {
   .u-header .u-sheet-1 {
@@ -43089,13 +43090,17 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-language-1 {
-    margin-top: -39px;
-    margin-right: 22px;
+    margin-top: -29px;
+    margin-right: 0;
   }
 
   .u-header .u-menu-1 {
     margin-top: 22px;
     margin-bottom: 22px;
+  }
+
+  .u-header .u-nav-1 {
+    letter-spacing: normal;
   }
 }
 @media (max-width: 991px) {
@@ -43108,11 +43113,6 @@ a.u-link.u-text-hover-grey-90:hover {
     height: 56px;
     margin-top: 29px;
     margin-left: 28px;
-  }
-
-  .u-header .u-language-1 {
-    margin-top: -76px;
-    margin-right: 52px;
   }
 
   .u-header .u-menu-1 {
@@ -43134,11 +43134,6 @@ a.u-link.u-text-hover-grey-90:hover {
     margin-left: auto;
   }
 
-  .u-header .u-language-1 {
-    margin-top: -71px;
-    margin-right: 26px;
-  }
-
   .u-header .u-menu-1 {
     margin-top: 8px;
     margin-right: 24px;
@@ -43154,12 +43149,6 @@ a.u-link.u-text-hover-grey-90:hover {
     width: 298px;
     height: 27px;
     margin-top: 21px;
-  }
-
-  .u-header .u-language-1 {
-    margin-top: 25px;
-    margin-right: 0;
-    margin-left: 46px;
   }
 
   .u-header .u-menu-1 {
