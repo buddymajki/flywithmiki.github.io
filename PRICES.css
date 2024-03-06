@@ -37,18 +37,12 @@
 }
 
 .u-section-2 .u-text-1 {
-  margin: 26px auto 0 26px;
+  margin: 26px auto 0 0;
 }
 
 .u-section-2 .u-text-2 {
   font-size: 1.125rem;
-  margin: 26px 41px 26px 26px;
-}
-
-@media (max-width: 1199px) {
-  .u-section-2 .u-text-2 {
-    margin-right: 0;
-  }
+  margin: 26px 0;
 }
 
 @media (max-width: 767px) {
@@ -58,7 +52,6 @@
 
   .u-section-2 .u-text-2 {
     width: auto;
-    margin-left: 0;
   }
 }
 
@@ -69,7 +62,6 @@
 
   .u-section-2 .u-text-1 {
     width: auto;
-    margin-left: 0;
   }
 
   .u-section-2 .u-text-2 {
