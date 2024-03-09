@@ -242,7 +242,6 @@ SHV">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <style> table {
-           // width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
@@ -254,86 +253,102 @@ SHV">
         th {
             background-color: #f2f2f2;
             width: 100px; /* Set a fixed width for the first column */
+        }
+        .event-container {
+            margin-bottom: 50px; /* Increased distance between events */
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        #dateHeader {
+            font-size: 28px; /* Bigger font size */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 15px; /* Increased margin-bottom */
         } </style>
           <div id="events"></div>
-          <script> $(document).ready(function() {
-    // Replace 'YOUR_API_KEY' with the API key you obtained
-    var apiKey = 'AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
-    // Replace 'YOUR_CALENDAR_ID' with the Calendar ID you obtained
-    var calendarId = 'mikiparagliding@gmail.com';
-    var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?key=' + apiKey;
-    // Get the current date and the date for the next day
-    var today = new Date();
-    var tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    // Format dates as per Google Calendar API requirements
-    var todayString = today.toISOString();
-    var tomorrowString = tomorrow.toISOString();
-    // Make the API request to get events for the next day
-    $.ajax({
-        url: apiUrl,
-        data: {
-            timeMin: todayString,
-            timeMax: tomorrowString,
-            singleEvents: true,
-            orderBy: 'startTime'
-        },
-        success: function(response) {
-            // Process the response and display events on the page
-            var eventsContainer = $('#events');
-            response.items.forEach(function(event, index) {
-                // Extract only the hour from the start time
-                var startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
-                var hourString = startTime ? startTime.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: false}) : 'N/A';
-                // Format the event date as DD.MM, DAY
-                var eventDate = startTime ? new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()) : null;
-                var eventFormatted = eventDate ? ((eventDate.getDate() < 10) ? '0' : '') + eventDate.getDate() + '.' + ((eventDate.getMonth() + 1 < 10) ? '0' : '') + (eventDate.getMonth() + 1) + ', ' + getDayName(eventDate.getDay()) : 'N/A';
-                // Create HTML string with event details and start a new table for each event
-                var eventHtml = '<table>';
-                eventHtml += '<col width="100">'; // Set a fixed width for the first column
-                eventHtml += '<tr><th>Date</th><td>' + eventFormatted + '</td></tr>';
-                eventHtml += '<tr><th>Flying site</th><td>' + event.summary + '</td></tr>';
-                eventHtml += '<tr><th>Meeting Time</th><td>' + hourString + '</td></tr>';
-                // Check if there is a meeting point before adding the meeting point line
-                if (event.location) {
-                    eventHtml += '<tr><th>Meeting point</th><td>' + event.location + '</td></tr>';
+          <script> $(document).ready(function () {
+            // Replace 'YOUR_API_KEY' with the API key you obtained
+            var apiKey = 'AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
+            // Replace 'YOUR_CALENDAR_ID' with the Calendar ID you obtained
+            var calendarId = 'mikiparagliding@gmail.com';
+            var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?key=' + apiKey;
+            // Get the current date and the date for the next day
+            var today = new Date();
+            var tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            // Format dates as per Google Calendar API requirements
+            var todayString = today.toISOString();
+            var tomorrowString = tomorrow.toISOString();
+            // Make the API request to get events for the next day
+            $.ajax({
+                url: apiUrl,
+                data: {
+                    timeMin: todayString,
+                    timeMax: tomorrowString,
+                    singleEvents: true,
+                    orderBy: 'startTime'
+                },
+                success: function (response) {
+                    // Process the response and display events on the page
+                    var eventsContainer = $('#events');
+                    response.items.forEach(function (event, index) {
+                        var eventContainer = $('<div class="event-container"></div>');
+                        var dateHeader = $('<div id="dateHeader"></div>');
+                        // Extract only the hour from the start time
+                        var startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
+                        var hourString = startTime ? startTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) : 'N/A';
+                        // Format the event date as DD.MM, DAY
+                        var eventDate = startTime ? new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()) : new Date(event.start.date);
+                        var eventFormatted = eventDate ? ((eventDate.getDate() < 10) ? '0' : '') + eventDate.getDate() + '.' + ((eventDate.getMonth() + 1 < 10) ? '0' : '') + (eventDate.getMonth() + 1) + ' - ' + getDayName(eventDate.getDay()) : 'N/A';
+                        dateHeader.text(eventFormatted);
+                        eventContainer.append(dateHeader);
+                        // Create HTML string with event details and start a new table for each event
+                        var eventHtml = '<table>';
+                        eventHtml += '<col width="100">'; // Set a fixed width for the first column
+                        eventHtml += '<tr><th>Flying site</th><td>' + event.summary + '</td></tr>';
+                        // Check if there is a meeting time before adding the meeting time line
+                        if (startTime) {
+                            eventHtml += '<tr><th>Meeting Time</th><td>' + hourString + '</td></tr>';
+                        }
+                        // Check if there is a meeting point before adding the meeting point line
+                        if (event.location) {
+                            eventHtml += '<tr><th>Meeting point</th><td>' + event.location + '</td></tr>';
+                        }
+                        // Check if there is a location before adding the map link
+                        if (event.location) {
+                            eventHtml += '<tr><th>Map</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Click here</a></td></tr>';
+                        }
+                        // Check if there is an online meeting link
+                        if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
+                            var meetingLink = event.conferenceData.entryPoints[0].uri;
+                            eventHtml += '<tr><th>Online Meeting</th><td><a href="' + meetingLink + '" target="_blank">Join Meeting</a></td></tr>';
+                        }
+                        // Check if there is a description before adding the description line
+                        if (event.description) {
+                            eventHtml += '<tr><th>Description</th><td>' + event.description + '</td></tr>';
+                        }
+                        // Close the table for each event
+                        eventHtml += '</table>';
+                        eventContainer.append(eventHtml);
+                        eventsContainer.append(eventContainer);
+                    });
+                },
+                error: function (error) {
+                    console.log('Error fetching events: ', error);
                 }
-                // Check if there is a location before adding the map link
-                if (event.location) {
-                    eventHtml += '<tr><th>Map</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Click here</a></td></tr>';
-                }
-                // Check if there is an online meeting link
-                if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
-                    var meetingLink = event.conferenceData.entryPoints[0].uri;
-                    eventHtml += '<tr><th>Online Meeting</th><td><a href="' + meetingLink + '" target="_blank">Join Meeting</a></td></tr>';
-                }
-                // Check if there is a description before adding the description line
-                if (event.description) {
-                    eventHtml += '<tr><th>Description</th><td>' + event.description + '</td></tr>';
-                }
-                // Close the table for each event
-                eventHtml += '</table>';
-                // Append the HTML string to the events container
-                eventsContainer.append(eventHtml);
             });
-        },
-        error: function(error) {
-            console.log('Error fetching events: ', error);
-        }
-    });
-    // Function to generate Google Maps link
-    function getGoogleMapsLink(location) {
-        // Encode the location for a URL
-        var encodedLocation = encodeURIComponent(location);
-        // Construct the Google Maps link
-        return 'https://www.google.com/maps/search/?api=1&query=' + encodedLocation;
-    }
-    // Function to get the day name in English
-    function getDayName(dayIndex) {
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        return days[dayIndex];
-    }
-}); </script>
+            // Function to generate Google Maps link
+            function getGoogleMapsLink(location) {
+                // Encode the location for a URL
+                var encodedLocation = encodeURIComponent(location);
+                // Construct the Google Maps link
+                return 'https://www.google.com/maps/search/?api=1&query=' + encodedLocation;
+            }
+            // Function to get the day name in English
+            function getDayName(dayIndex) {
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                return days[dayIndex];
+            }
+        }); </script>
         </div>
       </div>
     </section>
