@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <style>
             html {scroll-behavior: smooth;}
@@ -20,7 +20,7 @@
 
         </style>
 
-       <!-- <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
+     <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
 
     </head> 
@@ -30,7 +30,7 @@
 <body class="w3-white w3-content" style="max-width:1200px">
 
 
-<!-- Sidebar/menu -->
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:200px" id="mySidebar">
   <div class="w3-container w3-display-container ">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
@@ -42,15 +42,20 @@
   </div>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="#" class="w3-bar-item w3-button">Home</a>
-    <a href="#sustainability" class="w3-bar-item w3-button">Sustainability</a>
-         <a href="#about" class="w3-bar-item w3-button">About us</a>
-    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    <a onclick="myAccFunc('demoAcc1');" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      Our approach <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#sustainability" class="w3-bar-item w3-button">Sustainability</a>
+      <a href="#team" class="w3-bar-item w3-button">The Team</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+
    
-    <a onclick="myAccFunc();return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+    <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
       School <i class="fa fa-caret-down"></i>
     </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
       <a href="#" class="w3-bar-item w3-button">Pilot course</a>
       <a href="#" class="w3-bar-item w3-button">Visiting pilots</a>
       <a href="#" class="w3-bar-item w3-button">Tandem course</a>
@@ -59,6 +64,7 @@
       <a href="#" class="w3-bar-item w3-button">Prices</a>
     </div>
 
+    
     <a href="#tandem" class="w3-bar-item w3-button">Tandem flights</a>
    
   </div>
@@ -177,7 +183,7 @@
            <p class="w3-xlarge"><b>Next Beginner course</b></p>
            <p class="w3-xxlarge"><b>14-18 May</b></p>
            <p>Limited spaces, maximum 3 participants</p>
-          <p><a href="mailto:info@flywithmiki.com" target="_blank" class="w3-button w3-light-grey w3-round-xlarge">Sign up today</a></p>
+          <p><a href="https://1133.3cx.cloud/flywithmikicom" target="_blank" class="w3-button w3-light-grey w3-round-xlarge">Sign up today</a></p>
            </div>
 
           </div>
@@ -269,7 +275,7 @@
               <li class="w3-white w3-text-grey">&#10060; Extended airtime</li>
               <li class="w3-white w3-text-grey">&#10060; Cable car ticket</li>
               <li class="w3-light-grey w3-center">
-              <button class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></button>
+              <a href="https://1133.3cx.cloud/flywithmikicom" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></a>
               </li>
               </ul>
            </div>
@@ -285,7 +291,7 @@
                <li class="w3-white ">&#9989; <b>  Photo - video</b></li>
                <li class="w3-white w3-text-grey">&#10060;  Extended airtime</li>
                <li class="w3-white w3-text-grey">&#10060; Cable car ticket</li>
-               <li class="w3-light-grey w3-center"><button class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></button></li>
+               <li class="w3-light-grey w3-center"><a href="https://1133.3cx.cloud/flywithmikicom" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></a></li>
               </ul>
             </div>
 
@@ -304,7 +310,7 @@
                <li class="w3-white ">&#9989; <b>  Photo - video</b></li>
                <li class="w3-white">&#9989;  <b>Extended airtime</b></li>
                <li class="w3-white w3-text-grey">&#10060; Cable car ticket</li>
-               <li class="w3-light-grey w3-center"><button class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></button></li>
+               <li class="w3-light-grey w3-center"><a href="https://1133.3cx.cloud/flywithmikicom" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></a></li>
               </ul>
             </div>
         </div>
@@ -320,7 +326,7 @@
                <li class="w3-white ">&#9989; <b>  Photo - video</b></li>
                <li class="w3-white">&#9989;  <b>Extended airtime</b></li>
                <li class="w3-white w3-text-grey">&#10060; Cable car ticket</li>
-               <li class="w3-light-grey w3-center"><button class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></button></li>
+               <li class="w3-light-grey w3-center"><a href="https://1133.3cx.cloud/flywithmikicom" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#ADCDFF; color:black"><b>BOOK IT NOW</b></a></li>
               </ul>
             </div>
         </div>
@@ -329,10 +335,10 @@
         <div class="w3-container w3-padding-32">
             <p class="w3-ul w3-card-4 w3-white w3-small w3-padding w3-justify">
       
-                <b>Airtime</b>: ""Delux" and "Special" offer extended airtime for maximum enjoyment. In case you fly less than 20 mins (Delux) or less than 30 mins (Special), you get a CHF 60 refund<br> 
+                <b>Airtime</b>: "Delux" and "Special" offer extended airtime for maximum enjoyment. In case you fly less than 20 mins (Delux) or less than 30 mins (Special), you get a CHF 60 refund <br> 
                 <b>Multiple Passengers</b>: Fly solo or with family/friends. Options include sequential flights or coordinated group flights with additional pilots. Special discounts for group (4+)<br>
                 <b>Lady Pilot Option</b>: Prefer a female pilot? Let us know before booking for a tailored experience (additional CHF 70 surcharge).<br>
-                Cable car ticket: Büelen: CHF 10, Engelberg: CHF 20, Emmetten: CHF 13, Rigi: CHF 49, Pilatus: CHF 39. Prices may vary by operator, some operators offer discounts for traveling cards (GA, Halbtax, etc) latest update: 04.2024.
+                Cable car ticket: Büelen: CHF 10, Engelberg: CHF 20, Emmetten: CHF 15, Rigi: CHF 49, Pilatus: CHF 39. Prices may vary by operator, some operators offer discounts for traveling cards (GA, Halbtax, etc) latest update: 04.2024.
             </p>
         </div>
 
@@ -429,7 +435,7 @@
 
 
 <!-- About section------------------------------------------------------------>
-        <div class="w3-container w3-light-grey w3-text-black w3-center w3-padding-32" id="about">
+        <div class="w3-container w3-light-grey w3-text-black w3-center w3-padding-32" id="team">
             <h2><b>The Team</b></h2>
 
             <div class="w3-content w3-justify w3-padding-16" alt="Miki" style="max-width:600px">
@@ -696,15 +702,28 @@
 <script>
 
 
-// Accordion 
-function myAccFunc() {
-  var x = document.getElementById("demoAcc");
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
-    x.className = x.className.replace("w3-hide", "w3-show");
-  } else {
-    x.className = x.className.replace("w3-show", "w3-hide");
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
   }
 }
+
+// Accordion 
+//function myAccFunc() {
+//  var x = document.getElementById("demoAcc");
+//  if (x.className.indexOf("w3-show") == -1) {
+//    x.className = x.className.replace("w3-hide", "w3-show");
+//  } else {
+//    x.className = x.className.replace("w3-show", "w3-hide");
+//  }
+//}
 // Click on the "School" link on page load to open the accordion automatically
 // document.getElementById("myBtn").click();
 
