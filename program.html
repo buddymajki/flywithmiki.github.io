@@ -1,0 +1,315 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FLYwithMIKI - Paragliding School</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="FLYwithMIKI - The first ECO-friendly paragliding school in Central Switzerland (Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg)">
+
+        <meta property="og:url" content="https://flywithmiki.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FLYwithMIKI.com - Paragliding School & Tandem Flights" />
+        <meta property="og:description" content="Experience the thrill of paragliding in Switzerland with FLYwithMIKI. Learn to fly, or enjoy a tandem flight with breathtaking views in the hearth of Switzerland." />
+        <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+            html {scroll-behavior: smooth;}
+            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
+             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            .w3-third img:hover {opacity: 1}
+            .mySlides {display:none;} //slideshowhoz kell
+
+        </style>
+
+     <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
+
+
+    </head> 
+
+
+
+<body class="w3-white w3-content" style="max-width:1600px">
+
+
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container ">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    
+    <div class="w3-margin w3-display-center"> 
+        <a href="index.html#Intro"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        </a> 
+    </div>
+  </div>
+
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+    <a onclick="myAccFunc('demoAcc1');return false" href="<#>" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      Home <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="index.html#" class="w3-bar-item w3-button">Our approach</a>
+      <a href="index.html#sustainability" class="w3-bar-item w3-button">Sustainability</a>
+      <a href="index.html#team" class="w3-bar-item w3-button">The Team</a>
+      <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+
+   
+    <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      School <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="school.html" class="w3-bar-item w3-button">Learn to fly (Beginners)</a>
+      <a href="school.html#visiting" class="w3-bar-item w3-button">Visiting students & pilots</a>
+      <a href="school.html#tandemcourse" class="w3-bar-item w3-button">Tandem course</a>
+      <a href="trips.html" class="w3-bar-item w3-button">Trips</a>
+      <a href="links.html" class="w3-bar-item w3-button">Links</a>
+      <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    </div>
+
+    
+    <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
+   
+  </div>
+
+  
+   
+ 
+  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
+</nav>
+
+
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
+  
+  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+
+</div>
+
+
+
+
+
+
+
+    <!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+        <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:4em">
+
+    </div>
+
+ <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+
+<!-- Daily program -->
+        <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="dailyp">
+             <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
+           <div class="w3-content w3-padding w3-left-align" style="max-width:900px">
+                <h1 class="w3-center"> Daily Program</h1>
+               
+                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                       <style> 
+                            table {
+                              border-collapse: collapse;
+                              margin-bottom: 20px;
+                                      }
+                            th, td {
+                               border: 1px solid #ddd;
+                               padding: 8px;
+                               text-align: left;
+                                    }
+                            th {
+                                background-color: #f2f2f2;
+                                 width: 100px; /* Set a fixed width for the first column */
+                                 }
+                            .event-container {
+                                 margin-bottom: 50px; /* Increased distance between events */
+                                 border-bottom: 1px solid #ddd;
+                                 padding-bottom: 20px;
+                                 }
+                             #dateHeader {
+                                     font-size: 28px; /* Bigger font size */
+                                     font-weight: bold; /* Bold text */
+                                     margin-bottom: 15px; /* Increased margin-bottom */
+                                 } 
+                        </style>
+                        
+          <div id="events"></div>
+          <script> $(document).ready(function () {
+            // Replace 'YOUR_API_KEY' with the API key you obtained
+            var apiKey = 'AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
+            // Replace 'YOUR_CALENDAR_ID' with the Calendar ID you obtained
+            var calendarId = 'mikiparagliding@gmail.com';
+            var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?key=' + apiKey;
+            // Get the current date and the date for the next day
+            var today = new Date();
+            var tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            // Format dates as per Google Calendar API requirements
+            var todayString = today.toISOString();
+            var tomorrowString = tomorrow.toISOString();
+            // Make the API request to get events for the next day
+            $.ajax({
+                url: apiUrl,
+                data: {
+                    timeMin: todayString,
+                    timeMax: tomorrowString,
+                    singleEvents: true,
+                    orderBy: 'startTime'
+                },
+                success: function (response) {
+                    // Process the response and display events on the page
+                    var eventsContainer = $('#events');
+                    response.items.forEach(function (event, index) {
+                        var eventContainer = $('<div class="event-container"></div>');
+                        var dateHeader = $('<div id="dateHeader"></div>');
+                        // Extract only the hour from the start time
+                        var startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
+                        var hourString = startTime ? startTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) : 'N/A';
+                        // Format the event date as DD.MM, DAY
+                        var eventDate = startTime ? new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()) : new Date(event.start.date);
+                        var eventFormatted = eventDate ? ((eventDate.getDate() < 10) ? '0' : '') + eventDate.getDate() + '.' + ((eventDate.getMonth() + 1 < 10) ? '0' : '') + (eventDate.getMonth() + 1) + ' - ' + getDayName(eventDate.getDay()) : 'N/A';
+                        dateHeader.text(eventFormatted);
+                        eventContainer.append(dateHeader);
+                        // Create HTML string with event details and start a new table for each event
+                        var eventHtml = '<table>';
+                        eventHtml += '<col width="100">'; // Set a fixed width for the first column
+                        eventHtml += '<tr><th>Flying site</th><td>' + event.summary + '</td></tr>';
+                        // Check if there is a meeting time before adding the meeting time line
+                        if (startTime) {
+                            eventHtml += '<tr><th>Meeting Time</th><td>' + hourString + '</td></tr>';
+                        }
+                        // Check if there is a meeting point before adding the meeting point line
+                        if (event.location) {
+                            eventHtml += '<tr><th>Meeting point</th><td>' + event.location + '</td></tr>';
+                        }
+                        // Check if there is a location before adding the map link
+                        if (event.location) {
+                            eventHtml += '<tr><th>Map</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Click here</a></td></tr>';
+                        }
+                        // Check if there is an online meeting link
+                        if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
+                            var meetingLink = event.conferenceData.entryPoints[0].uri;
+                            eventHtml += '<tr><th>Online Meeting</th><td><a href="' + meetingLink + '" target="_blank">Join Meeting</a></td></tr>';
+                        }
+                        // Check if there is a description before adding the description line
+                        if (event.description) {
+                            eventHtml += '<tr><th>Description</th><td>' + event.description + '</td></tr>';
+                        }
+                        // Close the table for each event
+                        eventHtml += '</table>';
+                        eventContainer.append(eventHtml);
+                        eventsContainer.append(eventContainer);
+                    });
+                },
+                error: function (error) {
+                    console.log('Error fetching events: ', error);
+                }
+            });
+            // Function to generate Google Maps link
+            function getGoogleMapsLink(location) {
+                // Encode the location for a URL
+                var encodedLocation = encodeURIComponent(location);
+                // Construct the Google Maps link
+                return 'https://www.google.com/maps/search/?api=1&query=' + encodedLocation;
+            }
+            // Function to get the day name in English
+            function getDayName(dayIndex) {
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                return days[dayIndex];
+            }
+        }); </script>
+        </div>
+       
+                
+                
+                
+                
+                
+   <!--CALENDAR SECTION-->    
+                
+                <h2 class="w3-center"> Calendar </h2>
+                  <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;ctz=Europe%2FZurich&amp;bgcolor=%23ffffff&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&amp;color=%23039BE5" style="border:solid 1px #777" width="100%" height="550" frameborder="0" title="FLYwithMIKI-school calendar">
+                  </iframe>
+            
+           
+        </div>
+
+
+  <!-- End page content -->
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 6500);    
+}
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+        
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

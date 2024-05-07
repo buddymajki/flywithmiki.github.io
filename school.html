@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FLYwithMIKI - Paragliding School</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="FLYwithMIKI - The first ECO-friendly paragliding school in Switzerland">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+            html {scroll-behavior: smooth;}
+            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
+             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            .w3-third img:hover {opacity: 1}
+            .mySlides {display:none;} //slideshowhoz kell
+
+        </style>
+
+     <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
+
+
+    </head> 
+
+
+
+<body class="w3-white w3-content" style="max-width:1600px">
+
+
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container ">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    
+    <div class="w3-margin w3-display-center"> 
+        <a href="index.html#Intro"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        </a> 
+    </div>
+  </div>
+
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+    <a onclick="myAccFunc('demoAcc1');return false" href="<#>" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      Home <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="index.html#" class="w3-bar-item w3-button">Our approach</a>
+      <a href="index.html#sustainability" class="w3-bar-item w3-button">Sustainability</a>
+      <a href="index.html#team" class="w3-bar-item w3-button">The Team</a>
+      <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+
+   
+    <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      School <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="school.html" class="w3-bar-item w3-button">Learn to fly (Beginners)</a>
+      <a href="school.html#visiting" class="w3-bar-item w3-button">Visiting students & pilots</a>
+      <a href="school.html#tandemcourse" class="w3-bar-item w3-button">Tandem course</a>
+      <a href="trips.html" class="w3-bar-item w3-button">Trips</a>
+      <a href="links.html" class="w3-bar-item w3-button">Links</a>
+      <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    </div>
+
+    
+    <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
+   
+  </div>
+
+  
+   
+ 
+  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
+</nav>
+
+
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
+  
+  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+
+</div>
+
+
+ <!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+        <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:4em">
+
+    </div>
+
+
+
+
+<!-- SCHOOL section -->
+  <div class="w3-container w3-white w3-center w3-padding-16" id="school">
+     <div class="w3-content" style="max-width:1000px">
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
+
+        <h1><b>Your Eco-Friendly Paragliding School<b></h1>
+        <p class="w3-large">No hidden costs, no suprises!</p>
+
+        <p class="w3-justify" style="max-width:900px; margin:auto">
+                  When it comes to choosing a paragliding school, FLYwithMIKI.COM stands out for its commitment to personalized and intimate training experiences. Unlike larger schools, I believe in <ins>small group training</ins>s  that enable us to focus on each individual's needs. By keeping the group size limited, I can dedicate more time to discussing your progress, honing your skills, and addressing any concerns you may have. Moreover, our small groups allow us to fly alongside you, providing real-time guidance and the opportunity to practice maneuvers together in the air.
+                 <br> <br>
+                  Additionally, FLYwithMIKI.COM takes pride in being at the forefront of sustainability practices in Switzerland. As <ins>the first paragliding school in the country to embrace sustainability</ins>, I  utilize an electric van for transportation, reducing our carbon footprint and contributing to a greener environment. By choosing FLYwithMIKI.COM, you not only receive top-notch training but also support a school that prioritizes individual attention and environmental responsibility.</p>
+                </p>  
+     </div>
+
+    <!--YOUR JOURNEY-->
+    <div class="w3-container w3-white w3-padding-32">
+        <div class="w3-content" style="max-width:900px">
+            <h2><b>Your journey</b></h2>
+          <div class="w3-row w3-row-padding">
+               
+               <div class="w3-half w3-justify">
+                 <h3><b>Training hill:</b></h3> Our initial (2-5) days will be spent on the training hill, providing you with a solid foundation in equipment familiarity and pre-flight preparations. You'll engage in low-altitude flights, focusing on safe takeoffs and landings, all while ensuring an enjoyable learning experience. <br>
+                 <h3><b>High flights:</b></h3> Once you've confidently mastered takeoffs and landings, our focus shifts to honing your skills in the air. During the flights where you will have several hundred meters between your harness and the ground, we'll refine your techniques and introduce maneuvers that contribute to your growth as a proficient and safe pilot.
+
+              </div>
+
+
+               <div class="w3-half w3-justify">
+                   <div class="w3-container w3-center"> 
+                   <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="location" style="max-height:200px; margin:auto" loading="lazy"> 
+                   </div>       
+                   <h3><b>Advanced ground handling:</b></h3> Elevating your proficiency significantly, I emphasize the importance of mastering ground handling. This fundamental aspect of your flying journey is best cultivated through practice and refinement, and we continually revisit this essential skill set.       
+              </div>
+
+          </div>
+
+        </div>
+   </div>
+
+    <!--SHV number calculator-->
+    <div class="w3-container w3-light-blue w3-padding-16">
+        <div class="w3-content" style="max-width:900px">
+           <h2 class="w3-center"><b>SHV-number calculator</b></h2>
+           <p class="w3-justify">Do not forget to put your SHV numbers on your glider (40cm height). Write your number in the following field and it will calculate how many sticker-digits do you have to order.</p>
+        
+
+          <style> 
+             #result {font-size: 16px; /* Default font size for the text */}
+             #result b {font-size: 24px; /* Font size for the result */font-weight: bold; /* Make the result bold */} </style>
+          
+          <form class="w3-left-align" id="numberForm">
+            <label for="numberInput">Enter your SHV number:</label>
+            <input type="text" id="numberInput" maxlength="5" pattern="\d{1,5}" required="">
+            <button type="submit">Calculate</button>
+          </form>
+          
+          <div class="w3-left-align" id="result"></div>
+
+
+          <script> document.getElementById('numberForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var inputNumber = document.getElementById('numberInput').value;
+    var summary = summarizeNumber(inputNumber);
+    
+    document.getElementById('result').innerHTML = "The number of digits you have to purchase: <b>" + summary + "</b>" + " pcs.";
+    });
+    function summarizeNumber(number) {
+    var lookupTable = {
+        '0': 6,
+        '1': 2,
+        '2': 5,
+        '3': 5,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 3,
+        '8': 7,
+        '9': 6
+    };
+    var sum = 0;
+    for (var i = 0; i < number.length; i++) {
+        var digit = number.charAt(i);
+        sum += lookupTable[digit] || 0;
+    }
+           return sum;} </script>
+        </div>
+    </div>
+
+
+  <!-- End page content -->
+</div>
+
+<div class="w3-container w3-white w3-center w3-padding-16" id="visiting">
+  <H2> Visiting Pilots from Abroad - Coming soon</H2>
+</div>
+<div class="w3-container w3-white w3-center w3-padding-16" id="tandemcourse">
+   <H2> Tandem course - Coming soon</H2>
+</div>
+
+<script>
+
+
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+// Accordion 
+//function myAccFunc() {
+//  var x = document.getElementById("demoAcc");
+//  if (x.className.indexOf("w3-show") == -1) {
+//    x.className = x.className.replace("w3-hide", "w3-show");
+//  } else {
+//    x.className = x.className.replace("w3-show", "w3-hide");
+//  }
+//}
+// Click on the "School" link on page load to open the accordion automatically
+// document.getElementById("myBtn").click();
+
+
+// slideshow
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 6500);    
+}
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+
+        
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

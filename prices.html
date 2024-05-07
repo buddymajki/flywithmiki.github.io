@@ -1,0 +1,363 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FLYwithMIKI - Paragliding School</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="FLYwithMIKI - The first ECO-friendly paragliding school in Central Switzerland (Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg)">
+
+        <meta property="og:url" content="https://flywithmiki.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FLYwithMIKI.com - Paragliding School & Tandem Flights" />
+        <meta property="og:description" content="Experience the thrill of paragliding in Switzerland with FLYwithMIKI. Learn to fly, or enjoy a tandem flight with breathtaking views in the hearth of Switzerland." />
+        <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+<style>
+           * {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+}
+.col {
+  display: table-cell;
+  padding: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .col { 
+    display: block;
+    width: 95%;
+    margin: auto;
+    padding: 16px;
+  }
+}
+            html {scroll-behavior: smooth;}
+            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
+            body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            .w3-third img:hover {opacity: 1}
+            .mySlides {display:none;} //slideshowhoz kell
+
+
+
+  
+
+</style>
+
+     <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
+
+
+    </head> 
+
+
+
+<body class="w3-white w3-content" style="max-width:1600px">
+
+
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container ">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    
+    <div class="w3-margin w3-display-center"> 
+        <a href="index.html#Intro"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        </a> 
+    </div>
+  </div>
+
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+    <a onclick="myAccFunc('demoAcc1');return false" href="<#>" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      Home <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="index.html#" class="w3-bar-item w3-button">Our approach</a>
+      <a href="index.html#sustainability" class="w3-bar-item w3-button">Sustainability</a>
+      <a href="index.html#team" class="w3-bar-item w3-button">The Team</a>
+      <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+
+   
+    <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      School <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="school.html" class="w3-bar-item w3-button">Learn to fly (Beginners)</a>
+      <a href="school.html#visiting" class="w3-bar-item w3-button">Visiting students & pilots</a>
+      <a href="school.html#tandemcourse" class="w3-bar-item w3-button">Tandem course</a>
+      <a href="trips.html" class="w3-bar-item w3-button">Trips</a>
+      <a href="links.html" class="w3-bar-item w3-button">Links</a>
+      <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    </div>
+
+    
+    <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
+   
+  </div>
+
+  
+   
+ 
+  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
+</nav>
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
+  
+  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+
+</div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+    <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:4em">
+
+    </div>
+
+ <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+ <div class="w3-container w3-white w3-center w3-padding-32" id="Prices">
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
+        
+
+        <h1 class="margin"><b>Prices<b></h1>
+        <p class="w3-xlarge">Small group training, modern teaching methods</p>
+
+ </div>
+
+ <!-- COURSES-->
+
+
+
+   <div class="w3-panel w3-card w3-margin-bottom" style="width:95%; margin:auto; max-width:800px">
+       <div class="w3-container w3-padding">
+          <h3><b>Full Training</b><span class="w3-opacity" style="font-size:16px">(when full equipment purchased from us)</span></h3> 
+          <p class="w3-text-teal w3-large"><b>CHF 4500</b></p>
+          <p class="w3-justify">Become a certified paraglider pilot with our comprehensive training program that prepares you for the Swiss IPPI4 pilot license.</p>
+          
+          <ul class="w3-ul w3-margin-top w3-border">
+            <li>1-2 Instructional tandem flights with Miki (optional)</li>
+            <li>Basic training (3-5 days)</li>
+            <li>Unlimited high altitude flights (up to 12 months from the 1st flight)</li>
+            <li>Theory lessons (Aerodynamics, Meteorology, Flying, Material Sciences, Air Law)</li>
+            <li>Material included until the first 3 high flights</li>
+          </ul>
+          <p><a href="https://1133.3cx.cloud/flywithmikicom" target="_blank" class="w3-button w3-round-xlarge w3-margin-bottom" style="background-color:#ADCDFF; color:black; margin:auto">Sign up</a></p>
+        </div>
+    </div>
+
+ <div class="col-container w3-margin-bottom">
+  <div class="col w3-margin-bottom">
+      <h3><b>Basic training</b></h3>
+        <p class="w3-text-teal w3-large"><b>CHF 1800</b></p>
+        <p class="w3-justify">Learn the basics of paragliding in a safe and controlled environment. This course (3-5 days) is a great introduction to the sport.</p>
+        <ul class="w3-ul w3-margin-top w3-border">
+          <li>1 Instructional tandem flight with Miki (optional)</li>
+          <li>Ground handling and training hill exercises</li>
+          <li>Low altitude flights</li>
+          <li>High Altitude flights on the last day (1-3 flights)</li>
+          <li>Material included during the entire course</li>
+        </ul>
+        
+  </div>
+
+  <div class="col  w3-margin-bottom">
+       <h3><b>High Altitude Flights</b></h3>
+        <p class="w3-text-teal w3-large"><b>CHF 4000</b></p>
+        <p class="w3-justify">You already have your equipment and did the basics somewhere else? Does not matter, join our school and progress with us</p>
+        <ul class="w3-ul w3-margin-top w3-border">
+          <li>1-2 Instructional tandem flights with Miki (optional)</li>
+          <li>High altitude flights (up to 12 months or 80 flights, whichever comes first)</li>
+          <li>Theory lessons (Aerodynamics, Meteorology, Flying, Material Sciences, Air Law)</li>
+        </ul>
+
+  </div>
+
+ </div>
+ 
+
+<!--Additional courses-->
+ <div class="w3-container w3-margin-bottom w3-padding-32" style="max-width:800px; margin:auto">
+  <h3><b>Additional courses for students</b></h3>
+
+  <table class="w3-table w3-bordered w3-hoverable">
+    <tr class="w3-light-grey">
+      <th>Course</th>
+      <th>Description</th>
+      <th class="w3-right-align">Cost</th>
+    </tr>
+    <tr>
+      <td>Guest schooling</td>
+      <td>Come for a day and practice your maneuver with us</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
+    </tr>
+    <tr>
+      <td>Exam simulation</td>
+      <td>Complete briefing and exam simulation at Wolfenschiessen (Büelen)</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
+    </tr>
+    <tr>
+      <td>School extension</td>
+      <td>Unlimited flights (3 months)</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 700</td>
+    </tr>
+    <tr>
+      <td>Visiting Pilots</td>
+      <td>One day training for pilots with an <span style="font-weight:bold">IPPI 1-3 or APPI license</span></td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
+    </tr>
+    <tr>
+      <td>1:1 coaching</td>
+      <td>1 day individual coaching</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 600</td>
+    </tr>
+  </table>
+ </div>
+
+
+
+<!--For licensed courses-->
+ <div class="w3-container w3-margin-bottom w3-padding-32" style="max-width:800px; margin:auto">
+ <h3><b>Courses for licensed Pilots</b></h3>
+
+  <table class="w3-table w3-bordered w3-hoverable">
+    <tr class="w3-light-grey">
+      <th>Course</th>
+      <th>Description</th>
+      <th class="w3-right-align">Cost</th>
+    </tr>
+    <tr>
+      <td>Tandem FULL</td>
+      <td>Become a commercial tandem pilot: Solo + Tandem1 + Tandem3</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 990</td>
+    </tr>
+    <tr>
+      <td>Solo</td>
+      <td>Preparation for your solo exam</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 400</td>
+    </tr>
+    <tr>
+      <td>Tandem 1</td>
+      <td>Instructional flight + 20 supervised tandem flights</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 800</td>
+    </tr>
+    <tr>
+      <td>Tandem 3</td>
+      <td>30 supervised tandem flights</span></td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 800</td>
+    </tr>
+
+   </table>
+
+
+ </div>
+
+ <!--Material-->
+ <div class="w3-container w3-margin-bottom w3-padding-32" style="max-width:800px; margin:auto">
+ <h3><b>Material</b></h3>
+ <p>We sell the highest quality materials at competitiv prices and we take care of your needs, supporting you with your decision to choose the best material based on your goals and skills</p>
+  <table class="w3-table w3-bordered w3-hoverable">
+    <tr class="w3-light-grey">
+      <th>Equipment</th>
+      <th>Description</th>
+      <th class="w3-right-align">Cost</th>
+    </tr>
+    <tr>
+      <td>Beginner</td>
+      <td>EN-A Glider + Harness + Rescue</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">from CHF 4500</td>
+    </tr>
+    <tr>
+      <td>Beginner Light</td>
+      <td>If you plan to hike a lot, then go light</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">from CHF 5200</td>
+    </tr>
+    <tr>
+      <td>Tandem</td>
+      <td>We sell the best equipment for your tandem career</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">from CHF 9000</td>
+    </tr>
+  </table>
+
+
+ </div>
+
+</div>
+
+
+<script>
+
+
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 6500);    
+}
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+
+        
+</script>
+
+
+</body>
+
+</html>
