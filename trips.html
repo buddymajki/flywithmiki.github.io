@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
 	
@@ -60,21 +60,20 @@
         </a> 
     </div>
     <!--Language menu -->
-<div class="w3-margin w3-display-container">
-  <div class="w3-row">
-    <div class="w3-col s6 m6 l6 w3-center">
+    <div class="w3-margin w3-display-container">
+      <div class="w3-row">
+       <div class="w3-col s6 m6 l6 w3-center">
       <button class="w3-hover-opacity" id="english-button" style="width:40%; background: none; border: none; padding: 0;">
         <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
       </button>
-    </div>
-    <div class="w3-col s6 m6 l6 w3-center">
+     </div>
+     <div class="w3-col s6 m6 l6 w3-center">
       <button class="w3-hover-opacity" id="german-button" style="width:40%; background: none; border: none; padding: 0;">
         <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
       </button>
+     </div>
+     </div>
     </div>
-  </div>
-</div>
-
 
   </div>
 
@@ -172,20 +171,6 @@ function myAccFunc(id) {
   }
 }
 
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 6500);    
-}
 
 // Open and close sidebar
 function w3_open() {
@@ -197,17 +182,6 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
-
-        // Modal Image Gallery
-        function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-            var captionText = document.getElementById("caption");
-            captionText.innerHTML = element.alt;
-        }
-
-
-
 
 // Nyelv választó
 // Function to handle language switch based on button clicked
