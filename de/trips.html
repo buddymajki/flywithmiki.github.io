@@ -1,5 +1,5 @@
  <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
     <head>
 	
 	<!-- Google tag (gtag.js) -->
@@ -13,7 +13,7 @@
 </script>
 
 
-        <title>FLYwithMIKI - Gleitschirm Reise</title>
+        <title>FLYwithMIKI - Paragliding trips</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
         <meta name="description" content="Soar through stunning landscapes in Central Switzerland! Paraglide in the Swiss Alps and beyond. FLYwithMIKI - Eco-adventures.">
@@ -206,6 +206,26 @@ function w3_close() {
             captionText.innerHTML = element.alt;
         }
 
+
+
+
+// Nyelv választó
+// Function to handle language switch based on button clicked
+function switchLanguage(language) {
+    const currentFilename = window.location.pathname.split("/").pop();
+    const languagePrefix = language === "en" ? "" : `/${language}`;  // Add prefix based on language
+    const newUrl = `${languagePrefix}/${currentFilename}`;
+    window.location.href = newUrl;
+  }
+
+  // Attach click events to language buttons
+  document.getElementById("english-button").addEventListener("click", function() {
+    switchLanguage("en");
+  });
+
+  document.getElementById("german-button").addEventListener("click", function() {
+    switchLanguage("de");
+});
 
 
         

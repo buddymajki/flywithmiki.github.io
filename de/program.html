@@ -332,6 +332,26 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
+
+// Nyelv választó
+// Function to handle language switch based on button clicked
+function switchLanguage(language) {
+    const currentFilename = window.location.pathname.split("/").pop();
+    const languagePrefix = language === "en" ? "" : `/${language}`;  // Add prefix based on language
+    const newUrl = `${languagePrefix}/${currentFilename}`;
+    window.location.href = newUrl;
+  }
+
+  // Attach click events to language buttons
+  document.getElementById("english-button").addEventListener("click", function() {
+    switchLanguage("en");
+  });
+
+  document.getElementById("german-button").addEventListener("click", function() {
+    switchLanguage("de");
+});
+
+
         
 </script>
 
