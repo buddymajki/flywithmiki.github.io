@@ -309,40 +309,28 @@ function w3_close() {
 
 
 // Nyelv választó
-  // Get references to the buttons
-  const englishButton = document.getElementById("english-button");
-  const germanButton = document.getElementById("german-button");
+       document.getElementById('english-button').addEventListener('click', function() {
+            let currentPath = window.location.pathname;
+            let filename = currentPath.split('/').pop();
+            
+            if (currentPath.startsWith('/de/') && filename) {
+                let newPath = currentPath.replace('/de/' + filename, '/' + filename);
+                window.location.pathname = newPath;
+            } else if (!currentPath.startsWith('/de/') && filename) {
+                let newPath = '/' + filename;
+                window.location.pathname = newPath;
+            }
+        });
 
-  // Function to update the file path based on the button clicked
-  function updateFilePath(isGerman) {
-    const currentPath = window.location.pathname; // Get current path
-    const basePath = currentPath.split("/")[1]; // Extract the base path (e.g., "flywithmiki.com")
-
-    let newPath = "";
-    if (isGerman) {
-      // Add "de/" if German button is clicked
-      newPath = "/de/" + currentPath.slice(basePath.length + 1); // Add "de/" after base path
-    } else {
-      // Remove "de/" if English button is clicked and it exists
-      const parts = currentPath.split("/");
-      if (parts.length > 2 && parts[1] === "de") { // Check for "/de/" structure
-        newPath = "/" + parts.slice(2).join("/"); // Remove "de/" and join remaining parts
-      } else {
-        // Already in English, do nothing
-        newPath = currentPath;
-      }
-    }
-
-    // Update the browser history (optional)
-    if (newPath !== currentPath) {
-      window.history.pushState({}, "", newPath);
-    }
-  }
-
-  // Add click events to buttons
-  englishButton.addEventListener("click", () => updateFilePath(false));
-  germanButton.addEventListener("click", () => updateFilePath(true));
-</script>
+        document.getElementById('german-button').addEventListener('click', function() {
+            let currentPath = window.location.pathname;
+            let filename = currentPath.split('/').pop();
+            
+            if (!currentPath.startsWith('/de/') && filename) {
+                let newPath = '/de/' + filename;
+                window.location.pathname = newPath;
+            }
+        });
 
         
 </script>
