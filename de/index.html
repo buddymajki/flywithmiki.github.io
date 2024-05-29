@@ -97,21 +97,20 @@
         </a> 
     </div>
     <!--Language menu -->
-<div class="w3-margin w3-display-container">
-  <div class="w3-row">
-    <div class="w3-col s6 m6 l6 w3-center">
-      <button class="w3-hover-opacity" id="english-button" style="width:40%; background: none; border: none; padding: 0;">
+    <div class="w3-margin w3-display-container">
+      <div class="w3-row">
+       <div class="w3-col s6 m6 l6 w3-center">
+      <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
         <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
       </button>
-    </div>
-    <div class="w3-col s6 m6 l6 w3-center">
-      <button class="w3-hover-opacity" id="german-button" style="width:40%; background: none; border: none; padding: 0;">
+     </div>
+     <div class="w3-col s6 m6 l6 w3-center">
+      <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
         <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
       </button>
+     </div>
+     </div>
     </div>
-  </div>
-</div>
-
 
   </div>
 
@@ -144,8 +143,6 @@
     <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
    
   </div>
-
-  
    
  
   <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
@@ -464,22 +461,32 @@ function onClick(element) {
 
 
 // Nyelv választó
-// Function to handle language switch based on button clicked
-function switchLanguage(language) {
-    const currentFilename = window.location.pathname.split("/").pop();
-    const languagePrefix = language === "en" ? "" : `/${language}`;  // Add prefix based on language
-    const newUrl = `${languagePrefix}/${currentFilename}`;
-    window.location.href = newUrl;
+function handleButtonClick(language) {
+  const currentPath = window.location.pathname;
+
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const basePath = currentPath.substring(0, lastSlashIndex + 1); // Extracting the base path
+  const fileName = currentPath.substring(lastSlashIndex + 1); // Extracting the filename
+
+  let newPath = currentPath;
+
+  if (language === "english") {
+    if (basePath.includes('/de/')) {
+      newPath = basePath.replace('/de/', '/'); // Remove "/de/" from the base path
+    }
+  } else if (language === "german") {
+    if (!basePath.includes('/de/')) {
+      newPath = `${basePath}de/`; // Add "/de/" to the base path
+    }
   }
 
-  // Attach click events to language buttons
-  document.getElementById("english-button").addEventListener("click", function() {
-    switchLanguage("en");
-  });
-
-  document.getElementById("german-button").addEventListener("click", function() {
-    switchLanguage("de");
-});
+  if (newPath !== currentPath) {
+    // Append the filename only if the path is modified
+    newPath += fileName;
+    // Redirect to the new path
+    window.location.href = newPath;
+  }
+}
 
 
         
