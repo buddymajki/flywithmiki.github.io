@@ -256,18 +256,11 @@
       
 
 
+ <!-------------------------------SLIEDSHOW----------------------->
+        <img class="w3-image w3-round-xxlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/anim1.webp" alt="pic1" style="width:100%; max-width:900px">
+            
 
-                <div class="w3-content w3-section" style="max-width:900px">
-                 
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/2.webp" alt="pic2" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/3.webp" alt="pic3" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/4.webp" alt="pic4" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/6.webp" alt="pic5" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/7.webp" alt="pic6" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/8.webp" alt="pic7" style="width:100%" loading="lazy">
-                 <img class="mySlides w3-animate-fading" src="https://flywithmiki.com/Images_v2/19.webp" alt="pic8" style="width:100%" loading="lazy">
-                 
-                </div>
+
             
 
 
@@ -427,22 +420,6 @@ function myAccFunc(id) {
 
 
 
-// slideshow
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 6500);    
-}
-
 // Open and close sidebar
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -454,13 +431,6 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-// Modal Image Gallery
-function onClick(element) {
-      document.getElementById("img01").src = element.src;
-      document.getElementById("modal01").style.display = "block";
-      var captionText = document.getElementById("caption");
-      captionText.innerHTML = element.alt;
-}
 
 
 
