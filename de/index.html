@@ -37,7 +37,7 @@
             display: flex;
             flex-wrap: wrap;
         }
-        .w3-half, .w3-third {
+        .w3-half, .w3-third, .w3-quarter{
             display: flex;
             flex-direction: column;
             box-sizing: border-box; /* Ensure padding is included in width */
@@ -48,6 +48,10 @@
         .w3-third {
             flex: 1 0 33.33%;
         }
+        
+        .w3-quarter {
+            flex: 1 0 25.00%;
+        }        
         .w3-card-4 {
             display: flex;
             flex-direction: column;
@@ -67,16 +71,27 @@
                 flex: 1 0 100%;
             }
         }
-
+        @media (max-width: 1200px) {
+           .w3-quarter {
+                width: 100%;
+                flex: 1 0 50%;
+            }
+        }
+        @media (max-width: 500px) {
+           .w3-quarter {
+                width: 100%;
+                flex: 1 0 100%;
+            }
+        }
             html {scroll-behavior: smooth;}
             .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
              body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
-            .w3-third img:hover {opacity: 1}
+            // .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            //.w3-third img:hover {opacity: 1}
             .mySlides {display:none;} //slideshowhoz kell
 
         </style>
-
+		
      <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
 
@@ -116,16 +131,8 @@
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a onclick="myAccFunc('demoAcc1');return false" href="https://flywithmiki.com/" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
-      Unsere Werte <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="index.html#" class="w3-bar-item w3-button">Herangehensweise</a>
-      <a href="index.html#sustainability" class="w3-bar-item w3-button">Nachhaltigkeit</a>
-      <a href="index.html#team" class="w3-bar-item w3-button">Team</a>
-      <a href="index.html#contact" class="w3-bar-item w3-button">Kontakt</a>
-    </div>
-
+    <a href="index.html" class="w3-bar-item w3-button">Über uns</a>
+   
    
     <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
       Schule <i class="fa fa-caret-down"></i>
@@ -145,7 +152,6 @@
   </div>
 
   
-   
  
   <a href="program.html"  class="w3-bar-item w3-button w3-padding">Tagesprogramm</a>
 </nav>
@@ -180,109 +186,126 @@
     <div class="w3-hide-large" style="margin-top:4em">
 
     </div>
-
+	
+	
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
- <div class="w3-container w3-white w3-center w3-padding-32" id="Intro">
+  <div class="w3-container w3-white w3-center w3-padding-32" id="Intro">
         <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
         
         <img class="w3-image w3-round-xxlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/anim.webp" alt="pic1" style="width:100%; max-width:900px">
 
-        <h1><b>Deine Gleitschirmschule in der Zentralschweiz<b></h1>
+        <h1><b>Gleitschirmschule und Tandemflüge</b></h1>
         <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
 
 
       <div class="w3-row-padding">
 
 
-        <div class="w3-third">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="multilingual" style="width:100%; max-width:200px">
-           <p class="w3-xlarge"><b>Multilingual</b></p>
-           <p class="w3-display-bottommidle w3-justify w3-padding">Wichtig ist, dass du alles verstehst, besonders in der Luft. Unterricht auf Englisch, Deutsch und Ungarisch.</p>
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+          <p class="w3-xlarge">Multilingual</p>
+        
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="multilingual" style="width:100%; max-width:200px" loading="lazy">
+           <p class="w3-justify w3-padding">Wichtig ist, dass du alles verstehst, besonders in der Luft. Unterricht auf Englisch, Deutsch und Ungarisch.</p>
           </div>
         </div>
 
-         <div class="w3-third">
-           <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section">
-             <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="parag" style="width:100%; max-width:200px" loading="lazy">
-             <p class="w3-xlarge"><b>Kleine Gruppe</b></p>
-             <p class="w3-display-bottommidle w3-justify w3-padding">Grösse zählt! Effektiver Unterricht ist nur in kleinen Gruppen möglich. Maximal 3 Personen pro Instruktor am Übungshang und maximal 6 Teilnehmende bei den Höhenflügen. </p>
-           </div>
-         </div>
+        <div class="w3-quarter">
+          <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
 
-         <div class="w3-third">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/review.webp" alt="review" style="width:100%; max-width:200px" loading="lazy">
-          
-           <p class="w3-xlarge"><b>Zufriedene Kunden</b> <br><span class="fa fa-star checked" style="color:orange"></span><span class="fa fa-star checked" style="color:orange"></span><span class="fa fa-star checked" style="color:orange"></span><span class="fa fa-star checked" style="color:orange"></span><span class="fa fa-star checked" style="color:orange"></span></p>
-          
-          <p class=" w3-justify w3-padding" style="">Durchschnittliche Bewertung von 5.0 Sternen basierend auf 14 Google Rezensionen. </p>
-          <p><a href="https://g.page/r/CYIc70FhlBDgEB0/review" target="_blank" class="w3-button w3-round-xlarge" style="background-color:#ADCDFF; color:black">Write a review</a></p>
+          <p class="w3-xlarge">Kleine Gruppe</p>
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="parag" style="width:100%; max-width:200px" loading="lazy">
+          <p class="w3-justify w3-padding">Grösse zählt! Effektiver Unterricht ist nur in kleinen Gruppen möglich.</p>
           </div>
         </div>
 
-        <div class="w3-half">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section">
-           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="treeplanting" style="width:100%; max-width:200px" loading="lazy">
-            <p class="w3-xlarge"><b>Nachhaltig</b></p>
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+            <p class="w3-xlarge">Nachhaltig</p>
+            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="treeplanting" style="width:100%; max-width:200px" loading="lazy">
            <p class="w3-display-bottommidle w3-justify w3-padding" style="">Baumpflanzungen nach jedem Kurs und Tandemflug. Unterwegs mit einem E-Bus, der zu 100% mit Ökostrom geladen wird.</p>
-           <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe">
-           <img class="w3-image w3-center w3-margin-bottom" src="https://flywithmiki.com/Images_v2/EcoDrive_Badge.webp" alt="treeplanting" style="max-height:180px; max-width: 90%" loading="lazy">
-           </a>
-         
+           <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe"></a>
           </div>
-
         </div>
 
-        <div class="w3-half">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section">
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+           <p class="w3-xlarge">Flexibel</p>
            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="education" style="width:100%; max-width:200px" loading="lazy">
            
-           <p class="w3-xlarge"><b>Nächster Einsteigerkurs</b></p>
-           <p class="w3-display-bottommidle w3-justify w3-padding"">Starte deine Reise und werde ein eigenständiger Gleitschirmpilot, der frei durch den Himmel gleiten kann.</p>
-           
-           <div class="w3-panel w3-round-xxlarge w3-margin-bottom" style="background-image:linear-gradient(#ADCDFF,#6496e6cc); min-height:180px; max-width: 90%; margin:auto">
-           <p class="w3-xlarge"><b>20-23 June 2024</b></p>
-           <p>Begrenzte Plätze, maximal 3 Teilnehmende</p>
-           <p><a href="https://1133.3cx.cloud/flywithmikicom" target="_blank" class="w3-button w3-light-grey w3-round-xlarge">Melde dich heute an!</a></p>
-           </div>
 
+           <p class="w3-display-bottommidle w3-justify w3-padding">Hast du einen stressigen Zeitplan? Kein Problem, unser Training ist total flexibel.</p>
+           
            </div> 
         </div>
 
 
-       </div>
-
-      
 
 
- <!-------------------------------SLIEDSHOW-----------------
-        <img class="w3-image w3-round-xxlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/anim1.webp" alt="pic1" style="width:100%; max-width:900px">
-            
 
------->
-            
+      </div>
+ </div>
+
+  <div class="w3-container w3-white w3-text-black w3-center" style="max-width:1000px; margin:auto" id="sch"> 
+        <p class="w3-justify w3-margin-top" >
+          <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="castell" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy">Wenn du eine Gleitschirmschule suchst, hebt sich FLYwithMIKI.COM durch persönliche und intime Schulungserlebnisse ab. castellIm Gegensatz zu grösseren Schulen glaube ich an <ins>kleine Gruppen</ins>, die es uns ermöglichen, uns auf die Bedürfnisse jedes Einzelnen zu konzentrieren. So kann ich mehr Zeit für deinen Fortschritt, deine Fähigkeiten und deine Fragen aufwenden. Ausserdem können wir dir in Echtzeit Anleitung geben und Manöver in der Luft gemeinsam üben.
+          <br> <br>
+
+          FLYwithMIKI.COM ist stolz auf sein Engagement für Nachhaltigkeit. Als erste Gleitschirmschule in der Schweiz setze ich einen elektrischen Lieferwagen für den Transport ein, um unseren CO2-Fussabdruck zu reduzieren. Mit FLYwithMIKI.COM erhältst du erstklassiges Training und unterstützt eine umweltbewusste Schule.</p>  <br><br>
+  </div>
 
 
+
+<!-- TEAM section------------------------------------------------------------>
+  <div class="w3-container w3-light-grey w3-text-black w3-center w3-padding" id="team">
+    <h2>Das Team</h2>
+
+    <div class="w3-content w3-justify" style="max-width:1000px">
+        <p>Wir sind begeisterte Piloten und wollen die Freude am Fliegen mit dir teilen! Egal, ob du Anfänger oder erfahrener Flieger bist, wir begleiten dich auf deinem Weg. Lass uns gemeinsam abheben!</p>
+    </div>
+
+    <div class="w3-row-padding" style="max-width:1000px; margin:auto">
+        <div class="w3-third">
+            <div class="w3-card-4 w3-auto w3-display-container w3-section">
+                <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki" style="width:100%" loading="lazy">
+                    <p class="w3-xlarge">Miki Mohos</p>
+                    SHV-Fluglehrer und Biplacepilot
+                    <p class="w3-justify w3-padding">Meine Leidenschaft ist es, Paragliding zu unterrichten und die Schönheit des Fliegens zu vermitteln. <br>
+                    Dabei setze ich auf moderne und persönliche Unterrichtsmethoden. Im Kleingruppentraining kannst du so in deinem eigenen Tempo lernen und deine Ziele erreichen.</p>
+             
+            </div>
+        </div>
+
+        <div class="w3-third">
+            <div class="w3-card-4 w3-auto w3-display-container w3-section">
+                <img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel" style="width:100%" loading="lazy">
+                    <p class="w3-xlarge">Marcel Schmid</p>
+                    <p>XC-coach und Biplacepilot</p>
+                    <p class="w3-justify w3-padding">Der Himmel ist mein Zuhause! Vor über dreissig Jahren hat mich beim Tandemflug der Flugwahn gepackt und seitdem lässt er mich nicht mehr los.<br>
+                    Diese Leidenschaft ist mein Beruf geworden: Ich biete Touristen Tandemflüge an und teile meine Erfahrungen im Streckenfliegen und Hike & Fly mit angehenden Piloten.</p>
+                
+            </div>
+        </div>
+    </div>
  </div>
 
 
 
  <!-- Sustainability------------------------------------------------------------>
-        <div class="w3-container w3-light-grey w3-text-black w3-center" id="sustainability">
-           <h2 class="" >Nachhaltigkeit</h2>
+        <div class="w3-container w3-white w3-text-black w3-center" id="sustainability">
+           <h2 class="">Nachhaltigkeit</h2>
             <h3>Neue Höhen erreichen. Baum für Baum mit jedem Traumflug eines Schülers.</h3>
 
                 <p class=" w3-justify" style="max-width:1000px; margin:auto">
                   Der Schutz unserer Umwelt ist für mich keine Option, sondern meine Verantwortung. Mit meinem Hintergrund als Ingenieur habe ich mich schon immer für die Entwicklung umweltfreundlicher Technologien begeistert. Auch heute, als Fluglehrer und Tandempilot, lege ich weiterhin grossen Wert auf das Wohl unseres Planeten.</p>
                 </p>  
 
-         <div class="w3-row-padding">
+         <div class="w3-row-padding"  style="max-width:1000px; margin:auto">
 
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
                <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="totyabus"  loading="lazy"> 
-               <p class="w3-xlarge"><b>Nachhaltiges Fortbewegungsmittel</b></p>
+               <p class="w3-xlarge">Nachhaltiges Fortbewegungsmittel</p>
                <p class="w3-display-bottommidle w3-justify w3-padding" style="">Mit vollem Einsatz für Nachhaltigkeit setzt unsere Gleitschirmschule auf einen Elektrobus und lädt diesen wann immer möglich mit erneuerbarer Energie. So minimieren wir unseren ökologischen Fussabdruck und setzen Massstäbe für umweltbewusste Abenteuersportler und verantwortungsvollen Tourismus.</p>
                </div>
               </div>
@@ -290,19 +313,19 @@
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
                <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="kenyatree" loading="lazy">
-               <p class="w3-xlarge"><b>Verifizierte Baumpflanzungen mit Ecodrive und Veritree  </b></p>
+               <p class="w3-xlarge">Verifizierte Baumpflanzungen mit Ecodrive</p>
                <p class="w3-display-bottommidle w3-justify w3-padding">Wir gleichen den CO2-Fussabdruck deines Paragliding-Abenteuers aus. Unser Partner pflanzt Mangroven in Kenia (verifiziertes Projekt), während wir in der Schweiz fliegen. Nach jedem Tandemflug werden bis zu vier Bäume gepflanzt und nach jedem Schüler bis zu fünfundzwanzig Bäume!</p>          
                </div>
               </div>
 
               
-              <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="margin: auto;">  
+              <div class="w3-half w3-white w3-auto w3-display-container w3-section" style="margin:auto;">  
                  
                 <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe">
                 <img src="https://7htgx3pzy2n3vqunaynz323iwe0egjev.lambda-url.us-east-1.on.aws/?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&variant=dark&days=false&carbon=true&transparent=false&theme4ocean=false" style="width: 350px; margin-top: 20px" alt="Ecodrive Badge" loading="lazy"/>
                 </a>
       
-                 <p class="w3-justify w3-padding" style="">Unsere Baum-Pflanz-Initiative wird von einer renommierten US-Tech-Firma (Ecodrive-Veritree) verifiziert, die Transparenz und echte Umweltwirkung garantiert, ohne Greenwashing. <br>Klick auf das Bild und schau dir die Seite unseres verifizierten Baum-Pflanz-Projekts auf der Website unseres Partners an. </p>
+                 <p class="w3-justify w3-padding" style="">Unsere Baum-Pflanz-Initiative wird von einer renommierten US-Tech-Firma (Ecodrive-Veritree) verifiziert, die Transparenz und echte Umweltwirkung garantiert, ohne Greenwashing.<br>Klick auf das Bild und schau dir die Seite unseres verifizierten Baum-Pflanz-Projekts auf der Website unseres Partners an.</p>
                </div>
               
 
@@ -311,87 +334,35 @@
 
         </div>
 
-<!-- TEAM section------------------------------------------------------------>
-  <div class="w3-container w3-light-grey w3-text-black w3-center w3-padding-32" id="team">
-    <h2><b>Das Team</b></h2>
-
-    <div class="w3-content w3-justify w3-padding-16" alt="Miki" style="max-width:900px">
-        <p>Wir sind begeisterte Piloten und wollen die Freude am Fliegen mit dir teilen! Egal, ob du Anfänger oder erfahrener Flieger bist, wir begleiten dich auf deinem Weg. Lass uns gemeinsam abheben!</p>
-    </div>
+<!-- Contact section -->
+<div class="w3-container w3-white w3-padding" id="contact">
+  <div class="w3-content" style="max-width:1000px">
+    <h2 class="w3-center">Contact us</h2>
 
     <div class="w3-row-padding">
-        <div class="w3-half">
-            <div class="w3-card-4 w3-auto w3-display-container w3-section" >
-                <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki" style="width:100%" loading="lazy">
+      
+      <div class="w3-third w3-center">
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/google_1.webp" alt="google" style="max-width:200px; ">
+        </a>
+      </div>
 
-                <div class="w3-container">
-                    <p class="w3-xlarge"><b>Miki Mohos</b></p>
-                    <p>SHV-Fluglehrer und Biplacepilot</p>
-                </div>
+      <div class="w3-third w3-center">
+        <a href="tel:+41779766164">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/24.webp" alt="phone" style="width:20%; " loading="lazy">
+        </a>
+      </div>
 
-                <div class="w3-display-bottommidle w3-justify w3-padding w3-light-grey">
-                    <p>Meine Leidenschaft ist es, Paragliding zu unterrichten und die Schönheit des Fliegens Schritt für Schritt zu vermitteln. So können Schüler und Anfängerpiloten jeden Moment der Reise geniessen und verstehen.</p>
-                    <p>Dabei setze ich auf moderne und persönliche Unterrichtsmethoden. Im Kleingruppentraining kannst du so in deinem eigenen Tempo lernen und deine Ziele erreichen.</p>
-                </div>
-            </div>
-        </div>
+      <div class="w3-third w3-center">
+        <a href="mailto:info@flywithmiki.com">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/23.webp" alt="email" style="width:20%; " loading="lazy">
+        </a>
+      </div>
 
-        <div class="w3-half">
-            <div class="w3-card-4 w3-auto w3-display-container w3-section">
-                <img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel" style="width:100%" loading="lazy">
-
-                <div class="w3-container">
-                    <p class="w3-xlarge"><b>Marcel Schmid</b></p>
-                    <p>Biplacepilot, Pilatus Expert, XC-coach, Hike&Fly-coach</p>
-                </div>
-
-                <div class="w3-display-bottommidle w3-justify w3-padding w3-light-grey">
-                    <p>Der Himmel ist mein Zuhause! Vor über dreissig Jahren hat mich beim Tandemflug der Flugwahn gepackt und seitdem lässt er mich nicht mehr los.</p>
-                    <p>Diese Leidenschaft ist mein Beruf geworden: Ich biete Touristen Tandemflüge an und teile meine Erfahrungen im Streckenfliegen und Hike & Fly mit angehenden Piloten.</p>
-                </div>
-            </div>
-        </div>
     </div>
- </div>
-
-<!-- Contact section -->
-        <div class="w3-container w3-light-blue w3-padding-16" id="contact">
-           <div class="w3-content" style="max-width:1000px">
-                <h2 class="w3-center"><b>Miki Kontaktieren</b></h2>
-                <p>Zögere nicht, mich auf einem dieser Kanäle zu kontaktieren oder alternativ über die Call/Chat-Funktion unten rechts!</p>
-           </div>
-
-       <div class="w3-row-padding">
-
-        <div class="w3-third">
-          <div class=" w3-auto w3-display-container w3-section">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/24.webp" alt="phone" style="width:30%; max-width:80px" loading="lazy">
-           <p class="w3-display-bottommidle w3-justify w3-padding">+ 41 (77) 97 66 164</p>
-          </div>
-        </div>
-
-         <div class="w3-third">
-           <div  class=" w3-auto w3-display-container w3-section">
-             <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/23.webp" alt="email" style="width:30%; max-width:80px" loading="lazy">
-             <p class="w3-display-bottommidle w3-justify w3-padding">info@flywithmiki.com</p>
-
-           </div>
-         </div>
-
-         <div class="w3-third">
-          <div class="w3-auto w3-display-container w3-section">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/22.webp" alt="location" style="width:30%; max-width:80px" loading="lazy">          
-          <p class="w3-display-bottommidle w3-justify w3-padding">Kriens-Luzern</p>
-          </div>
-        </div>
-
-       </div>
-            
-
-
-        </div>
-
-
+      
+  </div>
+</div>
 
   <!-- End page content -->
 </div>
@@ -419,7 +390,6 @@ function myAccFunc(id) {
 }
 
 
-
 // Open and close sidebar
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -430,7 +400,6 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
-
 
 
 
