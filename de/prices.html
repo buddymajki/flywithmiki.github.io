@@ -113,11 +113,8 @@
       Schule <i class="fa fa-caret-down"></i>
     </a>
     <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="school.html" class="w3-bar-item w3-button">Lernen zu fliegen (Anfänger)</a>
-      <a href="school.html#visiting" class="w3-bar-item w3-button">Besuchende Studenten & Piloten</a>
-      <a href="school.html#tandemcourse" class="w3-bar-item w3-button">Tandemkurs</a>
-      <a href="trips.html" class="w3-bar-item w3-button">Reise</a>
-      <a href="links.html" class="w3-bar-item w3-button">Links</a>
+      <a href="school.html" class="w3-bar-item w3-button">Lernen zu fliegen</a>
+      <a href="links.html" class="w3-bar-item w3-button">Links und Webcams</a>
       <a href="prices.html" class="w3-bar-item w3-button">Preise</a>
     </div>
 
@@ -182,47 +179,43 @@
       <th>Beschreibung</th>
       <th class="w3-right-align">Preis</th>
     </tr>
-    <tr class="">
+    <tr onclick="location.href='#fullcourse';" style="cursor: pointer;">
       <td>FULL Ausbildung</td>
       <td>Dies ist unser vollständiger Kurs vom Anfang bis zur Erlangung deines Pilot-Lizens.</td>
       <td class="w3-right-align" style="color:black; font-weight:bold">CHF 4500</td>
     </tr>
-     <tr>
+     <tr onclick="location.href='#basiccourse';" style="cursor: pointer;">
       <td>Grundkurs</td>
       <td>3-5 Tage, um die Grundlagen zu lernen und herauszufinden, ob es dein Sport ist.</td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 1800</td>
     </tr>
-    <tr>
+    <tr onclick="location.href='#HFcourse';" style="cursor: pointer;">
       <td>Höhenflüge</td>
       <td>Höhenflüge mit deiner eigenen Ausrüstung, die anderswo gekauft wurde.</td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 4000</td>
     </tr>
-    <tr>
-    <tr>
-      <td>Gastschüler</td>
-      <td>Komm für einen Tag und übe deine Manöver mit uns.</td>
-      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
-    </tr>
-    <tr>
-      <td>Prüfungssimulation</td>
-      <td>Vollständige Einweisung und Prüfungssimulation in Wolfenschiessen (Büelen)</td>
-      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
-    </tr>
-    <tr>
+    <tr onclick="location.href='#extensioncourse';" style="cursor: pointer;">
       <td>Schulerweiterung</td>
       <td>Unbegrenzte Flüge (3 Monate)</td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 700</td>
     </tr>
-    <tr>
+    <tr onclick="location.href='#visitcourse';" style="cursor: pointer;">
       <td>Besuchende Piloten</td>
       <td>Ein eintägiges Training für Piloten mit einer <span style="font-weight:bold">IPPI 1-3 oder APPI Lizenz</span></td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
     </tr>
-    <tr>
-      <td>1:1 coaching</td>
-      <td>1-tägiges individuelles Coaching</td>
-      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 600</td>
+    <tr onclick="location.href='#visitcourse';" style="cursor: pointer;">
+      <td>Gastschüler</td>
+      <td>Komm für einen Tag und übe deine Manöver mit uns.</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
     </tr>
+    <tr onclick="location.href='#visitcourse';" style="cursor: pointer;">
+      <td>Prüfungssimulation</td>
+      <td>Vollständige Einweisung und Prüfungssimulation in Wolfenschiessen (Büelen)</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 250</td>
+    </tr>
+
+
   </table>
  </div>
 
@@ -231,7 +224,7 @@
  <div class="w3-container w3-margin-bottom w3-padding-32" style="max-width:850px; margin:auto">
  <h3><b>Material</b></h3>
  <p>Wir verkaufen Materialien in höchster Qualität zu fairen Preisen und kümmern uns um deine Bedürfnisse. Wir unterstützen dich bei der Entscheidung für das beste Material, basierend auf deinen Zielen und Fähigkeiten.</p>
-  <table class="w3-table w3-bordered w3-hoverable">
+  <table class="w3-table w3-bordered">
     <tr class="w3-light-grey">
       <th>Ausrüstung</th>
       <th>Beschreibung</th>
@@ -267,7 +260,7 @@
  <div class="w3-container w3-margin-bottom" style="max-width:850px; margin:auto">
   <h3><b>Sonstige Kosten</b></h3>
 
-  <table class="w3-table w3-bordered w3-hoverable">
+  <table class="w3-table w3-bordered">
     <tr class="w3-light-grey">
       <th>Typ</th>
       <th>Beschreibung</th>
@@ -305,22 +298,23 @@
  <div class="w3-container w3-margin-bottom w3-padding-32" style="max-width:850px; margin:auto">
  <h3><b>Kurse für lizenzierte Piloten</b></h3>
 
-  <table class="w3-table w3-bordered w3-hoverable">
+  <table class="w3-table w3-bordered">
     <tr class="w3-light-grey">
       <th>Kurs</th>
       <th>Beschreibung</th>
       <th class="w3-right-align">Cost</th>
     </tr>
     <tr>
-      <td>Biplace FULL</td>
-      <td>Werd Profi-Tandempilot und zeig anderen die Welt von oben: Solo + Biplace1 + Biplace3</td>
-      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 990</td>
-    </tr>
-    <tr>
       <td>Solo</td>
       <td>Feinschliff fürs Alleinflug-Examen!</td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 400</td>
     </tr>
+    <tr>
+      <td>Biplace FULL</td>
+      <td>Werd Profi-Tandempilot und zeig anderen die Welt von oben: Solo + Biplace1 + Biplace3</td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 990</td>
+    </tr>
+
     <tr>
       <td>Biplace 1</td>
       <td>Instruktionsflüge + 20 Biplaceflüge unter Fluglehrersicht</td>
@@ -331,6 +325,11 @@
       <td>30 Biplaceflüge unter Fluglehrersicht</span></td>
       <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 800</td>
     </tr>
+    <tr>  
+	  <td>1:1 Coaching</td>
+      <td>Ground handling oder maneuver training mit Miki / XC coaching by Marcel</span></td>
+      <td class="w3-right-align" style="color:teal; font-weight:bold">CHF 600</td>
+    </tr>
 
    </table>
 
@@ -339,7 +338,7 @@
 
 
  <!--DETAILS-->
-  <p class="w3-xxlarge w3-center"> Details zu unseren Hauptkursen</p>
+  <p class="w3-xxlarge w3-center" id="fullcourse"> Details zu unseren Hauptkursen</p>
   <div class="w3-panel w3-margin-bottom " style="width:100%; margin:auto; max-width:850px">
        <div class="w3-container w3-padding">
           <h3><b>FULL Ausbildung</b><span class="w3-opacity" style="font-size:16px">(Ausrüstung bei uns gekauft)</span></h3>
@@ -357,7 +356,7 @@
         </div>
   </div>
 
-  <div class="w3-panel w3-margin-bottom " style="width:100%; margin:auto; max-width:850px">
+  <div class="w3-panel w3-margin-bottom" id="basiccourse" style="width:100%; margin:auto; max-width:850px">
        <div class="w3-container w3-padding">
       <h3><b>Grundkurs</b></h3>
         <p class="w3-justify">Lerne die Gleitschirm-Grundlagen in sicherer und entspannter Atmosphäre. Dieser Kurs (3-5 Tage) ist der perfekte Einstieg in die faszinierende Welt des Fliegens! </p>
@@ -373,19 +372,53 @@
   </div>
  </div>
 
-  <div class="w3-panel w3-margin-bottom " style="width:100%; margin:auto; max-width:850px">
+  <div class="w3-panel w3-margin-bottom" id="HFcourse" style="width:100%; margin:auto; max-width:850px">
        <div class="w3-container w3-padding">
        <h3><b>High Altitude Flights</b></h3>
         <p class="w3-justify">Schon alles am Start und die Grundlagen woanders gelernt? Kein Ding! Steig bei uns ein und flieg mit uns weiter hoch hinaus.</p>
         <ul class="w3-ul w3-margin-top w3-border">
           <li>&#127793; <b> 25 gepflanzte Bäume</b></li>
           <li>1-2 Tandemflüge mit Miki (optional)</li>
-          <li>Unbegrenzte Höhenflüge (bis 12 Monate oder 80 Flüge, je nachdem, was zuerst eintritt)</li>
+          <li>Höhenflüge (bis 12 Monate oder 80 Flüge, je nachdem, was zuerst eintritt)</li>
           <li>Theorieunterricht (Aerodynamik, Meteorologie, Flugpraxis, Materialkunde, Luftrecht)</li>
         </ul>
 
   </div>
  </div>
+
+
+
+
+  <div class="w3-panel w3-margin-bottom" id="extensioncourse" style="width:100%; margin:auto; max-width:900px">
+       <div class="w3-container w3-padding">
+       <h3><b>Schulerweiterung</b></h3>
+        <p class="w3-justify">Brauchst du mehr Zeit in unsere Schule? Kein problem :).</p>
+        <ul class="w3-ul w3-margin-top w3-border">
+          <li>&#127793; <b> Vier gepflanzte Bäume</b></li>
+          <li>Unbegrenzte Höhenflüge (bis 3 Monate)</li>
+        </ul>
+
+  </div>
+  </div>
+
+
+ <div class="w3-panel w3-margin-bottom" id="visitcourse" style="width:100%; margin:auto; max-width:900px">
+       <div class="w3-container w3-padding">
+       <h3><b>Gastschüler / Prüfungssimulation / Besuchende Piloten</b></h3>
+        <p class="w3-justify">Ein Tag in unsere Schule</p>
+        <ul class="w3-ul w3-margin-top w3-border">
+          <li>&#127793; <b> Ein gepflanzte Baum</b></li>
+          <li>Briefing (Meteo, Luftraum, Maneuver, Prüfung)</li>
+          <li>Unbegrenzte Höhenflüge (3-8)</li>
+        </ul>
+
+  </div>
+  </div>
+
+
+
+
+
 
 </div>
 
