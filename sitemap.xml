@@ -9,32 +9,42 @@
 
 <url>
   <loc>https://flywithmiki.com/</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://flywithmiki.com/school.html</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <loc>https://flywithmiki.com/tandem.html</loc>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://flywithmiki.com/links.html</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <loc>https://flywithmiki.com/school.html</loc>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://flywithmiki.com/prices.html</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://flywithmiki.com/tandem.html</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <loc>https://flywithmiki.com/links.html</loc>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://flywithmiki.com/meteo.html</loc>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://flywithmiki.com/program.html</loc>
-  <lastmod>2024-05-30T15:36:43+00:00</lastmod>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://flywithmiki.com/agb.html</loc>
+  <lastmod>2024-09-12T09:42:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
