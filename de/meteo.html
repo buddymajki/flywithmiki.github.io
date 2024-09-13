@@ -258,72 +258,64 @@
 
 <!-- ISOBAR ---------------------------------------------------------->
 <div class="w3-margin-top">
-      <h2 class="w3-text">Isobar maps </h2> source: meteonews.net <p id="dateText" class="w3-text"></p>
-      <img id="weatherImage" src="" alt="Weather Image" class="w3-image">
+  <h2 class="w3-text">Isobar maps</h2> source: meteonews.net
+  <p id="dateTextToday" class="w3-text"></p>
+  <img id="todayWeatherImage" src="" alt="Today's Weather Image" class="w3-image">
+  
+  <p id="dateTextTomorrow" class="w3-text"></p>
+  <p id="errorMessageTomorrow" class="w3-text w3-red"></p>
+  <div id="tomorrowImageContainer"></div>
+</div>
 
-        <script>
-          // Function to format the current date as YYYYMMDD
-          function getCurrentDate() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0');
-            const day = now.getDate().toString().padStart(2, '0');
-            return `${year}${month}${day}`;
-          }
-          
-          // Set the src attribute of the image with the current date
-          const weatherImage = document.getElementById('weatherImage');
-          const dateText = document.getElementById('dateText');
-          const currentDate = getCurrentDate();
-          const imageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${currentDate}_1200.png`;
-          weatherImage.src = imageUrl;
-          dateText.textContent = `${currentDate} - 12.00 UTC`;
-        </script>
+<script>
+  // Function to format the date as YYYYMMDD
+  function formatDate(offset = 0) {
+    const date = new Date();
+    date.setDate(date.getDate() + offset); // offset is 0 for today, 1 for tomorrow
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}${month}${day}`;
+  }
 
+  // Function to check if an image URL exists
+  function checkImageExists(url, successCallback, errorCallback) {
+    const img = new Image();
+    img.onload = successCallback;  // Image exists
+    img.onerror = errorCallback;   // Image doesn't exist
+    img.src = url;
+  }
 
-       <p id="dateText2" class="w3-text"></p>
-        <p id="errorMessage2" class="w3-text w3-red"></p> <!-- Error message paragraph -->
-        <script>
-          // Function to format tomorrow's date as YYYYMMDD
-          function getTomorrowDate() {
-            const now = new Date();
-            const tomorrow = new Date(now);
-            tomorrow.setDate(tomorrow.getDate() + 1); // Add 1 day to get tomorrow's date
-            const year = tomorrow.getFullYear();
-            const month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
-            const day = tomorrow.getDate().toString().padStart(2, '0');
-            return `${year}${month}${day}`;
-          }
+  // Today's image logic
+  const todayDate = formatDate(0); // Today
+  const todayImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${todayDate}_1200.png`;
+  const todayWeatherImage = document.getElementById('todayWeatherImage');
+  const dateTextToday = document.getElementById('dateTextToday');
+  
+  todayWeatherImage.src = todayImageUrl;
+  dateTextToday.textContent = `${todayDate} - 12.00 UTC`;
 
-          // Function to check if the image URL exists
-          function checkImageExists(url, successCallback, errorCallback) {
-            const img = new Image();
-            img.onload = successCallback; // Image exists
-            img.onerror = errorCallback; // Image does not exist
-            img.src = url;
-          }
+  // Tomorrow's image logic
+  const tomorrowDate = formatDate(1); // Tomorrow
+  const tomorrowImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${tomorrowDate}_1200.png`;
+  const dateTextTomorrow = document.getElementById('dateTextTomorrow');
+  const errorMessageTomorrow = document.getElementById('errorMessageTomorrow');
+  const tomorrowImageContainer = document.getElementById('tomorrowImageContainer');
 
-          // Set the src attribute of the image with tomorrow's date
-          const tomorrowImageContainer = document.getElementById('tomorrowImageContainer');
-          const dateText2 = document.getElementById('dateText2');
-          const errorMessage2 = document.getElementById('errorMessage2');
-          const tomorrowDate = getTomorrowDate();
-          const imageUrl2 = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${tomorrowDate}_1200.png`;
+  checkImageExists(tomorrowImageUrl, function() {
+    // If tomorrow's image exists, display it
+    const imgElement = document.createElement('img');
+    imgElement.src = tomorrowImageUrl;
+    imgElement.alt = "Tomorrow's Weather Image";
+    imgElement.classList.add('w3-image');
+    tomorrowImageContainer.appendChild(imgElement);
+    dateTextTomorrow.textContent = `${tomorrowDate} - 12.00 UTC`;
+  }, function() {
+    // If tomorrow's image doesn't exist, show the error message
+    errorMessageTomorrow.textContent = "Map for tomorrow is not available yet.";
+  });
+</script>
 
-          // Check if the image exists
-          checkImageExists(imageUrl2, function() {
-            // If the image exists, create and append the image element
-            const imgElement = document.createElement('img');
-            imgElement.src = imageUrl2;
-            imgElement.alt = "Weather Image2";
-            imgElement.classList.add('w3-image');
-            tomorrowImageContainer.appendChild(imgElement);
-            dateText2.textContent = `${tomorrowDate} - 12.00 UTC`;
-          }, function() {
-            // If the image doesn't exist, show the error message
-            errorMessage2.textContent = "Map for tomorrow is not available yet.";
-          });
-        </script>
 <br><br>
 
 </div>
