@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>2025 Paragliding Class - FLYwithMIKI</title>
@@ -10,67 +10,82 @@
             font-size: 24px;
             color: #f44336;
         }
-        .w3-input, .w3-select {
-            width: 100%;
+        .w3-card {
+            margin: 20px auto;
         }
-        .w3-btn {
-            width: 100%;
-            background-color: #2196F3;
-        }
+        .highlight {
+            color: #59b7c2;
+            font-weight: bold;
+        }        
     </style>
 </head>
 <body>
 
 <!-- Header Section -->
-<header class="w3-container w3-center w3-padding-32">
-    <h1 class="w3-xxlarge"><b>Join Our 2025 Paragliding Class</b></h1>
-    <p>Get a <span class="w3-text-red">300 CHF Discount</span> on your first paragliding equipment!</p>
-    <p><b>Limited spots available. Offer ends on 31.12.2024.</b></p>
-</header>
+ <div class="w3-container w3-white w3-center w3-padding-32" id="head">
+           <img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> <!--discount banner -->
+           <h1 class="w3-xxlarge w3-margin"><b>Join Our 2025 Paragliding Class</b></h1>
+           <p><b>Limited spots available. Time left to claim your discount:</b></p>     <div class="countdown" id="countdown-timer"></div> <br>
+    <a href="https://wa.me/41779766164/?text=Hi, I'm interested to join the paragliding class 2025 (CHF300 winter discount)" class="w3-button w3-large w3-hover-light-grey" style="background-color:#ADCDFF; color:black; margin:auto">Contact Us Now</a>
 
-<!-- Countdown Timer -->
-<div class="w3-container w3-center w3-padding-16">
-    <h3>Time left to claim your discount:</h3>
-    <div class="countdown" id="countdown-timer"></div>
-</div>
+ </div>
+<!-- Header Section END -->
 
-<!-- Sign-Up Form -->
-<div class="w3-container w3-padding-32 w3-card-4">
-    <h2 class="w3-center">Sign Up Now</h2>
-    <form class="w3-container w3-padding-16" action="/submit_form" method="POST">
-        <label for="name">Name</label>
-        <input class="w3-input" type="text" id="name" name="name" required>
+
+<!-- OFFER Section -->
+<div class="w3-container w3-center w3-padding-32" >
+ <div class="w3-content w3-left-align" style="max-width:1000px">
+    <h2 class="">Full Paragliding Training Program </h2>
+
+        <p class="w3-justify">Become a certified paraglider pilot with our comprehensive training program and prepare for the Swiss IPPI4 Pilot License.<br>Our flexible and personalized training takes place in the beautiful Engelberg valley and surrounding areas of Central Switzerland, easily accessible by train or car. We also offer a shuttle service from Luzern-Kriens / Stans for your convenience.</p>
+        <p>Want to know more? Visit our main website for details: <a href="https://flywithmiki.com" class="w3-text-blue" target="_blank">flywithmiki.com</a></p>
+
+
+    <div class="w3-row-padding w3-center" style=" margin:auto">
         
-        <label for="email">Email</label>
-        <input class="w3-input" type="email" id="email" name="email" required>
-        
-        <label for="phone">Phone</label>
-        <input class="w3-input" type="tel" id="phone" name="phone" required>
-
-        <label for="message">Any questions? (optional)</label>
-        <textarea class="w3-input" id="message" name="message"></textarea>
-
-        <button class="w3-btn w3-large w3-margin-top" type="submit">Secure My Spot & Discount</button>
-    </form>
-</div>
-
-<!-- Testimonials Section -->
-<div class="w3-container w3-padding-64 w3-light-grey">
-    <h2 class="w3-center">What Our Students Say</h2>
-    <div class="w3-row">
-        <div class="w3-col m6 w3-padding-16">
-            <p>"The training was exceptional! I gained so much confidence in just two weeks!" - <b>John S.</b></p>
+        <div class="w3-half">
+  
+                <img class="w3-round-xlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="traininghill2" style="width:100%" loading="lazy">
+                <p class="w3-margin">Ground handling</p>        
         </div>
-        <div class="w3-col m6 w3-padding-16">
-            <p>"Miklos and his team are fantastic. I was well-prepared for my SHV exam!" - <b>Maria T.</b></p>
+        <div class="w3-half">
+  
+                <img class="w3-round-xlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/UH4.webp" alt="traininghill4" style="width:100%" loading="lazy">
+                <p class="w3-margin">Training hill</p>        
         </div>
+        <div class="w3-half">
+  
+                <img class="w3-round-xlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/hf1.webp" alt="highflights1" style="width:100%" loading="lazy">
+                <p class="w3-margin">High altitude flights</p>        
+        </div>        
+        <div class="w3-half">
+  
+                <img class="w3-round-xlarge w3-margin-top" src="https://flywithmiki.com/Images_v2/19.webp" alt="tandemparagliding" style="width:100%" loading="lazy">
+                <p class="w3-margin">Instructional tandem flights</p>        
+        </div>      
     </div>
+
+      <p class=""><b>Why to choose us:</b></p>
+         
+               <ul class="w3-ul w3-card w3-white w3-padding" style="max-width:500px">
+                    <li><span class="highlight">Small Group</span> Sizes for Personalized Attention</li>
+                    <li><span class="highlight">Flexible</span> Training Aligned with Your Schedule</li>
+                    <li><span class="highlight">Individual Training</span> Tailored to Your Needs</li>
+                    <li><span class="highlight">Multilingual</span> Instruction (English, German, Hungarian)</li>
+                </ul>
+        <p class="w3-justify w3-large">Don't miss this limited-time offer. Reserve your place before it's gone! Sign up today and enjoy a <span class="w3-text-red"><del>4500 CHF</del> <b>4200 CHF</b></span> discounted full training price!</p>      
+        <p class="w3-small">Offer valid until 31.12.2024. Terms and conditions apply.</p>
+
+        <a href="https://wa.me/41779766164/?text=Hi, I'm interested to join the paragliding class 2025 (CHF300 winter discount)" class="w3-button w3-large w3-hover-light-grey w3-margin-bottom" style="background-color:#ADCDFF; color:black;">Contact Us Now</a>
+
 </div>
+</div>
+
 
 <!-- Footer Section -->
-<footer class="w3-container w3-center w3-padding-32">
-    <h4>FLYwithMIKI Paragliding School - Kriens, Switzerland</h4>
-    <p>Contact us: <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a> | Phone: +41 123 456 789</p>
+<footer class="w3-container w3-center w3-padding-32 w3-light-grey">
+    <h4><a class="w3-text-blue" href="https://flywithmiki.com" style="text-decoration: none" target="_blank">FLYwithMIKI Paragliding School - Kriens, Switzerland</a></h4>
+    <p>Contact us: <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a> | Phone: +41 77 9766 164</p>
 </footer>
 
 <!-- Countdown Timer Script -->
