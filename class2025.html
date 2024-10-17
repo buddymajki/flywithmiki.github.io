@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2025 Paragliding Class - FLYwithMIKI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .countdown {
+            font-size: 24px;
+            color: #f44336;
+        }
+        .w3-input, .w3-select {
+            width: 100%;
+        }
+        .w3-btn {
+            width: 100%;
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="w3-container w3-center w3-padding-32">
+    <h1 class="w3-xxlarge"><b>Join Our 2025 Paragliding Class</b></h1>
+    <p>Get a <span class="w3-text-red">300 CHF Discount</span> on your first paragliding equipment!</p>
+    <p><b>Limited spots available. Offer ends on 31.12.2024.</b></p>
+</header>
+
+<!-- Countdown Timer -->
+<div class="w3-container w3-center w3-padding-16">
+    <h3>Time left to claim your discount:</h3>
+    <div class="countdown" id="countdown-timer"></div>
+</div>
+
+<!-- Sign-Up Form -->
+<div class="w3-container w3-padding-32 w3-card-4">
+    <h2 class="w3-center">Sign Up Now</h2>
+    <form class="w3-container w3-padding-16" action="/submit_form" method="POST">
+        <label for="name">Name</label>
+        <input class="w3-input" type="text" id="name" name="name" required>
+        
+        <label for="email">Email</label>
+        <input class="w3-input" type="email" id="email" name="email" required>
+        
+        <label for="phone">Phone</label>
+        <input class="w3-input" type="tel" id="phone" name="phone" required>
+
+        <label for="message">Any questions? (optional)</label>
+        <textarea class="w3-input" id="message" name="message"></textarea>
+
+        <button class="w3-btn w3-large w3-margin-top" type="submit">Secure My Spot & Discount</button>
+    </form>
+</div>
+
+<!-- Testimonials Section -->
+<div class="w3-container w3-padding-64 w3-light-grey">
+    <h2 class="w3-center">What Our Students Say</h2>
+    <div class="w3-row">
+        <div class="w3-col m6 w3-padding-16">
+            <p>"The training was exceptional! I gained so much confidence in just two weeks!" - <b>John S.</b></p>
+        </div>
+        <div class="w3-col m6 w3-padding-16">
+            <p>"Miklos and his team are fantastic. I was well-prepared for my SHV exam!" - <b>Maria T.</b></p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="w3-container w3-center w3-padding-32">
+    <h4>FLYwithMIKI Paragliding School - Kriens, Switzerland</h4>
+    <p>Contact us: <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a> | Phone: +41 123 456 789</p>
+</footer>
+
+<!-- Countdown Timer Script -->
+<script>
+    // Countdown Timer Script
+    var countDownDate = new Date("Dec 31, 2024 23:59:59").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown-timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown-timer").innerHTML = "Offer Expired";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
