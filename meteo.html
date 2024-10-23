@@ -1,16 +1,16 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
 	
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0JFCD43X1"></script>
-<script>
+     	<!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-N0JFCD43X1"></script>
+      <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-N0JFCD43X1');
-</script>
+      </script>
 
 
         <title>FLYwithMIKI - Daily program in our paragliding school</title>
@@ -37,6 +37,28 @@
             .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
             .w3-third img:hover {opacity: 1}
             .mySlides {display:none;} //slideshowhoz kell
+
+ 
+            //Prediction
+            .forecast-container {
+              display: flex;
+              justify-content: space-between;
+              max-width: 1000px;
+              margin: auto;
+              padding-bottom: 20px;
+              }
+            .forecast-table {
+              flex: 1;
+              margin: 0 10px;
+              }
+            .justified-paragraph {
+              text-align: justify;
+              max-width: 1000px;
+              margin: auto;
+             padding-top: 20px;
+             }
+    //Prediction
+
 
         </style>
 
@@ -325,7 +347,7 @@
 
 <!-- WIND forecast ---------------------------------------------------------->
 <div class="w3-margin-top">
-      <h2 class="w3-text">Wind forecast</h2> source: xctherm.com
+      <h2 class="w3-text">Wind and precipitation forecast</h2> source: xctherm.com
 
 <iframe id="xctherm" width="100%" height="100%" style="min-height: 600px" src="https://xctherm.com/icon?lang=de&amp;lat=46.73&amp;lon=8.33&amp;zoom=6.5" allowfullscreen="true" allow="geolocation"></iframe>
 <br><br>
@@ -341,35 +363,30 @@
 <br><br>
 </div>
 
+<!-- PRESSURE CHARTS + Hochnebel ---------------------------------------------------------->
+      <div class="w3-row-padding w3-margin-top">
+      <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch <br>
 
-<!-- PRESSURE DIFF ---------------------------------------------------------->
-<div class="w3-margin-top">
-      <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch
-<img src="https://profiwetter.ch/wind_foehn_ch_en.png" alt="Fohndiagram" width="100%" height="auto"><br><br>
-<img src="https://profiwetter.ch/wind_bise_en.png" alt="Bisediagram" width="100%" height="auto">
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/wind_foehn_ch_en.png" alt="Fohndiagram" width="100%" height="auto"> <br> <br>
+        </div>
 
-<br><br>
-</div>
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/wind_bise_en.png" alt="Bisediagram" width="100%" height="auto"> <br> <br>
+        </div>
+       <h2 class="w3-text">Potential High-fog ceiling</h2>  
+        <div class="w3-quarter"> 
+          <br><br>
+        </div>
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/hochnebel_de.png" alt="Hochnebelobergrenzediagram" width="100%" height="auto"> <br> <br>
+        </div>
 
+        <div class="w3-quarter">
+        </div>
 
+      </div>
 
-<!-- PRECIPITATION ---------------------------------------------------------->
-<div class="w3-margin-top">
-      <h2 class="w3-text">Precipitation forecast</h2> source: windy.com
-      <iframe width="100%" height="500" src="https://embed.windy.com/embed2.html?lat=46.95&amp;lon=8.35&amp;zoom=8&amp;level=surface&amp;overlay=rain&amp;product=ecmwf&amp;zoom=8"></iframe>
-
-<br><br>
-
-</div>
-
-
-<!-- TEMP forecast ---------------------------------------------------------->
-<div class="w3-margin-top">
-      <h2 class="w3-text">Temperature forecast</h2> source: windy.com
-
-<iframe width="100%" height="500" src="https://embed.windy.com/embed2.html?lat=46.95&amp;lon=8.35&amp;zoom=8&amp;level=surface&amp;overlay=temp&amp;product=ecmwf&amp;zoom=8"></iframe>
-<br><br>
-</div>
 
 
 <!-- Emagram ---------------------------------------------------------->
@@ -382,36 +399,136 @@
 
 </div>
 
-
-
-
-
 </div>
 
+
+
+<!-- Prediction---------------------------------------------------------->
+ <script>
+    async function fetchData() {
+      try {
+        const response = await fetch('https://bronze-stitch-plow.glitch.me/api');
+        const data = await response.json();
+        displayData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    function getColor(score) {
+      if (score === 'NaN') return 'red'; // NaN%
+      if (score < 40) return 'rgba(255, 0, 0, 0.3)'; // 0-40% - light red
+      else if (score < 75) return 'rgba(255, 165, 0, 0.3)'; // 40-75% - light orange
+      else return 'rgba(0, 255, 0, 0.3)'; // Above 75% - light green
+    }
+
+    function displayData(data) {
+      const container = document.getElementById('forecast');
+      container.innerHTML = '';
+
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+
+      const forecastDates = {
+        [todayStr]: 'Today',
+        [tomorrowStr]: 'Tomorrow'
+      };
+
+      // Create forecast container for tables
+      const forecastContainer = document.createElement('div');
+      forecastContainer.classList.add('forecast-container');
+
+      // Create tables for today and tomorrow
+      for (const [date, label] of Object.entries(forecastDates)) {
+        const tableDiv = document.createElement('div');
+        tableDiv.classList.add('forecast-table');
+
+        const tableTitle = document.createElement('h3');
+        tableTitle.innerText = label;
+        tableDiv.appendChild(tableTitle);
+
+        const table = document.createElement('table');
+        table.classList.add('w3-table', 'w3-bordered', 'w3-striped');
+
+        // Create table header
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `<th>Location</th><th>Takeoff</th><th>Fly</th><th>XC</th>`;
+        table.appendChild(headerRow);
+
+        // Populate table rows
+        data[date].forEach(location => {
+          const flyScore = location.forecast.fly !== undefined ? Math.round(location.forecast.fly * 100) : 'NaN';
+          const xcScore = location.forecast.XC !== undefined ? Math.round(location.forecast.XC * 100) : 'NaN';
+          const takeoffScore = location.forecast.takeoff !== undefined ? Math.round(location.forecast.takeoff * 100) : 'NaN';
+
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${location.name}</td>
+            <td style="background-color: ${getColor(takeoffScore)};">${takeoffScore}%</td>
+            <td style="background-color: ${getColor(flyScore)};">${flyScore}%</td>
+            <td style="background-color: ${getColor(xcScore)};">${xcScore}%</td>
+          `;
+          table.appendChild(row);
+        });
+
+        tableDiv.appendChild(table);
+        forecastContainer.appendChild(tableDiv);
+      }
+
+      container.appendChild(forecastContainer);
+
+      // Add paragraph below the tables with justified text
+      const disclaimer = document.createElement('p');
+      disclaimer.classList.add('justified-paragraph');
+      disclaimer.innerHTML = `This is only a forecasted calculation - prediction. The data comes from <a href="https://paraglidable.com" target="_blank">paraglidable.com</a>, which uses an artificial neural network to compute "flyability" and "crossability" scores by analyzing ~200 weather parameters for each day. The neural network is trained over ground truth data spanning the last 10 years. The ground truth data is composed of weather archives and available online flight databases (~2 000 000 flights). During training, the neural network learns the correlation between weather conditions and reported flights (their number, distance, max vario, max altitude...). Since this is only a prediction, these numbers are just supporting the planning process of a flying day, but no one should ever make decisions based only on these numbers. Always do a proper meteo assessment, make your own decisions, and use your local knowledge about special weather situations (föhn, valley wind systems, lee sides, etc).`;
+      container.appendChild(disclaimer);
+    }
+
+    window.onload = fetchData;
+  </script>
+  
+<div class="w3-container w3-teal w3-center" style="max-width:1000px; margin:auto">
+  <h1>Paragliding Forecast</h1> source: <a href="https://paraglidable.com" target="_blank"> paraglidable.com </a>
+</div>
+
+<div id="forecast" class="w3-container w3-margin w3-center"  style="max-width:1000px; margin:auto">
+  <!-- Data will be displayed here -->
+  </div>
+</div>
+
+
+
+
+
 <!------------------------FOOTER------------------------------------->
-<footer class="w3-container w3-center w3-light-grey w3-tiny">
-    <div class="w3-content" style="max-width:1000px">
+<footer class="w3-main w3-container w3-center w3-light-grey w3-tiny" style="margin-left:300px; max-width:1000px;">
     <h2 class="w3-center">Contact us</h2>
-
-    <div class="w3-row-padding">
+    <div class="w3-content" >
+  
+    <div class="w3-row-padding" style="max-width:1000px;margin:auto">
       
-      <div class="w3-third w3-center">
-        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/google_1.webp" alt="google" style="max-width:200px; ">
-        </a>
+      <div class="w3-quarter w3-center"  style="margin:auto">
+        <a href="https://wa.me/41779766164/?text=Hi,%20I%27m%20interested%20to%20join%20the%20paragliding%20class%202025%20(CHF300%20winter%20discount)" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Whatsapp</a>
+     </div> 
+      
+      <div class="w3-quarter w3-center">
+        <a href="tel:+41779766164"class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Phone</a>
       </div>
 
-      <div class="w3-third w3-center">
-        <a href="tel:+41779766164">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/24.webp" alt="phone" style="width:20%; " loading="lazy">
-        </a>
+      <div class="w3-quarter w3-center">
+        <a href="mailto:info@flywithmiki.com" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Email</a>
+      </div>
+      
+      <div class="w3-quarter w3-center">
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Google reviews </a>
       </div>
 
-      <div class="w3-third w3-center">
-        <a href="mailto:info@flywithmiki.com">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/23.webp" alt="email" style="width:20%; " loading="lazy">
-        </a>
-      </div>
+
+  
 
     </div>
       
@@ -420,6 +537,7 @@
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
+<!------------------------FOOTER------------------------------------->
 
 <!-- End page content ------------------------------------------------------------------------------>
 </div>
