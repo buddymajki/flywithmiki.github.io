@@ -1,8 +1,7 @@
  <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
     <head>
-	
-	<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N0JFCD43X1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,17 +10,17 @@
 
   gtag('config', 'G-N0JFCD43X1');
 </script>
-
-
-        <title>FLYwithMIKI - Tagesmenü in unsere Gleitschirmschule</title>
+ <!-- Google tag (gtag.js) -->
+ 
+        <title>FLYwithMIKI - Daily program in our paragliding school</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="FLYwithMIKI - Schau dir unser Tagesprogramm an, wohin fliegen wir, was sind die Pläne für die kommenden Tage und Wochen">
+        <meta name="description" content="FLYwithMIKI - Check our daily program, where do we fly, what are the plans for the following days and weeks">
 
         <meta property="og:url" content="https://flywithmiki.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="FLYwithMIKI - Tägliches Programm in unserer Gleitschirmschule" />
-        <meta property="og:description" content="Schau dir unser Tagesprogramm an, wohin fliegen wir, was sind die Pläne für die kommenden Tage und Wochen" />
+        <meta property="og:title" content="FLYwithMIKI - Daily program in our paragliding school" />
+        <meta property="og:description" content="Check our daily program, where do we fly, what are the plans for the following days and weeks" />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
 
         <link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
@@ -40,7 +39,6 @@
 
         </style>
 
-     <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
 
     </head> 
@@ -56,7 +54,7 @@
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="index.html#Intro"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
         </a> 
     </div>
     <!--Language menu -->
@@ -78,28 +76,27 @@
   </div>
 
 
-
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
 
 
-    <a href="tandem.html" class="w3-bar-item w3-button">Tandemflüge</a>
+    <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
 
     <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
-      Schule <i class="fa fa-caret-down"></i>
+      School <i class="fa fa-caret-down"></i>
     </a>
    
     <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="school.html" class="w3-bar-item w3-button">Lernen zu fliegen</a>
-      <a href="prices.html" class="w3-bar-item w3-button">Preise</a>
+      <a href="school.html" class="w3-bar-item w3-button">Learn to fly</a>
+      <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     </div>
 
    
   </div>
    
-  <a href="./" class="w3-bar-item w3-button">Über uns</a>   
-  <a href="links.html" class="w3-bar-item w3-button">Links und Webcams</a>
+  <a href="./" class="w3-bar-item w3-button">About us</a>   
+  <a href="links.html" class="w3-bar-item w3-button">Links & Webcams</a>
   <a href="meteo.html" class="w3-bar-item w3-button">Meteo</a>
-  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Tagesprogramm</a>
+  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
 </nav>
 
 
@@ -137,7 +134,7 @@
         <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="dailyp">
              <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
            <div class="w3-content w3-padding w3-left-align" style="max-width:900px">
-                <h1 class="w3-center"> Tagesmenü</h1>
+                <h1 class="w3-center"> Daily Program</h1>
                
                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                        <style> 
@@ -206,18 +203,18 @@
                         // Create HTML string with event details and start a new table for each event
                         var eventHtml = '<table>';
                         eventHtml += '<col width="100">'; // Set a fixed width for the first column
-                        eventHtml += '<tr><th>Programm</th><td>' + event.summary + '</td></tr>';
+                        eventHtml += '<tr><th>Program</th><td>' + event.summary + '</td></tr>';
                         // Check if there is a meeting time before adding the meeting time line
                         if (startTime) {
-                            eventHtml += '<tr><th>Zeit</th><td>' + hourString + '</td></tr>';
+                            eventHtml += '<tr><th>Meeting Time</th><td>' + hourString + '</td></tr>';
                         }
                         // Check if there is a meeting point before adding the meeting point line
                         if (event.location) {
-                            eventHtml += '<tr><th>Treffpunkt</th><td>' + event.location + '</td></tr>';
+                            eventHtml += '<tr><th>Meeting point</th><td>' + event.location + '</td></tr>';
                         }
                         // Check if there is a location before adding the map link
                         if (event.location) {
-                            eventHtml += '<tr><th>Karte</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Hier klicken</a></td></tr>';
+                            eventHtml += '<tr><th>Map</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Click here</a></td></tr>';
                         }
                         // Check if there is an online meeting link
                         if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
@@ -226,7 +223,7 @@
                         }
                         // Check if there is a description before adding the description line
                         if (event.description) {
-                            eventHtml += '<tr><th>Beschreibung</th><td>' + event.description + '</td></tr>';
+                            eventHtml += '<tr><th>Description</th><td>' + event.description + '</td></tr>';
                         }
                         // Close the table for each event
                         eventHtml += '</table>';
@@ -247,76 +244,93 @@
             }
             // Function to get the day name in English
             function getDayName(dayIndex) {
-                var days = ['Sontag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
                 return days[dayIndex];
             }
         }); </script>
         </div>
        
-                
+       </div>            
                 
                 
                 
                 
    <!--CALENDAR SECTION-->    
-                
-                <h2 class="w3-center"> Calendar </h2>
-                  <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;ctz=Europe%2FZurich&amp;bgcolor=%23ffffff&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&amp;color=%23039BE5" style="border:solid 1px #777" width="100%" height="550" frameborder="0" title="FLYwithMIKI-school calendar">
-                  </iframe>
-            
-           
-        </div>
+<div style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <h2 class="w3-center">School Calendar</h2>
+    <br>
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;ctz=Europe%2FZurich&amp;bgcolor=%23ffffff&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&amp;color=%23039BE5"
+            style="border: solid 1px #777; width: 100%; height: 550px;" frameborder="0" title="FLYwithMIKI-school calendar">
+    </iframe>
+</div>
 
+<style>
+    /* Make the iframe more responsive on smaller screens */
+    @media (max-width: 600px) {
+        iframe {
+            height: 400px; /* Adjust the height for mobile */
+        }
+        h2 {
+            font-size: 1.5em; /* Adjust the font size for mobile */
+        }
+    }
+</style>
+   <!--CALENDAR SECTION-->    
+
+    
     <!------PREPARATION---------->
      <div class="w3-content w3-padding-32" style="max-width:900px; margin:auto;">
       <div class="w3-margin">
-       <h3 style=""><b>Wie du dich auf deinen Flugtag vorbereitest:</b></h3>
-          <p class="w3-justify"> Sich auf einen erfolgreichen Paragliding-Tag vorzubereiten, erfordert gründliche und sorgfältige Planung. Hier sind ein paar wichtige Schritte, um sicherzustellen, dass du bereit für deinen nächsten Flug bist: <br><br></p>
-       <h4>1. Wettervorhersage überprüfen (Meteo)</h4>    
-           <p class="w3-justify">Am Tag vor deinem Flug machst du einen umfassenden "Fünf-Punkte-Check" der Wettervorhersage. Dazu gehört:<br><br>
+       <h3 style=""><b>How to prepare for your flying day:</b></h3>
+          <p class="w3-justify"> Preparing for a successful paragliding day requires thorough and meticulous planning. Here are some essential steps to ensure you are ready for your next flight: <br><br></p>
+       <h4>1. Check the Weather Forecast (Meteo)</h4>    
+           <p class="w3-justify">The day before your flight, conduct a comprehensive "five-point check" of the weather forecast. This involves:<br><br>
            
-            <ins>Front</ins>: Schau nach Wetterfronten, die dein Fluggebiet beeinflussen könnten. Eine Front kann plötzliche Änderungen im Wind und Wetter mit sich bringen, was gefährlich sein kann.<br>
-            <ins>Föhn</ins>: Achte auf den Föhn-Effekt, ein trockener und warmer Fallwind, der gefährliche Flugbedingungen schaffen kann.<br>
-            <ins>Überegionaler Wind:</ins>: Beurteile die generellen Windmuster im ganzen Land. Starke Winde können deinen Flug beeinflussen und das Starten und Landen erschweren.<br>
-            <ins>Regionaler Wind</ins>: Verstehe die lokalen Windbedingungen an deinem Flugort. Windrichtung und -geschwindigkeit können in verschiedenen Regionen stark variieren.<br>
-            <ins>Gewitter</ins>: Prüfe auf vorhergesagten Regen oder Gewitter. Diese Bedingungen sind für Paraglider extrem gefährlich.<br><br>
-            Auch wenn Vorhersagen wertvolle Infos liefern, können die tatsächlichen Bedingungen abweichen. Beobachte während der Anreise die Wolken und Windmuster, um zu bestätigen, ob das Wetter zur Vorhersage passt. Am Startplatz checkst du das Wetter nochmal, um sicherzugehen, dass alles wie erwartet ist. Sicherheit hat immer Vorrang, und du solltest bereit sein, deine Pläne basierend auf den neuesten Wetterinformationen anzupassen.<br><br>
+            <ins>Front</ins>: Look for any weather fronts that may affect your flying area. A front can bring sudden changes in wind and weather conditions, which can be dangerous.<br>
+            <ins>Föhn</ins>: Be aware of the föhn effect, a dry and warm down-slope wind that can create hazardous flying conditions.<br>
+            <ins>Nation-wide Wind:</ins>: Assess the general wind patterns across the country. Strong winds can affect your flight and make launching and landing difficult.<br>
+            <ins>Regional Wind</ins>: Understand the local wind conditions specific to your flying site. Wind direction and speed can vary significantly in different regions.<br>
+            <ins>Thunderstorms</ins>: Check for any forecasted rain or thunderstorms. These conditions can be extremely dangerous for paragliders.<br><br>
+            While forecasts provide valuable information, remember that actual conditions can differ. As you travel to your flying site, observe the clouds and wind patterns to confirm if the weather matches the forecast. At the takeoff site, check the weather again to ensure it aligns with your expectations. Always prioritize safety and be prepared to adjust your plans based on the latest weather information.<br><br>
          </p>      
 
-       <h4>2. Lufträume und Beschränkungen checken</h4>    
-           <p class="w3-justify">Vor deinem Flug überprüfst du die Lufträume, in denen du fliegen willst. Sieh nach, ob es für den Tag Luftraumbeschränkungen gibt, indem du das Daily Airspace Bulletin (DABS) konsultierst. Mach dich außerdem mit den allgemeinen Luftraum- und Naturschutzbestimmungen sowie den lokalen Flugregeln in der Gegend vertraut, inklusive maximaler Flughöhen, Naturschutzgebiete und Regelungen für Start und Landung. Diese Regeln zu kennen ist wichtig, um rechtliche Probleme, Konflikte mit Einheimischen zu vermeiden und deine Sicherheit sowie die Sicherheit anderer in der Luft zu gewährleisten.<br><br>
+       <h4>2. Check Airspaces and Restrictions</h4>    
+           <p class="w3-justify">Before your flight, review the airspaces where you intend to fly. Verify if there are any airspace restrictions for the day by consulting the Daily Airspace Bulletin (DABS). Additionally, familiarize yourself with the general airspace, wildlife regulations and local flying rules in the area, including maximum flight altitudes, wildlife protection areas, take-off and landing regulations. Understanding these regulations is crucial to avoid legal issues, conflict with the locals and ensure your safety and that of others sharing the airspace.<br><br>
          </p>    
-       <h4>3. Ausrüstung vorbereiten</h4>    
-           <p class="w3-justify">Stell sicher, dass deine gesamte Ausrüstung in einwandfreiem Zustand und richtig gepackt ist. Kontrolliere doppelt, ob du die passende Kleidung für die Wetterbedingungen des Tages hast sowie aufgeladene Funkgeräte und Instrumente. Pack genug Essen und Wasser ein, um den ganzen Tag über hydriert und energiegeladen zu bleiben. Vergiss auch nicht den Sonnenschutz. Eine gründliche Ausrüstungskontrolle sorgt dafür, dass nichts vergessen wird und dass du vollständig für einen sicheren und angenehmen Flug vorbereitet bist.<br><br>
-           Durch das gewissenhafte Befolgen dieser Schritte kannst du deine Sicherheit und Vorbereitung für dein nächstes Paragliding-Abenteuer erheblich verbessern. Denk immer daran, dass gründliche Vorbereitung der Schlüssel zu einem erfolgreichen und angenehmen Flugerlebnis ist.<br><br>
+       <h4>3. Prepare Your Equipment</h4>    
+           <p class="w3-justify">Ensure all your equipment is in excellent condition and properly packed. Double-check that you have the appropriate clothing for the day's weather conditions, as well as charged radios and instruments. Pack enough food and water to stay hydrated and energized throughout the day. Also do not forget your sunscreen at home. A thorough equipment check ensures that nothing is left behind and that you are fully prepared for a safe and enjoyable flight. <br><br>
+           By diligently following these steps, you can significantly enhance your safety and preparedness for your next paragliding adventure. Always remember that thorough preparation is key to a successful and enjoyable flight experience.<br><br>
          </p>    
       </div>
      </div>
-	 
+
+
+
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-    <div class="w3-content" style="max-width:1000px">
     <h2 class="w3-center">Contact us</h2>
-
+    <div class="w3-content" style="max-width:1000px">
+  
     <div class="w3-row-padding">
       
-      <div class="w3-third w3-center">
-        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/google_1.webp" alt="google" style="max-width:200px; ">
-        </a>
+      <div class="w3-quarter w3-center">
+        <a href="https://wa.me/41779766164/" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Whatsapp</a>
+     </div> 
+      
+      <div class="w3-quarter w3-center">
+        <a href="tel:+41779766164"class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Phone</a>
       </div>
 
-      <div class="w3-third w3-center">
-        <a href="tel:+41779766164">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/24.webp" alt="phone" style="width:20%; " loading="lazy">
-        </a>
+      <div class="w3-quarter w3-center">
+        <a href="mailto:info@flywithmiki.com" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Email</a>
+      </div>
+      
+      <div class="w3-quarter w3-center">
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Google reviews </a>
       </div>
 
-      <div class="w3-third w3-center">
-        <a href="mailto:info@flywithmiki.com">
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/23.webp" alt="email" style="width:20%; " loading="lazy">
-        </a>
-      </div>
+
+  
 
     </div>
       
@@ -325,7 +339,10 @@
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
-	 
+<!------------------------FOOTER------------------------------------->
+
+
+
   <!-- End page content -->
 </div>
 
@@ -395,11 +412,34 @@ function handleButtonClick(language) {
 </script>
 
 
-<!------------------------CHAT ------------------------------------->
- <call-us-selector phonesystem-url="https://1133.3cx.cloud" party="flywithmikicom"></call-us-selector> 
- <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
-
-
+<!------------------------Google ad eventtracker-------------------------------------> 
+<script>
+window.addEventListener('load', function() {
+ document.addEventListener('mousedown', function(e) {
+    if (e.target.closest('[href*="//wa.me/"]')) {
+      gtag('event', 'conversion', {'send_to': 'AW-16744153817/BW7YCK732_IZENmFnrA-'});
+    }
+});
+  })
+</script>
+<script>
+  (function(){
+    document.addEventListener('click', function(e){
+      if(e.target.closest('a[href^="tel:"]')){
+  gtag('event', 'conversion', {'send_to': 'AW-16744153817/j67QCLT32_IZENmFnrA-'});
+      }
+    });
+  })();
+</script>
+<script>
+  (function(){
+    document.addEventListener('click', function(e){
+      if(e.target.closest('a[href^="mailto:"]')){
+ gtag('event', 'conversion', {'send_to': 'AW-16744153817/U-J9CLH32_IZENmFnrA-'});
+      }
+    });
+  })();
+</script>
 
 </body>
 
