@@ -1,0 +1,378 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0JFCD43X1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N0JFCD43X1');
+</script>
+ <!-- Google tag (gtag.js) -->
+ 
+        <title>Paragliding Academy</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="FLYwithMIKI - Check our daily program, where do we fly, what are the plans for the following days and weeks">
+
+        <meta property="og:url" content="https://flywithmiki.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FLYwithMIKI - Daily program in our paragliding school" />
+        <meta property="og:description" content="Check our daily program, where do we fly, what are the plans for the following days and weeks" />
+        <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+
+        <link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+            html {scroll-behavior: smooth;}
+            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
+             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            .w3-third img:hover {opacity: 1}
+            .mySlides {display:none;} //slideshowhoz kell
+
+        </style>
+
+
+
+    </head> 
+
+
+
+<body class="w3-white w3-content" style="max-width:1600px">
+
+
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container ">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    
+    <div class="w3-margin w3-center"> 
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        </a> 
+    </div>
+    <!--Language menu -->
+    <div class="w3-margin w3-display-container">
+      <div class="w3-row">
+       <div class="w3-col s6 m6 l6 w3-center">
+      <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
+        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
+      </button>
+     </div>
+     <div class="w3-col s6 m6 l6 w3-center">
+      <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
+        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
+      </button>
+     </div>
+     </div>
+    </div>
+
+  </div>
+
+
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+
+
+    <a href="tandem.html" class="w3-bar-item w3-button">Tandem flights</a>
+
+    <a onclick="myAccFunc('demoAcc2');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" >
+      School <i class="fa fa-caret-down"></i>
+    </a>
+   
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="school.html" class="w3-bar-item w3-button">Learn to fly</a>
+      <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    </div>
+
+   
+  </div>
+   
+  <a href="./" class="w3-bar-item w3-button">About us</a>   
+  <a href="links.html" class="w3-bar-item w3-button">Links & Webcams</a>
+  <a href="meteo.html" class="w3-bar-item w3-button">Meteo</a>
+  <a href="program.html"  class="w3-bar-item w3-button w3-padding">Daily Program</a>
+</nav>
+
+
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
+  
+  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+
+</div>
+
+
+
+
+
+
+
+    <!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+        <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:4em">
+
+    </div>
+
+ <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+
+
+ <div class="w3-container w3-white w3-center w3-padding-32" id="prices">
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
+        
+
+        <h1>Paragliding Academy</h1>
+        <h2>Master your skills in a controlled environment</h2>
+    <p class="w3-justify" style="max-width:900px; margin:auto;"><Strong>About the concept:  </Strong><br> FLYwithMIKI's Paragliding Academy is a structured training program designed for <strong>licensed pilots</strong> who want to refine their skills, gain confidence, push their flying to the next level, or just simply enjoying organized events where they can fly together with another pilots under the supervision of an instructor.</p>
+    
+    <p class="w3-justify" style="max-width:900px; margin:auto;">Our academy provides expert coaching in key areas such as thermalling, cross-country flying, advanced ground handling, safety maneuvers, and hike & fly techniques. Through a combination of practical training and in-depth theory sessions, pilots enhance their understanding of flying conditions, maneuvers, decision-making, and risk assessment.</p>
+    
+    <p class="w3-justify" style="max-width:900px; margin:auto;">Members benefit from a supportive flying community, exclusive training days, and continuous guidance from experienced instructors. Whether you’re aiming to master XC flights, improve your landings, or take on new challenges in the air, this program offers structured, hands-on training tailored to your progress.</p>
+    
+    <p class="w3-justify" style="max-width:900px; margin:auto;">As an added benefit, academy members receive <strong>exclusive discounts on the best paragliding equipments </strong>, with savings of up to 30% over time. We don’t just sell gear, we personally test and recommend only the best and most up-to-date equipment, ensuring you have access to reliable, top-tier gear, which fits to your experience level and future goals.</p>
+</div>
+
+
+
+    <!-- Benefits Section -->
+    <div class="w3-container w3-padding-32 w3-center" style="max-width:900px; margin:auto">
+        <h2><strong> Membership Benefits</strong></h2>
+        <div class="w3-row-padding w3-padding-16">
+            <div class="w3-third">
+                <h4>&#9989; <strong>Advanced Training</strong></h4>
+                <p>Practicing maneuvers, Master thermalling, and XC flights.</p>
+            </div>
+            <div class="w3-third">
+                <h4>&#9989;<strong>Community & Coaching</strong></h4>
+                <p>Stay connected, improve safely.</p>
+            </div>
+            <div class="w3-third">
+                <h4>&#9989;<strong>Exclusive Equipment Discounts</strong></h4>
+                <p>Up to 30% off gear over time. The best prices for loyal students.</p>
+            </div>
+            <div class="w3-third">
+                <h4>&#9989;<strong>Weather Briefing</strong></h4>
+                <p>Expected flyability discussion in the group chat during the season.</p>
+            </div>
+			<div class="w3-third">
+    			<h4>&#9989;<strong>Continuous Support</strong></h4>
+    			<p>Discuss your questions and concerns—individually or in the group chat.</p>
+			</div>
+            <div class="w3-third">
+                <h4>&#9989;<strong>Fun and Safety</strong></h4>
+                <p>Flying under supervision will improve your skills and safety.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Yearly Training Schedule -->
+    <div class="w3-container w3-padding-32 w3-center" style="max-width:900px; margin:auto">
+        <h2>Yearly Masterclass Schedule</h2>
+        <table class="w3-table w3-card w3-striped w3-bordered w3-center">
+            <tr><th>Month</th><th>Practicum</th><th>Theory</th></tr>
+            <tr><td style="vertical-align: middle;">January</td><td></td><td>The secrets of Emagrams</td></tr>
+            <tr><td style="vertical-align: middle;">February</td><td></td><td>XC: route planning</td></tr>
+            <tr><td style="vertical-align: middle;">March</td><td>Advanced Maneuver Training</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">April</td><td>Advanced Ground Handling / Maneuver Training</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">May</td><td>Advanced Maneuver Training</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">June</td><td>Thermalling Masterclass or Advanced Maneuver Training</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">July</td><td>XC Coaching</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">August</td><td>XC Coaching</td></tr>
+            <tr><td style="vertical-align: middle;">September</td><td>Hike & Fly Sunrise Flight (Pilatus)</td><td></td></tr>
+            <tr><td style="vertical-align: middle;">October</td><td></td><td>Risk Assessment</td></tr>           
+            <tr><td style="vertical-align: middle;">November</td><td></td><td>Modern equipments</td></tr>
+            <tr><td style="vertical-align: middle;">December</td><td></td><td>Understanding the thermals</td></tr>           
+
+        </table>
+    </div>
+    
+    
+   
+
+
+
+
+<!--PRICING section------------------------------------------------------------>
+    <div class="w3-container w3-padding-32 w3-center" style="max-width:900px; margin:auto">
+        <h2>Pricing</h2>
+
+   <div class="w3-container w3-center" style="display: flex; justify-content: center; ">
+      <div class="w3-row-padding" style="width:100%; max-width:900px">
+        <div class="w3-half">
+            <div class="w3-card-4 w3-auto w3-display-container w3-section">
+                <img src="https://flywithmiki.com/Images_v2/subs.png" alt="subs" style="width:100%" loading="lazy">
+                    <p class="w3-xlarge">Subscription</p>
+                    80 CHF/month
+                    <p class="w3-justify w3-padding">Enjoy all the benefits what the full membership offers. Practical flying events, classroom sessions in advanced theory. Loyality discounts on Paragliding Equipments.</p>
+             
+            </div>
+        </div>
+
+        <div class="w3-half">
+            <div class="w3-card-4 w3-auto w3-display-container w3-section">
+                <img src="https://flywithmiki.com/Images_v2/tick.png" alt="Marcel" style="width:100%" loading="lazy">
+                    <p class="w3-xlarge">1 Event</p>
+                    <p>250CHF / day </p>
+                    <p class="w3-justify w3-padding">In case you do not want to make long term commitments, you could also just join out 1 day training events or two theory classes based on your selection.</p>
+                
+            </div>
+        </div>
+    </div>
+   </div>
+
+
+</div>
+
+
+<!------------------------FOOTER------------------------------------->
+<footer class="w3-container w3-center w3-light-grey w3-tiny">
+    <h2 class="w3-center">Contact us</h2>
+    <div class="w3-content" style="max-width:1000px">
+  
+    <div class="w3-row-padding">
+      
+      <div class="w3-quarter w3-center">
+        <a href="https://wa.me/41779766164/" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Whatsapp</a>
+     </div> 
+      
+      <div class="w3-quarter w3-center">
+        <a href="tel:+41779766164"class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Phone</a>
+      </div>
+
+      <div class="w3-quarter w3-center">
+        <a href="mailto:info@flywithmiki.com" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Email</a>
+      </div>
+      
+      <div class="w3-quarter w3-center">
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Google reviews </a>
+      </div>
+
+
+  
+
+    </div>
+      
+  </div>
+  <p>© 2024 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+   
+</footer>
+<!------------------------FOOTER------------------------------------->
+
+
+
+  <!-- End page content -->
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Nyelv választó
+function handleButtonClick(language) {
+  const currentPath = window.location.pathname;
+
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const basePath = currentPath.substring(0, lastSlashIndex + 1); // Extracting the base path
+  const fileName = currentPath.substring(lastSlashIndex + 1); // Extracting the filename
+
+  let newPath = currentPath;
+
+  if (language === "english") {
+    if (basePath.includes('/de/')) {
+      newPath = basePath.replace('/de/', '/'); // Remove "/de/" from the base path
+    }
+  } else if (language === "german") {
+    if (!basePath.includes('/de/')) {
+      newPath = `${basePath}de/`; // Add "/de/" to the base path
+    }
+  }
+
+  if (newPath !== currentPath) {
+    // Append the filename only if the path is modified
+    newPath += fileName;
+    // Redirect to the new path
+    window.location.href = newPath;
+  }
+}
+        
+</script>
+
+
+<!------------------------Google ad eventtracker-------------------------------------> 
+<script>
+window.addEventListener('load', function() {
+ document.addEventListener('mousedown', function(e) {
+    if (e.target.closest('[href*="//wa.me/"]')) {
+      gtag('event', 'conversion', {'send_to': 'AW-16744153817/BW7YCK732_IZENmFnrA-'});
+    }
+});
+  })
+</script>
+<script>
+  (function(){
+    document.addEventListener('click', function(e){
+      if(e.target.closest('a[href^="tel:"]')){
+  gtag('event', 'conversion', {'send_to': 'AW-16744153817/j67QCLT32_IZENmFnrA-'});
+      }
+    });
+  })();
+</script>
+<script>
+  (function(){
+    document.addEventListener('click', function(e){
+      if(e.target.closest('a[href^="mailto:"]')){
+ gtag('event', 'conversion', {'send_to': 'AW-16744153817/U-J9CLH32_IZENmFnrA-'});
+      }
+    });
+  })();
+</script>
+
+</body>
+
+</html>
