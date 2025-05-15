@@ -49,7 +49,7 @@
       <p>Our compensation model is designed to be both fair and performance-oriented, aligning the takeoff marshal’s earnings with the actual workload and operational intensity of the day. Unlike rigid industry-standard flat rates, our dynamic structure ensures that on lighter days—when there are fewer students and takeoffs—the marshal has the flexibility to fly, practice maneuvers, and continue improving their own skills, while still receiving a base-level compensation. On peak training days, when the workload is significantly higher and personal flying is limited or not feasible, the variable pay model ensures a substantially higher remuneration—potentially two to three times above traditional industry norms. This balance between flexibility, personal development, and generous performance-based pay makes the model attractive, motivating, and sustainable for committed professionals.
       </p>
     <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue">
-      <p><strong>Compensation Model:</strong> Base Pay CHF 60 + CHF 5 per student + CHF 3 per flight<br>
+      <p><strong>Compensation Model:</strong> Base Pay CHF 60 + CHF 2 per student + CHF 4 per flight<br>
       <strong>Cap:</strong> Max CHF 300/day cash salary. Anything above goes into Equipment/training Voucher.<br>
       <strong>Additional compensations:</strong> 1x Cablecar Ticket per flying site per working day & Free Shuttle from Kriens Kupferhammer</p>
     </div>
@@ -120,8 +120,8 @@ This compensation framework is designed to be fair, transparent, and compliant w
       const students = parseInt(studentsInput.value) || 0;
       const flights = parseInt(flightsInput.value) || 0;
       const base = 60;
-      const perStudent = 5;
-      const perFlight = 3;
+      const perStudent = 2;
+      const perFlight = 4;
       const salaryCap = 300;
 
       const total = base + (students * perStudent) + (flights * perFlight);
