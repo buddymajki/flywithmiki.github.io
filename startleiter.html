@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Takeoff Marshall Compensation Calculator</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .content-box {
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    @media print {
+      input, button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="w3-container w3-light-grey" style="max-width:900px; margin:auto;">
+  <div class="w3-card w3-white w3-padding w3-margin-top w3-round-large content-box">
+    <div class="w3-center">
+      <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI Logo" class="w3-padding" style="width:100%; max-width:1000px">
+      <h2 class="w3-text-black">Takeoff Marshall (Startleiter) Program</h2>
+    </div>
+
+    <div class="w3-container w3-margin-top w3-white w3-border w3-round-large">
+      <h4>Role Description</h4>
+      <ul>
+	    <li>Conducting takeoff briefing with the students</li>
+        <li>Assisting students with glider layout and preparation at the takeoff places</li>
+        <li>Conducting visual checks of equipment and harnesses</li>
+        <li>Monitoring wind and safety conditions</li>
+        <li>Supporting clear radio communication during and after takeoff</li>
+        <li>Ensuring an efficient and safe launch sequence</li>
+      </ul>
+
+      <h4>Minimum Requirements</h4>
+      <ul>
+        <li>Possession of a valid paragliding pilot license (SHV or IPPI 4 equivalent)</li>
+        <li>Holding the valid insurances and permits to legally fly and work as a freelancer in Switzerland</li>
+        <li>Successful participation in FLYwithMIKI’s Startleiter training (Online or at the Training Hill)</li>
+        <li>Functional communication skills in both English and German</li>
+        <li>Demonstrated responsibility, safety awareness, and a collaborative attitude</li>
+      </ul>
+
+      <h4>Compensation Structure</h4>
+      <p>Our compensation model is designed to be both fair and performance-oriented, aligning the takeoff marshal’s earnings with the actual workload and operational intensity of the day. Unlike rigid industry-standard flat rates, our dynamic structure ensures that on lighter days—when there are fewer students and takeoffs—the marshal has the flexibility to fly, practice maneuvers, and continue improving their own skills, while still receiving a base-level compensation. On peak training days, when the workload is significantly higher and personal flying is limited or not feasible, the variable pay model ensures a substantially higher remuneration—potentially two to three times above traditional industry norms. This balance between flexibility, personal development, and generous performance-based pay makes the model attractive, motivating, and sustainable for committed professionals.
+      </p>
+    <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue">
+      <p><strong>Compensation Model:</strong> Base Pay CHF 60 + CHF 5 per student + CHF 5 per flight<br>
+      <strong>Cap:</strong> Max CHF 300/day cash salary. Anything above goes into Equipment/training Voucher.<br>
+      <strong>Additional compensations:</strong> 1x Cablecar Ticket per flying site per working day & Free Shuttle from Kriens Kupferhammer</p>
+    </div>
+	
+	  <h4>Legal & Compensation Framework</h4>
+	  <p>All compensation is offered as a gross amount, and it is the responsibility of each team member to fulfill their own tax and social contribution obligations. <br> Where the annual compensation does not exceed CHF 2,300, FLYwithMIKI is not required to register for social contributions, in accordance with Swiss AHV regulations. Should a team member exceed this threshold, we are obliged to register them with the AHV system, and social contributions will be deducted accordingly. <br><br> FLYwithMIKI may consider freelance collaboration models only in cases where the individual: 
+	  <ul>
+	    <li>Is registered as self-employed with a valid AHV number</li>
+		<li>Is not economically dependent on FLYwithMIKI</li>
+		<li>Works with multiple clients</li>
+	  </ul>
+
+This compensation framework is designed to be fair, transparent, and compliant with Swiss labor laws.
+
+
+	  </p>
+
+      <h4>Fair Compensation Threshold</h4>
+      <p>FLYwithMIKI Gleitschirmschule offers performance-based compensation that exceeds industry standards. A daily threshold of 300 CHF ensures sustainability and rewards outstanding work. Exceeding this threshold may qualify for:
+        <strong>Internal credit</strong> for advanced training or new equipment (logged takeoffs above FCP usable next calendar year)
+      </p>
+    </div>
+
+    <div class="w3-container w3-margin-top w3-light-grey w3-border w3-round-large">
+      <h3 class="w3-text-dark-grey">Team Bonus Program (10+ working days in the calendar year)</h3>
+      <ul>
+        <li>End-of-season bonus: <strong>FREE Rescue Repack</strong></li>
+		<li>Discount on paragliding equipment</li>
+        <li>Discount on meteo-XC platforms (XC-Therm / Burnair)</li>
+        <li>Discount on Swiss Paragliding Academy subscriptions</li>
+        <li>Discount on tandem flights (family&friends)</li>
+      </ul>
+    </div>
+
+    <p><strong>Compensation Calculator</strong></p><label for="students" class="w3-text-grey">Number of Students:</label>
+    <input class="w3-input w3-border w3-margin-bottom" type="number" id="students" placeholder="Enter total number of students" />
+
+    <label for="flights" class="w3-text-grey">Number of Flights:</label>
+    <input class="w3-input w3-border w3-margin-bottom" type="number" id="flights" placeholder="Enter total number of flights" />
+
+
+
+    <div class="w3-container w3-pale-green w3-border w3-round-large w3-margin-top">
+      <p class="w3-large"><strong>Compensation Breakdown:</strong></p>
+      <p class="w3-text-green">Salary: <span id="salaryOutput" class="w3-xlarge">CHF 60</span></p>
+      <p class="w3-text-blue">Equipment Voucher: <span id="voucherOutput" class="w3-large">CHF 0</span></p>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="w3-center w3-small w3-text-grey w3-margin-top">
+      © 2025 FLYwithMIKI Gleitschirmschule – flywithmiki.com
+    </div>
+  </div>
+
+  <script>
+    const studentsInput = document.getElementById('students');
+    const flightsInput = document.getElementById('flights');
+    const salaryOutput = document.getElementById('salaryOutput');
+    const voucherOutput = document.getElementById('voucherOutput');
+
+    function calculatePay() {
+      const students = parseInt(studentsInput.value) || 0;
+      const flights = parseInt(flightsInput.value) || 0;
+      const base = 60;
+      const perStudent = 5;
+      const perFlight = 5;
+      const salaryCap = 300;
+
+      const total = base + (students * perStudent) + (flights * perFlight);
+      const salary = Math.min(total, salaryCap);
+      const voucher = total > salaryCap ? total - salaryCap : 0;
+
+      salaryOutput.textContent = `CHF ${salary}`;
+      voucherOutput.textContent = `CHF ${voucher}`;
+    }
+
+    function updateName() {
+      const name = document.getElementById('marshallName').value;
+      document.getElementById('displayName').textContent = name || '-';
+    }
+
+    studentsInput.addEventListener('input', calculatePay);
+    flightsInput.addEventListener('input', calculatePay);
+  </script>
+</body>
+</html>
