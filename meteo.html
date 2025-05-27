@@ -162,14 +162,248 @@
 
 
 <div class="w3-content w3-padding w3-left-align" style="max-width:1000px">
-      <h1 class="w3-center">Meteo five point check</h1>
+
+
+
+
+<!-- TEXT PROGNOSIS ---------------------------------------------------------->
+<h1>WEATHER PROGNOSIS</h1>
+      <br><br><h2 class="w3-text">MeteoSwiss</h2> <br>
+      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation" class="w3-button w3-blue w3-round-large" target="_blank">General situation</a>
+      <a href="https://www.meteoschweiz.admin.ch/#tab=forecast-map" class="w3-button w3-blue w3-round-large" target="_blank">Prognosis</a>
+
+      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/radiosondierungen.html#tab=radio-soundings-emagram" class="w3-button w3-blue w3-round-large" target="_blank">Emagram</a>
+      
+      <br><br>
+
+
+
+
+<!-- ISOBAR ---------------------------------------------------------->
+
+  <h2 class="w3-text">Isobar maps</h2> source: meteonews.net
+  <p id="dateTextToday" class="w3-text"></p>
+  <img id="todayWeatherImage" src="" alt="Today's Weather Image" class="w3-image">
+  
+  <p id="dateTextTomorrow" class="w3-text"></p>
+  <p id="errorMessageTomorrow" class="w3-text w3-red"></p>
+  <div id="tomorrowImageContainer"></div>
+
+
+<script>
+  // Function to format the date as YYYYMMDD
+  function formatDate(offset = 0) {
+    const date = new Date();
+    date.setDate(date.getDate() + offset); // offset is 0 for today, 1 for tomorrow
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}${month}${day}`;
+  }
+
+  // Function to check if an image URL exists
+  function checkImageExists(url, successCallback, errorCallback) {
+    const img = new Image();
+    img.onload = successCallback;  // Image exists
+    img.onerror = errorCallback;   // Image doesn't exist
+    img.src = url;
+  }
+
+  // Today's image logic
+  const todayDate = formatDate(0); // Today
+  const todayImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${todayDate}_1200.png`;
+  const todayWeatherImage = document.getElementById('todayWeatherImage');
+  const dateTextToday = document.getElementById('dateTextToday');
+  
+  todayWeatherImage.src = todayImageUrl;
+  dateTextToday.textContent = `${todayDate} - 12.00 UTC`;
+
+  // Tomorrow's image logic
+  const tomorrowDate = formatDate(1); // Tomorrow
+  const tomorrowImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${tomorrowDate}_1200.png`;
+  const dateTextTomorrow = document.getElementById('dateTextTomorrow');
+  const errorMessageTomorrow = document.getElementById('errorMessageTomorrow');
+  const tomorrowImageContainer = document.getElementById('tomorrowImageContainer');
+
+  checkImageExists(tomorrowImageUrl, function() {
+    // If tomorrow's image exists, display it
+    const imgElement = document.createElement('img');
+    imgElement.src = tomorrowImageUrl;
+    imgElement.alt = "Tomorrow's Weather Image";
+    imgElement.classList.add('w3-image');
+    tomorrowImageContainer.appendChild(imgElement);
+    dateTextTomorrow.textContent = `${tomorrowDate} - 12.00 UTC`;
+  }, function() {
+    // If tomorrow's image doesn't exist, show the error message
+    errorMessageTomorrow.textContent = "Map for tomorrow is not available yet.";
+  });
+</script>
+
+<br><br>
+
+
+
+
+
+
+<!-- WIND forecast ---------------------------------------------------------->
+
+      <h2 class="w3-text">Wind and precipitation</h2> source: xctherm.com
+
+<iframe id="xctherm" width="100%" height="600px" style="max-width: 1000px" src="https://xctherm.com/icon?lang=de&amp;lat=46.73&amp;lon=8.33&amp;zoom=6.5" allowfullscreen="true" allow="geolocation"></iframe>
+<br><br>
+
+
+
+
+
+
+
+<!-- PRESSURE CHARTS + Hochnebel ---------------------------------------------------------->
+    <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch <br>
+      <div class="w3-row-padding w3-margin-top">
+
+
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/wind_foehn_ch_en.png" alt="Fohndiagram" width="100%" height="auto"> <br> <br>
+        </div>
+
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/wind_bise_en.png" alt="Bisediagram" width="100%" height="auto"> <br> <br>
+        </div>
+       <h2 class="w3-text">Potential High-fog ceiling</h2>  
+
+        <div class="w3-half">
+          <img src="https://profiwetter.ch/hochnebel_de.png" alt="Hochnebelobergrenzediagram" width="100%" height="auto"> <br> <br>
+        </div>
+
+
+      </div>
+
+
+
+
+
+<!-- WIND CURRENT ---------------------------------------------------------->
+
+      <h2 class="w3-text">Wind current situation</h2> source: winds.mobi
+
+<iframe src="https://winds.mobi/stations/list?lat=46.9&amp;lon=8.4"  width="100%" height="500px" style="max-width: 1000px" frameborder="0" allowfullscreen="true"></iframe>
+<br><br>
+
+
+<!-- Prediction---------------------------------------------------------->
+ <script>
+    async function fetchData() {
+      try {
+        const response = await fetch('https://bronze-stitch-plow.glitch.me/api');
+        const data = await response.json();
+        displayData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    function getColor(score) {
+      if (score === 'NaN') return 'red'; // NaN%
+      if (score < 40) return 'rgba(255, 0, 0, 0.3)'; // 0-40% - light red
+      else if (score < 75) return 'rgba(255, 165, 0, 0.3)'; // 40-75% - light orange
+      else return 'rgba(0, 255, 0, 0.3)'; // Above 75% - light green
+    }
+
+    function displayData(data) {
+      const container = document.getElementById('forecast');
+      container.innerHTML = '';
+
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+
+      const forecastDates = {
+        [todayStr]: 'Today',
+        [tomorrowStr]: 'Tomorrow'
+      };
+
+      // Create forecast container for tables
+      const forecastContainer = document.createElement('div');
+      forecastContainer.classList.add('forecast-container');
+
+      // Create tables for today and tomorrow
+      for (const [date, label] of Object.entries(forecastDates)) {
+        const tableDiv = document.createElement('div');
+        tableDiv.classList.add('forecast-table');
+
+        const tableTitle = document.createElement('h3');
+        tableTitle.innerText = label;
+        tableDiv.appendChild(tableTitle);
+
+        const table = document.createElement('table');
+        table.classList.add('w3-table', 'w3-bordered', 'w3-striped');
+
+        // Create table header
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `<th>Location</th><th>Takeoff</th><th>Fly</th><th>XC</th>`;
+        table.appendChild(headerRow);
+
+        // Populate table rows
+        data[date].forEach(location => {
+          const flyScore = location.forecast.fly !== undefined ? Math.round(location.forecast.fly * 100) : 'NaN';
+          const xcScore = location.forecast.XC !== undefined ? Math.round(location.forecast.XC * 100) : 'NaN';
+          const takeoffScore = location.forecast.takeoff !== undefined ? Math.round(location.forecast.takeoff * 100) : 'NaN';
+
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${location.name}</td>
+            <td style="background-color: ${getColor(takeoffScore)};">${takeoffScore}%</td>
+            <td style="background-color: ${getColor(flyScore)};">${flyScore}%</td>
+            <td style="background-color: ${getColor(xcScore)};">${xcScore}%</td>
+          `;
+          table.appendChild(row);
+        });
+
+        tableDiv.appendChild(table);
+        forecastContainer.appendChild(tableDiv);
+      }
+
+      container.appendChild(forecastContainer);
+
+      // Add paragraph below the tables with justified text
+      const disclaimer = document.createElement('p');
+      disclaimer.classList.add('justified-paragraph');
+      disclaimer.innerHTML = `This is only a forecasted calculation - prediction. The data comes from <a href="https://paraglidable.com" target="_blank">paraglidable.com</a>, which uses an artificial neural network to compute "flyability" and "crossability" scores by analyzing ~200 weather parameters for each day. The neural network is trained over ground truth data spanning the last 10 years. The ground truth data is composed of weather archives and available online flight databases (~2 000 000 flights). During training, the neural network learns the correlation between weather conditions and reported flights (their number, distance, max vario, max altitude...). Since this is only a prediction, these numbers are just supporting the planning process of a flying day, but no one should ever make decisions based only on these numbers. Always do a proper meteo assessment, make your own decisions, and use your local knowledge about special weather situations (föhn, valley wind systems, lee sides, etc).`;
+      container.appendChild(disclaimer);
+    }
+
+    window.onload = fetchData;
+  </script>
+  
+
+  <h2>Paraglidable Forecast</h2> source: <a href="https://paraglidable.com" target="_blank"> paraglidable.com </a>
+
+
+<div id="forecast" class="w3-container w3-margin w3-center"  style="max-width:1000px; margin:auto">
+  <!-- Data will be displayed here -->
+ 
+
+
+
+
+
+</div>
+
+
+
+     <br><br> <h2 class="">Meteo five point check</h2>
       <p class="w3-justify">Plan your next day accordingly! Safety begins at home, and thorough preparation is key. Make informed decisions by checking the latest meteorological forecasts. Our preparation page supports you with essential information for both meteorological conditions and airspace considerations. You can find further links at the <a href=links.html>useful links section</a>. It's crucial to stay ahead of the curve and prioritize safety before taking flight. Explore the resources available here to ensure a comprehensive pre-flight preparation. Make it a habit to check the Meteo and Airspace information every time before you embark on your journey into the skies. Your commitment to preparation is an integral part of a safe and enjoyable flying experience.<br><br>The &quot;Meteo 5 point check&quot; what we use for our daily preparation is based on the <a href=https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html target=_blank>SHV's &quot;Decision making strategy&quot;</a>.<br><br>Do not forget: <b >YOU</b> are the pilot, <b>YOU</b> make your decisions! <b>It is your way</b>.</p>
                
 
 
 
 
-  <h2>Weather checklist - keywords & alarm signals</h2>
+  <h3>Weather checklist - keywords & alarm signals</h3>
   <table class="w3-table-all w3-card-4 w3-tiny">
     <thead>
       <tr class="w3-grey">
@@ -267,234 +501,6 @@
   <br><br>
 
 
-
-<!-- TEXT PROGNOSIS ---------------------------------------------------------->
-
-      <h2 class="w3-text">MeteoSwiss</h2> <br>
-      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation" class="w3-button w3-blue w3-round-large" target="_blank">General situation</a>
-      <a href="https://www.meteoschweiz.admin.ch/#tab=forecast-map" class="w3-button w3-blue w3-round-large" target="_blank">Prognosis</a>
-
-      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/radiosondierungen.html#tab=radio-soundings-emagram" class="w3-button w3-blue w3-round-large" target="_blank">Emagram</a>
-      
-      <br><br>
-
-
-
-
-<!-- ISOBAR ---------------------------------------------------------->
-
-  <h2 class="w3-text">Isobar maps</h2> source: meteonews.net
-  <p id="dateTextToday" class="w3-text"></p>
-  <img id="todayWeatherImage" src="" alt="Today's Weather Image" class="w3-image">
-  
-  <p id="dateTextTomorrow" class="w3-text"></p>
-  <p id="errorMessageTomorrow" class="w3-text w3-red"></p>
-  <div id="tomorrowImageContainer"></div>
-
-
-<script>
-  // Function to format the date as YYYYMMDD
-  function formatDate(offset = 0) {
-    const date = new Date();
-    date.setDate(date.getDate() + offset); // offset is 0 for today, 1 for tomorrow
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}${month}${day}`;
-  }
-
-  // Function to check if an image URL exists
-  function checkImageExists(url, successCallback, errorCallback) {
-    const img = new Image();
-    img.onload = successCallback;  // Image exists
-    img.onerror = errorCallback;   // Image doesn't exist
-    img.src = url;
-  }
-
-  // Today's image logic
-  const todayDate = formatDate(0); // Today
-  const todayImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${todayDate}_1200.png`;
-  const todayWeatherImage = document.getElementById('todayWeatherImage');
-  const dateTextToday = document.getElementById('dateTextToday');
-  
-  todayWeatherImage.src = todayImageUrl;
-  dateTextToday.textContent = `${todayDate} - 12.00 UTC`;
-
-  // Tomorrow's image logic
-  const tomorrowDate = formatDate(1); // Tomorrow
-  const tomorrowImageUrl = `https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${tomorrowDate}_1200.png`;
-  const dateTextTomorrow = document.getElementById('dateTextTomorrow');
-  const errorMessageTomorrow = document.getElementById('errorMessageTomorrow');
-  const tomorrowImageContainer = document.getElementById('tomorrowImageContainer');
-
-  checkImageExists(tomorrowImageUrl, function() {
-    // If tomorrow's image exists, display it
-    const imgElement = document.createElement('img');
-    imgElement.src = tomorrowImageUrl;
-    imgElement.alt = "Tomorrow's Weather Image";
-    imgElement.classList.add('w3-image');
-    tomorrowImageContainer.appendChild(imgElement);
-    dateTextTomorrow.textContent = `${tomorrowDate} - 12.00 UTC`;
-  }, function() {
-    // If tomorrow's image doesn't exist, show the error message
-    errorMessageTomorrow.textContent = "Map for tomorrow is not available yet.";
-  });
-</script>
-
-<br><br>
-
-
-
-
-
-
-<!-- WIND forecast ---------------------------------------------------------->
-
-      <h2 class="w3-text">Wind and precipitation forecast</h2> source: xctherm.com
-
-<iframe id="xctherm" width="100%" height="600px" style="max-width: 1000px" src="https://xctherm.com/icon?lang=de&amp;lat=46.73&amp;lon=8.33&amp;zoom=6.5" allowfullscreen="true" allow="geolocation"></iframe>
-<br><br>
-
-
-
-
-<!-- WIND CURRENT ---------------------------------------------------------->
-
-      <h2 class="w3-text">Wind current situation</h2> source: winds.mobi
-
-<iframe src="https://winds.mobi/stations/list?lat=46.9&amp;lon=8.4"  width="100%" height="500px" style="max-width: 1000px" frameborder="0" allowfullscreen="true"></iframe>
-<br><br>
-
-
-<!-- PRESSURE CHARTS + Hochnebel ---------------------------------------------------------->
-    <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch <br>
-      <div class="w3-row-padding w3-margin-top">
-
-
-        <div class="w3-half">
-          <img src="https://profiwetter.ch/wind_foehn_ch_en.png" alt="Fohndiagram" width="100%" height="auto"> <br> <br>
-        </div>
-
-        <div class="w3-half">
-          <img src="https://profiwetter.ch/wind_bise_en.png" alt="Bisediagram" width="100%" height="auto"> <br> <br>
-        </div>
-       <h2 class="w3-text">Potential High-fog ceiling</h2>  
-
-        <div class="w3-half">
-          <img src="https://profiwetter.ch/hochnebel_de.png" alt="Hochnebelobergrenzediagram" width="100%" height="auto"> <br> <br>
-        </div>
-
-
-      </div>
-
-
-
-
-
-
-
-
-<!-- Prediction---------------------------------------------------------->
- <script>
-    async function fetchData() {
-      try {
-        const response = await fetch('https://bronze-stitch-plow.glitch.me/api');
-        const data = await response.json();
-        displayData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    function getColor(score) {
-      if (score === 'NaN') return 'red'; // NaN%
-      if (score < 40) return 'rgba(255, 0, 0, 0.3)'; // 0-40% - light red
-      else if (score < 75) return 'rgba(255, 165, 0, 0.3)'; // 40-75% - light orange
-      else return 'rgba(0, 255, 0, 0.3)'; // Above 75% - light green
-    }
-
-    function displayData(data) {
-      const container = document.getElementById('forecast');
-      container.innerHTML = '';
-
-      const today = new Date();
-      const todayStr = today.toISOString().split('T')[0];
-
-      const tomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1);
-      const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
-      const forecastDates = {
-        [todayStr]: 'Today',
-        [tomorrowStr]: 'Tomorrow'
-      };
-
-      // Create forecast container for tables
-      const forecastContainer = document.createElement('div');
-      forecastContainer.classList.add('forecast-container');
-
-      // Create tables for today and tomorrow
-      for (const [date, label] of Object.entries(forecastDates)) {
-        const tableDiv = document.createElement('div');
-        tableDiv.classList.add('forecast-table');
-
-        const tableTitle = document.createElement('h3');
-        tableTitle.innerText = label;
-        tableDiv.appendChild(tableTitle);
-
-        const table = document.createElement('table');
-        table.classList.add('w3-table', 'w3-bordered', 'w3-striped');
-
-        // Create table header
-        const headerRow = document.createElement('tr');
-        headerRow.innerHTML = `<th>Location</th><th>Takeoff</th><th>Fly</th><th>XC</th>`;
-        table.appendChild(headerRow);
-
-        // Populate table rows
-        data[date].forEach(location => {
-          const flyScore = location.forecast.fly !== undefined ? Math.round(location.forecast.fly * 100) : 'NaN';
-          const xcScore = location.forecast.XC !== undefined ? Math.round(location.forecast.XC * 100) : 'NaN';
-          const takeoffScore = location.forecast.takeoff !== undefined ? Math.round(location.forecast.takeoff * 100) : 'NaN';
-
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${location.name}</td>
-            <td style="background-color: ${getColor(takeoffScore)};">${takeoffScore}%</td>
-            <td style="background-color: ${getColor(flyScore)};">${flyScore}%</td>
-            <td style="background-color: ${getColor(xcScore)};">${xcScore}%</td>
-          `;
-          table.appendChild(row);
-        });
-
-        tableDiv.appendChild(table);
-        forecastContainer.appendChild(tableDiv);
-      }
-
-      container.appendChild(forecastContainer);
-
-      // Add paragraph below the tables with justified text
-      const disclaimer = document.createElement('p');
-      disclaimer.classList.add('justified-paragraph');
-      disclaimer.innerHTML = `This is only a forecasted calculation - prediction. The data comes from <a href="https://paraglidable.com" target="_blank">paraglidable.com</a>, which uses an artificial neural network to compute "flyability" and "crossability" scores by analyzing ~200 weather parameters for each day. The neural network is trained over ground truth data spanning the last 10 years. The ground truth data is composed of weather archives and available online flight databases (~2 000 000 flights). During training, the neural network learns the correlation between weather conditions and reported flights (their number, distance, max vario, max altitude...). Since this is only a prediction, these numbers are just supporting the planning process of a flying day, but no one should ever make decisions based only on these numbers. Always do a proper meteo assessment, make your own decisions, and use your local knowledge about special weather situations (föhn, valley wind systems, lee sides, etc).`;
-      container.appendChild(disclaimer);
-    }
-
-    window.onload = fetchData;
-  </script>
-  
-
-  <h1>Paragliding Forecast</h1> source: <a href="https://paraglidable.com" target="_blank"> paraglidable.com </a>
-
-
-<div id="forecast" class="w3-container w3-margin w3-center"  style="max-width:1000px; margin:auto">
-  <!-- Data will be displayed here -->
- 
-
-
-
-
-
-</div>
 </div>
 
 
