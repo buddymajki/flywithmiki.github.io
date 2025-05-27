@@ -156,9 +156,12 @@
 
 <!-- METEO -->
 <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="meteo">
-  <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
+  <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:1000px"> <!--LOGO -->
+</div>
 
-<div class="w3-content w3-padding w3-left-align" style="max-width:900px">
+
+
+<div class="w3-content w3-padding w3-left-align" style="max-width:1000px">
       <h1 class="w3-center">Meteo five point check</h1>
       <p class="w3-justify">Plan your next day accordingly! Safety begins at home, and thorough preparation is key. Make informed decisions by checking the latest meteorological forecasts. Our preparation page supports you with essential information for both meteorological conditions and airspace considerations. You can find further links at the <a href=links.html>useful links section</a>. It's crucial to stay ahead of the curve and prioritize safety before taking flight. Explore the resources available here to ensure a comprehensive pre-flight preparation. Make it a habit to check the Meteo and Airspace information every time before you embark on your journey into the skies. Your commitment to preparation is an integral part of a safe and enjoyable flying experience.<br><br>The &quot;Meteo 5 point check&quot; what we use for our daily preparation is based on the <a href=https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html target=_blank>SHV's &quot;Decision making strategy&quot;</a>.<br><br>Do not forget: <b >YOU</b> are the pilot, <b>YOU</b> make your decisions! <b>It is your way</b>.</p>
                
@@ -266,20 +269,20 @@
 
 
 <!-- TEXT PROGNOSIS ---------------------------------------------------------->
-<div class="w3-margin-top">
-      <h2 class="w3-text">Text prognosis</h2> <br>
-      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation" class="w3-button w3-blue w3-round-large" target="_blank">MeteoSwiss</a>
 
+      <h2 class="w3-text">MeteoSwiss</h2> <br>
+      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation" class="w3-button w3-blue w3-round-large" target="_blank">General situation</a>
+      <a href="https://www.meteoschweiz.admin.ch/#tab=forecast-map" class="w3-button w3-blue w3-round-large" target="_blank">Prognosis</a>
+
+      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/radiosondierungen.html#tab=radio-soundings-emagram" class="w3-button w3-blue w3-round-large" target="_blank">Emagram</a>
       
       <br><br>
 
 
-</div>
-
 
 
 <!-- ISOBAR ---------------------------------------------------------->
-<div class="w3-margin-top">
+
   <h2 class="w3-text">Isobar maps</h2> source: meteonews.net
   <p id="dateTextToday" class="w3-text"></p>
   <img id="todayWeatherImage" src="" alt="Today's Weather Image" class="w3-image">
@@ -287,7 +290,7 @@
   <p id="dateTextTomorrow" class="w3-text"></p>
   <p id="errorMessageTomorrow" class="w3-text w3-red"></p>
   <div id="tomorrowImageContainer"></div>
-</div>
+
 
 <script>
   // Function to format the date as YYYYMMDD
@@ -340,32 +343,33 @@
 
 <br><br>
 
-</div>
+
 
 
 
 
 <!-- WIND forecast ---------------------------------------------------------->
-<div class="w3-margin-top">
+
       <h2 class="w3-text">Wind and precipitation forecast</h2> source: xctherm.com
 
-<iframe id="xctherm" width="100%" height="100%" style="min-height: 600px" src="https://xctherm.com/icon?lang=de&amp;lat=46.73&amp;lon=8.33&amp;zoom=6.5" allowfullscreen="true" allow="geolocation"></iframe>
+<iframe id="xctherm" width="100%" height="600px" style="max-width: 1000px" src="https://xctherm.com/icon?lang=de&amp;lat=46.73&amp;lon=8.33&amp;zoom=6.5" allowfullscreen="true" allow="geolocation"></iframe>
 <br><br>
 
-</div>
+
 
 
 <!-- WIND CURRENT ---------------------------------------------------------->
-<div class="w3-margin-top">
+
       <h2 class="w3-text">Wind current situation</h2> source: winds.mobi
 
-<iframe src="https://winds.mobi/stations/list?lat=46.9&amp;lon=8.4" width="100%" height="600px" frameborder="0" allowfullscreen=""></iframe>
+<iframe src="https://winds.mobi/stations/list?lat=46.9&amp;lon=8.4"  width="100%" height="500px" style="max-width: 1000px" frameborder="0" allowfullscreen="true"></iframe>
 <br><br>
-</div>
+
 
 <!-- PRESSURE CHARTS + Hochnebel ---------------------------------------------------------->
+    <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch <br>
       <div class="w3-row-padding w3-margin-top">
-      <h2 class="w3-text">Pressure difference</h2> source: profiwetter.ch <br>
+
 
         <div class="w3-half">
           <img src="https://profiwetter.ch/wind_foehn_ch_en.png" alt="Fohndiagram" width="100%" height="auto"> <br> <br>
@@ -375,31 +379,18 @@
           <img src="https://profiwetter.ch/wind_bise_en.png" alt="Bisediagram" width="100%" height="auto"> <br> <br>
         </div>
        <h2 class="w3-text">Potential High-fog ceiling</h2>  
-        <div class="w3-quarter"> 
-          <br><br>
-        </div>
+
         <div class="w3-half">
           <img src="https://profiwetter.ch/hochnebel_de.png" alt="Hochnebelobergrenzediagram" width="100%" height="auto"> <br> <br>
         </div>
 
-        <div class="w3-quarter">
-        </div>
 
       </div>
 
 
 
-<!-- Emagram ---------------------------------------------------------->
-<div class="w3-margin-top">
-      <h2 class="w3-text">Emagram - Prévitemp</h2><br>
-      <a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/radiosondierungen.html#tab=radio-soundings-emagram" class="w3-button w3-blue w3-round-large" target="_blank">MeteoSwiss</a>
 
-      
-      <br><br>
 
-</div>
-
-</div>
 
 
 
@@ -491,21 +482,24 @@
     window.onload = fetchData;
   </script>
   
-<div class="w3-container w3-teal w3-center" style="max-width:1000px; margin:auto">
+
   <h1>Paragliding Forecast</h1> source: <a href="https://paraglidable.com" target="_blank"> paraglidable.com </a>
-</div>
+
 
 <div id="forecast" class="w3-container w3-margin w3-center"  style="max-width:1000px; margin:auto">
   <!-- Data will be displayed here -->
-  </div>
+ 
+
+
+
+
+
+</div>
 </div>
 
 
-
-
-
 <!------------------------FOOTER------------------------------------->
-<footer class="w3-main w3-container w3-center w3-light-grey w3-tiny" style="margin-left:300px; max-width:1000px;">
+<footer class="w3-content w3-padding w3-center w3-light-gray w3-tiny" style="max-width:1000px">
     <h2 class="w3-center">Contact us</h2>
     <div class="w3-content" >
   
@@ -533,14 +527,14 @@
     </div>
       
   </div>
-  <p>© 2024 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p>© 2025 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
+</div>
 <!------------------------FOOTER------------------------------------->
 
 <!-- End page content ------------------------------------------------------------------------------>
-</div>
 
 
 
