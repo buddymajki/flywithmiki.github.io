@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pilot Checklist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .check-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            gap: 10px;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item:hover { background-color: rgba(0,0,0,0.05); }
+        .check-item span { flex: 1; min-width: 0; word-break: break-word; }
+        .check-item.completed { background: #e6ffe6; color: green; font-weight: bold; }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 22px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .switch input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .2s;
+            border-radius: 22px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .2s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #4CAF50; }
+        input:checked + .slider:before { transform: translateX(20px); }
+        .check-item span { user-select: none; }
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="w3-center">Pilot Checklist</h2>
+        <div id="login-section" style="margin-bottom: 20px;">
+            <p>Please enter your email to load your progress:</p>
+            <input class="w3-input w3-border w3-round" type="email" id="email-input" placeholder="Your email address">
+            <button class="w3-button w3-green w3-round w3-margin-top" id="load-button">Load My Progress</button>
+        </div>
+
+        <div id="checklist-container" style="display: none;">
+            <form id="form">
+                <div class="field" style="margin-bottom: 15px;">
+                    <label class="label">Client Name</label>
+                    <div class="control">
+                        <input class="w3-input w3-border w3-round" type="text" placeholder="Client Name" name="client-name" id="client-name-input">
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+                            <header class="w3-container">
+                                <h4>Training Hill <span class="completion-display"></span></h4>
+                            </header>
+                            <div class="check-item">
+                                <span>1. Laying out the glider</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-0" name="q-training-hill-0" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>2. Inflation and walking exercises</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-1" name="q-training-hill-1" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>3. Slalom walking</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-2" name="q-training-hill-2" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>4. Walking with braked wing</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-3" name="q-training-hill-3" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>5. Launch preparations and 5-Point Check</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-4" name="q-training-hill-4" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>6. Three Phase Launch</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-5" name="q-training-hill-5" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>7. Flights with direction changes</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-6" name="q-training-hill-6" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>8. Start-STOP (Decision making line)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-7" name="q-training-hill-7" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>9. Crosswind Launch (Simulation if necessary)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-8" name="q-training-hill-8" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>10. Launch with poorly laid-out canopy</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-9" name="q-training-hill-9" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>11. Launch with Forward &amp; Reverse inflation</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-10" name="q-training-hill-10" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>12. Landing technique and landings</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-11" name="q-training-hill-11" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>13. Emergency landing (Introduction)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-12" name="q-training-hill-12" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>14. Rescue system (Introduction)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-13" name="q-training-hill-13" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>15. 90 - 180° Turns (Landing Approach)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-14" name="q-training-hill-14" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>16. Untangling the lines</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-15" name="q-training-hill-15" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>17. Folding Methods</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-16" name="q-training-hill-16" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>18. Theory Test before the 1st High-Altitude Flight</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-training-hill-17" name="q-training-hill-17" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="w3-card w3-white w3-margin-bottom">
+                            <header class="w3-container">
+                                <h4>Theory <span class="completion-display"></span></h4>
+                            </header>
+                            <div class="check-item">
+                                <span>1. Aerodynamics</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-theory-0" name="q-theory-0" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>2. Weather</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-theory-1" name="q-theory-1" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>3. Flying practice</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-theory-2" name="q-theory-2" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>4. Legislation (Air-law and airspaces)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-theory-3" name="q-theory-3" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>5. Material Sciences</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-theory-4" name="q-theory-4" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="w3-card w3-white w3-margin-bottom">
+                            <header class="w3-container">
+                                <h4>Extra <span class="completion-display"></span></h4>
+                            </header>
+                            <div class="check-item">
+                                <span>1. 'Popo' landing</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-extra-0" name="q-extra-0" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>2. Big-Ears rolling</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-extra-1" name="q-extra-1" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>3. Paragliding etiquette (facultative)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-extra-2" name="q-extra-2" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>4. Decision making strategy (facultative)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-extra-3" name="q-extra-3" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+                            <header class="w3-container">
+                                <h4>High Flights <span class="completion-display"></span></h4>
+                            </header>
+                            <div class="check-item">
+                                <span>1. Tandem Flight as a Passenger (optional)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-0" name="q-high-flights-0" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>2. Introduction to Emergency Landing</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-1" name="q-high-flights-1" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>3. Terrain Assessment and Launch Site Selection</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-2" name="q-high-flights-2" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>4. Launch with Forward &amp; Reverse Inflation</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-3" name="q-high-flights-3" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>5. Left and Right Circles</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-4" name="q-high-flights-4" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>6. Quick direction changes</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-5" name="q-high-flights-5" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>7. Figure Eight (PP2)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-6" name="q-high-flights-6" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>8. Tight Circles (with active control)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-7" name="q-high-flights-7" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>9. Parachutal stall (introduction)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-8" name="q-high-flights-8" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>10. Flying in the safe speed range</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-9" name="q-high-flights-9" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>11. Use of the acceleration system</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-10" name="q-high-flights-10" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>12. Positive and Negative steering</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-11" name="q-high-flights-11" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>13. Steering with weight shifting</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-12" name="q-high-flights-12" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>14. Steering with back risers</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-13" name="q-high-flights-13" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>15. Pitching (swinging around the lateral axis)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-14" name="q-high-flights-14" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>16. Rolling</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-15" name="q-high-flights-15" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>17. Assymetric Collapse (Level 1-4)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-16" name="q-high-flights-16" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>18. Big Ears (with speed bar)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-17" name="q-high-flights-17" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>19. Spiral (Introduction)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-18" name="q-high-flights-18" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>20. Flight with Instrument</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-19" name="q-high-flights-19" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>21. Dynamic Soaring (over 30 minutes)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-20" name="q-high-flights-20" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>22. Thermalling (over 30 minutes)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-21" name="q-high-flights-21" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>23. Landing approach (left/right)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-22" name="q-high-flights-22" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>24. Target landings</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-23" name="q-high-flights-23" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>25. Backwind landing (Introduction)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-24" name="q-high-flights-24" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>26. Landing with back risers</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-25" name="q-high-flights-25" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>27. Exam simulation</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-26" name="q-high-flights-26" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>28. Alone flight(s)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-high-flights-27" name="q-high-flights-27" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="w3-card w3-white w3-margin-bottom">
+                            <header class="w3-container">
+                                <h4>EXAM Maneuvers <span class="completion-display"></span></h4>
+                            </header>
+                            <div class="check-item">
+                                <span>1. PP1 (2x right &lt;20s)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-0" name="q-exam-0" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>2. PP2 (Left-Right &lt;25s)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-1" name="q-exam-1" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>3. Side collapse (Lvl.3)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-2" name="q-exam-2" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>4. Big Ears (90° left, 90° right)</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-3" name="q-exam-3" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>5. Big Ears with speed</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-4" name="q-exam-4" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>6. Rolling</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-5" name="q-exam-5" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="check-item">
+                                <span>7. Pitching</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="q-exam-6" name="q-exam-6" value="TRUE" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 16px; text-align: center;">
+                    <button class="w3-button w3-green w3-round" type="submit" id="submit-button">Save Progress</button>
+                </div>
+            </form>
+        </div>
+        <div id="message" style="display: none;"></div>
+    </div>
+
+<script>
+    const form = document.getElementById("form");
+    const submitButton = document.getElementById("submit-button");
+    const messageDiv = document.getElementById("message");
+    const emailInput = document.getElementById("email-input");
+    const loadButton = document.getElementById("load-button");
+    const loginSection = document.getElementById("login-section");
+    const checklistContainer = document.getElementById("checklist-container");
+    const clientNameInput = document.getElementById("client-name-input");
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyvYsdGy_E41qpsf8xsjMKWZ4aEKkbUfDR3QUIK56FQWGryroe8hC7ZL5eoGfdO_2DGcQ/exec";
+
+    // Function to calculate and update completion percentage for a given card
+    function updateCompletion(cardElement) {
+        const checkboxes = cardElement.querySelectorAll('input[type="checkbox"]');
+        const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+        const totalCheckboxes = checkboxes.length;
+        let completionPercentage = 0;
+
+        if (totalCheckboxes > 0) {
+            completionPercentage = (checkedCheckboxes.length / totalCheckboxes) * 100;
+        }
+
+        const completionDisplay = cardElement.querySelector('.completion-display');
+        if (completionDisplay) {
+            completionDisplay.textContent = `${completionPercentage.toFixed(0)}%`;
+        }
+    }
+
+    // Function to update all completion displays on the page
+    function updateAllCompletions() {
+        const allCards = document.querySelectorAll('.w3-card');
+        allCards.forEach(card => updateCompletion(card));
+    }
+
+    function setChecklistValues(progress) {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            const value = progress[checkbox.name];
+            const isChecked = (String(value).toLowerCase() === "true");
+            checkbox.checked = isChecked;
+            const parentDiv = checkbox.closest('.check-item');
+            if (parentDiv) {
+                parentDiv.classList.toggle('completed', isChecked);
+            }
+        });
+        updateAllCompletions();
+    }
+
+    loadButton.addEventListener("click", async () => {
+        const userEmail = emailInput.value.trim();
+        if (!userEmail) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        loginSection.style.display = "none";
+        messageDiv.textContent = "Loading your progress...";
+        messageDiv.style.display = "block";
+        messageDiv.style.backgroundColor = "beige";
+        messageDiv.style.color = "black";
+        try {
+            const response = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}`);
+            const data = await response.json();
+
+            if (data && data.status === "success") {
+                setChecklistValues(data.progress);
+                if (clientNameInput) {
+                    clientNameInput.value = data.clientName || '';
+                }
+                checklistContainer.style.display = "block";
+                messageDiv.textContent = "Progress loaded successfully!";
+                messageDiv.style.backgroundColor = "#48c78e";
+                messageDiv.style.color = "white";
+            } else {
+                throw new Error(data.message || "Could not find data for this email. Starting a new checklist.");
+            }
+        } catch (error) {
+            console.error("Error loading data:", error);
+            alert(error.message);
+            checklistContainer.style.display = "block";
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                const parentDiv = checkbox.closest('.check-item');
+                if (parentDiv) parentDiv.classList.remove('completed');
+            });
+            updateAllCompletions();
+            if (clientNameInput) {
+                clientNameInput.value = '';
+            }
+            messageDiv.textContent = "Please make your selections and click 'Save Progress'.";
+            messageDiv.style.backgroundColor = "#f14668";
+            messageDiv.style.color = "white";
+        } finally {
+            setTimeout(() => {
+                messageDiv.style.display = "none";
+            }, 4000);
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initial percentage update on page load.
+        updateAllCompletions(); 
+        
+        // Add click listener to each check-item row.
+        document.querySelectorAll('.check-item').forEach(item => {
+            item.addEventListener("click", function (event) {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                if (checkbox) {
+                    // This prevents double-toggling if the user clicks directly on the checkbox or label
+                    if (event.target.tagName.toLowerCase() !== 'input' && event.target.tagName.toLowerCase() !== 'label') {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    
+                    // Toggle the 'completed' class on the parent div
+                    this.classList.toggle("completed", checkbox.checked);
+
+                    // Update the completion percentage for the parent card
+                    const card = this.closest('.w3-card');
+                    if (card) {
+                        updateCompletion(card);
+                    }
+                }
+            });
+        });
+    });
+
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        messageDiv.textContent = "Saving your progress...";
+        messageDiv.style.display = "block";
+        messageDiv.style.backgroundColor = "beige";
+        messageDiv.style.color = "black";
+        submitButton.disabled = true;
+        try {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progress = {};
+            checkboxes.forEach(checkbox => {
+                progress[checkbox.name] = checkbox.checked ? "TRUE" : "FALSE";
+            });
+            const formDataObj = {
+                email: emailInput.value.trim(),
+                clientName: clientNameInput.value.trim(),
+                progress: progress
+            };
+            const response = await fetch(scriptURL, {
+                redirect: "follow",
+                method: "POST",
+                body: JSON.stringify(formDataObj),
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                },
+            });
+            const data = await response.json();
+            if (data.status === "success") {
+                messageDiv.textContent = data.message || "Progress saved successfully!";
+                messageDiv.style.backgroundColor = "#48c78e";
+                messageDiv.style.color = "white";
+            } else {
+                throw new Error(data.message || "Submission failed");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            messageDiv.textContent = "Error: " + error.message;
+            messageDiv.style.backgroundColor = "#f14668";
+            messageDiv.style.color = "white";
+        } finally {
+            submitButton.disabled = false;
+            setTimeout(() => {
+                messageDiv.textContent = "";
+                messageDiv.style.display = "none";
+            }, 4000);
+        }
+    });
+</script>
+</body>
+</html>
