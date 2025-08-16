@@ -29,7 +29,6 @@
         }
         .check-item:last-child { border-bottom: none; }
         .check-item:hover { background-color: rgba(0,0,0,0.05); }
-        .check-item span { flex: 1; min-width: 0; word-break: break-word; }
         .check-item.completed { background: #e6ffe6; color: green; font-weight: bold; }
         .switch {
             position: relative;
@@ -78,26 +77,137 @@
             font-weight: bold;
             text-align: center;
         }
+        .tab-button {
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2 class="w3-center">Pilot Checklist</h2>
-        <div id="login-section" style="margin-bottom: 20px;">
+        <h2 class="w3-center" id="main-title">Pilot Checklist</h2>
+
+        <div class="w3-bar w3-black">
+            <button disabled class="w3-bar-item w3-button w3-blue tab-button" id="login-tab">LOGIN</button>
+            
+            <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
+			<button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Data</button>
+        </div>
+
+        <div id="login-section" class="tab-content" style="margin-bottom: 20px;">
             <p>Please enter your email to load your progress:</p>
             <input class="w3-input w3-border w3-round" type="email" id="email-input" placeholder="Your email address">
             <button class="w3-button w3-green w3-round w3-margin-top" id="load-button">Load My Progress</button>
         </div>
+        
+        <div class="w3-container w3-padding tab-content" style="display:none;" id="flight-data-section">
+            <div class="w3-card w3-round-large w3-margin">
+                <div class="w3-container">
+                    <h3>Flight Data Summary</h3>
+                    
+                    <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 10px;">
+                        <div>
+                            <h4>Total Flights: <span id="total-flights-count-display">0</span></h4>
+                            <div id="total-flights-progress" style="font-size: 24px;"></div>
+                            <p id="total-flights-exam-status" style="font-weight: bold;"></p>
+                        </div>
+                        <div>
+                            <h4>Takeoffs: <span id="takeoffs-count-display">0</span></h4>
+                            <div id="takeoffs-progress" style="font-size: 24px;"></div>
+                            <p id="takeoffs-exam-status" style="font-weight: bold;"></p>
+                        </div>
+                        <div>
+                            <h4>Landings: <span id="landings-count-display">0</span></h4>
+                            <div id="landings-progress" style="font-size: 24px;"></div>
+                            <p id="landings-exam-status" style="font-weight: bold;"></p>
+                        </div>
+                    </div>
+                    <p>Total air time: <span id="total-air-time-summary">0 minutes</span></p>
+                    
+                    <button class="w3-button w3-blue w3-round w3-margin-top w3-margin-bottom" id="add-flight-button">Add Flight</button>
+                </div>
+            </div>
 
-        <div id="checklist-container" style="display: none;">
-            <form id="form">
-                <div class="field" style="margin-bottom: 15px;">
-                    <label class="label">Client Name</label>
-                    <div class="control">
-                        <input class="w3-input w3-border w3-round" type="text" placeholder="Client Name" name="client-name" id="client-name-input">
+            <div id="flight-form-section" style="display: none;">
+                <div class="w3-card w3-round-large w3-margin">
+                    <div class="w3-container">
+                        <h3>New Flight</h3>
+                        <form id="flight-form" method="post">
+                            <p>
+                                <label>Date:</label>
+                                <input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="flight-date-input" required>
+                            </p>
+                            <p>
+                                <label>Takeoff:</label>
+                                <select class="w3-select w3-border w3-round-large" name="takeoff-location" id="takeoff-location" required>
+                                    <option value="" disabled selected>Select a takeoff location</option>
+                                    <option value="Büelen (1089m)">Büelen (1089m)</option>
+                                    <option value="Brändlen-South (1208m)">Brändlen-South (1208m)</option>
+									<option value="Brändlen-North (1228m)">Brändlen-North (1228m)</option>
+									<option value="Diegisbalm (1103m)">Diegisbalm (1103m)</option>
+									<option value="Engelberg Brunnihütte (1868m)">Engelberg Brunnihütte (1868m)</option>
+									<option value="Engelberg (1803m)">Engelberg Tümpfeli (1803m)</option>
+                                    <option value="Niderbauen (1572m)">Niderbauen (1572m)</option>
+									<option value="Rigi - Staffelhöhe (1546m)">Rigi - Staffelhöhe (1546m)</option>
+									<option value="Seebodenalp (1027m)">Seebodenalp (1027m)</option>
+									<option value="Urmiberg (1111m)">Urmiberg (1111m)</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Landing:</label>
+                                <select class="w3-select w3-border w3-round-large" name="landing-location" id="landing-location" required>
+                                    <option value="" disabled selected>Select a landing location</option>
+                                    
+                                    <option value="Brunnen (434m)">Brunnen (434m)</option>
+									<option value="Diegisbalm (Nechimatt) (540m)">Diegisbalm (Nechimatt) (540m)</option>
+									<option value="Emmetten (788m)">Emmetten (788m)</option>
+									<option value="Engelberg (1008m)">Engelberg (1008m)</option>
+									<option value="Küssnacht (461m)">Küssnacht (461m)</option>
+									<option value="Neufallenbach (545m)">Neufallenbach (545m)</option>
+                                    <option value="Wolfenschiessen (514m)">Wolfenschiessen (514m)</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Altitude Difference:</label>
+                                <span id="altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
+                            </p>
+                            <p>
+                                <label>Flight Time:</label>
+                                <select class="w3-select w3-border w3-round-large" name="flight-time" required>
+                                    <option value="" disabled selected>Select flight time</option>
+                                    <option value="5">5 minutes</option>
+                                    <option value="10">10 minutes</option>
+                                    <option value="15">15 minutes</option>
+                                    <option value="20">20 minutes</option>
+                                    <option value="25">25 minutes</option>
+                                    <option value="30+">30+ minutes</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Comments:</label>
+                                <textarea class="w3-input w3-border w3-round-large" name="comments" rows="3"></textarea>
+                            </p>
+                            <p>
+                                <button id="save-flight-button" type="submit" class="w3-button w3-blue w3-round-large w3-margin-bottom">Save Flight</button>
+                            </p>
+                        </form>
                     </div>
                 </div>
+            </div>
+
+            <div class="w3-card w3-round-large w3-margin">
+                <div class="w3-container">
+                    <h3>Flight book:</h3>
+                    <ul id="flight-history-list" class="w3-ul w3-border-top">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="checklist-container" class="tab-content" style="display: none;">
+            <form id="form">
+
                 <div class="w3-row-padding w3-margin-top">
                     <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
@@ -572,6 +682,8 @@
     </div>
 
 <script>
+    // A meglévő elemek
+    const mainTitle = document.getElementById('main-title');
     const form = document.getElementById("form");
     const submitButton = document.getElementById("submit-button");
     const messageDiv = document.getElementById("message");
@@ -579,36 +691,46 @@
     const loadButton = document.getElementById("load-button");
     const loginSection = document.getElementById("login-section");
     const checklistContainer = document.getElementById("checklist-container");
-    const clientNameInput = document.getElementById("client-name-input");
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyvYsdGy_E41qpsf8xsjMKWZ4aEKkbUfDR3QUIK56FQWGryroe8hC7ZL5eoGfdO_2DGcQ/exec";
+    const flightDataSection = document.getElementById("flight-data-section");
+    const flightForm = document.getElementById("flight-form");
+    const takeoffSelect = document.getElementById("takeoff-location");
+    const landingSelect = document.getElementById("landing-location");
+    const altitudeDifferenceSpan = document.getElementById("altitude-difference");
+    const totalFlightsSummary = document.getElementById("total-flights-summary");
+    const totalAirTimeSummary = document.getElementById("total-air-time-summary");
+    const flightHistoryList = document.getElementById("flight-history-list");
+    const saveFlightButton = document.getElementById("save-flight-button");
+    const addFlightButton = document.getElementById("add-flight-button");
+    const flightFormSection = document.getElementById("flight-form-section");
+    const dateInput = document.getElementById("flight-date-input");
 
-    // A százalékot számoló és frissítő funkció
+    const loginTabButton = document.getElementById("login-tab");
+    const flightDataTabButton = document.getElementById("flight-data-tab");
+    const checklistTabButton = document.getElementById("checklist-tab");
+
+    // FIGYELEM: CSERÉLD KI EZT A SAJÁT GOOGLE APPS SCRIPT URL-EDDEL!
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec";
+
+    // A meglévő helper funkciók
     function updateCompletion(cardElement) {
         const checkboxes = cardElement.querySelectorAll('input[type="checkbox"]');
         const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
-
         const totalCheckboxes = checkboxes.length;
         let completionPercentage = 0;
-
         if (totalCheckboxes > 0) {
             completionPercentage = (checkedCheckboxes.length / totalCheckboxes) * 100;
         }
-
         const completionDisplay = cardElement.querySelector('.completion-display');
         if (completionDisplay) {
             completionDisplay.textContent = `${completionPercentage.toFixed(0)}%`;
         }
     }
-
-    // Az összes százalék kijelzőt frissítő funkció
     function updateAllCompletions() {
         const allCards = document.querySelectorAll('.w3-card');
         allCards.forEach(card => updateCompletion(card));
     }
-
-    // Ezt a funkciót használja a kód az űrlap elemeinek beállítására a betöltött adatok alapján
-    function setChecklistValues(progress) {
+    function setChecklistValues(progress, clientName) {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             const value = progress[checkbox.name];
@@ -619,54 +741,202 @@
                 parentDiv.classList.toggle('completed', isChecked);
             }
         });
+
+        // Update the main title with the client's name
+        mainTitle.textContent = clientName ? `Pilot Checklist - ${clientName}` : 'Pilot Checklist';
+
         updateAllCompletions();
     }
 
-    // Betöltés gomb eseménykezelője
+    function calculateAltitudeDifference() {
+        const takeoffValue = takeoffSelect.value;
+        const landingValue = landingSelect.value;
+        let takeoffAltitude = 0;
+        let landingAltitude = 0;
+
+        if (takeoffValue) {
+            const match = takeoffValue.match(/\((\d+)m\)/);
+            if (match) {
+                takeoffAltitude = parseInt(match[1]);
+            }
+        }
+        if (landingValue) {
+            const match = landingValue.match(/\((\d+)m\)/);
+            if (match) {
+                landingAltitude = parseInt(match[1]);
+            }
+        }
+        
+        const difference = takeoffAltitude - landingAltitude;
+        altitudeDifferenceSpan.textContent = `${difference}m`;
+    }
+
+    function updateFlightSummary(flights) {
+        flightHistoryList.innerHTML = '';
+        let totalTime = 0;
+        let takeoffLocations = new Set();
+        let landingLocations = new Set();
+
+        if (flights && flights.length > 0) {
+            flights.forEach((flight, index) => {
+                const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
+                
+                let formattedDate = date;
+                if (date) {
+                    try {
+                        const dateObj = new Date(date);
+                        if (!isNaN(dateObj.getTime())) {
+                            const day = String(dateObj.getDate()).padStart(2, '0');
+                            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                            const year = dateObj.getFullYear();
+                            formattedDate = `${day}.${month}.${year}`;
+                        } else {
+                            // Fallback for non-standard date strings
+                            const parts = date.split('-');
+                            if (parts.length === 3) {
+                                formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+                            } else {
+                                // Last resort: regex for the user's observed format
+                                const userFormatMatch = date.match(/(\d{2})T.*\.(\d{2})\.(\d{4})/);
+                                if (userFormatMatch) {
+                                    formattedDate = `${userFormatMatch[1]}.${userFormatMatch[2]}.${userFormatMatch[3]}`;
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Date parsing error:", e);
+                    }
+                }
+
+                const flightTime = parseInt(time) || 0;
+                totalTime += flightTime;
+                
+                takeoffLocations.add(takeoff);
+                landingLocations.add(landing);
+
+                const listItem = document.createElement('li');
+                listItem.className = 'w3-padding-small w3-border-bottom';
+                listItem.innerHTML = `<strong>${index+1}.</strong> ${formattedDate}: <strong>${takeoff}</strong> -> <strong>${landing}</strong> (${time} minutes) - ${comments}`;
+                flightHistoryList.appendChild(listItem);
+            });
+        }
+        
+        totalAirTimeSummary.textContent = `${totalTime} minutes`;
+        
+        // Update total flights visualization
+        const totalFlightsCount = flights.length;
+        const totalFlightsProgress = document.getElementById("total-flights-progress");
+        const totalFlightsExamStatus = document.getElementById("total-flights-exam-status");
+        document.getElementById("total-flights-count-display").textContent = totalFlightsCount;
+
+        if (totalFlightsCount >= 50) {
+            totalFlightsProgress.textContent = "✅";
+            totalFlightsExamStatus.textContent = "Enough for the exam!";
+            totalFlightsExamStatus.style.color = "green";
+        } else {
+            totalFlightsProgress.textContent = "❌";
+            totalFlightsExamStatus.textContent = `Need ${50 - totalFlightsCount} more flight(s)`;
+            totalFlightsExamStatus.style.color = "red";
+        }
+
+        // Update takeoff visualization
+        const takeoffsCount = takeoffLocations.size;
+        const takeoffsProgress = document.getElementById("takeoffs-progress");
+        const takeoffsExamStatus = document.getElementById("takeoffs-exam-status");
+        document.getElementById("takeoffs-count-display").textContent = takeoffsCount;
+
+        if (takeoffsCount >= 5) {
+            takeoffsProgress.textContent = "✅";
+            takeoffsExamStatus.textContent = "Enough for the exam!";
+            takeoffsExamStatus.style.color = "green";
+        } else {
+            takeoffsProgress.textContent = "❌";
+            takeoffsExamStatus.textContent = `Need ${5 - takeoffsCount} more takeoff(s)`;
+            takeoffsExamStatus.style.color = "red";
+        }
+
+        // Update landing visualization
+        const landingsCount = landingLocations.size;
+        const landingsProgress = document.getElementById("landings-progress");
+        const landingsExamStatus = document.getElementById("landings-exam-status");
+        document.getElementById("landings-count-display").textContent = landingsCount;
+
+        if (landingsCount >= 5) {
+            landingsProgress.textContent = "✅";
+            landingsExamStatus.textContent = "Enough for the exam!";
+            landingsExamStatus.style.color = "green";
+        } else {
+            landingsProgress.textContent = "❌";
+            landingsExamStatus.textContent = `Need ${5 - landingsCount} more landing(s)`;
+            landingsExamStatus.style.color = "red";
+        }
+    }
+
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.style.display = 'none';
+        });
+
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.remove('w3-blue');
+        });
+
+        document.getElementById(tabId).style.display = 'block';
+        
+        const buttonId = tabId === 'login-section' ? 'login-tab' :
+                         tabId === 'checklist-container' ? 'checklist-tab' : 'flight-data-tab';
+        document.getElementById(buttonId).classList.add('w3-blue');
+    }
+
+    // Event Listeners
     loadButton.addEventListener("click", async () => {
         const userEmail = emailInput.value.trim();
         if (!userEmail) {
-            alert("Kérjük, adjon meg egy érvényes e-mail címet.");
+            alert("Please enter a valid email address.");
             return;
         }
-        loginSection.style.display = "none";
-        messageDiv.textContent = "A folyamat betöltése...";
+
+        messageDiv.textContent = "Loading progress...";
         messageDiv.style.display = "block";
         messageDiv.style.backgroundColor = "beige";
         messageDiv.style.color = "black";
-        try {
-            const response = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}`);
-            const data = await response.json();
+        
+        loginTabButton.style.display = 'none';
+        flightDataTabButton.style.display = 'block';
+        checklistTabButton.style.display = 'block';
+        flightFormSection.style.display = 'none';
 
-            if (data && data.status === "success") {
-                setChecklistValues(data.progress);
-                if (clientNameInput) {
-                    clientNameInput.value = data.clientName || '';
+        try {
+            const checklistResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet1`);
+            const checklistData = await checklistResponse.json();
+            
+            const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet2`);
+            const flightData = await flightResponse.json();
+
+            if (checklistData && checklistData.status === "success" && flightData && flightData.status === "success") {
+                setChecklistValues(checklistData.progress, checklistData.clientName);
+                if (flightData.flights) {
+                    updateFlightSummary(flightData.flights);
+                } else {
+                    updateFlightSummary([]);
                 }
-                checklistContainer.style.display = "block";
-                messageDiv.textContent = "A folyamat sikeresen betöltve!";
+                
+                showTab('checklist-container');
+                messageDiv.textContent = "Progress loaded successfully!";
                 messageDiv.style.backgroundColor = "#48c78e";
                 messageDiv.style.color = "white";
+
             } else {
-                throw new Error(data.message || "Nem található adat ehhez az e-mail címhez. Új ellenőrzőlista indítása.");
+                throw new Error("Data loading failed. Please check your email address and sheets.");
             }
+
         } catch (error) {
-            console.error("Hiba az adatok betöltésekor:", error);
-            alert(error.message);
-            checklistContainer.style.display = "block";
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-                const parentDiv = checkbox.closest('.check-item');
-                if (parentDiv) parentDiv.classList.remove('completed');
-            });
-            updateAllCompletions();
-            if (clientNameInput) {
-                clientNameInput.value = '';
-            }
-            messageDiv.textContent = "Kérjük, válasszon elemeket, majd kattintson a 'Folyamat mentése' gombra.";
-            messageDiv.style.backgroundColor = "#f14668";
-            messageDiv.style.color = "white";
+            console.error("Error loading data:", error);
+            alert("Error loading data. Starting a new form.");
+            loginTabButton.style.display = 'block';
+            flightDataTabButton.style.display = 'none';
+            checklistTabButton.style.display = 'none';
+            showTab('login-section');
         } finally {
             setTimeout(() => {
                 messageDiv.style.display = "none";
@@ -674,69 +944,146 @@
         }
     });
 
-    // Az űrlap elküldésének eseménykezelője
-    form.addEventListener("submit", async function (e) {
+    addFlightButton.addEventListener("click", () => {
+        // Automatically set the date input to the current date
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const dd = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${yyyy}-${mm}-${dd}`;
+        dateInput.value = formattedDate;
+
+        flightFormSection.style.display = 'block';
+    });
+
+    flightForm.addEventListener("submit", async function (e) {
         e.preventDefault();
-        messageDiv.textContent = "A folyamat mentése...";
-        messageDiv.style.display = "block";
-        messageDiv.style.backgroundColor = "beige";
-        messageDiv.style.color = "black";
-        submitButton.disabled = true;
+        saveFlightButton.disabled = true;
+        
+        const formData = new FormData(this);
+        const flightDataObj = {
+            email: emailInput.value.trim(),
+            flightDate: formData.get("flight-date"),
+            takeoffLocation: formData.get("takeoff-location"),
+            landingLocation: formData.get("landing-location"),
+            flightTime: formData.get("flight-time"),
+            comments: formData.get("comments"),
+            altitudeDifference: altitudeDifferenceSpan.textContent
+        };
+
         try {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const progress = {};
-            checkboxes.forEach(checkbox => {
-                progress[checkbox.name] = checkbox.checked ? "TRUE" : "FALSE";
-            });
-            const formDataObj = {
-                email: emailInput.value.trim(),
-                clientName: clientNameInput.value.trim(),
-                progress: progress
-            };
-            const response = await fetch(scriptURL, {
+            const response = await fetch(`${scriptURL}?sheet=Sheet2`, {
                 redirect: "follow",
                 method: "POST",
-                body: JSON.stringify(formDataObj),
+                body: JSON.stringify(flightDataObj),
                 headers: {
                     "Content-Type": "text/plain;charset=utf-8",
                 },
             });
             const data = await response.json();
             if (data.status === "success") {
-                messageDiv.textContent = data.message || "A folyamat sikeresen mentve!";
-                messageDiv.style.backgroundColor = "#48c78e";
-                messageDiv.style.color = "white";
+                alert("Flight saved successfully!");
+                const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(emailInput.value.trim())}&sheet=Sheet2`);
+                const flightData = await flightResponse.json();
+                if (flightData && flightData.status === "success" && flightData.flights) {
+                    updateFlightSummary(flightData.flights);
+                }
+                flightForm.reset();
+                calculateAltitudeDifference();
+                flightFormSection.style.display = 'none';
             } else {
-                throw new Error(data.message || "Mentés sikertelen");
+                throw new Error(data.message || "Flight saving failed");
             }
         } catch (error) {
-            console.error("Hiba:", error);
-            messageDiv.textContent = "Hiba: " + error.message;
-            messageDiv.style.backgroundColor = "#f14668";
-            messageDiv.style.color = "white";
+            console.error("Error:", error);
+            alert("Error: " + error.message);
         } finally {
-            submitButton.disabled = false;
-            setTimeout(() => {
-                messageDiv.textContent = "";
-                messageDiv.style.display = "none";
-            }, 4000);
+            saveFlightButton.disabled = false;
         }
     });
 
-    // Oldal betöltésekor futó kód
-    document.addEventListener('DOMContentLoaded', () => {
-        // Kezdeti százalék frissítés az oldal betöltésekor
-        updateAllCompletions(); 
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        submitButton.disabled = true;
+
+        const userEmail = emailInput.value.trim();
+        if (!userEmail) {
+            alert("Please enter your email to save.");
+            submitButton.disabled = false;
+            return;
+        }
+
+        const progress = {};
+        const checkboxes = document.querySelectorAll('#checklist-container input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            progress[checkbox.name] = checkbox.checked ? "TRUE" : "FALSE";
+        });
         
-        // Eseménykezelő hozzáadása a checkbox-ok 'change' eseményéhez
+        const currentTitle = mainTitle.textContent;
+        const clientNameMatch = currentTitle.match(/Pilot Checklist - (.+)/);
+        const clientName = clientNameMatch ? clientNameMatch[1] : '';
+
+        const data = {
+            email: userEmail,
+            clientName: clientName,
+            progress: progress
+        };
+
+        try {
+            const response = await fetch(`${scriptURL}?sheet=Sheet1`, {
+                redirect: "follow",
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                },
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                messageDiv.textContent = "Progress saved successfully!";
+                messageDiv.style.display = "block";
+                messageDiv.style.backgroundColor = "#48c78e";
+                messageDiv.style.color = "white";
+                setTimeout(() => {
+                    messageDiv.style.display = "none";
+                }, 4000);
+            } else {
+                throw new Error(result.message || "Progress saving failed.");
+            }
+        } catch (error) {
+            console.error("Error saving:", error);
+            alert("Error saving: " + error.message);
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+
+    takeoffSelect.addEventListener('change', calculateAltitudeDifference);
+    landingSelect.addEventListener('change', calculateAltitudeDifference);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loginTabButton.addEventListener('click', () => showTab('login-section'));
+        flightDataTabButton.addEventListener('click', () => showTab('flight-data-section'));
+        checklistTabButton.addEventListener('click', () => showTab('checklist-container'));
+
+        updateAllCompletions(); 
+        document.querySelectorAll('.check-item').forEach(item => {
+            item.addEventListener("click", function (event) {
+                if (event.target.tagName.toLowerCase() !== 'input' && event.target.className.toLowerCase() !== 'slider') {
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                        checkbox.dispatchEvent(new Event("change"));
+                    }
+                }
+            });
+        });
+        
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener("change", function () {
                 const parentDiv = this.closest('.check-item');
                 if (parentDiv) {
-                    // Az 'completed' osztály be- vagy kikapcsolása a checkbox állapotától függően
                     parentDiv.classList.toggle("completed", this.checked);
-
-                    // A százalék kijelző frissítése a szülő kártyán
                     const card = parentDiv.closest('.w3-card');
                     if (card) {
                         updateCompletion(card);
@@ -745,20 +1092,7 @@
             });
         });
 
-        // Eseménykezelő a sor bármely részére kattintáskor
-        document.querySelectorAll('.check-item').forEach(item => {
-            item.addEventListener("click", function (event) {
-                // Csak akkor kapcsolja a checkboxot, ha nem magára a checkboxra vagy a kapcsoló sliderre kattintottunk
-                if (event.target.tagName.toLowerCase() !== 'input' && event.target.className.toLowerCase() !== 'slider') {
-                    const checkbox = this.querySelector('input[type="checkbox"]');
-                    if (checkbox) {
-                        checkbox.checked = !checkbox.checked;
-                        // Manuálisan elindítjuk a 'change' eseményt, hogy a fentebb definiált listener lefusson
-                        checkbox.dispatchEvent(new Event("change"));
-                    }
-                }
-            });
-        });
+        calculateAltitudeDifference();
     });
 </script>
 </body>
