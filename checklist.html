@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pilot Checklist</title>
+    <title>Progress Journal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
@@ -86,13 +86,16 @@
 <body>
 
     <div class="container">
-        <h2 class="w3-center" id="main-title">Pilot Checklist</h2>
+		<img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="logoc" style="width:100%; max-width:1000px">
+        <h1 class="w3-center" id="main-title">Progress Journal</h1>
+		<div id="message" style="display: none;"></div>
+		<h3 class="w3-center" id="login-tab">LOGIN</h3>
 
         <div class="w3-bar w3-black">
-            <button disabled class="w3-bar-item w3-button w3-blue tab-button" id="login-tab">LOGIN</button>
+            
             
             <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
-			<button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Data</button>
+			<button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Book</button>
         </div>
 
         <div id="login-section" class="tab-content" style="margin-bottom: 20px;">
@@ -104,7 +107,7 @@
         <div class="w3-container w3-padding tab-content" style="display:none;" id="flight-data-section">
             <div class="w3-card w3-round-large w3-margin">
                 <div class="w3-container">
-                    <h3>Flight Data Summary</h3>
+                    <h3>Flight Book Summary</h3>
                     
                     <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 10px;">
                         <div>
@@ -678,7 +681,7 @@
                 </div>
             </form>
         </div>
-        <div id="message" style="display: none;"></div>
+        
     </div>
 
 <script>
@@ -743,7 +746,7 @@
         });
 
         // Update the main title with the client's name
-        mainTitle.textContent = clientName ? `Pilot Checklist - ${clientName}` : 'Pilot Checklist';
+        mainTitle.innerHTML = clientName ? `Progress Journal <br> Welcome ${clientName}` : 'Progress Journal <br> Welcome Anonymus';
 
         updateAllCompletions();
     }
@@ -901,10 +904,10 @@
         messageDiv.style.backgroundColor = "beige";
         messageDiv.style.color = "black";
         
+        // Hide tabs immediately
         loginTabButton.style.display = 'none';
-        flightDataTabButton.style.display = 'block';
-        checklistTabButton.style.display = 'block';
-        flightFormSection.style.display = 'none';
+        flightDataTabButton.style.display = 'none';
+        checklistTabButton.style.display = 'none';
 
         try {
             const checklistResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet1`);
@@ -920,7 +923,12 @@
                 } else {
                     updateFlightSummary([]);
                 }
-                
+              
+                // Show tabs only after successful data load
+                flightDataTabButton.style.display = 'block';
+                checklistTabButton.style.display = 'block';
+
+			  
                 showTab('checklist-container');
                 messageDiv.textContent = "Progress loaded successfully!";
                 messageDiv.style.backgroundColor = "#48c78e";
@@ -1046,7 +1054,7 @@
                 messageDiv.style.color = "white";
                 setTimeout(() => {
                     messageDiv.style.display = "none";
-                }, 4000);
+                }, 2000);
             } else {
                 throw new Error(result.message || "Progress saving failed.");
             }
