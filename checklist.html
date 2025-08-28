@@ -1,35 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Progress Journal</title>
+    <title>Student Progress Book</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background similar to the image */
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
         }
         .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background-color: #2d3748;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+
         }
+
+        /* DASHBOARD kártyákhoz*/
+        .w3-card-2 {
+            background-color: #2d3748;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        
         .check-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 16px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #4a5568;
             cursor: pointer;
             gap: 10px;
         }
         .check-item:last-child { border-bottom: none; }
         .check-item:hover { background-color: rgba(0,0,0,0.05); }
-        .check-item.completed { background: #e6ffe6; color: green; font-weight: bold; }
+        .check-item.completed { 
+            background: #2b352b; 
+            color: #90ee90; 
+            font-weight: bold; 
+            text-decoration: line-through; 
+            opacity: 0.7; 
+        }
+
+
+   /* Kiszínezi a checklist topicok fejlécét */
+       .checklistheader {
+            background-color: #9f7aea;
+            color: #E5E1E1; 
+            font-weight: bold;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        
+        
         .switch {
             position: relative;
             display: inline-block;
@@ -81,99 +117,414 @@
             cursor: pointer;
             font-weight: bold;
         }
+
+        /* Vertical bar chart styles */
+        /* A százalékok konténere */
+        .percentage-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Az oszlopok közötti hely elosztása */
+        .bar-chart-container {
+            display: flex;
+            justify-content: space-between; /* A sávok közötti teret egyenletesen osztja el, a széleken nem hagy teret */
+            align-items: flex-end;
+            gap: 1rem;
+            width: 100%;
+            height: 300px;
+            padding: 0 16px; /* Belső margó a bal és jobb oldalon */
+        }
+        /* A barok egyforma szélességéért */
+        .bar-wrapper {
+            flex-grow: 1; /* Hogy kitöltse a rendelkezésre álló helyet */
+            flex-shrink: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            height: 100%;
+            max-width: 100px; /* Max szélesség, hogy ne legyenek túl nagyok az oszlopok */
+        }
+
+        /* Legendák stílusa */
+        .bar-chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+
+        .legend-color-box {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .bar {
+            width: 100%;
+            height: 100%;
+            min-height: 50px;
+            border-radius: 0.5rem;
+            background-color: #2f3142;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        .bar-fill {
+            width: 100%;
+            background-color: #805ad5;
+            border-radius: 0.5rem 0.5rem 0 0;
+            transition: height 0.5s ease-in-out;
+        }
+        .bar-label {
+            margin-top: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #a0aec0;
+            white-space: nowrap;
+        }
+        .bar-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Középre igazítás */
+            font-size: 1.5vw;
+            font-weight: bold;
+            color: white; /* Fehér szöveg */
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000; /* Fekete "kontúr" */
+            z-index: 10; /* Hogy a szöveg a kitöltés felett legyen */
+        }
+
+
+        /* Gauge specific styles */
+        .gauge-svg-container {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 0rem;
+        }
+        .gauge-text {
+            font-weight: 700;
+            font-size: 3rem;
+        }
+        .gauge-label {
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: #a0aec0;
+        }
+
+        /* NEW: Styles for the improved flight history list */
+        .flight-entry {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            border-bottom: 1px solid #4a5568;
+        }
+
+        .flight-entry p {
+            margin: 0;
+            padding: 4px 0;
+        }
+
+        .flight-entry .flight-route {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #e2e8f0;
+        }
+
+        .flight-entry .flight-details {
+            font-size: 0.9em;
+            color: #a0aec0;
+        }
+        
+        /* NEW: Styles for the modal popup and loading overlay */
+        .modal-overlay, .loading-overlay, #save-flight-loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-overlay {
+            display: none; /* Hidden by default */
+        }
+        .loading-overlay, #save-flight-loading-overlay {
+            display: none; /* Hidden by default */
+            color: #e2e8f0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .login-popup {
+            background-color: #2d3748;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* NEW: Loader CSS for initial load */
+        .loader {
+            width: 50px;
+            aspect-ratio: 1;
+            border: 2px solid;
+            box-sizing: border-box;
+            border-radius: 50%;
+            display: grid;
+            animation: l11 1.5s infinite linear;
+            transform-origin: 50% 80%;
+            margin-bottom: 1rem;
+        }
+        .loader:before,
+        .loader:after {
+            content: "";
+            grid-area: 1/1;
+            border: inherit;
+            border-radius: 50%;
+            animation: inherit;
+            animation-duration: 1s;
+            transform-origin: inherit;
+        }
+        .loader:after {
+            --s:-1;
+        }
+        @keyframes l11 {
+            100% {transform:rotate(calc(var(--s,1)*1turn))}
+        }
+
+
+
+        /* NEW: Loader CSS for Save Flight */
+        .loader-save-flight {
+            width: 60px;
+            height: 25px;
+            border: 2px solid;
+            box-sizing: border-box;
+            border-radius: 50%;
+            display: grid;
+            animation: l2 2s infinite linear;
+            margin-bottom: 1rem; /* Added margin for spacing */
+        }
+        .loader-save-flight:before,
+        .loader-save-flight:after {
+            content: "";
+            grid-area: 1/1;
+            border: inherit;
+            border-radius: 50%;
+            animation: inherit;
+            animation-duration: 3s;
+        }
+        .loader-save-flight:after {
+            --s:-1;
+        }
+        @keyframes l2 {
+            100% {transform:rotate(calc(var(--s,1)*1turn))}
+        }
+
+
+
+		/* NEW: Loader css for Save Checklist frissítéshez */
+		/* HTML: <div class="loader-save-checklist"></div> */
+		.loader-save-checklist {
+		  width: 25px;
+		  height: 50px;
+		  display: grid;
+		  background:
+			linear-gradient(currentColor 0 0) top/100% 2px,
+			radial-gradient(farthest-side at  top, #0000 calc(100% - 2px),currentColor calc(100% - 1px) ,#0000) top,
+			linear-gradient(currentColor 0 0) bottom/100% 2px,
+			radial-gradient(farthest-side at  bottom, #0000 calc(100% - 2px),currentColor calc(100% - 1px) ,#0000) bottom;
+		  background-size: 100% 1px,100% 50%; 
+		  background-repeat: no-repeat;
+		  animation: l18 4s infinite linear;
+		}
+		.loader-save-checklist::before,
+		.loader-save-checklist::after {
+		  content: "";
+		  grid-area: 1/1;
+		  background: inherit;
+		  border: inherit;
+		  animation: inherit;
+		}
+		.loader-save-checklist::after {
+		  animation-duration: 2s;
+		}
+		@keyframes l18 {
+		  100% {transform: rotate(1turn)}
+		}		
+
+
     </style>
 </head>
 <body>
 
     <div class="container">
-		<img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="logoc" style="width:100%; max-width:1000px">
-        <h1 class="w3-center" id="main-title">Progress Journal</h1>
-		<div id="message" style="display: none;"></div>
-		<h3 class="w3-center" id="login-tab">LOGIN</h3>
-
-        <div class="w3-bar w3-black">
-            
-            
-            <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
-			<button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Book</button>
-        </div>
-
-        <div id="login-section" class="tab-content" style="margin-bottom: 20px;">
-            <p>Please enter your email to load your progress:</p>
-            <input class="w3-input w3-border w3-round" type="email" id="email-input" placeholder="Your email address">
-            <button class="w3-button w3-green w3-round w3-margin-top" id="load-button">Load My Progress</button>
-        </div>
+    <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="" alt="logoc" style="max-width:900px; width: 100%; margin:auto; filter: drop-shadow(7px 7px 7px white); display: block;">
         
-        <div class="w3-container w3-padding tab-content" style="display:none;" id="flight-data-section">
-            <div class="w3-card w3-round-large w3-margin">
-                <div class="w3-container">
-                    <h3>Flight Book Summary</h3>
-                    
-                    <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 10px;">
-                        <div>
-                            <h4>Total Flights: <span id="total-flights-count-display">0</span></h4>
-                            <div id="total-flights-progress" style="font-size: 24px;"></div>
-                            <p id="total-flights-exam-status" style="font-weight: bold;"></p>
-                        </div>
-                        <div>
-                            <h4>Takeoffs: <span id="takeoffs-count-display">0</span></h4>
-                            <div id="takeoffs-progress" style="font-size: 24px;"></div>
-                            <p id="takeoffs-exam-status" style="font-weight: bold;"></p>
-                        </div>
-                        <div>
-                            <h4>Landings: <span id="landings-count-display">0</span></h4>
-                            <div id="landings-progress" style="font-size: 24px;"></div>
-                            <p id="landings-exam-status" style="font-weight: bold;"></p>
+        
+        <h1 class="w3-center" id="main-title">Progress Journal</h1>
+		
+		
+
+        <h3 class="w3-center" id="login-tab">LOGIN</h3>
+
+
+
+
+        <div class="w3-bar w3-black">            
+            <button class="w3-bar-item w3-button tab-button" id="dashboard-tab" style="display: none;">Dashboard</button>
+            <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
+            <button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Book</button>
+            <button class="w3-bar-item w3-button tab-button" id="addflight-tab" style="display: none;">Add Flight</button>
+        </div>
+
+        
+
+<!--DASHBOARD------------------------------------------------------------------------------------->
+<div id="dashboard-section" class="tab-content" style="display:none;">
+            <div class="dashboard-container">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-half w3-container w3-margin-bottom">
+                        <div class="w3-card-2">
+                            <h3 class="w3-center w3-margin-bottom">Exam Readiness</h3>
+                            <div class="gauge-svg-container" id="gauge-container"></div>
+
                         </div>
                     </div>
-                    <p>Total air time: <span id="total-air-time-summary">0 minutes</span></p>
-                    
-                    <button class="w3-button w3-blue w3-round w3-margin-top w3-margin-bottom" id="add-flight-button">Add Flight</button>
+                    <div class="w3-half w3-container">
+                        <div class="w3-card-2">
+                            <h3 class="w3-center w3-margin-bottom">Control Sheet Progress</h3>
+                            <div class="bar-chart-container" id="bar-chart-container"></div>
+                            <div id="bar-chart-legend" class="w3-padding" ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="w3-quarter w3-container w3-margin-bottom">
+                        <div class="w3-card-2 w3-center">
+                            <h3 class="w3-text-gray">Total Flights</h3>
+                            <p class="w3-xxxlarge" id="total-flights-dashboard"><span id="total-flights-count-display">0</span></p>
+                        </div>  
+                    </div>
+                    <div class="w3-quarter w3-container w3-margin-bottom">
+                        <div class="w3-card-2 w3-center">
+                            <h3 class="w3-text-gray">Takeoff Sites</h3>
+                            <p class="w3-xxxlarge" id="takeoff-sites-dashboard"> <span id="takeoffs-count-display">0</span></p>
+
+
+                        </div>
+                    </div>
+                    <div class="w3-quarter w3-container w3-margin-bottom">
+                        <div class="w3-card-2 w3-center">
+                            <h3 class="w3-text-gray">Landing Sites</h3>
+                            <p class="w3-xxxlarge" id="landing-sites-dashboard"><span id="landings-count-display">0</span></p>
+
+                        </div>
+                    </div>
+                    <div class="w3-quarter w3-container w3-margin-bottom">
+                        <div class="w3-card-2 w3-center">
+                            <h3 class="w3-text-gray">Total Airtime</h3>
+                            <p class="w3-xxlarge" id="total-airtime-dashboard"><span id="total-air-time-summary">0 minutes</span></p>
+                        </div>
+                    </div>
+                    <div class="w3-quarter w3-container w3-margin-bottom">
+                        <div class="w3-card-2 w3-center">
+                            <h3 class="w3-text-gray">Cummulative Altitude</h3>
+                            <p class="w3-xxlarge" id="altitude-cumulative-dashboard">0 m</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        
 
-            <div id="flight-form-section" style="display: none;">
+<!--Flightbook------------------------------------------------------------------------------------->
+<div class="w3-container w3-padding tab-content" style="display:none;" id="flight-data-section">
+
+
+
+
+            <div class="w3-card w3-round-large w3-margin">
+                <div class="w3-container">
+                    <h3>Flight history:</h3>
+                    <ul id="flight-history-list" class="w3-ul w3-border-top">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+<!-- ADDFLIGHT------------------------------------------------------------------------------------>
+<div class="w3-container w3-padding tab-content" style="display:none;" id="addflight-section">
+            <div id="flight-form-section">
                 <div class="w3-card w3-round-large w3-margin">
                     <div class="w3-container">
                         <h3>New Flight</h3>
-                        <form id="flight-form" method="post">
+                        <form id="addflight-form" method="post">
                             <p>
                                 <label>Date:</label>
-                                <input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="flight-date-input" required>
+                                <input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="addflight-date-input" required>
                             </p>
                             <p>
                                 <label>Takeoff:</label>
-                                <select class="w3-select w3-border w3-round-large" name="takeoff-location" id="takeoff-location" required>
+                                <select class="w3-select w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
                                     <option value="" disabled selected>Select a takeoff location</option>
                                     <option value="Büelen (1089m)">Büelen (1089m)</option>
                                     <option value="Brändlen-South (1208m)">Brändlen-South (1208m)</option>
-									<option value="Brändlen-North (1228m)">Brändlen-North (1228m)</option>
-									<option value="Diegisbalm (1103m)">Diegisbalm (1103m)</option>
-									<option value="Engelberg Brunnihütte (1868m)">Engelberg Brunnihütte (1868m)</option>
-									<option value="Engelberg (1803m)">Engelberg Tümpfeli (1803m)</option>
+                                    <option value="Brändlen-North (1228m)">Brändlen-North (1228m)</option>
+                                    <option value="Diegisbalm (1103m)">Diegisbalm (1103m)</option>
+                                    <option value="Engelberg Brunnihütte (1868m)">Engelberg Brunnihütte (1868m)</option>
+                                    <option value="Engelberg (1803m)">Engelberg Tümpfeli (1803m)</option>
                                     <option value="Niderbauen (1572m)">Niderbauen (1572m)</option>
-									<option value="Rigi - Staffelhöhe (1546m)">Rigi - Staffelhöhe (1546m)</option>
-									<option value="Seebodenalp (1027m)">Seebodenalp (1027m)</option>
-									<option value="Urmiberg (1111m)">Urmiberg (1111m)</option>
+                                    <option value="Rigi - Staffelhöhe (1546m)">Rigi - Staffelhöhe (1546m)</option>
+                                    <option value="Seebodenalp (1027m)">Seebodenalp (1027m)</option>
+                                    <option value="Urmiberg (1111m)">Urmiberg (1111m)</option>
                                 </select>
                             </p>
                             <p>
                                 <label>Landing:</label>
-                                <select class="w3-select w3-border w3-round-large" name="landing-location" id="landing-location" required>
+                                <select class="w3-select w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
                                     <option value="" disabled selected>Select a landing location</option>
                                     
                                     <option value="Brunnen (434m)">Brunnen (434m)</option>
-									<option value="Diegisbalm (Nechimatt) (540m)">Diegisbalm (Nechimatt) (540m)</option>
-									<option value="Emmetten (788m)">Emmetten (788m)</option>
-									<option value="Engelberg (1008m)">Engelberg (1008m)</option>
-									<option value="Küssnacht (461m)">Küssnacht (461m)</option>
-									<option value="Neufallenbach (545m)">Neufallenbach (545m)</option>
+                                    <option value="Diegisbalm (Nechimatt) (540m)">Diegisbalm (Nechimatt) (540m)</option>
+                                    <option value="Emmetten (788m)">Emmetten (788m)</option>
+                                    <option value="Engelberg (1008m)">Engelberg (1008m)</option>
+                                    <option value="Küssnacht (461m)">Küssnacht (461m)</option>
+                                    <option value="Neufallenbach (545m)">Neufallenbach (545m)</option>
                                     <option value="Wolfenschiessen (514m)">Wolfenschiessen (514m)</option>
                                 </select>
                             </p>
                             <p>
                                 <label>Altitude Difference:</label>
-                                <span id="altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
+                                <span id="addflight-altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
                             </p>
                             <p>
                                 <label>Flight Time:</label>
@@ -192,30 +543,30 @@
                                 <textarea class="w3-input w3-border w3-round-large" name="comments" rows="3"></textarea>
                             </p>
                             <p>
-                                <button id="save-flight-button" type="submit" class="w3-button w3-blue w3-round-large w3-margin-bottom">Save Flight</button>
+                                <button id="addflight-save-button" style="background-color:#805ad5" type="submit" class="w3-button w3-round-large w3-margin-bottom">Save Flight</button>
                             </p>
                         </form>
                     </div>
                 </div>
             </div>
-
-            <div class="w3-card w3-round-large w3-margin">
-                <div class="w3-container">
-                    <h3>Flight book:</h3>
-                    <ul id="flight-history-list" class="w3-ul w3-border-top">
-                    </ul>
-                </div>
-            </div>
         </div>
-
-        <div id="checklist-container" class="tab-content" style="display: none;">
+        
+        
+        
+        
+<!--CHECKLIST----------------------------------------------------------------------------------->
+<div id="checklist-container" class="tab-content" style="display: none;">
             <form id="form">
-
+                <div style="padding: 16px; text-align: center;">
+                    <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
+                </div>
+				
+				
                 <div class="w3-row-padding w3-margin-top">
                     <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container">
-                                <h4>Training Hill <span class="completion-display"></span></h4>
+                            <header class="w3-container  checklistheader">
+                                <h4>Ground Handling <span class="completion-display"></span></h4>
                             </header>
                             <div class="check-item">
                                 <span>1. Laying out the glider</span>
@@ -345,7 +696,7 @@
                             </div>
                         </div>
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container">
+                            <header class="w3-container  checklistheader">
                                 <h4>Theory <span class="completion-display"></span></h4>
                             </header>
                             <div class="check-item">
@@ -385,7 +736,7 @@
                             </div>
                         </div>
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container">
+                            <header class="w3-container  checklistheader">
                                 <h4>Extra <span class="completion-display"></span></h4>
                             </header>
                             <div class="check-item">
@@ -420,7 +771,7 @@
                     </div>
                     <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container">
+                            <header class="w3-container  checklistheader">
                                 <h4>High Flights <span class="completion-display"></span></h4>
                             </header>
                             <div class="check-item">
@@ -621,7 +972,7 @@
                             </div>
                         </div>
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container">
+                            <header class="w3-container  checklistheader">
                                 <h4>EXAM Maneuvers <span class="completion-display"></span></h4>
                             </header>
                             <div class="check-item">
@@ -677,45 +1028,182 @@
                     </div>
                 </div>
                 <div style="padding: 16px; text-align: center;">
-                    <button class="w3-button w3-green w3-round" type="submit" id="submit-button">Save Progress</button>
+                    <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
                 </div>
             </form>
         </div>
         
     </div>
+    
+    <!-- NEW: Modal and Loading Overlays -->
+<div id="modal-overlay" class="modal-overlay">
+    <div class="login-popup">
+        <div id="login-section" class="tab-content" style="display: flex; flex-direction: column; align-items: center;">
+            <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-margin-bottom" alt="logoc" style="max-width:400px; margin:auto; width: 100%; filter: drop-shadow(7px 7px 7px white); display: block;">
+            
+            <input class="w3-input w3-border w3-round" style="margin:auto; margin-top: 30px;" type="email" id="email-input" placeholder="Your email address">
+            <button class="w3-button w3-round w3-margin-top" id="load-button" style="margin:auto; background-color:#805ad5">Load My Progress</button>
+        </div>
+    </div>
+</div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader"></div>
+        <span>Doing the five point check, please wait...</span>
+    </div>
+
+    <!-- NEW: Loading Overlay for Save Flight -->
+    <div id="save-flight-loading-overlay" class="loading-overlay">
+        <div class="loader-save-flight"></div>
+        <span>Sending your flight to the cloudbase ;)</span>
+    </div>
+
+    <!-- NEW: Loading Overlay for Save Flight -->
+    <div id="save-checklist-loading-overlay" class="loading-overlay">
+        <div class="loader-save-checklist"></div>
+        <span>Alientechnology is calculating your progress...</span>
+    </div>
 
 <script>
-    // A meglévő elemek
+    // Változás 1: Globális változó a nem mentett állapot figyelésére
+    let isDirty = false;
+
+    // Változás 2: showTab függvény módosítása a nem mentett állapot ellenőrzéséhez
+    function showTab(tabId) {
+        // Ellenőrizzük, hogy vannak-e nem mentett változások, de ne figyelmeztessünk, ha a felhasználó a menthető fülek (checklist, add flight) között vált.
+        const savableTabs = ['checklist-container', 'addflight-section'];
+        const isSwitchingBetweenSavableTabs = savableTabs.includes(tabId) && savableTabs.includes(document.querySelector('.tab-content[style*="display: block"]').id);
+        
+        if (isDirty && !isSwitchingBetweenSavableTabs) {
+            const userDecision = confirm("Hold on! You haven't packed your gear! Are you sure you want to take off without hitting the save button?");
+            if (!userDecision) {
+                return; // Megszakítja a navigációt
+            }
+        }
+        // Ha a felhasználó továbbhalad, a nem mentett állapotot alaphelyzetbe állítjuk.
+        isDirty = false;
+
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.style.display = 'none';
+        });
+
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.remove('w3-blue');
+        });
+
+        document.getElementById(tabId).style.display = 'block';
+        
+        const buttonId = tabId === 'login-section' ? 'login-tab' :
+                         tabId === 'checklist-container' ? 'checklist-tab' :
+                         tabId === 'dashboard-section' ? 'dashboard-tab' :
+                         tabId === 'addflight-section' ? 'addflight-tab' : 'flight-data-tab';
+        document.getElementById(buttonId).classList.add('w3-blue');
+    }
+
+    // Változás 3: Figyelmeztetés a böngésző "vissza" vagy "bezárás" gombjára
+    window.addEventListener('beforeunload', function (e) {
+        if (isDirty) {
+            e.preventDefault();
+            e.returnValue = '';
+        }
+    });
+
+    // A meglévő elemek és funkciók
     const mainTitle = document.getElementById('main-title');
     const form = document.getElementById("form");
     const submitButton = document.getElementById("submit-button");
-    const messageDiv = document.getElementById("message");
     const emailInput = document.getElementById("email-input");
     const loadButton = document.getElementById("load-button");
-    const loginSection = document.getElementById("login-section");
-    const checklistContainer = document.getElementById("checklist-container");
-
-    const flightDataSection = document.getElementById("flight-data-section");
-    const flightForm = document.getElementById("flight-form");
-    const takeoffSelect = document.getElementById("takeoff-location");
-    const landingSelect = document.getElementById("landing-location");
-    const altitudeDifferenceSpan = document.getElementById("altitude-difference");
-    const totalFlightsSummary = document.getElementById("total-flights-summary");
+    const modalOverlay = document.getElementById('modal-overlay');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const saveFlightLoadingOverlay = document.getElementById('save-flight-loading-overlay');
+    const saveChecklistLoadingOverlay = document.getElementById('save-checklist-loading-overlay');
+    const addflightForm = document.getElementById("addflight-form");
+    const addflightTakeoffSelect = document.getElementById("addflight-takeoff-location");
+    const addflightLandingSelect = document.getElementById("addflight-landing-location");
+    const addflightAltitudeDifferenceSpan = document.getElementById("addflight-altitude-difference");
+    const addflightDateInput = document.getElementById("addflight-date-input");
+    const addflightSaveButton = document.getElementById("addflight-save-button");
+    const checklistTabButton = document.getElementById("checklist-tab");
+    const dashboardTabButton = document.getElementById("dashboard-tab");
+    const flightDataTabButton = document.getElementById("flight-data-tab");
+    const addflightTabButton = document.getElementById("addflight-tab");
+    const loginTabButton = document.getElementById("login-tab");
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec";
+    const barChartContainer = document.getElementById('bar-chart-container');
+    const gaugeContainer = document.getElementById('gauge-container');
     const totalAirTimeSummary = document.getElementById("total-air-time-summary");
     const flightHistoryList = document.getElementById("flight-history-list");
-    const saveFlightButton = document.getElementById("save-flight-button");
-    const addFlightButton = document.getElementById("add-flight-button");
-    const flightFormSection = document.getElementById("flight-form-section");
-    const dateInput = document.getElementById("flight-date-input");
+    const gaugeProperties = {
+        radius: 150,
+        strokeWidth: 25,
+        backgroundArcColor: '#2f3142',
+        foregroundArcColor: '#805ad5',
+        textColor: '#595959',
+    };
 
-    const loginTabButton = document.getElementById("login-tab");
-    const flightDataTabButton = document.getElementById("flight-data-tab");
-    const checklistTabButton = document.getElementById("checklist-tab");
+    function createVerticalBars(data) {
+        const barChartContainer = document.getElementById('bar-chart-container');
+        barChartContainer.innerHTML = '';
+        data.forEach(item => {
+            const barWrapper = document.createElement('div');
+            barWrapper.classList.add('bar-wrapper');
+            const bar = document.createElement('div');
+            bar.classList.add('bar');
+            bar.style.height = '100%';
+            const barFill = document.createElement('div');
+            barFill.classList.add('bar-fill');
+            barFill.style.height = `${item.value}%`;
+            barFill.style.backgroundColor = item.color;
+            const percentageText = document.createElement('span');
+            percentageText.classList.add('bar-percentage');
+            percentageText.textContent = `${item.value.toFixed(0)}%`;
+            bar.appendChild(barFill);
+            bar.appendChild(percentageText);
+            barWrapper.appendChild(bar);
+            barChartContainer.appendChild(barWrapper);
+        });
+    }
 
-    // FIGYELEM: CSERÉLD KI EZT A SAJÁT GOOGLE APPS SCRIPT URL-EDDEL!
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec";
-
-    // A meglévő helper funkciók
+    function createGauge(percentage) {
+        gaugeContainer.innerHTML = '';
+        const { radius, strokeWidth, backgroundArcColor, foregroundArcColor, textColor } = gaugeProperties;
+        const center = radius + strokeWidth / 2;
+        const circumference = Math.PI * radius;
+        const svgWidth = 2 * center;
+        const svgHeight = center + strokeWidth;
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
+        svg.setAttribute('class', 'w-full');
+        const backgroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        backgroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
+        backgroundArc.setAttribute('fill', 'none');
+        backgroundArc.setAttribute('stroke', backgroundArcColor);
+        backgroundArc.setAttribute('stroke-width', strokeWidth);
+        backgroundArc.setAttribute('stroke-linecap', 'round');
+        const foregroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        foregroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
+        foregroundArc.setAttribute('fill', 'none');
+        foregroundArc.setAttribute('stroke', foregroundArcColor);
+        foregroundArc.setAttribute('stroke-width', strokeWidth);
+        foregroundArc.setAttribute('stroke-linecap', 'round');
+        foregroundArc.setAttribute('stroke-dasharray', `${circumference},${circumference}`);
+        foregroundArc.setAttribute('stroke-dashoffset', circumference * (1 - (percentage / 100)));
+        const percentText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        percentText.setAttribute('x', center);
+        percentText.setAttribute('y', center - 50);
+        percentText.setAttribute('text-anchor', 'middle');
+        percentText.setAttribute('dominant-baseline', 'middle');
+        percentText.setAttribute('class', 'gauge-text');
+        percentText.setAttribute('fill', textColor);
+        percentText.textContent = `${percentage}%`;
+        svg.appendChild(backgroundArc);
+        svg.appendChild(foregroundArc);
+        svg.appendChild(percentText);
+        gaugeContainer.appendChild(svg);
+    }
+    createGauge(69);
+    
     function updateCompletion(cardElement) {
         const checkboxes = cardElement.querySelectorAll('input[type="checkbox"]');
         const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
@@ -728,11 +1216,39 @@
         if (completionDisplay) {
             completionDisplay.textContent = `${completionPercentage.toFixed(0)}%`;
         }
+        return completionPercentage;
     }
+
     function updateAllCompletions() {
         const allCards = document.querySelectorAll('.w3-card');
-        allCards.forEach(card => updateCompletion(card));
+        const chartData = [];
+        const legendContainer = document.getElementById('bar-chart-legend');
+        legendContainer.innerHTML = '';
+        allCards.forEach(card => {
+            const cardTitle = card.querySelector('header h4');
+            if (cardTitle) {
+                const topic = cardTitle.textContent.replace(/\s+\d+%$/, '').trim();
+                const completionPercentage = updateCompletion(card);
+                const color = getRandomColor();
+                chartData.push({
+                    topic: topic,
+                    value: completionPercentage,
+                    color: color
+                });
+                const legendItem = document.createElement('div');
+                legendItem.classList.add('legend-item');
+                legendItem.innerHTML = `<span style="background-color: ${color};" class="legend-color-box"></span> ${topic}`;
+                legendContainer.appendChild(legendItem);
+            }
+        });
+        createVerticalBars(chartData);
     }
+
+    function getRandomColor() {
+        const colors = ['#805ad5', '#4fd1c5', '#d53f8c', '#f6ad55', '#4299e1', '#e53e3e'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
     function setChecklistValues(progress, clientName) {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
@@ -744,19 +1260,15 @@
                 parentDiv.classList.toggle('completed', isChecked);
             }
         });
-
-        // Update the main title with the client's name
         mainTitle.innerHTML = clientName ? `Progress Journal <br> Welcome ${clientName}` : 'Progress Journal <br> Welcome Anonymus';
-
         updateAllCompletions();
     }
 
-    function calculateAltitudeDifference() {
-        const takeoffValue = takeoffSelect.value;
-        const landingValue = landingSelect.value;
+    function calculateAltitudeDifference(takeoffSelectElement, landingSelectElement, altitudeDifferenceElement) {
+        const takeoffValue = takeoffSelectElement.value;
+        const landingValue = landingSelectElement.value;
         let takeoffAltitude = 0;
         let landingAltitude = 0;
-
         if (takeoffValue) {
             const match = takeoffValue.match(/\((\d+)m\)/);
             if (match) {
@@ -769,21 +1281,37 @@
                 landingAltitude = parseInt(match[1]);
             }
         }
-        
         const difference = takeoffAltitude - landingAltitude;
-        altitudeDifferenceSpan.textContent = `${difference}m`;
+        altitudeDifferenceElement.textContent = `${difference}m`;
+    }
+
+    function formatMinutesToHoursAndMinutes(totalMinutes) {
+        if (totalMinutes < 0) {
+            return "Invalid time";
+        }
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        let timeString = "";
+        if (hours > 0) {
+            timeString += `${hours}h `;
+        }
+        timeString += `${minutes}min`;
+        return timeString.trim();
     }
 
     function updateFlightSummary(flights) {
         flightHistoryList.innerHTML = '';
         let totalTime = 0;
+        let totalAltitudeDifference = 0;
         let takeoffLocations = new Set();
         let landingLocations = new Set();
+        const totalFlights = flights.length;
+        const reversedFlights = flights.slice().reverse();
 
-        if (flights && flights.length > 0) {
-            flights.forEach((flight, index) => {
+        if (reversedFlights && reversedFlights.length > 0) {
+            reversedFlights.forEach((flight, index) => {
                 const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
-                
+                const flightNumber = totalFlights - index;
                 let formattedDate = date;
                 if (date) {
                     try {
@@ -794,12 +1322,10 @@
                             const year = dateObj.getFullYear();
                             formattedDate = `${day}.${month}.${year}`;
                         } else {
-                            // Fallback for non-standard date strings
                             const parts = date.split('-');
                             if (parts.length === 3) {
                                 formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
                             } else {
-                                // Last resort: regex for the user's observed format
                                 const userFormatMatch = date.match(/(\d{2})T.*\.(\d{2})\.(\d{4})/);
                                 if (userFormatMatch) {
                                     formattedDate = `${userFormatMatch[1]}.${userFormatMatch[2]}.${userFormatMatch[3]}`;
@@ -810,112 +1336,74 @@
                         console.error("Date parsing error:", e);
                     }
                 }
-
                 const flightTime = parseInt(time) || 0;
                 totalTime += flightTime;
-                
+                const altitudeDiffValue = parseInt(altitudeDifference.replace('m', '')) || 0;
+                totalAltitudeDifference += altitudeDiffValue;
                 takeoffLocations.add(takeoff);
                 landingLocations.add(landing);
-
                 const listItem = document.createElement('li');
-                listItem.className = 'w3-padding-small w3-border-bottom';
-                listItem.innerHTML = `<strong>${index+1}.</strong> ${formattedDate}: <strong>${takeoff}</strong> -> <strong>${landing}</strong> (${time} minutes) - ${comments}`;
+                listItem.className = 'w3-padding-small w3-border-bottom flight-entry';
+                listItem.innerHTML = `
+                    <p class="flight-route">${flightNumber}. ${takeoff} &rarr; ${landing}</p>
+                    <p class="flight-details"><strong>Date:</strong> ${formattedDate} | <strong>Time:</strong> ${time} minutes | <strong>Altitude:</strong> ${altitudeDifference}</p>
+                    <p class="flight-details"><strong>Comments:</strong> ${comments}</p>
+                `;
                 flightHistoryList.appendChild(listItem);
             });
         }
-        
-        totalAirTimeSummary.textContent = `${totalTime} minutes`;
-        
-        // Update total flights visualization
+        totalAirTimeSummary.textContent = formatMinutesToHoursAndMinutes(totalTime);
+        document.getElementById("altitude-cumulative-dashboard").textContent = `${totalAltitudeDifference}m`;
         const totalFlightsCount = flights.length;
-        const totalFlightsProgress = document.getElementById("total-flights-progress");
-        const totalFlightsExamStatus = document.getElementById("total-flights-exam-status");
+        const totalFlightsCountDisplay = document.getElementById("total-flights-count-display");
         document.getElementById("total-flights-count-display").textContent = totalFlightsCount;
-
         if (totalFlightsCount >= 50) {
-            totalFlightsProgress.textContent = "✅";
-            totalFlightsExamStatus.textContent = "Enough for the exam!";
-            totalFlightsExamStatus.style.color = "green";
+            totalFlightsCountDisplay.classList.add("w3-text-green");
+            totalFlightsCountDisplay.classList.remove("w3-text-red");
         } else {
-            totalFlightsProgress.textContent = "❌";
-            totalFlightsExamStatus.textContent = `Need ${50 - totalFlightsCount} more flight(s)`;
-            totalFlightsExamStatus.style.color = "red";
+            totalFlightsCountDisplay.classList.add("w3-text-red");
+            totalFlightsCountDisplay.classList.remove("w3-text-green");
         }
-
-        // Update takeoff visualization
         const takeoffsCount = takeoffLocations.size;
-        const takeoffsProgress = document.getElementById("takeoffs-progress");
-        const takeoffsExamStatus = document.getElementById("takeoffs-exam-status");
+        const totalTakeoffsCountDisplay = document.getElementById("takeoffs-count-display");
         document.getElementById("takeoffs-count-display").textContent = takeoffsCount;
-
         if (takeoffsCount >= 5) {
-            takeoffsProgress.textContent = "✅";
-            takeoffsExamStatus.textContent = "Enough for the exam!";
-            takeoffsExamStatus.style.color = "green";
+            totalTakeoffsCountDisplay.classList.add("w3-text-green");
+            totalTakeoffsCountDisplay.classList.remove("w3-text-red");
         } else {
-            takeoffsProgress.textContent = "❌";
-            takeoffsExamStatus.textContent = `Need ${5 - takeoffsCount} more takeoff(s)`;
-            takeoffsExamStatus.style.color = "red";
+            totalTakeoffsCountDisplay.classList.add("w3-text-red");
+            totalTakeoffsCountDisplay.classList.remove("w3-text-green");
         }
-
-        // Update landing visualization
         const landingsCount = landingLocations.size;
-        const landingsProgress = document.getElementById("landings-progress");
-        const landingsExamStatus = document.getElementById("landings-exam-status");
+        const totalLandingsCountDisplay = document.getElementById("landings-count-display");
         document.getElementById("landings-count-display").textContent = landingsCount;
-
         if (landingsCount >= 5) {
-            landingsProgress.textContent = "✅";
-            landingsExamStatus.textContent = "Enough for the exam!";
-            landingsExamStatus.style.color = "green";
+            totalLandingsCountDisplay.classList.add("w3-text-green");
+            totalLandingsCountDisplay.classList.remove("w3-text-red");
         } else {
-            landingsProgress.textContent = "❌";
-            landingsExamStatus.textContent = `Need ${5 - landingsCount} more landing(s)`;
-            landingsExamStatus.style.color = "red";
+            totalLandingsCountDisplay.classList.add("w3-text-red");
+            totalLandingsCountDisplay.classList.remove("w3-text-green");
         }
     }
 
-    function showTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.style.display = 'none';
-        });
-
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.classList.remove('w3-blue');
-        });
-
-        document.getElementById(tabId).style.display = 'block';
-        
-        const buttonId = tabId === 'login-section' ? 'login-tab' :
-                         tabId === 'checklist-container' ? 'checklist-tab' : 'flight-data-tab';
-        document.getElementById(buttonId).classList.add('w3-blue');
-    }
-
-    // Event Listeners
     loadButton.addEventListener("click", async () => {
         const userEmail = emailInput.value.trim();
         if (!userEmail) {
             alert("Please enter a valid email address.");
             return;
         }
-
-        messageDiv.textContent = "Loading progress...";
-        messageDiv.style.display = "block";
-        messageDiv.style.backgroundColor = "beige";
-        messageDiv.style.color = "black";
-        
-        // Hide tabs immediately
+        modalOverlay.style.display = "none";
+        loadingOverlay.style.display = "flex";
         loginTabButton.style.display = 'none';
+        dashboardTabButton.style.display = 'none';
         flightDataTabButton.style.display = 'none';
+        addflightTabButton.style.display = 'none';
         checklistTabButton.style.display = 'none';
-
         try {
             const checklistResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet1`);
             const checklistData = await checklistResponse.json();
-            
             const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet2`);
             const flightData = await flightResponse.json();
-
             if (checklistData && checklistData.status === "success" && flightData && flightData.status === "success") {
                 setChecklistValues(checklistData.progress, checklistData.clientName);
                 if (flightData.flights) {
@@ -923,62 +1411,39 @@
                 } else {
                     updateFlightSummary([]);
                 }
-              
-                // Show tabs only after successful data load
+                dashboardTabButton.style.display = 'block';
                 flightDataTabButton.style.display = 'block';
                 checklistTabButton.style.display = 'block';
-
-			  
-                showTab('checklist-container');
-                messageDiv.textContent = "Progress loaded successfully!";
-                messageDiv.style.backgroundColor = "#48c78e";
-                messageDiv.style.color = "white";
-
+                addflightTabButton.style.display = 'block';
+                showTab('dashboard-section');
             } else {
                 throw new Error("Data loading failed. Please check your email address and sheets.");
             }
-
         } catch (error) {
             console.error("Error loading data:", error);
-            alert("Error loading data. Starting a new form.");
-            loginTabButton.style.display = 'block';
-            flightDataTabButton.style.display = 'none';
-            checklistTabButton.style.display = 'none';
-            showTab('login-section');
+            alert("Error loading data. Please try again.");
+            modalOverlay.style.display = "flex";
         } finally {
-            setTimeout(() => {
-                messageDiv.style.display = "none";
-            }, 4000);
+            loadingOverlay.style.display = "none";
         }
     });
 
-    addFlightButton.addEventListener("click", () => {
-        // Automatically set the date input to the current date
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        const dd = String(today.getDate()).padStart(2, '0');
-        const formattedDate = `${yyyy}-${mm}-${dd}`;
-        dateInput.value = formattedDate;
-
-        flightFormSection.style.display = 'block';
-    });
-
-    flightForm.addEventListener("submit", async function (e) {
+    addflightForm.addEventListener("submit", async function (e) {
         e.preventDefault();
-        saveFlightButton.disabled = true;
-        
+        addflightSaveButton.disabled = true;
+        saveFlightLoadingOverlay.style.display = "flex";
         const formData = new FormData(this);
+        const flightDate = formData.get("flight-date");
+        const utcDate = flightDate ? flightDate + 'T12:00:00.000Z' : '';
         const flightDataObj = {
             email: emailInput.value.trim(),
-            flightDate: formData.get("flight-date"),
+            flightDate: utcDate,
             takeoffLocation: formData.get("takeoff-location"),
             landingLocation: formData.get("landing-location"),
             flightTime: formData.get("flight-time"),
             comments: formData.get("comments"),
-            altitudeDifference: altitudeDifferenceSpan.textContent
+            altitudeDifference: addflightAltitudeDifferenceSpan.textContent
         };
-
         try {
             const response = await fetch(`${scriptURL}?sheet=Sheet2`, {
                 redirect: "follow",
@@ -990,15 +1455,15 @@
             });
             const data = await response.json();
             if (data.status === "success") {
-                alert("Flight saved successfully!");
                 const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(emailInput.value.trim())}&sheet=Sheet2`);
                 const flightData = await flightResponse.json();
                 if (flightData && flightData.status === "success" && flightData.flights) {
                     updateFlightSummary(flightData.flights);
                 }
-                flightForm.reset();
-                calculateAltitudeDifference();
-                flightFormSection.style.display = 'none';
+                addflightForm.reset();
+                calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan);
+                // Változás 4: Ha a mentés sikeres, a flag-et false-ra állítjuk
+                isDirty = false; 
             } else {
                 throw new Error(data.message || "Flight saving failed");
             }
@@ -1006,37 +1471,34 @@
             console.error("Error:", error);
             alert("Error: " + error.message);
         } finally {
-            saveFlightButton.disabled = false;
+            addflightSaveButton.disabled = false;
+            saveFlightLoadingOverlay.style.display = "none";
         }
     });
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
         submitButton.disabled = true;
-
+        saveChecklistLoadingOverlay.style.display = "flex";
         const userEmail = emailInput.value.trim();
         if (!userEmail) {
             alert("Please enter your email to save.");
             submitButton.disabled = false;
             return;
         }
-
         const progress = {};
         const checkboxes = document.querySelectorAll('#checklist-container input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             progress[checkbox.name] = checkbox.checked ? "TRUE" : "FALSE";
         });
-        
         const currentTitle = mainTitle.textContent;
         const clientNameMatch = currentTitle.match(/Pilot Checklist - (.+)/);
-        const clientName = clientNameMatch ? clientNameMatch[1] : '';
-
+        const clientName = clientNameMatch ? clientName[1] : '';
         const data = {
             email: userEmail,
             clientName: clientName,
             progress: progress
         };
-
         try {
             const response = await fetch(`${scriptURL}?sheet=Sheet1`, {
                 redirect: "follow",
@@ -1048,13 +1510,9 @@
             });
             const result = await response.json();
             if (result.status === "success") {
-                messageDiv.textContent = "Progress saved successfully!";
-                messageDiv.style.display = "block";
-                messageDiv.style.backgroundColor = "#48c78e";
-                messageDiv.style.color = "white";
-                setTimeout(() => {
-                    messageDiv.style.display = "none";
-                }, 2000);
+                updateAllCompletions();
+                // Változás 5: Ha a mentés sikeres, a flag-et false-ra állítjuk
+                isDirty = false;
             } else {
                 throw new Error(result.message || "Progress saving failed.");
             }
@@ -1063,18 +1521,30 @@
             alert("Error saving: " + error.message);
         } finally {
             submitButton.disabled = false;
+            saveChecklistLoadingOverlay.style.display = "none";
         }
     });
 
-    takeoffSelect.addEventListener('change', calculateAltitudeDifference);
-    landingSelect.addEventListener('change', calculateAltitudeDifference);
-
+    addflightTakeoffSelect.addEventListener('change', () => calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan));
+    addflightLandingSelect.addEventListener('change', () => calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan));
+    
     document.addEventListener('DOMContentLoaded', () => {
+        modalOverlay.style.display = 'flex';
         loginTabButton.addEventListener('click', () => showTab('login-section'));
+        dashboardTabButton.addEventListener('click', () => showTab('dashboard-section'));
         flightDataTabButton.addEventListener('click', () => showTab('flight-data-section'));
+        addflightTabButton.addEventListener('click', () => {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const formattedDate = `${yyyy}-${mm}-${dd}`;
+            addflightDateInput.value = formattedDate;
+            showTab('addflight-section');
+        });
         checklistTabButton.addEventListener('click', () => showTab('checklist-container'));
 
-        updateAllCompletions(); 
+        updateAllCompletions();
         document.querySelectorAll('.check-item').forEach(item => {
             item.addEventListener("click", function (event) {
                 if (event.target.tagName.toLowerCase() !== 'input' && event.target.className.toLowerCase() !== 'slider') {
@@ -1087,8 +1557,10 @@
             });
         });
         
+        // Változás 6: Az állapotváltó beállítása a meglévő eseménykezelőben
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener("change", function () {
+                isDirty = true; // EZ AZ ÚJ SOR
                 const parentDiv = this.closest('.check-item');
                 if (parentDiv) {
                     parentDiv.classList.toggle("completed", this.checked);
@@ -1100,7 +1572,12 @@
             });
         });
 
-        calculateAltitudeDifference();
+        // Változás 7: Az állapotváltó beállítása az "Add Flight" űrlapon
+        addflightForm.addEventListener('input', function() {
+            isDirty = true;
+        });
+
+        calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan);
     });
 </script>
 </body>
