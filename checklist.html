@@ -33,8 +33,25 @@
             flex-direction: column;
             align-items: center;
         }
+		.my-flex-container {
+			display: flex;
+			justify-content: center; /* This will horizontally center the cards */
+			align-items: stretch; /* This is the default, and it makes all flex items the same height */
+			flex-wrap: wrap; /* Allows the items to wrap to a new line if the container is too narrow */
+		}
 
+		/* Optional: Add a class to the inner card div to make it a flex container as well.
+		This helps if you need to align content vertically inside the card. */
+		.my-card {
+			display: flex;
+			flex-direction: column;
+			justify-content: center; /* This centers content vertically inside the card */
+			height: 100%; /* Important for making sure the inner card fills its container */
+		}		
+		/* DASHBOARD kártyákhoz*/
         
+		
+		
         .check-item {
             display: flex;
             justify-content: space-between;
@@ -401,6 +418,7 @@
             <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
             <button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Book</button>
             <button class="w3-bar-item w3-button tab-button" id="addflight-tab" style="display: none;">Add Flight</button>
+			 <button class="w3-bar-item w3-button tab-button" id="theory-tab" style="display: none;">Theory</button>
         </div>
 
         
@@ -408,59 +426,64 @@
 <!--DASHBOARD------------------------------------------------------------------------------------->
 <div id="dashboard-section" class="tab-content" style="display:none;">
             <div class="dashboard-container">
-                <div class="w3-row-padding w3-margin-bottom">
-                    <div class="w3-half w3-container w3-margin-bottom">
-                        <div class="w3-card-2">
-                            <h3 class="w3-center w3-margin-bottom">Exam Readiness</h3>
-                            <div class="gauge-svg-container" id="gauge-container"></div>
+               
+				<!--GRAFIKON KÁRTYÁK------------------------------------------------------------------------------------->			   
+				<div class="w3-row-padding w3-margin-bottom my-flex-container">
+					<div class="w3-half w3-container w3-margin-bottom">
+						<div class="w3-card-2 ">
+							<h3 class="w3-center ">School progress</h3>
+							<div class="gauge-svg-container" id="gauge-container"></div>
+						</div>
+					</div>
+					<div class="w3-half w3-container w3-margin-bottom">
+						<div class="w3-card-2 ">
+							<h3 class="w3-center ">Control Sheet Progress</h3>
+							<div class="bar-chart-container" id="bar-chart-container"></div>
+							<div id="bar-chart-legend" class="w3-padding" ></div>
+						</div>
+					</div>
+				</div>
+				<!--GRAFIKON KÁRTYÁK------------------------------------------------------------------------------------->
 
-                        </div>
-                    </div>
-                    <div class="w3-half w3-container">
-                        <div class="w3-card-2">
-                            <h3 class="w3-center w3-margin-bottom">Control Sheet Progress</h3>
-                            <div class="bar-chart-container" id="bar-chart-container"></div>
-                            <div id="bar-chart-legend" class="w3-padding" ></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-row-padding w3-margin-top">
-                    <div class="w3-quarter w3-container w3-margin-bottom">
-                        <div class="w3-card-2 w3-center">
-                            <h3 class="w3-text-gray">Total Flights</h3>
-                            <p class="w3-xxxlarge" id="total-flights-dashboard"><span id="total-flights-count-display">0</span></p>
-                        </div>  
-                    </div>
-                    <div class="w3-quarter w3-container w3-margin-bottom">
-                        <div class="w3-card-2 w3-center">
-                            <h3 class="w3-text-gray">Takeoff Sites</h3>
-                            <p class="w3-xxxlarge" id="takeoff-sites-dashboard"> <span id="takeoffs-count-display">0</span></p>
+				
+				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
+				<div class="w3-row-padding w3-margin-top my-flex-container">
+					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
+						<div class="w3-card-2 w3-center my-card">
+							<h3 class="w3-text-gray">Total Flights</h3>
+							<div class="w3-xxlarge" id="total-flights-dashboard"><span id="total-flights-count-display">0</span></div>
+						</div>  
+					</div>
+					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
+						<div class="w3-card-2 w3-center my-card ">
+							<h3 class="w3-text-gray">Takeoff Sites</h3>
+							<div class="w3-xxlarge" id="takeoff-sites-dashboard"> <span id="takeoffs-count-display">0</span></div>
+						</div>
+					</div>
+					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
+						<div class="w3-card-2 w3-center my-card">
+							<h3 class="w3-text-gray">Landing Sites</h3>
+							<div class="w3-xxlarge" id="landing-sites-dashboard"><span id="landings-count-display">0</span></div>
+						</div>
+					</div>
+					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
+						<div class="w3-card-2 w3-center my-card">
+							<h3 class="w3-text-gray">Total Airtime</h3>
+							<div class="w3-xlarge" id="total-airtime-dashboard"><span id="total-air-time-summary">0 minutes</span></div>
+						</div>
+					</div>
+					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
+						<div class="w3-card-2 w3-center my-card">
+							<h3 class="w3-text-gray">Cumm. Altitude</h3>
+							<div class="w3-xlarge" id="altitude-cumulative-dashboard">0 m</div>
+						</div>
+					</div>
+				</div>
+				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
 
-
-                        </div>
-                    </div>
-                    <div class="w3-quarter w3-container w3-margin-bottom">
-                        <div class="w3-card-2 w3-center">
-                            <h3 class="w3-text-gray">Landing Sites</h3>
-                            <p class="w3-xxxlarge" id="landing-sites-dashboard"><span id="landings-count-display">0</span></p>
-
-                        </div>
-                    </div>
-                    <div class="w3-quarter w3-container w3-margin-bottom">
-                        <div class="w3-card-2 w3-center">
-                            <h3 class="w3-text-gray">Total Airtime</h3>
-                            <p class="w3-xxlarge" id="total-airtime-dashboard"><span id="total-air-time-summary">0 minutes</span></p>
-                        </div>
-                    </div>
-                    <div class="w3-quarter w3-container w3-margin-bottom">
-                        <div class="w3-card-2 w3-center">
-                            <h3 class="w3-text-gray">Cummulative Altitude</h3>
-                            <p class="w3-xxlarge" id="altitude-cumulative-dashboard">0 m</p>
-                        </div>
-                    </div>
-                </div>
+				
             </div>
-        </div>
+</div>
         
         
 
@@ -551,8 +574,33 @@
             </div>
         </div>
         
-        
-        
+ 
+ 
+ 
+<!--THEORY-----------------------------------------------------------------------------------> 
+ <div class="w3-container w3-padding tab-content" style="display:none;" id="theory-section">
+    <div class="w3-card w3-round-large w3-deep-purple w3-margin">
+        <div class="w3-container">
+            <h3 class="w3-center w3-text-white">Theory Files</h3>
+            <p>
+                <a href="https://flywithmiki.com/theory/aerodynamics.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Aerodynamics</a>
+            </p>
+            <p>
+                <a href="https://flywithmiki.com/theory/flightpraxis.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Flying practice</a>
+            </p>
+            <p>
+                <a href="https://flywithmiki.com/theory/law.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Legislation (Air-law and airspaces)</a>
+            </p>
+            <p>
+                <a href="https://flywithmiki.com/theory/material.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Material Sciences</a>
+            </p>
+            <p>
+                <a href="https://flywithmiki.com/theory/meteo.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Weather</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!--THEORY----------------------------------------------------------------------------------->        
         
 <!--CHECKLIST----------------------------------------------------------------------------------->
 <div id="checklist-container" class="tab-content" style="display: none;">
@@ -1096,7 +1144,8 @@
         const buttonId = tabId === 'login-section' ? 'login-tab' :
                          tabId === 'checklist-container' ? 'checklist-tab' :
                          tabId === 'dashboard-section' ? 'dashboard-tab' :
-                         tabId === 'addflight-section' ? 'addflight-tab' : 'flight-data-tab';
+                         tabId === 'addflight-section' ? 'addflight-tab' :
+						 tabId === 'theory-section' ? 'theory-tab' : 'flight-data-tab';
         document.getElementById(buttonId).classList.add('w3-blue');
     }
 
@@ -1129,6 +1178,7 @@
     const flightDataTabButton = document.getElementById("flight-data-tab");
     const addflightTabButton = document.getElementById("addflight-tab");
     const loginTabButton = document.getElementById("login-tab");
+	const theoryTabButton = document.getElementById("theory-tab");
     const scriptURL = "https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec";
     const barChartContainer = document.getElementById('bar-chart-container');
     const gaugeContainer = document.getElementById('gauge-container');
@@ -1415,6 +1465,7 @@
                 flightDataTabButton.style.display = 'block';
                 checklistTabButton.style.display = 'block';
                 addflightTabButton.style.display = 'block';
+				theoryTabButton.style.display = 'block';
                 showTab('dashboard-section');
             } else {
                 throw new Error("Data loading failed. Please check your email address and sheets.");
@@ -1543,7 +1594,9 @@
             showTab('addflight-section');
         });
         checklistTabButton.addEventListener('click', () => showTab('checklist-container'));
-
+		theoryTabButton.addEventListener('click', () => showTab('theory-section'));
+		
+		
         updateAllCompletions();
         document.querySelectorAll('.check-item').forEach(item => {
             item.addEventListener("click", function (event) {
