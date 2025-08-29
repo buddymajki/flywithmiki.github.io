@@ -394,11 +394,25 @@
 		@keyframes l18 {
 		  100% {transform: rotate(1turn)}
 		}		
+		
+		
 
+		/* Theory gombok ugyan akkorák */		
+		.same-width-button {
+		  width: 250px; /* You can adjust this value as needed */
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		}
 
     </style>
+
+<link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
+
+
 </head>
 <body>
+
 
     <div class="container">
     <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="" alt="logoc" style="max-width:900px; width: 100%; margin:auto; filter: drop-shadow(7px 7px 7px white); display: block;">
@@ -413,12 +427,12 @@
 
 
 
-        <div class="w3-bar w3-black">            
+        <div class="w3-bar w3-asphalt" style="max-width:1150px; margin:auto">            
             <button class="w3-bar-item w3-button tab-button" id="dashboard-tab" style="display: none;">Dashboard</button>
             <button class="w3-bar-item w3-button tab-button" id="checklist-tab" style="display: none;">Checklist</button>
             <button class="w3-bar-item w3-button tab-button" id="flight-data-tab" style="display: none;">Flight Book</button>
             <button class="w3-bar-item w3-button tab-button" id="addflight-tab" style="display: none;">Add Flight</button>
-			 <button class="w3-bar-item w3-button tab-button" id="theory-tab" style="display: none;">Theory</button>
+			<button class="w3-bar-item w3-button tab-button w3-right" id="theory-tab" style="display: none;">Theory</button>
         </div>
 
         
@@ -578,24 +592,24 @@
  
  
 <!--THEORY-----------------------------------------------------------------------------------> 
- <div class="w3-container w3-padding tab-content" style="display:none;" id="theory-section">
-    <div class="w3-card w3-round-large w3-deep-purple w3-margin">
+<div class="w3-container w3-padding tab-content" style="display:none;" id="theory-section">
+    <div class="w3-card w3-round-large w3-margin">
         <div class="w3-container">
             <h3 class="w3-center w3-text-white">Theory Files</h3>
             <p>
-                <a href="https://flywithmiki.com/theory/aerodynamics.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Aerodynamics</a>
+                <a href="https://flywithmiki.com/theory/aerodynamics.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom  same-width-button" style="background-color:#805ad5">Aerodynamics</a>
             </p>
             <p>
-                <a href="https://flywithmiki.com/theory/flightpraxis.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Flying practice</a>
+                <a href="https://flywithmiki.com/theory/flightpraxis.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom  same-width-button" style="background-color:#805ad5">Flying practice</a>
             </p>
             <p>
-                <a href="https://flywithmiki.com/theory/law.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Legislation (Air-law and airspaces)</a>
+                <a href="https://flywithmiki.com/theory/law.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Legislation (Airspaces)</a>
             </p>
             <p>
-                <a href="https://flywithmiki.com/theory/material.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Material Sciences</a>
+                <a href="https://flywithmiki.com/theory/material.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Material Sciences</a>
             </p>
             <p>
-                <a href="https://flywithmiki.com/theory/meteo.pdf" target="_blank" class="w3-button w3-block w3-round-large w3-margin-bottom w3-purple">Weather</a>
+                <a href="https://flywithmiki.com/theory/meteo.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Weather</a>
             </p>
         </div>
     </div>
