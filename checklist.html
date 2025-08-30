@@ -443,13 +443,14 @@
                
 				<!--GRAFIKON KÁRTYÁK------------------------------------------------------------------------------------->			   
 				<div class="w3-row-padding w3-margin-bottom my-flex-container">
-					<div class="w3-half w3-container w3-margin-bottom">
+					<div class="w3-quarter w3-container w3-margin-bottom">
 						<div class="w3-card-2 ">
 							<h3 class="w3-center ">School progress</h3>
 							<div class="gauge-svg-container" id="gauge-container"></div>
+
 						</div>
 					</div>
-					<div class="w3-half w3-container w3-margin-bottom">
+					<div class="w3-threequarter w3-container w3-margin-bottom">
 						<div class="w3-card-2 ">
 							<h3 class="w3-center ">Control Sheet Progress</h3>
 							<div class="bar-chart-container" id="bar-chart-container"></div>
@@ -623,472 +624,522 @@
                     <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
                 </div>
 				
+		
 				
+				<H2 class="w3-center" style="align:center; margin:auto">Basic Training</h2>
                 <div class="w3-row-padding w3-margin-top">
+				<!--GHBAS-->
                     <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container  checklistheader">
-                                <h4>Ground Handling <span class="completion-display"></span></h4>
-                            </header>
-                            <div class="check-item">
-                                <span>1. Laying out the glider</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-0" name="q-training-hill-0" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>2. Inflation and walking exercises</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-1" name="q-training-hill-1" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>3. Slalom walking</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-2" name="q-training-hill-2" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>4. Walking with braked wing</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-3" name="q-training-hill-3" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>5. Launch preparations and 5-Point Check</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-4" name="q-training-hill-4" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>6. Three Phase Launch</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-5" name="q-training-hill-5" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>7. Flights with direction changes</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-6" name="q-training-hill-6" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>8. Start-STOP (Decision making line)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-7" name="q-training-hill-7" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>9. Crosswind Launch (Simulation if necessary)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-8" name="q-training-hill-8" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>10. Launch with poorly laid-out canopy</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-9" name="q-training-hill-9" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>11. Launch with Forward &amp; Reverse inflation</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-10" name="q-training-hill-10" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>12. Landing technique and landings</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-11" name="q-training-hill-11" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>13. Emergency landing (Introduction)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-12" name="q-training-hill-12" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>14. Rescue system (Introduction)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-13" name="q-training-hill-13" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>15. 90 - 180° Turns (Landing Approach)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-14" name="q-training-hill-14" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>16. Untangling the lines</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-15" name="q-training-hill-15" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>17. Folding Methods</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-16" name="q-training-hill-16" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>18. Theory Test before the 1st High-Altitude Flight</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-training-hill-17" name="q-training-hill-17" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+							<header class="w3-container checklistheader">
+								<h4>Basic Ground Handling and Launch Techniques <span class="completion-display"></span></h4>
+							</header>
+							<div class="check-item">
+								<span>1. Laying out the glider</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-0" name="gh-bas-0" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>2. Equipment Familiarisation</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-1" name="gh-bas-1" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>3. Inflation and walking exercises</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-2" name="gh-bas-2" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>4. 5-Point Check and Launch Preparations</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-3" name="gh-bas-3" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>5. Start-STOP (Decision making line)</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-4" name="gh-bas-4" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>6. 3-Phase Launch (forward)</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-5" name="gh-bas-5" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>7. Flights with Direction Changes</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-6" name="gh-bas-6" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>8. Landing Techniques</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-7" name="gh-bas-7" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>9. 90 - 180° Turns (Landing Approach)</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-8" name="gh-bas-8" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>10. Folding Methods</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-9" name="gh-bas-9" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
                         </div>
-                        <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container  checklistheader">
-                                <h4>Theory <span class="completion-display"></span></h4>
-                            </header>
-                            <div class="check-item">
-                                <span>1. Aerodynamics</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-theory-0" name="q-theory-0" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>2. Weather</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-theory-1" name="q-theory-1" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>3. Flying practice</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-theory-2" name="q-theory-2" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>4. Legislation (Air-law and airspaces)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-theory-3" name="q-theory-3" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>5. Material Sciences</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-theory-4" name="q-theory-4" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container  checklistheader">
-                                <h4>Extra <span class="completion-display"></span></h4>
-                            </header>
-                            <div class="check-item">
-                                <span>1. 'Popo' landing</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-extra-0" name="q-extra-0" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>2. Big-Ears rolling</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-extra-1" name="q-extra-1" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>3. Paragliding etiquette (facultative)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-extra-2" name="q-extra-2" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>4. Decision making strategy (facultative)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-extra-3" name="q-extra-3" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
+                       
                     </div>
+					<!--GHBAS-->
+					
+					
+					
+					
+					<!--GHADV-->
                     <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container  checklistheader">
-                                <h4>High Flights <span class="completion-display"></span></h4>
-                            </header>
-                            <div class="check-item">
-                                <span>1. Tandem Flight as a Passenger (optional)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-0" name="q-high-flights-0" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>2. Introduction to Emergency Landing</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-1" name="q-high-flights-1" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>3. Terrain Assessment and Launch Site Selection</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-2" name="q-high-flights-2" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>4. Launch with Forward &amp; Reverse Inflation</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-3" name="q-high-flights-3" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>5. Left and Right Circles</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-4" name="q-high-flights-4" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>6. Quick direction changes</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-5" name="q-high-flights-5" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>7. Figure Eight (PP2)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-6" name="q-high-flights-6" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>8. Tight Circles (with active control)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-7" name="q-high-flights-7" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>9. Parachutal stall (introduction)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-8" name="q-high-flights-8" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>10. Flying in the safe speed range</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-9" name="q-high-flights-9" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>11. Use of the acceleration system</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-10" name="q-high-flights-10" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>12. Positive and Negative steering</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-11" name="q-high-flights-11" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>13. Steering with weight shifting</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-12" name="q-high-flights-12" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>14. Steering with back risers</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-13" name="q-high-flights-13" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>15. Pitching (swinging around the lateral axis)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-14" name="q-high-flights-14" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>16. Rolling</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-15" name="q-high-flights-15" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>17. Assymetric Collapse (Level 1-4)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-16" name="q-high-flights-16" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>18. Big Ears (with speed bar)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-17" name="q-high-flights-17" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>19. Spiral (Introduction)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-18" name="q-high-flights-18" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>20. Flight with Instrument</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-19" name="q-high-flights-19" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>21. Dynamic Soaring (over 30 minutes)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-20" name="q-high-flights-20" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>22. Thermalling (over 30 minutes)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-21" name="q-high-flights-21" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>23. Landing approach (left/right)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-22" name="q-high-flights-22" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>24. Target landings</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-23" name="q-high-flights-23" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>25. Backwind landing (Introduction)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-24" name="q-high-flights-24" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>26. Landing with back risers</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-25" name="q-high-flights-25" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>27. Exam simulation</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-26" name="q-high-flights-26" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>28. Alone flight(s)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-high-flights-27" name="q-high-flights-27" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+							<header class="w3-container checklistheader">
+								<h4>Advanced Groundhandling <span class="completion-display"></span></h4>
+							</header>
+							<div class="check-item">
+								<span>1. Slalom walking</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-0" name="gh-adv-0" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>2. Crosswind Launch (Simulation if necessary)</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-1" name="gh-adv-1" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>3. Launch with Poorly Laid-Out Canopy</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-2" name="gh-adv-2" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>4. 3-Phase Launch (backward)</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-3" name="gh-adv-3" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>5. Untangling the lines</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-4" name="gh-adv-4" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item">
+								<span>6. Hill walking</span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-5" name="gh-adv-5" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
                         </div>
+					</div>
+
+						<!--GHadv-->
+                 </div>   
+
+
+
+
+				<H2 class="w3-center" style="align:center; margin:auto">Theory</h2>				 
+				<div class="w3-row-padding w3-margin-top">
+					<!--TH-flight-->
+                    <div class="w3-half">
                         <div class="w3-card w3-white w3-margin-bottom">
-                            <header class="w3-container  checklistheader">
-                                <h4>EXAM Maneuvers <span class="completion-display"></span></h4>
-                            </header>
-                            <div class="check-item">
-                                <span>1. PP1 (2x right &lt;20s)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-0" name="q-exam-0" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>2. PP2 (Left-Right &lt;25s)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-1" name="q-exam-1" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>3. Side collapse (Lvl.3)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-2" name="q-exam-2" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>4. Big Ears (90° left, 90° right)</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-3" name="q-exam-3" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>5. Big Ears with speed</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-4" name="q-exam-4" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>6. Rolling</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-5" name="q-exam-5" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="check-item">
-                                <span>7. Pitching</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="q-exam-6" name="q-exam-6" value="TRUE" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+								<header class="w3-container checklistheader">
+									<h4>In-Flight Safety and Emergency Procedures <span class="completion-display"></span></h4>
+								</header>
+								<div class="check-item">
+									<span>1. Introduction to Rescue System</span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-0" name="th-flight-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>2. Emergency Landing Techniques</span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-1" name="th-flight-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>3. Downwind Landing</span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-2" name="th-flight-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>4. Parachutal Stall</span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-3" name="th-flight-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>5. Spiral dive</span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-4" name="th-flight-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
                         </div>
-                    </div>
+					</div>
+					<!--TH-flight-->
+
+					<!--TH-core---->
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4>Core Theory <span class="completion-display"></span></h4>
+								</header>
+								<div class="check-item">
+									<span>1. Aerodynamics</span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-0" name="th-core-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>2. Weather</span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-1" name="th-core-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>3. Flying practice</span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-2" name="th-core-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>4. Legislation (Air-law and airspaces)</span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-3" name="th-core-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>5. Material Sciences</span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-4" name="th-core-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+                        </div>
+					</div>
+					<!--TH-core------>
+				</div>
+				
+				
+				
+				
+				<H2 class="w3-center" style="align:center; margin:auto">Altitude Flights</h2>				
+				<div class="w3-row-padding w3-margin-top">				
+					<!--HF-bas--->
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4>Basic Flight Maneuvers <span class="completion-display"></span></h4>
+								</header>
+								<div class="check-item">
+									<span>1. Steering (positive)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-0" name="hf-bas-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>2. Steering (negative)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-1" name="hf-bas-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>3. Steering (weight shift)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-2" name="hf-bas-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>4. Landing (school approach)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-3" name="hf-bas-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>5. Big Ears (without speedbar)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-4" name="hf-bas-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>6. Use of Acceleration System</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-5" name="hf-bas-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>7. Big Ears (with speedbar)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-6" name="hf-bas-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+                        </div>
+					</div>
+					<!--HF-bas---->		
+
+					<!--HF-adv-0--->
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4>Advanced Flight Maneuvers <span class="completion-display"></span></h4>
+								</header>
+								<div class="check-item">
+									<span>1. Steering (back riser)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-0" name="hf-adv-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>2. Landing (back riser)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-1" name="hf-adv-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>3. Rolling (Big Ears)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-2" name="hf-adv-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>4. Rolling</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-3" name="hf-adv-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>5. Pitching (Swiss style)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-4" name="hf-adv-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>6. Side collapse (lvl1)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-5" name="hf-adv-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>7. Side collapse (lvl2)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-6" name="hf-adv-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>8. Side collapse (lvl3)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-7" name="hf-adv-7" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>9. Side collapse (lvl4)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-8" name="hf-adv-8" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>10. Front collapse</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-9" name="hf-adv-9" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>11. Flying in the Safe Speed Range</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-10" name="hf-adv-10" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>12. Tight circles</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-11" name="hf-adv-11" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>13. Quick Direction Changes</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-12" name="hf-adv-12" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>14. Circle Left, Circle Right (Figure Eight)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-13" name="hf-adv-13" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>15. Flying with instruments</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-14" name="hf-adv-14" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>16. Soaring / Thermalling (30+ minutes)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-15" name="hf-adv-15" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>17. Landing (popo)</span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-16" name="hf-adv-16" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+                        </div>
+					</div>
+					<!--HF-adv--->						
+				</div>
+				
+				
+				
+				
+				<H2 class="w3-center" style="align:center; margin:auto">Exam Preparation</h2>				
+				<div class="w3-row-padding w3-margin-top">				
+					
+					<!--ex--->
+                    <div class="w3-half">
+                        <div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4>Examination Tasks <span class="completion-display"></span></h4>
+								</header>
+								<div class="check-item">
+									<span>1. Forward start</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-0" name="ex-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>2. Backward start</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-1" name="ex-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>3. Two right circles (720°, less than 20s), PP1</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-2" name="ex-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>4. Eight (360° left, 360° right, less than 25s),PP2</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-3" name="ex-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>5. Side Collapse (level3)</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-4" name="ex-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>6. Big Ears (90° left, 90° right)</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-5" name="ex-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>7. Big Ears (with full speed)</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-6" name="ex-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>8. Rolling</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-7" name="ex-7" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item">
+									<span>9. Pitching</span>
+									<label class="switch">
+										<input type="checkbox" id="ex-8" name="ex-8" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+                        </div>
+					</div>
+					<!--ex--->						
+
+                 
                 </div>
+				
+				
+				
                 <div style="padding: 16px; text-align: center;">
                     <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
                 </div>
@@ -1136,7 +1187,7 @@
         const savableTabs = ['checklist-container', 'addflight-section'];
         const isSwitchingBetweenSavableTabs = savableTabs.includes(tabId) && savableTabs.includes(document.querySelector('.tab-content[style*="display: block"]').id);
         
-        if (isDirty && !isSwitchingBetweenSavableTabs) {
+        if (isDirty) {
             const userDecision = confirm("Hold on! You haven't packed your gear! Are you sure you want to take off without hitting the save button?");
             if (!userDecision) {
                 return; // Megszakítja a navigációt
