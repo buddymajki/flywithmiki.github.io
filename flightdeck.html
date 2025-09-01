@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Progress Book</title>
+    <title>FLYwithMIKI FlightDeck</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
@@ -23,16 +23,19 @@
         }
 
         /* DASHBOARD kártyákhoz*/
-        .w3-card-2 {
-            background-color: #2d3748;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-            padding: 2rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+		.w3-card-2 {
+			background-color: #2d3748;
+			border-radius: 1.5rem;
+			box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+			padding: 2rem;
+			height: 100%;
+			/* Flexbox a tartalom középre igazításához */
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
 		.my-flex-container {
 			display: flex;
 			justify-content: center; /* This will horizontally center the cards */
@@ -393,7 +396,50 @@
 		}
 		@keyframes l18 {
 		  100% {transform: rotate(1turn)}
-		}		
+		}
+
+/* Loader csomagoló: Ez biztosítja a középre igazítást */
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+/* LOADER-gauge */
+.loader-progressgauge {
+    width: 50px;
+    aspect-ratio: 1;
+    color: #e2e8f0; /* A betöltő színe világos szürke lesz */
+    border: 2px solid;
+    display: grid;
+    box-sizing: border-box;
+    animation: l1 4s infinite linear;
+    /* Ez a sor kulcsfontosságú! Elrejti a loadert alapértelmezetten, így a JavaScript tudja majd kezelni. */
+    display: none; 
+}
+.loader-progressgauge::before,
+.loader-progressgauge::after {
+    content: "";
+    grid-area: 1/1;
+    margin: auto;
+    width: 70.7%;
+    aspect-ratio: 1;
+    border: 2px solid;
+    box-sizing: content-box;
+    animation: inherit;
+}
+.loader-progressgauge::after {
+    width: 50%;
+    aspect-ratio: 1;
+    border: 2px solid;
+    animation-duration: 2s;
+}
+@keyframes l1 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
 		
 		
 
@@ -404,6 +450,43 @@
 		  margin-left: auto;
 		  margin-right: auto;
 		}
+
+
+
+		/* ELVILEG A DASHBOARD KÁRTYÁKAT JOBBAN RENDEZI
+/* Custom CSS */
+
+/* Ezzel a szabállyal a mérőóra és a kártyák a helyükre kerülnek kis képernyőn is */
+@media (max-width: 1000px) {
+    .my-flex-container > .w3-half {
+        width: 100% !important;
+    }
+}
+
+/* Flexbox a kiskártyáknak */
+.small-cards-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dashboard-item {
+    flex: 1 1 calc(50% - 16px);
+    box-sizing: border-box;
+    /* Ezek a sorok adják a teret a kártyák körül */
+    margin: 8px; /* A kártyák közötti külső tér */
+    padding: 8px; /* A kártyákon belüli belső tér */
+}
+
+/* Ha páratlan számú elem van, középre rendezzük a Flexbox-szal */
+@media (min-width: 601px) {
+    .small-cards-flex:after {
+        content: "";
+        flex: auto;
+    }
+}
+
+
 
     </style>
 
@@ -418,7 +501,7 @@
     <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="" alt="logoc" style="max-width:900px; width: 100%; margin:auto; filter: drop-shadow(7px 7px 7px white); display: block;">
         
         
-        <h1 class="w3-center" id="main-title">Progress Journal</h1>
+        <h1 class="w3-center" id="main-title">Flight Deck</h1>
 		
 		
 
@@ -441,15 +524,67 @@
 <div id="dashboard-section" class="tab-content" style="display:none;">
             <div class="dashboard-container">
                
+
+			<div class="loader-wrapper">
+				<div class="loader-progressgauge" id="loader-progressgauge"></div>
+			</div>
+				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
+<div class="w3-row-padding w3-margin-top my-flex-container">
+    
+	<div class="w3-half w3-container w3-margin-bottom">
+		<div class="w3-card-2">
+			<h3 class="w3-center w3-text-gray">School progress</h3>
+			<div class="loader-wrapper">
+				<div class="loader-progressgauge" id="loader-progressgauge"></div>
+			</div>
+			<div class="gauge-svg-container" id="gauge-container"></div>
+			<p class="w3-center w3-large" id="gauge-debug-text" style="margin-top: 10px;"></p>
+		</div>
+	</div>
+		
+    <div class="w3-half w3-row-padding small-cards-flex">
+        <div class="dashboard-item">
+            <div class="w3-card-2 w3-center my-card">
+                <h3 class="w3-text-gray">Total Flights</h3>
+                <div class="w3-xxlarge" id="total-flights-dashboard"><span id="total-flights-count-display">0</span></div>
+            </div>
+        </div>
+        <div class="dashboard-item">
+            <div class="w3-card-2 w3-center my-card">
+                <h3 class="w3-text-gray">Total Airtime</h3>
+                <div class="w3-xlarge" id="total-airtime-dashboard"><span id="total-air-time-summary">0 minutes</span></div>
+            </div>
+        </div>		
+        <div class="dashboard-item">
+            <div class="w3-card-2 w3-center my-card">
+                <h3 class="w3-text-gray">Takeoff Sites</h3>
+                <div class="w3-xxlarge w3-text-gray" id="takeoff-sites-dashboard"> <span id="takeoffs-count-display">0</span></div>
+            </div>
+        </div>
+        <div class="dashboard-item">
+            <div class="w3-card-2 w3-center my-card">
+                <h3 class="w3-text-gray">Landing Sites</h3>
+                <div class="w3-xxlarge" id="landing-sites-dashboard"><span id="landings-count-display">0</span></div>
+            </div>
+        </div>
+
+        <div class="dashboard-item">
+            <div class="w3-card-2 w3-center my-card">
+                <h3 class="w3-text-gray">Cumm. Altitude</h3>
+                <div class="w3-xlarge w3-text-gray" id="altitude-cumulative-dashboard">0 m</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
+				
+				
+
+
 				<!--GRAFIKON KÁRTYÁK------------------------------------------------------------------------------------->			   
 				<div class="w3-row-padding w3-margin-bottom my-flex-container">
-					<div class="w3-quarter w3-container w3-margin-bottom">
-						<div class="w3-card-2 ">
-							<h3 class="w3-center ">School progress</h3>
-							<div class="gauge-svg-container" id="gauge-container"></div>
 
-						</div>
-					</div>
 					<div class="w3-threequarter w3-container w3-margin-bottom">
 						<div class="w3-card-2 ">
 							<h3 class="w3-center ">Control Sheet Progress</h3>
@@ -461,40 +596,7 @@
 				<!--GRAFIKON KÁRTYÁK------------------------------------------------------------------------------------->
 
 				
-				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
-				<div class="w3-row-padding w3-margin-top my-flex-container">
-					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
-						<div class="w3-card-2 w3-center my-card">
-							<h3 class="w3-text-gray">Total Flights</h3>
-							<div class="w3-xxlarge" id="total-flights-dashboard"><span id="total-flights-count-display">0</span></div>
-						</div>  
-					</div>
-					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
-						<div class="w3-card-2 w3-center my-card ">
-							<h3 class="w3-text-gray">Takeoff Sites</h3>
-							<div class="w3-xxlarge" id="takeoff-sites-dashboard"> <span id="takeoffs-count-display">0</span></div>
-						</div>
-					</div>
-					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
-						<div class="w3-card-2 w3-center my-card">
-							<h3 class="w3-text-gray">Landing Sites</h3>
-							<div class="w3-xxlarge" id="landing-sites-dashboard"><span id="landings-count-display">0</span></div>
-						</div>
-					</div>
-					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
-						<div class="w3-card-2 w3-center my-card">
-							<h3 class="w3-text-gray">Total Airtime</h3>
-							<div class="w3-xlarge" id="total-airtime-dashboard"><span id="total-air-time-summary">0 minutes</span></div>
-						</div>
-					</div>
-					<div class="w3-col w3-container w3-margin-bottom" style="width:200px">
-						<div class="w3-card-2 w3-center my-card">
-							<h3 class="w3-text-gray">Cumm. Altitude</h3>
-							<div class="w3-xlarge" id="altitude-cumulative-dashboard">0 m</div>
-						</div>
-					</div>
-				</div>
-				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
+
 
 				
             </div>
@@ -1290,44 +1392,125 @@
         });
     }
 
-    function createGauge(percentage) {
-        gaugeContainer.innerHTML = '';
-        const { radius, strokeWidth, backgroundArcColor, foregroundArcColor, textColor } = gaugeProperties;
-        const center = radius + strokeWidth / 2;
-        const circumference = Math.PI * radius;
-        const svgWidth = 2 * center;
-        const svgHeight = center + strokeWidth;
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
-        svg.setAttribute('class', 'w-full');
-        const backgroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        backgroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
-        backgroundArc.setAttribute('fill', 'none');
-        backgroundArc.setAttribute('stroke', backgroundArcColor);
-        backgroundArc.setAttribute('stroke-width', strokeWidth);
-        backgroundArc.setAttribute('stroke-linecap', 'round');
-        const foregroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        foregroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
-        foregroundArc.setAttribute('fill', 'none');
-        foregroundArc.setAttribute('stroke', foregroundArcColor);
-        foregroundArc.setAttribute('stroke-width', strokeWidth);
-        foregroundArc.setAttribute('stroke-linecap', 'round');
-        foregroundArc.setAttribute('stroke-dasharray', `${circumference},${circumference}`);
-        foregroundArc.setAttribute('stroke-dashoffset', circumference * (1 - (percentage / 100)));
-        const percentText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        percentText.setAttribute('x', center);
-        percentText.setAttribute('y', center - 50);
-        percentText.setAttribute('text-anchor', 'middle');
-        percentText.setAttribute('dominant-baseline', 'middle');
-        percentText.setAttribute('class', 'gauge-text');
-        percentText.setAttribute('fill', textColor);
-        percentText.textContent = `${percentage}%`;
-        svg.appendChild(backgroundArc);
-        svg.appendChild(foregroundArc);
-        svg.appendChild(percentText);
-        gaugeContainer.appendChild(svg);
+
+//kiszedi a haladás lineáris értékét a database-ből
+async function fetchGaugeData(email) {
+    const backendUrl = "https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec";
+    const sheetName = "progr-sheet";
+    const url = `${backendUrl}?sheet=${sheetName}&email=${encodeURIComponent(email)}`;
+
+    // Változó a loader elemhez, most már az új ID-vel
+    const gaugeLoader = document.getElementById('loader-progressgauge');
+    const debugTextElement = document.getElementById('gauge-debug-text');
+
+    // Betöltés kezdete: megjelenítjük a loadert és töröljük a hibaüzenetet
+    if (gaugeLoader) {
+        gaugeLoader.style.display = "block";
     }
-    createGauge(69);
+    if (debugTextElement) {
+        debugTextElement.textContent = "";
+    }
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === "success" && data.progress && data.progress.linear) {
+            const linearValue = parseFloat(data.progress.linear);
+            if (!isNaN(linearValue)) {
+                // Sikeres betöltés: elrejtjük a loadert és létrehozzuk a grafikont
+                if (gaugeLoader) {
+                    gaugeLoader.style.display = "none";
+                }
+                createGauge(linearValue);
+            } else {
+                console.error("The 'linear' value is not a valid number:", data.progress.linear);
+                if (gaugeLoader) {
+                    gaugeLoader.style.display = "none";
+                }
+                if (debugTextElement) {
+                    debugTextElement.textContent = "Error: The value is not a number.";
+                }
+            }
+        } else {
+            console.error("Failed to fetch gauge data:", data.message);
+            if (gaugeLoader) {
+                gaugeLoader.style.display = "none";
+            }
+            if (debugTextElement) {
+                debugTextElement.textContent = "Error: Failed to retrieve data.";
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching gauge data:", error);
+        if (gaugeLoader) {
+            gaugeLoader.style.display = "none";
+        }
+        if (debugTextElement) {
+            debugTextElement.textContent = "Error: Network issue.";
+        }
+    }
+}
+
+// You will call this function after the user logs in and the email is available.
+// For example:
+// const userEmail = 'user@example.com'; 
+// fetchGaugeData(userEmail); 
+
+// Existing createGauge function
+
+
+function createGauge(percentage) {
+    const gaugeContainer = document.getElementById('gauge-container'); // Assuming an element with this ID exists
+    if (!gaugeContainer) {
+        console.error("Gauge container element not found.");
+        return;
+    }
+    gaugeContainer.innerHTML = '';
+
+    const { radius, strokeWidth, backgroundArcColor, foregroundArcColor, textColor } = gaugeProperties;
+    const center = radius + strokeWidth / 2;
+    const circumference = Math.PI * radius;
+    const svgWidth = 2 * center;
+    const svgHeight = center + strokeWidth;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
+    svg.setAttribute('class', 'w-full');
+    const backgroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    backgroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
+    backgroundArc.setAttribute('fill', 'none');
+    backgroundArc.setAttribute('stroke', backgroundArcColor);
+    backgroundArc.setAttribute('stroke-width', strokeWidth);
+    backgroundArc.setAttribute('stroke-linecap', 'round');
+    const foregroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    foregroundArc.setAttribute('d', `M${center - radius},${center} A${radius},${radius} 0 0 1 ${center + radius},${center}`);
+    foregroundArc.setAttribute('fill', 'none');
+    foregroundArc.setAttribute('stroke', foregroundArcColor);
+    foregroundArc.setAttribute('stroke-width', strokeWidth);
+    foregroundArc.setAttribute('stroke-linecap', 'round');
+    foregroundArc.setAttribute('stroke-dasharray', `${circumference},${circumference}`);
+    foregroundArc.setAttribute('stroke-dashoffset', circumference * (1 - (percentage / 100)));
+    const percentText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    percentText.setAttribute('x', center);
+    percentText.setAttribute('y', center - 50);
+    percentText.setAttribute('text-anchor', 'middle');
+    percentText.setAttribute('dominant-baseline', 'middle');
+    percentText.setAttribute('class', 'gauge-text');
+    percentText.setAttribute('fill', textColor);
+    percentText.textContent = `${percentage}%`;
+    svg.appendChild(backgroundArc);
+    svg.appendChild(foregroundArc);
+    svg.appendChild(percentText);
+    gaugeContainer.appendChild(svg);
+}
+
+// Call the new function to fetch and display the gauge when needed, 
+// for example, when the page loads or a user logs in.
+// fetchGaugeData("example.user@email.com"); // Replace with the user's actual email
+
+
+
+
     
     function updateCompletion(cardElement) {
         const checkboxes = cardElement.querySelectorAll('input[type="checkbox"]');
@@ -1385,7 +1568,7 @@
                 parentDiv.classList.toggle('completed', isChecked);
             }
         });
-        mainTitle.innerHTML = clientName ? `Progress Journal <br> Welcome ${clientName}` : 'Progress Journal <br> Welcome Anonymus';
+        mainTitle.innerHTML = clientName ? `Student Flight Deck <br> Welcome ${clientName}` : 'Student Flight Deck <br> Welcome Anonymus';
         updateAllCompletions();
     }
 
@@ -1542,6 +1725,7 @@
                 addflightTabButton.style.display = 'block';
 				theoryTabButton.style.display = 'block';
                 showTab('dashboard-section');
+			    fetchGaugeData(userEmail); 
             } else {
                 throw new Error("Data loading failed. Please check your email address and sheets.");
             }
@@ -1554,53 +1738,56 @@
         }
     });
 
-    addflightForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        addflightSaveButton.disabled = true;
-        saveFlightLoadingOverlay.style.display = "flex";
-        const formData = new FormData(this);
-        const flightDate = formData.get("flight-date");
-        const utcDate = flightDate ? flightDate + 'T12:00:00.000Z' : '';
-        const flightDataObj = {
-            email: emailInput.value.trim(),
-            flightDate: utcDate,
-            takeoffLocation: formData.get("takeoff-location"),
-            landingLocation: formData.get("landing-location"),
-            flightTime: formData.get("flight-time"),
-            comments: formData.get("comments"),
-            altitudeDifference: addflightAltitudeDifferenceSpan.textContent
-        };
-        try {
-            const response = await fetch(`${scriptURL}?sheet=Sheet2`, {
-                redirect: "follow",
-                method: "POST",
-                body: JSON.stringify(flightDataObj),
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8",
-                },
-            });
-            const data = await response.json();
-            if (data.status === "success") {
-                const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(emailInput.value.trim())}&sheet=Sheet2`);
-                const flightData = await flightResponse.json();
-                if (flightData && flightData.status === "success" && flightData.flights) {
-                    updateFlightSummary(flightData.flights);
-                }
-                addflightForm.reset();
-                calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan);
-                // Változás 4: Ha a mentés sikeres, a flag-et false-ra állítjuk
-                isDirty = false; 
-            } else {
-                throw new Error(data.message || "Flight saving failed");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Error: " + error.message);
-        } finally {
-            addflightSaveButton.disabled = false;
-            saveFlightLoadingOverlay.style.display = "none";
-        }
-    });
+		addflightForm.addEventListener("submit", async function (e) {
+			e.preventDefault();
+			addflightSaveButton.disabled = true;
+			saveFlightLoadingOverlay.style.display = "flex";
+			const formData = new FormData(this);
+			const flightDate = formData.get("flight-date");
+			const utcDate = flightDate ? flightDate + 'T12:00:00.000Z' : '';
+			const flightDataObj = {
+				email: emailInput.value.trim(),
+				flightDate: utcDate,
+				takeoffLocation: formData.get("takeoff-location"),
+				landingLocation: formData.get("landing-location"),
+				flightTime: formData.get("flight-time"),
+				comments: formData.get("comments"),
+				altitudeDifference: addflightAltitudeDifferenceSpan.textContent
+			};
+			try {
+				const response = await fetch(`${scriptURL}?sheet=Sheet2`, {
+					redirect: "follow",
+					method: "POST",
+					body: JSON.stringify(flightDataObj),
+					headers: {
+						"Content-Type": "text/plain;charset=utf-8",
+					},
+				});
+				const data = await response.json();
+				if (data.status === "success") {
+					const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(emailInput.value.trim())}&sheet=Sheet2`);
+					const flightData = await flightResponse.json();
+					if (flightData && flightData.status === "success" && flightData.flights) {
+						updateFlightSummary(flightData.flights);
+					}
+					// Változás 4: Ha a mentés sikeres, a flag-et false-ra állítjuk
+					isDirty = false;
+					// Ezzel a sorral frissítjük a mérőórát a mentés után
+					fetchGaugeData(emailInput.value.trim()); 
+					addflightForm.reset();
+					calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan);
+				} else {
+					throw new Error(data.message || "Flight saving failed");
+				
+				}
+			} catch (error) {
+				console.error("Error:", error);
+				alert("Error: " + error.message);
+			} finally {
+				addflightSaveButton.disabled = false;
+				saveFlightLoadingOverlay.style.display = "none";
+			}
+		});
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -1642,7 +1829,8 @@
             } else {
                 throw new Error(result.message || "Progress saving failed.");
             }
-        } catch (error) {
+			 fetchGaugeData(userEmail); 
+		} catch (error) {
             console.error("Error saving:", error);
             alert("Error saving: " + error.message);
         } finally {
