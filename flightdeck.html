@@ -398,49 +398,37 @@
 		  100% {transform: rotate(1turn)}
 		}
 
-/* Loader csomagoló: Ez biztosítja a középre igazítást */
-.loader-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
-}
+		/* Loader csomagoló: Ez biztosítja a középre igazítást */
+		.loader-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 1rem 0;
+		}
 
-/* LOADER-gauge */
-.loader-progressgauge {
-    width: 50px;
-    aspect-ratio: 1;
-    color: #e2e8f0; /* A betöltő színe világos szürke lesz */
-    border: 2px solid;
-    display: grid;
-    box-sizing: border-box;
-    animation: l1 4s infinite linear;
-    /* Ez a sor kulcsfontosságú! Elrejti a loadert alapértelmezetten, így a JavaScript tudja majd kezelni. */
-    display: none; 
-}
-.loader-progressgauge::before,
-.loader-progressgauge::after {
-    content: "";
-    grid-area: 1/1;
-    margin: auto;
-    width: 70.7%;
-    aspect-ratio: 1;
-    border: 2px solid;
-    box-sizing: content-box;
-    animation: inherit;
-}
-.loader-progressgauge::after {
-    width: 50%;
-    aspect-ratio: 1;
-    border: 2px solid;
-    animation-duration: 2s;
-}
-@keyframes l1 {
-    100% {
-        transform: rotate(1turn)
-    }
-}
-		
+		/* LOADER-gauge */
+		.loader-progressgauge {
+		  border: 16px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 16px solid #805ad5;
+		  width: 120px;
+		  height: 120px;
+		  -webkit-animation: spin 2s linear infinite; /* Safari */
+		  animation: spin 2s linear infinite;
+		  display: none;
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+				
 		
 
 		/* Theory gombok ugyan akkorák */		
@@ -454,43 +442,102 @@
 
 
 		/* ELVILEG A DASHBOARD KÁRTYÁKAT JOBBAN RENDEZI
-/* Custom CSS */
+		/* Custom CSS */
 
-/* Ezzel a szabállyal a mérőóra és a kártyák a helyükre kerülnek kis képernyőn is */
-@media (max-width: 1000px) {
-    .my-flex-container > .w3-half {
-        width: 100% !important;
-    }
+		/* Ezzel a szabállyal a mérőóra és a kártyák a helyükre kerülnek kis képernyőn is */
+		@media (max-width: 1000px) {
+			.my-flex-container > .w3-half {
+				width: 100% !important;
+			}
+		}
+
+		/* Flexbox a kiskártyáknak */
+		.small-cards-flex {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.dashboard-item {
+			flex: 1 1 calc(50% - 16px);
+			box-sizing: border-box;
+			/* Ezek a sorok adják a teret a kártyák körül */
+			margin: 8px; /* A kártyák közötti külső tér */
+			padding: 8px; /* A kártyákon belüli belső tér */
+		}
+
+		/* Ha páratlan számú elem van, középre rendezzük a Flexbox-szal */
+		@media (min-width: 601px) {
+			.small-cards-flex:after {
+				content: "";
+				flex: auto;
+			}
+		}
+
+
+
+/* Checklist info iconhoz css*/
+.info-icon {
+    margin-left: 8px;
+    color: #9f7aea;
+    cursor: pointer;
+    font-size: 1.1em;
 }
 
-/* Flexbox a kiskártyáknak */
-.small-cards-flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+/* This is important to ensure the icon doesn't trigger the checkbox toggle */
+.check-item > span > .info-icon {
+    pointer-events: auto;
+}
+/* Modal háttér checklist info-hoz*/
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
 }
 
-.dashboard-item {
-    flex: 1 1 calc(50% - 16px);
-    box-sizing: border-box;
-    /* Ezek a sorok adják a teret a kártyák körül */
-    margin: 8px; /* A kártyák közötti külső tér */
-    padding: 8px; /* A kártyákon belüli belső tér */
+/* Modal tartalom */
+.modal-content {
+    background-color: #2d3748;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    color: #e2e8f0;
 }
 
-/* Ha páratlan számú elem van, középre rendezzük a Flexbox-szal */
-@media (min-width: 601px) {
-    .small-cards-flex:after {
-        content: "";
-        flex: auto;
-    }
+/* Bezáró gomb */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
+
+.close-button:hover,
+.close-button:focus {
+    color: #e2e8f0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 
 
     </style>
 
 <link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
 </head>
@@ -525,9 +572,7 @@
             <div class="dashboard-container">
                
 
-			<div class="loader-wrapper">
-				<div class="loader-progressgauge" id="loader-progressgauge"></div>
-			</div>
+
 				<!--DASHBOARD KÁRTYÁK------------------------------------------------------------------------------------->
 <div class="w3-row-padding w3-margin-top my-flex-container">
     
@@ -731,442 +776,432 @@
         
 <!--CHECKLIST----------------------------------------------------------------------------------->
 <div id="checklist-container" class="tab-content" style="display: none;">
-            <form id="form">
-                <div style="padding: 16px; text-align: center;">
-                    <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
-                </div>
+ <form id="form">
+	 <div style="padding: 16px; text-align: center;">
+		<button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
+	 </div>
 				
 		
 				
 				<H2 class="w3-center" style="align:center; margin:auto">Basic Training</h2>
-                <div class="w3-row-padding w3-margin-top">
-				<!--GHBAS-->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+					<div class="w3-row-padding w3-margin-top">
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
 							<header class="w3-container checklistheader">
 								<h4>Basic Ground Handling and Launch Techniques</h4>
 							</header>
-							<div class="check-item">
-								<span>1. Laying out the glider</span>
+							<div class="check-item" data-info-html="This task teaches the student how to properly unpack their glider and lay it out for takeoff. The goal is to learn how to prepare the wing on steep launch sites with minimal movement. After laying out the wing, the student should be able to sort the lines and get ready for launch.">
+								<span>1. Laying out the glider <i class="info-icon fa fa-info-circle"></i> </span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-0" name="gh-bas-0" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>2. Equipment Familiarisation</span>
+							<div class="check-item" data-info-html="The student will get familiar with the paragliding equipment, learn how to clip into the harness, and correctly attach the glider's risers to the carabiners. This is done with the wing already laid out and lines sorted.">
+								<span>2. Equipment Familiarisation <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-1" name="gh-bas-1" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>3. Inflation and walking exercises</span>
+							<div class="check-item" data-info-html="The student learns how to **inflate the canopy** and control it while walking, gaining a feel for its movements and a basic understanding of control inputs.<br><br><b>Important Tip:</b> Always stay directly under the glider when it is not overhead. If the glider drifts to one side, **walk diagonally underneath it** while applying a counter-steering brake input on the opposite side. When executed correctly, the glider will return to a stable position directly above your head.">
+								<span>3. Inflation and walking exercises <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-2" name="gh-bas-2" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>4. 5-Point Check and Launch Preparations</span>
+							<div class="check-item" data-info-html="<b>The 5-Point Safety Check</b><br><br>This critical check must be performed before every flight:<br><br><b>1. Rescue:</b> Ensure the rescue handle is in place and the bridle channel is closed. (This is done before you put on the harness).<br><b>2. Pilot:</b> Check that your shoes, leg straps, chest strap, and helmet are all closed. The carabiners should be attached and your radio turned on.<br><b>3. Lines:</b> On both sides, check that the A lines are on top and the brake line is free between your hand and the pulley/ring.<br><b>4. Glider:</b> Verify that the glider is laid out neatly, the leading edge is open, and it is more or less facing into the wind.<br><b>5. Wind and Surroundings:</b> Confirm the wind direction and strength are suitable for a safe launch. Check the airspace (no one is flying in front of the takeoff, no one is top-landing, and no one is flying above you). Finally, establish an imaginary line where you can still control the glider, as a last-resort decision-making point."
+								<span>4. 5-Point Check and Launch Preparations <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-3" name="gh-bas-3" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>5. Start-STOP (Decision making line)</span>
+							<div class="check-item" data-info-html="The student learns to establish a clear decision-making point before takeoff. Latest until this line, they must make a definitive 'Start' or 'Stop' decision to ensure a safe launch.<br><br><b>In the event of a 'Stop' (abort) decision:</b><br>The student must quickly pull down one brake line completely while raising the opposite hand. Simultaneously, they should follow the glider's movement, walking in a curved path until the wing safely falls to the ground. The chosen direction should always be towards the most open space.">
+								<span>5. Start-STOP (Decision making line) <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-4" name="gh-bas-4" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>6. 3-Phase Launch (forward)</span>
+							<div class="check-item" data-info-html="The student learns the three distinct phases of a forward launch:<br><br><b>1. Inflation:</b> The glider fills with air and rises to the horizon.<br><br><b>2. Control:</b> With a firm brake input, the student stops the glider precisely above their head to prevent overshooting. They then maintain control, making small direction changes if needed and visually checking for any knots or cravattes before continuing.<br><br><b>3. Acceleration:</b> Once the glider is stable and the airspace is clear, the student performs a smooth takeoff with a final acceleration, adopting a dynamic pose for the run. (Chicken pose)">
+								<span>6. 3-Phase Launch (forward) <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-5" name="gh-bas-5" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>7. Flights with Direction Changes</span>
+							<div class="check-item" data-info-html="The student learns how to effectively change direction in flight, mastering basic turns and maneuvers. A key principle is to <b>'look and lean'</b> where you want to fly, shifting your weight while gently pulling the brake on that side.">
+								<span>7. Flights with Direction Changes <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-6" name="gh-bas-6" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>8. Landing Techniques</span>
+							<div class="check-item" data-info-html="The student learns the basic techniques for a safe and controlled landing, including the approach and flare. A key part of this is learning to pull both brakes down completely at approximately one meter from the ground, which allows for a gentle touchdown.">
+								<span>8. Landing Techniques <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-7" name="gh-bas-7" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>9. 90 - 180° Turns (Landing Approach)</span>
+							<div class="check-item" data-info-html="The student learns to perform 90- and 180-degree turns.">
+								<span>9. 90 - 180° Turns (Landing Approach) <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-8" name="gh-bas-8" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>10. Folding Methods</span>
+							<div class="check-item" data-info-html="The student learns how to properly fold the glider using different methods, such as the standard glider-bag, the concertina bag, or the fast bag.">
+								<span>10. Folding Methods <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-bas-9" name="gh-bas-9" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-                        </div>
-                       
-                    </div>
-					<!--GHBAS-->
-					
-					
-					
-					
-					<!--GHADV-->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+						</div>
+	
+				</div>
+				
+				
+				
+				<div class="w3-half">
+					<div class="w3-card w3-white w3-margin-bottom">
 							<header class="w3-container checklistheader">
 								<h4>Advanced Groundhandling</h4>
 							</header>
-							<div class="check-item">
-								<span>1. Slalom walking</span>
+							<div class="check-item" data-info-html="The student practices controlling the canopy while walking in a slalom pattern on flat ground, improving fine control and responsiveness. For optimal results, practice in wind speeds of 5-15 km/h.<br><br>First, start to pull the brake while walking with the glider. As it begins to turn, walk along a curved path to follow its movement until a new direction is achieved. Once stable, your hands should be parallel again.">
+								<span>1. Slalom walking <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-0" name="gh-adv-0" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>2. Crosswind Launch (Simulation if necessary)</span>
+							<div class="check-item" data-info-html="The student learns techniques for safely launching the glider when the wind is not coming directly from the front.<br><br>The wing will inflate towards the wind direction. The student must then bring the wing to the desired takeoff direction. If it's not possible to correct the glider's position, the student must perform a 'Start-Stop' abort maneuver.">
+								<span>2. Crosswind Launch (Simulation if necessary) <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-1" name="gh-adv-1" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>3. Launch with Poorly Laid-Out Canopy</span>
+							<div class="check-item" data-info-html="The student learns how to handle and launch a glider when the canopy is not perfectly laid out, a crucial skill for real-world scenarios.">
+								<span>3. Launch with Poorly Laid-Out Canopy <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-2" name="gh-adv-2" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>4. 3-Phase Launch (backward)</span>
+							<div class="check-item" data-info-html="The student learns the backward launch technique, which is essential for strong wind conditions and provides better canopy control before takeoff.">
+								<span>4. 3-Phase Launch (backward) <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-3" name="gh-adv-3" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>5. Untangling the lines</span>
+							<div class="check-item" data-info-html="The student learns how to quickly and efficiently untangle lines on the ground to prevent launch issues.">
+								<span>5. Untangling the lines <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-4" name="gh-adv-4" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-							<div class="check-item">
-								<span>6. Hill walking</span>
+							<div class="check-item" data-info-html="The student masters ground handling while walking downhill without taking off. They are able to make small changes in direction on the slope and keep the glider inflated without becoming airborne. This is best practiced in a slight updraft.">
+								<span>6. Hill walking <i class="info-icon fa fa-info-circle"></i></span>
 								<label class="switch">
 									<input type="checkbox" id="gh-adv-5" name="gh-adv-5" value="TRUE" />
 									<span class="slider"></span>
 								</label>
 							</div>
-                        </div>
+						</div>
 					</div>
 
-						<!--GHadv-->
-                 </div>   
+				</div>	
 
 
 
 
-				<H2 class="w3-center" style="align:center; margin:auto">Theory</h2>				 
+				<H2 class="w3-center" style="align:center; margin:auto">Theory</h2>				
 				<div class="w3-row-padding w3-margin-top">
-					<!--TH-flight-->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
 								<header class="w3-container checklistheader">
 									<h4>In-Flight Safety and Emergency Procedures</h4>
 								</header>
-								<div class="check-item">
-									<span>1. Introduction to Rescue System</span>
+								<div class="check-item" data-info-html="The student learns about the purpose, location, and proper deployment of the rescue parachute in an emergency.">
+									<span>1. Introduction to Rescue System <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-flight-0" name="th-flight-0" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>2. Emergency Landing Techniques</span>
+								<div class="check-item" data-info-html="The student learns various techniques for performing a safe landing in emergency situations, such as landing in a small field or on difficult terrain. They will understand the strategies, techniques, and risks involved with landings on water, in trees, or on a hillside.">
+									<span>2. Emergency Landing Techniques <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-flight-1" name="th-flight-1" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>3. Downwind Landing</span>
+								<div class="check-item" data-info-html="The student learns how to safely land when the wind is coming from behind. While not recommended, it is a critical skill for an emergency situation.">
+									<span>3. Downwind Landing <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-flight-2" name="th-flight-2" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>4. Parachutal Stall</span>
+								<div class="check-item" data-info-html="The student learns to recognize and safely recover from a parachutal stall, a state where the wing loses forward speed but remains inflated.">
+									<span>4. Parachutal Stall <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-flight-3" name="th-flight-3" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>5. Spiral dive</span>
+								<div class="check-item" data-info-html="The student learns to recognize and safely recover from a spiral dive, a high-speed descent that can occur due to a steep turn.">
+									<span>5. Spiral dive <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-flight-4" name="th-flight-4" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-                        </div>
 					</div>
-					<!--TH-flight-->
-
-					<!--TH-core---->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+					</div>
+					
+					
+					<div class="w3-half">
+						<div class="w3-card w3-white w3-margin-bottom">
 								<header class="w3-container checklistheader">
 									<h4>Core Theory</h4>
 								</header>
-								<div class="check-item">
-									<span>1. Aerodynamics</span>
+								<div class="check-item" data-info-html="The student learns the fundamental principles of flight, including how air interacts with the paraglider wing to create lift and drag. They will understand the difference between a collapse and a stall, and know the theoretical background of how to avoid these critical flying disturbances.">
+									<span>1. Aerodynamics <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-core-0" name="th-core-0" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>2. Weather</span>
+								<div class="check-item" data-info-html="The student learns to read weather forecasts, understand atmospheric conditions, and identify flying hazards like turbulence, strong winds and typical weather situations in Switzerland.">
+									<span>2. Weather <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-core-1" name="th-core-1" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>3. Flying practice</span>
+								<div class="check-item" data-info-html="The student learns the best practices for safe and efficient flying, including flight planning and flying disturbances.">
+									<span>3. Flying practice <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-core-2" name="th-core-2" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>4. Legislation (Air-law and airspaces)</span>
+								<div class="check-item" data-info-html="The student learns the rules and regulations governing paragliding, including air-law and airspace classifications.">
+									<span>4. Legislation (Air-law and airspaces) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-core-3" name="th-core-3" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>5. Material Sciences</span>
+								<div class="check-item" data-info-html="The student learns about the materials used in paragliders, how they affect performance, and how to maintain them.">
+									<span>5. Material Sciences <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="th-core-4" name="th-core-4" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-                        </div>
 					</div>
-					<!--TH-core------>
-				</div>
+					</div>
+					</div>
 				
 				
 				
 				
 				<H2 class="w3-center" style="align:center; margin:auto">Altitude Flights</h2>				
 				<div class="w3-row-padding w3-margin-top">				
-					<!--HF-bas--->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+					
+
+
+					<div class="w3-half">
+						<div class="w3-card w3-white w3-margin-bottom">
 								<header class="w3-container checklistheader">
 									<h4>Basic Flight Maneuvers</h4>
 								</header>
-								<div class="check-item">
-									<span>1. Steering (positive)</span>
+								<div class="check-item" data-info-html="From the 'hands up' position, the student initiates a turn by shifting their weight in the desired direction. This is followed by a smooth and progressive pull on the 'inside' brake handle. The outside brake handle is then used to control the glider's speed and bank angle.">
+									<span>1. Steering (positive) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-0" name="hf-bas-0" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>2. Steering (negative)</span>
+								<div class="check-item" data-info-html="The student begins a turn from a 'slowed down' position (both hands are at shoulder-chest level). Using a significant amount of weight shift, the 'outside' brake is partially released, allowing the glider to turn in a flat, controlled manner. This is the preferred method for landing approaches to avoid dynamic turns close to the ground.">
+									<span>2. Steering (negative) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-1" name="hf-bas-1" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>3. Steering (weight shift)</span>
+								<div class="check-item" data-info-html="The student learns to steer the glider using only their body weight, without touching the brakes. This maneuver is used to perform 90-180° turns or even full circles in both directions when conditions allow.">
+									<span>3. Steering (weight shift) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-2" name="hf-bas-2" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>4. Landing (school approach)</span>
+								<div class="check-item" data-info-html="The student practices the standard landing approach (left or right, depending on the field), which involves a specific pattern to line up for landing:<br><br><b>1. Descending Area:</b> This is where you lose altitude and position yourself for the beginning of the landing pattern.<br><br><b>2. Downwind Leg:</b> Flying with a tailwind on the side of the landing field, moving towards the landing zone's leeward side.<br><br><b>3. Base Leg:</b> Flying crosswind. In stronger winds, you must compensate for drift by steering the glider appropriately relative to the wind direction.<br><br><b>4. Final Leg:</b> Flying straight to the desired landing area with your hands parallel. Small changes in direction can be made with weight shift, but no dramatic turns. At approximately one meter from the ground, you fully flare the glider by pulling both brakes down completely.">
+									<span>4. Landing (school approach) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-3" name="hf-bas-3" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>5. Big Ears (without speedbar)</span>
+								<div class="check-item" data-info-html="The student learns to perform a controlled descent by partially collapsing the wingtips ('Big Ears') without using the speedbar. To do this, keep your brakes on your wrists, then with your palms facing down, grab the outermost A lines on both sides and pull them down one by one. To exit the maneuver, simply release the A lines. If the ears do not pop back out, a single, short pump with the brake on the closed side will reinflate it.">
+									<span>5. Big Ears (without speedbar) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-4" name="hf-bas-4" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>6. Use of Acceleration System</span>
+								<div class="check-item" data-info-html="The student learns how to use the speedbar to increase the glider's forward speed.">
+									<span>6. Use of Acceleration System <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-5" name="hf-bas-5" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>7. Big Ears (with speedbar)</span>
+								<div class="check-item" data-info-html="The student learns to perform a controlled high-speed descent using both 'Big Ears' and the speedbar. The correct order is:<br><br><b>1.</b> Step on the speedbar.<br><b>2.</b> Close the ears one by one.<br><b>3.</b> Maintain full speed.<br><br>To exit the maneuver, reverse the process:<br><br><b>1.</b> Release the speedbar.<br><b>2.</b> Open the ears (with a quick brake pump if needed).<br><b>3.</b> Return to trim speed.">
+									<span>7. Big Ears (with speedbar) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-bas-6" name="hf-bas-6" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-                        </div>
 					</div>
-					<!--HF-bas---->		
-
-					<!--HF-adv-0--->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+					</div>
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
 								<header class="w3-container checklistheader">
 									<h4>Advanced Flight Maneuvers</h4>
 								</header>
-								<div class="check-item">
-									<span>1. Steering (back riser)</span>
+								<div class="check-item" data-info-html="The student learns to steer the glider using the rear risers. With your brakes on your wrists, grab the rear risers with your palms up and pull them slightly backward and down. <b>Danger:</b> Pulling too much can stall the glider. This maneuver should be practiced at a high altitude to get familiar with the precise amount of input required without causing an issue.">
+									<span>1. Steering (back riser) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-0" name="hf-adv-0" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>2. Landing (back riser)</span>
+								<div class="check-item" data-info-html="The student learns to perform a landing using the back risers. With your brakes on your wrists, you perform the entire landing approach using only weight shift and the rear risers. Approximately 50-60 cm from the ground, you begin the final flare with the rear risers.<br><br><b>Danger:</b> Pulling too hard at a higher altitude can cause a stall, so this maneuver requires precise control.">
+									<span>2. Landing (back riser) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-1" name="hf-adv-1" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>3. Rolling (Big Ears)</span>
+								<div class="check-item" data-info-html="The student learns to combine rolling maneuvers with 'Big Ears' to perform dynamic descents.<br><br><b>1.</b> Make the 'Big Ears' (without the speedbar).<br><b>2.</b> Start a turn by shifting your weight to one side.<br><b>3.</b> Once the glider begins to turn, progressively switch your weight to the other side. This will cause the glider to start 'rolling'.<br><b>4.</b> At the 'highest point' of the roll, switch your weight shift again.<br><br><b>Goal:</b> The student should become familiar with the rolling maneuver and learn the precise moment to switch their weight to achieve a smooth, dynamic roll. This technique can be used to lose altitude relatively quickly in turbulent air.">
+									<span>3. Rolling (Big Ears) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-2" name="hf-adv-2" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>4. Rolling</span>
+								<div class="check-item"  	data-info-html="The student learns how to perform a rolling maneuver to lose altitude.<br><br><b>Initiating the Roll:</b> The student initiates a turn using a combination of weight shift and inside braking. After the glider has turned approximately 45°, the student leans to the other side over the risers. The glider will begin to turn the other way, at which point the previously pulled brake can be released. As the glider reaches its lowest point, the student begins to pull the new 'inside' brake.<br><br><b>Correct Pattern:</b> Change your weight shift at the highest point of the turn and pull the brake at the lowest point.<br><br><b>Danger:</b> If the timing is not precise, the maneuver can become very dynamic, leading to a collapse on the outside part of the wing. Always use some slight braking on the outside brake to provide support. Pulling too much on the inside brake can cause a stall or a spin. In a school environment, we never practice this maneuver to the 'wingover' state; that is reserved for safety training over water.">
+									<span>4. Rolling <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-3" name="hf-adv-3" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>5. Pitching (Swiss style)</span>
+								<div class="check-item" data-info-html="The student learns a specific pitching technique (Swiss style) used to control the glider's forward and backward movements. The process is a repeated cycle of <b>slowing down</b> and <b>releasing</b>:<br><br><b>1. Slowing Down:</b> Slowly pull both brakes to carabiner level and hold for a few seconds until both the glider and pilot have slowed down.<br><b>2. Hands Up:</b> Quickly raise your hands. The glider will pitch forward.<br><b>3. Wait:</b> Wait for the glider to swing back above your head.<br><b>4. Pull:</b> Pull the brakes in parallel to support the return swing.<br><b>5. Hands Up:</b> Release the brakes and allow the glider to pitch forward again.<br><br><b>Exiting the Maneuver:</b> As the glider pitches forward and reaches its zenith, make a fast, determined brake input to stop the pitching. Then, slowly release the brakes to allow the glider and pilot to regain forward speed together.<br><br><b>Dangers:</b> Pulling the brakes too much (and holding them below the carabiners while the glider is behind you) could lead to a full stall. When the glider is pitching forward dynamically, a front collapse could occur. To avoid this, gently pull the brakes to 'support' the wing as it shoots forward without exiting the maneuver.">
+									<span>5. Pitching (Swiss style) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-4" name="hf-adv-4" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>6. Side collapse (lvl1)</span>
+								<div class="check-item" data-info-html="The student simulates a side collapse by pulling down all three A lines on one side and then releasing them immediately. The purpose is to observe the feeling of the collapse, the way the glider reopens, the forces on their body, and the amount of turn that occurs.">
+									<span>6. Side collapse (lvl1) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-5" name="hf-adv-5" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>7. Side collapse (lvl2)</span>
+								<div class="check-item"  	data-info-html="The student simulates a side collapse in the same way as in Level 1 but learns to stop the resulting rotation with a determined pull on the outside brake. After the rotation has been successfully stopped, the brake should be released.">
+									<span>7. Side collapse (lvl2) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-6" name="hf-adv-6" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>8. Side collapse (lvl3)</span>
+								<div class="check-item" data-info-html="The student learns to handle and recover from a large side collapse. The process is:<br><br><b>1. Collapse:</b> Induce the side collapse and hold the A lines down.<br><b>2. Stop Rotation:</b> Stop the resulting rotation with a determined pull on the outside brake.<br><b>3. Find the Sweet Spot:</b> Slowly release the outside brake until the glider begins to fly straight again. This teaches the student how to maintain a stable flight path with a collapsed wing.">
+									<span>8. Side collapse (lvl3) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-7" name="hf-adv-7" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>9. Side collapse (lvl4)</span>
+								<div class="check-item" data-info-html="The student performs the Level 3 collapse and then, by combining weight shift with a gentle pull on the outside brake, executes a 90-360° turn to the open side (depending on conditions). After the maneuver, they stabilize their flight direction by returning to the 'sweet spot.' If this is successful, the student can then attempt a turn to the collapsed side by slowly releasing the outside brake and leaning into the collapsed side with weight shift. <b>Important:</b> If the glider begins to turn too dynamically, slow down the turn or stop the rotation completely with the outside brake.">
+									<span>9. Side collapse (lvl4) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-8" name="hf-adv-8" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>10. Front collapse</span>
+								<div class="check-item" data-info-html="The student learns to handle and recover from a front collapse, where the entire leading edge of the wing folds in. The steps are:<br><br><b>1.</b> Keep your brakes on your wrists.<br><b>2.</b> With your palms down, grab all of the A lines.<br><b>3.</b> Pull down all of the A lines and release them immediately.<br><br><b>Danger:</b> After a front collapse, the glider may enter a 'horse-shoe' configuration and fail to reopen. A single, fast pump on the brakes can help to exit this configuration.">
+									<span>10. Front collapse <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-9" name="hf-adv-9" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>11. Flying in the Safe Speed Range</span>
+								<div class="check-item" data-info-html="The student learns to maintain a safe flying speed to avoid stalls. This is achieved in a two-step process:<br><br><b>1. Slowing Down:</b> The student slows the glider down by pulling both brakes to the carabiner level.<br><br><b>2. Further Slowing:</b> Following the instructor's commands, the student slows the glider even more by pulling the brakes a few more centimeters. To exit the maneuver, slowly raise your hands. <b>Danger:</b> Pulling too much could cause the glider to stall.">
+									<span>11. Flying in the Safe Speed Range <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-10" name="hf-adv-10" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>12. Tight circles</span>
+								<div class="check-item" data-info-html="The student learns to perform tight, controlled circles, a maneuver used for thermalling and staying in updrafts. The process is:<br><br><b>1.</b> Initiate a turn with a combination of weight shift and brake input.<br><b>2.</b> Build speed and energy as the glider's bank angle increases.<br><b>3.</b> Control the speed throughout the maneuver using the outside brake.<br><b>4.</b> Learn how to exit the maneuver smoothly, getting rid of the stored energy.<br><br><b>Danger:</b> If not performed correctly, the glider could enter a 'nose-down spiral,' which can put high G-forces on the pilot.">
+									<span>12. Tight circles <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-11" name="hf-adv-11" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>13. Quick Direction Changes</span>
+								<div class="check-item" data-info-html="The student learns to make rapid, controlled turns and direction changes, without spinning the glider.">
+									<span>13. Quick Direction Changes <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-12" name="hf-adv-12" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>14. Circle Left, Circle Right (Figure Eight)</span>
+								<div class="check-item" data-info-html="The student learns to perform a figure-eight pattern, combining left and right circles.">
+									<span>14. Circle Left, Circle Right (Figure Eight) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-13" name="hf-adv-13" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>15. Flying with instruments</span>
+								<div class="check-item" data-info-html="The student learns how to use flying instruments like a variometer to optimize their flight and locate thermals.">
+									<span>15. Flying with instruments <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-14" name="hf-adv-14" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>16. Soaring / Thermalling (30+ minutes)</span>
+								<div class="check-item" data-info-html="The student practices soaring in updrafts and thermals to stay aloft for extended periods. This maneuver is demonstrated by flying for more than 30 minutes.">
+									<span>16. Soaring / Thermalling (30+ minutes) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-15" name="hf-adv-15" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>17. Landing (popo)</span>
+								<div class="check-item" data-info-html="The student practices an emergency landing, landing on the protector (preferably a foam one). The steps are:<br><br><b>1. Legs up</b> At about one meter from the ground, get your legs up.<br><b>2. Brake</b> Pull the brakes completely to get rid off the energy of the glider while touch down"">
+									<span>17. Landing (popo) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="hf-adv-16" name="hf-adv-16" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-                        </div>
 					</div>
-					<!--HF-adv--->						
-				</div>
+					</div>
+					</div>
 				
 				
 				
@@ -1174,91 +1209,88 @@
 				<H2 class="w3-center" style="align:center; margin:auto">Exam Preparation</h2>				
 				<div class="w3-row-padding w3-margin-top">				
 					
-					<!--ex--->
-                    <div class="w3-half">
-                        <div class="w3-card w3-white w3-margin-bottom">
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
 								<header class="w3-container checklistheader">
 									<h4>Examination Tasks </span></h4>
 								</header>
-								<div class="check-item">
-									<span>1. Forward start</span>
+								<div class="check-item" data-info-html="The student demonstrates a successful three phase forward launch, a key skill for the exam.">
+									<span>1. Forward start <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-0" name="ex-0" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>2. Backward start</span>
+								<div class="check-item" data-info-html="The student demonstrates a successful three phase backward launch, which is crucial for stronger wind conditions.">
+									<span>2. Backward start <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-1" name="ex-1" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>3. Two right circles (720°, less than 20s), PP1</span>
+								<div class="check-item" data-info-html="The student performs two full right circles (720°) in less than 20 seconds, demonstrating control and efficiency. PP1 stands for Prüfungs Program 1.">
+									<span>3. Two right circles (720°, less than 20s), PP1 <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-2" name="ex-2" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>4. Eight (360° left, 360° right, less than 25s),PP2</span>
+								<div class="check-item" data-info-html="The student performs a figure-eight maneuver with one left and one right turn in under 25 seconds. PP2 stands for Prüfungs Program 2.">
+									<span>4. Eight (360° left, 360° right, less than 25s),PP2 <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-3" name="ex-3" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>5. Side Collapse (level3)</span>
+								<div class="check-item" data-info-html="The student demonstrates the ability to handle a side collapse, stopping the rotation, stabilizing the flying direction and recover from it safely.">
+									<span>5. Side Collapse (level3) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-4" name="ex-4" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>6. Big Ears (90° left, 90° right)</span>
+								<div class="check-item" data-info-html="The student demonstrates the 'Big Ears' maneuver with directional control, performing a 90° left and a 90° right turn.">
+									<span>6. Big Ears (90° left, 90° right) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-5" name="ex-5" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>7. Big Ears (with full speed)</span>
+								<div class="check-item" data-info-html="The student demonstrates the 'Big Ears' maneuver while using the speedbar, a more advanced descent technique.">
+									<span>7. Big Ears (with full speed) <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-6" name="ex-6" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>8. Rolling</span>
+								<div class="check-item" data-info-html="The student demonstrates a controlled rolling maneuver.">
+									<span>8. Rolling <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-7" name="ex-7" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-								<div class="check-item">
-									<span>9. Pitching</span>
+								<div class="check-item" data-info-html="The student demonstrates a controlled pitching maneuver with a perfect exit.">
+									<span>9. Pitching <i class="info-icon fa fa-info-circle"></i></span>
 									<label class="switch">
 										<input type="checkbox" id="ex-8" name="ex-8" value="TRUE" />
 										<span class="slider"></span>
 									</label>
 								</div>
-                        </div>
 					</div>
-					<!--ex--->						
-
-                 
-                </div>
+					</div>
+					
+					</div>
 				
 				
 				
-                <div style="padding: 16px; text-align: center;">
-                    <button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
-                </div>
-            </form>
-        </div>
+			<div style="padding: 16px; text-align: center;">
+				<button class="w3-button w3-round" style="background-color:#805ad5" type="submit" id="submit-button">Save Checklist</button>
+			</div>
+</form>
+</div>
         
-    </div>
+</div>
     
     <!-- NEW: Modal and Loading Overlays -->
 <div id="modal-overlay" class="modal-overlay">
@@ -1861,17 +1893,56 @@ function createGauge(percentage) {
 		
 		
         updateAllCompletions();
-        document.querySelectorAll('.check-item').forEach(item => {
-            item.addEventListener("click", function (event) {
-                if (event.target.tagName.toLowerCase() !== 'input' && event.target.className.toLowerCase() !== 'slider') {
-                    const checkbox = this.querySelector('input[type="checkbox"]');
-                    if (checkbox) {
-                        checkbox.checked = !checkbox.checked;
-                        checkbox.dispatchEvent(new Event("change"));
-                    }
-                }
-            });
-        });
+		
+		
+document.querySelectorAll('.check-item').forEach(item => {
+    item.addEventListener("click", function (event) {
+        // Exclude the input, slider, AND the new info-icon from toggling the checkbox.
+        if (event.target.tagName.toLowerCase() !== 'input' && event.target.className.toLowerCase() !== 'slider' && !event.target.classList.contains('info-icon')) {
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event("change"));
+            }
+        }
+    });
+});
+
+// Add a new event listener for the info icon
+document.querySelectorAll('.info-icon').forEach(icon => {
+    icon.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const parentCheckItem = this.closest('.check-item');
+        if (parentCheckItem) {
+            const infoText = parentCheckItem.getAttribute('data-info-html'); // Változás itt: data-info-html
+            if (infoText) {
+                const modal = document.getElementById('infoModal');
+                const modalBody = document.getElementById('modalBody');
+                const modalTitle = document.getElementById('modalTitle');
+
+                modalTitle.textContent = parentCheckItem.querySelector('span').textContent.replace(/[\d.]+\s*/, '').trim();
+                modalBody.innerHTML = infoText; // Változás itt: innerHTML
+
+                modal.style.display = "block";
+            }
+        }
+    });
+});
+
+// Modal bezárása, ha a felhasználó a bezárás gombra kattint
+document.querySelector('.close-button').addEventListener('click', function() {
+    document.getElementById('infoModal').style.display = 'none';
+});
+
+// Modal bezárása, ha a felhasználó a modal ablakon kívülre kattint
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('infoModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+		
+		
         
         // Változás 6: Az állapotváltó beállítása a meglévő eseménykezelőben
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
@@ -1896,5 +1967,14 @@ function createGauge(percentage) {
         calculateAltitudeDifference(addflightTakeoffSelect, addflightLandingSelect, addflightAltitudeDifferenceSpan);
     });
 </script>
+
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalBody"></p>
+    </div>
+</div>
 </body>
 </html>
