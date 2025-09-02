@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FLYwithMIKI Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background-color: #2d3748;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        .student-card {
+            margin-bottom: 1.5rem;
+        }
+        .w3-card-2 {
+            background-color: #4a5568;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #2d3748;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 16px;
+            margin: 0.5rem 0 1rem 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #48bb78; /* zöld */
+            transition: width 0.4s ease;
+        }
+        .sort-buttons {
+            margin-bottom: 1rem;
+        }
+        .sort-buttons button {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="w3-text-white">Admin Dashboard</h1>
+        <p class="w3-opacity">Student Progress Overview</p>
+
+        <div class="sort-buttons">
+            <button class="w3-button w3-blue" onclick="renderStudents('abc')">Sort by Name (ABC)</button>
+            <button class="w3-button w3-green" onclick="renderStudents('flights')">Sort by Total Flights</button>
+        </div>
+
+        <div id="student-container" class="w3-row-padding w3-margin-top"></div>
+    </div>
+
+<script>
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec';
+    let studentsData = []; // itt tároljuk a betöltött diákokat
+
+    async function fetchStudentData() {
+        const container = document.getElementById('student-container');
+        container.innerHTML = 'Loading student data...';
+
+        try {
+            const response = await fetch(WEB_APP_URL + '?admin=true'); // fontos: admin=true
+            const data = await response.json();
+
+            if (data.status === 'success' && data.students.length > 0) {
+                // kiszűrjük az üres neveket
+                studentsData = data.students.filter(s => s.name && s.name.trim() !== "");
+                // alapértelmezett sorrend: ABC
+                renderStudents('abc');
+            } else {
+                container.innerHTML = 'No student data found.';
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            container.innerHTML = 'Failed to load data. Please try again later.';
+        }
+    }
+
+    function renderStudents(sortBy) {
+        const container = document.getElementById('student-container');
+        container.innerHTML = '';
+
+        let sortedStudents = [...studentsData];
+
+        if (sortBy === 'abc') {
+            sortedStudents.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
+        } else if (sortBy === 'flights') {
+            sortedStudents.sort((a, b) => (parseInt(b.totalstart) || 0) - (parseInt(a.totalstart) || 0));
+        }
+
+        sortedStudents.forEach(student => {
+            const name = student.name.trim();
+            const progress = parseFloat(student.p_chk) || 0;
+            const progressPercent = Math.round(progress * 100);
+
+            const totalFlights = student.totalstart || '0';
+            const takeoffs = student.takeoffs || '0';
+            const landings = student.landings || '0';
+
+            const studentCard = document.createElement('div');
+            studentCard.className = 'w3-third student-card';
+
+            studentCard.innerHTML = `
+                <div class="w3-card-2 w3-container">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h3 class="w3-text-white" style="margin: 0;">${name}</h3>
+                        <span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
+                    </div>
+
+                    <p><strong>Checklist Progress:</strong> ${progressPercent}%</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: ${progressPercent}%;"></div>
+                    </div>
+                    <p><strong>Takeoffs:</strong> ${takeoffs}</p>
+                    <p><strong>Landings:</strong> ${landings}</p>
+                </div>
+            `;
+            container.appendChild(studentCard);
+        });
+    }
+
+    window.onload = fetchStudentData;
+</script>
+</body>
+</html>
