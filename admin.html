@@ -52,6 +52,8 @@
 <body>
 
     <div class="container">
+	    <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="" alt="logoc" style="max-width:500px; width: 100%; filter: drop-shadow(7px 7px 7px white); display: block;">
+		
         <h1 class="w3-text-white">Admin Dashboard</h1>
         <p class="w3-opacity">Student Progress Overview</p>
 
@@ -124,6 +126,11 @@
                     <div class="progress-bar-container">
                         <div class="progress-bar" style="width: ${progressPercent}%;"></div>
                     </div>
+					
+					<p><strong>Total flights</strong> ${totalFlights}</p>
+						<div class="progress-bar-container">
+							<div class="progress-bar" style="width: ${Math.min((totalFlights / 50) * 100, 100)}%;"></div>
+						</div>
                     <p><strong>Takeoffs:</strong> ${takeoffs}</p>
                     <p><strong>Landings:</strong> ${landings}</p>
                 </div>
