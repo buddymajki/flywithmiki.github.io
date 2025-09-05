@@ -58,8 +58,8 @@
         <p class="w3-opacity">Student Progress Overview</p>
 
         <div class="sort-buttons">
-            <button class="w3-button w3-blue" onclick="renderStudents('abc')">Sort by Name (ABC)</button>
-            <button class="w3-button w3-green" onclick="renderStudents('flights')">Sort by Total Flights</button>
+            <button id="sort-name-btn" class="w3-button w3-blue" onclick="setSort('abc')">Sort by Name (ABC)</button>
+            <button id="sort-flights-btn" class="w3-button w3-green" onclick="setSort('flights')">Sort by Total Flights</button>
         </div>
 
         <div id="student-container" class="w3-row-padding w3-margin-top"></div>
@@ -68,6 +68,12 @@
 <script>
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwo2_GUywCuJhWrT4WlFJAEOZqL2klbgBRWCitO_RZ1Wz_-vAteDC4z9g3dbiBCWkLp/exec';
     let studentsData = []; // itt tároljuk a betöltött diákokat
+
+    // NEW: State object to track the current sorting key and order
+    let currentSort = {
+        key: 'abc',   // 'abc' or 'flights'
+        order: 'asc'  // 'asc' or 'desc'
+    };
 
     async function fetchStudentData() {
         const container = document.getElementById('student-container');
@@ -78,10 +84,9 @@
             const data = await response.json();
 
             if (data.status === 'success' && data.students.length > 0) {
-                // kiszűrjük az üres neveket
                 studentsData = data.students.filter(s => s.name && s.name.trim() !== "");
-                // alapértelmezett sorrend: ABC
-                renderStudents('abc');
+                // MODIFIED: Initial render call now uses the state management function
+                renderStudents();
             } else {
                 container.innerHTML = 'No student data found.';
             }
@@ -90,18 +95,65 @@
             container.innerHTML = 'Failed to load data. Please try again later.';
         }
     }
+    
+    // NEW: Function to set the sorting state and trigger a re-render
+    function setSort(key) {
+        if (currentSort.key === key) {
+            // If the same sort key is clicked, toggle the order
+            currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+        } else {
+            // If a new sort key is clicked, set it and apply a default order
+            currentSort.key = key;
+            currentSort.order = (key === 'flights') ? 'desc' : 'asc'; // Flights default to descending
+        }
+        renderStudents();
+    }
 
-    function renderStudents(sortBy) {
+    // NEW: Function to update the button text with sort indicators
+        function updateSortButtons() {
+            const nameBtn = document.getElementById('sort-name-btn');
+            const flightsBtn = document.getElementById('sort-flights-btn');
+
+            // Reset button texts to their default state
+            nameBtn.textContent = 'Sort by Name (ABC)';
+            flightsBtn.textContent = 'Sort by Total Flights';
+
+            // Add indicator to the currently active sort button
+            if (currentSort.key === 'abc') {
+                // A-Z is ascending, Z-A is descending
+                const arrow = currentSort.order === 'asc' ? ' ▲' : ' ▼'; 
+                nameBtn.textContent += arrow;
+            } else if (currentSort.key === 'flights') {
+                // Low to high is ascending, high to low is descending
+                const arrow = currentSort.order === 'asc' ? ' ▲' : ' ▼';
+                flightsBtn.textContent += arrow;
+            }
+        }
+
+    // MODIFIED: The render function now uses the global 'currentSort' state object
+    function renderStudents() {
         const container = document.getElementById('student-container');
         container.innerHTML = '';
 
         let sortedStudents = [...studentsData];
+        const { key, order } = currentSort; // Use state for sorting
 
-        if (sortBy === 'abc') {
+        if (key === 'abc') {
             sortedStudents.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
-        } else if (sortBy === 'flights') {
-            sortedStudents.sort((a, b) => (parseInt(b.totalstart) || 0) - (parseInt(a.totalstart) || 0));
+            if (order === 'desc') {
+                sortedStudents.reverse();
+            }
+        } else if (key === 'flights') {
+            sortedStudents.sort((a, b) => {
+                const flightsA = parseInt(a.totalstart) || 0;
+                const flightsB = parseInt(b.totalstart) || 0;
+                // The comparison logic now depends on the 'order'
+                return order === 'asc' ? flightsA - flightsB : flightsB - flightsA;
+            });
         }
+        
+        // After sorting, update the buttons to reflect the current state
+        updateSortButtons();
 
         sortedStudents.forEach(student => {
             const name = student.name.trim();
