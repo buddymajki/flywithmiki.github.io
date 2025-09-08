@@ -257,6 +257,7 @@
             flex-direction: column;
             padding: 16px;
             border-bottom: 1px solid #4a5568;
+            position: relative;
         }
 
         .flight-entry p {
@@ -274,6 +275,87 @@
             font-size: 0.9em;
             color: #a0aec0;
         }
+
+
+
+
+
+
+
+		/* Button wrapper  ez rajzolja ki a delete és a modify gombot a flight book részen*/
+		.flight-button-group {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		/* Modify button styles */
+		.flight-modify-button {
+			background-color: #3182ce;   /* kék */
+			color: white;
+			border: none;
+			border-radius: 6px;
+			padding: 8px 12px;
+			font-size: 0.85em;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.2s ease;
+		}
+
+		.flight-modify-button:hover {
+			background-color: #2b6cb0;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 8px rgba(49, 130, 206, 0.3);
+		}
+
+		.flight-modify-button:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(49, 130, 206, 0.3);
+		}
+
+		.flight-modify-button:disabled {
+			background-color: #a0aec0;
+			cursor: not-allowed;
+			transform: none;
+			box-shadow: none;
+		}
+
+		/* Delete button styles */
+		.flight-delete-button {
+			background-color: #e53e3e;   /* piros */
+			color: white;
+			border: none;
+			border-radius: 6px;
+			padding: 8px 12px;
+			font-size: 0.85em;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.2s ease;
+		}
+
+		.flight-delete-button:hover {
+			background-color: #c53030;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3);
+		}
+
+		.flight-delete-button:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(229, 62, 62, 0.3);
+		}
+
+		.flight-delete-button:disabled {
+			background-color: #a0aec0;
+			cursor: not-allowed;
+			transform: none;
+			box-shadow: none;
+		}
+
+
+
         
         /* NEW: Styles for the modal popup and loading overlay */
         .modal-overlay, .loading-overlay, #save-flight-loading-overlay {
@@ -731,6 +813,104 @@
             </div>
         </div>
         
+ 
+ 
+ 
+ 
+
+<!-- Modify Flight Modal -->
+<div id="modifyflight-modal" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-round-large">
+    <div class="w3-container">
+      <span onclick="document.getElementById('modifyflight-modal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h3>Modify Flight</h3>
+      <form id="modifyflight-form" method="post">
+        <input type="hidden" id="modifyflight-email" name="email">
+        <input type="hidden" id="modifyflight-timestamp" name="timestamp">
+
+        <p>
+          <label>Date:</label>
+          <input class="w3-input w3-border w3-round-large" type="date" id="modifyflight-date" name="flight-date" required>
+        </p>
+        <p>
+          <label>Takeoff:</label>
+          <select class="w3-select w3-border w3-round-large" id="modifyflight-takeoff" name="takeoff-location" required>
+            <option value="" disabled>Select a takeoff location</option>
+                                    <option value="Büelen (1089m)">Büelen (1089m)</option>
+                                    <option value="Brändlen-South (1208m)">Brändlen-South (1208m)</option>
+                                    <option value="Brändlen-North (1228m)">Brändlen-North (1228m)</option>
+                                    <option value="Crap Sogn Gion NO (2200m)">Crap Sogn Gion NO (2200m)</option>
+                                    <option value="Diegisbalm (1103m)">Diegisbalm (1103m)</option>
+                                    <option value="Engelberg - Brunnihütte (1868m)">Engelberg - Brunnihütte (1868m)</option>
+                                    <option value="Engelberg - Tümpfeli (1803m)">Engelberg - Tümpfeli (1803m)</option>
+                                    <option value="Emmetten - Niderbauen (1572m)">Emmetten - Niderbauen (1572m)</option>
+                                    <option value="Rigi - Staffelhöhe (1546m)">Rigi - Staffelhöhe (1546m)</option>
+                                    <option value="Rigi - Seebodenalp (1027m)">Rigi - Seebodenalp (1027m)</option>
+									<option value="Rigi - Scheidegg (1641m)">Rigi - Scheidegg (1641m)</option>
+									<option value="Rigi - Kulm (1768m)">Rigi - Kulm (1768m)</option>
+									<option value="Rigi - Kulm SW (1737m)">Rigi - Kulm SW (1737m)</option>
+                                    <option value="Rotenflue - W (1544m)">Rotenflue - W (1544m)</option>
+									<option value="Rotenflue - Upper (1543m)">Rotenflue - Upper (1543m)</option>
+									<option value="Rotenflue -  Lower (1517m)">Rotenflue -  Lower (1517m)</option>
+                                    <option value="Urmiberg (1111m)">Urmiberg (1111m)</option>
+									<option value="Zugerberg (938m)">Zugerberg (938m)</option>           
+          </select>
+        </p>
+        <p>
+          <label>Landing:</label>
+          <select class="w3-select w3-border w3-round-large" id="modifyflight-landing" name="landing-location" required>
+            <option value="" disabled>Select a landing location</option>
+                                    <option value="Brunnen (434m)">Brunnen (434m)</option>
+                                    <option value="Büelen - Neufallenbach (545m)">Büelen - Neufallenbach (545m)</option>
+									<option value="Diegisbalm (Nechimatt) (540m)">Diegisbalm (Nechimatt) (540m)</option>
+                                    <option value="Emmetten (788m)">Emmetten (788m)</option>
+                                    <option value="Engelberg (1008m)">Engelberg (1008m)</option>
+									<option value="Falera (1256m)">Falera (1256m)</option>
+									<option value="Goldau (479m)">Goldau (479m)</option>
+                                    <option value="Küssnacht (461m)">Küssnacht (461m)</option>
+									<option value="Rotenflue - Rickenbach (586m)">Rotenflue - Rickenbach (586m)</option>
+									<option value="Staderas (1110m)">Staderas (1110m)</option>
+                                    <option value="Wolfenschiessen (514m)">Wolfenschiessen (514m)</option>
+									<option value="Zug - Bröchli (463m)">Zug - Bröchli (463m)</option>
+          </select>
+        </p>
+        <p>
+          <label>Altitude Difference:</label>
+          <span id="modifyflight-altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
+        </p>
+        <p>
+          <label>Flight Time:</label>
+          <select class="w3-select w3-border w3-round-large" id="modifyflight-time" name="flight-time" required>
+            <option value="" disabled>Select flight time</option>
+            <option value="5">5 minutes</option>
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="20">20 minutes</option>
+            <option value="25">25 minutes</option>
+            <option value="30+">30+ minutes</option>
+          </select>
+        </p>
+        <p>
+          <label>Comments:</label>
+          <textarea class="w3-input w3-border w3-round-large" id="modifyflight-comments" name="comments" rows="3"></textarea>
+        </p>
+        <p>
+          <button type="submit" style="background-color:#3182ce" class="w3-button w3-round-large w3-margin-bottom">Save Changes</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
@@ -1586,6 +1766,7 @@ async function exportFlightBookToPDF() {
                     pdf.text(data, xPos, yPosition);
                     xPos += colWidths[i];
                 });
+               
                 
                 yPosition += 20;
                 
@@ -1792,6 +1973,178 @@ function createGauge(percentage) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function formatDateForInput(dateString) {
+    if (!dateString) return "";
+    return dateString.split("T")[0]; 
+}
+
+
+
+
+
+
+// --- MODIFY FLIGHT funkció ---
+// Event delegation: Modify button click
+document.getElementById('flight-history-list').addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('flight-modify-button')) {
+        const email = e.target.dataset.email;
+        const timestamp = e.target.dataset.timestamp;
+
+        const listItem = e.target.closest('li');
+        const routeText = listItem.querySelector('.flight-route').textContent;
+        const detailsElems = listItem.querySelectorAll('.flight-details');
+
+        const flight = {
+            email,
+            timestamp,
+            // Date, Time, Altitude
+            date: detailsElems[0].textContent.match(/Date:\s*([^|]+)/)[1].trim(),
+            time: detailsElems[0].textContent.match(/Time:\s*([^|]+)/)[1].replace('minutes','').trim(),
+            altitude: detailsElems[0].textContent.match(/Altitude:\s*(.*)$/)[1].trim(),
+            takeoff: routeText.split('. ')[1].split(' → ')[0],
+            landing: routeText.split(' → ')[1],
+            comments: detailsElems[1].textContent.replace('Comments:','').trim()
+        };
+
+        // --- Dátum átalakítása YYYY-MM-DD formátumra ---
+        const dateParts = flight.date.split('.'); // ["08","09","2025"]
+        const isoDate = `${dateParts[2]}-${dateParts[1].padStart(2,'0')}-${dateParts[0].padStart(2,'0')}`;
+
+        // --- Betöltjük a modal formba ---
+        document.getElementById('modifyflight-email').value = flight.email;
+        document.getElementById('modifyflight-timestamp').value = flight.timestamp;
+        document.getElementById('modifyflight-date').value = isoDate;
+        document.getElementById('modifyflight-takeoff').value = flight.takeoff;
+        document.getElementById('modifyflight-landing').value = flight.landing;
+        document.getElementById('modifyflight-time').value = flight.time;
+        document.getElementById('modifyflight-comments').value = flight.comments;
+        document.getElementById('modifyflight-altitude-difference').innerText = flight.altitude;
+
+        // Megnyitjuk a modalt
+        document.getElementById('modifyflight-modal').style.display = 'block';
+    }
+});
+
+// Save módosított flight
+// A TELJES, JAVÍTOTT BLOKK
+document.getElementById('modifyflight-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('modifyflight-email').value;
+    const timestamp = document.getElementById('modifyflight-timestamp').value;
+
+    const updatedFlight = {
+        action: 'update', // fontos, hogy a backend update ágat hívja
+        email,
+        timestamp,
+        flightDate: document.getElementById('modifyflight-date').value,
+        takeoffLocation: document.getElementById('modifyflight-takeoff').value,
+        landingLocation: document.getElementById('modifyflight-landing').value,
+        flightTime: document.getElementById('modifyflight-time').value,
+        altitudeDifference: document.getElementById('modifyflight-altitude-difference').innerText,
+        comments: document.getElementById('modifyflight-comments').value,
+    };
+
+    saveFlightLoadingOverlay.style.display = 'flex'; // Töltőképernyő megjelenítése
+
+    fetch(scriptURL + '?sheet=Sheet2', {
+        redirect: "follow",
+        method: "POST",
+        body: JSON.stringify(updatedFlight),
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+        },
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            // A modal elrejtése
+            document.getElementById('modifyflight-modal').style.display = 'none';
+
+            // A repülési adatok frissítése a háttérben
+            const userEmail = emailInput.value.trim();
+            return fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet2`);
+        } else {
+            throw new Error(data.message || 'Failed to update flight.');
+        }
+    })
+    .then(response => response.json())
+    .then(flightData => {
+        if (flightData && flightData.status === "success" && flightData.flights) {
+            updateFlightSummary(flightData.flights);
+        }
+    })
+    .catch(err => {
+        console.error('Error updating flight:', err);
+        alert('Error: ' + err.message);
+    })
+    .finally(() => {
+        saveFlightLoadingOverlay.style.display = 'none'; // Töltőképernyő elrejtése
+    });
+}); // <-- EZEK A HIÁNYZÓ LEZÁRÓ KARAKTEREK
+
+
+
+
+
+
+// NEW: Delete flight function
+async function deleteFlight(email, timestamp) {
+    try {
+        const deleteData = {
+            action: 'delete',
+            email: email,
+            timestamp: timestamp
+        };
+
+        const response = await fetch(`${scriptURL}?sheet=Sheet2`, {
+            redirect: "follow",
+            method: "POST",
+            body: JSON.stringify(deleteData),
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+            },
+        });
+
+        const result = await response.json();
+        
+        if (result.status === "success") {
+            // Refresh flight data
+            const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(email)}&sheet=Sheet2`);
+            const flightData = await flightResponse.json();
+            
+            if (flightData && flightData.status === "success" && flightData.flights) {
+                updateFlightSummary(flightData.flights);
+            }
+            
+            // Update gauge
+            fetchGaugeData(email);
+            
+            return true;
+        } else {
+            throw new Error(result.message || "Failed to delete flight");
+        }
+    } catch (error) {
+        console.error("Error deleting flight:", error);
+        alert("Error deleting flight: " + error.message);
+        return false;
+    }
+}
     
     function updateCompletion(cardElement) {
         const checkboxes = cardElement.querySelectorAll('input[type="checkbox"]');
@@ -1904,7 +2257,7 @@ function createGauge(percentage) {
 
         if (sortedFlights && sortedFlights.length > 0) {
             sortedFlights.forEach((flight, index) => {
-                const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
+                const [email, date, takeoff, landing, time, altitudeDifference, comments, timestamp] = flight;
                 const flightNumber = totalFlights - index;
                 let formattedDate = date;
                 if (date) {
@@ -1939,11 +2292,53 @@ function createGauge(percentage) {
                 const listItem = document.createElement('li');
                 listItem.className = 'w3-padding-small w3-border-bottom flight-entry';
                 listItem.innerHTML = `
+					<div class="flight-button-group">
+						<button class="flight-modify-button" 
+								data-email="${email}" 
+								data-timestamp="${timestamp}" 
+								title="Modify this flight">
+							Modify
+						</button>
+						<button class="flight-delete-button" 
+								data-email="${email}" 
+								data-timestamp="${timestamp}" 
+								title="Delete this flight">
+							Delete
+						</button>
+					</div>
                     <p class="flight-route">${flightNumber}. ${takeoff} &rarr; ${landing}</p>
                     <p class="flight-details"><strong>Date:</strong> ${formattedDate} | <strong>Time:</strong> ${time} minutes | <strong>Altitude:</strong> ${altitudeDifference}</p>
                     <p class="flight-details"><strong>Comments:</strong> ${comments}</p>
                 `;
                 flightHistoryList.appendChild(listItem);
+            });
+
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.flight-delete-button').forEach(button => {
+                button.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const email = this.getAttribute('data-email');
+                    const timestamp = this.getAttribute('data-timestamp');
+                    
+                    // Show confirmation dialog
+                    const confirmed = confirm('Are you sure you want to delete this flight? This action cannot be undone.');
+                    
+                    if (confirmed) {
+                        // Disable button during deletion
+                        this.disabled = true;
+                        this.textContent = 'Deleting...';
+                        
+                        const success = await deleteFlight(email, timestamp);
+                        
+                        if (!success) {
+                            // Re-enable button if deletion failed
+                            this.disabled = false;
+                            this.textContent = 'Delete';
+                        }
+                    }
+                });
             });
         }
         totalAirTimeSummary.textContent = formatMinutesToHoursAndMinutes(totalTime);
@@ -2222,5 +2617,11 @@ window.addEventListener('click', function(event) {
         <p id="modalBody"></p>
     </div>
 </div>
+
+
+
+
+
+
 </body>
 </html>
