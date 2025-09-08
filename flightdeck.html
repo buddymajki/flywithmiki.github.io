@@ -281,17 +281,38 @@
 
 
 
+/* A listItem (vagy az új .list-item-content) konténer */
+.listItem {
+    display: flex; /* Vagy grid */
+    align-items: center; /* Függőlegesen középre igazítás */
+    justify-content: space-between; /* Széthúzza a tartalmat a két szélre */
+    padding: 16px;
+    position: relative; /* Fontos! Ha más abszolút elemek vannak */
+    /* Egyéb stílusok a lista elemhez */
+}
 
-		/* Button wrapper  ez rajzolja ki a delete és a modify gombot a flight book részen*/
-		.flight-button-group {
-			position: absolute;
-			top: 16px;
-			right: 16px;
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-		}
+/* Kis képernyőkre vonatkozó elrendezés (pl. 768px alatt) */
+@media (max-width: 768px) {
+    .listItem {
+        flex-direction: column; /* Egymás alá kerülnek az elemek */
+        align-items: flex-start; /* Balra igazítás */
+    }
+    .flight-button-group {
+        /* Alapértelmezett pozicionálást szüntessük meg */
+        position: static;
+        margin-top: 16px; /* Helyet hagy a szövegek alatt */
+    }
+}
 
+/* Vagy egy másik elrendezési opció, ahol a gombok a szövegek alá kerülnek
+   mindig, de mégis egy sorban a gombok */
+.flight-button-group {
+    /* Módosítsd a flexbox irányát, ha a gombokat egymás mellé akarod */
+    display: flex;
+    flex-direction: row; /* Vagy column, ha egymás alá akarod a gombokat */
+    gap: 8px;
+    margin-top: 12px; /* A gombokat elválasztja a fölötte lévő szövegektől */
+}
 		/* Modify button styles */
 		.flight-modify-button {
 			background-color: #3182ce;   /* kék */
@@ -2292,23 +2313,27 @@ async function deleteFlight(email, timestamp) {
                 const listItem = document.createElement('li');
                 listItem.className = 'w3-padding-small w3-border-bottom flight-entry';
                 listItem.innerHTML = `
-					<div class="flight-button-group">
-						<button class="flight-modify-button" 
-								data-email="${email}" 
-								data-timestamp="${timestamp}" 
-								title="Modify this flight">
-							Modify
-						</button>
-						<button class="flight-delete-button" 
-								data-email="${email}" 
-								data-timestamp="${timestamp}" 
-								title="Delete this flight">
-							Delete
-						</button>
-					</div>
-                    <p class="flight-route">${flightNumber}. ${takeoff} &rarr; ${landing}</p>
-                    <p class="flight-details"><strong>Date:</strong> ${formattedDate} | <strong>Time:</strong> ${time} minutes | <strong>Altitude:</strong> ${altitudeDifference}</p>
-                    <p class="flight-details"><strong>Comments:</strong> ${comments}</p>
+				<div class="list-item-content">
+				  <div class="flight-details-group">
+					<p class="flight-route">${flightNumber}. ${takeoff} &rarr; ${landing}</p>
+					<p class="flight-details"><strong>Date:</strong> ${formattedDate} | <strong>Time:</strong> ${time} minutes | <strong>Altitude:</strong> ${altitudeDifference}</p>
+					<p class="flight-details"><strong>Comments:</strong> ${comments}</p>
+				  </div>
+				  <div class="flight-button-group">
+					<button class="flight-modify-button"
+							data-email="${email}"
+							data-timestamp="${timestamp}"
+							title="Modify this flight">
+					  Modify
+					</button>
+					<button class="flight-delete-button"
+							data-email="${email}"
+							data-timestamp="${timestamp}"
+							title="Delete this flight">
+					  Delete
+					</button>
+				  </div>
+				</div>
                 `;
                 flightHistoryList.appendChild(listItem);
             });
