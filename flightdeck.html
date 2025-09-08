@@ -1388,277 +1388,280 @@
         textColor: '#e2e8f0',
     };
 
-    // NEW PROFESSIONAL PDF EXPORT FUNCTION
-    async function exportFlightBookToPDF() {
-        const loadingText = document.getElementById('loading-text');
-        loadingText.textContent = "Preparing your professional flight report... ✈️";
-        loadingOverlay.style.display = 'flex';
+// NEW PROFESSIONAL PDF EXPORT FUNCTION
+async function exportFlightBookToPDF() {
+    const loadingText = document.getElementById('loading-text');
+    loadingText.textContent = "Preparing your professional flight report... ✈️";
+    loadingOverlay.style.display = 'flex';
 
-        try {
-            // Get current data
-            const userEmail = emailInput.value.trim();
-            const currentTitle = mainTitle.textContent;
-            const studentName = currentTitle.match(/Welcome (.+)/) ? currentTitle.match(/Welcome (.+)/)[1] : 'Student';
-            
-            // Get flight data
-            const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet2`);
-            const flightData = await flightResponse.json();
-            
-            // Get progress data
-            const progressResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=progr-sheet`);
-            const progressData = await progressResponse.json();
+    try {
+        // Get current data
+        const userEmail = emailInput.value.trim();
+        const currentTitle = mainTitle.textContent;
+        const studentName = currentTitle.match(/Welcome (.+)/) ? currentTitle.match(/Welcome (.+)/)[1] : 'Student';
+        
+        // Get flight data
+        const flightResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=Sheet2`);
+        const flightData = await flightResponse.json();
+        
+        // Get progress data
+        const progressResponse = await fetch(`${scriptURL}?email=${encodeURIComponent(userEmail)}&sheet=progr-sheet`);
+        const progressData = await progressResponse.json();
 
-            // Create PDF
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'pt',
-                format: 'a4'
+        // Create PDF
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: 'a4'
+        });
+
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const margin = 40;
+        const contentWidth = pageWidth - (2 * margin);
+        let yPosition = margin;
+
+        // Helper function to add page numbers
+        function addPageNumber(pageNum) {
+            pdf.setFontSize(10);
+            pdf.setTextColor(100, 100, 100);
+            pdf.text(`Page ${pageNum}`, pageWidth - margin - 30, pageHeight - 20);
+            pdf.text(`Generated on ${new Date().toLocaleDateString()}`, margin, pageHeight - 20);
+        }
+
+        // Helper function to check for new page
+        function checkNewPage(requiredHeight) {
+            if (yPosition + requiredHeight > pageHeight - 60) {
+                addPageNumber(currentPage);
+                pdf.addPage();
+                currentPage++;
+                yPosition = margin;
+                return true;
+            }
+            return false;
+        }
+
+        let currentPage = 1;
+
+        // COVER PAGE
+        // Logo section
+        yPosition = 60;
+        pdf.setFontSize(24);
+        pdf.setTextColor(128, 90, 213); // Purple color
+        pdf.text('FLYwithMIKI', pageWidth / 2, yPosition, { align: 'center' });
+        
+        yPosition += 40;
+        pdf.setFontSize(18);
+        pdf.setTextColor(0, 0, 0);
+        pdf.text('SCHOOL REPORT', pageWidth / 2, yPosition, { align: 'center' });
+        
+        yPosition += 80;
+        pdf.setFontSize(16);
+        pdf.text(`Student: ${studentName}`, pageWidth / 2, yPosition, { align: 'center' });
+        
+        yPosition += 30;
+        pdf.setFontSize(12);
+        pdf.text(`Report Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, yPosition, { align: 'center' });
+        pdf.text(`Email: ${userEmail}`, pageWidth / 2, yPosition + 20, { align: 'center' });
+
+        // Progress Summary Box
+        yPosition += 100;
+        pdf.setDrawColor(128, 90, 213);
+        pdf.setLineWidth(2);
+        pdf.rect(margin, yPosition, contentWidth, 120);
+        
+        yPosition += 30;
+        pdf.setFontSize(14);
+        pdf.setTextColor(128, 90, 213);
+        pdf.text('TRAINING PROGRESS SUMMARY', pageWidth / 2, yPosition, { align: 'center' });
+        
+        yPosition += 30;
+        pdf.setFontSize(12);
+        pdf.setTextColor(0, 0, 0);
+        
+        if (progressData.status === "success" && progressData.progress && progressData.progress.linear) {
+            const progressPercentage = parseFloat(progressData.progress.linear);
+            pdf.text(`Overall Progress: ${progressPercentage}%`, margin + 20, yPosition);
+        } else {
+            pdf.text('Overall Progress: Not Available', margin + 20, yPosition);
+        }
+        
+        yPosition += 20;
+        const totalFlights = flightData.flights ? flightData.flights.length : 0;
+        pdf.text(`Total Flights Completed: ${totalFlights}`, margin + 20, yPosition);
+        
+        yPosition += 20;
+        let totalTime = 0;
+        if (flightData.flights) {
+            flightData.flights.forEach(flight => {
+                totalTime += parseInt(flight[4]) || 0;
+            });
+        }
+        pdf.text(`Total Flight Time: ${formatMinutesToHoursAndMinutes(totalTime)}`, margin + 20, yPosition);
+
+        // Add first page number
+        addPageNumber(currentPage);
+        
+        // NEW PAGE - FLIGHT HISTORY
+        pdf.addPage();
+        currentPage++;
+        yPosition = margin;
+        
+        // Flight History Header
+        pdf.setFontSize(18);
+        pdf.setTextColor(128, 90, 213);
+        pdf.text('FLIGHT HISTORY', margin, yPosition);
+        yPosition += 30;
+        
+        if (flightData.flights && flightData.flights.length > 0) {
+            // Sort flights by date (newest first)
+            const sortedFlights = flightData.flights.slice().sort((a, b) => {
+                const dateA = new Date(a[1]);
+                const dateB = new Date(b[1]);
+                return dateB - dateA;
             });
 
-            const pageWidth = pdf.internal.pageSize.getWidth();
-            const pageHeight = pdf.internal.pageSize.getHeight();
-            const margin = 40;
-            const contentWidth = pageWidth - (2 * margin);
-            let yPosition = margin;
-
-            // Helper function to add page numbers
-            function addPageNumber(pageNum) {
-                pdf.setFontSize(10);
-                pdf.setTextColor(100, 100, 100);
-                pdf.text(`Page ${pageNum}`, pageWidth - margin - 30, pageHeight - 20);
-                pdf.text(`Generated on ${new Date().toLocaleDateString()}`, margin, pageHeight - 20);
-            }
-
-            // Helper function to check for new page
-            function checkNewPage(requiredHeight) {
-                if (yPosition + requiredHeight > pageHeight - 60) {
-                    addPageNumber(currentPage);
-                    pdf.addPage();
-                    currentPage++;
-                    yPosition = margin;
-                    return true;
-                }
-                return false;
-            }
-
-            let currentPage = 1;
-
-            // COVER PAGE
-            // Logo section
-            yPosition = 60;
-            pdf.setFontSize(24);
-            pdf.setTextColor(128, 90, 213); // Purple color
-            pdf.text('FLYwithMIKI', pageWidth / 2, yPosition, { align: 'center' });
+            // Table headers
+            pdf.setFontSize(10);
+            pdf.setTextColor(128, 90, 213);
+            pdf.setFontSize(11);
             
-            yPosition += 40;
-            pdf.setFontSize(18);
-            pdf.setTextColor(0, 0, 0);
-            pdf.text('FLIGHT REPORT', pageWidth / 2, yPosition, { align: 'center' });
+            // KIVÉTEL: Comment oszlop szélessége és neve
+            const colWidths = [40, 80, 140, 140, 60, 80];
+            const headers = ['#', 'Date', 'Takeoff', 'Landing', 'Time', 'Altitude'];
             
-            yPosition += 80;
-            pdf.setFontSize(16);
-            pdf.text(`Student: ${studentName}`, pageWidth / 2, yPosition, { align: 'center' });
+            let xPos = margin;
+            headers.forEach((header, i) => {
+                pdf.text(header, xPos, yPosition);
+                xPos += colWidths[i];
+            });
+            yPosition += 20;
             
-            yPosition += 30;
-            pdf.setFontSize(12);
-            pdf.text(`Report Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, yPosition, { align: 'center' });
-            pdf.text(`Email: ${userEmail}`, pageWidth / 2, yPosition + 20, { align: 'center' });
-
-            // Progress Summary Box
-            yPosition += 100;
+            // Draw header line
             pdf.setDrawColor(128, 90, 213);
-            pdf.setLineWidth(2);
-            pdf.rect(margin, yPosition, contentWidth, 120);
+            pdf.setLineWidth(1);
+            pdf.line(margin, yPosition - 5, margin + contentWidth, yPosition - 5);
+            yPosition += 10;
             
-            yPosition += 30;
-            pdf.setFontSize(14);
-            pdf.setTextColor(128, 90, 213);
-            pdf.text('TRAINING PROGRESS SUMMARY', pageWidth / 2, yPosition, { align: 'center' });
-            
-            yPosition += 30;
-            pdf.setFontSize(12);
+            // Flight entries
+            pdf.setFontSize(9);
             pdf.setTextColor(0, 0, 0);
             
-            if (progressData.status === "success" && progressData.progress && progressData.progress.linear) {
-                const progressPercentage = parseFloat(progressData.progress.linear);
-                pdf.text(`Overall Progress: ${progressPercentage}%`, margin + 20, yPosition);
-            } else {
-                pdf.text('Overall Progress: Not Available', margin + 20, yPosition);
-            }
-            
-            yPosition += 20;
-            const totalFlights = flightData.flights ? flightData.flights.length : 0;
-            pdf.text(`Total Flights Completed: ${totalFlights}`, margin + 20, yPosition);
-            
-            yPosition += 20;
-            let totalTime = 0;
-            if (flightData.flights) {
-                flightData.flights.forEach(flight => {
-                    totalTime += parseInt(flight[4]) || 0;
-                });
-            }
-            pdf.text(`Total Flight Time: ${formatMinutesToHoursAndMinutes(totalTime)}`, margin + 20, yPosition);
-
-            // Add first page number
-            addPageNumber(currentPage);
-            
-            // NEW PAGE - FLIGHT HISTORY
-            pdf.addPage();
-            currentPage++;
-            yPosition = margin;
-            
-            // Flight History Header
-            pdf.setFontSize(18);
-            pdf.setTextColor(128, 90, 213);
-            pdf.text('FLIGHT HISTORY', margin, yPosition);
-            yPosition += 30;
-            
-            if (flightData.flights && flightData.flights.length > 0) {
-                // Sort flights by date (newest first)
-                const sortedFlights = flightData.flights.slice().sort((a, b) => {
-                    const dateA = new Date(a[1]);
-                    const dateB = new Date(b[1]);
-                    return dateB - dateA;
-                });
-
-                // Table headers
-                pdf.setFontSize(10);
-                pdf.setTextColor(128, 90, 213);
-                pdf.setFontSize(11);
+            sortedFlights.forEach((flight, index) => {
+                checkNewPage(25);
                 
-                const colWidths = [40, 80, 140, 140, 60, 80, 120];
-                const headers = ['#', 'Date', 'Takeoff', 'Landing', 'Time', 'Altitude', 'Comments'];
+                const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
+                const flightNumber = totalFlights - index;
                 
-                let xPos = margin;
-                headers.forEach((header, i) => {
-                    pdf.text(header, xPos, yPosition);
-                    xPos += colWidths[i];
-                });
-                yPosition += 20;
-                
-                // Draw header line
-                pdf.setDrawColor(128, 90, 213);
-                pdf.setLineWidth(1);
-                pdf.line(margin, yPosition - 5, margin + contentWidth, yPosition - 5);
-                yPosition += 10;
-                
-                // Flight entries
-                pdf.setFontSize(9);
-                pdf.setTextColor(0, 0, 0);
-                
-                sortedFlights.forEach((flight, index) => {
-                    checkNewPage(25);
-                    
-                    const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
-                    const flightNumber = totalFlights - index;
-                    
-                    // Format date
-                    let formattedDate = date;
-                    if (date) {
-                        try {
-                            const dateObj = new Date(date);
-                            if (!isNaN(dateObj.getTime())) {
-                                formattedDate = dateObj.toLocaleDateString();
-                            }
-                        } catch (e) {
-                            console.error("Date parsing error:", e);
+                // Format date
+                let formattedDate = date;
+                if (date) {
+                    try {
+                        const dateObj = new Date(date);
+                        if (!isNaN(dateObj.getTime())) {
+                            formattedDate = dateObj.toLocaleDateString();
                         }
+                    } catch (e) {
+                        console.error("Date parsing error:", e);
                     }
-                    
-                    // Truncate long text to fit
-                    const truncateText = (text, maxLength) => {
-                        return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text || '';
-                    };
-                    
-                    xPos = margin;
-                    const rowData = [
-                        flightNumber.toString(),
-                        formattedDate,
-                        truncateText(takeoff, 18),
-                        truncateText(landing, 18),
-                        `${time}min`,
-                        altitudeDifference,
-                        truncateText(comments, 15)
-                    ];
-                    
-                    rowData.forEach((data, i) => {
-                        pdf.text(data, xPos, yPosition);
-                        xPos += colWidths[i];
-                    });
-                    
-                    yPosition += 20;
-                    
-                    // Add subtle line between rows
-                    if (index % 2 === 1) {
-                        pdf.setDrawColor(240, 240, 240);
-                        pdf.setLineWidth(0.5);
-                        pdf.line(margin, yPosition - 10, margin + contentWidth, yPosition - 10);
-                    }
-                });
+                }
                 
-                // Summary statistics
-                yPosition += 20;
-                checkNewPage(100);
+                // Truncate long text to fit
+                const truncateText = (text, maxLength) => {
+                    return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text || '';
+                };
                 
-                pdf.setDrawColor(128, 90, 213);
-                pdf.setLineWidth(1);
-                pdf.line(margin, yPosition, margin + contentWidth, yPosition);
-                yPosition += 20;
-                
-                pdf.setFontSize(12);
-                pdf.setTextColor(128, 90, 213);
-                pdf.text('FLIGHT STATISTICS', margin, yPosition);
-                yPosition += 25;
-                
-                pdf.setFontSize(10);
-                pdf.setTextColor(0, 0, 0);
-                
-                // Calculate statistics
-                let totalAltitudeDifference = 0;
-                let takeoffLocations = new Set();
-                let landingLocations = new Set();
-                
-                sortedFlights.forEach(flight => {
-                    const altitudeDiffValue = parseInt(flight[5].replace('m', '')) || 0;
-                    totalAltitudeDifference += altitudeDiffValue;
-                    takeoffLocations.add(flight[2]);
-                    landingLocations.add(flight[3]);
-                });
-                
-                const stats = [
-                    `Total Flights: ${totalFlights}`,
-                    `Total Flight Time: ${formatMinutesToHoursAndMinutes(totalTime)}`,
-                    `Total Altitude Difference: ${totalAltitudeDifference}m`,
-                    `Unique Takeoff Sites: ${takeoffLocations.size}`,
-                    `Unique Landing Sites: ${landingLocations.size}`,
-                    `Average Flight Time: ${totalFlights > 0 ? Math.round(totalTime / totalFlights) : 0} minutes`
+                xPos = margin;
+                // KIVÉTEL: Comments adat törlése a tömbből
+                const rowData = [
+                    flightNumber.toString(),
+                    formattedDate,
+                    truncateText(takeoff, 18),
+                    truncateText(landing, 18),
+                    `${time}min`,
+                    altitudeDifference
                 ];
                 
-                stats.forEach(stat => {
-                    pdf.text(stat, margin, yPosition);
-                    yPosition += 18;
+                rowData.forEach((data, i) => {
+                    pdf.text(data, xPos, yPosition);
+                    xPos += colWidths[i];
                 });
                 
-            } else {
-                pdf.setFontSize(12);
-                pdf.setTextColor(100, 100, 100);
-                pdf.text('No flights recorded yet.', margin, yPosition);
-            }
+                yPosition += 20;
+                
+                // Add subtle line between rows
+                if (index % 2 === 1) {
+                    pdf.setDrawColor(240, 240, 240);
+                    pdf.setLineWidth(0.5);
+                    pdf.line(margin, yPosition - 10, margin + contentWidth, yPosition - 10);
+                }
+            });
             
-            // Add page number to last page
-            addPageNumber(currentPage);
+            // Summary statistics
+            yPosition += 20;
+            checkNewPage(100);
             
-            // Save the PDF
-            pdf.save(`${studentName}_Flight_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+            pdf.setDrawColor(128, 90, 213);
+            pdf.setLineWidth(1);
+            pdf.line(margin, yPosition, margin + contentWidth, yPosition);
+            yPosition += 20;
             
-        } catch (error) {
-            console.error("Error generating PDF:", error);
-            alert("Sorry, there was an error creating the PDF. Please try again.");
-        } finally {
-            loadingOverlay.style.display = 'none';
-            loadingText.textContent = "Doing the five point check, please wait...";
+            pdf.setFontSize(12);
+            pdf.setTextColor(128, 90, 213);
+            pdf.text('FLIGHT STATISTICS', margin, yPosition);
+            yPosition += 25;
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(0, 0, 0);
+            
+            // Calculate statistics
+            let totalAltitudeDifference = 0;
+            let takeoffLocations = new Set();
+            let landingLocations = new Set();
+            
+            sortedFlights.forEach(flight => {
+                const altitudeDiffValue = parseInt(flight[5].replace('m', '')) || 0;
+                totalAltitudeDifference += altitudeDiffValue;
+                takeoffLocations.add(flight[2]);
+                landingLocations.add(flight[3]);
+            });
+            
+            const stats = [
+                `Total Flights: ${totalFlights}`,
+                `Total Flight Time: ${formatMinutesToHoursAndMinutes(totalTime)}`,
+                `Total Altitude Difference: ${totalAltitudeDifference}m`,
+                `Unique Takeoff Sites: ${takeoffLocations.size}`,
+                `Unique Landing Sites: ${landingLocations.size}`,
+                `Average Flight Time: ${totalFlights > 0 ? Math.round(totalTime / totalFlights) : 0} minutes`
+            ];
+            
+            stats.forEach(stat => {
+                pdf.text(stat, margin, yPosition);
+                yPosition += 18;
+            });
+            
+        } else {
+            pdf.setFontSize(12);
+            pdf.setTextColor(100, 100, 100);
+            pdf.text('No flights recorded yet.', margin, yPosition);
         }
+        
+        // Add page number to last page
+        addPageNumber(currentPage);
+        
+        // Save the PDF
+        pdf.save(`${studentName}_Flight_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+        
+    } catch (error) {
+        console.error("Error generating PDF:", error);
+        alert("Sorry, there was an error creating the PDF. Please try again.");
+    } finally {
+        loadingOverlay.style.display = 'none';
+        loadingText.textContent = "Doing the five point check, please wait...";
     }
+}
+
+
 
     function createVerticalBars(data) {
         const barChartContainer = document.getElementById('bar-chart-container');
