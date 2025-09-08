@@ -681,8 +681,10 @@
                                 <label>Takeoff:</label>
                                 <select class="w3-select w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
                                     <option value="" disabled selected>Select a takeoff location</option>
-                                    <option value="Büelen (1089m)">Büelen (1089m)</option>
-                                    <option value="Brändlen-South (1208m)">Brändlen-South (1208m)</option>
+                                    
+									<option value="Büelen (1089m)">Büelen (1089m)</option>
+                                    <option value="Braunwald - Kiosk (1235m)">Braunwald - Kiosk (1235m)</option>                                    
+									<option value="Brändlen-South (1208m)">Brändlen-South (1208m)</option>
                                     <option value="Brändlen-North (1228m)">Brändlen-North (1228m)</option>
                                     <option value="Crap Sogn Gion NO (2200m)">Crap Sogn Gion NO (2200m)</option>
                                     <option value="Diegisbalm (1103m)">Diegisbalm (1103m)</option>
@@ -706,6 +708,7 @@
                                 <select class="w3-select w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
                                     <option value="" disabled selected>Select a landing location</option>
                                     
+                                    <option value="Braunwald - Rüti (631m)">Braunwald - Rüti (631m)</option>
                                     <option value="Brunnen (434m)">Brunnen (434m)</option>
                                     <option value="Büelen - Neufallenbach (545m)">Büelen - Neufallenbach (545m)</option>
 									<option value="Diegisbalm (Nechimatt) (540m)">Diegisbalm (Nechimatt) (540m)</option>
@@ -1642,19 +1645,33 @@ function createGauge(percentage) {
         return timeString.trim();
     }
 
-    function updateFlightSummary(flights) {
+function updateFlightSummary(flights) {
         flightHistoryList.innerHTML = '';
         let totalTime = 0;
         let totalAltitudeDifference = 0;
         let takeoffLocations = new Set();
         let landingLocations = new Set();
         const totalFlights = flights.length;
-        const reversedFlights = flights.slice().reverse();
 
-        if (reversedFlights && reversedFlights.length > 0) {
-            reversedFlights.forEach((flight, index) => {
+        // --- MÓDOSÍTÁS ITT KEZDŐDIK ---
+        // Az egyszerű megfordítás helyett dátum szerint rendezzük a repüléseket, csökkenő sorrendben (legújabb elöl).
+        const sortedFlights = flights.slice().sort((a, b) => {
+            const dateA = new Date(a[1]);
+            const dateB = new Date(b[1]);
+            // A dateB - dateA biztosítja a csökkenő (legfrissebbtől a legrégebbiig) sorrendet.
+            return dateB - dateA;
+        });
+        // --- MÓDOSÍTÁS ITT ÉR VÉGET ---
+
+        if (sortedFlights && sortedFlights.length > 0) {
+            // A ciklus most már a 'sortedFlights' tömböt használja a 'reversedFlights' helyett.
+            sortedFlights.forEach((flight, index) => {
                 const [email, date, takeoff, landing, time, altitudeDifference, comments] = flight;
-                const flightNumber = totalFlights - index;
+                
+                // A sorszámozás most már a kronológiai sorrendnek felel meg,
+                // a legfrissebb kapja a legmagasabb számot.
+                const flightNumber = totalFlights - index; 
+
                 let formattedDate = date;
                 if (date) {
                     try {
@@ -1728,7 +1745,12 @@ function createGauge(percentage) {
             totalLandingsCountDisplay.classList.remove("w3-text-green");
         }
     }
-
+	
+	
+	
+	
+	
+	
     loadButton.addEventListener("click", async () => {
         const userEmail = emailInput.value.trim();
         if (!userEmail) {
