@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>FLYwithMIKI FlightDeck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+	<link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
+	<script src="https://kit.fontawesome.com/7909a0ba44.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="flightdeck.css">
+	
+<style>
+
+</style>
+</head>
+<body class="">
+
+<!--MENÜÜÜ------------------------------------------------------------------------------------------------------>
+
+<!-- Kis képernyőn Top container -->
+<div class="w3-bar w3-top w3-large" style="z-index:4; position: relative;">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button>
+
+</div>
+
+<!-- Nagy képernyő oldalsó /menu -->
+<nav class="w3-sidebar w3-collapse  w3-animate-left" style="z-index:3;width:300px; background-color: #1a202c; /* Dark background similar to the image */
+            color: #e2e8f0;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="https://flywithmiki.com/Images_v2/favicon.ico" class="w3-circle w3-margin-right" style="width:46px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong id="nickname">Mike</strong></span>     
+    </div>
+  </div>
+  <hr>
+  
+  <div class="w3-container">
+    <h5>Flight Deck</h5>
+  </div>
+  <div class="w3-bar-block" id="nav-menu">
+    <!--<button class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu</button> -->
+   
+    <button class="w3-bar-item w3-button w3-padding w3-blue" id="dashboard-tab"><i class="fa fa-dashboard fa-fw"></i>&nbsp; Dashboard</button>
+    <button class="w3-bar-item w3-button w3-padding" id="checklist-tab"><i class="fa fa-list-check fa-fw"></i>&nbsp; Checklist</button>
+    <button class="w3-bar-item w3-button w3-padding" id="flightbook-tab"><i class="fa fa-history fa-fw"></i>&nbsp; Flight Book</button>
+    <button class="w3-bar-item w3-button w3-padding" id="addflight-tab"><i class="fa fa-square-plus fa-fw"></i>&nbsp; Add Flight</button>
+
+    <button class="w3-bar-item w3-button w3-padding" id="theory-tab"><i class="fa fa-bank fa-fw"></i>&nbsp; Theory</button>
+    <button class="w3-bar-item w3-button w3-padding" id="export-pdf-tab"><i class="fa fa-download fa-fw"></i>&nbsp; Export</button><br>
+    <button class="w3-bar-item w3-button" id="settings-tab"><i class="fa fa-cog"></i> &nbsp; Settings</button>
+	<button class="w3-bar-item w3-button" id="logoutBtn"><i class="fa fa-right-from-bracket"></i> Logout</button>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!--MENÜÜÜ------------------------------------------------------------------------------------------------------>
+
+
+
+
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+
+
+
+
+
+	<!-- !DASHBOARD SECTION! -->
+	<div class="w3-container w3-padding tab-content" id="dashboard-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+	  
+		<h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+	  </header>
+
+	  <div class="w3-row-padding w3-margin-bottom">
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-olive w3-padding-16">
+			<div class="w3-left"><i class="fa fa-plane-circle-check w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Flights</h4>
+		  </div>
+		</div>
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-blue w3-padding-16">
+			<div class="w3-left"><i class="fa fa-plane-departure w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Takeoffs</h4>
+		  </div>
+		</div>
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-teal w3-padding-16">
+			<div class="w3-left"><i class="fa fa-plane-arrival w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Landings</h4>
+		  </div>
+		</div>
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-orange w3-text-white w3-padding-16">
+			<div class="w3-left"><i class="fa fa-clock w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Airtime</h4>
+		  </div>
+		</div>
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-purple w3-text-white w3-padding-16">
+			<div class="w3-left"><i class="fa fa-arrows-up-down w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Cumm. Alt.</h4>
+		  </div>
+		</div>	
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-light-blue w3-text-white w3-padding-16">
+			<div class="w3-left"><i class="fa fa-calendar-days w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Flying days</h4>
+		  </div>
+		</div>	
+		<div class="w3-quarter">
+		  <div class="w3-container w3-margin-bottom w3-blue-gray w3-text-white w3-padding-16">
+			<div class="w3-left"><i class="fa fa-bars-progress w3-xxxlarge"></i></div>
+			<div class="w3-right">
+			  <h3>--</h3>
+			</div>
+			<div class="w3-clear"></div>
+			<h4>Checklist progress</h4>
+		  </div>
+		</div>	
+		
+	  </div>
+	<hr>
+	
+	
+	<div class="w3-container">
+		<h5>Control Sheet Progress</h5>
+			<div id="checklist-chart-wrapper" class="w3-row-padding">
+			  <div id="bar-chart-container" class="w3-half bar-chart-container"></div>
+			  <div id="bar-legend" class="w3-half bar-chart-legend"></div>
+			</div>
+
+	</div>
+	  <hr>
+	  
+	  
+	  <div class="w3-panel">
+		<div class="w3-row-padding" style="margin:0 -16px">
+		  <div class="w3-third">
+			<h5>School Progress</h5>
+			<img src="region.jpg" style="width:100%" alt="Majd ide jön valami szép">
+		  </div>
+		  <div class="w3-twothird">
+			<h5>Last flights</h5>
+			<table class="w3-table w3-striped w3-white">
+			  <tr>
+				<td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+				<td>New record, over 90 views.</td>
+				<td><i>10 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+				<td>Database error.</td>
+				<td><i>15 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+				<td>New record, over 40 users.</td>
+				<td><i>17 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+				<td>New comments.</td>
+				<td><i>25 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+				<td>Check transactions.</td>
+				<td><i>28 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+				<td>CPU overload.</td>
+				<td><i>35 mins</i></td>
+			  </tr>
+			  <tr>
+				<td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+				<td>New shares.</td>
+				<td><i>39 mins</i></td>
+			  </tr>
+			</table>
+		  </div>
+		</div>
+	  </div>
+	  <hr>
+
+
+
+
+
+	</div>
+	<!--DASHBOARD SECTION END-->
+
+
+
+
+
+	<!--CHECKLIST SECTION-->
+	<div class="w3-container w3-padding tab-content" id="checklist-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+	  
+		<h5><b><i class="fa fa-list-check"></i> Checklist</b></h5>
+	  </header>
+	   <form id="form">
+
+				
+		
+				<hr>
+				<H2 class="w3-center" style="align:center; margin:auto">Basic Training</h2>
+					<div class="w3-row-padding w3-margin-top">
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
+							<header class="w3-container checklistheader">
+								<h4  data-category="gh-bas">Basic Ground Handling and Launch Techniques</h4>
+							</header>
+							<div class="check-item" data-info-html="This task teaches the student how to properly unpack their glider and lay it out for takeoff. The goal is to learn how to prepare the wing on steep launch sites with minimal movement. After laying out the wing, the student should be able to sort the lines and get ready for launch.">
+								<span>1. Laying out the glider <i class="info-icon fa fa-info-circle"></i> </span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-0" name="gh-bas-0" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student will get familiar with the paragliding equipment, learn how to clip into the harness, and correctly attach the glider's risers to the carabiners. This is done with the wing already laid out and lines sorted.">
+								<span>2. Equipment Familiarisation <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-1" name="gh-bas-1" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns how to **inflate the canopy** and control it while walking, gaining a feel for its movements and a basic understanding of control inputs.<br><br><b>Important Tip:</b> Always stay directly under the glider when it is not overhead. If the glider drifts to one side, **walk diagonally underneath it** while applying a counter-steering brake input on the opposite side. When executed correctly, the glider will return to a stable position directly above your head.">
+								<span>3. Inflation and walking exercises <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-2" name="gh-bas-2" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="<b>The 5-Point Safety Check</b><br><br>This critical check must be performed before every flight:<br><br><b>1. Rescue:</b> Ensure the rescue handle is in place and the bridle channel is closed. (This is done before you put on the harness).<br><b>2. Pilot:</b> Check that your shoes, leg straps, chest strap, and helmet are all closed. The carabiners should be attached and your radio turned on.<br><b>3. Lines:</b> On both sides, check that the A lines are on top and the brake line is free between your hand and the pulley/ring.<br><b>4. Glider:</b> Verify that the glider is laid out neatly, the leading edge is open, and it is more or less facing into the wind.<br><b>5. Wind and Surroundings:</b> Confirm the wind direction and strength are suitable for a safe launch. Check the airspace (no one is flying in front of the takeoff, no one is top-landing, and no one is flying above you). Finally, establish an imaginary line where you can still control the glider, as a last-resort decision-making point."
+								<span>4. 5-Point Check and Launch Preparations <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-3" name="gh-bas-3" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns to establish a clear decision-making point before takeoff. Latest until this line, they must make a definitive 'Start' or 'Stop' decision to ensure a safe launch.<br><br><b>In the event of a 'Stop' (abort) decision:</b><br>The student must quickly pull down one brake line completely while raising the opposite hand. Simultaneously, they should follow the glider's movement, walking in a curved path until the wing safely falls to the ground. The chosen direction should always be towards the most open space.">
+								<span>5. Start-STOP (Decision making line) <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-4" name="gh-bas-4" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns the three distinct phases of a forward launch:<br><br><b>1. Inflation:</b> The glider fills with air and rises to the horizon.<br><br><b>2. Control:</b> With a firm brake input, the student stops the glider precisely above their head to prevent overshooting. They then maintain control, making small direction changes if needed and visually checking for any knots or cravattes before continuing.<br><br><b>3. Acceleration:</b> Once the glider is stable and the airspace is clear, the student performs a smooth takeoff with a final acceleration, adopting a dynamic pose for the run. (Chicken pose)">
+								<span>6. 3-Phase Launch (forward) <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-5" name="gh-bas-5" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns how to effectively change direction in flight, mastering basic turns and maneuvers. A key principle is to <b>'look and lean'</b> where you want to fly, shifting your weight while gently pulling the brake on that side.">
+								<span>7. Flights with Direction Changes <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-6" name="gh-bas-6" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns the basic techniques for a safe and controlled landing, including the approach and flare. A key part of this is learning to pull both brakes down completely at approximately one meter from the ground, which allows for a gentle touchdown.">
+								<span>8. Landing Techniques <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-7" name="gh-bas-7" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns to perform 90- and 180-degree turns.">
+								<span>9. 90 - 180° Turns (Landing Approach) <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-8" name="gh-bas-8" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns how to properly fold the glider using different methods, such as the standard glider-bag, the concertina bag, or the fast bag.">
+								<span>10. Folding Methods <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-bas-9" name="gh-bas-9" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+						</div>
+	
+				</div>
+				
+				
+				
+				<div class="w3-half">
+					<div class="w3-card w3-white w3-margin-bottom">
+							<header class="w3-container checklistheader">
+								<h4 data-category="gh-adv">Advanced Groundhandling</h4>
+							</header>
+							<div class="check-item" data-info-html="The student practices controlling the canopy while walking in a slalom pattern on flat ground, improving fine control and responsiveness. For optimal results, practice in wind speeds of 5-15 km/h.<br><br>First, start to pull the brake while walking with the glider. As it begins to turn, walk along a curved path to follow its movement until a new direction is achieved. Once stable, your hands should be parallel again.">
+								<span>1. Slalom walking <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-0" name="gh-adv-0" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns techniques for safely launching the glider when the wind is not coming directly from the front.<br><br>The wing will inflate towards the wind direction. The student must then bring the wing to the desired takeoff direction. If it's not possible to correct the glider's position, the student must perform a 'Start-Stop' abort maneuver.">
+								<span>2. Crosswind Launch (Simulation if necessary) <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-1" name="gh-adv-1" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns how to handle and launch a glider when the canopy is not perfectly laid out, a crucial skill for real-world scenarios.">
+								<span>3. Launch with Poorly Laid-Out Canopy <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-2" name="gh-adv-2" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns the backward launch technique, which is essential for strong wind conditions and provides better canopy control before takeoff.">
+								<span>4. 3-Phase Launch (backward) <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-3" name="gh-adv-3" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student learns how to quickly and efficiently untangle lines on the ground to prevent launch issues.">
+								<span>5. Untangling the lines <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-4" name="gh-adv-4" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="check-item" data-info-html="The student masters ground handling while walking downhill without taking off. They are able to make small changes in direction on the slope and keep the glider inflated without becoming airborne. This is best practiced in a slight updraft.">
+								<span>6. Hill walking <i class="info-icon fa fa-info-circle"></i></span>
+								<label class="switch">
+									<input type="checkbox" id="gh-adv-5" name="gh-adv-5" value="TRUE" />
+									<span class="slider"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+				</div>	
+
+
+
+				<hr>
+				<H2 class="w3-center" style="align:center; margin:auto">Theory</h2>				
+				<div class="w3-row-padding w3-margin-top">
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4  data-category="th-flight">In-Flight Safety and Emergency Procedures</h4>
+								</header>
+								<div class="check-item" data-info-html="The student learns about the purpose, location, and proper deployment of the rescue parachute in an emergency.">
+									<span>1. Introduction to Rescue System <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-0" name="th-flight-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns various techniques for performing a safe landing in emergency situations, such as landing in a small field or on difficult terrain. They will understand the strategies, techniques, and risks involved with landings on water, in trees, or on a hillside.">
+									<span>2. Emergency Landing Techniques <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-1" name="th-flight-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns how to safely land when the wind is coming from behind. While not recommended, it is a critical skill for an emergency situation.">
+									<span>3. Downwind Landing <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-2" name="th-flight-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to recognize and safely recover from a parachutal stall, a state where the wing loses forward speed but remains inflated.">
+									<span>4. Parachutal Stall <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-3" name="th-flight-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to recognize and safely recover from a spiral dive, a high-speed descent that can occur due to a steep turn.">
+									<span>5. Spiral dive <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-flight-4" name="th-flight-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+					</div>
+					</div>
+					
+					
+					<div class="w3-half">
+						<div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4  data-category="th-core">Core Theory</h4>
+								</header>
+								<div class="check-item" data-info-html="The student learns the fundamental principles of flight, including how air interacts with the paraglider wing to create lift and drag. They will understand the difference between a collapse and a stall, and know the theoretical background of how to avoid these critical flying disturbances.">
+									<span>1. Aerodynamics <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-0" name="th-core-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to read weather forecasts, understand atmospheric conditions, and identify flying hazards like turbulence, strong winds and typical weather situations in Switzerland.">
+									<span>2. Weather <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-1" name="th-core-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns the best practices for safe and efficient flying, including flight planning and flying disturbances.">
+									<span>3. Flying practice <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-2" name="th-core-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns the rules and regulations governing paragliding, including air-law and airspace classifications.">
+									<span>4. Legislation (Air-law and airspaces) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-3" name="th-core-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns about the materials used in paragliders, how they affect performance, and how to maintain them.">
+									<span>5. Material Sciences <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="th-core-4" name="th-core-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+					</div>
+					</div>
+					</div>
+				
+				
+				
+				<hr>				
+				<H2 class="w3-center" style="align:center; margin:auto">Altitude Flights</h2>				
+				<div class="w3-row-padding w3-margin-top">				
+					
+
+
+					<div class="w3-half">
+						<div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4  data-category="hf-bas">Basic Flight Maneuvers</h4>
+								</header>
+								<div class="check-item" data-info-html="From the 'hands up' position, the student initiates a turn by shifting their weight in the desired direction. This is followed by a smooth and progressive pull on the 'inside' brake handle. The outside brake handle is then used to control the glider's speed and bank angle.">
+									<span>1. Steering (positive) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-0" name="hf-bas-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student begins a turn from a 'slowed down' position (both hands are at shoulder-chest level). Using a significant amount of weight shift, the 'outside' brake is partially released, allowing the glider to turn in a flat, controlled manner. This is the preferred method for landing approaches to avoid dynamic turns close to the ground.">
+									<span>2. Steering (negative) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-1" name="hf-bas-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to steer the glider using only their body weight, without touching the brakes. This maneuver is used to perform 90-180° turns or even full circles in both directions when conditions allow.">
+									<span>3. Steering (weight shift) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-2" name="hf-bas-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student practices the standard landing approach (left or right, depending on the field), which involves a specific pattern to line up for landing:<br><br><b>1. Descending Area:</b> This is where you lose altitude and position yourself for the beginning of the landing pattern.<br><br><b>2. Downwind Leg:</b> Flying with a tailwind on the side of the landing field, moving towards the landing zone's leeward side.<br><br><b>3. Base Leg:</b> Flying crosswind. In stronger winds, you must compensate for drift by steering the glider appropriately relative to the wind direction.<br><br><b>4. Final Leg:</b> Flying straight to the desired landing area with your hands parallel. Small changes in direction can be made with weight shift, but no dramatic turns. At approximately one meter from the ground, you fully flare the glider by pulling both brakes down completely.">
+									<span>4. Landing (school approach) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-3" name="hf-bas-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to perform a controlled descent by partially collapsing the wingtips ('Big Ears') without using the speedbar. To do this, keep your brakes on your wrists, then with your palms facing down, grab the outermost A lines on both sides and pull them down one by one. To exit the maneuver, simply release the A lines. If the ears do not pop back out, a single, short pump with the brake on the closed side will reinflate it.">
+									<span>5. Big Ears (without speedbar) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-4" name="hf-bas-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns how to use the speedbar to increase the glider's forward speed.">
+									<span>6. Use of Acceleration System <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-5" name="hf-bas-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to perform a controlled high-speed descent using both 'Big Ears' and the speedbar. The correct order is:<br><br><b>1.</b> Step on the speedbar.<br><b>2.</b> Close the ears one by one.<br><b>3.</b> Maintain full speed.<br><br>To exit the maneuver, reverse the process:<br><br><b>1.</b> Release the speedbar.<br><b>2.</b> Open the ears (with a quick brake pump if needed).<br><b>3.</b> Return to trim speed.">
+									<span>7. Big Ears (with speedbar) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-bas-6" name="hf-bas-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+					</div>
+					</div>
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4 data-category="hf-adv">Advanced Flight Maneuvers</h4>
+								</header>
+								<div class="check-item" data-info-html="The student learns to steer the glider using the rear risers. With your brakes on your wrists, grab the rear risers with your palms up and pull them slightly backward and down. <b>Danger:</b> Pulling too much can stall the glider. This maneuver should be practiced at a high altitude to get familiar with the precise amount of input required without causing an issue.">
+									<span>1. Steering (back riser) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-0" name="hf-adv-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to perform a landing using the back risers. With your brakes on your wrists, you perform the entire landing approach using only weight shift and the rear risers. Approximately 50-60 cm from the ground, you begin the final flare with the rear risers.<br><br><b>Danger:</b> Pulling too hard at a higher altitude can cause a stall, so this maneuver requires precise control.">
+									<span>2. Landing (back riser) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-1" name="hf-adv-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to combine rolling maneuvers with 'Big Ears' to perform dynamic descents.<br><br><b>1.</b> Make the 'Big Ears' (without the speedbar).<br><b>2.</b> Start a turn by shifting your weight to one side.<br><b>3.</b> Once the glider begins to turn, progressively switch your weight to the other side. This will cause the glider to start 'rolling'.<br><b>4.</b> At the 'highest point' of the roll, switch your weight shift again.<br><br><b>Goal:</b> The student should become familiar with the rolling maneuver and learn the precise moment to switch their weight to achieve a smooth, dynamic roll. This technique can be used to lose altitude relatively quickly in turbulent air.">
+									<span>3. Rolling (Big Ears) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-2" name="hf-adv-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item"  	data-info-html="The student learns how to perform a rolling maneuver to lose altitude.<br><br><b>Initiating the Roll:</b> The student initiates a turn using a combination of weight shift and inside braking. After the glider has turned approximately 45°, the student leans to the other side over the risers. The glider will begin to turn the other way, at which point the previously pulled brake can be released. As the glider reaches its lowest point, the student begins to pull the new 'inside' brake.<br><br><b>Correct Pattern:</b> Change your weight shift at the highest point of the turn and pull the brake at the lowest point.<br><br><b>Danger:</b> If the timing is not precise, the maneuver can become very dynamic, leading to a collapse on the outside part of the wing. Always use some slight braking on the outside brake to provide support. Pulling too much on the inside brake can cause a stall or a spin. In a school environment, we never practice this maneuver to the 'wingover' state; that is reserved for safety training over water.">
+									<span>4. Rolling <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-3" name="hf-adv-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns a specific pitching technique (Swiss style) used to control the glider's forward and backward movements. The process is a repeated cycle of <b>slowing down</b> and <b>releasing</b>:<br><br><b>1. Slowing Down:</b> Slowly pull both brakes to carabiner level and hold for a few seconds until both the glider and pilot have slowed down.<br><b>2. Hands Up:</b> Quickly raise your hands. The glider will pitch forward.<br><b>3. Wait:</b> Wait for the glider to swing back above your head.<br><b>4. Pull:</b> Pull the brakes in parallel to support the return swing.<br><b>5. Hands Up:</b> Release the brakes and allow the glider to pitch forward again.<br><br><b>Exiting the Maneuver:</b> As the glider pitches forward and reaches its zenith, make a fast, determined brake input to stop the pitching. Then, slowly release the brakes to allow the glider and pilot to regain forward speed together.<br><br><b>Dangers:</b> Pulling the brakes too much (and holding them below the carabiners while the glider is behind you) could lead to a full stall. When the glider is pitching forward dynamically, a front collapse could occur. To avoid this, gently pull the brakes to 'support' the wing as it shoots forward without exiting the maneuver.">
+									<span>5. Pitching (Swiss style) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-4" name="hf-adv-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student simulates a side collapse by pulling down all three A lines on one side and then releasing them immediately. The purpose is to observe the feeling of the collapse, the way the glider reopens, the forces on their body, and the amount of turn that occurs.">
+									<span>6. Side collapse (lvl1) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-5" name="hf-adv-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item"  	data-info-html="The student simulates a side collapse in the same way as in Level 1 but learns to stop the resulting rotation with a determined pull on the outside brake. After the rotation has been successfully stopped, the brake should be released.">
+									<span>7. Side collapse (lvl2) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-6" name="hf-adv-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to handle and recover from a large side collapse. The process is:<br><br><b>1. Collapse:</b> Induce the side collapse and hold the A lines down.<br><b>2. Stop Rotation:</b> Stop the resulting rotation with a determined pull on the outside brake.<br><b>3. Find the Sweet Spot:</b> Slowly release the outside brake until the glider begins to fly straight again. This teaches the student how to maintain a stable flight path with a collapsed wing.">
+									<span>8. Side collapse (lvl3) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-7" name="hf-adv-7" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student performs the Level 3 collapse and then, by combining weight shift with a gentle pull on the outside brake, executes a 90-360° turn to the open side (depending on conditions). After the maneuver, they stabilize their flight direction by returning to the 'sweet spot.' If this is successful, the student can then attempt a turn to the collapsed side by slowly releasing the outside brake and leaning into the collapsed side with weight shift. <b>Important:</b> If the glider begins to turn too dynamically, slow down the turn or stop the rotation completely with the outside brake.">
+									<span>9. Side collapse (lvl4) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-8" name="hf-adv-8" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to handle and recover from a front collapse, where the entire leading edge of the wing folds in. The steps are:<br><br><b>1.</b> Keep your brakes on your wrists.<br><b>2.</b> With your palms down, grab all of the A lines.<br><b>3.</b> Pull down all of the A lines and release them immediately.<br><br><b>Danger:</b> After a front collapse, the glider may enter a 'horse-shoe' configuration and fail to reopen. A single, fast pump on the brakes can help to exit this configuration.">
+									<span>10. Front collapse <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-9" name="hf-adv-9" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to maintain a safe flying speed to avoid stalls. This is achieved in a two-step process:<br><br><b>1. Slowing Down:</b> The student slows the glider down by pulling both brakes to the carabiner level.<br><br><b>2. Further Slowing:</b> Following the instructor's commands, the student slows the glider even more by pulling the brakes a few more centimeters. To exit the maneuver, slowly raise your hands. <b>Danger:</b> Pulling too much could cause the glider to stall.">
+									<span>11. Flying in the Safe Speed Range <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-10" name="hf-adv-10" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to perform tight, controlled circles, a maneuver used for thermalling and staying in updrafts. The process is:<br><br><b>1.</b> Initiate a turn with a combination of weight shift and brake input.<br><b>2.</b> Build speed and energy as the glider's bank angle increases.<br><b>3.</b> Control the speed throughout the maneuver using the outside brake.<br><b>4.</b> Learn how to exit the maneuver smoothly, getting rid of the stored energy.<br><br><b>Danger:</b> If not performed correctly, the glider could enter a 'nose-down spiral,' which can put high G-forces on the pilot.">
+									<span>12. Tight circles <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-11" name="hf-adv-11" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to make rapid, controlled turns and direction changes, without spinning the glider.">
+									<span>13. Quick Direction Changes <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-12" name="hf-adv-12" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns to perform a figure-eight pattern, combining left and right circles.">
+									<span>14. Circle Left, Circle Right (Figure Eight) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-13" name="hf-adv-13" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student learns how to use flying instruments like a variometer to optimize their flight and locate thermals.">
+									<span>15. Flying with instruments <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-14" name="hf-adv-14" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student practices soaring in updrafts and thermals to stay aloft for extended periods. This maneuver is demonstrated by flying for more than 30 minutes.">
+									<span>16. Soaring / Thermalling (30+ minutes) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-15" name="hf-adv-15" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student practices an emergency landing, landing on the protector (preferably a foam one). The steps are:<br><br><b>1. Legs up</b> At about one meter from the ground, get your legs up.<br><b>2. Brake</b> Pull the brakes completely to get rid off the energy of the glider while touch down"">
+									<span>17. Landing (popo) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="hf-adv-16" name="hf-adv-16" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+					</div>
+					</div>
+					</div>
+				
+				
+				
+				<hr>			
+				<H2 class="w3-center" style="align:center; margin:auto">Exam Preparation</h2>				
+				<div class="w3-row-padding w3-margin-top">				
+					
+						<div class="w3-half">
+							<div class="w3-card w3-white w3-margin-bottom">
+								<header class="w3-container checklistheader">
+									<h4  data-category="ex">Examination Tasks </span></h4>
+								</header>
+								<div class="check-item" data-info-html="The student demonstrates a successful three phase forward launch, a key skill for the exam.">
+									<span>1. Forward start <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-0" name="ex-0" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates a successful three phase backward launch, which is crucial for stronger wind conditions.">
+									<span>2. Backward start <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-1" name="ex-1" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student performs two full right circles (720°) in less than 20 seconds, demonstrating control and efficiency. PP1 stands for Prüfungs Program 1.">
+									<span>3. Two right circles (720°, less than 20s), PP1 <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-2" name="ex-2" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student performs a figure-eight maneuver with one left and one right turn in under 25 seconds. PP2 stands for Prüfungs Program 2.">
+									<span>4. Eight (360° left, 360° right, less than 25s),PP2 <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-3" name="ex-3" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates the ability to handle a side collapse, stopping the rotation, stabilizing the flying direction and recover from it safely.">
+									<span>5. Side Collapse (level3) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-4" name="ex-4" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates the 'Big Ears' maneuver with directional control, performing a 90° left and a 90° right turn.">
+									<span>6. Big Ears (90° left, 90° right) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-5" name="ex-5" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates the 'Big Ears' maneuver while using the speedbar, a more advanced descent technique.">
+									<span>7. Big Ears (with full speed) <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-6" name="ex-6" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates a controlled rolling maneuver.">
+									<span>8. Rolling <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-7" name="ex-7" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+								<div class="check-item" data-info-html="The student demonstrates a controlled pitching maneuver with a perfect exit.">
+									<span>9. Pitching <i class="info-icon fa fa-info-circle"></i></span>
+									<label class="switch">
+										<input type="checkbox" id="ex-8" name="ex-8" value="TRUE" />
+										<span class="slider"></span>
+									</label>
+								</div>
+					</div>
+					</div>
+					
+				
+				</div>
+				<hr>				
+				
+				
+
+		</form>
+	</div>
+
+
+
+	<!--ADDFLIGHT SECTION -->
+	<div class="w3-container w3-padding tab-content" id="addflight-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+	  
+		<h5><b><i class="fa fa-square-plus"></i> Add Flight</b></h5>
+		<hr>
+		<div id="flight-form-section">
+				<div class="w3-card w3-round-large w3-margin">
+					<div class="w3-container">
+						<h3>New Flight</h3>
+						<form id="addflight-form" method="post">
+							<p>
+								<label>Date:</label>
+								<input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="addflight-date-input" required>
+							</p>
+							<p>
+								<label>Takeoff:</label>
+								<select class="w3-select w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
+									<option value="" disabled selected>Select a takeoff location</option>
+								</select>
+							</p>
+							<p>
+								<label>Landing:</label>
+								<select class="w3-select w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
+									<option value="" disabled selected>Select a landing location</option>
+								</select>
+							</p>
+							<p>
+								<label>Altitude Difference:</label>
+								<span id="addflight-altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
+							</p>
+							<p>
+								<label>Flight Time:</label>
+								<select class="w3-select w3-border w3-round-large" name="flight-time" required>
+									<option value="" disabled selected>Select flight time</option>
+									<option value="5">5 minutes</option>
+									<option value="10">10 minutes</option>
+									<option value="15">15 minutes</option>
+									<option value="20">20 minutes</option>
+									<option value="25">25 minutes</option>
+									<option value="30+">30+ minutes</option>
+								</select>
+							</p>
+							<p>
+								<label>Comments:</label>
+								<textarea class="w3-input w3-border w3-round-large" name="comments" rows="3"></textarea>
+							</p>
+							<p>
+								<button id="addflight-save-button" style="background-color:#805ad5" type="submit" class="w3-button w3-round-large w3-margin-bottom">Save Flight</button>
+							</p>
+						</form>
+					</div>
+				</div>
+		</div>
+		
+	  </header>
+	</div>
+
+	<!--FLIGHT BOOK SECTION -->
+	<div class="w3-container w3-padding tab-content" id="flightbook-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+	  
+		<h5><b><i class="fa fa-history"></i> Flight Book</b></h5>
+	  </header>
+	</div>
+
+	<!--Theory SECTION -->
+
+	<div class="w3-container w3-padding tab-content" id="theory-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+		  <h5><b><i class="fa fa-bank"></i> Theory</b></h5>
+	  </header>
+
+		<div class="w3-card w3-round-large w3-margin">
+			<div class="w3-container">
+				<p>
+					<a href="https://flywithmiki.com/theory/aerodynamics.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom  same-width-button" style="background-color:#805ad5">Aerodynamics</a>
+				</p>
+				<p>
+					<a href="https://flywithmiki.com/theory/flightpraxis.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom  same-width-button" style="background-color:#805ad5">Flying practice</a>
+				</p>
+				<p>
+					<a href="https://flywithmiki.com/theory/law.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Legislation (Airspaces)</a>
+				</p>
+				<p>
+					<a href="https://flywithmiki.com/theory/material.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Material Sciences</a>
+				</p>
+				<p>
+					<a href="https://flywithmiki.com/theory/meteo.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Weather</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- !THEORY SECTION! -->
+
+
+
+	<!--EXPORT SECTION -->
+	<div class="w3-container w3-padding tab-content" id="export-pdf-section" style="display:none;">
+	  <header class="w3-container" style="padding-top:22px">
+	  
+		<h5><b><i class="fa fa-download"></i> Export</b></h5>
+		<p>Coming soon.....</p>
+		
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+    <script>
+        // Kérjük, cserélje ki a placeholder értékeket a saját Firebase projektjének adataira!
+const firebaseConfig = {
+  apiKey: "AIzaSyCjSOM5roktee1TXbU6mrUhcMBe5Z-8ccY",
+  authDomain: "flight-deck-3bb7b.firebaseapp.com",
+  projectId: "flight-deck-3bb7b",
+  storageBucket: "flight-deck-3bb7b.firebasestorage.app",
+  messagingSenderId: "207195710488",
+  appId: "1:207195710488:web:6f567ae11e680584214f6d",
+  measurementId: "G-5D0JNV625P"
+};
+        // Firebase inicializálása
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const csvFileInput = document.getElementById('csvFileInput');
+        const importBtn = document.getElementById('importBtn');
+        const statusDiv = document.getElementById('status');
+
+        importBtn.addEventListener('click', () => {
+            const file = csvFileInput.files[0];
+            if (!file) {
+                statusDiv.textContent = "Kérjük, válasszon egy CSV fájlt!";
+                return;
+            }
+
+            statusDiv.textContent = "Importálás megkezdése...";
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                processData(text);
+            };
+            reader.readAsText(file);
+        });
+
+        async function processData(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[0].split(',').map(header => header.trim());
+            const dataRows = lines.slice(1);
+            let successCount = 0;
+            let errorCount = 0;
+
+            console.log("Headers:", headers);
+            console.log("Processing", dataRows.length, "rows...");
+
+            for (const row of dataRows) {
+                if (row.trim() === '') continue;
+
+                const values = row.split(',').map(value => value.trim());
+                if (values.length !== headers.length) {
+                    console.error("Sor kihagyva a nem egyező oszlopszám miatt:", row);
+                    errorCount++;
+                    continue;
+                }
+
+                const docData = {};
+                headers.forEach((header, index) => {
+                    let value = values[index];
+                    // Adattípus konverzió (opcionális, de ajánlott)
+                    if (header === 'date') {
+                         docData[header] = firebase.firestore.Timestamp.fromDate(new Date(value));
+                    } else if (header === 'flightTime' || header === 'altitudeDifference') {
+                        docData[header] = parseFloat(value);
+                    } else {
+                        docData[header] = value;
+                    }
+                });
+                
+                // Ellenőrizze, hogy az UID létezik-e, mielőtt a dokumentumot menti
+                const userUID = docData['UID'];
+                if (!userUID) {
+                    console.error("UID mező hiányzik a sorból:", docData);
+                    errorCount++;
+                    continue;
+                }
+
+                // Eltávolítja az UID-t, hogy ne kerüljön be dokumentum mezőként
+                delete docData['UID'];
+                
+                // Hozzáadja az aktuális időbélyeget a dokumentumhoz
+                docData.createdAt = firebase.firestore.Timestamp.now();
+
+                // Hozzáadás a Firestore-hoz a users/{UID}/flights alkollekcióba
+                try {
+                    // Itt használjuk az add() metódust, ami véletlen ID-t generál
+                    await db.collection("users").doc(userUID).collection("flights").add(docData);
+                    console.log(`Dokumentum sikeresen hozzáadva a(z) ${userUID} UID-hez.`);
+                    successCount++;
+                } catch (error) {
+                    console.error("Hiba a dokumentum írásakor:", error);
+                    errorCount++;
+                }
+            }
+
+            statusDiv.textContent = `Importálás befejezve. Sikeres: ${successCount}, Hiba: ${errorCount}`;
+            console.log("Importálás befejezve.");
+        }
+    </script>
+	
+	
+	
+	  </header>
+	</div>
+
+
+	<!--SETTINGS SECTION -->
+<div class="w3-container w3-padding tab-content" id="settings-section" style="display:none;">
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-cog"></i> Settings</b></h5>
+    </header>
+
+    <div class="w3-card w3-round-large w3-margin">
+        <div class="w3-container w3-padding">
+            <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16">Profile Settings</h4>
+            
+            <form id="settingsForm">
+                <p>
+                    <label><b>Email</b></label>
+                    <input class="w3-input w3-border" type="email" id="userEmail" disabled>
+                </p>
+                <p>
+                    <label><b>Full Name</b></label>
+                    <input class="w3-input w3-border" type="text" id="userName">
+                </p>
+                <p>
+                    <label><b>Nickname</b></label>
+                    <input class="w3-input w3-border" type="text" id="userNickname">
+                </p>
+                <p>
+                    <label><b>SHV Number</b></label>
+                    <input class="w3-input w3-border" type="text" id="userShvNumber">
+                </p>
+                <p>
+                    <label><b>Glider</b></label>
+                    <input class="w3-input w3-border" type="text" id="userGlider">
+                </p>
+                <p>
+                    <button class="w3-button w3-blue w3-padding-large w3-margin-top w3-margin-bottom" type="submit">
+                        <i class="fa fa-floppy-disk fa-fw"></i>&nbsp; Save Changes
+                    </button>
+                </p>
+            </form>
+            <div id="statusMessage" class="w3-panel" style="display:none;"></div>
+        </div>
+    </div>
+	
+	<div class="w3-card w3-round-large w3-margin">
+    <div class="w3-container w3-padding">
+        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16">Change Password</h4>
+        
+        <form id="passwordForm">
+            <p>
+                <label><b>Current Password</b></label>
+                <input class="w3-input w3-border" type="password" id="currentPassword" required>
+            </p>
+            <p>
+                <label><b>New Password</b></label>
+                <input class="w3-input w3-border" type="password" id="newPassword" required>
+            </p>
+            <p>
+                <label><b>Confirm New Password</b></label>
+                <input class="w3-input w3-border" type="password" id="confirmPassword" required>
+            </p>
+            <p>
+                <button class="w3-button w3-blue w3-padding-large w3-margin-top w3-margin-bottom" type="submit">
+                    <i class="fa fa-key fa-fw"></i>&nbsp; Change Password
+                </button>
+            </p>
+        </form>
+        <div id="passwordStatusMessage" class="w3-panel" style="display:none;"></div>
+    </div>
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+
+<!-- FIREBASE INITIALIZATION - ONLY ONCE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCjSOM5roktee1TXbU6mrUhcMBe5Z-8ccY",
+  authDomain: "flight-deck-3bb7b.firebaseapp.com",
+  projectId: "flight-deck-3bb7b",
+  storageBucket: "flight-deck-3bb7b.firebasestorage.app",
+  messagingSenderId: "207195710488",
+  appId: "1:207195710488:web:6f567ae11e680584214f6d",
+  measurementId: "G-5D0JNV625P"
+};
+
+// Initialize Firebase - ONLY ONCE
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Make these available globally for other scripts
+window.firebaseApp = app;
+window.firebaseAuth = auth;
+window.firebaseDb = db;
+</script>
+
+
+
+
+
+
+
+<!--LOGOUT SCRIPT-->
+<script type="module">
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+
+
+// Use the globally available auth instance
+const auth = window.firebaseAuth;
+
+// Handle logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await signOut(auth);
+            window.location.href = 'flightdeck.html'; 
+        } catch (err) {
+            console.error('Logout failed:', err);
+        }
+    });
+}
+
+// Check authentication state
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        // Redirect to login if not authenticated
+        window.location.href = 'flightdeck.html';
+    }
+});
+</script>
+
+<!--MENÜ KATTINTÁS FIGYELŐ ÉS TAB VÁLTÓ SCRIPT-->
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+    const menuButtons = document.querySelectorAll('#nav-menu .w3-bar-item.w3-button');
+    const sections = document.querySelectorAll('.tab-content');
+
+    const hideAllSections = () => {
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    };
+
+    // Initial state
+    hideAllSections();
+    const dashboardSection = document.getElementById('dashboard-section');
+    if (dashboardSection) {
+        dashboardSection.style.display = 'block';
+    }
+    
+    const initialActiveTab = document.getElementById('dashboard-tab');
+    if (initialActiveTab) {
+        initialActiveTab.classList.add('w3-blue');
+    }
+
+    menuButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!button.id || button.id === 'logoutBtn') {
+                return;
+            }
+            
+            menuButtons.forEach(btn => btn.classList.remove('w3-blue'));
+            button.classList.add('w3-blue');
+            hideAllSections();
+            
+            const sectionId = button.id.replace('-tab', '-section');
+            const targetSection = document.getElementById(sectionId);
+            
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+			
+            if (window.innerWidth <= 992) { 
+                w3_close();
+            }
+        });
+    });
+});
+</script>
+
+<!--SETTINGS SCRIPT-->
+<script type="module">
+import { onAuthStateChanged, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// Use globally available instances
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+
+const settingsForm = document.getElementById('settingsForm');
+const userEmailInput = document.getElementById('userEmail');
+const userNameInput = document.getElementById('userName');
+const userNicknameInput = document.getElementById('userNickname');
+const userShvNumberInput = document.getElementById('userShvNumber');
+const userGliderInput = document.getElementById('userGlider');
+const statusMessage = document.getElementById('statusMessage');
+
+// Helper function for status messages
+const showStatusMessage = (message, type) => {
+    statusMessage.textContent = message;
+    statusMessage.style.display = 'block';
+    statusMessage.className = `w3-panel w3-${type}`;
+    setTimeout(() => {
+        statusMessage.style.display = 'none';
+    }, 5000);
+};
+
+// Function to fetch user data
+const fetchUserData = async (user) => {
+    try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            userEmailInput.value = user.email;
+            userNameInput.value = userData.name || '';
+            userNicknameInput.value = userData.nickname || '';
+            userShvNumberInput.value = userData.shvNumber || '';
+            userGliderInput.value = userData.glider || '';
+        } else {
+            await setDoc(doc(db, "users", user.uid), {
+                email: user.email,
+                name: '',
+                nickname: '',
+                shvNumber: '',
+                glider: ''
+            });
+            userEmailInput.value = user.email;
+            showStatusMessage("User profile created. Please fill in your details.", "yellow");
+        }
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        showStatusMessage("Error loading user data.", "red");
+    }
+};
+
+// Function to save user data
+const saveUserData = async (user) => {
+    try {
+        await setDoc(doc(db, "users", user.uid), {
+            name: userNameInput.value,
+            nickname: userNicknameInput.value,
+            shvNumber: userShvNumberInput.value,
+            glider: userGliderInput.value
+        }, { merge: true });
+        showStatusMessage("Changes saved successfully!", "green");
+    } catch (error) {
+        console.error("Error saving user data:", error);
+        showStatusMessage("Error saving changes.", "red");
+    }
+};
+
+// Auth state listener
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        fetchUserData(user);
+    } else {
+        userEmailInput.value = '';
+        userNameInput.value = '';
+        userNicknameInput.value = '';
+        userShvNumberInput.value = '';
+        userGliderInput.value = '';
+    }
+});
+
+// Form submit listener
+settingsForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const user = auth.currentUser;
+    if (user) {
+        saveUserData(user);
+    } else {
+        showStatusMessage("You must be logged in to save changes.", "red");
+    }
+});
+
+// Password change functionality
+const passwordForm = document.getElementById('passwordForm');
+const currentPasswordInput = document.getElementById('currentPassword');
+const newPasswordInput = document.getElementById('newPassword');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+const passwordStatusMessage = document.getElementById('passwordStatusMessage');
+
+const showPasswordStatusMessage = (message, type) => {
+    passwordStatusMessage.textContent = message;
+    passwordStatusMessage.style.display = 'block';
+    passwordStatusMessage.className = `w3-panel w3-${type}`;
+    setTimeout(() => {
+        passwordStatusMessage.style.display = 'none';
+    }, 5000);
+};
+
+passwordForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const user = auth.currentUser;
+    if (!user) {
+        showPasswordStatusMessage("You must be logged in to change your password.", "red");
+        return;
+    }
+
+    const currentPassword = currentPasswordInput.value;
+    const newPassword = newPasswordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (newPassword !== confirmPassword) {
+        showPasswordStatusMessage("New password and confirmation do not match.", "red");
+        return;
+    }
+
+    if (newPassword.length < 6) {
+        showPasswordStatusMessage("Password should be at least 6 characters.", "red");
+        return;
+    }
+
+    try {
+        const credential = EmailAuthProvider.credential(user.email, currentPassword);
+        await reauthenticateWithCredential(user, credential);
+        await updatePassword(user, newPassword);
+        
+        showPasswordStatusMessage("Password changed successfully!", "green");
+        
+        currentPasswordInput.value = '';
+        newPasswordInput.value = '';
+        confirmPasswordInput.value = '';
+
+    } catch (error) {
+        console.error("Error changing password:", error);
+        
+        let errorMessage = "Error changing password.";
+        if (error.code === 'auth/wrong-password') {
+            errorMessage = "Incorrect current password.";
+        } else if (error.code === 'auth/weak-password') {
+            errorMessage = "The new password is too weak.";
+        } else if (error.code === 'auth/requires-recent-login') {
+            errorMessage = "Please log in again to change your password.";
+        }
+        showPasswordStatusMessage(errorMessage, "red");
+    }
+});
+</script>
+
+<!----INFO modal and checklist listener------->
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.check-item').forEach(item => {
+        item.addEventListener("click", function (event) {
+            if (event.target.tagName.toLowerCase() !== 'input' && 
+                event.target.className.toLowerCase() !== 'slider' && 
+                !event.target.classList.contains('info-icon')) {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    checkbox.dispatchEvent(new Event("change"));
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll('.info-icon').forEach(icon => {
+        icon.addEventListener("click", function (event) {
+            event.stopPropagation();
+            const parentCheckItem = this.closest('.check-item');
+            if (parentCheckItem) {
+                const infoText = parentCheckItem.getAttribute('data-info-html');
+                if (infoText) {
+                    const modal = document.getElementById('infoModal');
+                    const modalBody = document.getElementById('modalBody');
+                    const modalTitle = document.getElementById('modalTitle');
+
+                    modalTitle.textContent = parentCheckItem.querySelector('span').textContent.replace(/[\d.]+\s*/, '').trim();
+                    modalBody.innerHTML = infoText;
+
+                    modal.style.display = "block";
+                }
+            }
+        });
+    });
+
+    const closeButton = document.querySelector('.close-button');
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            document.getElementById('infoModal').style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('infoModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+</script>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalBody"></p>
+    </div>
+</div>
+
+<!---CHECKLIST - FIREBASE----------------------->
+<script type="module">
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// Use globally available instances
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const checklistForm = document.getElementById('form');
+    let checklistLoaded = false; // Flag to prevent multiple loads
+    
+    // Function to show checklist status messages
+    const showChecklistStatusMessage = (message, type) => {
+        let statusDiv = document.getElementById('checklistStatusMessage');
+        if (!statusDiv) {
+            statusDiv = document.createElement('div');
+            statusDiv.id = 'checklistStatusMessage';
+            checklistForm.prepend(statusDiv);
+        }
+        statusDiv.textContent = message;
+        statusDiv.style.display = 'block';
+        statusDiv.className = `w3-panel w3-${type}`;
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 3000);
+    };
+
+    // Function to load checklist state from Firebase
+            const loadChecklistState = async (user) => {
+                if (checklistLoaded) return;
+                
+                try {
+                    console.log("Loading checklist for user:", user.uid);
+                    const docRef = doc(db, "checklists", user.uid);
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        console.log("Checklist data loaded:", data);
+                        const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
+                        checkboxes.forEach(checkbox => {
+                            const checkboxId = checkbox.id;
+                            // A logikai értéket (true/false) a Firebase adatbázisból tölti be
+                            if (data.hasOwnProperty(checkboxId)) {
+                                checkbox.checked = data[checkboxId];
+                            }
+                        });
+                        showChecklistStatusMessage("Checklist loaded successfully.", "green");
+                    } else {
+                        // Új checklist létrehozása, ha még nincs
+                        console.log("No checklist data found for this user. Creating default checklist.");
+                        const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
+                        const defaultData = {};
+                        checkboxes.forEach(checkbox => {
+                            defaultData[checkbox.id] = false;
+                            checkbox.checked = false; // Alapértelmezett beállítás a felhasználói felületen
+                        });
+
+                        try {
+                            await setDoc(doc(db, "checklists", user.uid), defaultData);
+                            showChecklistStatusMessage("Default checklist created.", "blue");
+                            console.log("Default checklist saved to Firestore.");
+                        } catch (e) {
+                            console.error("Error creating default checklist:", e);
+                            showChecklistStatusMessage("Error creating default checklist.", "red");
+                        }
+                    }
+                    checklistLoaded = true; // Betöltés után beállítja a flaget
+                } catch (e) {
+                    console.error("Error loading checklist:", e);
+                    showChecklistStatusMessage("Error loading checklist: " + e.message, "red");
+                    checklistLoaded = false; // Hiba esetén visszaállítja a flaget
+                }
+            };
+
+    // Function to save individual checkbox state
+    const saveCheckboxState = async (checkbox) => {
+        const user = auth.currentUser;
+        if (user) {
+            const dataToSave = {
+                [checkbox.id]: checkbox.checked
+            };
+            try {
+                await setDoc(doc(db, "checklists", user.uid), dataToSave, { merge: true });
+                console.log(`Checklist item "${checkbox.id}" saved: ${checkbox.checked}`);
+            } catch (e) {
+                console.error("Error saving checklist item:", e);
+                showChecklistStatusMessage("Error saving checklist item.", "red");
+            }
+        }
+    };
+
+    // Set up automatic saving for all checkboxes
+    const setupCheckboxListeners = () => {
+        checklistForm.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                saveCheckboxState(checkbox);
+            });
+        });
+    };
+
+    // Set up checkbox listeners immediately
+    setupCheckboxListeners();
+
+    // Handle authentication state changes
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("User authenticated:", user.uid);
+            
+            // Set up tab click listener for checklist
+            const checklistTabButton = document.getElementById('checklist-tab');
+            if (checklistTabButton) {
+                checklistTabButton.addEventListener('click', () => {
+                    console.log("Checklist tab clicked");
+                    loadChecklistState(user);
+                });
+            }
+            
+            // If currently on checklist tab, load immediately
+            const checklistSection = document.getElementById('checklist-section');
+            if (checklistSection && checklistSection.style.display !== 'none') {
+                console.log("Already on checklist tab, loading data");
+                loadChecklistState(user);
+            }
+        } else {
+            console.log("User not authenticated");
+            checklistLoaded = false;
+        }
+    });
+});
+</script>
+
+<!---------------LOCATIONS and ADD FLIGHT functionality---------------------->
+<script type="module">
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// Use globally available instances
+const auth = window.firebaseAuth;
+const db = window.firebaseDb;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const takeoffSelect = document.getElementById('addflight-takeoff-location');
+    const landingSelect = document.getElementById('addflight-landing-location');
+    const addFlightForm = document.getElementById('addflight-form');
+    let locationsLoaded = false;
+    
+    // Function to show status messages
+    const showStatusMessage = (message, type) => {
+        let statusDiv = document.getElementById('addflight-status-message');
+        if (!statusDiv) {
+            statusDiv = document.createElement('div');
+            statusDiv.id = 'addflight-status-message';
+            statusDiv.style.marginTop = '10px';
+            addFlightForm.appendChild(statusDiv);
+        }
+        statusDiv.textContent = message;
+        statusDiv.style.display = 'block';
+        statusDiv.className = `w3-panel w3-${type}`;
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 5000);
+    };
+
+    // Function to load locations and populate selects
+    const loadLocations = async () => {
+        if (locationsLoaded) return;
+        
+        try {
+            console.log("Loading locations...");
+            const locationsCol = collection(db, "locations");
+            const locationsSnapshot = await getDocs(locationsCol);
+            const takeoffs = [];
+            const landings = [];
+
+            // Clear existing options (except the first placeholder)
+            takeoffSelect.innerHTML = '<option value="" disabled selected>Select a takeoff location</option>';
+            landingSelect.innerHTML = '<option value="" disabled selected>Select a landing location</option>';
+
+            locationsSnapshot.forEach(doc => {
+                const locationData = doc.data();
+                
+                if (locationData.type === "takeoff") {
+                    takeoffs.push({ name: locationData.name, altitude: locationData.altitude });
+                    const option = document.createElement('option');
+                    option.value = locationData.name;
+                    option.textContent = locationData.name;
+                    takeoffSelect.appendChild(option);
+                } else if (locationData.type === "landing") {
+                    landings.push({ name: locationData.name, altitude: locationData.altitude });
+                    const option = document.createElement('option');
+                    option.value = locationData.name;
+                    option.textContent = locationData.name;
+                    landingSelect.appendChild(option);
+                }
+            });
+
+            // Function to update altitude difference
+            const updateAltitudeDifference = () => {
+                const takeoffName = takeoffSelect.value;
+                const landingName = landingSelect.value;
+                const takeoff = takeoffs.find(l => l.name === takeoffName);
+                const landing = landings.find(l => l.name === landingName);
+
+                if (takeoff && landing) {
+                    const diff = takeoff.altitude - landing.altitude;
+                    document.getElementById('addflight-altitude-difference').textContent = `${diff}m`;
+                } else {
+                    document.getElementById('addflight-altitude-difference').textContent = '0m';
+                }
+            };
+
+            // Add event listeners for altitude calculation
+            takeoffSelect.addEventListener('change', updateAltitudeDifference);
+            landingSelect.addEventListener('change', updateAltitudeDifference);
+
+            console.log("Locations loaded successfully");
+            locationsLoaded = true;
+
+        } catch (error) {
+            console.error("Error loading locations:", error);
+            showStatusMessage("Error loading locations: " + error.message, "red");
+        }
+    };
+
+    // Flight form submission handler
+    addFlightForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const user = auth.currentUser;
+
+        if (!user) {
+            showStatusMessage("You must be logged in to save a flight.", "red");
+            return;
+        }
+
+        const flightData = {
+            date: addFlightForm['flight-date'].value,
+            takeoff: addFlightForm['takeoff-location'].value,
+            landing: addFlightForm['landing-location'].value,
+            altitudeDifference: document.getElementById('addflight-altitude-difference').textContent,
+            flightTime: addFlightForm['flight-time'].value,
+            comments: addFlightForm['comments'].value,
+            createdAt: new Date()
+        };
+
+        try {
+            await addDoc(collection(db, "users", user.uid, "flights"), flightData);
+            console.log("Flight saved successfully.");
+            
+            addFlightForm.reset();
+            document.getElementById('addflight-altitude-difference').textContent = "0m";
+            showStatusMessage("Flight saved successfully!", "green");
+        } catch (e) {
+            console.error("Error saving flight: ", e);
+            showStatusMessage("Error saving flight: " + e.message, "red");
+        }
+    });
+
+    // Handle authentication state changes
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("User authenticated for add flight:", user.uid);
+            
+            // Set up tab click listener for add flight
+            const addFlightTabButton = document.getElementById('addflight-tab');
+            if (addFlightTabButton) {
+                addFlightTabButton.addEventListener('click', () => {
+                    console.log("Add flight tab clicked");
+                    loadLocations();
+                });
+            }
+            
+            // If currently on add flight tab, load immediately
+            const addFlightSection = document.getElementById('addflight-section');
+            if (addFlightSection && addFlightSection.style.display !== 'none') {
+                console.log("Already on add flight tab, loading locations");
+                loadLocations();
+            }
+        } else {
+            console.log("User not authenticated");
+            locationsLoaded = false;
+        }
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- FLIGHTBOOK MODAL (Modify) -->
+<div id="modifyFlightModal" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:500px">
+    <header class="w3-container w3-blue">
+      <span onclick="document.getElementById('modifyFlightModal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h3>Modify Flight</h3>
+    </header>
+    <div class="w3-container">
+      <form id="modify-flight-form" class="w3-margin-top w3-margin-bottom">
+        <p>
+          <label>Date:</label>
+          <input class="w3-input w3-border w3-round-large" type="date" id="modify-date" required>
+        </p>
+        <p>
+          <label>Takeoff:</label>
+          <select class="w3-select w3-border w3-round-large" id="modify-takeoff" required>
+            <option value="" disabled selected>Select a takeoff location</option>
+          </select>
+        </p>
+        <p>
+          <label>Landing:</label>
+          <select class="w3-select w3-border w3-round-large" id="modify-landing" required>
+            <option value="" disabled selected>Select a landing location</option>
+          </select>
+        </p>
+        <p>
+          <label>Flight Time:</label>
+          <input class="w3-input w3-border w3-round-large" type="number" id="modify-time" min="1" required>
+        </p>
+        <p>
+          <label>Comments:</label>
+          <textarea class="w3-input w3-border w3-round-large" id="modify-comments" rows="3"></textarea>
+        </p>
+        <p>
+          <button type="submit" class="w3-button w3-green w3-round-large">Save Changes</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Comment modal (kis popup, kattintásra) -->
+<div id="commentModal" class="w3-modal" style="display:none;">
+  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:420px">
+    <header class="w3-container w3-blue">
+      <span onclick="document.getElementById('commentModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Comment</h3>
+    </header>
+    <div class="w3-container" id="commentModalBody" style="white-space:pre-wrap; padding:16px;"></div>
+  </div>
+</div>
+<style>
+/* Tooltip (custom, follow mouse) */
+.flight-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 4px;
+  max-width: 360px;
+  white-space: pre-wrap;
+  font-size: 13px;
+  pointer-events: none; /* ne akadályozza az egérinterakciót */
+}
+</style>
+
+<script type="module">
+import {
+  collection, getDocs, deleteDoc, doc, getDoc, updateDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+const flightbookSection = document.getElementById("flightbook-section");
+const commentModal = document.getElementById("commentModal");
+const commentModalBody = document.getElementById("commentModalBody");
+
+let tooltipEl = null;
+function showTooltip(e, text) {
+  if (!text) return;
+  hideTooltip();
+  tooltipEl = document.createElement('div');
+  tooltipEl.className = 'flight-tooltip';
+  tooltipEl.textContent = text;
+  document.body.appendChild(tooltipEl);
+  positionTooltip(e);
+  document.addEventListener('mousemove', positionTooltip);
+}
+function positionTooltip(e) {
+  if (!tooltipEl) return;
+  const pad = 12;
+  let x = e.clientX + pad;
+  let y = e.clientY + pad;
+  // visszaugrás az ablak széléhez, ha szükséges
+  const rect = tooltipEl.getBoundingClientRect();
+  if (x + rect.width > window.innerWidth) x = window.innerWidth - rect.width - 8;
+  if (y + rect.height > window.innerHeight) y = window.innerHeight - rect.height - 8;
+  tooltipEl.style.left = x + 'px';
+  tooltipEl.style.top = y + 'px';
+}
+function hideTooltip() {
+  if (tooltipEl) {
+    tooltipEl.remove();
+    tooltipEl = null;
+    document.removeEventListener('mousemove', positionTooltip);
+  }
+}
+function openCommentModal(text) {
+  commentModalBody.textContent = text || '';
+  commentModal.style.display = 'block';
+}
+
+// Helper: select feltöltés a modify modalhoz (ha kell külön)
+function fillSelectFromMap(selectEl, locationsMap, selectedValue) {
+  // clear
+  selectEl.innerHTML = '';
+  const empty = document.createElement('option');
+  empty.value = '';
+  empty.disabled = true;
+  empty.textContent = 'Select location';
+  selectEl.appendChild(empty);
+
+  for (const [id, name] of locationsMap.entries()) {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = name;
+    if (id === selectedValue || name === selectedValue) opt.selected = true;
+    selectEl.appendChild(opt);
+  }
+}
+
+document.getElementById("flightbook-tab").addEventListener("click", () => {
+  const user = auth.currentUser;
+  if (user) {
+    loadFlights(user);
+  }
+});
+
+
+
+
+async function loadFlights(user) {
+  // 1) lekérdezzük a locations-okat egyszer és map-be tesszük (id -> name)
+  const locationsSnapshot = await getDocs(collection(db, "locations"));
+  const locationsMap = new Map();
+  locationsSnapshot.forEach(ls => {
+    const d = ls.data();
+    locationsMap.set(ls.id, d.name || ls.id);
+  });
+
+  // 2) táblázat skeleton
+  flightbookSection.innerHTML = `
+    <header class="w3-container" style="padding-top:22px">
+      <h5><b><i class="fa fa-history"></i> Flight Book</b></h5>
+    </header>
+    <table class="w3-table w3-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Takeoff</th>
+          <th>Landing</th>
+          <th>Flight Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="flightbook-table-body"></tbody>
+    </table>
+  `;
+
+  const tbody = document.getElementById("flightbook-table-body");
+  tbody.innerHTML = '';
+
+  // 3) lekérdezzük a felhasználó flightjait
+  const flightsRef = collection(db, "users", user.uid, "flights");
+  const snapshot = await getDocs(flightsRef);
+
+  // Build an array of flights with id
+  const flights = [];
+  snapshot.forEach(docSnap => {
+    const flight = docSnap.data();
+    flight.id = docSnap.id;
+    flights.push(flight);
+  });
+
+  // 4) Sort flights by date descending (newest first)
+  flights.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB - dateA; // newest first
+  });
+
+  // 5) Render flights with numbering from bottom (oldest = 1) to top (newest)
+  const totalFlights = flights.length;
+  flights.forEach((flight, index) => {
+    const tr = document.createElement('tr');
+
+    // Flight number: oldest = 1 at bottom
+    const tdNumber = document.createElement('td');
+    tdNumber.textContent = totalFlights - index;
+    tr.appendChild(tdNumber);
+
+    const tdDate = document.createElement('td');
+    tdDate.textContent = flight.date || '';
+    tr.appendChild(tdDate);
+
+    const tdTakeoff = document.createElement('td');
+    tdTakeoff.textContent = locationsMap.get(flight.takeoff) || flight.takeoff || '';
+    tr.appendChild(tdTakeoff);
+
+    const tdLanding = document.createElement('td');
+    tdLanding.textContent = locationsMap.get(flight.landing) || flight.landing || '';
+    tr.appendChild(tdLanding);
+
+    const tdTime = document.createElement('td');
+    tdTime.textContent = flight.flightTime ? `${flight.flightTime} min` : '';
+    tr.appendChild(tdTime);
+
+    const tdActions = document.createElement('td');
+
+    // Delete button
+    const delBtn = document.createElement('button');
+    delBtn.className = 'w3-button w3-small w3-red';
+    delBtn.textContent = 'Delete';
+    delBtn.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      if (confirm('Are you sure you want to delete this flight?')) {
+        await deleteDoc(doc(db, "users", user.uid, "flights", flight.id));
+        loadFlights(user);
+      }
+    });
+    tdActions.appendChild(delBtn);
+
+    // Modify button
+    const modBtn = document.createElement('button');
+    modBtn.className = 'w3-button w3-small w3-blue';
+    modBtn.textContent = 'Modify';
+    modBtn.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      currentFlightRef = doc(db, "users", user.uid, "flights", flight.id);
+      const flightSnap = await getDoc(currentFlightRef);
+      if (flightSnap.exists()) {
+        const data = flightSnap.data();
+        document.getElementById("modify-date").value = data.date || "";
+        document.getElementById("modify-time").value = data.flightTime || "";
+        document.getElementById("modify-comments").value = data.comments || "";
+
+        const takeoffSelect = document.getElementById("modify-takeoff");
+        const landingSelect = document.getElementById("modify-landing");
+        if (takeoffSelect && landingSelect) {
+          fillSelectFromMap(takeoffSelect, locationsMap, data.takeoff);
+          fillSelectFromMap(landingSelect, locationsMap, data.landing);
+        }
+
+        document.getElementById('modifyFlightModal').style.display = 'block';
+      }
+    });
+    tdActions.appendChild(modBtn);
+
+    // Comment icon
+    if (flight.comments) {
+      const icon = document.createElement('i');
+      icon.className = 'fa fa-comment w3-margin-left';
+      icon.setAttribute('title', flight.comments);
+      icon.style.cursor = 'pointer';
+      icon.addEventListener('mouseenter', (e) => showTooltip(e, flight.comments));
+      icon.addEventListener('mouseleave', hideTooltip);
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hideTooltip();
+        openCommentModal(flight.comments);
+      });
+      tdActions.appendChild(icon);
+    }
+
+    tr.appendChild(tdActions);
+    tbody.appendChild(tr);
+  });
+}
+
+
+
+
+
+// --- modify modal currentFlightRef (újrahasználható) ---
+let currentFlightRef = null;
+const modifyForm = document.getElementById('modify-flight-form');
+if (modifyForm) {
+  modifyForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!currentFlightRef) return;
+    await updateDoc(currentFlightRef, {
+      date: document.getElementById("modify-date").value,
+      takeoff: document.getElementById("modify-takeoff").value,
+      landing: document.getElementById("modify-landing").value,
+      flightTime: document.getElementById("modify-time").value,
+      comments: document.getElementById("modify-comments").value
+    });
+    alert("Flight updated successfully!");
+    document.getElementById('modifyFlightModal').style.display = 'none';
+    const user = auth.currentUser;
+    if (user) loadFlights(user);
+  });
+}
+
+// Auth watcher
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    loadFlights(user).catch(err => console.error('Failed loading flights:', err));
+  }
+});
+</script>
+
+
+<!-----------Dashboard betöltése--------------->
+<script type="module">
+import { collection, onSnapshot, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+// Airtime formatter
+function formatAirtime(minutes) {
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    return h > 0 ? `${h}h ${m} min` : `${m} min`;
+}	
+
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+
+function setupDashboardRealtime(user) {
+    const flightsRef = collection(db, "users", user.uid, "flights");
+    const checklistRef = doc(db, "checklists", user.uid); // checklist doc
+
+    // Listen for flights changes
+    onSnapshot(flightsRef, async snapshot => {
+        let totalFlights = 0;
+        let totalAirtime = 0;
+        let totalAlt = 0;
+        const takeoffsSet = new Set();
+        const landingsSet = new Set();
+        const flyingDaysSet = new Set();
+
+        snapshot.forEach(docSnap => {
+            const flight = docSnap.data();
+            totalFlights++;
+
+            if (flight.takeoff && flight.takeoff.trim() !== "") takeoffsSet.add(flight.takeoff);
+            if (flight.landing && flight.landing.trim() !== "") landingsSet.add(flight.landing);
+
+            if (flight.flightTime) {
+                const ft = parseInt(flight.flightTime, 10);
+                if (!isNaN(ft)) totalAirtime += ft;
+            }
+
+            if (flight.altitudeDifference) {
+                const alt = parseInt(flight.altitudeDifference.replace("m", ""), 10);
+                if (!isNaN(alt)) totalAlt += alt;
+            }
+
+            if (flight.date && flight.date.trim() !== "") flyingDaysSet.add(flight.date);
+        });
+
+        // Update flight stats
+        document.querySelector(".w3-container.w3-olive h3").textContent = totalFlights;
+        document.querySelector(".w3-container.w3-blue h3").textContent = takeoffsSet.size;
+        document.querySelector(".w3-container.w3-teal h3").textContent = landingsSet.size;
+        document.querySelector(".w3-container.w3-orange h3").textContent = formatAirtime(totalAirtime);
+        document.querySelector(".w3-container.w3-purple h3").textContent = totalAlt + " m";
+        document.querySelector(".w3-container.w3-light-blue h3").textContent = flyingDaysSet.size;
+
+        // Load checklist progress
+        try {
+            const checklistSnap = await getDoc(checklistRef);
+            let percent = 0;
+            if (checklistSnap.exists()) {
+                const data = checklistSnap.data();
+                const totalItems = Object.keys(data).length;
+                if (totalItems > 0) {
+                    const checkedItems = Object.values(data).filter(v => v === true).length;
+                    percent = Math.round((checkedItems / totalItems) * 100);
+                }
+            }
+            // Update dashboard element
+            const el = document.querySelector(".w3-container.w3-blue-gray h3"); // your new element
+            if (el) el.textContent = percent + "%";
+        } catch (err) {
+            console.error("Error fetching checklist:", err);
+        }
+    });
+}
+
+onAuthStateChanged(auth, (user) => {
+    if (user) setupDashboardRealtime(user);
+});
+</script>
+
+
+<!------------Nickname kiolvasó------------------>
+<script type="module">
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    // user document reference
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      const data = userSnap.data();
+      if (data.nickname) {
+        document.getElementById("nickname").textContent = data.nickname;
+      } else {
+        document.getElementById("nickname").textContent = user.email; // fallback
+      }
+    }
+  }
+});
+</script>
+
+
+
+<!------------BAR CHART RAJZOLÓ----------------------->
+<script type="module">
+import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+
+/* --- Színek (opcionális override, ha nincs a CSS-ben) --- */
+const categoryColors = {
+  "ex": "#4caf50",
+  "gh-bas": "#2196f3",
+  "gh-adv": "#ff9800",
+};
+
+/* --- Kategória hosszú neveket kiolvassuk a HTML checklistből --- */
+const categoryLabels = {};
+document.querySelectorAll('#checklist-section h4').forEach(h4 => {
+  const cat = h4.dataset.category;
+  if (cat) categoryLabels[cat] = h4.textContent.trim();
+});
+
+/* --- Konténer setup: chart + legend side-by-side --- */
+function ensureChartContainers() {
+  let wrapper = document.getElementById('checklist-chart-wrapper');
+  if (!wrapper) {
+    const parent = document.getElementById('dashboard-section') || document.body;
+    wrapper = document.createElement('div');
+    wrapper.id = 'checklist-chart-wrapper';
+    wrapper.style.display = 'flex';
+    wrapper.style.alignItems = 'flex-start';
+    wrapper.style.gap = '2rem';
+    wrapper.style.marginTop = '20px';
+
+    const chart = document.createElement('div');
+    chart.id = 'bar-chart-container';
+    chart.className = 'bar-chart-container';
+
+    const legend = document.createElement('div');
+    legend.id = 'bar-legend';
+    legend.className = 'bar-chart-legend';
+
+    wrapper.appendChild(chart);
+    wrapper.appendChild(legend);
+    parent.appendChild(wrapper);
+  }
+}
+
+/* --- Chart builder --- */
+function createVerticalBars(data) {
+  ensureChartContainers();
+  const barChartContainer = document.getElementById('bar-chart-container');
+  const legendContainer = document.getElementById('bar-legend');
+
+  barChartContainer.innerHTML = '';
+  legendContainer.innerHTML = '';
+
+  data.forEach(item => {
+    // Bar
+    const barWrapper = document.createElement('div');
+    barWrapper.classList.add('bar-wrapper');
+
+    const bar = document.createElement('div');
+    bar.classList.add('bar');
+
+    const barFill = document.createElement('div');
+    barFill.classList.add('bar-fill');
+    barFill.style.height = `${Math.round(item.value)}%`;
+    barFill.style.backgroundColor = item.color;
+
+    const percentageText = document.createElement('span');
+    percentageText.classList.add('bar-percentage');
+    percentageText.textContent = `${Math.round(item.value)}%`;
+
+    const label = document.createElement('div');
+    label.classList.add('bar-label');
+    label.textContent = item.longName || item.cat;
+
+    bar.appendChild(barFill);
+    bar.appendChild(percentageText);
+    barWrapper.appendChild(bar);
+    barWrapper.appendChild(label);
+    barChartContainer.appendChild(barWrapper);
+
+    // Legend
+    const legendItem = document.createElement('div');
+    legendItem.classList.add('legend-item');
+
+    const colorBox = document.createElement('div');
+    colorBox.classList.add('legend-color-box');
+    colorBox.style.backgroundColor = item.color;
+
+    const legendText = document.createElement('span');
+    legendText.textContent = `${item.longName || item.cat} – ${item.done}/${item.total} (${Math.round(item.value)}%)`;
+
+    legendItem.appendChild(colorBox);
+    legendItem.appendChild(legendText);
+    legendContainer.appendChild(legendItem);
+  });
+}
+
+/* --- Firestore -> chart data --- */
+function setupChecklistChart(user) {
+  const checklistRef = doc(db, "checklists", user.uid);
+
+  onSnapshot(checklistRef, (docSnap) => {
+    if (!docSnap.exists()) return createVerticalBars([]);
+
+    const data = docSnap.data();
+    const categoryStats = {};
+
+    Object.entries(data).forEach(([key, value]) => {
+      const parts = key.split("-");
+      let category = parts.length >= 3 ? `${parts[0]}-${parts[1]}` : parts[0];
+
+      if (!categoryStats[category]) categoryStats[category] = { done: 0, total: 0 };
+      if (value === true || value === 'true' || value === 1) categoryStats[category].done++;
+      categoryStats[category].total++;
+    });
+
+    const chartData = Object.entries(categoryStats).map(([cat, stats]) => {
+      const percent = (stats.done / stats.total) * 100;
+      return {
+        cat,
+        longName: categoryLabels[cat],
+        done: stats.done,
+        total: stats.total,
+        value: percent,
+        color: categoryColors[cat] || "#805ad5"
+      };
+    });
+
+    createVerticalBars(chartData);
+  });
+}
+
+onAuthStateChanged(auth, (user) => {
+  if (user) setupChecklistChart(user);
+});
+</script>
+
+
+
+</body>
+</html>
