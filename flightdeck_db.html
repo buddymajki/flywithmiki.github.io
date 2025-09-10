@@ -11,53 +11,97 @@
 	<link rel="stylesheet" href="flightdeck.css">
 	
 <style>
+/* Sidebar and overlay for small & mid screens */
+@media (max-width: 1024px) {
+  #mySidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0;
+    width: 300px; /* mid screens width */
+    max-width: 100%;
+    height: 100%;
+    z-index: 2001 !important;
+    background-color: rgba(26,32,44,0.96);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* animation */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    display: block; /* keep it in DOM */
+  }
+
+
+
+  #mySidebar.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  #myOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.28);
+    z-index: 2000;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  #myOverlay.visible {
+    display: block;
+    opacity: 1;
+  }
+}
+
 
 </style>
 </head>
 <body class="">
 
 <!--MENÜÜÜ------------------------------------------------------------------------------------------------------>
-
-<!-- Kis képernyőn Top container -->
-<div class="w3-bar w3-top w3-large" style="z-index:4; position: relative;">
-    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button>
-
+<!-- Top bar (add id to the button) -->
+<div class="w3-bar w3-top w3-large w3-center" id="topBar" style="position: relative; display: flex; justify-content: center;">
+  <button id="hamburgerBtn" class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey"
+          style="font-size:30px;" onclick="w3_open();">
+    <i class="fa fa-bars"></i>
+  </button>
 </div>
 
-<!-- Nagy képernyő oldalsó /menu -->
-<nav class="w3-sidebar w3-collapse  w3-animate-left" style="z-index:3;width:300px; background-color: #1a202c; /* Dark background similar to the image */
-            color: #e2e8f0;" id="mySidebar"><br>
+<!-- Sidebar (keep your content) -->
+<nav class="w3-sidebar w3-collapse w3-animate-left" id="mySidebar" style="z-index:3000;width:300px; background-color: #1a202c; color: #e2e8f0;">
+  <!-- ... your existing sidebar content unchanged ... -->
+  <br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
       <img src="https://flywithmiki.com/Images_v2/favicon.ico" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong id="nickname">Mike</strong></span>     
+      <span>Welcome, <strong id="nickname">Mike</strong></span>
     </div>
   </div>
   <hr>
-  
-  <div class="w3-container">
-    <h5>Flight Deck</h5>
-  </div>
+  <div class="w3-container"><h5>Flight Deck</h5></div>
+
   <div class="w3-bar-block" id="nav-menu">
-    <!--<button class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu</button> -->
-   
     <button class="w3-bar-item w3-button w3-padding w3-blue" id="dashboard-tab"><i class="fa fa-dashboard fa-fw"></i>&nbsp; Dashboard</button>
     <button class="w3-bar-item w3-button w3-padding" id="checklist-tab"><i class="fa fa-list-check fa-fw"></i>&nbsp; Checklist</button>
     <button class="w3-bar-item w3-button w3-padding" id="flightbook-tab"><i class="fa fa-history fa-fw"></i>&nbsp; Flight Book</button>
     <button class="w3-bar-item w3-button w3-padding" id="addflight-tab"><i class="fa fa-square-plus fa-fw"></i>&nbsp; Add Flight</button>
-
     <button class="w3-bar-item w3-button w3-padding" id="theory-tab"><i class="fa fa-bank fa-fw"></i>&nbsp; Theory</button>
     <button class="w3-bar-item w3-button w3-padding" id="export-pdf-tab"><i class="fa fa-download fa-fw"></i>&nbsp; Export</button><br>
     <button class="w3-bar-item w3-button" id="settings-tab"><i class="fa fa-cog"></i> &nbsp; Settings</button>
-	<button class="w3-bar-item w3-button" id="logoutBtn"><i class="fa fa-right-from-bracket"></i> Logout</button>
-
+    <button class="w3-bar-item w3-button" id="logoutBtn"><i class="fa fa-right-from-bracket"></i> Logout</button>
   </div>
 </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- Clickable overlay (used on mobile to close) -->
+<div id="myOverlay" aria-hidden="true"></div>
+
 <!--MENÜÜÜ------------------------------------------------------------------------------------------------------>
 
 
@@ -73,155 +117,126 @@
 
 
 
-	<!-- !DASHBOARD SECTION! -->
-	<div class="w3-container w3-padding tab-content" id="dashboard-section" style="display:none;">
-	  <header class="w3-container" style="padding-top:22px">
-	  
-		<h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-	  </header>
+<!-- !DASHBOARD SECTION! -->
+<!-- !DASHBOARD SECTION! -->
+<div class="w3-container w3-padding tab-content" id="dashboard-section" style="display:none;">
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
 
-	  <div class="w3-row-padding w3-margin-bottom">
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-olive w3-padding-16">
-			<div class="w3-left"><i class="fa fa-plane-circle-check w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
+		<!-- Dashboard Cards -->
+		<div class="w3-row-padding">
+
+		  <!-- Flights -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-olive w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <!-- Icon + Label -->
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-plane-circle-check w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Flights</h4>
+			  </div>
+			  <!-- Number -->
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(2rem,5vw,3rem); line-height:1.1;">--</h3>
+			  </div>
 			</div>
-			<div class="w3-clear"></div>
-			<h4>Flights</h4>
 		  </div>
+
+		  <!-- Takeoffs -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-blue w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-plane-departure w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Takeoffs</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(2rem,5vw,3rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+
+		  <!-- Landings -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-teal w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-plane-arrival w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Landings</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(2rem,5vw,3rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+		  
+		  <!-- Flying Days -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-light-blue w3-text-white w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-calendar-days w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Flying days</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(2rem,5vw,3rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+
+
+		  <!-- Airtime -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-orange w3-text-white w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-clock w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Airtime</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(1.8rem,2vw,2.8rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+
+		  <!-- Cumulative Altitude -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-purple w3-text-white w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-arrows-up-down w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Cumm. Alt.</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(1.8rem,2vw,2.8rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+
+
+		  <!-- Checklist Progress -->
+		  <div class="w3-col m3 s12">
+			<div class="w3-container w3-margin-bottom w3-blue-gray w3-text-white w3-padding-16"
+				 style="display:flex; align-items:center; height:150px;">
+			  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+				<i class="fa fa-bars-progress w3-xxxlarge"></i>
+				<h4 style="margin:4px 0 0 0;">Checklist progress</h4>
+			  </div>
+			  <div style="flex:1; text-align: right; overflow-wrap: break-word; word-break: break-word;">
+				<h3 class="dashboard-number" style="margin:0; font-size:clamp(1.8rem,2vw,2.8rem); line-height:1.1;">--</h3>
+			  </div>
+			</div>
+		  </div>
+
 		</div>
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-blue w3-padding-16">
-			<div class="w3-left"><i class="fa fa-plane-departure w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Takeoffs</h4>
-		  </div>
-		</div>
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-teal w3-padding-16">
-			<div class="w3-left"><i class="fa fa-plane-arrival w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Landings</h4>
-		  </div>
-		</div>
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-orange w3-text-white w3-padding-16">
-			<div class="w3-left"><i class="fa fa-clock w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Airtime</h4>
-		  </div>
-		</div>
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-purple w3-text-white w3-padding-16">
-			<div class="w3-left"><i class="fa fa-arrows-up-down w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Cumm. Alt.</h4>
-		  </div>
-		</div>	
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-light-blue w3-text-white w3-padding-16">
-			<div class="w3-left"><i class="fa fa-calendar-days w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Flying days</h4>
-		  </div>
-		</div>	
-		<div class="w3-quarter">
-		  <div class="w3-container w3-margin-bottom w3-blue-gray w3-text-white w3-padding-16">
-			<div class="w3-left"><i class="fa fa-bars-progress w3-xxxlarge"></i></div>
-			<div class="w3-right">
-			  <h3>--</h3>
-			</div>
-			<div class="w3-clear"></div>
-			<h4>Checklist progress</h4>
-		  </div>
-		</div>	
+		  <hr>
 		
-	  </div>
-	<hr>
-	
-	
-	<div class="w3-container">
-		<h5>Control Sheet Progress</h5>
-			<div id="checklist-chart-wrapper" class="w3-row-padding">
-			  <div id="bar-chart-container" class="w3-half bar-chart-container"></div>
-			  <div id="bar-legend" class="w3-half bar-chart-legend"></div>
-			</div>
+		<div id="checklist-chart-wrapper"></div>
+		  <br><hr>
+		
+</div>
 
-	</div>
-	  <hr>
-	  
-	  
-	  <div class="w3-panel">
-		<div class="w3-row-padding" style="margin:0 -16px">
-		  <div class="w3-third">
-			<h5>School Progress</h5>
-			<img src="region.jpg" style="width:100%" alt="Majd ide jön valami szép">
-		  </div>
-		  <div class="w3-twothird">
-			<h5>Last flights</h5>
-			<table class="w3-table w3-striped w3-white">
-			  <tr>
-				<td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-				<td>New record, over 90 views.</td>
-				<td><i>10 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-				<td>Database error.</td>
-				<td><i>15 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-				<td>New record, over 40 users.</td>
-				<td><i>17 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-				<td>New comments.</td>
-				<td><i>25 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-				<td>Check transactions.</td>
-				<td><i>28 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-				<td>CPU overload.</td>
-				<td><i>35 mins</i></td>
-			  </tr>
-			  <tr>
-				<td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-				<td>New shares.</td>
-				<td><i>39 mins</i></td>
-			  </tr>
-			</table>
-		  </div>
-		</div>
-	  </div>
-	  <hr>
-
-
-
-
-
-	</div>
 	<!--DASHBOARD SECTION END-->
 
 
@@ -1036,32 +1051,125 @@ const firebaseConfig = {
 
 </div>
 
-
 <script>
-// Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
-
-// Get the DIV with overlay effect
 var overlayBg = document.getElementById("myOverlay");
+var hamburgerBtn = document.getElementById("hamburgerBtn");
 
-// Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  var isMid = window.matchMedia('(max-width: 1024px) and (min-width: 769px)').matches;
+
+  if (isMobile) {
+    // MOBILE: dropdown below hamburger
+    if (mySidebar.classList.contains('open')) { w3_close(); return; }
+
+    var rect = hamburgerBtn.getBoundingClientRect();
+    mySidebar.style.top = rect.bottom + 'px';
+    mySidebar.style.left = '0';
+    mySidebar.style.width = '100%';
+    mySidebar.style.height = 'auto';
+    mySidebar.style.maxHeight = '';
+    mySidebar.style.overflowY = 'visible';
+
+    var available = window.innerHeight - rect.bottom;
+    var contentH = mySidebar.scrollHeight;
+    if (contentH > available) {
+      mySidebar.style.maxHeight = available + 'px';
+      mySidebar.style.overflowY = 'auto';
+    }
+
+    mySidebar.classList.add('open');
+    overlayBg.classList.add('visible');
+    overlayBg.onclick = w3_close;
+    overlayBg.setAttribute('aria-hidden','false');
+    hamburgerBtn.setAttribute('aria-expanded','true');
+
+  } else if (isMid) {
+    // MID: slide-in sidebar from left
+    if (mySidebar.classList.contains('open')) { w3_close(); return; }
+
+    mySidebar.style.top = '0';
+    mySidebar.style.left = '0';
+    mySidebar.style.width = '300px';
+    mySidebar.style.height = '100%';
+    mySidebar.classList.add('open');
+
+    overlayBg.classList.add('visible');
+    overlayBg.onclick = w3_close;
+    overlayBg.setAttribute('aria-hidden','false');
+    hamburgerBtn.setAttribute('aria-expanded','true');
+
   } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
+    // DESKTOP
+    if (mySidebar.style.display === 'block' || mySidebar.classList.contains('open')) {
+      w3_close();
+    } else {
+      mySidebar.style.display = 'block';
+      mySidebar.classList.add('open');
+      overlayBg.classList.add('visible');
+      overlayBg.setAttribute('aria-hidden','false');
+      overlayBg.onclick = w3_close;
+      hamburgerBtn.setAttribute('aria-expanded','true');
+    }
   }
 }
 
-// Close the sidebar with the close button
 function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
+  mySidebar.classList.remove('open');
+  mySidebar.style.top = '';
+  mySidebar.style.left = '';
+  mySidebar.style.width = '';
+  mySidebar.style.height = '';
+  mySidebar.style.maxHeight = '';
+  mySidebar.style.overflowY = '';
+  overlayBg.classList.remove('visible');
+  overlayBg.setAttribute('aria-hidden','true');
+  hamburgerBtn.setAttribute('aria-expanded','false');
 }
-</script>
 
+// Close if clicking inside sidebar but not on menu item
+mySidebar.addEventListener('click', function(e){
+  if ((window.matchMedia('(max-width: 1024px)').matches) && !e.target.closest('.w3-bar-item')) {
+    w3_close();
+  }
+});
+
+// Close if clicking top bar except hamburger
+document.getElementById('topBar').addEventListener('click', function(e){
+  if ((window.matchMedia('(max-width: 1024px)').matches) && !e.target.closest('#hamburgerBtn')) {
+    w3_close();
+  }
+});
+
+// Auto-close when menu item clicked
+document.querySelectorAll('#nav-menu .w3-bar-item').forEach(function(el){
+  el.addEventListener('click', function(){
+    if (window.matchMedia('(max-width: 1024px)').matches) {
+      w3_close();
+    }
+  });
+});
+
+// Reset styles on resize
+window.addEventListener('resize', function(){
+  if (window.matchMedia('(min-width: 1025px)').matches){
+    mySidebar.style.top = '';
+    mySidebar.style.left = '';
+    mySidebar.style.width = '';
+    mySidebar.style.height = '';
+    mySidebar.style.maxHeight = '';
+    mySidebar.style.overflowY = '';
+    mySidebar.classList.remove('open');
+    overlayBg.classList.remove('visible');
+    overlayBg.setAttribute('aria-hidden','true');
+    hamburgerBtn.setAttribute('aria-expanded','false');
+  } else {
+    mySidebar.classList.remove('open');
+    overlayBg.classList.remove('visible');
+  }
+});
+</script>
 
 <!-- FIREBASE INITIALIZATION - ONLY ONCE -->
 <script type="module">
@@ -1432,52 +1540,53 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Function to load checklist state from Firebase
-            const loadChecklistState = async (user) => {
-                if (checklistLoaded) return;
-                
-                try {
-                    console.log("Loading checklist for user:", user.uid);
-                    const docRef = doc(db, "checklists", user.uid);
-                    const docSnap = await getDoc(docRef);
+// Function to load checklist state from Firebase
+		const loadChecklistState = async (user) => {
+			if (checklistLoaded) return;
 
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        console.log("Checklist data loaded:", data);
-                        const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
-                        checkboxes.forEach(checkbox => {
-                            const checkboxId = checkbox.id;
-                            // A logikai értéket (true/false) a Firebase adatbázisból tölti be
-                            if (data.hasOwnProperty(checkboxId)) {
-                                checkbox.checked = data[checkboxId];
-                            }
-                        });
-                        showChecklistStatusMessage("Checklist loaded successfully.", "green");
-                    } else {
-                        // Új checklist létrehozása, ha még nincs
-                        console.log("No checklist data found for this user. Creating default checklist.");
-                        const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
-                        const defaultData = {};
-                        checkboxes.forEach(checkbox => {
-                            defaultData[checkbox.id] = false;
-                            checkbox.checked = false; // Alapértelmezett beállítás a felhasználói felületen
-                        });
+			try {
+				console.log("Loading checklist for user:", user.uid);
+				const docRef = doc(db, "checklists", user.uid);
+				const docSnap = await getDoc(docRef);
 
-                        try {
-                            await setDoc(doc(db, "checklists", user.uid), defaultData);
-                            showChecklistStatusMessage("Default checklist created.", "blue");
-                            console.log("Default checklist saved to Firestore.");
-                        } catch (e) {
-                            console.error("Error creating default checklist:", e);
-                            showChecklistStatusMessage("Error creating default checklist.", "red");
-                        }
-                    }
-                    checklistLoaded = true; // Betöltés után beállítja a flaget
-                } catch (e) {
-                    console.error("Error loading checklist:", e);
-                    showChecklistStatusMessage("Error loading checklist: " + e.message, "red");
-                    checklistLoaded = false; // Hiba esetén visszaállítja a flaget
-                }
-            };
+				if (docSnap.exists()) {
+					const data = docSnap.data();
+					console.log("Checklist data loaded:", data);
+					const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
+					checkboxes.forEach(checkbox => {
+						const checkboxId = checkbox.id;
+						if (data.hasOwnProperty(checkboxId)) {
+							checkbox.checked = data[checkboxId];
+						}
+					});
+					// Success – no message shown
+				} else {
+					// Create default checklist if it doesn't exist
+					console.log("No checklist data found for this user. Creating default checklist.");
+					const checkboxes = checklistForm.querySelectorAll('input[type="checkbox"]');
+					const defaultData = {};
+					checkboxes.forEach(checkbox => {
+						defaultData[checkbox.id] = false;
+						checkbox.checked = false;
+					});
+
+					try {
+						await setDoc(doc(db, "checklists", user.uid), defaultData);
+						// Success – no message shown
+						console.log("Default checklist saved to Firestore.");
+					} catch (e) {
+						console.error("Error creating default checklist:", e);
+						showChecklistStatusMessage("Error creating default checklist.", "red");
+					}
+				}
+				checklistLoaded = true; // Set flag after successful load
+			} catch (e) {
+				console.error("Error loading checklist:", e);
+				showChecklistStatusMessage("Error loading checklist: " + e.message, "red");
+				checklistLoaded = false; // Reset flag on error
+			}
+		};
+
 
     // Function to save individual checkbox state
     const saveCheckboxState = async (checkbox) => {
@@ -1924,7 +2033,7 @@ async function loadFlights(user) {
 
     // Delete button
     const delBtn = document.createElement('button');
-    delBtn.className = 'w3-button w3-small w3-red';
+    delBtn.className = 'w3-button w3-small w3-red w3-margin-right w3-margin-bottom';
     delBtn.textContent = 'Delete';
     delBtn.addEventListener('click', async (ev) => {
       ev.stopPropagation();
@@ -1937,7 +2046,7 @@ async function loadFlights(user) {
 
     // Modify button
     const modBtn = document.createElement('button');
-    modBtn.className = 'w3-button w3-small w3-blue';
+    modBtn.className = 'w3-button w3-small w3-blue w3-margin-right w3-margin-bottom';
     modBtn.textContent = 'Modify';
     modBtn.addEventListener('click', async (ev) => {
       ev.stopPropagation();
@@ -1964,7 +2073,7 @@ async function loadFlights(user) {
     // Comment icon
     if (flight.comments) {
       const icon = document.createElement('i');
-      icon.className = 'fa fa-comment w3-margin-left';
+      icon.className = 'fa fa-comment w3-auto';
       icon.setAttribute('title', flight.comments);
       icon.style.cursor = 'pointer';
       icon.addEventListener('mouseenter', (e) => showTooltip(e, flight.comments));
@@ -2016,28 +2125,36 @@ onAuthStateChanged(auth, (user) => {
 </script>
 
 
-<!-----------Dashboard betöltése--------------->
+<!-- Dashboard Script -->
 <script type="module">
-import { collection, onSnapshot, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-// Airtime formatter
 function formatAirtime(minutes) {
     const h = Math.floor(minutes / 60);
     const m = minutes % 60;
     return h > 0 ? `${h}h ${m} min` : `${m} min`;
-}	
+}
 
 const db = window.firebaseDb;
 const auth = window.firebaseAuth;
 
 function setupDashboardRealtime(user) {
-    const flightsRef = collection(db, "users", user.uid, "flights");
-    const checklistRef = doc(db, "checklists", user.uid); // checklist doc
+    const cards = {
+        flights: document.querySelector(".w3-olive .dashboard-number"),
+        takeoffs: document.querySelector(".w3-blue .dashboard-number"),
+        landings: document.querySelector(".w3-teal .dashboard-number"),
+        airtime: document.querySelector(".w3-orange .dashboard-number"),
+        altitude: document.querySelector(".w3-purple .dashboard-number"),
+        flyingDays: document.querySelector(".w3-light-blue .dashboard-number"),
+        checklist: document.querySelector(".w3-blue-gray .dashboard-number")
+    };
 
-    // Listen for flights changes
-    onSnapshot(flightsRef, async snapshot => {
-        let totalFlights = 0;
+    const flightsRef = collection(db, "users", user.uid, "flights");
+    const checklistRef = doc(db, "checklists", user.uid);
+
+    onSnapshot(flightsRef, snapshot => {
+        let totalFlights = snapshot.size;
         let totalAirtime = 0;
         let totalAlt = 0;
         const takeoffsSet = new Set();
@@ -2045,58 +2162,44 @@ function setupDashboardRealtime(user) {
         const flyingDaysSet = new Set();
 
         snapshot.forEach(docSnap => {
-            const flight = docSnap.data();
-            totalFlights++;
-
-            if (flight.takeoff && flight.takeoff.trim() !== "") takeoffsSet.add(flight.takeoff);
-            if (flight.landing && flight.landing.trim() !== "") landingsSet.add(flight.landing);
-
-            if (flight.flightTime) {
-                const ft = parseInt(flight.flightTime, 10);
-                if (!isNaN(ft)) totalAirtime += ft;
-            }
-
-            if (flight.altitudeDifference) {
-                const alt = parseInt(flight.altitudeDifference.replace("m", ""), 10);
-                if (!isNaN(alt)) totalAlt += alt;
-            }
-
-            if (flight.date && flight.date.trim() !== "") flyingDaysSet.add(flight.date);
+            const f = docSnap.data();
+            if (f.takeoff?.trim()) takeoffsSet.add(f.takeoff);
+            if (f.landing?.trim()) landingsSet.add(f.landing);
+            if (f.date?.trim()) flyingDaysSet.add(f.date);
+            const ft = parseInt(f.flightTime,10); if(!isNaN(ft)) totalAirtime+=ft;
+            const alt = parseInt(f.altitudeDifference?.replace("m",""),10); if(!isNaN(alt)) totalAlt+=alt;
         });
 
-        // Update flight stats
-        document.querySelector(".w3-container.w3-olive h3").textContent = totalFlights;
-        document.querySelector(".w3-container.w3-blue h3").textContent = takeoffsSet.size;
-        document.querySelector(".w3-container.w3-teal h3").textContent = landingsSet.size;
-        document.querySelector(".w3-container.w3-orange h3").textContent = formatAirtime(totalAirtime);
-        document.querySelector(".w3-container.w3-purple h3").textContent = totalAlt + " m";
-        document.querySelector(".w3-container.w3-light-blue h3").textContent = flyingDaysSet.size;
+        cards.flights.textContent = totalFlights;
+        cards.takeoffs.textContent = takeoffsSet.size;
+        cards.landings.textContent = landingsSet.size;
+        cards.airtime.textContent = formatAirtime(totalAirtime);
+        cards.altitude.textContent = totalAlt + " m";
+        cards.flyingDays.textContent = flyingDaysSet.size;
+    });
 
-        // Load checklist progress
-        try {
-            const checklistSnap = await getDoc(checklistRef);
-            let percent = 0;
-            if (checklistSnap.exists()) {
-                const data = checklistSnap.data();
-                const totalItems = Object.keys(data).length;
-                if (totalItems > 0) {
-                    const checkedItems = Object.values(data).filter(v => v === true).length;
-                    percent = Math.round((checkedItems / totalItems) * 100);
-                }
+    onSnapshot(checklistRef, snap => {
+        let percent = 0;
+        if (snap.exists()) {
+            const data = snap.data();
+            const total = Object.keys(data).length;
+            if(total>0){
+                const checked = Object.values(data).filter(v=>v===true).length;
+                percent = Math.round((checked/total)*100);
             }
-            // Update dashboard element
-            const el = document.querySelector(".w3-container.w3-blue-gray h3"); // your new element
-            if (el) el.textContent = percent + "%";
-        } catch (err) {
-            console.error("Error fetching checklist:", err);
         }
+        cards.checklist.textContent = percent+"%";
     });
 }
 
-onAuthStateChanged(auth, (user) => {
-    if (user) setupDashboardRealtime(user);
+onAuthStateChanged(auth, user => {
+    if(user) setupDashboardRealtime(user);
 });
 </script>
+
+
+
+
 
 
 <!------------Nickname kiolvasó------------------>
@@ -2126,8 +2229,7 @@ onAuthStateChanged(auth, async (user) => {
 </script>
 
 
-
-<!------------BAR CHART RAJZOLÓ----------------------->
+<!-----------BAR CHART Dashboardra--------------------------------->
 <script type="module">
 import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -2135,100 +2237,130 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/fi
 const db = window.firebaseDb;
 const auth = window.firebaseAuth;
 
-/* --- Színek (opcionális override, ha nincs a CSS-ben) --- */
-const categoryColors = {
-  "ex": "#4caf50",
-  "gh-bas": "#2196f3",
-  "gh-adv": "#ff9800",
+// Színek (opcionális)
+const categoryColors = { 
+  "ex": "#4caf50",        // zöld – gyakorlati repülések
+  "gh-bas": "#2196f3",    // kék – ground handling alap
+  "gh-adv": "#1ff8e5",    // sötétkék – ground handling haladó
+  "th-flight": "#ff9800", // narancs – theory flight
+  "th-core": "#fb8ff0",   // sötétnarancs – theory core
+  "hf-bas": "#9c27b0",    // lila – hike & fly alap
+  "hf-adv": "#8effaa"     // sötétlila – hike & fly haladó
 };
 
-/* --- Kategória hosszú neveket kiolvassuk a HTML checklistből --- */
+
+// Kategória hosszú neveket kiolvassuk a HTML checklistből
 const categoryLabels = {};
 document.querySelectorAll('#checklist-section h4').forEach(h4 => {
   const cat = h4.dataset.category;
   if (cat) categoryLabels[cat] = h4.textContent.trim();
 });
 
-/* --- Konténer setup: chart + legend side-by-side --- */
-function ensureChartContainers() {
-  let wrapper = document.getElementById('checklist-chart-wrapper');
-  if (!wrapper) {
-    const parent = document.getElementById('dashboard-section') || document.body;
-    wrapper = document.createElement('div');
-    wrapper.id = 'checklist-chart-wrapper';
-    wrapper.style.display = 'flex';
-    wrapper.style.alignItems = 'flex-start';
-    wrapper.style.gap = '2rem';
-    wrapper.style.marginTop = '20px';
-
-    const chart = document.createElement('div');
-    chart.id = 'bar-chart-container';
-    chart.className = 'bar-chart-container';
-
-    const legend = document.createElement('div');
-    legend.id = 'bar-legend';
-    legend.className = 'bar-chart-legend';
-
-    wrapper.appendChild(chart);
-    wrapper.appendChild(legend);
-    parent.appendChild(wrapper);
-  }
-}
-
-/* --- Chart builder --- */
+// Chart létrehozása
 function createVerticalBars(data) {
-  ensureChartContainers();
-  const barChartContainer = document.getElementById('bar-chart-container');
-  const legendContainer = document.getElementById('bar-legend');
+  const wrapper = document.getElementById('checklist-chart-wrapper');
+  if (!wrapper) return;
+  wrapper.innerHTML = '';
 
-  barChartContainer.innerHTML = '';
-  legendContainer.innerHTML = '';
+  // Bal: 75% chart
+  const barChartContainer = document.createElement('div');
+  barChartContainer.id = 'bar-chart-container';
+//  barChartContainer.style.flex = '0 0 75%';
+  barChartContainer.style.display = 'flex';
+  barChartContainer.style.justifyContent = 'space-between';
+  barChartContainer.style.alignItems = 'flex-end';
+  barChartContainer.style.height = '300px';
+  barChartContainer.style.gap = '1rem';
+
+  // Jobb: 25% hosszú labelekkel
+  const legendContainer = document.createElement('div');
+  legendContainer.id = 'bar-legend';
+ // legendContainer.style.flex = '0 0 25%';
+  legendContainer.style.display = 'flex';
+  legendContainer.style.flexDirection = 'column';
+  legendContainer.style.gap = '0.5rem';
 
   data.forEach(item => {
-    // Bar
+    // Bar wrapper
     const barWrapper = document.createElement('div');
     barWrapper.classList.add('bar-wrapper');
+    barWrapper.style.display = 'flex';
+    barWrapper.style.flexDirection = 'column';
+    barWrapper.style.alignItems = 'center';
+    barWrapper.style.flex = '1';
 
+    // Bar
     const bar = document.createElement('div');
     bar.classList.add('bar');
+    bar.style.width = '100%';
+    bar.style.minHeight = '300px';
+    bar.style.backgroundColor = '#2f3142';
+    bar.style.borderRadius = '0.5rem';
+    bar.style.position = 'relative';
+    bar.style.display = 'flex';
+    bar.style.alignItems = 'flex-end';
+    bar.style.overflow = 'hidden';
 
     const barFill = document.createElement('div');
     barFill.classList.add('bar-fill');
     barFill.style.height = `${Math.round(item.value)}%`;
     barFill.style.backgroundColor = item.color;
+    barFill.style.width = '100%';
+    barFill.style.borderRadius = '0.5rem 0.5rem 0 0';
+    barFill.style.transition = 'height 0.5s ease-in-out';
 
     const percentageText = document.createElement('span');
     percentageText.classList.add('bar-percentage');
+    percentageText.style.position = 'absolute';
+    percentageText.style.top = '50%';
+    percentageText.style.left = '50%';
+    percentageText.style.transform = 'translate(-50%, -50%)';
+    percentageText.style.fontWeight = 'bold';
+    percentageText.style.color = 'white';
+    percentageText.style.textShadow = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
     percentageText.textContent = `${Math.round(item.value)}%`;
 
-    const label = document.createElement('div');
-    label.classList.add('bar-label');
-    label.textContent = item.longName || item.cat;
+    const shortLabel = document.createElement('div');
+    shortLabel.classList.add('bar-label');
+    shortLabel.textContent = item.cat;
+    shortLabel.style.marginTop = '0.5rem';
+    shortLabel.style.textAlign = 'center';
+    shortLabel.style.fontSize = '0.875rem';
+    shortLabel.style.color = '#a0aec0';
 
     bar.appendChild(barFill);
     bar.appendChild(percentageText);
     barWrapper.appendChild(bar);
-    barWrapper.appendChild(label);
+    barWrapper.appendChild(shortLabel);
     barChartContainer.appendChild(barWrapper);
 
-    // Legend
+    // Jobb legend
     const legendItem = document.createElement('div');
     legendItem.classList.add('legend-item');
+    legendItem.style.display = 'flex';
+    legendItem.style.alignItems = 'center';
+    legendItem.style.gap = '0.5rem';
 
     const colorBox = document.createElement('div');
     colorBox.classList.add('legend-color-box');
+    colorBox.style.width = '16px';
+    colorBox.style.height = '16px';
+    colorBox.style.borderRadius = '3px';
     colorBox.style.backgroundColor = item.color;
 
     const legendText = document.createElement('span');
-    legendText.textContent = `${item.longName || item.cat} – ${item.done}/${item.total} (${Math.round(item.value)}%)`;
+    legendText.textContent = item.longName || item.cat;
 
     legendItem.appendChild(colorBox);
     legendItem.appendChild(legendText);
     legendContainer.appendChild(legendItem);
   });
+
+  wrapper.appendChild(barChartContainer);
+  wrapper.appendChild(legendContainer);
 }
 
-/* --- Firestore -> chart data --- */
+// Firestore adatok
 function setupChecklistChart(user) {
   const checklistRef = doc(db, "checklists", user.uid);
 
@@ -2236,26 +2368,35 @@ function setupChecklistChart(user) {
     if (!docSnap.exists()) return createVerticalBars([]);
 
     const data = docSnap.data();
-    const categoryStats = {};
 
+    // A checklist-section h4 sorrendje adja meg a bar-ok sorrendjét
+    const orderedCats = [];
+    document.querySelectorAll('#checklist-section h4').forEach(h4 => {
+      const cat = h4.dataset.category;
+      if (cat) orderedCats.push(cat);
+    });
+
+    // Kategória statisztika összegyűjtése
+    const categoryStats = {};
     Object.entries(data).forEach(([key, value]) => {
       const parts = key.split("-");
-      let category = parts.length >= 3 ? `${parts[0]}-${parts[1]}` : parts[0];
-
+      const category = parts.length >= 3 ? `${parts[0]}-${parts[1]}` : parts[0];
       if (!categoryStats[category]) categoryStats[category] = { done: 0, total: 0 };
       if (value === true || value === 'true' || value === 1) categoryStats[category].done++;
       categoryStats[category].total++;
     });
 
-    const chartData = Object.entries(categoryStats).map(([cat, stats]) => {
-      const percent = (stats.done / stats.total) * 100;
+    // Chart adatok rendezése a checklist-section h4 sorrendjében
+    const chartData = orderedCats.map(cat => {
+      const stats = categoryStats[cat] || { done: 0, total: 0 };
+      const percent = stats.total > 0 ? (stats.done / stats.total) * 100 : 0;
       return {
         cat,
-        longName: categoryLabels[cat],
+        longName: categoryLabels[cat] || cat,
         done: stats.done,
         total: stats.total,
         value: percent,
-        color: categoryColors[cat] || "#805ad5"
+        color: categoryColors[cat] || "#805ad5" // fix szín minden kategóriára
       };
     });
 

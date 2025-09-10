@@ -131,100 +131,121 @@
             font-weight: bold;
         }
 
-        /* Vertical bar chart styles */
-        /* A százalékok konténere */
-        .percentage-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-top: 10px;
-        }
 
-        /* Az oszlopok közötti hely elosztása */
-        .bar-chart-container {
-            display: flex;
-            justify-content: space-between; /* A sávok közötti teret egyenletesen osztja el, a széleken nem hagy teret */
-            align-items: flex-end;
-            gap: 1rem;
-            width: 100%;
-            height: 300px;
-            padding: 0 16px; /* Belső margó a bal és jobb oldalon */
-        }
-        /* A barok egyforma szélességéért */
-        .bar-wrapper {
-            flex-grow: 1; /* Hogy kitöltse a rendelkezésre álló helyet */
-            flex-shrink: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            height: 100%;
-            max-width: 100px; /* Max szélesség, hogy ne legyenek túl nagyok az oszlopok */
-        }
 
-        /* Legendák stílusa */
-        .bar-chart-legend {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-        }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #a0aec0;
-        }
+/* Vertical bar chart styles DASHBOARDHOZ */
+/* Wrapper */
+#checklist-chart-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 20px;
+    flex-wrap: wrap; /* mobilon legend alá */
+}
 
-        .legend-color-box {
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-            border-radius: 3px;
-        }
-        .bar {
-            width: 100%;
-            height: 100%;
-            min-height: 50px;
-            border-radius: 0.5rem;
-            background-color: #2f3142;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            overflow: hidden;
-        }
-        .bar-fill {
-            width: 100%;
-            background-color: #805ad5;
-            border-radius: 0.5rem 0.5rem 0 0;
-            transition: height 0.5s ease-in-out;
-        }
-        .bar-label {
-            margin-top: 0.5rem;
-            text-align: center;
-            font-size: 0.875rem;
-            color: #a0aec0;
-            white-space: nowrap;
-        }
-        .bar-percentage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Középre igazítás */
-            font-size: 1.5vw;
-            font-weight: bold;
-            color: white; /* Fehér szöveg */
-            text-shadow: 
-                -1px -1px 0 #000,  
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000; /* Fekete "kontúr" */
-            z-index: 10; /* Hogy a szöveg a kitöltés felett legyen */
-        }
+/* Chart container */
+#bar-chart-container {
+    flex: 1; /* kitölti a rendelkezésre álló helyet */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    height: 300px; /* fix magasság minden képernyőn */
+}
+
+/* Bar wrapper */
+.bar-wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    max-width: 100px;
+}
+
+/* Bars */
+.bar {
+    width: 100%;
+    height: 100%;
+    min-height: 50px;
+    border-radius: 0.5rem;
+    background-color: #2f3142;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.bar-fill {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transition: height 0.5s ease-in-out;
+}
+
+/* Labels */
+.bar-label {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #a0aec0;
+    white-space: nowrap;
+}
+
+.bar-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    z-index: 10;
+}
+
+/* Legend */
+#bar-legend {
+    flex: 0 0 40%; /* 40%a a képernyőnek */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #a0aec0;
+}
+
+.legend-color-box {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+
+/* Mobil reszponzív */
+@media (max-width: 900px) {
+
+  #bar-chart-container, #bar-legend {
+    flex: 1 1 100%; /* teljes szélesség mobilon */
+    width: 100%;
+  }
+}
+
+
+
+
+
 
 
         /* Gauge specific styles */
