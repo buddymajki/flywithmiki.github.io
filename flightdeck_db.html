@@ -738,26 +738,26 @@
 						<h3>New Flight</h3>
 						<form id="addflight-form" method="post">
 							<p> <label>Date:</label> </p>
-								<input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="addflight-date-input" required>
+								<input class="w3-input inputbackgr w3-border w3-round-large" type="date" name="flight-date" id="addflight-date-input" required>
 							
 							
 							<p>	<label>Takeoff:</label> </p>
-								<select class="w3-select w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
+								<select class="w3-select  inputbackgr w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
 									<option value="" disabled selected>Select a takeoff location</option>
 								</select>
 							
 							<p> <label>Landing:</label></p>
-								<select class="w3-select w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
+								<select class="w3-select  inputbackgr w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
 									<option value="" disabled selected>Select a landing location</option>
 								</select>
 							
 							<p>
 								<label>Altitude Difference:</label> </p>
-								<span id="addflight-altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
+								<span id="addflight-altitude-difference" class="w3-tag inputbackgr w3-round-large">0m</span>
 							
 							<p>
 								<label>Flight Time:</label> </p>
-								<select class="w3-select w3-border w3-round-large" name="flight-time" required>
+								<select class="w3-select  inputbackgr w3-border w3-round-large" name="flight-time" required>
 									<option value="" disabled selected>Select flight time</option>
 									<option value="5">5 minutes</option>
 									<option value="10">10 minutes</option>
@@ -769,7 +769,7 @@
 							
 							<p>
 								<label>Comments:</label> </p>
-								<textarea class="w3-input w3-border w3-round-large" name="comments" rows="3"></textarea>
+								<textarea class="w3-input  inputbackgr w3-border w3-round-large" name="comments" rows="3"></textarea>
 							
 							<p>
 								<button id="addflight-save-button" style="background-color:#805ad5" type="submit" class="w3-button w3-round-large w3-margin-bottom">Save Flight</button>
@@ -846,23 +846,23 @@
             <form id="settingsForm">
                 <p>
                     <label><b>Email</b></label>
-                    <input class="w3-input w3-border" type="email" id="userEmail" disabled>
+                    <input class="w3-input inputbackgr w3-border" type="email" id="userEmail" disabled>
                 </p>
                 <p>
                     <label><b>Full Name</b></label>
-                    <input class="w3-input w3-border" type="text" id="userName">
+                    <input class="w3-input inputbackgr w3-border" type="text" id="userName">
                 </p>
                 <p>
                     <label><b>Nickname</b></label>
-                    <input class="w3-input w3-border" type="text" id="userNickname">
+                    <input class="w3-input inputbackgr w3-border" type="text" id="userNickname">
                 </p>
                 <p>
                     <label><b>SHV Number</b></label>
-                    <input class="w3-input w3-border" type="text" id="userShvNumber">
+                    <input class="w3-input inputbackgr w3-border" type="text" id="userShvNumber">
                 </p>
                 <p>
                     <label><b>Glider</b></label>
-                    <input class="w3-input w3-border" type="text" id="userGlider">
+                    <input class="w3-input inputbackgr w3-border" type="text" id="userGlider">
                 </p>
                 <p>
                     <button class="w3-button w3-blue w3-padding-large w3-margin-top w3-margin-bottom" type="submit">
@@ -881,15 +881,15 @@
         <form id="passwordForm">
             <p>
                 <label><b>Current Password</b></label>
-                <input class="w3-input w3-border" type="password" id="currentPassword" required>
+                <input class="w3-input inputbackgr w3-border" type="password" id="currentPassword" required>
             </p>
             <p>
                 <label><b>New Password</b></label>
-                <input class="w3-input w3-border" type="password" id="newPassword" required>
+                <input class="w3-input inputbackgr w3-border" type="password" id="newPassword" required>
             </p>
             <p>
                 <label><b>Confirm New Password</b></label>
-                <input class="w3-input w3-border" type="password" id="confirmPassword" required>
+                <input class="w3-input inputbackgr w3-border" type="password" id="confirmPassword" required>
             </p>
             <p>
                 <button class="w3-button w3-blue w3-padding-large w3-margin-top w3-margin-bottom" type="submit">
