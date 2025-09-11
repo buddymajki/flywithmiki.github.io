@@ -2355,6 +2355,10 @@ onAuthStateChanged(auth, (user) => {
 </script>
 
 
+
+
+
+
 <!----------------------------PDF EXPORTHOZ----------------------------->
 <script type="module">
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -2374,334 +2378,325 @@ onAuthStateChanged(auth, (user) => {
     });
   }
 
-// Main export function
-async function exportPDF(userId) {
-  const { jsPDF } = window.jspdf;
-  const docPdf = new jsPDF("p", "mm", "a4");
-
-  // Helper: oldalszám
-  function addPageNumber() {
-    const pageCount = docPdf.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      docPdf.setPage(i);
-      docPdf.setFontSize(10);
-      docPdf.text(`${i}/${pageCount}`, 200, 290, { align: "right" });
-    }
-  }
-
-  // Helper: kép beolvasása base64-ként
-  async function getImageBase64(url) {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    return await new Promise(resolve => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  }
-
-  // --- 1. FELHASZNÁLÓI ADATOK ---
-  const userRef = doc(db, "users", userId);
-  const userSnap = await getDoc(userRef);
-  const userData = userSnap.exists() ? userSnap.data() : {};
-
-  const logoUrl = "https://flywithmiki.com/Images_v2/pdflogo.png";
-  const logoBase64 = await getImageBase64(logoUrl);
-
-  // Képközpontosítás és méretezés - Magasság 50mm, szélesség automatikus
-  const img = new Image();
-  img.src = logoBase64;
-  await new Promise(resolve => img.onload = resolve); // Várjuk meg, míg a kép betöltődik a méreteihez
-
-  const imageHeight = 12; // mm-ben (150px = 25mm kb.)
-  const imageAspectRatio = img.width / img.height;
-  const imageWidthCalculated = imageHeight * imageAspectRatio;
-  
-  const pageWidth = docPdf.internal.pageSize.getWidth();
-  const imageX = (pageWidth - imageWidthCalculated) / 2;
-  docPdf.addImage(logoBase64, "PNG", imageX, 10, imageWidthCalculated, imageHeight);
-
-  // Cím és dátum
-  const now = new Date();
-  const dateString = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-  
-  docPdf.setFont("helvetica", "bold");
-  docPdf.setFontSize(22);
-  docPdf.text("FlightDeck Export", 15, 55);
-
-  docPdf.setFont("helvetica", "normal");
-  docPdf.setFontSize(10);
-  docPdf.text(`Export Date: ${dateString}`, 15, 63); // Dátum új sorba
-
-  docPdf.setFontSize(20);
-  docPdf.text(`Name: ${userData.name || ""}`, 15, 78);
-  docPdf.text(`SHV Number: ${userData.shvNumber || ""}`, 15, 86);
-
-  // --- DASHBOARD ÖSSZESÍTÉS ---
-  const flightsCol = collection(db, "users", userId, "flights");
-  const flightsSnap = await getDocs(flightsCol);
-
-  const takeoffsSet = new Set();
-  const landingsSet = new Set();
-  const flyingDaysSet = new Set();
-  let totalAirtime = 0;
-  let totalAltitude = 0;
-
-  flightsSnap.forEach(f => {
-    const d = f.data();
-    if (d.takeoff) takeoffsSet.add(d.takeoff);
-    if (d.landing) landingsSet.add(d.landing);
-    if (d.date) flyingDaysSet.add(d.date);
-    const ft = parseInt(d.flightTime, 10);
-    if (!isNaN(ft)) totalAirtime += ft;
-    
-    // VÉDELEM a TypeError ellen: ellenőrzés, hogy a mező létezik és string-e
-    if (d.altitudeDifference && typeof d.altitudeDifference === 'string') {
-      const alt = parseInt(d.altitudeDifference.replace("m", ""), 10);
-      if (!isNaN(alt)) totalAltitude += alt;
-    }
-  });
-
-  // Checklist százalékos állapota
-  const pdfChecklistRef = doc(db, "checklists", userId);
-  const pdfChecklistSnap = await getDoc(pdfChecklistRef);
-  let checklistPercent = 0;
-  if (pdfChecklistSnap.exists()) {
-    const data = pdfChecklistSnap.data();
-    const total = Object.keys(data).length;
-    if (total > 0) {
-      const checked = Object.values(data).filter(v => v === true).length;
-      checklistPercent = Math.round((checked / total) * 100);
-    }
-  }
-
-  // Repülési idő formázása
-  function formatAirtime(minutes) {
-    const h = Math.floor(minutes / 60);
-    const m = minutes % 60;
-    return h > 0 ? `${h}h ${m} min` : `${m} min`;
-  }
-
-  docPdf.setFontSize(12);
-  docPdf.text(`Total Flights: ${flightsSnap.size}`, 15, 102);
-  docPdf.text(`Total Takeoffs: ${takeoffsSet.size}`, 15, 110);
-  docPdf.text(`Total Landings: ${landingsSet.size}`, 15, 118);
-  docPdf.text(`Total Airtime: ${formatAirtime(totalAirtime)}`, 15, 126);
-  docPdf.text(`Cumulative Altitude: ${totalAltitude} m`, 15, 134);
-  docPdf.text(`Flying Days: ${flyingDaysSet.size}`, 15, 142);
-  docPdf.text(`Checklist Progress: ${checklistPercent}%`, 15, 150);
-
-  // --- 2. CHECKLIST a HTML-ből ---
-  docPdf.addPage();
-  docPdf.setFont("helvetica", "bold");
-  docPdf.setFontSize(16);
-  docPdf.text("Checklist", 15, 20);
-
-  // Kategória és feladat nevek definiálása
-  const checklistData = {
-    'gh-bas': {
-      title: 'Basic Ground Handling and Launch Techniques',
-      tasks: [
-        '1. Laying out the glider',
-        '2. Equipment Familiarisation',
-        '3. Inflation and walking exercises',
-        '4. 5-Point Check and Launch Preparations',
-        '5. Start-STOP (Decision making line)',
-        '6. 3-Phase Launch (forward)',
-        '7. Flights with Direction Changes',
-        '8. Landing Techniques',
-        '9. 90 - 180° Turns (Landing Approach)',
-        '10. Folding Methods'
-      ]
-    },
-    'gh-adv': {
-      title: 'Advanced Groundhandling',
-      tasks: [
-        '1. Slalom walking',
-        '2. Crosswind Launch (Simulation if necessary)',
-        '3. Launch with Poorly Laid-Out Canopy',
-        '4. 3-Phase Launch (backward)',
-        '5. Untangling the lines',
-        '6. Hill walking'
-      ]
-    },
-    'th-flight': {
-      title: 'In-Flight Safety and Emergency Procedures',
-      tasks: [
-        '1. Introduction to Rescue System',
-        '2. Emergency Landing Techniques',
-        '3. Downwind Landing',
-        '4. Parachutal Stall',
-        '5. Spiral dive'
-      ]
-    },
-    'th-core': {
-      title: 'Core Theory',
-      tasks: [
-        '1. Aerodynamics',
-        '2. Weather',
-        '3. Flying practice',
-        '4. Legislation (Air-law and airspaces)',
-        '5. Material Sciences'
-      ]
-    },
-    'hf-bas': {
-      title: 'Basic Flight Maneuvers',
-      tasks: [
-        '1. Steering (positive)',
-        '2. Steering (negative)',
-        '3. Steering (weight shift)',
-        '4. Landing (school approach)',
-        '5. Big Ears (without speedbar)',
-        '6. Use of Acceleration System',
-        '7. Big Ears (with speedbar)'
-      ]
-    },
-    'hf-adv': {
-      title: 'Advanced Flight Maneuvers',
-      tasks: [
-        '1. Steering (back riser)',
-        '2. Landing (back riser)',
-        '3. Rolling (Big Ears)',
-        '4. Rolling',
-        '5. Pitching (Swiss style)',
-        '6. Side collapse (lvl1)',
-        '7. Side collapse (lvl2)',
-        '8. Side collapse (lvl3)',
-        '9. Side collapse (lvl4)',
-        '10. Front collapse',
-        '11. Flying in the Safe Speed Range',
-        '12. Tight Circles',
-        '13. Quick Direction Changes',
-        '14. Circle Left, Circle Right (Figure Eight)',
-        '15. Flying with instruments',
-        '16. Soaring / Thermalling (30+ minutes)',
-        '17. Landing (popo)'
-      ]
-    },
-    'ex': {
-      title: 'Examination Tasks',
-      tasks: [
-        '1. Forward start',
-        '2. Backward start',
-        '3. Two right circles (720°, less than 20s), PP1',
-        '4. Eight (360° left, 360° right, less than 25s), PP2',
-        '5. Side Collapse (level3)',
-        '6. Big Ears (90° left, 90° right)',
-        '7. Big Ears (with full speed)',
-        '8. Rolling',
-        '9. Pitching',
-        '10. Alone flight'
-      ]
-    }
+  // Fejléc stílus definiálása a konzisztencia érdekében
+  const commonHeaderStyles = {
+    fillColor: [72, 134, 176],
+    textColor: [255, 255, 255],
+    fontStyle: 'bold'
   };
 
-  const checklistRef = doc(db, "checklists", userId);
-  const checklistSnap = await getDoc(checklistRef);
-  const checklistDbData = checklistSnap.exists() ? checklistSnap.data() : {};
+  // Main export function
+  async function exportPDF(userId) {
+    const { jsPDF } = window.jspdf;
+    const docPdf = new jsPDF("p", "mm", "a4");
 
-  let yOffsetLeft = 30;
-  let yOffsetRight = 30;
+    const headerMargin = 30; // Hely a fejlécnek a lap tetején
 
-  for (const categoryKey in checklistData) {
-    const category = checklistData[categoryKey];
-    const categoryBody = [];
-    category.tasks.forEach((taskName, index) => {
-      const taskId = `${categoryKey}-${index}`;
-      const status = checklistDbData[taskId] ? "X" : "";
-      categoryBody.push([taskName, status]);
-    });
-    
-    let currentYOffset;
-    let margin;
+    // --- HELPER FUNKCIÓK ÉS GLOBÁLIS ADATOK ---
+    // Két külön URL a két képhez
+    const mainLogoUrl = "https://flywithmiki.com/Images_v2/pdflogo.png";
+    const headerLogoUrl = "https://flywithmiki.com/Images_v2/pdflogo-header.png";
 
-    if (yOffsetLeft <= yOffsetRight) {
-      // Táblázat a bal oszlopba
-      currentYOffset = yOffsetLeft;
-      margin = { left: 15 };
-    } else {
-      // Táblázat a jobb oszlopba
-      currentYOffset = yOffsetRight;
-      margin = { left: 110 };
+    // Külön változók a Base64 adatoknak
+    const mainLogoBase64 = await getImageBase64(mainLogoUrl);
+    const headerLogoBase64 = await getImageBase64(headerLogoUrl);
+
+    // Képobjektum a méretekhez (a fő logót használjuk a méretekhez)
+    const img = new Image();
+    img.src = mainLogoBase64;
+    await new Promise(resolve => img.onload = resolve);
+
+    // Globális fejléc és lábléc funkció
+    function addHeaderAndFooter() {
+      const pageCount = docPdf.getNumberOfPages();
+      const headerY = 10;
+      const headerX = 15;
+      const headerLogoSize = 8;
+      const headerLogoAspectRatio = img.width / img.height;
+      const headerLogoWidth = headerLogoSize * headerLogoAspectRatio;
+
+      for (let i = 1; i <= pageCount; i++) {
+        docPdf.setPage(i);
+
+		// Fejléc hozzáadása a 2. oldaltól
+		if (i > 1) {
+		  docPdf.setDrawColor(200);
+		  docPdf.setLineWidth(0.1);
+		  docPdf.line(headerX, headerY + 12, docPdf.internal.pageSize.getWidth() - headerX, headerY + 12);
+
+		  // A halványított logó beillesztése a fejlécbe
+		  docPdf.addImage(headerLogoBase64, "PNG", headerX, headerY, headerLogoWidth, headerLogoSize);
+
+		  // Név és SHV szám
+		  docPdf.setFont("helvetica", "bold");
+		  docPdf.setFontSize(8);
+		  docPdf.setTextColor(180, 180, 180);
+
+		  // Név
+		  docPdf.text(`${userData.name || ""}`, headerX + headerLogoWidth + 50, headerY + 1);
+
+		  // SHV szám új sorban
+		  docPdf.text(`SHV: ${userData.shvNumber || ""}`, headerX + headerLogoWidth + 50, headerY + 5);
+
+		  // Export dátum új sorban
+		  const now = new Date();
+		  const dateString = now.toLocaleDateString();
+		  docPdf.text(`Exported: ${dateString}`, headerX + headerLogoWidth + 50, headerY + 9);
+		}
+
+        // Oldalszám hozzáadása minden oldalhoz
+        docPdf.setFontSize(10);
+        docPdf.setTextColor(180, 180, 180);
+        docPdf.text(`${i}/${pageCount}`, 200, 290, { align: "right" });
+      }
     }
 
-    docPdf.autoTable({
-      startY: currentYOffset,
-      head: [[category.title, ""]],
-      body: categoryBody,
-      theme: 'grid',
-      tableWidth: 85,
-      margin: margin,
-      columnStyles: {
-        0: { cellWidth: 'auto' },
-        1: { cellWidth: 10, halign: 'center' }
+    // --- 1. FELHASZNÁLÓI ADATOK ---
+    const userRef = doc(db, "users", userId);
+    const userSnap = await getDoc(userRef);
+    const userData = userSnap.exists() ? userSnap.data() : {};
+
+    // A fő logó beillesztése a címlapra (a nem halványított)
+    const initialImageHeight = 12;
+    const initialImageAspectRatio = img.width / img.height;
+    const initialImageWidthCalculated = initialImageHeight * initialImageAspectRatio;
+    const pageWidth = docPdf.internal.pageSize.getWidth();
+    const initialImageX = (pageWidth - initialImageWidthCalculated) / 2;
+    docPdf.addImage(mainLogoBase64, "PNG", initialImageX, 10, initialImageWidthCalculated, initialImageHeight);
+
+    // Cím és dátum
+    const now = new Date();
+    const dateString = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+    docPdf.setFont("helvetica", "bold");
+    docPdf.setFontSize(22);
+    docPdf.text("FlightDeck Export", 15, 55);
+    docPdf.setFont("helvetica", "normal");
+    docPdf.setFontSize(10);
+    docPdf.text(`Export Date: ${dateString}`, 15, 63);
+    docPdf.setFontSize(20);
+    docPdf.text(`Name: ${userData.name || ""}`, 15, 78);
+    docPdf.text(`SHV Number: ${userData.shvNumber || ""}`, 15, 86);
+
+    // --- DASHBOARD ÖSSZESÍTÉS ---
+    const flightsCol = collection(db, "users", userId, "flights");
+    const flightsSnap = await getDocs(flightsCol);
+
+    const takeoffsSet = new Set();
+    const landingsSet = new Set();
+    const flyingDaysSet = new Set();
+    let totalAirtime = 0;
+    let totalAltitude = 0;
+
+    flightsSnap.forEach(f => {
+      const d = f.data();
+      if (d.takeoff) takeoffsSet.add(d.takeoff);
+      if (d.landing) landingsSet.add(d.landing);
+      if (d.date) flyingDaysSet.add(d.date);
+      const ft = parseInt(d.flightTime, 10);
+      if (!isNaN(ft)) totalAirtime += ft;
+      if (d.altitudeDifference && typeof d.altitudeDifference === 'string') {
+        const alt = parseInt(d.altitudeDifference.replace("m", ""), 10);
+        if (!isNaN(alt)) totalAltitude += alt;
       }
     });
 
-    // Frissítjük a megfelelő yOffset-et
-    if (yOffsetLeft <= yOffsetRight) {
-      yOffsetLeft = docPdf.autoTable.previous.finalY + 10;
-    } else {
-      yOffsetRight = docPdf.autoTable.previous.finalY + 10;
+    const pdfChecklistRef = doc(db, "checklists", userId);
+    const pdfChecklistSnap = await getDoc(pdfChecklistRef);
+    let checklistPercent = 0;
+    if (pdfChecklistSnap.exists()) {
+      const data = pdfChecklistSnap.data();
+      const total = Object.keys(data).length;
+      if (total > 0) {
+        const checked = Object.values(data).filter(v => v === true).length;
+        checklistPercent = Math.round((checked / total) * 100);
+      }
     }
+
+    function formatAirtime(minutes) {
+      const h = Math.floor(minutes / 60);
+      const m = minutes % 60;
+      return h > 0 ? `${h}h ${m} min` : `${m} min`;
+    }
+
+    docPdf.setFontSize(12);
+    docPdf.text(`Total Flights: ${flightsSnap.size}`, 15, 102);
+    docPdf.text(`Total Takeoffs: ${takeoffsSet.size}`, 15, 110);
+    docPdf.text(`Total Landings: ${landingsSet.size}`, 15, 118);
+    docPdf.text(`Total Airtime: ${formatAirtime(totalAirtime)}`, 15, 126);
+    docPdf.text(`Cumulative Altitude: ${totalAltitude} m`, 15, 134);
+    docPdf.text(`Flying Days: ${flyingDaysSet.size}`, 15, 142);
+    docPdf.text(`Checklist Progress: ${checklistPercent}%`, 15, 150);
+
+    // --- 2. CHECKLIST a HTML-ből ---
+    docPdf.addPage();
+    let yOffset = headerMargin;
+    docPdf.setFont("helvetica", "bold");
+    docPdf.setFontSize(16);
+    docPdf.text("Checklist", 15, yOffset);
+    yOffset += 10;
+
+    const checklistGroups = {
+      'Basic Training': ['gh-bas', 'gh-adv'],
+      'Theory': ['th-flight', 'th-core'],
+      'High Flights': ['hf-bas', 'hf-adv', 'ex']
+    };
+
+    const checklistData = {
+      'gh-bas': {
+        title: 'Basic Ground Handling and Launch Techniques',
+        tasks: ['1. Laying out the glider', '2. Equipment Familiarisation', '3. Inflation and walking exercises', '4. 5-Point Check and Launch Preparations', '5. Start-STOP (Decision making line)', '6. 3-Phase Launch (forward)', '7. Flights with Direction Changes', '8. Landing Techniques', '9. 90 - 180° Turns (Landing Approach)', '10. Folding Methods']
+      },
+      'gh-adv': {
+        title: 'Advanced Groundhandling',
+        tasks: ['1. Slalom walking', '2. Crosswind Launch (Simulation if necessary)', '3. Launch with Poorly Laid-Out Canopy', '4. 3-Phase Launch (backward)', '5. Untangling the lines', '6. Hill walking']
+      },
+      'th-flight': {
+        title: 'In-Flight Safety and Emergency Procedures',
+        tasks: ['1. Introduction to Rescue System', '2. Emergency Landing Techniques', '3. Downwind Landing', '4. Parachutal Stall', '5. Spiral dive']
+      },
+      'th-core': {
+        title: 'Core Theory',
+        tasks: ['1. Aerodynamics', '2. Weather', '3. Flying practice', '4. Legislation (Air-law and airspaces)', '5. Material Sciences']
+      },
+      'hf-bas': {
+        title: 'Basic Flight Maneuvers',
+        tasks: ['1. Steering (positive)', '2. Steering (negative)', '3. Steering (weight shift)', '4. Landing (school approach)', '5. Big Ears (without speedbar)', '6. Use of Acceleration System', '7. Big Ears (with speedbar)']
+      },
+      'hf-adv': {
+        title: 'Advanced Flight Maneuvers',
+        tasks: ['1. Steering (back riser)', '2. Landing (back riser)', '3. Rolling (Big Ears)', '4. Rolling', '5. Pitching (Swiss style)', '6. Side collapse (lvl1)', '7. Side collapse (lvl2)', '8. Side collapse (lvl3)', '9. Side collapse (lvl4)', '10. Front collapse', '11. Flying in the Safe Speed Range', '12. Tight Circles', '13. Quick Direction Changes', '14. Circle Left, Circle Right (Figure Eight)', '15. Flying with instruments', '16. Soaring / Thermalling (30+ minutes)', '17. Landing (popo)']
+      },
+      'ex': {
+        title: 'Examination Tasks',
+        tasks: ['1. Forward start', '2. Backward start', '3. Two right circles (720°, less than 20s), PP1', '4. Eight (360° left, 360° right, less than 25s), PP2', '5. Side Collapse (level3)', '6. Big Ears (90° left, 90° right)', '7. Big Ears (with full speed)', '8. Rolling', '9. Pitching', '10. Alone flight']
+      }
+    };
+
+    const checklistRef = doc(db, "checklists", userId);
+    const checklistSnap = await getDoc(checklistRef);
+    const checklistDbData = checklistSnap.exists() ? checklistSnap.data() : {};
+
+    const pageMargin = 15;
+    const tableSpacing = 10;
+    const pageHeight = docPdf.internal.pageSize.getHeight();
+    const tableWidth = 85;
+
+    for (const groupTitle in checklistGroups) {
+      if (groupTitle === 'High Flights') {
+        docPdf.addPage();
+        yOffset = headerMargin;
+      }
+      if (yOffset > pageHeight - headerMargin - 10) {
+        docPdf.addPage();
+        yOffset = headerMargin;
+      }
+
+      docPdf.setFont("helvetica", "bold");
+      docPdf.setFontSize(14);
+      docPdf.text(groupTitle, pageMargin, yOffset);
+      const titleY = yOffset;
+      yOffset += 10;
+      docPdf.setDrawColor(200);
+      docPdf.setLineWidth(0.5);
+      docPdf.line(pageMargin, titleY + 5, pageMargin + tableWidth * 2, titleY + 5);
+      yOffset += 5;
+
+      const categoryKeys = checklistGroups[groupTitle];
+      let yOffsetLeft = yOffset;
+      let yOffsetRight = yOffset;
+
+      for (const categoryKey of categoryKeys) {
+        const category = checklistData[categoryKey];
+        const categoryBody = [];
+        category.tasks.forEach((taskName, index) => {
+          const taskId = `${categoryKey}-${index}`;
+          const status = checklistDbData[taskId] ? "X" : "";
+          categoryBody.push([taskName, status]);
+        });
+        let currentYOffset;
+        let margin;
+        if (yOffsetLeft <= yOffsetRight) {
+          currentYOffset = yOffsetLeft;
+          margin = { left: pageMargin, top: headerMargin };
+        } else {
+          currentYOffset = yOffsetRight;
+          margin = { left: pageMargin + tableWidth + 10, top: headerMargin };
+        }
+        docPdf.autoTable({
+          startY: currentYOffset,
+          head: [[category.title, ""]],
+          body: categoryBody,
+          theme: 'grid',
+          tableWidth: tableWidth,
+          margin: margin,
+          columnStyles: {
+            0: { cellWidth: 'auto' },
+            1: { cellWidth: 10, halign: 'center' }
+          },
+          styles: {
+            cellPadding: 2,
+            fontSize: 10
+          },
+          headStyles: commonHeaderStyles
+        });
+        if (yOffsetLeft <= yOffsetRight) {
+          yOffsetLeft = docPdf.autoTable.previous.finalY + tableSpacing;
+        } else {
+          yOffsetRight = docPdf.autoTable.previous.finalY + tableSpacing;
+        }
+      }
+      yOffset = Math.max(yOffsetLeft, yOffsetRight);
+    }
+
+    // --- 3. FLIGHT BOOK ---
+    docPdf.addPage();
+    docPdf.setFont("helvetica", "bold");
+    docPdf.setFontSize(16);
+    docPdf.text("Flight Book", 15, headerMargin);
+
+    const locationsSnapshot = await getDocs(collection(db, "locations"));
+    const locationsMap = new Map();
+    locationsSnapshot.forEach(ls => {
+      const d = ls.data();
+      locationsMap.set(ls.id, d.name || ls.id);
+    });
+
+    const flightsRef = collection(db, "users", userId, "flights");
+    const snapshot = await getDocs(flightsRef);
+    const flights = [];
+    snapshot.forEach(docSnap => {
+      const flight = docSnap.data();
+      flight.id = docSnap.id;
+      flights.push(flight);
+    });
+
+    flights.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const totalFlights = flights.length;
+    const flightTableBody = flights.map((flight, index) => {
+      const date = flight.date ? new Date(flight.date) : null;
+      return [
+        totalFlights - index,
+        date ? date.toLocaleDateString() : "",
+        locationsMap.get(flight.takeoff) || flight.takeoff || "",
+        locationsMap.get(flight.landing) || flight.landing || "",
+        flight.flightTime ? `${flight.flightTime} min` : "",
+        flight.comments || "",
+      ];
+    });
+
+    docPdf.autoTable({
+      startY: headerMargin + 5,
+      head: [["#", "Date", "Takeoff", "Landing", "Flight Time", "Comments"]],
+      body: flightTableBody.length ? flightTableBody : [["-", "-", "-", "-", "-", "-"]],
+      headStyles: commonHeaderStyles,
+      margin: { top: headerMargin }
+    });
+
+    addHeaderAndFooter();
+
+    docPdf.save(`FlightDeck_Export_${userData.name || 'Student'}_${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}.pdf`);
   }
-
-  // --- 3. FLIGHT BOOK ---
-  docPdf.addPage();
-  docPdf.setFont("helvetica", "bold");
-  docPdf.setFontSize(16);
-  docPdf.text("Flight Book", 15, 20);
-
-  // 1) locations lekérése
-  const locationsSnapshot = await getDocs(collection(db, "locations"));
-  const locationsMap = new Map();
-  locationsSnapshot.forEach(ls => {
-    const d = ls.data();
-    locationsMap.set(ls.id, d.name || ls.id);
-  });
-
-  // 2) flightok lekérése
-  const flightsRef = collection(db, "users", userId, "flights");
-  const snapshot = await getDocs(flightsRef);
-
-  const flights = [];
-  snapshot.forEach(docSnap => {
-    const flight = docSnap.data();
-    flight.id = docSnap.id;
-    flights.push(flight);
-  });
-
-  // 3) sort: újabb elöl, régebbi hátul
-  flights.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  // 4) PDF táblázat: sorszám régebbitől kezdve
-  const totalFlights = flights.length; // Itt van a totalFlights definiálva
-  const flightTableBody = flights.map((flight, index) => {
-    const date = flight.date ? new Date(flight.date) : null;
-    return [
-      totalFlights - index, // sorszám
-      date ? date.toLocaleDateString() : "",
-      locationsMap.get(flight.takeoff) || flight.takeoff || "",
-      locationsMap.get(flight.landing) || flight.landing || "",
-      flight.flightTime ? `${flight.flightTime} min` : "",
-      flight.comments || "",
-    ];
-  });
-
-  // 5) AutoTable létrehozása
-  docPdf.autoTable({
-    startY: 30,
-    head: [["#", "Date", "Takeoff", "Landing", "Flight Time", "Comments"]],
-    body: flightTableBody.length ? flightTableBody : [["-", "-", "-", "-", "-", "-"]],
-  });
-
-  // --- 4. Oldalszám ---
-  addPageNumber();
-
-  // --- SAVE ---
-	docPdf.save(`FlightDeck_Export_${userData.name || 'Student'}_${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}.pdf`);
-}
-
 
   // HOOK BUTTON
   document.addEventListener("DOMContentLoaded", () => {
@@ -2710,7 +2705,6 @@ async function exportPDF(userId) {
       console.error("Export button not found!");
       return;
     }
-
     btn.addEventListener("click", async () => {
       const user = auth.currentUser;
       if (!user) {
