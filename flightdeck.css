@@ -698,3 +698,42 @@
     opacity: 1;
   }
 }
+
+
+
+        .containeradmin {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background-color: #2d3748;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        } 
+		.progress-bar-container {
+            width: 100%;
+            background-color: #2d3748;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 16px;
+            margin: 0.5rem 0 1rem 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #48bb78; /* zöld */
+            transition: width 0.4s ease;
+        }
+        .sort-buttons {
+            margin-bottom: 1rem;
+        }
+        .sort-buttons button {
+            margin-right: 0.5rem;
+        }
+		
+		.student-card {
+            margin-bottom: 1.5rem;
+        }
+        .w3-card-admin {
+            background-color: #4a5568;
+            padding: 1rem;
+            border-radius: 1rem;
+        }

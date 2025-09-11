@@ -49,7 +49,8 @@
     <button class="w3-bar-item w3-button w3-padding" id="theory-tab"><i class="fa fa-bank fa-fw"></i>&nbsp; Theory</button>
     <button class="w3-bar-item w3-button w3-padding" id="export-pdf-tab"><i class="fa fa-download fa-fw"></i>&nbsp; Export</button><br>
     <button class="w3-bar-item w3-button" id="settings-tab"><i class="fa fa-cog"></i> &nbsp; Settings</button>
-    <button class="w3-bar-item w3-button" id="logoutBtn"><i class="fa fa-right-from-bracket"></i> Logout</button>
+    <button class="w3-bar-item w3-button" id="admin-tab"><i class="fa fa-lock"></i> &nbsp; ADMIN</button>
+    <button class="w3-bar-item w3-button" id="logoutBtn"><i class="fa fa-right-from-bracket"></i>&nbsp; Logout</button>
   </div>
 </nav>
 
@@ -903,6 +904,33 @@
 
 </div>
 
+
+
+
+
+
+	<!--ADMIN -->
+<div class="w3-container w3-padding tab-content" id="admin-section" style="display:none;">
+  <header class="containeradmin" >
+    <h5><b><i class="fa fa-lock"></i> ADMIN Dashboard</b></h5><hr>
+    <p>Here you can download your entire progress! Do not forget to ask a stamp on it before you go for the exam! </p>
+
+        <div class="sort-buttons">
+            <button id="sort-name-btn" class="w3-button w3-blue" onclick="setSort('abc')">Sort by Name (ABC)</button>
+            <button id="sort-flights-btn" class="w3-button w3-green" onclick="setSort('flights')">Sort by Total Flights</button>
+        </div>
+
+        <div id="student-container" class="w3-row-padding w3-margin-top"></div>
+
+  </header>
+</div>
+
+
+
+
+
+
+
 </div>
 
 <script>
@@ -1084,11 +1112,25 @@ if (logoutBtn) {
         }
     });
 }
-
 // Check authentication state
 onAuthStateChanged(auth, (user) => {
-    if (!user) {
-        // Redirect to login if not authenticated
+    // A felhasználó azonosítója
+    if (user) {
+        // Ellenőrizze a felhasználó email címét
+        const adminTab = document.getElementById('admin-tab');
+        if (user.email === 'info@flywithmiki.com') {
+            // Ha az email egyezik, láthatóvá tesszük az admin menüpontot
+            if (adminTab) {
+                adminTab.style.display = 'block'; // Vagy 'flex'/'inline-block', a CSS-től függően
+            }
+        } else {
+            // Ha nem egyezik, biztosítjuk, hogy rejtve maradjon
+            if (adminTab) {
+                adminTab.style.display = 'none';
+            }
+        }
+    } else {
+        // Ha nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
         window.location.href = 'flightdeck.html';
     }
 });
@@ -2677,6 +2719,187 @@ onAuthStateChanged(auth, (user) => {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+
+
+
+
+<!------ADMIN-------------------------------------------------->
+<<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+    // Firebase konfiguráció
+    const firebaseConfig = {
+        apiKey: "AIzaSyCjSOM5roktee1TXbU6mrUhcMBe5Z-8ccY",
+        authDomain: "flight-deck-3bb7b.firebaseapp.com",
+        projectId: "flight-deck-3bb7b",
+        storageBucket: "flight-deck-3bb7b.firebasestorage.app",
+        messagingSenderId: "207195710488",
+        appId: "1:207195710488:web:6f567ae11e680584214f6d",
+        measurementId: "G-5D0JNV625P"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let studentsData = [];
+    let currentSort = {
+        key: 'abc',
+        order: 'asc'
+    };
+
+    async function fetchStudentData() {
+        const container = document.getElementById('student-container');
+        container.innerHTML = 'Loading student data...';
+
+        try {
+            const usersSnapshot = await getDocs(collection(db, "users"));
+            const fetchedStudents = [];
+
+            const allChecklistTasks = new Set();
+            const dummyChecklistDocSnap = await getDoc(doc(db, "checklists", "dummyId")); 
+            if (dummyChecklistDocSnap.exists()) {
+                Object.keys(dummyChecklistDocSnap.data()).forEach(key => allChecklistTasks.add(key));
+            }
+
+            for (const userDoc of usersSnapshot.docs) {
+                const userData = userDoc.data();
+                const userId = userDoc.id;
+
+                const flightsSnapshot = await getDocs(collection(db, "users", userId, "flights"));
+                const totalFlights = flightsSnapshot.size;
+
+                const takeoffsSet = new Set();
+                const landingsSet = new Set();
+                flightsSnapshot.forEach(flightDoc => {
+                    const flightData = flightDoc.data();
+                    if (flightData.takeoff) takeoffsSet.add(flightData.takeoff);
+                    if (flightData.landing) landingsSet.add(flightData.landing);
+                });
+                const totalTakeoffs = takeoffsSet.size;
+                const totalLandings = landingsSet.size;
+
+                const checklistDocRef = doc(db, "checklists", userId);
+                const checklistDocSnap = await getDoc(checklistDocRef);
+                
+                let progress = 0;
+                if (checklistDocSnap.exists()) {
+                    const checklistData = checklistDocSnap.data();
+                    const checkedTasks = Object.values(checklistData).filter(v => v === true).length;
+                    const totalTasks = Object.keys(checklistData).length;
+                    progress = (checkedTasks / totalTasks) || 0;
+                }
+
+                if (userData.name && userData.name.trim() !== "") {
+                    fetchedStudents.push({
+                        id: userId,
+                        name: userData.name,
+                        progress: progress,
+                        totalFlights: totalFlights,
+                        totalTakeoffs: totalTakeoffs,
+                        totalLandings: totalLandings,
+                    });
+                }
+            }
+
+            studentsData = fetchedStudents;
+            renderStudents();
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            container.innerHTML = 'Failed to load data. Please try again later.';
+        }
+    }
+    
+    function setSort(key) {
+        if (currentSort.key === key) {
+            currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+        } else {
+            currentSort.key = key;
+            currentSort.order = (key === 'flights') ? 'desc' : 'asc'; 
+        }
+        renderStudents();
+    }
+
+    function updateSortButtons() {
+        const nameBtn = document.getElementById('sort-name-btn');
+        const flightsBtn = document.getElementById('sort-flights-btn');
+
+        nameBtn.textContent = 'Sort by Name (ABC)';
+        flightsBtn.textContent = 'Sort by Total Flights';
+
+        if (currentSort.key === 'abc') {
+            const arrow = currentSort.order === 'asc' ? ' ▲' : ' ▼'; 
+            nameBtn.textContent += arrow;
+        } else if (currentSort.key === 'flights') {
+            const arrow = currentSort.order === 'asc' ? ' ▲' : ' ▼';
+            flightsBtn.textContent += arrow;
+        }
+    }
+
+    function renderStudents() {
+        const container = document.getElementById('student-container');
+        container.innerHTML = '';
+
+        let sortedStudents = [...studentsData];
+        const { key, order } = currentSort;
+
+        if (key === 'abc') {
+            sortedStudents.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
+            if (order === 'desc') {
+                sortedStudents.reverse();
+            }
+        } else if (key === 'flights') {
+            sortedStudents.sort((a, b) => {
+                const flightsA = a.totalFlights || 0;
+                const flightsB = b.totalFlights || 0;
+                return order === 'asc' ? flightsA - flightsB : flightsB - flightsA;
+            });
+        }
+        
+        updateSortButtons();
+
+        sortedStudents.forEach(student => {
+            const name = student.name.trim();
+            const progressPercent = Math.round(student.progress * 100);
+            const totalFlights = student.totalFlights || '0';
+            const totalTakeoffs = student.totalTakeoffs || '0';
+            const totalLandings = student.totalLandings || '0';
+
+            const studentCard = document.createElement('div');
+            studentCard.className = 'w3-third student-card';
+
+            studentCard.innerHTML = `
+                <div class="w3-card-admin w3-container">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h3 class="w3-text-white" style="margin: 0;">${name}</h3>
+                        <span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
+                    </div>
+
+                    <p><strong>Checklist Progress:</strong> ${progressPercent}%</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: ${progressPercent}%;"></div>
+                    </div>
+                    
+                    <p><strong>Total flights</strong> ${totalFlights}</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: ${Math.min((totalFlights / 50) * 100, 100)}%;"></div>
+                    </div>
+                    <p><strong>Takeoffs:</strong> ${totalTakeoffs}</p>
+                    <p><strong>Landings:</strong> ${totalLandings}</p>
+                </div>
+            `;
+            container.appendChild(studentCard);
+        });
+    }
+
+    // Ezeket a sorokat kell hozzáadnia
+    window.setSort = setSort;
+    window.renderStudents = renderStudents;
+    window.onload = fetchStudentData;
+</script>
+
 
 </body>
 </html>
