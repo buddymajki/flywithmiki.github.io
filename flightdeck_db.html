@@ -11,52 +11,6 @@
 	<link rel="stylesheet" href="flightdeck.css">
 	
 <style>
-/* Sidebar and overlay for small & mid screens */
-@media (max-width: 1024px) {
-  #mySidebar {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0;
-    width: 300px; /* mid screens width */
-    max-width: 100%;
-    height: 100%;
-    z-index: 2001 !important;
-    background-color: rgba(26,32,44,0.96);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    /* animation */
-    transform: translateX(-100%);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-    display: block; /* keep it in DOM */
-  }
-
-
-
-  #mySidebar.open {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  #myOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    background: rgba(0,0,0,0.28);
-    z-index: 2000;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-  }
-
-  #myOverlay.visible {
-    display: block;
-    opacity: 1;
-  }
-}
 
 
 </style>
@@ -110,7 +64,7 @@
 
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-left:300px;">
 
 
 
@@ -119,9 +73,10 @@
 
 <!-- !DASHBOARD SECTION! -->
 <!-- !DASHBOARD SECTION! -->
-<div class="w3-container w3-padding tab-content" id="dashboard-section" style="display:none;">
-  <header class="w3-container" style="padding-top:22px">
+<div class="w3-container tab-content" id="dashboard-section" style="display:none;">
+  <header class="w3-container">
     <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+	
   </header>
 
 		<!-- Dashboard Cards -->
@@ -232,7 +187,7 @@
 		</div>
 		  <hr>
 		
-		<div id="checklist-chart-wrapper"></div>
+		<div class="w3-padding" id="checklist-chart-wrapper"></div>
 		  <br><hr>
 		
 </div>
@@ -245,15 +200,16 @@
 
 	<!--CHECKLIST SECTION-->
 	<div class="w3-container w3-padding tab-content" id="checklist-section" style="display:none;">
-	  <header class="w3-container" style="padding-top:22px">
+	  <header class="w3-container"> <!--style="padding-top:22px"-->
 	  
 		<h5><b><i class="fa fa-list-check"></i> Checklist</b></h5>
+		
 	  </header>
 	   <form id="form">
 
 				
 		
-				<hr>
+				
 				<H2 class="w3-center" style="align:center; margin:auto">Basic Training</h2>
 					<div class="w3-row-padding w3-margin-top">
 						<div class="w3-half">
@@ -774,34 +730,32 @@
 	  <header class="w3-container" style="padding-top:22px">
 	  
 		<h5><b><i class="fa fa-square-plus"></i> Add Flight</b></h5>
-		<hr>
+		
 		<div id="flight-form-section">
-				<div class="w3-card w3-round-large w3-margin">
+				
 					<div class="w3-container">
 						<h3>New Flight</h3>
 						<form id="addflight-form" method="post">
-							<p>
-								<label>Date:</label>
+							<p> <label>Date:</label> </p>
 								<input class="w3-input w3-border w3-round-large" type="date" name="flight-date" id="addflight-date-input" required>
-							</p>
-							<p>
-								<label>Takeoff:</label>
+							
+							
+							<p>	<label>Takeoff:</label> </p>
 								<select class="w3-select w3-border w3-round-large" name="takeoff-location" id="addflight-takeoff-location" required>
 									<option value="" disabled selected>Select a takeoff location</option>
 								</select>
-							</p>
-							<p>
-								<label>Landing:</label>
+							
+							<p> <label>Landing:</label></p>
 								<select class="w3-select w3-border w3-round-large" name="landing-location" id="addflight-landing-location" required>
 									<option value="" disabled selected>Select a landing location</option>
 								</select>
-							</p>
+							
 							<p>
-								<label>Altitude Difference:</label>
+								<label>Altitude Difference:</label> </p>
 								<span id="addflight-altitude-difference" class="w3-tag w3-round-large w3-light-grey">0m</span>
-							</p>
+							
 							<p>
-								<label>Flight Time:</label>
+								<label>Flight Time:</label> </p>
 								<select class="w3-select w3-border w3-round-large" name="flight-time" required>
 									<option value="" disabled selected>Select flight time</option>
 									<option value="5">5 minutes</option>
@@ -811,17 +765,17 @@
 									<option value="25">25 minutes</option>
 									<option value="30+">30+ minutes</option>
 								</select>
-							</p>
+							
 							<p>
-								<label>Comments:</label>
+								<label>Comments:</label> </p>
 								<textarea class="w3-input w3-border w3-round-large" name="comments" rows="3"></textarea>
-							</p>
+							
 							<p>
 								<button id="addflight-save-button" style="background-color:#805ad5" type="submit" class="w3-button w3-round-large w3-margin-bottom">Save Flight</button>
 							</p>
 						</form>
 					</div>
-				</div>
+				
 		</div>
 		
 	  </header>
@@ -829,7 +783,7 @@
 
 	<!--FLIGHT BOOK SECTION -->
 	<div class="w3-container w3-padding tab-content" id="flightbook-section" style="display:none;">
-	  <header class="w3-container" style="padding-top:22px">
+	  <header class="w3-container" >
 	  
 		<h5><b><i class="fa fa-history"></i> Flight Book</b></h5>
 	  </header>
@@ -838,12 +792,11 @@
 	<!--Theory SECTION -->
 
 	<div class="w3-container w3-padding tab-content" id="theory-section" style="display:none;">
-	  <header class="w3-container" style="padding-top:22px">
+	  <header class="w3-container">
 		  <h5><b><i class="fa fa-bank"></i> Theory</b></h5>
-	  </header>
+	 
 
-		<div class="w3-card w3-round-large w3-margin">
-			<div class="w3-container">
+		
 				<p>
 					<a href="https://flywithmiki.com/theory/aerodynamics.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom  same-width-button" style="background-color:#805ad5">Aerodynamics</a>
 				</p>
@@ -859,8 +812,7 @@
 				<p>
 					<a href="https://flywithmiki.com/theory/meteo.pdf" target="_blank" class="w3-button w3-round-large w3-margin-bottom same-width-button" style="background-color:#805ad5">Weather</a>
 				</p>
-			</div>
-		</div>
+			 </header>
 	</div>
 	<!-- !THEORY SECTION! -->
 
@@ -868,8 +820,8 @@
 
 	<!--EXPORT SECTION -->
 <div class="w3-container w3-padding tab-content" id="export-pdf-section" style="display:none;">
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-download"></i> Export</b></h5>
+  <header class="w3-container" >
+    <h5><b><i class="fa fa-download"></i> Export</b></h5><hr>
     <p>Here you can download your entire progress! Do not forget to ask a stamp on it before you go for the exam! </p>
 
 <button id="export-pdf-btn" class="w3-button w3-round-large w3-blue w3-margin-top">
@@ -882,11 +834,11 @@
 
 	<!--SETTINGS SECTION -->
 <div class="w3-container w3-padding tab-content" id="settings-section" style="display:none;">
-    <header class="w3-container" style="padding-top:22px">
+    <header class="w3-container">
         <h5><b><i class="fa fa-cog"></i> Settings</b></h5>
     </header>
 
-    <div class="w3-card w3-round-large w3-margin">
+ 
         <div class="w3-container w3-padding">
             <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16">Profile Settings</h4>
             
@@ -919,9 +871,9 @@
             </form>
             <div id="statusMessage" class="w3-panel" style="display:none;"></div>
         </div>
-    </div>
+    
 	
-	<div class="w3-card w3-round-large w3-margin">
+	
     <div class="w3-container w3-padding">
         <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16">Change Password</h4>
         
@@ -946,7 +898,7 @@
         </form>
         <div id="passwordStatusMessage" class="w3-panel" style="display:none;"></div>
     </div>
-</div>
+
 
 
 </div>
@@ -1796,7 +1748,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span onclick="document.getElementById('commentModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
       <h3>Comment</h3>
     </header>
-    <div class="w3-container" id="commentModalBody" style="white-space:pre-wrap; padding:16px;"></div>
+    <div class="w3-container" style="background-color: #2d3748; color: white;" id="commentModalBody" style="white-space:pre-wrap; padding:16px;"></div>
   </div>
 </div>
 <style>
@@ -2014,9 +1966,11 @@ async function loadFlights(user) {
     // Comment icon
     if (flight.comments) {
       const icon = document.createElement('i');
-      icon.className = 'fa fa-comment w3-auto';
+      icon.className = 'fa fa-comment w3-margin-bottom';
       icon.setAttribute('title', flight.comments);
       icon.style.cursor = 'pointer';
+      icon.style.color = '#009933';
+	  icon.style.verticalAlign = 'middle';
       icon.addEventListener('mouseenter', (e) => showTooltip(e, flight.comments));
       icon.addEventListener('mouseleave', hideTooltip);
       icon.addEventListener('click', (e) => {
