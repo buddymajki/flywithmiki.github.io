@@ -1093,6 +1093,11 @@ window.firebaseDb = db;
 <!--LOGOUT SCRIPT-->
 <script type="module">
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { collection, onSnapshot, collectionGroup } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// A globálisan elérhető autentikációs és adatbázis-objektumok használata
+const auth = window.firebaseAuth;
+const db = window.firebaseDb;
 
 
 
@@ -1105,32 +1110,63 @@ const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         try {
+            // A listener leállítása a kijelentkezés előtt
+            if (window.unsubscribeFirestore) {
+                window.unsubscribeFirestore();
+            }
+
             await signOut(auth);
-            window.location.href = 'flightdeck.html'; 
+            window.location.href = 'flightdeck.html';
         } catch (err) {
             console.error('Logout failed:', err);
         }
     });
 }
-// Check authentication state
+
+
+
+
+
+// A teljes autentikációs és valós idejű figyelő beállítása
 onAuthStateChanged(auth, (user) => {
-    // A felhasználó azonosítója
     if (user) {
-        // Ellenőrizze a felhasználó email címét
         const adminTab = document.getElementById('admin-tab');
         if (user.email === 'info@flywithmiki.com') {
-            // Ha az email egyezik, láthatóvá tesszük az admin menüpontot
             if (adminTab) {
-                adminTab.style.display = 'block'; // Vagy 'flex'/'inline-block', a CSS-től függően
+                adminTab.style.display = 'block';
+
+                // Listener a `users` gyűjteményre, hogy az új felhasználókat is észlelje
+                const usersRef = collection(db, 'users');
+                const unsubscribeUsers = onSnapshot(usersRef, (usersSnapshot) => {
+                    updateAdminUI();
+                });
+
+                // Listener a `flights` gyűjteménycsoportra
+                const flightsGroupRef = collectionGroup(db, 'flights');
+                const unsubscribeFlights = onSnapshot(flightsGroupRef, (snapshot) => {
+                    updateAdminUI();
+                });
+
+                // A listenerek leállítására szolgáló függvények mentése
+                window.unsubscribeListeners = () => {
+                    unsubscribeUsers();
+                    unsubscribeFlights();
+                };
+
+                updateAdminUI();
             }
         } else {
-            // Ha nem egyezik, biztosítjuk, hogy rejtve maradjon
             if (adminTab) {
                 adminTab.style.display = 'none';
+                if (window.unsubscribeListeners) {
+                    window.unsubscribeListeners();
+                }
             }
         }
     } else {
-        // Ha nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
+        if (window.unsubscribeListeners) {
+            window.unsubscribeListeners();
+        }
         window.location.href = 'flightdeck.html';
     }
 });
@@ -1679,7 +1715,8 @@ document.addEventListener('DOMContentLoaded', () => {
             altitudeDifference: document.getElementById('addflight-altitude-difference').textContent,
             flightTime: addFlightForm['flight-time'].value,
             comments: addFlightForm['comments'].value,
-            createdAt: new Date()
+            createdAt: new Date(),
+			stamped: false
         };
 
         try {
@@ -1909,6 +1946,7 @@ async function loadFlights(user) {
           <th>Takeoff</th>
           <th>Landing</th>
           <th>Flight Time</th>
+		  <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -1963,6 +2001,14 @@ async function loadFlights(user) {
     const tdTime = document.createElement('td');
     tdTime.textContent = flight.flightTime ? `${flight.flightTime} min` : '';
     tr.appendChild(tdTime);
+
+	const tdStatus = document.createElement('td'); //megnézi, hogy alápecsételte e az oktató
+    if (flight.stamped === true) {
+        tdStatus.innerHTML = '<i class="fa fa-stamp w3-text-green" title="Approved"></i>';
+    } else {
+        tdStatus.innerHTML = '<i class="fa fa-clock w3-text-orange" title="Pending Approval"></i>';
+    }
+    tr.appendChild(tdStatus);
 
     const tdActions = document.createElement('td');
 
@@ -2044,7 +2090,8 @@ if (modifyForm) {
       takeoff: document.getElementById("modify-takeoff").value,
       landing: document.getElementById("modify-landing").value,
       flightTime: document.getElementById("modify-time").value,
-      comments: document.getElementById("modify-comments").value
+      comments: document.getElementById("modify-comments").value,
+	  stamped: false
     });
     alert("Flight updated successfully!");
     document.getElementById('modifyFlightModal').style.display = 'none';
@@ -2727,7 +2774,7 @@ onAuthStateChanged(auth, (user) => {
 <!------ADMIN-------------------------------------------------->
 <<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    import { writeBatch, query, where, getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
     // Firebase konfiguráció
     const firebaseConfig = {
@@ -2766,9 +2813,20 @@ onAuthStateChanged(auth, (user) => {
             for (const userDoc of usersSnapshot.docs) {
                 const userData = userDoc.data();
                 const userId = userDoc.id;
+				const flightsCollectionRef = collection(db, "users", userId, "flights");
 
                 const flightsSnapshot = await getDocs(collection(db, "users", userId, "flights"));
                 const totalFlights = flightsSnapshot.size;
+			    // Számoljuk a jóváhagyásra váró repüléseket.
+				// Figyelembe vesszük azokat, ahol a 'stamped' mező 'false',
+				// VAGY azokat, ahol a 'stamped' mező egyáltalán nem létezik.
+				let pendingFlightsCount = 0;
+				flightsSnapshot.forEach(flightDoc => {
+					const flightData = flightDoc.data();
+					if (flightData.stamped === false || flightData.stamped === undefined) {
+						pendingFlightsCount++;
+					}
+				});
 
                 const takeoffsSet = new Set();
                 const landingsSet = new Set();
@@ -2783,6 +2841,12 @@ onAuthStateChanged(auth, (user) => {
                 const checklistDocRef = doc(db, "checklists", userId);
                 const checklistDocSnap = await getDoc(checklistDocRef);
                 
+				// Lekérdezzük a jóváhagyásra váró repüléseket
+			//	const unstampedFlightsQuery = query(flightsCollectionRef, where("stamped", "==", false));
+				//const unstampedFlightsSnapshot = await getDocs(unstampedFlightsQuery);
+				//const pendingFlightsCount = unstampedFlightsSnapshot.size;
+				// --- ÚJ RÉSZ VÉGE ---
+				
                 let progress = 0;
                 if (checklistDocSnap.exists()) {
                     const checklistData = checklistDocSnap.data();
@@ -2799,6 +2863,7 @@ onAuthStateChanged(auth, (user) => {
                         totalFlights: totalFlights,
                         totalTakeoffs: totalTakeoffs,
                         totalLandings: totalLandings,
+						pendingFlights: pendingFlightsCount,
                     });
                 }
             }
@@ -2866,12 +2931,37 @@ onAuthStateChanged(auth, (user) => {
             const totalFlights = student.totalFlights || '0';
             const totalTakeoffs = student.totalTakeoffs || '0';
             const totalLandings = student.totalLandings || '0';
+			const pendingFlights = student.pendingFlights || '0';
 
             const studentCard = document.createElement('div');
+
+
+		  // Dinamikusan generáljuk a jóváhagyás részt
+			let approvalHtml = '';
+			if (pendingFlights > 0) {
+				approvalHtml = `
+					<p class="w3-text-orange"><strong>Pending Flights: ${pendingFlights}</strong></p>
+					<button class="w3-button w3-green w3-round-large w3-margin-top approve-flights-btn" data-userid="${student.id}">
+						Approve All Flights
+					</button>
+				`;
+			} else {
+				approvalHtml = '<p class="w3-text-green">All flights approved.</p>';
+			}
+
+
+
             studentCard.className = 'w3-third student-card';
 
             studentCard.innerHTML = `
                 <div class="w3-card-admin w3-container">
+				
+			        <div class="w3-card-admin w3-container">
+					<hr style="border-color: #4a5568;">
+					${approvalHtml}
+					</div>
+			
+			
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <h3 class="w3-text-white" style="margin: 0;">${name}</h3>
                         <span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
@@ -2894,7 +2984,81 @@ onAuthStateChanged(auth, (user) => {
         });
     }
 
-    // Ezeket a sorokat kell hozzáadnia
+
+
+//ha az adminra kattintunk frissül a lista
+// Eseményfigyelő az admin-tab gombra
+const adminTabBtn = document.getElementById('admin-tab');
+
+if (adminTabBtn) {
+    adminTabBtn.addEventListener('click', async () => {
+        console.log("Admin tab clicked, fetching student data...");
+        await fetchStudentData();
+    });
+}
+
+
+// Eseményfigyelő a dinamikusan létrehozott gombokhoz
+
+// Eseményfigyelő a dinamikusan létrehozott gombokhoz
+document.getElementById('student-container').addEventListener('click', async (event) => {
+    if (event.target && event.target.classList.contains('approve-flights-btn')) {
+        const button = event.target;
+        const userId = button.dataset.userid;
+
+        const admin = window.firebaseAuth.currentUser;
+        if (!admin) {
+            alert("Authentication error. Please log in again.");
+            return;
+        }
+
+        if (!userId) return;
+
+        // Az 'approving' állapot beállítása a kattintás után
+        button.textContent = 'Approving...';
+        button.disabled = true;
+
+        try {
+            const flightsToApproveRef = collection(db, "users", userId, "flights");
+            const snapshot = await getDocs(flightsToApproveRef);
+
+            const batch = writeBatch(db);
+            let hasPendingFlights = false;
+
+            snapshot.forEach(flightDoc => {
+                const flightData = flightDoc.data();
+                if (flightData.stamped === false || flightData.stamped === undefined) {
+                    const flightRef = doc(db, "users", userId, "flights", flightDoc.id);
+                    batch.update(flightRef, {
+                        stamped: true,
+                        stampedBy: admin.uid,
+                        stampedAt: new Date()
+                    });
+                    hasPendingFlights = true;
+                }
+            });
+
+            if (hasPendingFlights) {
+                await batch.commit();
+				await fetchStudentData();
+		
+				
+            } else {
+                alert("No pending flights to approve.");
+            }
+
+        } catch (error) {
+            console.error("Error approving flights: ", error);
+            alert("An error occurred. Please try again.");
+            // Hiba esetén visszaállítjuk a gomb állapotát
+            button.textContent = 'Approve All Flights';
+            button.disabled = false;
+        }
+        // Nincs szükség 'finally' blokkra, mert a listener frissíti az oldalt
+    }
+});
+
+
     window.setSort = setSort;
     window.renderStudents = renderStudents;
     window.onload = fetchStudentData;
