@@ -1088,16 +1088,9 @@ window.firebaseDb = db;
 
 
 
-
-
-<!--LOGOUT SCRIPT-->
+<!--LOGOUT SCRIPT- EREDETI-->
 <script type="module">
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import { collection, onSnapshot, collectionGroup } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-// A globálisan elérhető autentikációs és adatbázis-objektumok használata
-const auth = window.firebaseAuth;
-const db = window.firebaseDb;
 
 
 
@@ -1110,67 +1103,45 @@ const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         try {
-            // A listener leállítása a kijelentkezés előtt
-            if (window.unsubscribeFirestore) {
-                window.unsubscribeFirestore();
-            }
-
             await signOut(auth);
-            window.location.href = 'flightdeck.html';
+            window.location.href = 'flightdeck.html'; 
         } catch (err) {
             console.error('Logout failed:', err);
         }
     });
 }
-
-
-
-
-
-// A teljes autentikációs és valós idejű figyelő beállítása
+// Check authentication state
 onAuthStateChanged(auth, (user) => {
+    // A felhasználó azonosítója
     if (user) {
+        // Ellenőrizze a felhasználó email címét
         const adminTab = document.getElementById('admin-tab');
         if (user.email === 'info@flywithmiki.com') {
+            // Ha az email egyezik, láthatóvá tesszük az admin menüpontot
             if (adminTab) {
-                adminTab.style.display = 'block';
-
-                // Listener a `users` gyűjteményre, hogy az új felhasználókat is észlelje
-                const usersRef = collection(db, 'users');
-                const unsubscribeUsers = onSnapshot(usersRef, (usersSnapshot) => {
-                    updateAdminUI();
-                });
-
-                // Listener a `flights` gyűjteménycsoportra
-                const flightsGroupRef = collectionGroup(db, 'flights');
-                const unsubscribeFlights = onSnapshot(flightsGroupRef, (snapshot) => {
-                    updateAdminUI();
-                });
-
-                // A listenerek leállítására szolgáló függvények mentése
-                window.unsubscribeListeners = () => {
-                    unsubscribeUsers();
-                    unsubscribeFlights();
-                };
-
-                updateAdminUI();
+                adminTab.style.display = 'block'; // Vagy 'flex'/'inline-block', a CSS-től függően
             }
         } else {
+            // Ha nem egyezik, biztosítjuk, hogy rejtve maradjon
             if (adminTab) {
                 adminTab.style.display = 'none';
-                if (window.unsubscribeListeners) {
-                    window.unsubscribeListeners();
-                }
             }
         }
     } else {
-        if (window.unsubscribeListeners) {
-            window.unsubscribeListeners();
-        }
+        // Ha nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
         window.location.href = 'flightdeck.html';
     }
 });
 </script>
+
+
+
+
+
+
+
+
+
 
 <!--MENÜ KATTINTÁS FIGYELŐ ÉS TAB VÁLTÓ SCRIPT-->
 <script type="module">
