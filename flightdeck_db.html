@@ -1091,44 +1091,67 @@ window.firebaseDb = db;
 <!--LOGOUT SCRIPT- EREDETI-->
 <script type="module">
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-
-
-
-// Use the globally available auth instance
+// Használd a globálisan elérhető auth és db példányokat
 const auth = window.firebaseAuth;
+const db = window.firebaseDb; // feltételezve, hogy a db példány globálisan elérhető
 
-// Handle logout
+// Kezeli a kijelentkezést
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         try {
             await signOut(auth);
-            window.location.href = 'flightdeck.html'; 
+            window.location.href = 'flightdeck.html';
         } catch (err) {
             console.error('Logout failed:', err);
         }
     });
 }
-// Check authentication state
-onAuthStateChanged(auth, (user) => {
-    // A felhasználó azonosítója
+
+// Ellenőrzi a hitelesítési állapotot és az admin jogosultságot
+onAuthStateChanged(auth, async (user) => {
+    const adminTab = document.getElementById('admin-tab');
+
     if (user) {
-        // Ellenőrizze a felhasználó email címét
-        const adminTab = document.getElementById('admin-tab');
-        if (user.email === 'info@flywithmiki.com') {
-            // Ha az email egyezik, láthatóvá tesszük az admin menüpontot
-            if (adminTab) {
-                adminTab.style.display = 'block'; // Vagy 'flex'/'inline-block', a CSS-től függően
+        try {
+            // Lekéri az adminlistát a Firestore-ból
+            const adminDocRef = doc(db, 'admins', 'adminList');
+            const adminDocSnap = await getDoc(adminDocRef);
+
+            if (adminDocSnap.exists()) {
+                const adminData = adminDocSnap.data();
+                const adminUIDs = adminData.uids || [];
+
+                // Ellenőrzi, hogy a felhasználó UID-je szerepel-e a listában
+                if (adminUIDs.includes(user.uid)) {
+                    if (adminTab) {
+                        adminTab.style.display = 'block';
+                    }
+                } else {
+                    // Ha nincs a listában, elrejti az admin gombot
+                    if (adminTab) {
+                        adminTab.style.display = 'none';
+                    }
+                }
+            } else {
+                console.log("Admin lista dokumentum nem található!");
+                if (adminTab) {
+                    adminTab.style.display = 'none';
+                }
             }
-        } else {
-            // Ha nem egyezik, biztosítjuk, hogy rejtve maradjon
+        } catch (error) {
+            console.error("Hiba az admin jogosultság ellenőrzésekor:", error);
             if (adminTab) {
                 adminTab.style.display = 'none';
             }
         }
     } else {
-        // Ha nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
+        // Ha nincs bejelentkezve, átirányítjuk és elrejtjük a gombot
+        if (adminTab) {
+            adminTab.style.display = 'none';
+        }
         window.location.href = 'flightdeck.html';
     }
 });
@@ -2917,40 +2940,35 @@ onAuthStateChanged(auth, (user) => {
 					</button>
 				`;
 			} else {
-				approvalHtml = '<p class="w3-text-green">All flights approved.</p>';
+				// approvalHtml = '<p class="w3-text-green">All flights approved.</p>';
 			}
 
 
 
             studentCard.className = 'w3-third student-card';
 
-            studentCard.innerHTML = `
-                <div class="w3-card-admin w3-container">
-				
-			        <div class="w3-card-admin w3-container">
-					<hr style="border-color: #4a5568;">
+			studentCard.innerHTML = `
+				<div class="w3-card-admin w3-container">
+					
 					${approvalHtml}
+					<div style="display: flex; align-items: center; justify-content: space-between;">
+						<h3 class="w3-text-white" style="margin: 0;">${name}</h3>
+						<span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
 					</div>
-			
-			
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <h3 class="w3-text-white" style="margin: 0;">${name}</h3>
-                        <span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
-                    </div>
 
-                    <p><strong>Checklist Progress:</strong> ${progressPercent}%</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: ${progressPercent}%;"></div>
-                    </div>
-                    
-                    <p><strong>Total flights</strong> ${totalFlights}</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: ${Math.min((totalFlights / 50) * 100, 100)}%;"></div>
-                    </div>
-                    <p><strong>Takeoffs:</strong> ${totalTakeoffs}</p>
-                    <p><strong>Landings:</strong> ${totalLandings}</p>
-                </div>
-            `;
+					<p><strong>Checklist Progress:</strong> ${progressPercent}%</p>
+					<div class="progress-bar-container">
+						<div class="progress-bar" style="width: ${progressPercent}%;"></div>
+					</div>
+					
+					<p><strong>Total flights</strong> ${totalFlights}</p>
+					<div class="progress-bar-container">
+						<div class="progress-bar" style="width: ${Math.min((totalFlights / 50) * 100, 100)}%;"></div>
+					</div>
+					<p><strong>Takeoffs:</strong> ${totalTakeoffs}</p>
+					<p><strong>Landings:</strong> ${totalLandings}</p>
+				</div>
+			`;
             container.appendChild(studentCard);
         });
     }
