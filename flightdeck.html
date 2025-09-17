@@ -8,7 +8,7 @@
    
 		<link rel="icon" href="/favicon.ico" sizes="any">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="manifest" href="/site2.webmanifest">
+		<link rel="manifest" href="/flightdeck/site2.webmanifest">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	
 	
@@ -95,7 +95,7 @@
       if (!email || !password) { alert("Adj meg emailt és jelszót!"); return; }
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = 'flightdeck_db.html'; // sikeres belépés
+        window.location.href = '/flightdeck/flightdeck_db.html'; // sikeres belépés
       } catch (err) {
         alert('Login error: ' + (err.message || err));
       }
@@ -117,7 +117,7 @@
     // --- Auto redirect, ha már be van jelentkezve ---
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        window.location.href = 'flightdeck_db.html';
+        window.location.href = '/flightdeck/flightdeck_db.html';
       }
     });
   </script>
