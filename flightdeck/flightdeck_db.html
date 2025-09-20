@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-		<link rel="icon" href="/favicon.ico" sizes="any">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="manifest" href="/flightdeck/site2.webmanifest">
+	<link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
 	<script src="https://kit.fontawesome.com/7909a0ba44.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="flightdeck.css">
 	
@@ -928,7 +926,29 @@
 </div>
 
 
+<div id="checklist-modal" class="w3-modal2">
+    <div class="w3-modal-content2 w3-animate-top w3-center w3-card-4" style="max-width: 600px; width: 90%; margin: auto">
+        <header class="w3-container w3-blue"> 
+            <span onclick="document.getElementById('checklist-modal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2 id="checklist-modal-title"></h2>
+        </header>
+        <div class="w3-container w3-padding" id="checklist-modal-content">
+            </div>
+    </div>
+</div>
 
+<div id="flights-modal" class="w3-modal2">
+    <div class="w3-modal-content2 w3-animate-top w3-center w3-card-4" style="margin:auto;">
+        <header class="w3-container ">
+            <span onclick="document.getElementById('flights-modal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2 id="flights-modal-title"></h2>
+        </header>
+        <div class="w3-container w3-padding" id="flights-modal-content">
+            </div>
+    </div>
+</div>
 
 
 
@@ -1105,7 +1125,7 @@ if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         try {
             await signOut(auth);
-            window.location.href = 'flightdeck.html';
+            window.location.href = '/flightdeck.html';
         } catch (err) {
             console.error('Logout failed:', err);
         }
@@ -1842,92 +1862,103 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 </style>
 
+
+
+
 <script type="module">
-	import {
-	  collection, getDocs, deleteDoc, doc, getDoc, updateDoc
-	} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-	import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import {
+  collection, getDocs, deleteDoc, doc, getDoc, updateDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-	const db = window.firebaseDb;
-	const auth = window.firebaseAuth;
-	const flightbookSection = document.getElementById("flightbook-section");
-	const commentModal = document.getElementById("commentModal");
-	const commentModalBody = document.getElementById("commentModalBody");
+const db = window.firebaseDb;
+const auth = window.firebaseAuth;
+const flightbookSection = document.getElementById("flightbook-section");
+const commentModal = document.getElementById("commentModal");
+const commentModalBody = document.getElementById("commentModalBody");
 
-	let tooltipEl = null;
-	function showTooltip(e, text) {
-	  if (!text) return;
-	  hideTooltip();
-	  tooltipEl = document.createElement('div');
-	  tooltipEl.className = 'flight-tooltip';
-	  tooltipEl.textContent = text;
-	  document.body.appendChild(tooltipEl);
-	  positionTooltip(e);
-	  document.addEventListener('mousemove', positionTooltip);
-	}
-	function positionTooltip(e) {
-	  if (!tooltipEl) return;
-	  const pad = 12;
-	  let x = e.clientX + pad;
-	  let y = e.clientY + pad;
-	  // visszaugrás az ablak széléhez, ha szükséges
-	  const rect = tooltipEl.getBoundingClientRect();
-	  if (x + rect.width > window.innerWidth) x = window.innerWidth - rect.width - 8;
-	  if (y + rect.height > window.innerHeight) y = window.innerHeight - rect.height - 8;
-	  tooltipEl.style.left = x + 'px';
-	  tooltipEl.style.top = y + 'px';
-	}
-	function hideTooltip() {
-	  if (tooltipEl) {
-		tooltipEl.remove();
-		tooltipEl = null;
-		document.removeEventListener('mousemove', positionTooltip);
-	  }
-	}
-	function openCommentModal(text) {
-	  commentModalBody.textContent = text || '';
-	  commentModal.style.display = 'block';
-	}
-
-
-
-	// Helper: select feltöltés a modify modalhoz (ha kell külön)
-	function fillSelectFromMap(selectEl, locationsMap, selectedValue) {
-	  // clear
-	  selectEl.innerHTML = '';
-	  const empty = document.createElement('option');
-	  empty.value = '';
-	  empty.disabled = true;
-	  empty.textContent = 'Select location';
-	  selectEl.appendChild(empty);
-
-	  for (const [id, name] of locationsMap.entries()) {
-		const opt = document.createElement('option');
-		opt.value = id;
-		opt.textContent = name;
-		if (id === selectedValue || name === selectedValue) opt.selected = true;
-		selectEl.appendChild(opt);
-	  }
-	}
-
-	document.getElementById("flightbook-tab").addEventListener("click", () => {
-	  const user = auth.currentUser;
-	  if (user) {
-		loadFlights(user);
-	  }
-	});
+let tooltipEl = null;
+function showTooltip(e, text) {
+  if (!text) return;
+  hideTooltip();
+  tooltipEl = document.createElement('div');
+  tooltipEl.className = 'flight-tooltip';
+  tooltipEl.textContent = text;
+  document.body.appendChild(tooltipEl);
+  positionTooltip(e);
+  document.addEventListener('mousemove', positionTooltip);
+}
+function positionTooltip(e) {
+  if (!tooltipEl) return;
+  const pad = 12;
+  let x = e.clientX + pad;
+  let y = e.clientY + pad;
+  // visszaugrás az ablak széléhez, ha szükséges
+  const rect = tooltipEl.getBoundingClientRect();
+  if (x + rect.width > window.innerWidth) x = window.innerWidth - rect.width - 8;
+  if (y + rect.height > window.innerHeight) y = window.innerHeight - rect.height - 8;
+  tooltipEl.style.left = x + 'px';
+  tooltipEl.style.top = y + 'px';
+}
+function hideTooltip() {
+  if (tooltipEl) {
+    tooltipEl.remove();
+    tooltipEl = null;
+    document.removeEventListener('mousemove', positionTooltip);
+  }
+}
+function openCommentModal(text) {
+  commentModalBody.textContent = text || '';
+  commentModal.style.display = 'block';
+}
+// Eseményfigyelő a modal bezárásához
+window.addEventListener('click', (event) => {
+    // Ellenőrizzük, hogy a kattintás a modal ablakra történt-e,
+    // de nem a modal tartalmára.
+    if (event.target === commentModal) {
+        commentModal.style.display = "none";
+    }
+});
 
 
 
+// Helper: select feltöltés a modify modalhoz (ha kell külön)
+function fillSelectFromMap(selectEl, locationsMap, selectedValue) {
+  // clear
+  selectEl.innerHTML = '';
+  const empty = document.createElement('option');
+  empty.value = '';
+  empty.disabled = true;
+  empty.textContent = 'Select location';
+  selectEl.appendChild(empty);
 
-	async function loadFlights(user) {
-	  // 1) lekérdezzük a locations-okat egyszer és map-be tesszük (id -> name)
-	  const locationsSnapshot = await getDocs(collection(db, "locations"));
-	  const locationsMap = new Map();
-	  locationsSnapshot.forEach(ls => {
-		const d = ls.data();
-		locationsMap.set(ls.id, d.name || ls.id);
-	  });
+  for (const [id, name] of locationsMap.entries()) {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = name;
+    if (id === selectedValue || name === selectedValue) opt.selected = true;
+    selectEl.appendChild(opt);
+  }
+}
+
+document.getElementById("flightbook-tab").addEventListener("click", () => {
+  const user = auth.currentUser;
+  if (user) {
+    loadFlights(user);
+  }
+});
+
+
+
+
+async function loadFlights(user) {
+  // 1) lekérdezzük a locations-okat egyszer és map-be tesszük (id -> name)
+  const locationsSnapshot = await getDocs(collection(db, "locations"));
+  const locationsMap = new Map();
+  locationsSnapshot.forEach(ls => {
+    const d = ls.data();
+    locationsMap.set(ls.id, d.name || ls.id);
+  });
 
   // 2) táblázat skeleton
   flightbookSection.innerHTML = `
@@ -2768,7 +2799,7 @@ onAuthStateChanged(auth, (user) => {
 
 
 <!------ADMIN-------------------------------------------------->
-<script type="module">
+<<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { writeBatch, query, where, getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
@@ -2872,7 +2903,240 @@ onAuthStateChanged(auth, (user) => {
             container.innerHTML = 'Failed to load data. Please try again later.';
         }
     }
+ 
+
+
+
+// Modális ablakok megjelenítése a checklist számára
+
+// A PDF-generáló kódból származó adatok (itt újra definiálva, ha szükséges)
+// A PDF-generáló kódból származó adatok (itt újra definiálva, ha szükséges)
+const checklistData = {
+    'gh-bas': {
+        title: 'Basic Ground Handling and Launch Techniques',
+        tasks: ['1. Laying out the glider', '2. Equipment Familiarisation', '3. Inflation and walking exercises', '4. 5-Point Check and Launch Preparations', '5. Start-STOP (Decision making line)', '6. 3-Phase Launch (forward)', '7. Flights with Direction Changes', '8. Landing Techniques', '9. 90 - 180° Turns (Landing Approach)', '10. Folding Methods']
+    },
+    'gh-adv': {
+        title: 'Advanced Groundhandling',
+        tasks: ['1. Slalom walking', '2. Crosswind Launch (Simulation if necessary)', '3. Launch with Poorly Laid-Out Canopy', '4. 3-Phase Launch (backward)', '5. Untangling the lines', '6. Hill walking']
+    },
+    'th-flight': {
+        title: 'In-Flight Safety and Emergency Procedures',
+        tasks: ['1. Introduction to Rescue System', '2. Emergency Landing Techniques', '3. Downwind Landing', '4. Parachutal Stall', '5. Spiral dive']
+    },
+    'th-core': {
+        title: 'Core Theory',
+        tasks: ['1. Aerodynamics', '2. Weather', '3. Flying practice', '4. Legislation (Air-law and airspaces)', '5. Material Sciences']
+    },
+    'hf-bas': {
+        title: 'Basic Flight Maneuvers',
+        tasks: ['1. Steering (positive)', '2. Steering (negative)', '3. Steering (weight shift)', '4. Landing (school approach)', '5. Big Ears (without speedbar)', '6. Use of Acceleration System', '7. Big Ears (with speedbar)']
+    },
+    'hf-adv': {
+        title: 'Advanced Flight Maneuvers',
+        tasks: ['1. Steering (back riser)', '2. Landing (back riser)', '3. Rolling (Big Ears)', '4. Rolling', '5. Pitching (Swiss style)', '6. Side collapse (lvl1)', '7. Side collapse (lvl2)', '8. Side collapse (lvl3)', '9. Side collapse (lvl4)', '10. Front collapse', '11. Flying in the Safe Speed Range', '12. Tight Circles', '13. Quick Direction Changes', '14. Circle Left, Circle Right (Figure Eight)', '15. Flying with instruments', '16. Soaring / Thermalling (30+ minutes)', '17. Landing (popo)']
+    },
+    'ex': {
+        title: 'Examination Tasks',
+        tasks: ['1. Forward start', '2. Backward start', '3. Two right circles (720°, less than 20s), PP1', '4. Eight (360° left, 360° right, less than 25s), PP2', '5. Side Collapse (level3)', '6. Big Ears (90° left, 90° right)', '7. Big Ears (with full speed)', '8. Rolling', '9. Pitching', '10. Alone flight']
+    }
+};
+
+async function showChecklistModal(userId, userName) {
+    const modal = document.getElementById('checklist-modal');
+    const title = document.getElementById('checklist-modal-title');
+    const content = document.getElementById('checklist-modal-content');
+
+    title.textContent = `${userName}'s Checklist`;
+    content.innerHTML = '<p>Loading checklist...</p>';
+    modal.style.display = 'block';
+
+    try {
+        const checklistDocSnap = await getDoc(doc(db, "checklists", userId));
+        const checklistDbData = checklistDocSnap.exists() ? checklistDocSnap.data() : {};
+
+        let checklistHtml = '';
+        
+        // Végigmegyünk a PDF-hez definiált kategóriákon
+        for (const categoryKey in checklistData) {
+            const category = checklistData[categoryKey];
+            
+            checklistHtml += `<div class="w3-container w3-margin-top">`;
+            checklistHtml += `<h4><b>${category.title}</b></h4>`;
+            checklistHtml += `<ul class="w3-ul w3-border-0">`;
+            
+            // A kategória feladatait az előre meghatározott sorrendben jelenítjük meg
+            category.tasks.forEach((taskName, index) => {
+                const taskId = `${categoryKey}-${index}`;
+                const isChecked = checklistDbData[taskId] === true;
+                const icon = isChecked 
+                    ? '<i class="fa fa-check w3-text-green"></i>' 
+                    : '<i class="fa fa-times w3-text-red"></i>';
+                
+                // Flexbox-ot használunk az elemek elrendezéséhez
+                checklistHtml += `
+                    <li class="w3-padding-small">
+                        <div class="w3-row">
+                            <div class="w3-rest w3-container" style="font-size: 14px; padding-top: 0; padding-bottom: 0; text-align: left;">
+                                ${taskName}
+                            </div>
+                            <div class="w3-col w3-container w3-right" style="width: 20px; font-size: 14px; text-align: right; padding-top: 0; padding-bottom: 0;">
+                                ${icon}
+                            </div>
+                        </div>
+                    </li>
+                `;
+            });
+
+            checklistHtml += `</ul></div>`;
+        }
+
+        if (Object.keys(checklistDbData).length === 0) {
+             content.innerHTML = '<p class="w3-center w3-text-red w3-large">No checklist found for this user.</p>';
+        } else {
+             content.innerHTML = checklistHtml;
+        }
+
+    } catch (error) {
+        console.error("Error fetching checklist:", error);
+        content.innerHTML = '<p class="w3-text-red">Failed to load checklist. Please try again later.</p>';
+    }
+}
+
+// ADMIN FELÜLETEN Modális ablakok megjelenítése a repülések számára
+async function showFlightsModal(userId, userName, showPendingOnly = false) {
+    const modal = document.getElementById('flights-modal');
+    const title = document.getElementById('flights-modal-title');
+    const content = document.getElementById('flights-modal-content');
+
+    title.textContent = `${userName}'s Flights`;
+    content.innerHTML = '<p>Loading flights...</p>';
+    modal.style.display = 'block';
+
+    try {
+        // 1) Locations lekérdezése
+        const locationsSnapshot = await getDocs(collection(db, "locations"));
+        const locationsMap = new Map();
+        locationsSnapshot.forEach(ls => {
+            const d = ls.data();
+            locationsMap.set(ls.id, d.name || ls.id);
+        });
+
+        // 2) Táblázat skeleton létrehozása
+        content.innerHTML = `
+            <table class="w3-table w3-bordered">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Takeoff</th>
+                        <th>Landing</th>
+                        <th>Flight Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="flights-modal-table-body"></tbody>
+            </table>
+        `;
+        const tbody = document.getElementById('flights-modal-table-body');
+
+        // 3) Repülések lekérdezése
+        const flightsCollectionRef = collection(db, "users", userId, "flights");
+        let queryRef;
+        if (showPendingOnly) {
+            queryRef = query(flightsCollectionRef, where("stamped", "==", false));
+            title.textContent = `${userName}'s Pending Flights`;
+        } else {
+            queryRef = flightsCollectionRef;
+        }
+
+        const flightsSnapshot = await getDocs(queryRef);
+
+        const flights = [];
+        flightsSnapshot.forEach(docSnap => {
+            const flight = docSnap.data();
+            flight.id = docSnap.id;
+            flights.push(flight);
+        });
+
+        // 4) Repülések rendezése
+        flights.sort((a, b) => {
+            const dateA = a.date?.seconds ? new Date(a.date.seconds * 1000) : new Date(0);
+            const dateB = b.date?.seconds ? new Date(b.date.seconds * 1000) : new Date(0);
+            return dateB - dateA; // Újabbak felül
+        });
+
+        // 5) Táblázat feltöltése adatokkal
+        if (flights.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" class="w3-center">${showPendingOnly ? 'No pending flights' : 'No flights'} found for this user.</td></tr>`;
+        } else {
+            const totalFlights = flights.length;
+		flights.forEach((flight, index) => {
+			const tr = document.createElement('tr');
+			const flightNumber = totalFlights - index;
+
+			// A dátumot a stringből Date objektummá alakítjuk
+			let formattedDate = 'N/A';
+			if (flight.date && typeof flight.date === 'string') {
+				// Létrehozzuk a Date objektumot, és formázzuk magyar nyelvűre
+				const dateParts = flight.date.split('-'); // ["2025", "07", "20"]
+				const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+				formattedDate = dateObj.toLocaleDateString('hu-HU');
+			}
+			
+			const takeoffName = locationsMap.get(flight.takeoff) || flight.takeoff || 'N/A';
+			const landingName = locationsMap.get(flight.landing) || flight.landing || 'N/A';
+			const flightTime = flight.flightTime ? `${flight.flightTime} min` : 'N/A';
+			const statusIcon = flight.stamped === true 
+				? '<i class="fa fa-stamp w3-text-green" title="Approved"></i>' 
+				: '<i class="fa fa-clock w3-text-orange" title="Pending Approval"></i>';
+
+			tr.innerHTML = `
+				<td>${flightNumber}</td>
+				<td>${formattedDate}</td>
+				<td>${takeoffName}</td>
+				<td>${landingName}</td>
+				<td>${flightTime}</td>
+				<td>${statusIcon}</td>
+			`;
+			tbody.appendChild(tr);
+		});
+        }
+    } catch (error) {
+        console.error("Error fetching flights:", error);
+        content.innerHTML = '<p>Failed to load flights.</p>';
+    }
+}
+
+window.onclick = function(event) {
+    const checklistModal = document.getElementById('checklist-modal');
+    const flightsModal = document.getElementById('flights-modal');
     
+    // Ellenőrizzük, hogy a kattintás az egyik modális ablakra történt-e
+    // és az ablak éppen látható
+    if (event.target === checklistModal) {
+        checklistModal.style.display = 'none';
+    }
+    if (event.target === flightsModal) {
+        flightsModal.style.display = 'none';
+    }
+}
+
+
+		// Eseménykezelő a gombokhoz a teljes dokumentumon
+		document.body.addEventListener('click', (event) => {
+			if (event.target.classList.contains('close-modal')) {
+				event.target.closest('.w3-modal').style.display = 'none';
+			}
+		});
+
+		// A függvények elérhetővé tétele a globális ablakból
+		window.showChecklistModal = showChecklistModal;
+		window.showFlightsModal = showFlightsModal;
+
+
+ 
+	
     function setSort(key) {
         if (currentSort.key === key) {
             currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
@@ -2934,14 +3198,19 @@ onAuthStateChanged(auth, (user) => {
 
 		  // Dinamikusan generáljuk a jóváhagyás részt
 			let approvalHtml = '';
-			if (pendingFlights > 0) {
-				approvalHtml = `
-					<p class="w3-text-orange"><strong>Pending Flights: ${pendingFlights}</strong></p>
-					<button class="w3-button w3-green w3-round-large w3-margin-top approve-flights-btn" data-userid="${student.id}">
-						Approve All Flights
-					</button>
-				`;
-			} else {
+				if (pendingFlights > 0) {
+					approvalHtml = `
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<p class="w3-text-orange"><strong>Pending Flights: ${pendingFlights}</strong></p>
+							<span class="w3-button w3-round-large w3-yellow" onclick="showFlightsModal('${student.id}', '${name}', true)">
+								<i class="fa fa-eye"></i>
+							</span>
+						</div>
+						<button class="w3-button w3-green w3-round-large w3-margin-top approve-flights-btn" data-userid="${student.id}">
+							Approve All Flights
+						</button>
+					`;
+				} else {
 				// approvalHtml = '<p class="w3-text-green">All flights approved.</p>';
 			}
 
@@ -2951,11 +3220,17 @@ onAuthStateChanged(auth, (user) => {
 
 			studentCard.innerHTML = `
 				<div class="w3-card-admin w3-container">
-					
 					${approvalHtml}
 					<div style="display: flex; align-items: center; justify-content: space-between;">
 						<h3 class="w3-text-white" style="margin: 0;">${name}</h3>
-						<span style="font-size: 2rem; font-weight: bold; color: #63b3ed;">${totalFlights}</span>
+						<div style="display: flex; gap: 5px;">
+							<span class="w3-button w3-round-large w3-light-blue" onclick="showChecklistModal('${student.id}', '${name}')">
+								<i class="fa fa-list"></i>
+							</span>
+							<span class="w3-button w3-round-large w3-teal" onclick="showFlightsModal('${student.id}', '${name}')">
+								<i class="fa fa-plane"></i>
+							</span>
+						</div>
 					</div>
 
 					<p><strong>Checklist Progress:</strong> ${progressPercent}%</p>

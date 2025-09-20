@@ -47,6 +47,26 @@
 		/* DASHBOARD kártyákhoz*/
         
 		
+		/* ADMIN kártyákhoz modal flightbook, checklist*/
+		.w3-card-4 {
+			background-color: #2d3748;
+			border-radius: 1.5rem;
+			box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+			padding: 2rem;
+	
+			/*height: 100%;
+			/* Flexbox a tartalom középre igazításához 
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center; */
+		}
+
+		.w3-modal2{z-index:3;display:none;padding-top:100px;position:fixed; justify-content: center; left:0;top:0;width:100%;height:100%;overflow:auto;}
+		.w3-modal-content2{margin:0;position:relative;padding:0;outline:0;width:600px}				
+		
+		
 		
         .check-item {
             display: flex;
