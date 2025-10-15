@@ -78,9 +78,10 @@
             gap: 10px;
 			background-color: #2d3748;
 			color: white;
+		    transition: background-color 0.3s ease; /* sima átmenet */
         }
         .check-item:last-child { border-bottom: none; }
-        .check-item:hover { background-color: rgba(0,0,0,0.05); }
+		.check-item:hover {  background-color: #3b5278; /* ugyanaz az árnyalat, mint a táblázatnál */ }
         .check-item.completed { 
             background: #2b352b; 
             color: #90ee90; 
@@ -763,3 +764,12 @@
             background-color: #4a5568;
 			color: white;
 		}
+		
+		
+/* ADMIN Html - licensed pilotnál színezi a hover-t */
+#licensed-pilots-container table.w3-hoverable tbody tr {
+    transition: background-color 0.3s ease;
+}
+#licensed-pilots-container table.w3-hoverable tbody tr:hover {
+    background-color: #3b5278;
+}

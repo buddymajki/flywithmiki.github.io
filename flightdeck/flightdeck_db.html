@@ -909,11 +909,11 @@
 
 
 
-	<!--ADMIN -->
+<!--ADMIN HTML ---------------------------------------------------------
 <div class="w3-container w3-padding tab-content" id="admin-section" style="display:none;">
-  <header class="containeradmin" >
-    <h5><b><i class="fa fa-lock"></i> ADMIN Dashboard</b></h5><hr>
-    <p>Here you can download your entire progress! Do not forget to ask a stamp on it before you go for the exam! </p>
+    <header class="containeradmin" >
+        <h5><b><i class="fa fa-lock"></i> ADMIN Dashboard</b></h5><hr>
+        <p>Active students</p>
 
         <div class="sort-buttons">
             <button id="sort-name-btn" class="w3-button w3-blue" onclick="setSort('abc')">Sort by Name (ABC)</button>
@@ -922,7 +922,16 @@
 
         <div id="student-container" class="w3-row-padding w3-margin-top"></div>
 
-  </header>
+    </header>
+
+    <hr style="margin-top: 32px; margin-bottom: 32px;">
+    <div class="w3-container w3-padding">
+        <h5><b><i class="fa fa-users"></i> Licensed Users</b></h5>
+        <p>List of all licensed users (pilots/instructors).</p>
+
+        <div id="licensed-users-container" class="w3-responsive">
+            </div>
+    </div>
 </div>
 
 
@@ -950,6 +959,75 @@
     </div>
 </div>
 
+
+--->
+
+
+
+<!--új cucc ADMIN HTML ------------------------------------------------------------>
+<div class="w3-container w3-padding tab-content" id="admin-section" style="display:none;">
+    <header class="containeradmin">
+        <h5><b><i class="fa fa-lock"></i> ADMIN Dashboard</b></h5>
+        <hr>
+
+        <h2 id="active-students-title" class="w3-text-blue-grey">Active Students</h2>
+        <p>Here you can see the students with pending flights or incomplete checklists.</p>
+
+        <div class="sort-buttons">
+            <button id="sort-name-btn" class="w3-button w3-blue" onclick="setSort('abc')">Sort by Name (ABC)</button>
+            <button id="sort-flights-btn" class="w3-button w3-green" onclick="setSort('flights')">Sort by Total Flights</button>
+        </div>
+
+        <div id="student-container" class="w3-row-padding w3-margin-top"></div>
+
+        <hr style="margin-top: 40px;">
+
+        <h2 id="licensed-pilots-title" class="w3-text-blue-grey">Licensed Pilots</h2>
+        <p>A list of pilots who have completed their training.</p>
+        
+        <div id="licensed-pilots-container" class="w3-responsive">
+             <table class="w3-table w3-striped w3-bordered w3-hoverable">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>Name</th>
+                        <th>SHV Number</th>
+                        <th>Total Flights</th>
+                    </tr>
+                </thead>
+                <tbody id="licensed-pilots-tbody">
+                    </tbody>
+            </table>
+        </div>
+
+    </header>
+</div>
+
+
+<div id="checklist-modal" class="w3-modal2">
+    <div class="w3-modal-content2 w3-animate-top w3-center w3-card-4" style="max-width: 600px; width: 90%; margin: auto">
+        <header class="w3-container w3-blue"> 
+            <span onclick="document.getElementById('checklist-modal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2 id="checklist-modal-title"></h2>
+        </header>
+        <div class="w3-container w3-padding" id="checklist-modal-content">
+            </div>
+    </div>
+</div>
+
+<div id="flights-modal" class="w3-modal2">
+    <div class="w3-modal-content2 w3-animate-top w3-center w3-card-4" style="margin:auto;">
+        <header class="w3-container ">
+            <span onclick="document.getElementById('flights-modal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2 id="flights-modal-title"></h2>
+        </header>
+        <div class="w3-container w3-padding" id="flights-modal-content">
+            </div>
+    </div>
+</div>
+
+<!--új cucc ADMIN HTML ------------------------------------------------------------>
 
 
 
@@ -2426,9 +2504,6 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-
-
-
 <!----------------------------PDF EXPORTHOZ----------------------------->
 <script type="module">
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -2465,7 +2540,7 @@ onAuthStateChanged(auth, (user) => {
     // --- HELPER FUNKCIÓK ÉS GLOBÁLIS ADATOK ---
     // Két külön URL a két képhez
     const mainLogoUrl = "https://flywithmiki.com/Images_v2/pdflogo.png";
-    const headerLogoUrl = "https://flywithmiki.com/Images_v2/pdflogo-header.png";
+    const headerLogoUrl = "https://flywithmiki.com/Images_v2/pdflogo.png"; //régi homályos nyomtatás után pdflogo-header.png";
 
     // Külön változók a Base64 adatoknak
     const mainLogoBase64 = await getImageBase64(mainLogoUrl);
@@ -2596,6 +2671,60 @@ onAuthStateChanged(auth, (user) => {
     docPdf.text(`Cumulative Altitude: ${totalAltitude} m`, 15, 134);
     docPdf.text(`Flying Days: ${flyingDaysSet.size}`, 15, 142);
     docPdf.text(`Checklist Progress: ${checklistPercent}%`, 15, 150);
+
+	// >>> EZZEL VÁLTOM FEL AZ EREDETI EGYSZERŰ VÁLASZTÉKOT:
+    
+    // --- 1/b. OKTATÓI ALÁÍRÁSI RÉSZ (Instructor Signature Section) ---
+    let instructorSectionY = 170; 
+    
+    // A vonalak koordinátái
+    const dateLineStartX = 15;
+    const dateLineEndX = 70;
+    const placeLineStartX = 85;
+    const placeLineEndX = 140;
+
+    // A vonalak közepének kiszámítása
+    const dateLineCenter = (dateLineStartX + dateLineEndX) / 2; // (15 + 70) / 2 = 42.5
+    const placeLineCenter = (placeLineStartX + placeLineEndX) / 2; // (85 + 140) / 2 = 112.5
+    
+    // Az aláírás és bélyegző vonal közepének kiszámítása
+    const signatureLineStartX = 15;
+    const signatureLineEndX = 140;
+    const signatureLineCenter = (signatureLineStartX + signatureLineEndX) / 2; // (15 + 140) / 2 = 77.5
+
+    // Vonalak a dátumnak és a helynek
+    docPdf.setDrawColor(0);
+    docPdf.setLineWidth(0.5);
+    docPdf.line(dateLineStartX, instructorSectionY, dateLineEndX, instructorSectionY); // Dátum vonal
+    docPdf.line(placeLineStartX, instructorSectionY, placeLineEndX, instructorSectionY); // Hely vonal
+
+    docPdf.setFont("helvetica", "normal");
+    docPdf.setFontSize(10);
+    docPdf.setTextColor(0, 0, 0);
+
+    // Dátum felirat - Középre igazítva
+    docPdf.text("Date", dateLineCenter, instructorSectionY + 4, { align: "center" }); 
+    // Hely felirat - Középre igazítva
+    docPdf.text("Place", placeLineCenter, instructorSectionY + 4, { align: "center" }); 
+
+    instructorSectionY += 25;
+    
+    // Aláírás és bélyegző vonal
+    docPdf.setDrawColor(0);
+    docPdf.setLineWidth(0.5);
+    docPdf.line(signatureLineStartX, instructorSectionY, signatureLineEndX, instructorSectionY); 
+
+    docPdf.setFont("helvetica", "normal");
+    docPdf.setFontSize(10);
+    docPdf.setTextColor(0, 0, 0);
+
+    // Aláírás és bélyegző felirat - Középre igazítva
+    docPdf.text("Signature and Stamp of Instructor", signatureLineCenter, instructorSectionY + 4, { align: "center" }); 
+	
+    // <<< VÉGE A MÓDOSÍTÁSNAK
+
+	
+	
 
     // --- 2. CHECKLIST a HTML-ből ---
     docPdf.addPage();
@@ -2798,8 +2927,10 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-<!------ADMIN-------------------------------------------------->
-<<script type="module">
+
+
+<!------ADMIN SCRIPT-------------------------------------------------->
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { writeBatch, query, where, getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
@@ -2823,37 +2954,54 @@ onAuthStateChanged(auth, (user) => {
         order: 'asc'
     };
 
-    async function fetchStudentData() {
-        const container = document.getElementById('student-container');
-        container.innerHTML = 'Loading student data...';
+async function fetchStudentData() {
+    const studentContainer = document.getElementById('student-container');
+    const licensedTbody = document.getElementById('licensed-pilots-tbody');
+    
+    // Címsor elemek lekérdezése és alaphelyzetbe állítása
+    const activeStudentsTitle = document.getElementById('active-students-title');
+    const licensedPilotsTitle = document.getElementById('licensed-pilots-title'); // --- ÚJ RÉSZ ---
+    if (activeStudentsTitle) {
+        activeStudentsTitle.textContent = 'Active Students';
+    }
+    if (licensedPilotsTitle) { // --- ÚJ RÉSZ ---
+        licensedPilotsTitle.textContent = 'Licensed Pilots';
+    }
 
-        try {
-            const usersSnapshot = await getDocs(collection(db, "users"));
-            const fetchedStudents = [];
+    studentContainer.innerHTML = 'Loading student data...';
+    licensedTbody.innerHTML = '<tr><td colspan="3">Loading licensed pilots...</td></tr>';
 
-            const allChecklistTasks = new Set();
-            const dummyChecklistDocSnap = await getDoc(doc(db, "checklists", "dummyId")); 
-            if (dummyChecklistDocSnap.exists()) {
-                Object.keys(dummyChecklistDocSnap.data()).forEach(key => allChecklistTasks.add(key));
+    try {
+        const usersSnapshot = await getDocs(collection(db, "users"));
+        const activeStudents = [];
+        const licensedPilots = [];
+
+        for (const userDoc of usersSnapshot.docs) {
+            const userData = userDoc.data();
+            const userId = userDoc.id;
+
+            if (!userData.name || userData.name.trim() === "") {
+                continue;
             }
 
-            for (const userDoc of usersSnapshot.docs) {
-                const userData = userDoc.data();
-                const userId = userDoc.id;
-				const flightsCollectionRef = collection(db, "users", userId, "flights");
+            const flightsSnapshot = await getDocs(collection(db, "users", userId, "flights"));
+            const totalFlights = flightsSnapshot.size;
 
-                const flightsSnapshot = await getDocs(collection(db, "users", userId, "flights"));
-                const totalFlights = flightsSnapshot.size;
-			    // Számoljuk a jóváhagyásra váró repüléseket.
-				// Figyelembe vesszük azokat, ahol a 'stamped' mező 'false',
-				// VAGY azokat, ahol a 'stamped' mező egyáltalán nem létezik.
-				let pendingFlightsCount = 0;
-				flightsSnapshot.forEach(flightDoc => {
-					const flightData = flightDoc.data();
-					if (flightData.stamped === false || flightData.stamped === undefined) {
-						pendingFlightsCount++;
-					}
-				});
+            if (userData.status === 'licensed') {
+                licensedPilots.push({
+                    id: userId,
+                    name: userData.name,
+                    shvNumber: userData.shvNumber || 'N/A',
+                    totalFlights: totalFlights
+                });
+            } else if (userData.status === 'student') {
+                let pendingFlightsCount = 0;
+                flightsSnapshot.forEach(flightDoc => {
+                    const flightData = flightDoc.data();
+                    if (flightData.stamped === false || flightData.stamped === undefined) {
+                        pendingFlightsCount++;
+                    }
+                });
 
                 const takeoffsSet = new Set();
                 const landingsSet = new Set();
@@ -2865,46 +3013,71 @@ onAuthStateChanged(auth, (user) => {
                 const totalTakeoffs = takeoffsSet.size;
                 const totalLandings = landingsSet.size;
 
-                const checklistDocRef = doc(db, "checklists", userId);
-                const checklistDocSnap = await getDoc(checklistDocRef);
-                
-				// Lekérdezzük a jóváhagyásra váró repüléseket
-			//	const unstampedFlightsQuery = query(flightsCollectionRef, where("stamped", "==", false));
-				//const unstampedFlightsSnapshot = await getDocs(unstampedFlightsQuery);
-				//const pendingFlightsCount = unstampedFlightsSnapshot.size;
-				// --- ÚJ RÉSZ VÉGE ---
-				
+                const checklistDocSnap = await getDoc(doc(db, "checklists", userId));
                 let progress = 0;
                 if (checklistDocSnap.exists()) {
                     const checklistData = checklistDocSnap.data();
                     const checkedTasks = Object.values(checklistData).filter(v => v === true).length;
                     const totalTasks = Object.keys(checklistData).length;
-                    progress = (checkedTasks / totalTasks) || 0;
+                    progress = totalTasks > 0 ? (checkedTasks / totalTasks) : 0;
                 }
 
-                if (userData.name && userData.name.trim() !== "") {
-                    fetchedStudents.push({
-                        id: userId,
-                        name: userData.name,
-                        progress: progress,
-                        totalFlights: totalFlights,
-                        totalTakeoffs: totalTakeoffs,
-                        totalLandings: totalLandings,
-						pendingFlights: pendingFlightsCount,
-                    });
-                }
+                activeStudents.push({
+                    id: userId,
+                    name: userData.name,
+                    progress: progress,
+                    totalFlights: totalFlights,
+                    totalTakeoffs: totalTakeoffs,
+                    totalLandings: totalLandings,
+                    pendingFlights: pendingFlightsCount,
+                });
             }
-
-            studentsData = fetchedStudents;
-            renderStudents();
-
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            container.innerHTML = 'Failed to load data. Please try again later.';
         }
-    }
- 
 
+        studentsData = activeStudents;
+        
+        // Címsorok frissítése a darabszámokkal
+        if (activeStudentsTitle) {
+            activeStudentsTitle.textContent = `Active Students (${activeStudents.length})`;
+        }
+        if (licensedPilotsTitle) { // --- ÚJ RÉSZ ---
+            licensedPilotsTitle.textContent = `Licensed Pilots (${licensedPilots.length})`;
+        }
+
+        renderStudents();
+        renderLicensedPilots(licensedPilots);
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        studentContainer.innerHTML = 'Failed to load data. Please try again later.';
+        licensedTbody.innerHTML = '<tr><td colspan="3">Failed to load data.</td></tr>';
+    }
+}
+
+
+
+function renderLicensedPilots(pilots) {
+    const tbody = document.getElementById('licensed-pilots-tbody');
+    tbody.innerHTML = ''; // Táblázat kiürítése
+
+    if (pilots.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" class="w3-center">No licensed pilots found.</td></tr>';
+        return;
+    }
+    
+    // Rendezés ABC sorrendbe a név alapján
+    pilots.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
+
+    pilots.forEach(pilot => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${pilot.name}</td>
+            <td>${pilot.shvNumber}</td>
+            <td>${pilot.totalFlights}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
 
 
 // Modális ablakok megjelenítése a checklist számára
