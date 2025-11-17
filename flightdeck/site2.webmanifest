@@ -7,5 +7,5 @@
   "background_color":"#ffffff",
   "display":"standalone",
   "scope": "/flightdeck/",
-  "start_url": "/flightdeck/flightdeck_db.html"
+  "start_url": "/flightdeck.html"
 }
