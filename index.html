@@ -10,51 +10,134 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
 
-<!-- Wikidata összekötése ---------------------->
+<!-- Structured Data - Enhanced ---------------------->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "FLYwithMIKI Paragliding School",
-  "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
-  "url": "https://flywithmiki.com",
-  "logo": "https://flywithmiki.com/Images_v2/g760.webp", 
-  "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
-  "sameAs": [
-    "https://www.wikidata.org/wiki/Q136536762",
-    "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
-    "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
-    // Hozzádhatsz ide más releváns közösségi média profilokat is, pl. Facebook, Instagram.
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "CH",
-    "addressRegion": "Kanton Luzern",
-    "addressLocality": "Kriens"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://flywithmiki.com/"
-  }
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://flywithmiki.com/#organization",
+      "name": "FLYwithMIKI Paragliding School",
+      "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
+      "url": "https://flywithmiki.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://flywithmiki.com/Images_v2/g760.webp",
+        "width": 760,
+        "height": 760
+      },
+      "description": "Premium paragliding school in Central Switzerland. Small group training (max 3 students), eco-friendly with electric vehicle transport, individual coaching, and mental training focus.",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q136536762",
+        "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
+        "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH",
+        "addressRegion": "Kanton Luzern",
+        "addressLocality": "Kriens",
+        "postalCode": "6010"
+      },
+      "telephone": "+41779766164",
+      "email": "info@flywithmiki.com",
+      "priceRange": "CHF 185 - CHF 5000",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "areaServed": ["Luzern", "Zürich", "Zug", "Engelberg", "Emmetten", "Wolfenschiessen"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Paragliding Services & Equipment",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Complete Paragliding Training Course",
+              "description": "Full training from beginner to licensed pilot in small groups (1-3 students)",
+              "provider": {
+                "@id": "https://flywithmiki.com/#organization"
+              }
+            },
+            "price": "4500",
+            "priceCurrency": "CHF"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tandem Paragliding Flights",
+              "description": "Professional tandem flights with eco-friendly approach"
+            },
+            "price": "185",
+            "priceCurrency": "CHF",
+            "priceRange": "CHF 185 - CHF 350"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Paragliding Equipment",
+              "description": "Premium paragliding equipment from top brands with personal consultation"
+            },
+            "price": "5000",
+            "priceCurrency": "CHF",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://flywithmiki.com/#website",
+      "url": "https://flywithmiki.com",
+      "name": "FLYwithMIKI",
+      "description": "Premium paragliding school and equipment provider in Switzerland",
+      "publisher": {
+        "@id": "https://flywithmiki.com/#organization"
+      },
+      "inLanguage": ["en", "de"]
+    }
+  ]
 }
 </script>
-<!-- Wikidata összekötése ---------------------->
+<!-- Structured Data - Enhanced ---------------------->
  
  
  
  
  
  
-        <title>FLYwithMIKI - Paragliding School and tandem flights</title>
+        <title>FLYwithMIKI - Paragliding School & Tandem Flights | Small Groups, Eco-Friendly</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="Soar through breathtaking Swiss scenery with FLYwithMIKI. Paraglide with experts & experience the thrill of flight!">
+        <meta name="description" content="Premium paragliding school in Central Switzerland. Small group training (max 3 students), eco-friendly with EV transport, individual coaching. Tandem flights, equipment sales. Luzern, Zürich, Engelberg.">
+        <meta name="keywords" content="paragliding school Switzerland, Gleitschirmschule Luzern, tandem flights, paragliding courses, eco-friendly paragliding, small group training, paragliding equipment, Engelberg, Pilatus, Zürich">
+        <meta name="author" content="Miklos Mohos - FLYwithMIKI">
+        <meta name="robots" content="index, follow">
+        <link rel="alternate" hreflang="en" href="https://flywithmiki.com/" />
+        <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/" />
+        <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/" />
 
         <meta property="og:url" content="https://flywithmiki.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="FLYwithMIKI.com - Paragliding School & Tandem Flights" />
-        <meta property="og:description" content="Soar through breathtaking Swiss scenery with FLYwithMIKI. Paraglide with experts & experience the thrill of flight!" />
+        <meta property="og:site_name" content="FLYwithMIKI Paragliding School" />
+        <meta property="og:title" content="FLYwithMIKI - Premium Paragliding School & Tandem Flights Switzerland" />
+        <meta property="og:description" content="Small group paragliding training in Switzerland. Eco-friendly school with EV transport. Individual coaching, tandem flights, equipment sales. Luzern, Zürich, Engelberg, Pilatus." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="de_CH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FLYwithMIKI - Premium Paragliding School Switzerland" />
+        <meta name="twitter:description" content="Small group training, eco-friendly, individual coaching. Learn to fly with experts!" />
+        <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
 
         <link rel="canonical" href="https://flywithmiki.com/">
 		<link rel="icon" href="/favicon.ico" sizes="any">
@@ -175,12 +258,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       School <i class="fa fa-caret-down"></i>
     </a>
    
-    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+    <div id="demoAcc2" class="w3-bar-block w3-show w3-padding-large w3-medium">
       <a href="school.html" class="w3-bar-item w3-button">Learn to fly</a>
       <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     </div>
 
-    <a href="https://paragliding.academy" target="_blank" class="w3-bar-item w3-button">Academy</a> 
+    <a href="equipment.html" class="w3-bar-item w3-button">Shop (Equipment)</a>
+
+    <a href="https://paragliding.academy" target="_blank" rel="noopener noreferrer" class="w3-bar-item w3-button">Academy</a> 
 	<a href="./" class="w3-bar-item w3-button">About us</a> 
 
    
@@ -224,13 +309,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
  <div class="w3-container w3-white w3-center" id="Intro">
-        <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="logoc" style="width:100%; max-width:1000px"> <!--LOGO -->
+        <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI paragliding school - eco-friendly flight training in Switzerland" style="width:100%; max-width:1000px"> <!--LOGO -->
         	
           <!------WINTER DISCOUNT----------        <a href="https://flywithmiki.com/class2025.html" target="_blank"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card w3-margin" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->        
   
 
   
-        <img class="w3-image w3-round-xxlarge w3-padding" src="https://flywithmiki.com/Images_v2/anim.webp" alt="pic1" style="width:100%; max-width:1000px">
+        <img class="w3-image w3-round-xxlarge w3-padding" src="https://flywithmiki.com/Images_v2/anim.webp" alt="Paragliding flight over Swiss Alps - FLYwithMIKI student soaring in Central Switzerland" style="width:100%; max-width:1000px">
         
         <h1><b>Paragliding School and Tandem flights</b></h1>
         <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
@@ -244,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
           <p class="w3-xlarge">Multilingual</p>
         
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="multilingual" style="width:100%; max-width:200px" loading="lazy">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="Multilingual paragliding instruction - English, German, Hungarian lessons available" style="width:100%; max-width:200px" loading="lazy">
            <p class="w3-justify w3-padding">You have to understand everything, especially in the air. Teaching in English, German and Hungarian</p>
           </div>
         </div>
@@ -253,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
 
           <p class="w3-xlarge">Small group</p>
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="parag" style="width:100%; max-width:200px" loading="lazy">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Small group paragliding training - maximum 3 students per instructor for personalized learning" style="width:100%; max-width:200px" loading="lazy">
           <p class="w3-justify w3-padding">Size matters! Effective teaching is only possible in small group, where the instructor can focus on you.</p>
           </div>
         </div>
@@ -261,7 +346,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="w3-quarter">
           <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
             <p class="w3-xlarge">ECO-friendly</p>
-            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="treeplanting" style="width:100%; max-width:200px" loading="lazy">
+            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="Eco-friendly paragliding - tree planting after each flight, sustainable aviation" style="width:100%; max-width:200px" loading="lazy">
            <p class="w3-display-bottommidle w3-justify w3-padding" style="">Planting trees after each student and tandem flights. Traveling with EV-bus</p>
            <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe"></a>
           </div>
@@ -270,7 +355,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="w3-quarter">
           <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
            <p class="w3-xlarge">Flexible</p>
-           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="education" style="width:100%; max-width:200px" loading="lazy">
+           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="Flexible paragliding course schedule - train at your own pace with personalized timeline" style="width:100%; max-width:200px" loading="lazy">
            
 
            <p class="w3-display-bottommidle w3-justify w3-padding">Do you have a hectic schedule? No problem, our training is completely flexible.</p>
@@ -284,13 +369,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<p class="w3-justify w3-margin-top" >
 		
 		<strong>WHY CHOOSE US? Your flight is a personal journey</strong>	<br><br>
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="castell" style="height:250px; width:250px; object-fit:cover; float:right; margin:00px 0px 10px 20px" loading="lazy">
+		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="Paraglider flying over Swiss castle - spectacular alpine scenery in Central Switzerland" style="height:250px; width:250px; object-fit:cover; float:right; margin:00px 0px 10px 20px" loading="lazy">
 		
 		When choosing a paragliding school, it’s vital to recognize that flight is a truly <strong>personal journey</strong>. It’s an experience where you are constantly confronting and pushing past your own internal limits, as the air is fundamentally not our natural environment. This makes the role of your instructor paramount. At FLYwithMIKI, we commit to providing an instructor who will genuinely <strong>"hold your hand"</strong> throughout this process, offering unwavering support for your technical skills and, crucially, your <strong>mental development</strong>. This is why we insist on <strong>small group training</strong>—it’s the only way to ensure the highly personalized instruction necessary to focus intensely on each individual's progress, challenges, and confidence building.
 		<br><br>
 		We integrate this highly tailored approach with the very best in <strong>modern pedagogical methods</strong> and cutting-edge technology. Our training goes far beyond standard instruction by incorporating dedicated <strong>video analysis</strong> of your flights, focused <strong>one-on-one de-briefing</strong> sessions, and essential <strong>mental training</strong>. These tools are designed to accelerate your learning curve, improve your decision-making processes, and cement the confidence required for independent flight. Through this unique combination of personalized attention and advanced methods, we ensure you gain not just flying skills, but the profound psychological strength needed to excel as a pilot. <br><br>
 
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH6.webp" alt="castell" style="height:250px; width: 250px; object-fit:cover; float:left; margin:00px 20px 10px 0px" loading="lazy">
+		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH6.webp" alt="Paragliding training on practice hill - beginner ground handling and launch techniques" style="height:250px; width: 250px; object-fit:cover; float:left; margin:00px 20px 10px 0px" loading="lazy">
 		
 		Our students receive <strong>free access to the unique Flight Deck app</strong>, an invaluable technological tool. This app allows students to <strong>track their own progress</strong> online, access <strong>all necessary theory and theoretical background</strong> in one place, and review their next steps even while on the mountain. This ensures that the learning process is continuous, efficient, and fully transparent.
 		<br><br>
@@ -314,7 +399,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-row-padding" style="width:100%; max-width:1000px">
         <div class="w3-third">
             <div class="w3-card-4 w3-auto w3-display-container w3-section">
-                <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki" style="width:100%" loading="lazy">
+                <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki Mohos - certified paragliding instructor and tandem pilot at FLYwithMIKI school" style="width:100%" loading="lazy">
                     <p class="w3-xlarge">Miki Mohos</p>
                     Paraglider instructor & Tandem pilot
                     <p class="w3-justify w3-padding">My passion is teaching and showing the beauty of flying for students and beginner pilots, ensuring they enjoy and understand every moment of the journey. <br>
@@ -325,7 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="w3-third">
             <div class="w3-card-4 w3-auto w3-display-container w3-section">
-                <img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel" style="width:100%" loading="lazy">
+                <img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel Schmid - XC coach and tandem pilot with 30+ years paragliding experience" style="width:100%" loading="lazy">
                     <p class="w3-xlarge">Marcel Schmid</p>
                     <p>XC-coach & Tandem pilot</p>
                     <p class="w3-justify w3-padding">I'm all about soaring through the skies. It's been over three decades since I first tasted the thrill of paragliding during a tandem flight, and I've been hooked ever since. <br>
@@ -335,7 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="w3-third">
             <div class="w3-card-4 w3-auto w3-display-container w3-section">
-                <img src="https://flywithmiki.com/Images_v2/Barni.webp" alt="Barni" style="width:100%;" loading="lazy">
+                <img src="https://flywithmiki.com/Images_v2/Barni.webp" alt="Barni Kis - takeoff marshall and paragliding instructor assistant" style="width:100%;" loading="lazy">
 					<p class="w3-xlarge">Barni Kis</p>
                     <p>Takeoff Marshall</p>
                     <p class="w3-justify w3-padding">I'm captivated by nature—whether it's hiking, climbing, snowboarding, or flying, I'm always in awe. <br>Turning that wonder into action, I share my love of paragliding with students while guiding them through the start site with confidence.</p>
@@ -347,6 +432,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
 
 
+
+ <!-- EQUIPMENT SALES ------------------------------------------------------------>
+  <div class="w3-container w3-white w3-text-black w3-center w3-padding-32" style="max-width:1000px; margin:auto; background-color:#f0f8ff" id="equipment">
+           <h2 class="w3-text-teal"><b>⭐ Paragliding Equipment Sales ⭐</b></h2>
+            <h3>Your Trusted Partner for Premium Paragliding Gear</h3>
+
+                <p class="w3-justify w3-large" style="max-width:900px; margin:auto">
+                  <strong>We don't just teach you to fly – we equip you for success!</strong> At FLYwithMIKI, we offer a comprehensive range of high-quality paragliding equipment from the world's leading brands. Whether you're a beginner looking for your first wing or an experienced pilot upgrading your gear, we provide:
+                </p>
+                
+                <div class="w3-row-padding w3-margin-top">
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">🎯 Personal Consultation</h4>
+                      <p class="w3-small w3-justify">Expert advice tailored to YOUR flying style, goals, and skill level. We take time to understand your needs and recommend the perfect equipment match.</p>
+                    </div>
+                  </div>
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">💰 Attractive Prices</h4>
+                      <p class="w3-small w3-justify">Competitive pricing on premium brands. Quality equipment shouldn't break the bank – we offer excellent value without compromising on safety or performance.</p>
+                    </div>
+                  </div>
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">🛠️ After-Sales Support</h4>
+                      <p class="w3-small w3-justify">Ongoing support doesn't end at purchase. We're here for maintenance advice, equipment checks, and answering any questions as you progress in your flying journey.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w3-margin-top w3-padding">
+                  <p class="w3-large w3-justify" style="max-width:900px; margin:auto">
+                    <strong>What We Offer:</strong><br>
+                    ✈️ <strong>Paragliders</strong> – EN-A, EN-B, and specialty wings for all skill levels<br>
+                    🪂 <strong>Harnesses</strong> – Comfortable and safety-certified for every body type<br>
+                    🆘 <strong>Reserve Parachutes</strong> – Top-quality safety equipment<br>
+                    📡 <strong>Instruments</strong> – GPS, varios, and flight computers<br>
+                    👕 <strong>Accessories</strong> – Helmets, gloves, bags, and more<br>
+                  </p>
+                  
+                  <p class="w3-center w3-margin-top">
+                    <a href="prices.html#Material" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo w3-large">
+                      <b>📋 View Equipment & Prices</b>
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20paragliding%20equipment" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xxlarge w3-padding-large" style="background-color:#25D366; color:white">
+                      <b>💬 Contact Us About Equipment</b>
+                    </a>
+                  </p>
+                </div>
+  </div>
 
  <!-- Sustainability------------------------------------------------------------>
   <div class="w3-container w3-white w3-text-black w3-center w3-padding" style="max-width:1000px; margin:auto" id="sustainability">
@@ -363,7 +500,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-               <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="totyabus"  loading="lazy"> 
+               <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="Electric van transportation - eco-friendly paragliding school vehicle powered by renewable energy"  loading="lazy"> 
                <p class="w3-xlarge">Eco-Friendly Transportation</p>
                <p class="w3-display-bottommidle w3-justify w3-padding" style="">Committed to sustainability, my paragliding school uses an electric van and charges it with renewable energy whenever possible, thus minimizing our environmental footprint and setting a standard for eco-friendly adventure sports enthusiasts and responsible tourism practices.</p>
                </div>
@@ -371,7 +508,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-               <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="kenyatree" loading="lazy">
+               <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="Mangrove tree planting in Kenya - carbon offset project for sustainable paragliding" loading="lazy">
                <p class="w3-xlarge">Planting trees while soaring the skies</p>
                <p class="w3-display-bottommidle w3-justify w3-padding">Plant Trees, Take Flight! We offset your paragliding adventure's carbon footprint. Our partner is planting Mangroves in Kenya (verified project), while we are flying in Switzerland. Up to four trees after each tandem flights and up to twentyfive trees planted after each student!</p>          
                </div>
@@ -379,8 +516,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank">
-				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Ecodrive Badge" />
+				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer">
+				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verified carbon offset impact - trees planted and CO2 sequestered by FLYwithMIKI paragliding school" />
 				</a>
                <p class="w3-xlarge">Our impact</p>
                <p class="w3-display-bottommidle w3-justify w3-padding">Our tree planting initiative is verified by a reputable US-based tech company (Ecodrive-Veritree), ensuring transparency and genuine environmental impact, not green-washing. Click on the picture and check our verified tree planting project page on our partner's website </p>          
@@ -417,7 +554,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       
       <div class="w3-quarter w3-center">
-        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Google reviews </a>
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer" class="w3-circle w3-large w3-hover-light-grey" style="text-decoration:none; background-color:#ADCDFF; color:black; margin:auto">Google reviews </a>
       </div>
 
 
