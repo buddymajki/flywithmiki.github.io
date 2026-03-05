@@ -15,7 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "FLYwithMIKI Paragliding School",
-  "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
+  "alternateName": "M Mohos - FLYwithMIKI Paragliding School",
   "url": "https://flywithmiki.com",
   "logo": "https://flywithmiki.com/Images_v2/g760.webp", 
   "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
@@ -112,9 +112,129 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             html {scroll-behavior: smooth;}
             .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
              body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-            // .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
-            //.w3-third img:hover {opacity: 1}
-            .mySlides {display:none;} //slideshowhoz kell
+            /* .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer} */
+            /* .w3-third img:hover {opacity: 1} */
+            .mySlides {display:none;} /* slideshowhoz kell */
+
+        .promo-banner {
+            background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.5px;
+        }
+        .promo-banner a {
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-left: 12px;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+        .promo-banner a:hover { background: rgba(255,255,255,0.35); }
+        .hero-cta-section {
+            background: linear-gradient(180deg, #f0f8ff 0%, #ffffff 100%);
+            padding: 30px 20px 40px;
+            text-align: center;
+        }
+        .hero-cta-section h2 { margin-bottom: 10px; font-size: 1.6em; }
+        .hero-cta-section p { font-size: 1.15em; color: #555; max-width: 700px; margin: 0 auto 25px; }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cta-btn-primary { background: #0077b6; color: #fff; }
+        .cta-btn-secondary { background: #25D366; color: #fff; }
+        .testimonial-section { background: #f9f9f9; padding: 40px 20px; }
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+        .testimonial-card .stars { color: #f5a623; font-size: 1.2em; margin-bottom: 8px; }
+        .testimonial-card blockquote { font-style: italic; margin: 0 0 10px; color: #333; }
+        .testimonial-card .author { font-weight: bold; color: #777; font-size: 0.9em; }
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-overlay.active { display: flex; }
+        .popup-box {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .popup-box h3 { margin-top: 0; font-size: 1.5em; color: #0077b6; }
+        .popup-box .popup-close {
+            position: absolute;
+            top: 12px; right: 16px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+        .popup-box .popup-close:hover { color: #333; }
+        .trust-bar {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+            max-width: 1000px; margin: 0 auto; padding: 10px 20px;
+            background: #f0f8ff;
+        }
+        .trust-bar-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 20px; font-size: 0.95em; color: #333;
+            border-right: 1px solid #d0e4f0;
+        }
+        .trust-bar-item:last-child { border-right: none; }
+        .trust-bar-item .trust-icon { font-size: 1.4em; }
+        .trust-bar-item strong { color: #0077b6; }
+        @media (max-width: 600px) {
+            .trust-bar-item { border-right: none; padding: 6px 12px; font-size: 0.85em; }
+        }
 
         </style>
 
@@ -213,6 +333,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  🌟 Frühjahrskurs 2026, Jetzt Platz sichern! <a href="prices.html">Preise & Anmeldung &rarr;</a>
+</div>
+
  <div class="w3-container w3-white w3-center" id="Intro">
         <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI Gleitschirmschule - umweltfreundliche Flugausbildung in der Schweiz" style="width:100%; max-width:1000px"> <!--LOGO -->
         	
@@ -225,6 +350,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1><b>Gleitschirmschule und Tandemflüge</b></h1>
         <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
  </div>
+
+<!-- HERO CTA SECTION -->
+<div class="hero-cta-section">
+  <h2><b>Dein Traum vom Fliegen beginnt hier</b></h2>
+  <p>Lerne Gleitschirmfliegen in der atemberaubenden Zentralschweiz, persönliches Training in Kleingruppen, ECO-freundlich &amp; SHV-zertifiziert.</p>
+  <a href="school.html" class="cta-btn cta-btn-primary">&#127937; Jetzt durchstarten</a>
+  <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20für%20einen%20Gleitschirmkurs" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary">&#128588; Schreib Miki auf WhatsApp</a>
+</div>
+
+<!-- TRUST STATS BAR -->
+<div class="trust-bar">
+    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google Bewertung</div>
+    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>2-8</strong> Schüler/Gruppe</div>
+    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>400+</strong> Bäume gepflanzt</div>
+    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV</strong> zertifiziert</div>
+    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Sprachen</div>
+</div>
 
  <div class="w3-container w3-center" style="display: flex; justify-content: center; ">
 
@@ -279,6 +421,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 
+<!-- TESTIMONIALS / BEWERTUNGEN -->
+<div class="testimonial-section" id="reviews">
+  <div style="max-width:1000px; margin:auto; text-align:center">
+    <h2><b>Was unsere Schüler & Gäste sagen</b></h2>
+    <p style="color:#555; margin-bottom:25px">Bewertet mit <b>4.9 ⭐</b> auf Google Reviews</p>
+    <div class="w3-row-padding">
+      <div class="w3-third" style="margin-bottom:16px">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <blockquote>"Was ich an Miki besonders schätze, ist sein unermüdlicher Einsatz für seine Flugschüler/Innen. Er vermittelt nicht nur sein fundiertes Fachwissen auf anschauliche Weise, sondern er hat ein Talent, absolut individuell auf seine Students einzugehen und sie im richtigen Mass zu fordern und fördern. Miki hat mich progressiv zur Selbstverantwortung beim Fliegen geschult. Diesen hervorragenden Fluglehrer und sein Team kann ich 100% weiterempfehlen!"</blockquote>
+          <div class="author">Judith, Google Review</div>
+        </div>
+      </div>
+      <div class="w3-third" style="margin-bottom:16px">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <blockquote>"Ich habe meine gesamte Flugausbildung mit Miki absolviert und kann diese Erfahrung sehr empfehlen! Miki legt grossen Wert auf eine persönliche Flugausbildung, weshalb an jedem Flugtag nur wenige Schüler teilnehmen. Dadurch kann er sich sehr gut auf jeden Einzelnen konzentrieren. Miki kann sich an dein Tempo und deine Wünsche anpassen und verfügt über das nötige Wissen, um dich optimal auf die Abschlussprüfung vorzubereiten."</blockquote>
+          <div class="author">Amel, Google Review</div>
+        </div>
+      </div>
+      <div class="w3-third" style="margin-bottom:16px">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <blockquote>"Miki ist ein absoluter 5-Sterne-Fluglehrer, der dir mit viel Liebe zum Detail in sehr kurzer Zeit die Basics auf verständliche Art beibringt. Seine unerschöpfliche Geduld möchte ich schon fast als legendär bezeichnen. Darüber hinaus ist er stets zu elfundneunzig Prozent präsent und zeigt dir wie du's besser machen kannst."</blockquote>
+          <div class="author">Dschogger, Google Review</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.google.com/search?q=Fly+with+Miki+-+Paragliding+school+%26+Tandem+flights" target="_blank" rel="noopener noreferrer" class="cta-btn" style="background:#4285f4; color:#fff; margin-top:15px">📍 Alle Bewertungen auf Google lesen</a>
+  </div>
+</div>
+
 <!-- TEAM section------------------------------------------------------------>
   <div class="w3-container w3-white w3-text-black w3-center w3-padding" style="max-width:1000px; margin:auto" id="team">
     <h2>Das Team</h2>
@@ -311,37 +485,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
             </div>
         </div>
+        <div class="w3-third">
+            <div class="w3-card-4 w3-auto w3-display-container w3-section">
+                <img src="https://flywithmiki.com/Images_v2/Barni.webp" alt="Barni Kis - Startleiter und Fluglehrer-Assistent bei FLYwithMIKI" style="width:100%;" loading="lazy">
+					<p class="w3-xlarge">Barni Kis</p>
+                    <p>Startleiter</p>
+                    <p class="w3-justify w3-padding">Die Natur fasziniert mich, ob beim Wandern, Klettern, Snowboarden oder Fliegen. <br>Diese Begeisterung gebe ich weiter: Ich teile meine Liebe zum Gleitschirmfliegen mit den Schülern und begleite sie am Startplatz mit Sicherheit und Zuversicht.</p>
+                
+            </div>
+        </div>
     </div>
    </div>
  
 
 
- <!-- EQUIPMENT SALES / AUSR\u00dcSTUNG------------------------------------------------------------>
+ <!-- EQUIPMENT SALES / AUSRÜSTUNG------------------------------------------------------------>
   <div class="w3-container w3-white w3-text-black w3-center w3-padding-32" style="max-width:1000px; margin:auto; background-color:#f0f8ff" id="equipment">
-           <h2 class="w3-text-teal"><b>\u2b50 Gleitschirmausr\u00fcstung & Material-Verkauf \u2b50</b></h2>
-            <h3>Dein verl\u00e4sslicher Partner f\u00fcr Premium-Gleitschirmausr\u00fcstung</h3>
+           <h2 class="w3-text-teal"><b>⭐ Gleitschirmausrüstung &amp; Material-Verkauf ⭐</b></h2>
+            <h3>Dein verlässlicher Partner für Premium-Gleitschirmausrüstung</h3>
 
                 <p class="w3-justify w3-large" style="max-width:900px; margin:auto">
-                  <strong>Wir bringen dir nicht nur das Fliegen bei \u2013 wir r\u00fcsten dich f\u00fcr deinen Erfolg aus!</strong> Bei FLYwithMIKI bieten wir eine umfassende Auswahl an hochwertiger Gleitschirmausr\u00fcstung von den weltweit f\u00fchrenden Marken. Egal, ob du Anf\u00e4nger bist und deinen ersten Schirm suchst oder ein erfahrener Pilot, der seine Ausr\u00fcstung upgraden m\u00f6chte, wir bieten:
+                  <strong>Wir bringen dir nicht nur das Fliegen bei, wir rüsten dich für deinen Erfolg aus!</strong> Bei FLYwithMIKI bieten wir eine umfassende Auswahl an hochwertiger Gleitschirmausrüstung von den weltweit führenden Marken. Egal, ob du Anfänger bist und deinen ersten Schirm suchst oder ein erfahrener Pilot, der seine Ausrüstung upgraden möchte, wir bieten:
                 </p>
                 
                 <div class="w3-row-padding w3-margin-top">
                   <div class="w3-third">
                     <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">\ud83c\udfaf Pers\u00f6nliche Beratung</h4>
-                      <p class="w3-small w3-justify">Expertenrat, massgeschneidert auf DEINEN Flugstil, deine Ziele und dein K\u00f6nnen. Wir nehmen uns Zeit, deine Bed\u00fcrfnisse zu verstehen und die perfekte Ausr\u00fcstung zu empfehlen.</p>
+                      <h4 class="w3-text-teal">🎯 Persönliche Beratung</h4>
+                      <p class="w3-small w3-justify">Expertenrat, massgeschneidert auf DEINEN Flugstil, deine Ziele und dein Können. Wir nehmen uns Zeit, deine Bedürfnisse zu verstehen und die perfekte Ausrüstung zu empfehlen.</p>
                     </div>
                   </div>
                   <div class="w3-third">
                     <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">\ud83d\udcb0 Attraktive Preise</h4>
-                      <p class="w3-small w3-justify">Wettbewerbsf\u00e4hige Preise f\u00fcr Premium-Marken. Qualit\u00e4tsausr\u00fcstung sollte nicht das Budget sprengen \u2013 wir bieten hervorragendes Preis-Leistungs-Verh\u00e4ltnis ohne Kompromisse bei Sicherheit oder Leistung.</p>
+                      <h4 class="w3-text-teal">💰 Attraktive Preise</h4>
+                      <p class="w3-small w3-justify">Wettbewerbsfähige Preise für Premium-Marken. Qualitätsausrüstung sollte nicht das Budget sprengen, wir bieten hervorragendes Preis-Leistungs-Verhältnis ohne Kompromisse bei Sicherheit oder Leistung.</p>
                     </div>
                   </div>
                   <div class="w3-third">
                     <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">\ud83d\udee0\ufe0f After-Sales-Support</h4>
-                      <p class="w3-small w3-justify">Die Unterst\u00fctzung endet nicht beim Kauf. Wir sind f\u00fcr dich da: Wartungsberatung, Ausr\u00fcstungschecks und Beantwortung aller Fragen auf deinem Weg als Pilot.</p>
+                      <h4 class="w3-text-teal">🛠️ After-Sales-Support</h4>
+                      <p class="w3-small w3-justify">Die Unterstützung endet nicht beim Kauf. Wir sind für dich da: Wartungsberatung, Ausrüstungschecks und Beantwortung aller Fragen auf deinem Weg als Pilot.</p>
                     </div>
                   </div>
                 </div>
@@ -349,20 +532,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="w3-margin-top w3-padding">
                   <p class="w3-large w3-justify" style="max-width:900px; margin:auto">
                     <strong>Was wir anbieten:</strong><br>
-                    \u2708\ufe0f <strong>Gleitschirme</strong> \u2013 EN-A, EN-B und Spezialschirme f\u00fcr alle K\u00f6nnensstufen<br>
-                    \ud83e\ude82 <strong>Gurte</strong> \u2013 Bequem und sicherheitszertifiziert f\u00fcr jeden K\u00f6rpertyp<br>
-                    \ud83c\udd98 <strong>Rettungsschirme</strong> \u2013 Hochwertige Sicherheitsausr\u00fcstung<br>
-                    \ud83d\udce1 <strong>Instrumente</strong> \u2013 GPS, Varios und Flugcomputer<br>
-                    \ud83d\udc55 <strong>Zubeh\u00f6r</strong> \u2013 Helme, Handschuhe, Taschen und mehr<br>
+                    ✈️ <strong>Gleitschirme</strong> - EN-A, EN-B und Spezialschirme für alle Könnensstufen<br>
+                    🪂 <strong>Gurte</strong> - Bequem und sicherheitszertifiziert für jeden Körpertyp<br>
+                    🆘 <strong>Rettungsschirme</strong> - Hochwertige Sicherheitsausrüstung<br>
+                    📡 <strong>Instrumente</strong> - GPS, Varios und Flugcomputer<br>
+                    👕 <strong>Zubehör</strong> - Helme, Handschuhe, Taschen und mehr<br>
                   </p>
                   
                   <p class="w3-center w3-margin-top">
                     <a href="prices.html#Material" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo w3-large">
-                      <b>\ud83d\udccb Ausr\u00fcstung & Preise ansehen</b>
+                      <b>📋 Ausrüstung &amp; Preise ansehen</b>
                     </a>
                     &nbsp;&nbsp;
                     <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20für%20Gleitschirmausrüstung" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xxlarge w3-padding-large" style="background-color:#25D366; color:white">
-                      <b>\ud83d\udcac Kontakt zur Ausr\u00fcstung</b>
+                      <b>💬 Kontakt zur Ausrüstung</b>
                     </a>
                   </p>
                 </div>
@@ -443,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
       
   </div>
-  <p>© 2025 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
@@ -519,12 +702,33 @@ function handleButtonClick(language) {
       
 </script>
 
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20habe%20eine%20Frage%20zum%20Gleitschirmfliegen" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="WhatsApp Chat">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-
-
-
-
+<!-- WELCOME POPUP -->
+<div id="welcomePopup" class="popup-overlay" style="display:none">
+  <div class="popup-box">
+    <button class="popup-close" onclick="document.getElementById('welcomePopup').style.display='none'">&times;</button>
+    <h3>🌟 Willkommen bei FLYwithMIKI!</h3>
+    <p>Bereit, die Schweizer Alpen von oben zu erleben? Schreib Miki direkt - keine Wartezeit!</p>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20für%20einen%20Kurs" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:inline-block; margin-top:12px">💬 Jetzt chatten</a>
+    <br>
+    <a href="tandem.html" class="cta-btn cta-btn-primary" style="display:inline-block; margin-top:8px">✈️ Tandemflug buchen</a>
+  </div>
+</div>
+<script>
+(function(){
+  if(!sessionStorage.getItem('fwm_popup_de')){
+    setTimeout(function(){
+      document.getElementById('welcomePopup').style.display='flex';
+      sessionStorage.setItem('fwm_popup_de','1');
+    },8000);
+  }
+})();
+</script>
 
 </body>
 
-</html>     
+</html>

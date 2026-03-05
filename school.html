@@ -15,7 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "FLYwithMIKI Paragliding School",
-  "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
+  "alternateName": "M Mohos - FLYwithMIKI Paragliding School",
   "url": "https://flywithmiki.com",
   "logo": "https://flywithmiki.com/Images_v2/g760.webp", 
   "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
@@ -69,11 +69,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
             .w3-third img:hover {opacity: 1}
-            .mySlides {display:none;} //slideshowhoz kell
-			
+            .mySlides {display:none;} /* slideshowhoz kell */
 
-        </style>
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .hero-cta-box {
+          background: linear-gradient(135deg, #e0f7fa, #ffffff);
+          border-radius: 16px;
+          padding: 30px 20px;
+          margin: 20px auto;
+          max-width: 800px;
+          text-align: center;
+        }
+        .hero-cta-box p { color: #555; font-size: 1.1em; }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 1.05em;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .promo-banner {
+            background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 1.05em;
+            font-weight: bold;
+        }
+        .promo-banner a {
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+        .promo-banner a:hover { background: rgba(255,255,255,0.35); }
 
+        .faq-section { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .faq-section h2 { text-align: center; color: #0077b6; margin-bottom: 25px; }
+        .faq-item { border-bottom: 1px solid #e0e0e0; }
+        .faq-question {
+            width: 100%; background: none; border: none; padding: 18px 40px 18px 0;
+            font-size: 1.05em; font-weight: bold; text-align: left; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; color: #333; position: relative;
+        }
+        .faq-question::after {
+            content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+            font-size: 1.4em; color: #0077b6; transition: transform 0.3s;
+        }
+        .faq-question.active::after { content: '\2212'; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+            padding: 0 0 0 0; color: #555; line-height: 1.6;
+        }
+        .faq-answer.open { max-height: 600px; padding-bottom: 18px; }
+        .journey-section { max-width: 900px; margin: 30px auto 10px; padding: 20px; text-align: center; }
+        .journey-section h2 { color: #0077b6; margin-bottom: 25px; }
+        .journey-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; position: relative; }
+        .journey-step {
+            flex: 1 1 150px; max-width: 180px; padding: 15px 10px; text-align: center; position: relative;
+        }
+        .journey-step .step-num {
+            width: 48px; height: 48px; border-radius: 50%; background: #0077b6; color: white;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3em; font-weight: bold; margin-bottom: 8px;
+        }
+        .journey-step .step-icon { font-size: 1.6em; margin-bottom: 4px; display: block; }
+        .journey-step .step-label { font-size: 0.85em; color: #555; font-weight: 600; }
+        .journey-step::after {
+            content: '\2192'; position: absolute; right: -10px; top: 30px;
+            font-size: 1.3em; color: #0077b6;
+        }
+        .journey-step:last-child::after { content: ''; }
+        @media (max-width: 600px) {
+            .journey-step::after { content: '\2193'; right: auto; top: auto; bottom: -8px; left: 50%; transform: translateX(-50%); }
+            .journey-step:last-child::after { content: ''; }
+            .journey-step { max-width: 100%; flex: 1 1 100%; }
+        }
+
+		</style>
      <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
 
@@ -185,8 +282,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		
 		<h2><b>Journey from the beginning to your license</b></h2>
 
+		<!-- HERO CTA BOX -->
+		<div class="hero-cta-box">
+        <p><b>Small groups (2-8 students/instructor)</b> &bull; Video analysis &bull; Mental training &bull; Flight Deck app included</p>
+      <p>Full training from CHF 4,500, flexible schedule, personal coaching, eco-friendly approach.</p>
+        <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20learning%20paragliding" target="_blank" rel="noopener noreferrer" class="cta-btn" style="background:#25D366; color:#fff">&#128172; Chat with Miki &mdash; Start Your Journey</a>
+			<a href="prices.html" class="cta-btn" style="background:#0077b6; color:#fff">&#128176; View Prices &amp; Courses</a>
+		</div>
 
-   
+		<!-- YOUR JOURNEY -->
+		<div class="journey-section">
+		  <h2>&#128204; Your Path to Becoming a Pilot</h2>
+		  <div class="journey-steps">
+		    <div class="journey-step"><span class="step-icon">&#128172;</span><div class="step-num">1</div><div class="step-label">Contact Miki &amp; Start</div></div>
+        <div class="journey-step"><span class="step-icon">&#9968;</span><div class="step-num">2</div><div class="step-label">Training Hill<br><small>2-5 days</small></div></div>
+        <div class="journey-step"><span class="step-icon">&#127748;</span><div class="step-num">3</div><div class="step-label">High Flights &amp; Theory<br><small>1-12 months</small></div></div>
+		    <div class="journey-step"><span class="step-icon">&#128214;</span><div class="step-num">4</div><div class="step-label">Exam Preparation</div></div>
+		    <div class="journey-step"><span class="step-icon">&#127942;</span><div class="step-num">5</div><div class="step-label">Swiss Pilot License!</div></div>
+		  </div>
+		</div>
 
 
 		<!------TRAINING HILL---------->
@@ -195,7 +309,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   	<!------WINTER DISCOUNT----------       <a href="https://flywithmiki.com/class2025.html" target="_blank"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->
 
        <h3 style="text-align:left"><b>Training hill:</b></h3>
-          <p class="w3-justify"> The training hill is your gateway to soaring through the skies, and those first few days lay the foundation for your aerial adventures. Here's a glimpse of what to expect: <br><br>
+         <p class="w3-justify"> The training hill is your gateway to soaring through the skies, and those first few days (2-5 days) lay the foundation for your aerial adventures. Here's a glimpse of what to expect: <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="uh2" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH4.webp" alt="uh4" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH5.webp" alt="uh5" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
@@ -225,13 +339,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!------HIGH FLIGHTS---------->
      <div class="w3-content w3-padding-32" style="max-width:900px">
        <h3 style="text-align:left"><b>High flights:</b></h3>
-          <p class="w3-justify"> Once You've mastered the basics, you are ready to take your paragliding adventure to new heights – literally!  High altitude flights are where the magic truly unfolds.  Get ready for breathtaking views, exhilarating maneuvers, and the art of staying aloft for extended periods. <br><br>
+         <p class="w3-justify"> Once you've mastered the basics, you are ready to take your paragliding adventure to new heights. High altitude flights are where the magic truly unfolds. Get ready for breathtaking views, exhilarating maneuvers, and the art of staying aloft for extended periods. The high flights and theory phase usually takes 1-12 months, depending on your time and weather. <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf1.webp" alt="hf1" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf2.webp" alt="hf2" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf3.webp" alt="hf3" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf4.webp" alt="hf4" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy">
 
-            <strong>Taking Control</strong> We'll refine your glider handling skills, teaching you precise steering techniques that allow you to navigate the vastness of the sky with confidence. This includes mastering turns, banks, and maintaining a steady course – all while enjoying the incredible panorama below.<br><br>
+            <strong>Taking Control</strong> We'll refine your glider handling skills, teaching you precise steering techniques that allow you to navigate the vastness of the sky with confidence. This includes mastering turns, banks, and maintaining a steady course - all while enjoying the incredible panorama below.<br><br>
             
             <strong>Understanding Your Wing</strong>: High altitude flights provide the perfect opportunity to truly feel the behavior of your paraglider. We'll delve into wing characteristics, teaching you how to read air currents and anticipate how your wing reacts, ensuring you stay comfortably above your head at all times.<br><br>
             
@@ -278,7 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!------THEORY---------->
      <div class="w3-content w3-padding-32" style="max-width:900px">
        <h3 style="text-align:left"><b>Theory:</b></h3>
-          <p class="w3-justify"> Paragliding isn't just about feeling the wind in your hair – it's about becoming a pilot who understands the science and art of flight.  While practice makes the master, a solid foundation in theory is essential for safe and enjoyable flying.  That's where theory class comes in! <br><br>
+         <p class="w3-justify"> Paragliding isn't just about feeling the wind in your hair. It's about becoming a pilot who understands the science and art of flight. While practice makes the master, a solid foundation in theory is essential for safe and enjoyable flying. That's where theory class comes in! <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th1.webp" alt="th1" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th2.webp" alt="th2" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th3.webp" alt="th3" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
@@ -437,6 +551,99 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            return sum;} </script>
 </div>
 
+<!-- SOCIAL PROOF STRIP -->
+<div style="max-width:900px; margin: 30px auto 0; padding: 25px 20px; background: linear-gradient(135deg, #f0f8ff, #e8f4fd); border-radius: 12px; text-align: center;">
+  <p style="font-size:1.15em; margin:0 0 5px; color:#0077b6; font-weight:bold">&#11088; Rated 4.9 on Google &mdash; See what our students say</p>
+  <p style="font-style:italic; color:#555; margin:0 0 10px; max-width:600px; display:inline-block">"An outstanding paragliding school with an exceptional instructor! Miki has deep knowledge of both theory and practice." &mdash; Renata F.</p>
+  <a href="./#reviews" style="color:#0077b6; font-weight:bold; text-decoration:underline">Read all reviews &rarr;</a>
+</div>
+
+<!-- FAQ SECTION -->
+<div class="faq-section" id="faq">
+  <h2>❓ Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">How long does it take to get my paragliding license?</button>
+    <div class="faq-answer">The full training consists of 2-5 days of basic training on the training hill, followed by high-altitude flights. You have up to <b>12 months from your first flight</b> to complete the course. Most students finish within 3-12 months. If you have time and conditions are good, it's possible to learn everything and pass the exam in 3-4 weeks. Contact Miki for details.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What does the full training course include?</button>
+    <div class="faq-answer">The <b>Full Training (CHF 4,500)</b> includes: basic training on the training hill (2-5 days), unlimited high-altitude flights (up to 12 months), all theory lessons (Aerodynamics, Meteorology, Flight Practice, Air Law, Material Science), equipment provided until your first 3 high flights, 25 planted trees, access to the <b>Flight Deck app</b> for progress tracking, and optional instructional tandem flight with Miki. It prepares you for the <b>Swiss IPPI4 pilot license</b>.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">I just want to try it. Is there a shorter course?</button>
+    <div class="faq-answer">Yes! Our <b>Basic Training (CHF 1,900)</b> is perfect for testing the sport. In 2-5 days you'll learn ground handling, complete training hill exercises, and do 1-3 high-altitude flights. It includes all equipment and 10 planted trees. If you decide to continue, you can upgrade to the full course.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Do I need my own equipment?</button>
+    <div class="faq-answer">No! We provide all equipment during basic training and for the first 3 high flights in the full course: paraglider, harness, helmet, and reserve parachute. After that, you'll need your own gear - and we offer <b>personal consultation</b> to help you choose the perfect equipment based on your weight, skill level, and flying style.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What is the total cost to become a licensed pilot?</button>
+    <div class="faq-answer">The total investment for a paragliding license in Switzerland typically ranges from <b>CHF 9,000-12,000</b> including: course fees (CHF 4,500), your own equipment (from CHF 5,000 for a complete beginner set), SHV membership (CHF 120/year), insurance (CHF 82.50/year), cable car tickets (CHF 8-20 per session), theory &amp; practical exams (CHF 125 each). We help you plan the budget step by step. You don't need to pay everything upfront, and we can help you find a budget-friendly solution.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">How big are the training groups?</button>
+    <div class="faq-answer"><b>2-8 students per instructor.</b> This is our core philosophy. Unlike larger schools, we ensure you get individual attention, real-time guidance in the air, and the ability to practice maneuvers together with your instructor. It's closer to private coaching than a group class.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What languages are the courses taught in?</button>
+    <div class="faq-answer">Training and theory are available in <b>English, German, and Hungarian</b>. It's important that you understand everything clearly, especially in the air — that's why we teach in your preferred language.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Do I need to be physically fit?</button>
+    <div class="faq-answer">You don't need to be an athlete! Basic fitness is enough. You should be able to jog short distances (for take-off runs) and carry about 15 kg (the weight of the gear). The minimum age is 15. If you have any health concerns, we're happy to discuss them beforehand.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What happens if the weather is bad on a training day?</button>
+    <div class="faq-answer">Safety always comes first. If the weather doesn't allow flying, we reschedule — that's one of the benefits of our flexible approach. We can also use weather days for theory lessons. Since our schedule adapts to your availability anyway, a postponement is never a problem.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What makes FLYwithMIKI different from other schools?</button>
+    <div class="faq-answer">
+      <b>✅ Small groups (2-8)</b> - Nearly private coaching<br>
+      <b>✅ ECO-friendly</b> - Electric vehicle transport, tree planting after every course<br>
+      <b>✅ Flight Deck app</b> - Digital flight book, progress tracking<br>
+      <b>✅ Video analysis</b> - Slow-motion review of your flights<br>
+      <b>✅ Mental training</b> - Psychological preparation included<br>
+      <b>✅ Flexible schedule</b> - Perfect for working professionals<br>
+      <b>✅ Multilingual</b> - English, German, Hungarian
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">I already have some training. Can I continue here?</button>
+    <div class="faq-answer">Absolutely! We offer High Flights packages (60 flights, CHF 4,400) for pilots who already completed basic training elsewhere, 1:1 Coaching day (CHF 600), and Visiting Pilot / Guest Schooling (CHF 250/day). We'll assess your level and create a plan that fits your goals and budget.</div>
+  </div>
+
+  <div style="text-align:center; margin-top:30px">
+    <p style="color:#555">Still have questions? Chat with Miki directly:</p>
+    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I%20have%20a%20question%20about%20the%20paragliding%20course" target="_blank" rel="noopener noreferrer" class="cta-btn" style="background:#25D366; color:white">💬 Ask Miki on WhatsApp</a>
+  </div>
+</div>
+
+<script>
+function toggleFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var isOpen = answer.classList.contains('open');
+  // Close all
+  var allAnswers = document.querySelectorAll('.faq-answer');
+  var allBtns = document.querySelectorAll('.faq-question');
+  for (var i = 0; i < allAnswers.length; i++) { allAnswers[i].classList.remove('open'); allBtns[i].classList.remove('active'); }
+  // Open clicked if it was closed
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('active'); }
+}
+</script>
+
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
     <h2 class="w3-center">Contact us</h2>
@@ -466,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
       
   </div>
-  <p>© 2025 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
@@ -574,10 +781,10 @@ function handleButtonClick(language) {
         
 </script>
 
-
-
-
-
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20learning%20paragliding" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 </body>
 

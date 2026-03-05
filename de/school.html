@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "FLYwithMIKI Paragliding School",
-  "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
+  "alternateName": "M Mohos - FLYwithMIKI Paragliding School",
   "url": "https://flywithmiki.com",
   "logo": "https://flywithmiki.com/Images_v2/g760.webp", 
   "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
@@ -42,12 +42,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <title>FLYwithMIKI - The first ECO-friendly paragliding school in Switzerland</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="Soar sustainably in the Alps! FLYwithMIKI – The first eco-friendly paragliding school and tandem company in Switzerland. Learn to fly with us!">
+        <meta name="description" content="Soar sustainably in the Alps! FLYwithMIKI - The first eco-friendly paragliding school and tandem company in Switzerland. Learn to fly with us!">
         <link rel="icon" type="image/x-icon" href="https://flywithmiki.com/Images_v2/favicon.ico">
 		
 		<meta property="og:url" content="https://flywithmiki.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Soar sustainably in the Alps! FLYwithMIKI – The first eco-friendly paragliding school and tandem company in Switzerland. Learn to fly with us!" />
+        <meta property="og:title" content="Soar sustainably in the Alps! FLYwithMIKI - The first eco-friendly paragliding school and tandem company in Switzerland. Learn to fly with us!" />
         <meta property="og:description" content="FLYwithMIKI - The first ECO-friendly paragliding school in Switzerland. Learn to fly with us" />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -61,7 +61,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
             .w3-third img:hover {opacity: 1}
-            .mySlides {display:none;} //slideshowhoz kell
+            .mySlides {display:none;} /* slideshowhoz kell */
+
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .hero-cta-box {
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cta-btn-whatsapp { background: #25D366; color: white; }
+        .cta-btn-primary { background: #0077b6; color: white; }
+        .promo-banner {
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .promo-banner a {
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-left: 12px;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+        .promo-banner a:hover { background: rgba(255,255,255,0.35); }
+
+        .faq-section { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .faq-section h2 { text-align: center; color: #0077b6; margin-bottom: 25px; }
+        .faq-item { border-bottom: 1px solid #e0e0e0; }
+        .faq-question {
+            width: 100%; background: none; border: none; padding: 18px 40px 18px 0;
+            font-size: 1.05em; font-weight: bold; text-align: left; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; color: #333; position: relative;
+        }
+        .faq-question::after {
+            content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+            font-size: 1.4em; color: #0077b6; transition: transform 0.3s;
+        }
+        .faq-question.active::after { content: '\2212'; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+            padding: 0 0 0 0; color: #555; line-height: 1.6;
+        }
+        .faq-answer.open { max-height: 600px; padding-bottom: 18px; }
+        .journey-section { max-width: 900px; margin: 30px auto 10px; padding: 20px; text-align: center; }
+        .journey-section h2 { color: #0077b6; margin-bottom: 25px; }
+        .journey-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; position: relative; }
+        .journey-step {
+            flex: 1 1 150px; max-width: 180px; padding: 15px 10px; text-align: center; position: relative;
+        }
+        .journey-step .step-num {
+            width: 48px; height: 48px; border-radius: 50%; background: #0077b6; color: white;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3em; font-weight: bold; margin-bottom: 8px;
+        }
+        .journey-step .step-icon { font-size: 1.6em; margin-bottom: 4px; display: block; }
+        .journey-step .step-label { font-size: 0.85em; color: #555; font-weight: 600; }
+        .journey-step::after {
+            content: '\2192'; position: absolute; right: -10px; top: 30px;
+            font-size: 1.3em; color: #0077b6;
+        }
+        .journey-step:last-child::after { content: ''; }
+        @media (max-width: 600px) {
+            .journey-step::after { content: '\2193'; right: auto; top: auto; bottom: -8px; left: 50%; transform: translateX(-50%); }
+            .journey-step:last-child::after { content: ''; }
+            .journey-step { max-width: 100%; flex: 1 1 100%; }
+        }
 
         </style>
 
@@ -168,8 +269,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		
 		<h2><b>Deine Reise vom Anfang bis zur Lizenz</b></h2>
 
+<!-- HERO CTA BOX -->
+<div class="hero-cta-box">
+  <p><b>Kleingruppen (2-8 Schüler/Fluglehrer)</b> &bull; Videoanalyse &bull; Mentaltraining &bull; Flight Deck App inklusive</p>
+  <p>Pilotenausbildung ab CHF 4'500, flexibler Zeitplan, persönliche Betreuung, umweltfreundliches Konzept.</p>
+  <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20für%20einen%20Gleitschirmkurs" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-whatsapp">💬 Schreib Miki</a>
+  <a href="prices.html" class="cta-btn cta-btn-primary">💰 Preise ansehen</a>
+</div>
 
    
+
+		<!-- DEIN WEG ZUM PILOTEN -->
+		<div class="journey-section">
+		  <h2>📌 Dein Weg zum Pilotenbrevet</h2>
+		  <div class="journey-steps">
+		    <div class="journey-step"><span class="step-icon">💬</span><div class="step-num">1</div><div class="step-label">Kontakt &amp; Start</div></div>
+        <div class="journey-step"><span class="step-icon">&#9968;</span><div class="step-num">2</div><div class="step-label">Übungshügel<br><small>2-5 Tage</small></div></div>
+        <div class="journey-step"><span class="step-icon">&#127748;</span><div class="step-num">3</div><div class="step-label">Höhenflüge &amp; Theorie<br><small>1-12 Monate</small></div></div>
+		    <div class="journey-step"><span class="step-icon">&#128214;</span><div class="step-num">4</div><div class="step-label">Prüfungsvorbereitung</div></div>
+		    <div class="journey-step"><span class="step-icon">&#127942;</span><div class="step-num">5</div><div class="step-label">Schweizer Pilotenbrevet!</div></div>
+		  </div>
+		</div>
 
 
 		<!------TRAINING HILL---------->
@@ -178,7 +298,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   	<!------WINTER DISCOUNT----------       <a href="https://flywithmiki.com/class2025.html" target="_blank"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->
 
        <h3 style="text-align:left"><b>Übungshügel:</b></h3>
-          <p class="w3-justify"> Der Übungshügel ist dein Einstieg in die Welt des Fliegens, und diese ersten Tage legen das Fundament für deine Luftabenteuer. Hier ist ein Einblick, was dich erwartet: <br><br>
+         <p class="w3-justify"> Der Übungshügel ist dein Einstieg in die Welt des Fliegens, und diese ersten Tage (2-5 Tage) legen das Fundament für deine Luftabenteuer. Hier ist ein Einblick, was dich erwartet: <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="uh2" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH4.webp" alt="uh4" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH5.webp" alt="uh5" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
@@ -207,14 +327,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!------HIGH FLIGHTS---------->
      <div class="w3-content w3-padding-32" style="max-width:900px">
-       <h3 style="text-align:left"><b>High flights:</b></h3>
-          <p class="w3-justify"> Once You've mastered the basics, you are ready to take your paragliding adventure to new heights – literally!  High altitude flights are where the magic truly unfolds.  Get ready for breathtaking views, exhilarating maneuvers, and the art of staying aloft for extended periods. <br><br>
+       <h3 style="text-align:left"><b>Höhenflüge:</b></h3>
+         <p class="w3-justify"> Sobald du die Grundlagen beherrschst, bist du bereit für das nächste Level. Die Höhenflüge sind der magische Teil deiner Ausbildung. Hier erwarten dich atemberaubende Aussichten, spannende Manöver und das Ziel, möglichst lange in der Luft zu bleiben. Die Phase Höhenflüge &amp; Theorie dauert in der Regel 1-12 Monate, je nach Zeit und Wetter. <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf1.webp" alt="hf1" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf2.webp" alt="hf2" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf3.webp" alt="hf3" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf4.webp" alt="hf4" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy">
 
-            <ins>Taking Control</ins> We'll refine your glider handling skills, teaching you precise steering techniques that allow you to navigate the vastness of the sky with confidence. This includes mastering turns, banks, and maintaining a steady course – all while enjoying the incredible panorama below.<br><br>
+            <ins>Taking Control</ins> We'll refine your glider handling skills, teaching you precise steering techniques that allow you to navigate the vastness of the sky with confidence. This includes mastering turns, banks, and maintaining a steady course - all while enjoying the incredible panorama below.<br><br>
             
             <ins>Understanding Your Wing</ins>: High altitude flights provide the perfect opportunity to truly feel the behavior of your paraglider. We'll delve into wing characteristics, teaching you how to read air currents and anticipate how your wing reacts, ensuring you stay comfortably above your head at all times.<br><br>
             
@@ -238,8 +358,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!------THEORY---------->
      <div class="w3-content w3-padding-32" style="max-width:900px">
-       <h3 style="text-align:left"><b>Theory:</b></h3>
-          <p class="w3-justify"> Paragliding isn't just about feeling the wind in your hair – it's about becoming a pilot who understands the science and art of flight.  While practice makes the master, a solid foundation in theory is essential for safe and enjoyable flying.  That's where theory class comes in! <br><br>
+       <h3 style="text-align:left"><b>Theorie:</b></h3>
+         <p class="w3-justify"> Gleitschirmfliegen ist nicht nur ein Gefühl von Freiheit, sondern auch Wissen. Die Theorie ist das Fundament für sicheres und erfolgreiches Fliegen. Hier lernst du alles Wichtige über Wetter, Aerodynamik, Flugpraxis, Luftraum und Material. <br><br>
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th1.webp" alt="th1" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th2.webp" alt="th2" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
             <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th3.webp" alt="th3" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
@@ -398,6 +518,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            return sum;} </script>
 </div>
 
+<!-- SOCIAL PROOF STRIP -->
+<div style="max-width:900px; margin: 30px auto 0; padding: 25px 20px; background: linear-gradient(135deg, #f0f8ff, #e8f4fd); border-radius: 12px; text-align: center;">
+  <p style="font-size:1.15em; margin:0 0 5px; color:#0077b6; font-weight:bold">&#11088; 4.9 auf Google bewertet &mdash; Das sagen unsere Sch&uuml;ler</p>
+  <p style="font-style:italic; color:#555; margin:0 0 10px; max-width:600px; display:inline-block">&bdquo;Die Ausbildung ist progressiv aufgebaut und lässt einen in Ruhe wachsen, trotzdem wird man gefordert. 100% Empfehlung!&ldquo; - Judith</p>
+  <a href="./#reviews" style="color:#0077b6; font-weight:bold; text-decoration:underline">Alle Bewertungen lesen &rarr;</a>
+</div>
+
+<!-- FAQ SECTION -->
+<div class="faq-section" id="faq">
+  <h2>❓ Häufig gestellte Fragen</h2>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Wie lange dauert es, bis ich den Gleitschirm-Brevet bekomme?</button>
+    <div class="faq-answer">Die Ausbildung besteht aus 2-5 Tagen Grundschulung am Übungshügel, gefolgt von Höhenflügen. Du hast ab dem ersten Flug <b>bis zu 12 Monate</b> Zeit, den Kurs abzuschliessen. Die meisten Schüler schaffen es in 3-12 Monaten. Wenn du viel Zeit hast und das Wetter mitspielt, kannst du alles in 3-4 Wochen lernen und die Prüfung ablegen. Kontaktiere Miki für Details.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Was beinhaltet der komplette Ausbildungskurs?</button>
+    <div class="faq-answer">Die <b>Komplettausbildung (CHF 4'500)</b> umfasst: Grundschulung am Übungshügel (2-5 Tage), unbegrenzte Höhenflüge (bis 12 Monate), komplette Theorie (Aerodynamik, Meteorologie, Flugpraxis, Luftrecht, Materialkunde), Ausrüstung bis zu den ersten 3 Höhenflügen, 25 gepflanzte Bäume, Zugang zur <b>Flight Deck App</b> zur Fortschrittsverfolgung, und optionaler Schulungs-Tandemflug mit Miki. Vorbereitung auf den <b>Schweizer IPPI4 Pilotenbrevet</b>.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Ich möchte es nur ausprobieren. Gibt es einen kürzeren Kurs?</button>
+    <div class="faq-answer">Ja! Unsere <b>Grundschulung (CHF 1'900)</b> ist ideal zum Testen. In 2-5 Tagen lernst du Groundhandling, machst Übungshügel-Übungen und 1-3 Höhenflüge. Ausrüstung und 10 gepflanzte Bäume sind inklusive. Wenn du weitermachen möchtest, kannst du auf die Komplettausbildung upgraden.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Brauche ich eigene Ausrüstung?</button>
+    <div class="faq-answer">Nein! Wir stellen während der Grundschulung und für die ersten 3 Höhenflüge alles bereit: Gleitschirm, Gurtzeug, Helm und Rettungsschirm. Danach brauchst du eigenes Material - und wir bieten <b>persönliche Beratung</b>, um die perfekte Ausrüstung basierend auf deinem Gewicht, Können und Flugstil zu finden.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Was kostet die Pilotenausbildung insgesamt?</button>
+    <div class="faq-answer">Die Gesamtinvestition für den Gleitschirm-Brevet in der Schweiz liegt typischerweise bei <b>CHF 9'000-12'000</b> inklusive: Kursgebühren (CHF 4'500), eigene Ausrüstung (ab CHF 5'000 für ein komplettes Anfängerset), SHV-Mitgliedschaft (CHF 120/Jahr), Versicherung (CHF 82.50/Jahr), Bergbahntickets (CHF 8-20 pro Session), Theorie- &amp; Praxisprüfung (je CHF 125). Wir helfen dir Schritt für Schritt bei der Budgetplanung. Du musst nicht alles auf einmal bezahlen und wir finden gemeinsam eine budgetfreundliche Lösung.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Wie gross sind die Trainingsgruppen?</button>
+    <div class="faq-answer"><b>2-8 Schüler pro Fluglehrer.</b> Das ist unsere Kernphilosophie. Im Gegensatz zu grösseren Schulen garantieren wir individuelle Betreuung, Echtzeit-Anleitung in der Luft und die Möglichkeit, Manöver gemeinsam mit dem Fluglehrer zu üben. Es ist näher an Privatcoaching als an einem Gruppenkurs.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">In welchen Sprachen wird unterrichtet?</button>
+    <div class="faq-answer">Training und Theorie sind auf <b>Englisch, Deutsch und Ungarisch</b> verfügbar. Es ist wichtig, dass du alles klar verstehst, besonders in der Luft. Deshalb unterrichten wir in deiner bevorzugten Sprache.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Muss ich sportlich sein?</button>
+    <div class="faq-answer">Du musst kein Athlet sein! Grundfitness reicht. Du solltest kurze Strecken joggen können (für Startläufe) und ca. 15 kg tragen können (das Gewicht der Ausrüstung). Das Mindestalter ist 15 Jahre. Bei gesundheitlichen Bedenken besprechen wir das gerne vorab.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Was passiert bei schlechtem Wetter?</button>
+    <div class="faq-answer">Sicherheit geht immer vor. Wenn das Wetter nicht zum Fliegen geeignet ist, verschieben wir. Das ist einer der Vorteile unseres flexiblen Ansatzes. Wettertage können wir für Theorieunterricht nutzen. Da sich unser Zeitplan ohnehin an deine Verfügbarkeit anpasst, ist eine Verschiebung nie ein Problem.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Was macht FLYwithMIKI anders als andere Schulen?</button>
+    <div class="faq-answer">
+      <b>✅ Kleingruppen (2-8)</b> - Fast wie Privatcoaching<br>
+      <b>✅ ECO-freundlich</b> - Elektrobus-Transport, Baumpflanzung nach jedem Kurs<br>
+      <b>✅ Flight Deck App</b> - Digitales Flugbuch, Fortschrittsverfolgung<br>
+      <b>✅ Videoanalyse</b> - Zeitlupen-Review deiner Flüge<br>
+      <b>✅ Mentaltraining</b> - Psychologische Vorbereitung inklusive<br>
+      <b>✅ Flexibler Zeitplan</b> - Perfekt für Berufstätige<br>
+      <b>✅ Mehrsprachig</b> - Englisch, Deutsch, Ungarisch
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Ich habe bereits eine Grundschulung. Kann ich hier weitermachen?</button>
+    <div class="faq-answer">Auf jeden Fall! Wir bieten Höhenflüge-Pakete (60 Flüge, CHF 4'400) für Piloten mit Grundschulung anderswo, 1:1 Coaching-Tag (CHF 600) und Gastschulung (CHF 250/Tag). Wir beurteilen dein Level und erstellen einen Plan, der zu deinen Zielen und deinem Budget passt.</div>
+  </div>
+
+  <div style="text-align:center; margin-top:30px">
+    <p style="color:#555">Noch Fragen? Schreib Miki direkt:</p>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20habe%20eine%20Frage%20zum%20Gleitschirmkurs" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-whatsapp">💬 Frag Miki auf WhatsApp</a>
+  </div>
+</div>
+
+<script>
+function toggleFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var isOpen = answer.classList.contains('open');
+  var allAnswers = document.querySelectorAll('.faq-answer');
+  var allBtns = document.querySelectorAll('.faq-question');
+  for (var i = 0; i < allAnswers.length; i++) { allAnswers[i].classList.remove('open'); allBtns[i].classList.remove('active'); }
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('active'); }
+}
+</script>
+
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
     <h2 class="w3-center">Contact us</h2>
@@ -427,7 +638,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
       
   </div>
-  <p>© 2024 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
    
 </footer>
@@ -535,11 +746,10 @@ function handleButtonClick(language) {
         
 </script>
 
-
-
-
-
-
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20für%20einen%20Gleitschirmkurs" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="WhatsApp Chat">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 </body>
 
