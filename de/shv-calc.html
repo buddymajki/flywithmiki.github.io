@@ -8,10 +8,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
-  <title>Tägliches Programm | FLYwithMIKI Gleitschirmschule</title>
+  <title>SHV Ziffernrechner | FLYwithMIKI Schülerbereich</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <meta name="description" content="Tägliches Programm der FLYwithMIKI Gleitschirmschule. Flugplan, Schulkalender und Vorbereitung für deinen Flugtag.">
+  <meta name="description" content="SHV Ziffernrechner – berechne die benötigten Segmente für dein Schulkennzeichen. FLYwithMIKI Gleitschirmschule Schülerbereich.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,11 +24,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     html { scroll-behavior: smooth; }
     .w3-sidebar a { font-family: "Roboto", sans-serif; font-size: 1.5em; }
     body, h1, h2, h3, h4, h5, h6, .w3-wide { font-family: "Montserrat", sans-serif; }
-    table { border-collapse: collapse; margin-bottom: 20px; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; width: 100px; }
-    .event-container { margin-bottom: 50px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
-    #dateHeader { font-size: 28px; font-weight: bold; margin-bottom: 15px; }
     .floating-wa {
       position: fixed; bottom: 24px; right: 24px; z-index: 9999;
       background: #25D366; color: white; width: 60px; height: 60px;
@@ -47,10 +42,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-left: 10px; transition: background 0.3s;
     }
     .promo-banner a:hover { background: rgba(255,255,255,0.35); }
-    @media (max-width: 600px) {
-      iframe { height: 400px; }
-      h2 { font-size: 1.5em; }
-    }
   </style>
 </head>
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -95,11 +86,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Schülerbereich <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
-    <a href="./program.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Tägliches Programm</a>
+    <a href="./program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Tägliches Programm</a>
     <a href="./meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="./links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="./flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
-    <a href="./shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffernrechner</a>
+    <a href="./shv-calc.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">SHV-Ziffernrechner</a>
   </div>
 </nav>
 
@@ -120,118 +111,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &#9992; Sommerkurs 2026 &mdash; Anmeldung bis Ende Mai! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Sommerkurs%202026">Platz reservieren &rarr;</a>
   </div>
 
-  <!-- DAILY PROGRAM -->
-  <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="dailyp">
-    <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px">
-    <div class="w3-content w3-padding w3-left-align" style="max-width:900px">
-      <h1 class="w3-center">Tägliches Programm</h1>
+  <!-- HERO -->
+  <div class="w3-container w3-padding-32" style="background: linear-gradient(135deg, #e0f7fa, #ffffff); text-align:center">
+    <h1 style="color:#0077b6">&#128290; SHV-Ziffernrechner</h1>
+    <p class="w3-large" style="color:#555; max-width:700px; margin:0 auto">Berechne die benötigten Segmente für dein Schulkennzeichen.</p>
+  </div>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-      <div id="events"></div>
-      <script>
-        $(document).ready(function () {
-          var apiKey = 'AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
-          var calendarId = 'mikiparagliding@gmail.com';
-          var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?key=' + apiKey;
-          var today = new Date();
-          var tomorrow = new Date(today);
-          tomorrow.setDate(today.getDate() + 1);
-          var todayString = today.toISOString();
-          var tomorrowString = tomorrow.toISOString();
-          $.ajax({
-            url: apiUrl,
-            data: {
-              timeMin: todayString,
-              timeMax: tomorrowString,
-              singleEvents: true,
-              orderBy: 'startTime'
-            },
-            success: function (response) {
-              var eventsContainer = $('#events');
-              response.items.forEach(function (event, index) {
-                var eventContainer = $('<div class="event-container"></div>');
-                var dateHeader = $('<div id="dateHeader"></div>');
-                var startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
-                var hourString = startTime ? startTime.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit', hour12: false }) : 'N/A';
-                var eventDate = startTime ? new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()) : new Date(event.start.date);
-                var eventFormatted = eventDate ? ((eventDate.getDate() < 10) ? '0' : '') + eventDate.getDate() + '.' + ((eventDate.getMonth() + 1 < 10) ? '0' : '') + (eventDate.getMonth() + 1) + ' - ' + getDayName(eventDate.getDay()) : 'N/A';
-                dateHeader.text(eventFormatted);
-                eventContainer.append(dateHeader);
-                var eventHtml = '<table>';
-                eventHtml += '<col width="100">';
-                eventHtml += '<tr><th>Programm</th><td>' + event.summary + '</td></tr>';
-                if (startTime) {
-                  eventHtml += '<tr><th>Treffzeit</th><td>' + hourString + '</td></tr>';
-                }
-                if (event.location) {
-                  eventHtml += '<tr><th>Treffpunkt</th><td>' + event.location + '</td></tr>';
-                }
-                if (event.location) {
-                  eventHtml += '<tr><th>Karte</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank">Hier klicken</a></td></tr>';
-                }
-                if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
-                  var meetingLink = event.conferenceData.entryPoints[0].uri;
-                  eventHtml += '<tr><th>Online Meeting</th><td><a href="' + meetingLink + '" target="_blank">Meeting beitreten</a></td></tr>';
-                }
-                if (event.description) {
-                  eventHtml += '<tr><th>Beschreibung</th><td>' + event.description + '</td></tr>';
-                }
-                eventHtml += '</table>';
-                eventContainer.append(eventHtml);
-                eventsContainer.append(eventContainer);
-              });
-            },
-            error: function (error) {
-              console.log('Error fetching events: ', error);
-            }
-          });
-          function getGoogleMapsLink(location) {
-            var encodedLocation = encodeURIComponent(location);
-            return 'https://www.google.com/maps/search/?api=1&query=' + encodedLocation;
-          }
-          function getDayName(dayIndex) {
-            var days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
-            return days[dayIndex];
-          }
-        });
-      </script>
+  <!-- WARNING -->
+  <div class="w3-container w3-padding-16" style="max-width:900px; margin:24px auto">
+    <div class="w3-panel w3-yellow w3-padding" style="border-radius:10px">
+      <p class="w3-large"><b>&#9888; Wichtig:</b> Das Schulkennzeichen muss mindestens <b>40 cm hoch</b> sein. Bitte beachte die aktuellen SHV-Vorschriften für Schriftgrösse und Sichtbarkeit.</p>
     </div>
   </div>
 
-  <!-- SCHOOL CALENDAR -->
-  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-    <h2 class="w3-center">Schulkalender</h2>
-    <br>
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;ctz=Europe%2FZurich&amp;bgcolor=%23ffffff&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&amp;color=%23039BE5"
-            style="border: solid 1px #777; width: 100%; height: 550px;" frameborder="0" title="FLYwithMIKI Schulkalender">
-    </iframe>
-  </div>
+  <!-- CALCULATOR -->
+  <div class="w3-container w3-padding-32" style="max-width:700px; margin:0 auto">
+    <div style="background: linear-gradient(135deg, #0077b6, #00b4d8); border-radius:16px; padding:32px; color:white; text-align:center">
+      <h2 style="margin-top:0">Schulkennzeichen eingeben</h2>
+      <p>Gib dein Schulkennzeichen ein (z.B. <b>P1234</b>):</p>
+      <input type="text" id="plateInput" placeholder="z.B. P1234" oninput="calculateSegments()"
+        style="padding:12px 20px; font-size:1.3em; border-radius:8px; border:none; width:80%; max-width:300px; text-align:center; text-transform:uppercase; letter-spacing:4px">
+      <div id="result" style="margin-top:24px; font-size:1.4em; font-weight:bold; min-height:2em"></div>
+    </div>
 
-  <!-- PREPARATION -->
-  <div class="w3-content w3-padding-32" style="max-width:900px; margin:auto;">
-    <div class="w3-margin">
-      <h3><b>Wie du deinen Flugtag vorbereitest:</b></h3>
-      <p class="w3-justify">Die Vorbereitung eines erfolgreichen Gleitschirmtages erfordert eine sorgfältige und gründliche Planung. Hier sind einige wichtige Schritte, damit du für deinen nächsten Flug bestens gerüstet bist:<br><br></p>
-
-      <h4>1. Wettervorhersage prüfen (Meteo)</h4>
-      <p class="w3-justify">Führe am Abend vor deinem Flug eine umfassende „Fünf-Punkte-Prüfung" der Wettervorhersage durch:<br><br>
-        <ins>Front</ins>: Achte auf Wetterfronten, die dein Fluggebiet beeinflussen könnten. Eine Front kann plötzliche Wind- und Wetteränderungen bringen, die gefährlich sein können.<br>
-        <ins>Föhn</ins>: Sei dir des Föhneffekts bewusst – ein trockener, warmer Fallwind, der gefährliche Flugbedingungen erzeugen kann.<br>
-        <ins>Landesweiter Wind</ins>: Beurteile die allgemeinen Windverhältnisse im ganzen Land. Starker Wind kann deinen Flug beeinflussen und Start und Landung erschweren.<br>
-        <ins>Regionalwind</ins>: Verstehe die lokalen Windbedingungen an deinem Fluggelände. Windrichtung und -stärke können in verschiedenen Regionen erheblich variieren.<br>
-        <ins>Gewitter</ins>: Prüfe auf vorhergesagte Niederschläge oder Gewitter. Diese Bedingungen können für Gleitschirmpiloten äusserst gefährlich sein.<br><br>
-        Während Vorhersagen wertvolle Informationen liefern, können die tatsächlichen Bedingungen abweichen. Beobachte auf dem Weg zum Fluggelände Wolken und Windmuster, um die Prognose zu bestätigen. Prüfe am Startplatz erneut das Wetter. Sicherheit hat immer Vorrang.<br><br>
-      </p>
-
-      <h4>2. Lufträume und Einschränkungen prüfen</h4>
-      <p class="w3-justify">Überprüfe vor deinem Flug die Lufträume, in denen du fliegen willst. Kontrolliere allfällige Luftraumsperrungen für den Tag im Tagesbulletin (DABS). Mache dich zudem mit dem allgemeinen Luftraum, den Wildtierschutzvorschriften und den örtlichen Flugregeln vertraut, einschliesslich maximaler Flughöhen, Wildschutzgebieten sowie Start- und Landevorschriften.<br><br>
-      </p>
-
-      <h4>3. Ausrüstung vorbereiten</h4>
-      <p class="w3-justify">Stelle sicher, dass alle deine Ausrüstungsgegenstände in einwandfreiem Zustand und richtig verpackt sind. Kontrolliere, ob du die geeignete Kleidung für die Wetterbedingungen des Tages dabei hast, sowie aufgeladene Funkgeräte und Instrumente. Pack ausreichend Essen und Wasser ein, damit du den ganzen Tag über gut versorgt bist. Vergiss auch deinen Sonnenschutz nicht. Eine gründliche Ausrüstungsprüfung stellt sicher, dass nichts vergessen wird und du vollständig auf einen sicheren und schönen Flug vorbereitet bist.<br><br>
-        Indem du diese Schritte gewissenhaft befolgst, erhöhst du deine Sicherheit und Vorbereitung für dein nächstes Gleitschirmabenteuer erheblich. Denk immer daran: Eine gründliche Vorbereitung ist der Schlüssel zu einem erfolgreichen und angenehmen Flugerlebnis.<br><br>
-      </p>
+    <!-- SEGMENT TABLE -->
+    <div class="w3-margin-top">
+      <h3 class="w3-center" style="color:#0077b6">Segmente pro Ziffer</h3>
+      <table class="w3-table w3-bordered w3-hoverable w3-centered">
+        <tr class="w3-light-grey">
+          <th class="w3-center">Zahl</th>
+          <th class="w3-center">Segmente</th>
+        </tr>
+        <tr><td class="w3-center">0</td><td class="w3-center">6</td></tr>
+        <tr><td class="w3-center">1</td><td class="w3-center">2</td></tr>
+        <tr><td class="w3-center">2</td><td class="w3-center">5</td></tr>
+        <tr><td class="w3-center">3</td><td class="w3-center">5</td></tr>
+        <tr><td class="w3-center">4</td><td class="w3-center">3</td></tr>
+        <tr><td class="w3-center">5</td><td class="w3-center">5</td></tr>
+        <tr><td class="w3-center">6</td><td class="w3-center">6</td></tr>
+        <tr><td class="w3-center">7</td><td class="w3-center">3</td></tr>
+        <tr><td class="w3-center">8</td><td class="w3-center">7</td></tr>
+        <tr><td class="w3-center">9</td><td class="w3-center">6</td></tr>
+      </table>
     </div>
   </div>
 
@@ -243,6 +164,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+var lookupTable = {'0':6,'1':2,'2':5,'3':5,'4':3,'5':5,'6':6,'7':3,'8':7,'9':6};
+
+function calculateSegments() {
+  var input = document.getElementById('plateInput').value.toUpperCase();
+  var total = 0;
+  var digits = 0;
+  for (var i = 0; i < input.length; i++) {
+    var c = input[i];
+    if (lookupTable.hasOwnProperty(c)) {
+      total += lookupTable[c];
+      digits++;
+    }
+  }
+  var resultDiv = document.getElementById('result');
+  if (digits === 0) {
+    resultDiv.innerHTML = '';
+  } else {
+    resultDiv.innerHTML = 'Segmente zu bestellen: <b>' + total + '</b> Stück.';
+  }
+}
+
 function myAccFunc(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {

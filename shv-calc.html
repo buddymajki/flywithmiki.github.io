@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
+<!-- End Google Tag Manager -->
+  <title>SHV Hours Calculator | FLYwithMIKI Student Area</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta name="description" content="Calculate how many LED digit stickers you need for your paraglider SHV number.">
+  <meta name="robots" content="noindex, nofollow">
+		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .w3-sidebar a { font-family: "Roboto", sans-serif; font-size: 1.5em; }
+    body, h1, h2, h3, h4, h5, h6, .w3-wide { font-family: "Montserrat", sans-serif; }
+    .floating-wa {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      background: #25D366; color: white; width: 60px; height: 60px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25); text-decoration: none; transition: transform 0.3s;
+    }
+    .floating-wa:hover { transform: scale(1.1); }
+    #result { font-size: 16px; }
+    #result b { font-size: 28px; font-weight: bold; color: #0077b6; }
+    .calc-box {
+      background: #f0f8ff; border-radius: 16px; padding: 32px;
+      max-width: 600px; margin: 30px auto; text-align: center;
+      box-shadow: 0 4px 20px rgba(0,119,182,0.1);
+    }
+    .calc-box input[type="text"] {
+      font-size: 1.5em; padding: 10px 16px; border: 2px solid #0077b6;
+      border-radius: 8px; width: 180px; text-align: center; font-family: 'Montserrat', sans-serif;
+    }
+    .calc-box button[type="submit"] {
+      font-size: 1.1em; padding: 12px 28px; background: #0077b6; color: white;
+      border: none; border-radius: 30px; cursor: pointer; margin-left: 10px;
+      font-family: 'Montserrat', sans-serif; font-weight: bold; transition: background 0.2s;
+    }
+    .calc-box button[type="submit"]:hover { background: #005f92; }
+    #result { margin-top: 20px; min-height: 40px; }
+    .digit-preview { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+    .digit-chip {
+      background: #0077b6; color: white; width: 44px; height: 56px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.6em; font-weight: bold; border-radius: 6px;
+    }
+  </style>
+</head>
+<body class="w3-white w3-content" style="max-width:1600px">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZF9NRR5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <div class="w3-margin w3-center">
+      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"></a>
+    </div>
+    <div class="w3-margin w3-display-container">
+      <div class="w3-row">
+        <div class="w3-col s6 m6 l6 w3-center">
+          <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
+            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
+          </button>
+        </div>
+        <div class="w3-col s6 m6 l6 w3-center">
+          <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
+            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
+    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
+    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
+    <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
+    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
+    <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
+    <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
+    <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
+    <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
+    <a href="shv-calc.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">SHV-digit calculator</a>
+  </div>
+</nav>
+
+<!-- Overlay on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+<!-- Main content -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white" style="height:4em">
+    <a href="#" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+  </header>
+
+  <!-- Hero -->
+  <div class="w3-padding-64 w3-center" style="background: linear-gradient(135deg, #e0f7fa, #ffffff); padding-top: 80px;">
+    <h1 class="w3-xxxlarge" style="color:#0077b6; font-weight:bold">🔢 SHV Number Calculator</h1>
+    <p class="w3-large" style="max-width:700px; margin:0 auto; color:#555">Calculate how many LED digit stickers you need for your paraglider</p>
+  </div>
+
+  <div class="w3-content w3-padding-32" style="max-width:900px">
+    <div class="w3-panel w3-pale-yellow w3-border w3-border-yellow" style="border-radius:8px; padding:20px; max-width:600px; margin:0 auto 20px;">
+      <p style="margin:0; color:#555;">&#9888;&#65039; <b>Don't forget:</b> Swiss regulations require your SHV number to be displayed on your paraglider in <b>40 cm height letters</b>. Each digit is an LED-segment sticker — use this calculator to find out how many segment pieces you need to order.</p>
+    </div>
+
+    <div class="calc-box">
+      <h2 style="color:#0077b6; margin-top:0">Enter your SHV number</h2>
+      <form id="numberForm">
+        <input type="text" id="numberInput" maxlength="5" pattern="\d{1,5}" placeholder="e.g. 12345" required>
+        <button type="submit">Calculate</button>
+      </form>
+      <div id="result"></div>
+      <div class="digit-preview" id="digitPreview"></div>
+    </div>
+
+    <div class="w3-content" style="max-width:600px; margin:30px auto 0;">
+      <h3 style="color:#0077b6">How it works</h3>
+      <p>Each digit (0–9) is made up of a different number of LED segments. The table below shows the segment count for each digit:</p>
+      <table class="w3-table w3-bordered w3-centered" style="max-width:400px; margin:0 auto;">
+        <tr class="w3-blue-grey w3-text-white"><th>Number</th><th>Segments</th></tr>
+        <tr><td>0</td><td>6</td></tr>
+        <tr><td>1</td><td>2</td></tr>
+        <tr><td>2</td><td>5</td></tr>
+        <tr><td>3</td><td>5</td></tr>
+        <tr><td>4</td><td>3</td></tr>
+        <tr><td>5</td><td>5</td></tr>
+        <tr><td>6</td><td>6</td></tr>
+        <tr><td>7</td><td>3</td></tr>
+        <tr><td>8</td><td>7</td></tr>
+        <tr><td>9</td><td>6</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-center w3-light-grey w3-tiny">
+  <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
+  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+   
+</footer>
+
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/41779766164/?text=Hi%20Miki" class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <i class="fa fa-whatsapp" style="font-size:2em"></i>
+</a>
+
+<script>
+var lookupTable = {'0':6,'1':2,'2':5,'3':5,'4':3,'5':5,'6':6,'7':3,'8':7,'9':6};
+
+document.getElementById('numberForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var inputNumber = document.getElementById('numberInput').value.trim();
+  if (!/^\d{1,5}$/.test(inputNumber)) {
+    document.getElementById('result').innerHTML = '<span style="color:red">Please enter a valid SHV number (up to 5 digits).</span>';
+    document.getElementById('digitPreview').innerHTML = '';
+    return;
+  }
+  var sum = 0;
+  var preview = '';
+  for (var i = 0; i < inputNumber.length; i++) {
+    var digit = inputNumber.charAt(i);
+    var segs = lookupTable[digit] || 0;
+    sum += segs;
+    preview += '<div class="digit-chip" title="' + segs + ' segments">' + digit + '</div>';
+  }
+  document.getElementById('result').innerHTML = 'Segments to order: <b>' + sum + '</b> pcs.';
+  document.getElementById('digitPreview').innerHTML = preview;
+});
+
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) { x.className += " w3-show"; }
+  else { x.className = x.className.replace(" w3-show", ""); }
+}
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+function handleButtonClick(language) {
+  const currentPath = window.location.pathname;
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const basePath = currentPath.substring(0, lastSlashIndex + 1);
+  const fileName = currentPath.substring(lastSlashIndex + 1);
+  let newPath = currentPath;
+  if (language === "english") {
+    if (basePath.includes('/de/')) { newPath = basePath.replace('/de/', '/'); }
+  } else if (language === "german") {
+    if (!basePath.includes('/de/')) { newPath = `${basePath}de/`; }
+  }
+  if (newPath !== currentPath) { newPath += fileName; window.location.href = newPath; }
+}
+</script>
+</body>
+</html>
