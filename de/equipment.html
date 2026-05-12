@@ -37,6 +37,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   html { scroll-behavior: smooth; }
   .w3-sidebar a { font-family: "Roboto", sans-serif; font-size: 1.5em; }
   body, h1, h2, h3, h4, h5, h6, .w3-wide { font-family: "Montserrat", sans-serif; }
+  
+  /* Mobile-friendly text */
+  p { word-break: break-word; overflow-wrap: break-word; hyphens: auto; }
+  
+  /* Responsive headings */
+  h1 { font-size: clamp(1.5em, 5vw, 2.5em); line-height: 1.2; word-break: break-word; }
+  h2 { font-size: clamp(1.2em, 4vw, 2em); line-height: 1.3; }
+  h3 { font-size: clamp(1em, 3.5vw, 1.5em); line-height: 1.3; }
+  
+  /* Mobile text alignment */
+  @media (max-width: 768px) {
+    p { text-align: left !important; }
+    .w3-justify { text-align: left !important; }
+  }
+  
   .brand-logo { padding: 0; max-height: 120px; max-width: 120px; width: 100%; height: auto; object-fit: contain; display: block; margin: 0 auto; }
   .supair-logo-container { background-color: #fff; padding: 10px; display: inline-block; max-width: 220px; width: 100%; }
   .equipment-card { transition: transform 0.3s; border-radius: 10px; }
@@ -50,14 +65,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .floating-wa:hover { transform: scale(1.1); }
   .promo-banner {
     background: linear-gradient(135deg, #0077b6, #00b4d8);
-    color: white; text-align: center; padding: 12px 20px; font-size: 1.1em; font-weight: bold;
+    color: white; text-align: center; padding: 12px 16px; font-size: clamp(0.9em, 2.5vw, 1.1em); font-weight: bold; word-break: break-word;
   }
   .promo-banner a {
-    color: #fff; background: rgba(255,255,255,0.2); padding: 6px 18px;
-    border-radius: 25px; text-decoration: none; margin-left: 12px; transition: background 0.3s; white-space: nowrap;
+    color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px;
+    border-radius: 25px; text-decoration: none; margin-left: 8px; transition: background 0.3s; white-space: normal; display: inline-block; margin-top: 8px;
+  }
+  @media (max-width: 600px) {
+    .promo-banner { padding: 12px 8px; }
+    .promo-banner a { margin-left: 0; margin-top: 6px; padding: 5px 10px; font-size: 0.9em; }
   }
   .promo-banner a:hover { background: rgba(255,255,255,0.35); }
   .partner-brands-section a, .partner-brands-section p, .partner-brands-section h2 { color: #fff !important; }
+  
+  /* Better table handling on mobile */
+  @media (max-width: 768px) {
+    .w3-table { font-size: 0.9em; }
+    .w3-table td, .w3-table th { padding: 8px 4px; word-break: break-word; }
+  }
 </style>
 </head>
 
@@ -129,10 +154,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- HEADER -->
-  <div class="w3-container w3-white w3-center w3-padding-32">
-    <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI Logo" style="width:100%; max-width:900px">
-    <h1><b>Premium Gleitschirmausrüstung</b></h1>
-    <h2>Persönliche Beratung | Training inklusive | Top-Marken</h2>
+  <div class="w3-container w3-white w3-center w3-padding-32" style="padding-top: 16px; padding-bottom: 16px;">
+    <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI Logo" style="width:100%; max-width:900px; height: auto;">
+    <h1 style="margin: 12px 0 8px; word-break: break-word;"><b>Premium Gleitschirmausrüstung</b></h1>
+    <h2 style="margin: 0 8px; word-break: break-word;">Persönliche Beratung | Training inklusive | Top-Marken</h2>
   </div>
 
   <!-- UNIQUE APPROACH -->
@@ -140,11 +165,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="background:#f0f8ff;border-radius:15px;padding:30px 24px">
       <h2 class="w3-text-teal w3-center">&#127919; Unser einzigartiger Ansatz</h2>
       <h3 class="w3-center" style="color:#555">Mehr als nur Ausrüstungsverkauf &ndash; wir sichern deinen Erfolg</h3>
-      <div class="w3-row-padding w3-margin-top" style="display:flex;flex-wrap:wrap;align-items:stretch">
-        <div class="w3-col m6" style="margin-bottom:16px;display:flex">
+      <div class="w3-row-padding w3-margin-top" style="display:flex;flex-wrap:wrap;align-items:stretch;gap:12px">
+        <div class="w3-col m6 w3-mobile" style="margin-bottom:12px;display:flex;flex-basis:100%">
           <div class="w3-card w3-padding w3-light-grey" style="border-radius:10px;height:100%;flex:1">
-            <h4 style="color:#c0392b">&#10060; Typische Webshops</h4>
-            <ul style="padding-left:20px;color:#555;line-height:2">
+            <h4 style="color:#c0392b;margin-top:0">&#10060; Typische Webshops</h4>
+            <ul style="padding-left:20px;color:#555;line-height:1.8;margin-bottom:0">
               <li>Niedrige Preise, aber...</li>
               <li>Keine persönliche Beratung</li>
               <li>Eingeschränkter Garantieservice</li>
@@ -154,10 +179,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
           </div>
         </div>
-        <div class="w3-col m6" style="margin-bottom:16px;display:flex">
+        <div class="w3-col m6 w3-mobile" style="margin-bottom:12px;display:flex;flex-basis:100%">
           <div class="w3-card w3-padding w3-pale-green" style="border-radius:10px;height:100%;flex:1">
-            <h4 style="color:#1a6e35">&#10003; FLYwithMIKI Unterschied</h4>
-            <ul style="padding-left:20px;color:#333;line-height:2">
+            <h4 style="color:#1a6e35;margin-top:0">&#10003; FLYwithMIKI Unterschied</h4>
+            <ul style="padding-left:20px;color:#333;line-height:1.8;margin-bottom:0">
               <li><strong>1 Tag Manövertraining INKLUSIVE</strong></li>
               <li>Persönliche Beratung &amp; Anpassung</li>
               <li>Volle Garantie &amp; Support</li>
@@ -170,15 +195,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- TRAINING INCLUDED -->
-      <div class="w3-card w3-padding w3-white" style="border-radius:12px;margin-top:20px">
-        <h3 class="w3-text-teal">&#128640; Einzigartig: Training inklusive bei jedem Schirmkauf!</h3>
-        <p class="w3-justify">
+      <div class="w3-card w3-padding w3-white" style="border-radius:12px;margin-top:16px">
+        <h3 class="w3-text-teal" style="margin-top:0">&#128640; Einzigartig: Training inklusive bei jedem Schirmkauf!</h3>
+        <p style="text-align: left;">
           Wenn du einen Gleitschirm bei mir kaufst, erhältst du nicht nur Ausrüstung &ndash; du bekommst ein <strong>vollständiges Sicherheitspaket</strong>.
         </p>
-        <p class="w3-justify">
+        <p style="text-align: left;">
           Der Preis beinhaltet einen <strong>ganzen Tag Manövertraining</strong>, damit du dich sofort sicher und wohl in deiner neuen Ausrüstung fühlst.
         </p>
-        <ul style="padding-left:20px;line-height:2;color:#444">
+        <ul style="padding-left:20px;line-height:1.8;color:#444">
           <li>Du fühlst dich wohl unter deinem neuen Schirm</li>
           <li>Der Schirm <strong>passt perfekt zu deinem Niveau</strong></li>
           <li>Du beherrschst alle wichtigen Manöver: <strong>Klapper, Ohrenanlegen, Schnellsinkmanöver, Energiemanagement</strong></li>
@@ -196,8 +221,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- SUPAIR -->
     <div class="w3-card-4 w3-margin-top w3-padding equipment-card" id="supair">
-      <div class="w3-row">
-        <div class="w3-col m4 w3-center">
+      <div class="w3-row" style="flex-wrap: wrap;">
+        <div class="w3-col m4 w3-mobile w3-center" style="flex-basis: 100%;">
           <div class="supair-logo-container">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.263 112.599" role="img" class="brand-logo"><title></title>
               <g id="Group_2259" data-name="Group 2259" transform="translate(0 0)">
@@ -229,9 +254,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <p class="w3-large"><b>Gleitschirme | Gurte | Rettungsschirme</b></p>
         </div>
-        <div class="w3-col m8">
-          <h3 class="w3-text-teal">SUPAIR &ndash; Französische Exzellenz</h3>
-          <p class="w3-justify">
+        <div class="w3-col m8 w3-mobile" style="flex-basis: 100%;">
+          <h3 class="w3-text-teal" style="margin-top: 0;">SUPAIR &ndash; Französische Exzellenz</h3>
+          <p style="text-align: left;">
             <strong>Supair</strong> ist ein renommierter französischer Hersteller, bekannt für die Kombination modernster Technologie mit Pilotenkomfort und Sicherheit.
             Gegründet von begeisterten Piloten, schafft Supair Ausrüstung, die Performance und Zuverlässigkeit perfekt ausbalanciert. Ihre Gleitschirme sind für Piloten
             entwickelt, die Präzision und Ansprechbarkeit fordern, während ihre Gurte neue Massstäbe in Ergonomie und Gewichtsoptimierung setzen.
@@ -245,14 +270,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- PHI -->
     <div class="w3-card-4 w3-margin-top w3-padding equipment-card" id="phi">
-      <div class="w3-row">
-        <div class="w3-col m4 w3-center">
+      <div class="w3-row" style="flex-wrap: wrap;">
+        <div class="w3-col m4 w3-mobile w3-center" style="flex-basis: 100%;">
           <img src="https://phi-air.com/wp-content/uploads/2017/09/phi_logo_black.png" alt="Phi Gleitschirme Logo" class="brand-logo" style="max-width:80px">
           <p class="w3-large"><b>Gleitschirme</b></p>
         </div>
-        <div class="w3-col m8">
-          <h3 class="w3-text-teal">PHI &ndash; Hannes Papeshs Vision</h3>
-          <p class="w3-justify">
+        <div class="w3-col m8 w3-mobile" style="flex-basis: 100%;">
+          <h3 class="w3-text-teal" style="margin-top: 0;">PHI &ndash; Hannes Papeshs Vision</h3>
+          <p style="text-align: left;">
             <strong>PHI Paragliders</strong> wurde 2017 vom legendären Designer <strong>Hannes Papesh</strong> gegründet &ndash; einem &bdquo;Flügeldesign-Zauberer&ldquo;
             mit Jahrzehnten Erfahrung (Nova 1989&ndash;2013, danach Advance). PHI entstand mit dem Ziel, innovative Schirmentwicklung und Performance zu priorisieren,
             und nutzt ein kleines Team von Experten. Der Name bezieht sich auf den <strong>goldenen Schnitt (Φ)</strong> &ndash; Symbol für perfektes, harmonisches Design.
@@ -267,16 +292,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- U-TURN -->
     <div class="w3-card-4 w3-margin-top w3-padding equipment-card" id="uturn">
-      <div class="w3-row">
-        <div class="w3-col m4 w3-center">
+      <div class="w3-row" style="flex-wrap: wrap;">
+        <div class="w3-col m4 w3-mobile w3-center" style="flex-basis: 100%;">
           <div style="background-color:#716f6f;padding:10px;display:inline-block">
             <img src="https://u-turn.de/wp-content/uploads/2024/09/u-turn_logo.svg" alt="U-turn Rettungsschirme Logo" class="brand-logo" style="max-width:80px">
           </div>
           <p class="w3-large"><b>Rettungsschirme</b></p>
         </div>
-        <div class="w3-col m8">
-          <h3 class="w3-text-teal">U-TURN &ndash; Deutsche Sicherheitsexzellenz</h3>
-          <p class="w3-justify">
+        <div class="w3-col m8 w3-mobile" style="flex-basis: 100%;">
+          <h3 class="w3-text-teal" style="margin-top: 0;">U-TURN &ndash; Deutsche Sicherheitsexzellenz</h3>
+          <p style="text-align: left;">
             <strong>U-turn</strong> ist ein deutscher Hersteller, spezialisiert auf hochwertige Rettungsschirmsysteme, denen Piloten vertrauen, wenn es darauf ankommt.
             Bekannt für rigorose Testverfahren und innovative Öffnungssysteme sind U-turn-Rettungsschirme entwickelt, um in Notfallsituationen schnell zu öffnen und stabil zu sinken.
             Die Leichtbaukonstruktion beeinträchtigt dabei nicht die Zuverlässigkeit &ndash; ideal für alle Flugarten.
@@ -290,14 +315,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- NOVA -->
     <div class="w3-card-4 w3-margin-top w3-padding equipment-card" id="nova">
-      <div class="w3-row">
-        <div class="w3-col m4 w3-center">
+      <div class="w3-row" style="flex-wrap: wrap;">
+        <div class="w3-col m4 w3-mobile w3-center" style="flex-basis: 100%;">
           <img src="https://www.nova.eu/fileadmin/user_upload/Special_Sites/Nova_Logo_500.png" alt="Nova Gleitschirme Logo" class="brand-logo" style="max-width:180px">
           <p class="w3-large"><b>Gleitschirme</b></p>
         </div>
-        <div class="w3-col m8">
-          <h3 class="w3-text-teal">NOVA &ndash; Österreichische Präzisionstechnik</h3>
-          <p class="w3-justify">
+        <div class="w3-col m8 w3-mobile" style="flex-basis: 100%;">
+          <h3 class="w3-text-teal" style="margin-top: 0;">NOVA &ndash; Österreichische Präzisionstechnik</h3>
+          <p style="text-align: left;">
             <strong>Nova</strong> ist einer von Österreichs angesehensten Gleitschirmherstellern, gefeiert für innovative Designs und unerschütterliches
             Engagement für Sicherheit. Mit Jahrzehnten Erfahrung produziert Nova Schirme, die intuitiv zu fliegen, äusserst zuverlässig und langlebig sind.
             Ihre Flügel sind bekannt für ausgezeichnete Handlingeigenschaften &ndash; ideal zum Lernen und zur Weiterentwicklung. Novas umfangreiche Testprotokolle
@@ -311,47 +336,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- PARTNER BRANDS -->
-  <div class="w3-container w3-padding-32 partner-brands-section" style="max-width:1032px;margin:auto;background-color:#28665d;color:#fff">
-    <h2 class="w3-center w3-text-teal"><b>Partnermarken</b></h2>
-    <div class="w3-row-padding w3-center" style="margin-top:24px">
-      <div class="w3-col m2 s4">
+  <div class="w3-container w3-padding-32 partner-brands-section" style="max-width:1032px;margin:auto;background-color:#28665d;color:#fff;padding:20px 16px">
+    <h2 class="w3-center w3-text-teal" style="margin-top:0"><b>Partnermarken</b></h2>
+    <div class="w3-row-padding w3-center" style="margin-top:16px">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://xctherm.com/en/welcome" target="_blank" rel="noopener noreferrer">
           <img src="/Images_v2/xctherm.svg" alt="XC-Therm Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>XC-Therm</p>
+        <p style="margin:8px 0 0">XC-Therm</p>
       </div>
-      <div class="w3-col m2 s4">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://www.burnair.ch/" target="_blank" rel="noopener noreferrer">
           <img src="https://www.burnair.ch/wp-content/uploads/2015/01/Logo_enfold_Website.fw_.png" alt="Burnair Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>Burnair</p>
+        <p style="margin:8px 0 0">Burnair</p>
       </div>
-      <div class="w3-col m2 s4">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://www.xctracer.com/en" target="_blank" rel="noopener noreferrer">
           <img src="/Images_v2/xctracer.svg" alt="XCTracer Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>XCTracer</p>
+        <p style="margin:8px 0 0">XCTracer</p>
       </div>
-      <div class="w3-col m2 s4">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://www.skytraxx.eu/en" target="_blank" rel="noopener noreferrer">
           <img src="/Images_v2/skytraxx.png" alt="Skytraxx Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>Skytraxx</p>
+        <p style="margin:8px 0 0">Skytraxx</p>
       </div>
-      <div class="w3-col m2 s4">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://www.stodeus.com/en/" target="_blank" rel="noopener noreferrer">
           <img src="/Images_v2/stodeus.png" alt="Stodeus Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>Stodeus</p>
+        <p style="margin:8px 0 0">Stodeus</p>
       </div>
-      <div class="w3-col m2 s4">
+      <div class="w3-col m2 s4 w3-mobile" style="padding:8px">
         <a href="https://andrebandarra.com/" target="_blank" rel="noopener noreferrer">
           <img src="/Images_v2/bandarra.png" alt="Bandarra Logo" class="brand-logo" style="max-width:90px">
         </a>
-        <p>Bandarra</p>
+        <p style="margin:8px 0 0">Bandarra</p>
       </div>
     </div>
-    <p class="w3-center w3-small" style="margin-top:16px">Unsere Partner bieten exklusive Rabatte für FLYwithMIKI-Kunden.</p>
+    <p class="w3-center w3-small" style="margin-top:12px">Unsere Partner bieten exklusive Rabatte für FLYwithMIKI-Kunden.</p>
   </div>
 
   <!-- PRICING OVERVIEW -->
@@ -359,7 +384,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="background:#f0f8ff;border-radius:15px;padding:28px 24px">
       <h2 class="w3-text-teal w3-center">&#11088; Ausrüstungspreisübersicht</h2>
       <h4 class="w3-center" style="color:#555">Premium-Qualität | Persönlicher Support | Wettbewerbsfähige Preise</h4>
-      <p class="w3-justify" style="color:#555">
+      <p style="text-align: left; color:#555">
         Alle Preise verstehen sich inkl. persönlicher Beratung, Anpassung und dem einzigartigen 1-Tag Manövertraining. Wir helfen dir, die perfekte Ausrüstung für deine Flugziele und dein Budget zu finden.
       </p>
       <div style="overflow-x:auto">
