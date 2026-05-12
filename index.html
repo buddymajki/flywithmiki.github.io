@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "width": 760,
         "height": 760
       },
-      "description": "Premium paragliding school in Central Switzerland. Small group training (max 3 students), eco-friendly with electric vehicle transport, individual coaching, and mental training focus.",
+      "description": "Premium paragliding school in Central Switzerland. Small group training (3-8 students/instructor), eco-friendly with electric vehicle transport, individual coaching, and mental training focus.",
       "sameAs": [
         "https://www.wikidata.org/wiki/Q136536762",
         "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "itemOffered": {
               "@type": "Course",
               "name": "Complete Paragliding Training Course",
-              "description": "Full training from beginner to licensed pilot in small groups (1-3 students)",
+              "description": "Full training from beginner to licensed pilot in small groups (3-8 students/instructor)",
               "provider": {
                 "@id": "https://flywithmiki.com/#organization"
               }
@@ -113,10 +113,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  
  
  
-        <title>FLYwithMIKI - Paragliding School & Tandem Flights | Small Groups, Eco-Friendly</title>
+        <title>FLYwithMIKI | Paragliding School & Tandem Flights Switzerland</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="Premium paragliding school in Central Switzerland. Small group training (max 3 students), eco-friendly with EV transport, individual coaching. Tandem flights, equipment sales. Luzern, Zürich, Engelberg.">
+        <meta name="description" content="Paragliding school in Central Switzerland. Small groups, eco-friendly EV transport, coaching & tandem flights. Equipment sales. Luzern, Zürich, Engelberg.">
         <meta name="keywords" content="paragliding school Switzerland, Gleitschirmschule Luzern, tandem flights, paragliding courses, eco-friendly paragliding, small group training, paragliding equipment, Engelberg, Pilatus, Zürich">
         <meta name="author" content="Miklos Mohos - FLYwithMIKI">
         <meta name="robots" content="index, follow">
@@ -439,7 +439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <!-- HERO CTA SECTION -->
  <div class="hero-cta-section">
     <h2><b>Your Dream of Flying Starts Here</b></h2>
-    <p>Small groups (max 3 students), personal coaching, eco-friendly. Join Switzerland's most innovative paragliding school, from your first steps to your pilot license.</p>
+    <p>Small groups (3-8 students/instructor), personal coaching, eco-friendly. Join Switzerland's most innovative paragliding school, from your first steps to your pilot license.</p>
     <a href="school.html" class="cta-btn cta-btn-primary">&#127937; Start Your Pilot Training</a>
     <a href="tandem.html" class="cta-btn cta-btn-secondary">&#128588; Book a Tandem Flight from CHF 185</a>
  </div>
@@ -447,7 +447,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <!-- TRUST STATS BAR -->
  <div class="trust-bar">
     <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>5.0</strong> Google Rating</div>
-    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>2-8</strong> Students/Group</div>
+    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Students/Instructor</div>
     <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>400+</strong> Trees Planted</div>
     <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV</strong> Certified</div>
     <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Languages</div>
@@ -470,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
 
           <p class="w3-xlarge">Small group</p>
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Small group paragliding training - maximum 3 students per instructor for personalized learning" style="width:100%; max-width:200px" loading="lazy">
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Small group paragliding training - maximum 3-8 students per instructor for personalized learning" style="width:100%; max-width:200px" loading="lazy">
           <p class="w3-justify w3-padding">Size matters! Effective teaching is only possible in small group, where the instructor can focus on you.</p>
           </div>
         </div>
@@ -855,32 +855,31 @@ if (!sessionStorage.getItem('popupClosed')) {
 }
 </script>
 
-<!-- Handle anchor scrolling reliably for cross-page navigation -->
+<!-- Handle anchor scrolling on page load -->
 <script>
-function scrollToAnchor(useSmooth) {
-  if (!window.location.hash) {
-    return;
+// Scroll to anchor after page fully loads to account for images and layout shifts
+function scrollToAnchor() {
+  if (window.location.hash) {
+    const targetId = window.location.hash.substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      // Use setTimeout to ensure all images and content are rendered
+      setTimeout(function() {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   }
-  const targetId = window.location.hash.substring(1);
-  const targetElement = document.getElementById(targetId);
-  if (!targetElement) {
-    return;
-  }
-  // Delay slightly so layout-dependent sections are fully rendered.
-  setTimeout(function() {
-    targetElement.scrollIntoView({ behavior: useSmooth ? 'smooth' : 'auto', block: 'start' });
-  }, 100);
 }
 
+// Run on page load
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', function() { scrollToAnchor(false); });
+  document.addEventListener('DOMContentLoaded', scrollToAnchor);
 } else {
-  scrollToAnchor(false);
+  scrollToAnchor();
 }
 
-window.addEventListener('load', function() { scrollToAnchor(false); });
-window.addEventListener('pageshow', function() { scrollToAnchor(false); });
-window.addEventListener('hashchange', function() { scrollToAnchor(true); });
+// Also listen for images loading to recalculate if layout shifts
+window.addEventListener('load', scrollToAnchor);
 </script>
 
 </body>
