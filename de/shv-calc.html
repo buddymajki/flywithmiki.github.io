@@ -267,59 +267,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="color:#555; margin-bottom:18px;">Die Schweizer Vorschriften verlangen, dass die Nummer im Flug von <strong>unten sichtbar</strong> ist — auf <strong>beiden Hälften</strong> des Schirms (links und rechts der Mittellinie). Piloten dürfen selbst wählen; die zwei praktischsten Positionen sind:</p>
     <div class="placement-grid">
 
-      <!-- Karte 1: Ohrkappe — Hochformat-Nr an der Spitze -->
+      <!-- Karte 1: Ohrkappe — Nr Profiltiefe-Mitte, Hochformat -->
       <div class="placement-card">
-        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+        <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
-            <clipPath id="hwEarDE">
-              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            <clipPath id="fwEarDE">
+              <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"/>
             </clipPath>
           </defs>
-          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
-          <!-- Schirmhälfte: Spitze links, Mitte/Wurzel rechts, Ansicht von unten -->
-          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+          <text x="180" y="6" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
+          <!-- Voller symmetrischer Schirm, Ansicht von unten -->
+          <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"
                 fill="white" stroke="#555" stroke-width="1.5"/>
-          <g clip-path="url(#hwEarDE)" fill="none">
-            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
-            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          <g clip-path="url(#fwEarDE)" fill="none">
+            <line x1="60"  y1="0" x2="60"  y2="96" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="100" y1="0" x2="100" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="140" y1="0" x2="140" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="180" y1="0" x2="180" y2="96" stroke="#ccc" stroke-width="1"/>
+            <line x1="220" y1="0" x2="220" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="260" y1="0" x2="260" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="300" y1="0" x2="300" y2="96" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
           </g>
-          <!-- Ohr-Nr: Hochformat, Spitzenbereich -->
-          <rect x="25" y="78" width="24" height="42" rx="3" fill="#0077b6" opacity="0.88"/>
-          <g transform="translate(37,99) rotate(-90)">
-            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Nr</text>
+          <!-- Linke Ohrkappe-Nr: Hochformat, Profiltiefe-Mitte -->
+          <rect x="34" y="29" width="14" height="24" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(41, 41) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
           </g>
-          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
+          <!-- Rechte Ohrkappe-Nr: gespiegelt -->
+          <rect x="312" y="29" width="14" height="24" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(319, 41) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          </g>
+          <text x="180" y="93" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
         </svg>
         <h4>Ohrkappe / Randkappe</h4>
-        <p>An den äussersten Kappen <em>(Randkappe)</em> an der Flügelspitze. Beim Anflug gut von der Seite sichtbar. Leicht aufzukleben, wenn der Schirm ausgebreitet liegt.</p>
+        <p>An den äussersten Kappen <em>(Randkappe)</em> an der Flügelspitze, zentriert über die Profiltiefe. Beim Anflug gut von der Seite sichtbar. Leicht aufzukleben, wenn der Schirm ausgebreitet liegt.</p>
       </div>
 
       <!-- Karte 2: Hinterkante — Halbspanne, Querformat-Nr -->
       <div class="placement-card">
-        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+        <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
-            <clipPath id="hwTEDE">
-              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            <clipPath id="fwTEDE">
+              <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"/>
             </clipPath>
           </defs>
-          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
-          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+          <text x="180" y="6" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
+          <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"
                 fill="white" stroke="#555" stroke-width="1.5"/>
-          <g clip-path="url(#hwTEDE)" fill="none">
-            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          <g clip-path="url(#fwTEDE)" fill="none">
+            <line x1="60"  y1="0" x2="60"  y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="100" y1="0" x2="100" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="140" y1="0" x2="140" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="180" y1="0" x2="180" y2="96" stroke="#ccc" stroke-width="1"/>
+            <line x1="220" y1="0" x2="220" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="260" y1="0" x2="260" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="300" y1="0" x2="300" y2="96" stroke="#ddd" stroke-width="0.75"/>
           </g>
-          <!-- Hinterkante-Nr: Querformat, Halbspanne -->
-          <rect x="84" y="109" width="64" height="16" rx="5" fill="#0077b6" opacity="0.88"/>
-          <text x="116" y="120" text-anchor="middle" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
+          <!-- Links: Querformat, Hinterkante, Halbspanne -->
+          <rect x="88" y="58" width="50" height="14" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="113" y="65" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <!-- Rechts: gespiegelt -->
+          <rect x="222" y="58" width="50" height="14" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="247" y="65" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="180" y="93" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
         </svg>
         <h4>Hinterkante — Mitte</h4>
-        <p>An der Hinterkante <em>(Hinterkante)</em>, auf halber Spannweite. Tuch liegt hier komplett flach — ideal zum Aufkleben. Beste Sichtbarkeit von direkt unten im Flug.</p>
+        <p>An der Hinterkante <em>(Hinterkante)</em>, auf halber Spannweite je Seite. Tuch liegt hier komplett flach — ideal zum Aufkleben. Beste Sichtbarkeit von direkt unten im Flug.</p>
       </div>
 
     </div>

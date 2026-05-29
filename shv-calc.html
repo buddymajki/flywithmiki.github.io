@@ -267,59 +267,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="color:#555; margin-bottom:18px;">Swiss regulations require the number to be <strong>visible from below</strong> during flight — on <strong>both halves</strong> of the glider (left and right of centerline). Pilots may place them wherever they prefer; the two most practical spots are:</p>
     <div class="placement-grid">
 
-      <!-- Card 1: Ear / Tip — portrait Nr at tip -->
+      <!-- Card 1: Ear / Tip — Nr mid-chord, portrait -->
       <div class="placement-card">
-        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+        <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
-            <clipPath id="hwEar">
-              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            <clipPath id="fwEar">
+              <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"/>
             </clipPath>
           </defs>
-          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
-          <!-- Half-wing: tip=left, root=right, viewed from below -->
-          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+          <text x="180" y="6" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <!-- Full symmetric wing, viewed from below -->
+          <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"
                 fill="white" stroke="#555" stroke-width="1.5"/>
-          <g clip-path="url(#hwEar)" fill="none">
-            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
-            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          <g clip-path="url(#fwEar)" fill="none">
+            <line x1="60"  y1="0" x2="60"  y2="96" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="100" y1="0" x2="100" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="140" y1="0" x2="140" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="180" y1="0" x2="180" y2="96" stroke="#ccc" stroke-width="1"/>
+            <line x1="220" y1="0" x2="220" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="260" y1="0" x2="260" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="300" y1="0" x2="300" y2="96" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
           </g>
-          <!-- Ear Nr: portrait (vertical), tip area -->
-          <rect x="25" y="78" width="24" height="42" rx="3" fill="#0077b6" opacity="0.88"/>
-          <g transform="translate(37,99) rotate(-90)">
-            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Nr</text>
+          <!-- Left ear Nr: portrait, mid-chord -->
+          <rect x="34" y="29" width="14" height="24" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(41, 41) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
           </g>
-          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+          <!-- Right ear Nr: portrait, mid-chord (mirrored) -->
+          <rect x="312" y="29" width="14" height="24" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(319, 41) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          </g>
+          <text x="180" y="93" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
         </svg>
         <h4>Ear / Tip Cells</h4>
-        <p>On the outermost cells <em>(Randkappe)</em> at the wing tip. Visible from the side during approach. Easy to apply when the glider is laid out flat.</p>
+        <p>On the outermost cells <em>(Randkappe)</em> at the wing tip, centered along the chord. Visible from the side during approach. Easy to apply when the glider is laid out flat.</p>
       </div>
 
       <!-- Card 2: Trailing Edge — mid-span, landscape Nr -->
       <div class="placement-card">
-        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+        <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
-            <clipPath id="hwTE">
-              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            <clipPath id="fwTE">
+              <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"/>
             </clipPath>
           </defs>
-          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
-          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+          <text x="180" y="6" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <path d="M 22 46 C 18 22, 72 8, 180 8 C 288 8, 342 22, 338 46 C 312 72, 242 78, 180 78 C 118 78, 48 72, 22 46 Z"
                 fill="white" stroke="#555" stroke-width="1.5"/>
-          <g clip-path="url(#hwTE)" fill="none">
-            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
-            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          <g clip-path="url(#fwTE)" fill="none">
+            <line x1="60"  y1="0" x2="60"  y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="100" y1="0" x2="100" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="140" y1="0" x2="140" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="180" y1="0" x2="180" y2="96" stroke="#ccc" stroke-width="1"/>
+            <line x1="220" y1="0" x2="220" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="260" y1="0" x2="260" y2="96" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="300" y1="0" x2="300" y2="96" stroke="#ddd" stroke-width="0.75"/>
           </g>
-          <!-- Trailing edge Nr: landscape (horizontal), mid-span -->
-          <rect x="84" y="109" width="64" height="16" rx="5" fill="#0077b6" opacity="0.88"/>
-          <text x="116" y="120" text-anchor="middle" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+          <!-- Left Nr: landscape, at trailing edge, mid-span -->
+          <rect x="88" y="58" width="50" height="14" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="113" y="65" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <!-- Right Nr: landscape, at trailing edge, mid-span (mirrored) -->
+          <rect x="222" y="58" width="50" height="14" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="247" y="65" text-anchor="middle" dominant-baseline="central" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="180" y="93" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
         </svg>
         <h4>Trailing Edge — Center</h4>
-        <p>At the trailing edge <em>(Hinterkante)</em>, mid-span. Fabric lies completely flat here for easy application. Best visibility from directly below during flight.</p>
+        <p>At the trailing edge <em>(Hinterkante)</em>, mid-span on each half. Fabric lies completely flat here for easy application. Best visibility from directly below during flight.</p>
       </div>
 
     </div>
