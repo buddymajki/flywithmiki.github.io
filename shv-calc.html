@@ -8,7 +8,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
-  <title>SHV Hours Calculator | FLYwithMIKI Student Area</title>
+  <title>SHV Number Calculator | FLYwithMIKI Student Area</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="Calculate how many LED digit stickers you need for your paraglider SHV number.">
@@ -55,6 +55,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: inline-flex; align-items: center; justify-content: center;
       font-size: 1.6em; font-weight: bold; border-radius: 6px;
     }
+    /* === 7-Segment Visual Additions === */
+    .seg-display-bg {
+      background: #111; border-radius: 12px; padding: 22px 28px;
+      display: inline-block; max-width: 100%; overflow-x: auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    .seg-scale-note { color: #888; font-size: 0.82em; margin-top: 10px; }
+    .shv-section { max-width: 900px; margin: 40px auto 0; padding: 0 24px; }
+    .shv-section-title {
+      color: #0077b6; font-size: 1.25em; font-weight: bold;
+      border-bottom: 2px solid #ddeeff; padding-bottom: 8px; margin-bottom: 20px;
+    }
+    .dim-flex { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center; }
+    .dim-table-wrap { flex: 1; min-width: 220px; max-width: 340px; }
+    .placement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .placement-card {
+      background: #fff; border-radius: 12px; border: 1.5px solid #dde8f0;
+      padding: 18px 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,119,182,0.07);
+    }
+    .placement-card h4 { color: #0077b6; margin: 8px 0 6px; font-size: 1em; }
+    .placement-card p { color: #555; font-size: 0.85em; margin: 0; line-height: 1.45; }
+    .law-box {
+      background: linear-gradient(135deg, #e8f4fd, #f5fbff);
+      border-left: 4px solid #0077b6; border-radius: 10px; padding: 22px 24px;
+    }
+    .law-box h4 { color: #0077b6; margin-top: 0; font-size: 1.05em; }
+    .law-list { list-style: none; padding: 0; margin: 0 0 12px; }
+    .law-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid #d8edf8; color: #333; font-size: 0.92em;
+    }
+    .law-list li:last-child { border-bottom: none; }
+    .law-list .ico { flex-shrink: 0; font-size: 1.15em; width: 24px; text-align: center; }
+    .law-src { font-size: 0.8em; color: #888; border-top: 1px dashed #cde; padding-top: 10px; margin-top: 4px; }
   </style>
 </head>
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -141,6 +175,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="digit-preview" id="digitPreview"></div>
     </div>
 
+    <!-- 7-Segment Visual Preview (shown after calculation) -->
+    <div id="segPreviewSection" style="display:none; text-align:center; max-width:860px; margin:28px auto 0; padding:0 12px;">
+      <h3 style="color:#0077b6; margin-bottom:4px;">Visual Sticker Preview</h3>
+      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">How your number looks as 7-segment LED stickers (actual shape, not to scale)</p>
+      <div class="seg-display-bg">
+        <div id="segPreviewSvg"></div>
+      </div>
+      <p class="seg-scale-note">
+        Total width: <strong id="prevTotalW">—</strong> &nbsp;·&nbsp;
+        Digit height: <strong>42.5 cm</strong> &nbsp;✓&nbsp; (meets ≥40 cm requirement) &nbsp;·&nbsp;
+        Digit width: <strong>23.5 cm</strong>
+      </p>
+    </div>
+
     <div class="w3-content" style="max-width:600px; margin:30px auto 0;">
       <h3 style="color:#0077b6">How it works</h3>
       <p>Each digit (0–9) is made up of a different number of LED segments. The table below shows the segment count for each digit:</p>
@@ -157,6 +205,165 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <tr><td>8</td><td>7</td></tr>
         <tr><td>9</td><td>6</td></tr>
       </table>
+    </div>
+  </div>
+
+  <!-- ===== STICKER DIMENSIONS ===== -->
+  <div class="shv-section">
+    <h3 class="shv-section-title">📐 Sticker Dimensions Reference</h3>
+    <div class="dim-flex">
+      <!-- Single-segment schematic SVG -->
+      <div style="text-align:center; flex-shrink:0;">
+        <p style="color:#555; font-size:0.85em; margin-bottom:8px;"><em>Single segment (1 sticker piece)</em></p>
+        <svg viewBox="0 0 230 108" style="max-width:230px; width:100%; display:block; margin:0 auto; background:#f8f9fa; border-radius:8px; border:1px solid #e0e8f0;">
+          <!-- Segment shape: scale 7px/cm, centered at y=52 -->
+          <!-- L=19→133px, T=4.5→31.5px, flat=14.5→101.5px, bevel=2.25→15.75px -->
+          <!-- x: 20 to 153; y_top=36.25, y_bot=67.75 -->
+          <polygon points="20,52 35.75,36.25 137.25,36.25 153,52 137.25,67.75 35.75,67.75" fill="#ff4422"/>
+          <!-- flat dim: top -->
+          <line x1="35.75" y1="26" x2="137.25" y2="26" stroke="#444" stroke-width="1.2"/>
+          <line x1="35.75" y1="22" x2="35.75" y2="30" stroke="#444" stroke-width="1.2"/>
+          <line x1="137.25" y1="22" x2="137.25" y2="30" stroke="#444" stroke-width="1.2"/>
+          <text x="86.5" y="21" text-anchor="middle" fill="#444" font-size="9" font-family="sans-serif">flat = 14.5 cm</text>
+          <!-- L dim: bottom -->
+          <line x1="20" y1="79" x2="153" y2="79" stroke="#444" stroke-width="1.2"/>
+          <line x1="20" y1="75" x2="20" y2="83" stroke="#444" stroke-width="1.2"/>
+          <line x1="153" y1="75" x2="153" y2="83" stroke="#444" stroke-width="1.2"/>
+          <text x="86.5" y="91" text-anchor="middle" fill="#444" font-size="9" font-family="sans-serif">L = 19 cm</text>
+          <!-- T dim: right -->
+          <line x1="164" y1="36.25" x2="164" y2="67.75" stroke="#444" stroke-width="1.2"/>
+          <line x1="160" y1="36.25" x2="168" y2="36.25" stroke="#444" stroke-width="1.2"/>
+          <line x1="160" y1="67.75" x2="168" y2="67.75" stroke="#444" stroke-width="1.2"/>
+          <text x="171" y="55" text-anchor="start" fill="#444" font-size="9" font-family="sans-serif">T = 4.5</text>
+          <!-- bevel: bottom dim -->
+          <line x1="20" y1="97" x2="35.75" y2="97" stroke="#777" stroke-width="1"/>
+          <line x1="20" y1="93" x2="20" y2="101" stroke="#777" stroke-width="1"/>
+          <line x1="35.75" y1="93" x2="35.75" y2="101" stroke="#777" stroke-width="1"/>
+          <text x="27.875" y="107" text-anchor="middle" fill="#777" font-size="8" font-family="sans-serif">≈2.25</text>
+        </svg>
+        <p style="color:#888; font-size:0.78em; margin-top:6px;">bevel = (L − flat) / 2 = 2.25 cm</p>
+      </div>
+      <!-- Dimensions table -->
+      <div class="dim-table-wrap">
+        <table class="w3-table w3-bordered" style="font-size:0.9em;">
+          <tr class="w3-blue-grey w3-text-white"><th>Feature</th><th>Formula</th><th style="text-align:right;">cm</th></tr>
+          <tr><td>Segment length L</td><td>tip-to-tip</td><td style="text-align:right;font-weight:bold;">19</td></tr>
+          <tr><td>Segment flat F</td><td>non-bevel</td><td style="text-align:right;font-weight:bold;">14.5</td></tr>
+          <tr><td>Segment thickness T</td><td>—</td><td style="text-align:right;font-weight:bold;">4.5</td></tr>
+          <tr><td>Bevel run</td><td>(L−F)/2</td><td style="text-align:right;font-weight:bold;">2.25</td></tr>
+          <tr style="background:#e8f4fd"><td><strong>Digit width W</strong></td><td>L + T</td><td style="text-align:right;font-weight:bold;">23.5</td></tr>
+          <tr style="background:#e8f4fd"><td><strong>Digit height H</strong></td><td>2L + T</td><td style="text-align:right;font-weight:bold;">42.5</td></tr>
+          <tr><td>Char spacing G*</td><td>assumed</td><td style="text-align:right;font-weight:bold;">4.5</td></tr>
+          <tr><td>Pitch (W+G)</td><td>—</td><td style="text-align:right;font-weight:bold;">28</td></tr>
+        </table>
+        <p style="color:#888; font-size:0.78em; margin-top:8px;">*Inter-digit gap G is set by your mounting — change as needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PLACEMENT GUIDE ===== -->
+  <div class="shv-section">
+    <h3 class="shv-section-title">📍 Where to Place Numbers on Your Glider</h3>
+    <p style="color:#555; margin-bottom:18px;">Swiss regulations require the number to be <strong>visible from below</strong> during flight — on <strong>both halves</strong> of the glider (left and right of centerline). Here are the three most common placements:</p>
+    <div class="placement-grid">
+
+      <!-- Card 1: Ear / Tip -->
+      <div class="placement-card">
+        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
+          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <!-- Wing outline -->
+          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
+          <!-- Cell dividers -->
+          <line x1="46" y1="12" x2="46" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
+          <line x1="134" y1="12" x2="134" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
+          <!-- Highlight: ear/tip cells both sides -->
+          <rect x="4" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
+          <text x="24" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <rect x="136" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
+          <text x="156" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+        </svg>
+        <h4>Ear / Tip Cells</h4>
+        <p>Apply on the outermost cells <em>(Randkappe)</em> of each side. Great visibility from the side during approach and landing. Easy to reach when glider is laid out flat.</p>
+      </div>
+
+      <!-- Card 2: Trailing Edge -->
+      <div class="placement-card">
+        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
+          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
+          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
+          <!-- Highlight: trailing edge band, both halves -->
+          <rect x="4" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
+          <text x="45" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <rect x="94" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
+          <text x="135" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+        </svg>
+        <h4>Trailing Edge</h4>
+        <p>Along the trailing edge <em>(Hinterkante)</em>, one set per side. Most visible from directly below in flight. Shown clearly in the sticker photo — fabric lies flat for easy application.</p>
+      </div>
+
+      <!-- Card 3: Center panels -->
+      <div class="placement-card">
+        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
+          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
+          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
+          <!-- Highlight: center cells bottom surface, both halves -->
+          <rect x="8" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
+          <text x="45" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <rect x="98" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
+          <text x="135" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+        </svg>
+        <h4>Center Cells (Bottom)</h4>
+        <p>On the center panels of the bottom surface, one set each side of the centerline. Maximum visibility from rescue aircraft directly below — the officially preferred location.</p>
+      </div>
+
+    </div>
+    <p style="color:#888; font-size:0.82em; margin-top:14px;">💡 <strong>Tip:</strong> Many pilots apply numbers on the trailing edge for easiest application (fabric is flat and accessible) and additionally on the ear for side-visibility during the approach.</p>
+  </div>
+
+  <!-- ===== SWISS REGULATION ===== -->
+  <div class="shv-section" style="margin-bottom:50px;">
+    <h3 class="shv-section-title">⚖️ Swiss Regulation</h3>
+    <div class="law-box">
+      <h4>Identification Requirements for Paragliders in Switzerland</h4>
+      <ul class="law-list">
+        <li>
+          <span class="ico">🔢</span>
+          <span><strong>Number to display:</strong> Your SHV membership number (Mitgliedsnummer), as assigned upon joining the Swiss Hang-gliding and Paragliding Association (SHV/FSVL). Typically 4–5 digits.</span>
+        </li>
+        <li>
+          <span class="ico">📏</span>
+          <span><strong>Minimum character height:</strong> <strong>40 cm</strong> (per BAZL/SHV requirements for free-flight aircraft). The standard LED-segment stickers at <em>H = 2L + T = 42.5 cm</em> meet this requirement.</span>
+        </li>
+        <li>
+          <span class="ico">🎨</span>
+          <span><strong>Color:</strong> Must clearly contrast with the glider fabric — dark numbers on a bright glider, or bright numbers on a dark glider. Black fabric stickers on orange/yellow gliders are typical.</span>
+        </li>
+        <li>
+          <span class="ico">✈️</span>
+          <span><strong>Placement:</strong> On the <strong>bottom surface</strong> of the wing, <strong>both halves</strong> (left and right of centerline), so the number is visible from below during flight. Outer cells (ear) or trailing edge are most common.</span>
+        </li>
+        <li>
+          <span class="ico">🔒</span>
+          <span><strong>Attachment:</strong> Permanent and weather-resistant. Sewn-on fabric stickers, heat-transfer prints, or adhesive segments are all accepted. Numbers must not come loose in flight.</span>
+        </li>
+        <li>
+          <span class="ico">🛡️</span>
+          <span><strong>Purpose:</strong> Required for SHV liability insurance coverage and for identification by air traffic control / rescue services. Flying without your number is an insurance risk.</span>
+        </li>
+      </ul>
+      <div class="law-src">
+        Sources: SHV/FSVL Betriebsreglement for Hang-gliding &amp; Paragliding &nbsp;·&nbsp;
+        BAZL (Federal Office of Civil Aviation) guidance on free-flight aircraft &nbsp;·&nbsp;
+        <a href="https://www.shv-fsvl.ch/" target="_blank" rel="noopener">www.shv-fsvl.ch</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.bazl.admin.ch/" target="_blank" rel="noopener">www.bazl.admin.ch</a>
+        &nbsp;·&nbsp; Always verify current regulations with SHV directly.
+      </div>
     </div>
   </div>
 
@@ -177,12 +384,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 var lookupTable = {'0':6,'1':2,'2':5,'3':5,'4':3,'5':5,'6':6,'7':3,'8':7,'9':6};
 
+/* ============================================================
+   7-SEGMENT SVG RENDERER
+   All coordinates in cm (same unit as physical stickers).
+   L=19, T=4.5, flat=14.5, bevel=2.25 → H=42.5 cm, W=23.5 cm
+   ============================================================ */
+var SEG = {
+  L: 19, T: 4.5, flat: 14.5, gap: 0.45, dGap: 4.5
+};
+SEG.bevel = (SEG.L - SEG.flat) / 2;   // 2.25
+SEG.W     = SEG.L + SEG.T;            // 23.5 cm digit width
+SEG.H     = 2 * SEG.L + SEG.T;        // 42.5 cm digit height
+SEG.T2    = SEG.T / 2;                // 2.25
+
+// 7-segment patterns  [a, b, c, d, e, f, g]
+// a=top, b=top-right, c=bot-right, d=bottom, e=bot-left, f=top-left, g=middle
+var SEG_PAT = {
+  '0':[1,1,1,1,1,1,0],
+  '1':[0,1,1,0,0,0,0],
+  '2':[1,1,0,1,1,0,1],
+  '3':[1,1,1,1,0,0,1],
+  '4':[0,1,1,0,0,1,1],
+  '5':[1,0,1,1,0,1,1],
+  '6':[1,0,1,1,1,1,1],
+  '7':[1,1,1,0,0,0,0],
+  '8':[1,1,1,1,1,1,1],
+  '9':[1,1,1,1,0,1,1]
+};
+
+function hSeg(x1, x2, cy) {
+  var b = SEG.bevel, t = SEG.T2;
+  return [x1,cy, x1+b,cy-t, x2-b,cy-t, x2,cy, x2-b,cy+t, x1+b,cy+t].join(' ');
+}
+function vSeg(cx, y1, y2) {
+  var b = SEG.bevel, t = SEG.T2;
+  return [cx,y1, cx+t,y1+b, cx+t,y2-b, cx,y2, cx-t,y2-b, cx-t,y1+b].join(' ');
+}
+function digitPolys(dx, dy) {
+  var T2=SEG.T2, L=SEG.L, W=SEG.W, H=SEG.H, g=SEG.gap, H2=H/2;
+  return [
+    hSeg(dx+T2+g,   dx+T2+L-g,  dy+T2),        // a top
+    vSeg(dx+W-T2,   dy+T2+g,    dy+H2-g),       // b top-right
+    vSeg(dx+W-T2,   dy+H2+g,    dy+H-T2-g),     // c bot-right
+    hSeg(dx+T2+g,   dx+T2+L-g,  dy+H-T2),       // d bottom
+    vSeg(dx+T2,     dy+H2+g,    dy+H-T2-g),     // e bot-left
+    vSeg(dx+T2,     dy+T2+g,    dy+H2-g),       // f top-left
+    hSeg(dx+T2+g,   dx+T2+L-g,  dy+H2)          // g middle
+  ];
+}
+
+function buildSegSVG(numStr) {
+  var n = numStr.length;
+  var W = SEG.W, H = SEG.H, dGap = SEG.dGap, pad = 3;
+  var totalW = n * W + Math.max(0, n - 1) * dGap;
+  var svgW = totalW + 2 * pad, svgH = H + 2 * pad;
+  var html = '';
+  for (var i = 0; i < n; i++) {
+    var ch = numStr[i];
+    var pat = SEG_PAT[ch] || [0,0,0,0,0,0,0];
+    var dx = pad + i * (W + dGap), dy = pad;
+    var segs = digitPolys(dx, dy);
+    for (var s = 0; s < 7; s++) {
+      var fill = pat[s] ? '#ff4422' : '#2a2a2a';
+      html += '<polygon points="' + segs[s] + '" fill="' + fill + '"/>';
+    }
+  }
+  // Max display width: 760px; viewBox in cm units
+  var maxPx = Math.min(totalW * 7.5, 760);
+  return {
+    svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + svgW + ' ' + svgH + '"'
+       + ' style="width:100%;max-width:' + maxPx + 'px;display:block;margin:0 auto">'
+       + '<rect width="' + svgW + '" height="' + svgH + '" fill="#111" rx="3"/>'
+       + html + '</svg>',
+    totalW: totalW.toFixed(1)
+  };
+}
+
 document.getElementById('numberForm').addEventListener('submit', function(event) {
   event.preventDefault();
   var inputNumber = document.getElementById('numberInput').value.trim();
   if (!/^\d{1,5}$/.test(inputNumber)) {
     document.getElementById('result').innerHTML = '<span style="color:red">Please enter a valid SHV number (up to 5 digits).</span>';
     document.getElementById('digitPreview').innerHTML = '';
+    document.getElementById('segPreviewSection').style.display = 'none';
     return;
   }
   var sum = 0;
@@ -195,6 +479,12 @@ document.getElementById('numberForm').addEventListener('submit', function(event)
   }
   document.getElementById('result').innerHTML = 'Segments to order: <b>' + sum + '</b> pcs.';
   document.getElementById('digitPreview').innerHTML = preview;
+
+  // 7-segment SVG visual
+  var svgData = buildSegSVG(inputNumber);
+  document.getElementById('segPreviewSvg').innerHTML = svgData.svg;
+  document.getElementById('prevTotalW').textContent = svgData.totalW + ' cm';
+  document.getElementById('segPreviewSection').style.display = 'block';
 });
 
 function myAccFunc(id) {
