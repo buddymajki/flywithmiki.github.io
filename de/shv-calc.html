@@ -69,7 +69,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .dim-flex { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center; }
     .dim-table-wrap { flex: 1; min-width: 220px; max-width: 340px; }
-    .placement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .placement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .placement-card {
       background: #fff; border-radius: 12px; border: 1.5px solid #dde8f0;
       padding: 18px 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,119,182,0.07);
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 7-Segment Visual Preview (shown after calculation) -->
     <div id="segPreviewSection" style="display:none; text-align:center; max-width:860px; margin:28px auto 0; padding:0 12px;">
       <h3 style="color:#0077b6; margin-bottom:4px;">Visuelle Aufkleber-Vorschau</h3>
-      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">So sieht deine Nummer als 7-Segment-LED-Aufkleber aus (tatsächliche Form, nicht massstabsgetreu)</p>
+      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">Tatsächliche Aufkleber-Form zusammengestellt — nicht massstabsgetreu. Beispiel: 12345 (Nummer eingeben zum Aktualisieren)</p>
       <div class="seg-display-bg">
         <div id="segPreviewSvg"></div>
       </div>
@@ -264,60 +264,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== PLATZIERUNGSANLEITUNG ===== -->
   <div class="shv-section">
     <h3 class="shv-section-title">📍 Wo die Nummern auf den Schirm?</h3>
-    <p style="color:#555; margin-bottom:18px;">Die Schweizer Vorschriften verlangen, dass die Nummer im Flug von <strong>unten sichtbar</strong> ist — auf <strong>beiden Hälften</strong> des Schirms (links und rechts der Mittellinie). Die drei häufigsten Platzierungen:</p>
+    <p style="color:#555; margin-bottom:18px;">Die Schweizer Vorschriften verlangen, dass die Nummer im Flug von <strong>unten sichtbar</strong> ist — auf <strong>beiden Hälften</strong> des Schirms (links und rechts der Mittellinie). Piloten dürfen selbst wählen; die zwei praktischsten Positionen sind:</p>
     <div class="placement-grid">
 
-      <!-- Karte 1: Ohrkappe / Randkappe -->
+      <!-- Karte 1: Ohrkappe — Hochformat-Nr an der Spitze -->
       <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <line x1="46" y1="12" x2="46" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <line x1="134" y1="12" x2="134" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <rect x="4" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
-          <text x="24" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="136" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
-          <text x="156" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
+        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+          <defs>
+            <clipPath id="hwEarDE">
+              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            </clipPath>
+          </defs>
+          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
+          <!-- Schirmhälfte: Spitze links, Mitte/Wurzel rechts, Ansicht von unten -->
+          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+                fill="white" stroke="#555" stroke-width="1.5"/>
+          <g clip-path="url(#hwEarDE)" fill="none">
+            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          </g>
+          <!-- Ohr-Nr: Hochformat, Spitzenbereich -->
+          <rect x="25" y="78" width="24" height="42" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(37,99) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Nr</text>
+          </g>
+          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
         </svg>
         <h4>Ohrkappe / Randkappe</h4>
-        <p>An den äussersten Kappen <em>(Randkappe)</em> beider Seiten aufkleben. Sehr gut sichtbar von der Seite beim Anflug und bei der Landung. Leicht erreichbar, wenn der Schirm flach ausgebreitet ist.</p>
+        <p>An den äussersten Kappen <em>(Randkappe)</em> an der Flügelspitze. Beim Anflug gut von der Seite sichtbar. Leicht aufzukleben, wenn der Schirm ausgebreitet liegt.</p>
       </div>
 
-      <!-- Karte 2: Hinterkante -->
+      <!-- Karte 2: Hinterkante — Halbspanne, Querformat-Nr -->
       <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <rect x="4" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
-          <text x="45" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="94" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
-          <text x="135" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
+        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+          <defs>
+            <clipPath id="hwTEDE">
+              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            </clipPath>
+          </defs>
+          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
+          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+                fill="white" stroke="#555" stroke-width="1.5"/>
+          <g clip-path="url(#hwTEDE)" fill="none">
+            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          </g>
+          <!-- Hinterkante-Nr: Querformat, Halbspanne -->
+          <rect x="84" y="109" width="64" height="16" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="116" y="120" text-anchor="middle" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
         </svg>
-        <h4>Hinterkante</h4>
-        <p>Entlang der Hinterkante, je ein Satz pro Seite. Im Flug am besten von direkt unten sichtbar. Wie im Aufkleber-Foto gezeigt — Tuch liegt flach für einfaches Aufkleben.</p>
-      </div>
-
-      <!-- Karte 3: Mittelkappen -->
-      <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ Eintrittskante</text>
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <rect x="8" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
-          <text x="45" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="98" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
-          <text x="135" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ Hinterkante</text>
-        </svg>
-        <h4>Mittelkappen (Unterseite)</h4>
-        <p>Auf den mittleren Kappen der Unterseite, je ein Satz pro Seite der Mittellinie. Maximale Sichtbarkeit für Rettungshelikopter von direkt unten — die offiziell bevorzugte Position.</p>
+        <h4>Hinterkante — Mitte</h4>
+        <p>An der Hinterkante <em>(Hinterkante)</em>, auf halber Spannweite. Tuch liegt hier komplett flach — ideal zum Aufkleben. Beste Sichtbarkeit von direkt unten im Flug.</p>
       </div>
 
     </div>
-    <p style="color:#888; font-size:0.82em; margin-top:14px;">💡 <strong>Tipp:</strong> Viele Piloten kleben die Ziffern an der Hinterkante auf (am einfachsten, da Tuch flach liegt) und zusätzlich an der Randkappe für Seitensichtbarkeit beim Anflug.</p>
+    <p style="color:#888; font-size:0.82em; margin-top:14px;">💡 <strong>Tipp:</strong> Viele Piloten kombinieren beides — Hinterkante-Mitte für maximale Sichtbarkeit von direkt unten, und Randkappen für Seitensichtbarkeit beim Anflug und bei der Landung.</p>
   </div>
 
   <!-- ===== SCHWEIZER VORSCHRIFTEN ===== -->
@@ -452,6 +458,9 @@ function buildSegSVG(numStr) {
     totalW: totalW.toFixed(1)
   };
 }
+
+// Aufkleber-Vorschau beim Laden anzeigen
+(function(){var s=buildSegSVG('12345');document.getElementById('segPreviewSvg').innerHTML=s.svg;document.getElementById('prevTotalW').textContent=s.totalW+' cm';document.getElementById('segPreviewSection').style.display='block';})();
 
 document.getElementById('numberForm').addEventListener('submit', function(event) {
   event.preventDefault();

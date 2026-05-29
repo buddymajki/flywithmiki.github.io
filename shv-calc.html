@@ -69,7 +69,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .dim-flex { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center; }
     .dim-table-wrap { flex: 1; min-width: 220px; max-width: 340px; }
-    .placement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .placement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .placement-card {
       background: #fff; border-radius: 12px; border: 1.5px solid #dde8f0;
       padding: 18px 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,119,182,0.07);
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 7-Segment Visual Preview (shown after calculation) -->
     <div id="segPreviewSection" style="display:none; text-align:center; max-width:860px; margin:28px auto 0; padding:0 12px;">
       <h3 style="color:#0077b6; margin-bottom:4px;">Visual Sticker Preview</h3>
-      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">How your number looks as 7-segment LED stickers (actual shape, not to scale)</p>
+      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">Actual sticker shape assembled — not to scale. Sample: 12345 (enter your number above to update)</p>
       <div class="seg-display-bg">
         <div id="segPreviewSvg"></div>
       </div>
@@ -264,65 +264,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== PLACEMENT GUIDE ===== -->
   <div class="shv-section">
     <h3 class="shv-section-title">📍 Where to Place Numbers on Your Glider</h3>
-    <p style="color:#555; margin-bottom:18px;">Swiss regulations require the number to be <strong>visible from below</strong> during flight — on <strong>both halves</strong> of the glider (left and right of centerline). Here are the three most common placements:</p>
+    <p style="color:#555; margin-bottom:18px;">Swiss regulations require the number to be <strong>visible from below</strong> during flight — on <strong>both halves</strong> of the glider (left and right of centerline). Pilots may place them wherever they prefer; the two most practical spots are:</p>
     <div class="placement-grid">
 
-      <!-- Card 1: Ear / Tip -->
+      <!-- Card 1: Ear / Tip — portrait Nr at tip -->
       <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
-          <!-- Wing outline -->
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <!-- Cell dividers -->
-          <line x1="46" y1="12" x2="46" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <line x1="134" y1="12" x2="134" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <!-- Highlight: ear/tip cells both sides -->
-          <rect x="4" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
-          <text x="24" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="136" y="14" width="40" height="36" rx="14" fill="#0077b6" opacity="0.82"/>
-          <text x="156" y="35" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+          <defs>
+            <clipPath id="hwEar">
+              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            </clipPath>
+          </defs>
+          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <!-- Half-wing: tip=left, root=right, viewed from below -->
+          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+                fill="white" stroke="#555" stroke-width="1.5"/>
+          <g clip-path="url(#hwEar)" fill="none">
+            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          </g>
+          <!-- Ear Nr: portrait (vertical), tip area -->
+          <rect x="25" y="78" width="24" height="42" rx="3" fill="#0077b6" opacity="0.88"/>
+          <g transform="translate(37,99) rotate(-90)">
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Nr</text>
+          </g>
+          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
         </svg>
         <h4>Ear / Tip Cells</h4>
-        <p>Apply on the outermost cells <em>(Randkappe)</em> of each side. Great visibility from the side during approach and landing. Easy to reach when glider is laid out flat.</p>
+        <p>On the outermost cells <em>(Randkappe)</em> at the wing tip. Visible from the side during approach. Easy to apply when the glider is laid out flat.</p>
       </div>
 
-      <!-- Card 2: Trailing Edge -->
+      <!-- Card 2: Trailing Edge — mid-span, landscape Nr -->
       <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <!-- Highlight: trailing edge band, both halves -->
-          <rect x="4" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
-          <text x="45" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="94" y="38" width="82" height="14" rx="7" fill="#0077b6" opacity="0.85"/>
-          <text x="135" y="48.5" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
+        <svg viewBox="0 0 280 148" style="width:100%; max-width:280px; display:block; margin:0 auto;">
+          <defs>
+            <clipPath id="hwTE">
+              <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"/>
+            </clipPath>
+          </defs>
+          <text x="140" y="9" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
+          <path d="M 18 120 C 4 104, 4 50, 20 28 C 80 5, 198 5, 258 22 L 258 120 Q 180 128, 90 127 Q 46 125, 18 120 Z"
+                fill="white" stroke="#555" stroke-width="1.5"/>
+          <g clip-path="url(#hwTE)" fill="none">
+            <line x1="60"  y1="0" x2="59"  y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="100" y1="0" x2="100" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="148" y1="0" x2="148" y2="148" stroke="#ddd" stroke-width="0.75"/>
+            <line x1="198" y1="0" x2="198" y2="148" stroke="#ddd" stroke-width="0.75"/>
+          </g>
+          <!-- Trailing edge Nr: landscape (horizontal), mid-span -->
+          <rect x="84" y="109" width="64" height="16" rx="5" fill="#0077b6" opacity="0.88"/>
+          <text x="116" y="120" text-anchor="middle" fill="white" font-size="9" font-weight="bold" font-family="sans-serif">Nr</text>
+          <text x="140" y="144" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
         </svg>
-        <h4>Trailing Edge</h4>
-        <p>Along the trailing edge <em>(Hinterkante)</em>, one set per side. Most visible from directly below in flight. Shown clearly in the sticker photo — fabric lies flat for easy application.</p>
-      </div>
-
-      <!-- Card 3: Center panels -->
-      <div class="placement-card">
-        <svg viewBox="0 0 180 66" style="width:100%; max-width:180px; display:block; margin:0 auto;">
-          <text x="90" y="8" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▲ leading edge</text>
-          <rect x="4" y="12" width="172" height="40" rx="20" fill="#ff9933" stroke="#cc5500" stroke-width="1.5"/>
-          <line x1="90" y1="12" x2="90" y2="52" stroke="#cc5500" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.6"/>
-          <!-- Highlight: center cells bottom surface, both halves -->
-          <rect x="8" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
-          <text x="45" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <rect x="98" y="20" width="74" height="26" rx="7" fill="#0077b6" opacity="0.82"/>
-          <text x="135" y="36" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" font-family="sans-serif">Nr</text>
-          <text x="90" y="62" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
-        </svg>
-        <h4>Center Cells (Bottom)</h4>
-        <p>On the center panels of the bottom surface, one set each side of the centerline. Maximum visibility from rescue aircraft directly below — the officially preferred location.</p>
+        <h4>Trailing Edge — Center</h4>
+        <p>At the trailing edge <em>(Hinterkante)</em>, mid-span. Fabric lies completely flat here for easy application. Best visibility from directly below during flight.</p>
       </div>
 
     </div>
-    <p style="color:#888; font-size:0.82em; margin-top:14px;">💡 <strong>Tip:</strong> Many pilots apply numbers on the trailing edge for easiest application (fabric is flat and accessible) and additionally on the ear for side-visibility during the approach.</p>
+    <p style="color:#888; font-size:0.82em; margin-top:14px;">💡 <strong>Tip:</strong> Many pilots combine both — trailing edge center for maximum visibility from directly below, plus ear cells for side-visibility during approach and landing.</p>
   </div>
 
   <!-- ===== SWISS REGULATION ===== -->
@@ -459,6 +460,9 @@ function buildSegSVG(numStr) {
     totalW: totalW.toFixed(1)
   };
 }
+
+// Show sticker shape sample on page load
+(function(){var s=buildSegSVG('12345');document.getElementById('segPreviewSvg').innerHTML=s.svg;document.getElementById('prevTotalW').textContent=s.totalW+' cm';document.getElementById('segPreviewSection').style.display='block';})();
 
 document.getElementById('numberForm').addEventListener('submit', function(event) {
   event.preventDefault();
