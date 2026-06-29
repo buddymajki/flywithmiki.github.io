@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emagram . FLYwithMIKI</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{
+    --bg:#0e1116;--panel:#161b22;--panel2:#1c232d;--line:#2a3441;
+    --ink:#e6edf3;--dim:#8b98a8;--faint:#56636f;
+    --temp:#ff5d5d;--dew:#39c46e;--parcel:#ffd23f;
+    --cyan:#34c8e0;--amber:#ffb02e;--good:#39c46e;--warn:#ffb02e;--bad:#ff5d5d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5}
+  .mono{font-family:"SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace}
+  header{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  header h1{font-size:16px;margin:0;letter-spacing:.3px;font-weight:600}
+  header .sub{color:var(--dim);font-size:12px;flex:1}
+  .lang{display:flex;gap:4px}
+  .lang button{background:var(--panel2);color:var(--dim);border:1px solid var(--line);
+    padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+  .lang button.on{background:var(--cyan);color:#04222a;border-color:var(--cyan)}
+  .wrap{display:grid;grid-template-columns:340px 1fr 300px;min-height:calc(100vh - 53px)}
+  @media(max-width:1100px){.wrap{grid-template-columns:1fr}}
+  .col{padding:16px;border-right:1px solid var(--line)}
+  .col:last-child{border-right:none}
+  .col.center{display:flex;flex-direction:column;align-items:center}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin:0 0 10px;font-weight:600}
+  .seg{display:flex;gap:6px;margin-bottom:14px}
+  .seg button{flex:1;background:var(--panel2);color:var(--dim);border:1px solid var(--line);
+    padding:7px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600}
+  .seg button.on{background:var(--cyan);color:#04222a;border-color:var(--cyan)}
+  label{display:block;font-size:11px;color:var(--dim);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+  input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--ink);
+    border-radius:7px;padding:8px;font-size:13px;font-family:inherit}
+  textarea{height:170px;resize:vertical;white-space:pre;overflow:auto}
+  .row{display:flex;gap:8px}.row>*{flex:1}
+  #map{height:168px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin:6px 0 2px;background:#0c1218}
+  .btn{width:100%;margin-top:12px;background:var(--amber);color:#2a1c00;border:none;border-radius:8px;padding:11px;font-weight:700;cursor:pointer;font-size:13px}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:transparent;color:var(--dim);border:1px solid var(--line);margin-top:8px}
+  .hint{font-size:11px;color:var(--faint);margin-top:8px;line-height:1.45}
+  #status{font-size:12px;margin-top:10px;min-height:16px}
+  canvas{width:100%;max-width:720px;height:auto;display:block}
+  .meta{width:100%;max-width:720px;color:var(--dim);font-size:12px;display:flex;justify-content:space-between;margin:6px 2px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
+  .kv{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .kv:last-child{border-bottom:none}
+  .kv .k{color:var(--dim);font-size:12px}
+  .kv .v{font-size:15px;font-weight:600}
+  .kv .v small{color:var(--faint);font-weight:400;font-size:11px}
+  .chip{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:700}
+  .chip.none{background:rgba(57,196,110,.15);color:var(--good)}
+  .chip.low{background:rgba(255,176,46,.13);color:var(--warn)}
+  .chip.mod{background:rgba(255,176,46,.20);color:var(--amber)}
+  .chip.high{background:rgba(255,93,93,.18);color:var(--bad)}
+  .verdict{margin-bottom:8px}
+  .verdict .t{font-size:12px;color:var(--dim);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+  .note{font-size:12px;color:var(--dim);margin-top:4px;line-height:1.45}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--dim);margin-top:8px;max-width:720px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .sw{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .empty{color:var(--faint);font-size:13px;padding:20px 0;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1 data-i18n="appTitle">FLYwithMIKI Emagram Analyser v1.0</h1>
+  <span class="sub mono" data-i18n="appSub">cloud base . CAPE . thermals . overdevelopment</span>
+  <div class="lang"> 
+    <button data-lang="en" class="on">EN</button>
+    <button data-lang="hu">HU</button>
+	<button data-lang="de">DE</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="col">
+    <h2 data-i18n="srcHead">Adatforrás</h2>
+    <div class="seg">
+      <button id="tabFetch" class="on" data-i18n="tabFetch">Letöltés</button>
+      <button id="tabPaste" data-i18n="tabPaste">Beillesztés</button>
+    </div>
+
+    <div id="panelFetch">
+      <label data-i18n="loc">Helyszín</label>
+      <select id="loc"></select>
+      <div id="map"></div>
+      <div class="hint" data-i18n="mapHint">Bökj a térképre vagy válassz helyszínt.</div>
+      <div class="row">
+        <div><label data-i18n="lat">Szélesség</label><input id="lat" class="mono" value="47.03"></div>
+        <div><label data-i18n="lon">Hosszúság</label><input id="lon" class="mono" value="8.28"></div>
+      </div>
+      <div class="row">
+        <div><label data-i18n="date">Dátum</label><input id="date" type="date"></div>
+        <div><label data-i18n="hour">Óra (helyi)</label>
+          <select id="hour"><option>10</option><option>11</option><option>12</option><option>13</option>
+            <option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option></select></div>
+      </div>
+      <label data-i18n="model">Modell</label>
+      <select id="model">
+        <option id="optBest" value="best_match">Best match</option>
+        <option id="optIcon" value="icon_seamless">ICON</option>
+        <option id="optEcmwf" value="ecmwf_ifs025">ECMWF</option>
+        <option id="optGfs" value="gfs_seamless">GFS</option>
+        <option id="optArome" value="meteofrance_arome_france_hd">AROME HD</option>
+      </select>
+      <button class="btn" id="fetchBtn" data-i18n="btnFetch">Letöltés és elemzés</button>
+      <div class="hint" data-i18n="fetchHint">Ingyenes, kulcs nélkül (open-meteo.com). Nyisd meg letöltve.</div>
+    </div>
+
+    <div id="panelPaste" style="display:none">
+      <label data-i18n="pasteLabel">Szondázó tábla</label>
+      <textarea id="raw" class="mono" data-i18n-ph="pastePh"></textarea>
+      <button class="btn" id="parseBtn" data-i18n="btnParse">Elemzés</button>
+      <button class="btn ghost" id="demoBtn" data-i18n="btnDemo">Payerne példa</button>
+      <div class="hint" data-i18n="pasteHint">Oszlopok: nyomás, magasság, T, harmatpont, [szélirány, csomó].</div>
+    </div>
+    <div id="status"></div>
+  </div>
+
+  <div class="col center">
+    <canvas id="chart"></canvas>
+    <div class="meta mono"><span id="metaTitle"></span><span id="metaSfc"></span></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--temp)"></i><b data-i18n="legT">Hőmérséklet</b></span>
+      <span><i class="sw" style="background:var(--dew)"></i><b data-i18n="legTd">Harmatpont</b></span>
+      <span><i class="sw" style="background:var(--parcel)"></i><b data-i18n="legParcel">Parcella</b></span>
+      <span><i class="sw" style="background:rgba(255,93,93,.5)"></i>CAPE</span>
+      <span><i class="sw" style="background:rgba(220,228,238,.85)"></i><b data-i18n="legCloud">Felhő</b></span>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2 data-i18n="resHead">Eredmény</h2>
+    <div id="results"><div class="empty" data-i18n="empty">Tölts be vagy illessz be adatot.</div></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ===== i18n =====
+const I18N={
+ hu:{appTitle:"FLYwithMIKI - Emagram elemző v1.0",appSub:"felhőalap . CAPE . termik . túlfejlődés",srcHead:"Adatforrás",
+   tabFetch:"Letöltés (Open-Meteo)",tabPaste:"Beillesztés",loc:"Helyszín",lat:"Szélesség",lon:"Hosszúság",
+   date:"Dátum",hour:"Óra (helyi)",model:"Modell",mapHint:"Bökj a térképre vagy válassz helyszínt.",
+   mdlBest:"Best match (auto, ajánlott)",mdlIcon:"ICON (DWD, Alpok jó)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
+   btnFetch:"Letöltés és elemzés",fetchHint:"Ingyenes, kulcs nélkül (open-meteo.com). Nyisd meg letöltve, böngészőben.",
+   pasteLabel:"Szondázó tábla (p, magasság, T, Td, [szélirány, csomó])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
+   btnParse:"Elemzés a beillesztett adatból",btnDemo:"Payerne példa betöltése",
+   pasteHint:"Oszlopok: nyomás, magasság (m), T, harmatpont, [szélirány, csomó]. A fejléc és a hiányzó sorok kimaradnak.",
+   resHead:"Eredmény",empty:"Tölts be vagy illessz be adatot.",
+   legT:"Hőmérséklet",legTd:"Harmatpont",legParcel:"Parcella útja",legCloud:"Felhő",
+   kCloudBase:"Felhőalap (LCL)",kDryTop:"Száraz termik teteje",kCloudTop:"Felhőtető (EL)",kCloudDepth:"Felhővastagság",
+   kZero:"0 °C szint",kCape:"CAPE",kCin:"CIN (gát)",kTrigger:"Trigger hőm.",kLfc:"LFC",
+   amsl:"AMSL",agl:"talaj f.",open:"nyitott",sfcWord:"felszín",
+   vOver:"Túlfejlődés",vStorm:"Zivatar",
+   ovNone:"Nincs",ovBlue:"Nincs (kék)",ovLow:"Mérsékelt",ovMod:"Valószínű",ovHigh:"Erős",
+   stNo:"Nem",stLow:"Gyenge esély",stMod:"Lehetséges",stHigh:"Valószínű",
+   canDryTop:"SZÁRAZ TERMIK TETEJE",canCloudBase:"FELHŐALAP",
+   nBlue:"A termik a felhőalap alatt megáll: kék termik nap, cumulus nélkül.",
+   nCap:"Gyenge gát (~{gap} m) a száraz termik teteje és a felhőalap között. Erős nap áttöri, utána mély feltörés.",
+   nTrigOk:"Trigger (konvektív) hőmérséklet {tc} °C. Felszín most {sf} °C (elérve, a konvekció beindul).",
+   nTrigNo:"Trigger (konvektív) hőmérséklet {tc} °C. Felszín most {sf} °C (még {d} °C hiányzik).",
+   nEl:"A parcella az adatsor tetejéig melegebb marad: nincs egyensúlyi szint, mély konvekció lehetséges.",
+   nDry:"Száraz középszint: erős kifutószél / leszálló él kockázata, ha beépül.",
+   sReady:"Kész.",sFetch:"Letöltés.",sData:"Adat: {t} . talaj {z} m",sNoDate:"Adj meg dátumot.",
+   sFew:"Túl kevés érvényes szint az elemzéshez.",sErr:"Hiba: ",
+   sNet:"Nem sikerült elérni az Open-Meteo-t. Ha a fájlt a Claude előnézetében nyitottad meg, az tiltja a külső kéréseket: töltsd le és nyisd meg a böngészőben. Ha letöltve sem megy, reklámblokkoló / pajzs tiltja az api.open-meteo.com-ot, vagy nincs net. A Beillesztés mód mindig működik."},
+ en:{appTitle:"FLYwithMIKI Emagram Analyzer v1.0",appSub:"cloud base . CAPE . thermals . overdevelopment",srcHead:"Data source",
+   tabFetch:"Fetch (Open-Meteo)",tabPaste:"Paste",loc:"Location",lat:"Latitude",lon:"Longitude",
+   date:"Date",hour:"Hour (local)",model:"Model",mapHint:"Click the map or pick a location.",
+   mdlBest:"Best match (auto, recommended)",mdlIcon:"ICON (DWD, good for Alps)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
+   btnFetch:"Fetch and analyze",fetchHint:"Free, no key (open-meteo.com). Open the downloaded file in a browser.",
+   pasteLabel:"Sounding table (p, height, T, Td, [wind dir, knots])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
+   btnParse:"Analyze pasted data",btnDemo:"Load Payerne example",
+   pasteHint:"Columns: pressure, height (m), T, dew point, [wind dir, knots]. Header and missing rows are skipped.",
+   resHead:"Result",empty:"Load or paste data.",
+   legT:"Temperature",legTd:"Dew point",legParcel:"Parcel path",legCloud:"Cloud",
+   kCloudBase:"Cloud base (LCL)",kDryTop:"Dry thermal top",kCloudTop:"Cloud top (EL)",kCloudDepth:"Cloud depth",
+   kZero:"0 °C level",kCape:"CAPE",kCin:"CIN (cap)",kTrigger:"Trigger temp",kLfc:"LFC",
+   amsl:"AMSL",agl:"AGL",open:"open",sfcWord:"surface",
+   vOver:"Overdevelopment",vStorm:"Thunderstorm",
+   ovNone:"None",ovBlue:"None (blue)",ovLow:"Moderate",ovMod:"Likely",ovHigh:"Strong",
+   stNo:"No",stLow:"Low chance",stMod:"Possible",stHigh:"Likely",
+   canDryTop:"DRY THERMAL TOP",canCloudBase:"CLOUD BASE",
+   nBlue:"Thermals top out below cloud base: blue thermal day, no cumulus.",
+   nCap:"Weak cap (~{gap} m) between dry thermal top and cloud base. A strong day breaks through, then deep development.",
+   nTrigOk:"Trigger (convective) temperature {tc} °C. Surface now {sf} °C (reached, convection initiates).",
+   nTrigNo:"Trigger (convective) temperature {tc} °C. Surface now {sf} °C ({d} °C still needed).",
+   nEl:"The parcel stays warmer to the top of the data: no equilibrium level, deep convection possible.",
+   nDry:"Dry mid levels: risk of strong outflow / gust front if it develops.",
+   sReady:"Done.",sFetch:"Fetching.",sData:"Data: {t} . ground {z} m",sNoDate:"Pick a date.",
+   sFew:"Too few valid levels to analyze.",sErr:"Error: ",
+   sNet:"Could not reach Open-Meteo. If you opened the file in the Claude preview, it blocks external requests: download it and open in a browser. If it still fails, an ad blocker / shield is blocking api.open-meteo.com, or there is no network. Paste mode always works."},
+ de:{appTitle:"FLYwithMIKI - Emagramm-Analyse v1.0",appSub:"Wolkenbasis . CAPE . Thermik . Überentwicklung",srcHead:"Datenquelle",
+   tabFetch:"Abruf (Open-Meteo)",tabPaste:"Einfügen",loc:"Standort",lat:"Breite",lon:"Länge",
+   date:"Datum",hour:"Stunde (lokal)",model:"Modell",mapHint:"Auf die Karte klicken oder Standort wählen.",
+   mdlBest:"Best match (auto, empfohlen)",mdlIcon:"ICON (DWD, gut für Alpen)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
+   btnFetch:"Abrufen und analysieren",fetchHint:"Kostenlos, ohne Schlüssel (open-meteo.com). Heruntergeladene Datei im Browser öffnen.",
+   pasteLabel:"Radiosonden-Tabelle (p, Höhe, T, Td, [Windrichtung, Knoten])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
+   btnParse:"Eingefügte Daten analysieren",btnDemo:"Payerne-Beispiel laden",
+   pasteHint:"Spalten: Druck, Höhe (m), T, Taupunkt, [Windrichtung, Knoten]. Kopf- und fehlende Zeilen werden ignoriert.",
+   resHead:"Ergebnis",empty:"Daten laden oder einfügen.",
+   legT:"Temperatur",legTd:"Taupunkt",legParcel:"Paketkurve",legCloud:"Wolke",
+   kCloudBase:"Wolkenbasis (LCL)",kDryTop:"Thermikobergrenze (trocken)",kCloudTop:"Wolkenobergrenze (EL)",kCloudDepth:"Wolkenmächtigkeit",
+   kZero:"0 °C-Niveau",kCape:"CAPE",kCin:"CIN (Sperre)",kTrigger:"Auslösetemp.",kLfc:"LFC",
+   amsl:"üNN",agl:"üGrnd",open:"offen",sfcWord:"Boden",
+   vOver:"Überentwicklung",vStorm:"Gewitter",
+   ovNone:"Keine",ovBlue:"Keine (blau)",ovLow:"Mäßig",ovMod:"Wahrscheinlich",ovHigh:"Stark",
+   stNo:"Nein",stLow:"Geringe Chance",stMod:"Möglich",stHigh:"Wahrscheinlich",
+   canDryTop:"THERMIKOBERGRENZE",canCloudBase:"WOLKENBASIS",
+   nBlue:"Thermik endet unter der Wolkenbasis: blauer Thermiktag, keine Cumulus.",
+   nCap:"Schwache Sperrschicht (~{gap} m) zwischen Thermikobergrenze und Wolkenbasis. Ein starker Tag durchbricht sie, danach tiefe Entwicklung.",
+   nTrigOk:"Auslöse- (Konvektions-) Temperatur {tc} °C. Boden jetzt {sf} °C (erreicht, Konvektion startet).",
+   nTrigNo:"Auslöse- (Konvektions-) Temperatur {tc} °C. Boden jetzt {sf} °C (noch {d} °C nötig).",
+   nEl:"Das Paket bleibt bis zum oberen Datenrand wärmer: kein Gleichgewichtsniveau, tiefe Konvektion möglich.",
+   nDry:"Trockene Mittelschichten: Risiko starker Böenfront / Abwinde bei Entwicklung.",
+   sReady:"Fertig.",sFetch:"Lädt.",sData:"Daten: {t} . Boden {z} m",sNoDate:"Datum wählen.",
+   sFew:"Zu wenige gültige Niveaus für die Analyse.",sErr:"Fehler: ",
+   sNet:"Open-Meteo nicht erreichbar. Wenn die Datei in der Claude-Vorschau geöffnet wurde, blockiert diese externe Anfragen: herunterladen und im Browser öffnen. Wenn es weiterhin scheitert, blockiert ein Adblocker / Schutzschild api.open-meteo.com, oder es gibt kein Netz. Einfügen-Modus funktioniert immer."}
+};
+let lang='en';
+function t(k,vals){let s=(I18N[lang]&&I18N[lang][k])??I18N.en[k]??k;
+  if(vals)for(const p in vals)s=s.split('{'+p+'}').join(vals[p]);return s;}
+
+// ===== locations (Central Switzerland + classics + Payerne) =====
+const LOCS=[
+ {n:"Kriens / Luzern (FLYwithMIKI)",lat:47.03,lon:8.28},
+ {n:"Wolfenschiessen",lat:46.905,lon:8.402},
+ {n:"Engelberg (Brunni)",lat:46.821,lon:8.405},
+ {n:"Klewenalp (Beckenried)",lat:46.945,lon:8.497},
+ {n:"Niederbauen (Emmetten)",lat:46.935,lon:8.560},
+ {n:"Stanserhorn",lat:46.922,lon:8.339},
+ {n:"Pilatus",lat:46.979,lon:8.252},
+ {n:"Brienzer Rothorn",lat:46.787,lon:8.045},
+ {n:"Niederhorn (Beatenberg)",lat:46.700,lon:7.800},
+ {n:"Grindelwald (First)",lat:46.659,lon:8.057},
+ {n:"Fiesch / Eggishorn",lat:46.423,lon:8.133},
+ {n:"Verbier (La Chaux)",lat:46.096,lon:7.228},
+ {n:"Flumserberg (Walenstadt)",lat:47.090,lon:9.281},
+ {n:"Payerne (szonda állomás)",lat:46.811,lon:6.942}
+];
+
+// ===================== THERMODYNAMICS =====================
+const Rd=287.04,cp=1005.7,kappa=Rd/cp,Lv=2.501e6,eps=0.62198,g=9.80665,K=273.15;
+const es=Tc=>6.112*Math.exp(17.67*Tc/(Tc+243.5));
+const ws=(Tc,p)=>{const e=es(Tc);return eps*e/(p-e);};
+const TdFromRH=(Tc,rh)=>{const e=es(Tc)*Math.max(rh,1e-3)/100;const l=Math.log(e/6.112);return 243.5*l/(17.67-l);};
+const TcFromEs=e=>{const l=Math.log(e/6.112);return 243.5*l/(17.67-l);};
+function zAtP(L,p){for(let i=0;i<L.length-1;i++){if(p<=L[i].p&&p>=L[i+1].p){const f=(L[i].p-p)/(L[i].p-L[i+1].p);return L[i].z+f*(L[i+1].z-L[i].z);}}return p>L[0].p?L[0].z:L[L.length-1].z;}
+function pAtZ(L,z){if(z<=L[0].z)return L[0].p;for(let i=0;i<L.length-1;i++){if(z>=L[i].z&&z<=L[i+1].z){const f=(z-L[i].z)/(L[i+1].z-L[i].z);return L[i].p+f*(L[i+1].p-L[i].p);}}return L[L.length-1].p;}
+function moistDTdp(Tk,p){const Tc=Tk-K;const r=ws(Tc,p);return (Rd*Tk+Lv*r)/(p*(cp+(Lv*Lv*r*eps)/(Rd*Tk*Tk)));}
+function parcelProfile(L){
+  const p0=L[0].p,T0=L[0].T,Td0=L[0].Td,Tk0=T0+K,Tdk0=Td0+K;
+  const Tlcl=1/(1/(Tdk0-56)+Math.log(Tk0/Tdk0)/800)+56;
+  const pLcl=p0*Math.pow(Tlcl/Tk0,1/kappa);
+  const theta=Tk0*Math.pow(1000/p0,kappa);
+  const pTop=L[L.length-1].p;let p=p0,Tk=Tk0;const prof=[{p:p0,Tc:T0}];const step=1;
+  while(p-step>pTop){let pn=p-step,pc=p;
+    if(pn>=pLcl){Tk=theta*Math.pow(pn/1000,kappa);}
+    else{if(p>=pLcl&&pn<pLcl){Tk=theta*Math.pow(pLcl/1000,kappa);pc=pLcl;}
+      const dp=pn-pc,k1=moistDTdp(Tk,pc),k2=moistDTdp(Tk+k1*dp,pn);Tk=Tk+0.5*(k1+k2)*dp;}
+    p=pn;prof.push({p,Tc:Tk-K});}
+  const Tp=L.map(l=>{for(let i=0;i<prof.length-1;i++){if(l.p<=prof[i].p&&l.p>=prof[i+1].p){const f=(prof[i].p-l.p)/(prof[i].p-prof[i+1].p);return prof[i].Tc+f*(prof[i+1].Tc-prof[i].Tc);}}return prof[prof.length-1].Tc;});
+  return {Tp,pLcl,zLcl:zAtP(L,pLcl)};
+}
+function analyze(L){
+  const {Tp,pLcl,zLcl}=parcelProfile(L);const n=L.length;
+  const buoy=L.map((l,i)=>Tp[i]-l.T);
+  let iLcl=n-1;for(let i=0;i<n;i++){if(L[i].p<=pLcl){iLcl=i;break;}}
+  let iLfc=-1;for(let i=iLcl;i<n;i++){if(buoy[i]>0){iLfc=i;break;}}
+  let iEl=-1;if(iLfc>=0)for(let i=iLfc+1;i<n;i++){if(buoy[i]<0){iEl=i;break;}}
+  let cape=0,cin=0;
+  for(let i=0;i<n-1;i++){const dz=L[i+1].z-L[i].z;
+    const b=0.5*(g*buoy[i]/(L[i].T+K)+g*buoy[i+1]/(L[i+1].T+K));
+    const aboveLfc=iLfc>=0&&i>=iLfc&&(iEl<0||i<iEl);
+    if(aboveLfc&&b>0)cape+=b*dz;if(i<(iLfc<0?n:iLfc)&&b<0)cin+=b*dz;}
+  const p0=L[0].p,theta=(L[0].T+K)*Math.pow(1000/p0,kappa),dryT=p=>theta*Math.pow(p/1000,kappa)-K;
+  let zDry=null;for(let i=0;i<n-1;i++){const d0=dryT(L[i].p)-L[i].T,d1=dryT(L[i+1].p)-L[i+1].T;if(d0>0&&d1<=0){const f=d0/(d0-d1);zDry=L[i].z+f*(L[i+1].z-L[i].z);break;}}
+  let z0=null;for(let i=0;i<n-1;i++){if(L[i].T>=0&&L[i+1].T<0){const f=L[i].T/(L[i].T-L[i+1].T);z0=L[i].z+f*(L[i+1].z-L[i].z);break;}}
+  const w0=ws(L[0].Td,p0),Tw=p=>{const e=w0*p/(eps+w0);return TcFromEs(e);};
+  let pCcl=null;for(let i=0;i<n-1;i++){const d0=L[i].T-Tw(L[i].p),d1=L[i+1].T-Tw(L[i+1].p);if(d0>0&&d1<=0){const f=d0/(d0-d1);pCcl=L[i].p+f*(L[i+1].p-L[i].p);break;}}
+  let Tconv=null;if(pCcl){const Tc=Tw(pCcl);Tconv=(Tc+K)*Math.pow(p0/pCcl,kappa)-K;}
+  const zEl=iEl>=0?L[iEl].z:L[n-1].z,elOpen=iEl<0;
+  return {Tp,pLcl,zLcl,cape,cin,zLfc:iLfc>=0?L[iLfc].z:null,zEl,elOpen,
+    elT:iEl>=0?L[iEl].T:L[n-1].T,zDry,z0,Tconv,cloudDepth:zEl-zLcl,
+    cloudForms:(zDry!==null&&zDry>=zLcl-150)||(iLfc>=0&&cape>50)};
+}
+
+// ===================== PARSING =====================
+function parseSounding(text){const out=[];
+  text.split(/\r?\n/).forEach(line=>{const tt=line.trim();if(!tt)return;
+    const x=tt.split(/[\s,;]+/).map(Number);if(x.length<4)return;if(x.slice(0,4).some(v=>!isFinite(v)))return;
+    const[p,z,T,Td]=x;if(p<150||p>1100)return;if(T>=9000||Td>=9000)return;if(Math.abs(T)>90||Math.abs(Td)>90)return;
+    const o={p,z,T,Td:Math.min(Td,T)};if(x.length>=6&&isFinite(x[4])&&isFinite(x[5])&&x[4]<999){o.dir=x[4];o.spd=x[5];}out.push(o);});
+  out.sort((a,b)=>b.p-a.p);const seen=new Set(),res=[];
+  for(const o of out){const k=Math.round(o.p);if(seen.has(k))continue;seen.add(k);res.push(o);}return res;}
+
+// ===================== OPEN-METEO =====================
+const PLEVELS=[1000,975,950,925,900,850,800,700,600,500,400,300,250,200,150];
+async function fetchOpenMeteo(lat,lon,date,hour,model){
+  const vars=[];PLEVELS.forEach(Lv2=>vars.push(`temperature_${Lv2}hPa`,`relative_humidity_${Lv2}hPa`,`wind_speed_${Lv2}hPa`,`wind_direction_${Lv2}hPa`,`geopotential_height_${Lv2}hPa`));
+  const sfc=['temperature_2m','dew_point_2m','surface_pressure','wind_speed_10m','wind_direction_10m'];
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=${[...sfc,...vars].join(',')}&models=${model}&wind_speed_unit=kn&timezone=auto&forecast_days=7`;
+  const ctrl=new AbortController(),to=setTimeout(()=>ctrl.abort(),15000);let r;
+  try{r=await fetch(url,{signal:ctrl.signal});}finally{clearTimeout(to);}
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const j=await r.json();if(j.error)throw new Error(j.reason||'API error');
+  const H=j.hourly;if(!H||!H.time)throw new Error('No hourly data.');
+  const want=`${date}T${String(hour).padStart(2,'0')}:00`;let idx=H.time.indexOf(want);
+  if(idx<0){const tgt=new Date(want).getTime();let best=1e18;H.time.forEach((tm,i)=>{const d=Math.abs(new Date(tm).getTime()-tgt);if(d<best){best=d;idx=i;}});}
+  const elev=j.elevation??0,get=k=>H[k]?H[k][idx]:null,levels=[];
+  const sp=get('surface_pressure'),st=get('temperature_2m'),sd=get('dew_point_2m');
+  if(sp!=null&&st!=null)levels.push({p:sp,z:elev,T:st,Td:sd!=null?sd:st-3,dir:get('wind_direction_10m'),spd:get('wind_speed_10m')});
+  PLEVELS.forEach(Lv2=>{const T=get(`temperature_${Lv2}hPa`),rh=get(`relative_humidity_${Lv2}hPa`),gz=get(`geopotential_height_${Lv2}hPa`),wd=get(`wind_direction_${Lv2}hPa`),wsp=get(`wind_speed_${Lv2}hPa`);
+    if(T==null||gz==null)return;if(gz<=elev+5)return;levels.push({p:Lv2,z:gz,T,Td:rh!=null?TdFromRH(T,rh):T-5,dir:wd,spd:wsp});});
+  levels.sort((a,b)=>b.p-a.p);const seen=new Set(),res=[];
+  for(const o of levels){const k=Math.round(o.p);if(seen.has(k))continue;seen.add(k);res.push(o);}
+  if(res.length<4)throw new Error('No pressure levels for this point. Try another model (ICON or GFS).');
+  return {levels:res,used:H.time[idx],elev};
+}
+
+// ===================== DRAW =====================
+const cv=document.getElementById('chart'),ctx=cv.getContext('2d');
+function setupCanvas(w,h){const dpr=Math.min(window.devicePixelRatio||1,2);cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);}
+function draw(L,A){
+  const cssW=Math.min(cv.parentElement.clientWidth-2,720),W=cssW,Hh=Math.round(cssW*1.25);setupCanvas(W,Hh);
+  ctx.clearRect(0,0,W,Hh);
+  const mL=46,mR=58,mT=22,mB=34,plotW=W-mL-mR,plotH=Hh-mT-mB;
+  const zMin=L[0].z,zMax=L[L.length-1].z;let tmin=99,tmax=-99;
+  L.forEach((l,i)=>{tmin=Math.min(tmin,l.T,l.Td);tmax=Math.max(tmax,l.T,A.Tp[i]);});
+  tmin=Math.floor((tmin-2)/5)*5;tmax=Math.ceil((tmax+2)/5)*5;
+  const X=T=>mL+(T-tmin)/(tmax-tmin)*plotW,Y=z=>mT+plotH-(z-zMin)/(zMax-zMin)*plotH;
+  const clip=()=>{ctx.save();ctx.beginPath();ctx.rect(mL,mT,plotW,plotH);ctx.clip();};
+  ctx.fillStyle='#10151c';ctx.fillRect(mL,mT,plotW,plotH);
+  ctx.font='10px ui-monospace,monospace';
+  for(let T=Math.ceil(tmin/10)*10;T<=tmax;T+=10){const x=X(T);ctx.strokeStyle=(T===0)?'#3b4a5a':'#1d2630';ctx.lineWidth=(T===0)?1.4:1;
+    ctx.beginPath();ctx.moveTo(x,mT);ctx.lineTo(x,mT+plotH);ctx.stroke();ctx.fillStyle='#5b6b7a';ctx.textAlign='center';ctx.fillText(T+'°',x,mT+plotH+14);}
+  ctx.textAlign='right';
+  for(let z=Math.ceil(zMin/1000)*1000;z<=zMax;z+=1000){const y=Y(z);ctx.strokeStyle='#1a222c';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(mL,y);ctx.lineTo(mL+plotW,y);ctx.stroke();ctx.fillStyle='#5b6b7a';ctx.fillText((z/1000)+'km',mL-6,y+3);}
+  ctx.textAlign='left';
+  [900,850,800,700,600,500,400,300].forEach(P=>{if(P>L[0].p||P<L[L.length-1].p)return;const y=Y(zAtP(L,P));ctx.fillStyle='#46545f';ctx.fillText(P,mL+plotW+6,y+3);});
+  clip();ctx.strokeStyle='rgba(255,150,80,.12)';ctx.lineWidth=1;
+  for(let th=270;th<=330;th+=5){ctx.beginPath();let f=true;for(let z=zMin;z<=zMax;z+=120){const p=pAtZ(L,z),Tc=th*Math.pow(p/1000,kappa)-K,x=X(Tc),y=Y(z);if(f){ctx.moveTo(x,y);f=false;}else ctx.lineTo(x,y);}ctx.stroke();}
+  ctx.strokeStyle='rgba(90,160,255,.13)';
+  for(let Tb=-10;Tb<=30;Tb+=10){const p0=L[0].p;let Tk=Tb+K;ctx.beginPath();let f=true;for(let p=p0;p>=L[L.length-1].p;p-=4){const z=zAtP(L,p),x=X(Tk-K),y=Y(z);if(f){ctx.moveTo(x,y);f=false;}else ctx.lineTo(x,y);const k1=moistDTdp(Tk,p),k2=moistDTdp(Tk-k1*4,p-4);Tk=Tk-0.5*(k1+k2)*4;}ctx.stroke();}
+  ctx.restore();
+  clip();
+  for(let i=0;i<L.length-1;i++){const w0=A.Tp[i]>L[i].T,w1=A.Tp[i+1]>L[i+1].T;if(w0||w1){const ab=L[i].p<=A.pLcl+1;ctx.fillStyle=ab?'rgba(255,93,93,.18)':'rgba(255,210,63,.10)';
+    ctx.beginPath();ctx.moveTo(X(L[i].T),Y(L[i].z));ctx.lineTo(X(A.Tp[i]),Y(L[i].z));ctx.lineTo(X(A.Tp[i+1]),Y(L[i+1].z));ctx.lineTo(X(L[i+1].T),Y(L[i+1].z));ctx.closePath();ctx.fill();}}
+  ctx.restore();
+  if(A.cloudForms&&A.cloudDepth>250){clip();
+    const idx=L.findIndex(l=>l.p<=A.pLcl);const baseX=Math.min(Math.max(X(A.Tp[idx<0?L.length-1:idx])-6,mL+plotW*0.45),mL+plotW-70);
+    const yb=Y(A.zLcl),yt=Y(A.zEl),deep=A.cloudDepth>4500&&(A.elOpen||A.elT<-12);
+    ctx.fillStyle='rgba(225,232,240,.85)';let y=yb;
+    while(y>yt+8){const tt=(yb-y)/(yb-yt),r=10+8*Math.sin(tt*Math.PI);ctx.beginPath();ctx.ellipse(baseX,y,22*(0.7+0.4*Math.sin(tt*3)),r,0,0,7);ctx.fill();y-=16;}
+    if(deep){ctx.fillStyle='rgba(235,240,247,.7)';ctx.beginPath();ctx.ellipse(baseX,yt+6,42,9,0,0,7);ctx.fill();ctx.fillStyle='rgba(120,140,160,.5)';ctx.beginPath();ctx.ellipse(baseX,yb,24,7,0,0,7);ctx.fill();}
+    ctx.restore();}
+  function series(key,color,w,dash){clip();ctx.strokeStyle=color;ctx.lineWidth=w;ctx.setLineDash(dash||[]);ctx.beginPath();let f=true;
+    L.forEach((l,i)=>{const v=(key==='Tp')?A.Tp[i]:l[key],x=X(v),y=Y(l.z);if(f){ctx.moveTo(x,y);f=false;}else ctx.lineTo(x,y);});ctx.stroke();ctx.setLineDash([]);ctx.restore();}
+  series('Td','#39c46e',2.2);series('Tp','#ffd23f',1.8,[6,4]);series('T','#ff5d5d',2.6);
+  function hline(z,color,label,align){if(z==null)return;const y=Y(z);ctx.strokeStyle=color;ctx.lineWidth=1.2;ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(mL,y);ctx.lineTo(mL+plotW,y);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=color;ctx.font='bold 10px ui-monospace,monospace';ctx.textAlign=align;
+    ctx.fillText(label,align==='right'?mL+plotW-4:mL+4,y-3);}
+  hline(A.zDry,'#ff9b3d',t('canDryTop')+' '+Math.round(A.zDry)+' m','left');
+  hline(A.zLcl,'#34c8e0',t('canCloudBase')+' '+Math.round(A.zLcl)+' m','right');
+  if(L.some(l=>l.spd!=null)){const bx=mL+plotW+30;L.forEach((l,i)=>{if(l.spd==null)return;if(i%2&&i!==L.length-1)return;drawBarb(bx,Y(l.z),l.dir||0,l.spd);});}
+}
+function drawBarb(x,y,dir,spd){ctx.save();ctx.translate(x,y);ctx.rotate((dir+180)*Math.PI/180);
+  ctx.strokeStyle='#7d8b99';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,-18);ctx.stroke();
+  let s=Math.round(spd/5)*5,yy=-18;
+  while(s>=50){ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(6,yy+3);ctx.lineTo(0,yy+6);ctx.closePath();ctx.fillStyle='#7d8b99';ctx.fill();s-=50;yy+=6;}
+  while(s>=10){ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(7,yy-3);ctx.stroke();s-=10;yy+=3.5;}
+  if(s>=5){ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(4,yy-1.5);ctx.stroke();}ctx.restore();}
+
+// ===================== RESULTS =====================
+function buildResults(L,A){
+  const sfc=L[0],agl=z=>z==null?'.':Math.round(z-sfc.z)+' m',f0=v=>v==null?'.':Math.round(v);
+  let ov={c:'none',l:t('ovNone')},zv={c:'none',l:t('stNo')};
+  if(A.cloudForms){
+    if(A.cloudDepth>4500&&A.cape>800)ov={c:'high',l:t('ovHigh')};
+    else if(A.cloudDepth>2500&&A.cape>300)ov={c:'mod',l:t('ovMod')};
+    else if(A.cloudDepth>1500)ov={c:'low',l:t('ovLow')};
+    const cold=A.elOpen||A.elT<-12;
+    if(A.cloudDepth>5000&&A.cape>700&&cold)zv={c:'high',l:t('stHigh')};
+    else if(A.cloudDepth>4000&&A.cape>400&&cold)zv={c:'mod',l:t('stMod')};
+    else if(A.cloudDepth>3000&&A.cape>250)zv={c:'low',l:t('stLow')};
+  }else ov={c:'none',l:t('ovBlue')};
+  const notes=[];
+  if(!A.cloudForms)notes.push(t('nBlue'));
+  else if(A.zDry!==null&&A.zDry<A.zLcl-50)notes.push(t('nCap',{gap:Math.round(A.zLcl-A.zDry)}));
+  if(A.Tconv!=null){const d=A.Tconv-sfc.T;notes.push(d<=0?t('nTrigOk',{tc:A.Tconv.toFixed(1),sf:sfc.T.toFixed(1)}):t('nTrigNo',{tc:A.Tconv.toFixed(1),sf:sfc.T.toFixed(1),d:d.toFixed(1)}));}
+  if(A.elOpen)notes.push(t('nEl'));
+  if(A.cloudForms){let dm=false;for(const l of L){if(l.p<650&&l.p>450&&(l.T-l.Td)>15){dm=true;break;}}if(dm)notes.push(t('nDry'));}
+  document.getElementById('results').innerHTML=`
+   <div class="card">
+    <div class="kv"><span class="k">${t('kCloudBase')}</span><span class="v">${f0(A.zLcl)} m<small> ${t('amsl')} . ${agl(A.zLcl)} ${t('agl')}</small></span></div>
+    <div class="kv"><span class="k">${t('kDryTop')}</span><span class="v">${f0(A.zDry)} m</span></div>
+    <div class="kv"><span class="k">${t('kCloudTop')}</span><span class="v">${A.elOpen?'>':''}${f0(A.zEl)} m<small> ${A.elOpen?t('open'):''}</small></span></div>
+    <div class="kv"><span class="k">${t('kCloudDepth')}</span><span class="v">${f0(A.cloudDepth)} m</span></div>
+    <div class="kv"><span class="k">${t('kZero')}</span><span class="v">${f0(A.z0)} m</span></div>
+   </div>
+   <div class="card">
+    <div class="kv"><span class="k">${t('kCape')}</span><span class="v">${f0(A.cape)}<small> J/kg</small></span></div>
+    <div class="kv"><span class="k">${t('kCin')}</span><span class="v">${f0(A.cin)}<small> J/kg</small></span></div>
+    <div class="kv"><span class="k">${t('kTrigger')}</span><span class="v">${A.Tconv!=null?A.Tconv.toFixed(1):'.'}<small> °C</small></span></div>
+    <div class="kv"><span class="k">${t('kLfc')}</span><span class="v">${f0(A.zLfc)} m</span></div>
+   </div>
+   <div class="card">
+    <div class="verdict"><div class="t">${t('vOver')}</div><span class="chip ${ov.c}">${ov.l}</span></div>
+    <div class="verdict"><div class="t">${t('vStorm')}</div><span class="chip ${zv.c}">${zv.l}</span></div>
+    ${notes.map(n=>`<div class="note">. ${n}</div>`).join('')}
+   </div>`;
+}
+
+// ===================== GLUE =====================
+const $=id=>document.getElementById(id);
+function setStatus(m,c){const s=$('status');s.textContent=m;s.style.color=c||'var(--dim)';}
+function run(L,title){
+  if(!L||L.length<4){setStatus(t('sFew'),'var(--bad)');return;}
+  const A=analyze(L);draw(L,A);buildResults(L,A);
+  $('metaTitle').textContent=title||'';
+  $('metaSfc').textContent=`${t('sfcWord')} ${L[0].T.toFixed(1)}/${L[0].Td.toFixed(1)}°C @ ${Math.round(L[0].z)} m`;
+  setStatus(t('sReady'),'var(--good)');window._cur={levels:L,title};
+}
+function render(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>el.placeholder=t(el.dataset.i18nPh));
+  $('optBest').textContent=t('mdlBest');$('optIcon').textContent=t('mdlIcon');$('optEcmwf').textContent=t('mdlEcmwf');$('optGfs').textContent=t('mdlGfs');$('optArome').textContent=t('mdlArome');
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+  if(window._cur)run(window._cur.levels,window._cur.title);
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;render();});
+
+$('tabFetch').onclick=()=>{$('tabFetch').classList.add('on');$('tabPaste').classList.remove('on');$('panelFetch').style.display='';$('panelPaste').style.display='none';if(window._map)setTimeout(()=>window._map.invalidateSize(),60);};
+$('tabPaste').onclick=()=>{$('tabPaste').classList.add('on');$('tabFetch').classList.remove('on');$('panelPaste').style.display='';$('panelFetch').style.display='none';};
+$('parseBtn').onclick=()=>run(parseSounding($('raw').value),'paste');
+$('demoBtn').onclick=()=>{$('raw').value=DEMO;run(parseSounding(DEMO),'Payerne 27-06-2026 12Z');};
+$('fetchBtn').onclick=async()=>{try{
+  setStatus(t('sFetch'),'var(--cyan)');
+  const lat=parseFloat($('lat').value),lon=parseFloat($('lon').value),date=$('date').value,hour=$('hour').value,model=$('model').value;
+  if(!date){setStatus(t('sNoDate'),'var(--bad)');return;}
+  const {levels,used,elev}=await fetchOpenMeteo(lat,lon,date,hour,model);
+  setStatus(t('sData',{t:used,z:Math.round(elev)}),'var(--good)');
+  run(levels,`${lat.toFixed(2)},${lon.toFixed(2)} . ${used} . ${model}`);
+}catch(e){const net=(e&&e.name==='TypeError')||/failed to fetch|networkerror|load failed|aborted/i.test(e.message||'');
+  setStatus(net?t('sNet'):t('sErr')+e.message,'var(--bad)');}};
+
+// presets dropdown
+const locSel=$('loc');LOCS.forEach((o,i)=>{const op=document.createElement('option');op.value=i;op.textContent=o.n;locSel.appendChild(op);});
+function setPoint(lat,lon,recenter){lat=+(+lat).toFixed(4);lon=+(+lon).toFixed(4);$('lat').value=lat;$('lon').value=lon;
+  if(window._marker){window._marker.setLatLng([lat,lon]);if(recenter&&window._map)window._map.setView([lat,lon],11);}}
+locSel.onchange=()=>{const o=LOCS[+locSel.value];setPoint(o.lat,o.lon,true);};
+$('lat').onchange=$('lon').onchange=()=>{const la=parseFloat($('lat').value),lo=parseFloat($('lon').value);if(isFinite(la)&&isFinite(lo)&&window._marker)window._marker.setLatLng([la,lo]);};
+
+// map (guarded)
+function initMap(){if(typeof L==='undefined'){$('map').style.display='none';return;}
+  try{const m=L.map('map',{attributionControl:false,zoomControl:true}).setView([47.03,8.28],8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:15}).addTo(m);
+    const mk=L.circleMarker([47.03,8.28],{radius:7,color:'#ffb02e',weight:2,fillColor:'#ffb02e',fillOpacity:.6}).addTo(m);
+    m.on('click',e=>setPoint(e.latlng.lat,e.latlng.lng,false));
+    window._map=m;window._marker=mk;}catch(e){$('map').style.display='none';}}
+
+// default date tomorrow
+(function(){const d=new Date();d.setDate(d.getDate()+1);$('date').value=d.toISOString().slice(0,10);})();
+// URL params: ?lat=&lon=&date=&hour=&model=&lang=  -> auto fetch+analyze (used by the dashboard deep-link)
+(function(){const q=new URLSearchParams(location.search);if(![...q.keys()].length)return;
+  if(q.get('lang')&&I18N[q.get('lang')])lang=q.get('lang');
+  if(q.get('lat'))$('lat').value=q.get('lat');
+  if(q.get('lon'))$('lon').value=q.get('lon');
+  if(q.get('date'))$('date').value=q.get('date');
+  if(q.get('hour')){const h=q.get('hour');[...$('hour').options].forEach(o=>{if(o.value===h)o.selected=true;});}
+  if(q.get('model')){[...$('model').options].forEach(o=>{if(o.value===q.get('model'))o.selected=true;});}
+  // ensure fetch tab is active, then auto-run after map/render ready
+  setTimeout(()=>{document.getElementById('tabFetch').click();document.getElementById('fetchBtn').click();},120);
+})();
+window.addEventListener('resize',()=>{if(window._cur)draw(window._cur.levels,analyze(window._cur.levels));});
+
+const DEMO=`962 491 35.4 14.2 311 4
+925 849 29.4 12.2 279 4
+850 1594 22.4 11.4 241 8
+804 2074 17.7 10.4 224 7
+753 2625 13.6 8.6 240 3
+724 2961 11.9 -0.2 200 9
+700 3243 9.3 3.9 227 11
+655 3781 5.3 0.0 181 10
+622 4198 2.3 -4.9 175 15
+598 4524 0.4 -8.6 177 15
+578 4789 -0.8 -18.6 183 10
+557 5084 -3.1 -11.3 179 15
+526 5530 -5.7 -17.1 160 10
+500 5939 -8.5 -20.3 194 6
+400 7629 -20.6 -43.2 350 4
+300 9685 -37.2 -54.5 301 6`;
+
+render();initMap();
+</script>
+</body>
+</html>
