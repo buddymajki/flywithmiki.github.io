@@ -95,6 +95,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/agb.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/agb.html"/>
   </url>
+  <url>
+    <loc>https://flywithmiki.com/emagram.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <priority>0.30</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/emagram.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/emagram.html"/>
+  </url>
+  
 
   <!-- ======================= GERMAN ======================= -->
   <url>
@@ -117,5 +125,6 @@
   <url><loc>https://flywithmiki.com/de/links.html</loc><lastmod>2026-06-08</lastmod><priority>0.35</priority></url>
   <url><loc>https://flywithmiki.com/de/shv-calc.html</loc><lastmod>2026-06-08</lastmod><priority>0.35</priority></url>
   <url><loc>https://flywithmiki.com/de/agb.html</loc><lastmod>2026-06-08</lastmod><priority>0.25</priority></url>
+  <url><loc>https://flywithmiki.com/de/emagram.html</loc><lastmod>2026-06-08</lastmod><priority>0.25</priority></url>  
 
 </urlset>
