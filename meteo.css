@@ -168,7 +168,7 @@
             .mySlides {display:none;} /* slideshowhoz kell */
 
  
-            //Prediction
+            /* Prediction */
             .forecast-container {
               display: flex;
               justify-content: space-between;
@@ -186,7 +186,7 @@
               margin: auto;
              padding-top: 20px;
              }
-    //Prediction
+    /* Prediction */
 
 /* ---- sticky day selector (meteo.html Part 1) ---- */
 .days.sticky{position:sticky;top:0;z-index:30;background:var(--bg);padding-top:10px;padding-bottom:8px;margin:0 -4px;padding-left:4px;padding-right:4px}

@@ -278,18 +278,11 @@ function renderForecastPanel(){
   pill.style.display="";pill.className="pill go";pill.textContent="connected";
   const tabs=`<div class="fc-tabs">${REGION_KEYS.map((k,i)=>TEXT.regions[k]?`<button data-r="${i}" class="${i===fcRegion?'on':''}">${REGION_SHORT[i]}</button>`:"").join("")}</div>`;
   const key=REGION_KEYS[fcRegion];const txt=TEXT.regions[key]||"";
-  // dedicated day selector for the bulletin: pick a day, see only that day's original text
+  // the shown day follows the sticky selector at the top (one source of truth)
   const blocks=dayBlocks(txt);
   const todayDow=DOW_DE[new Date().getDay()];
   let anchor=blocks.findIndex(b=>b.dow===todayDow);if(anchor<0)anchor=0;
-  const nDays=blocks.length-anchor;
-  if(!fcSelTouched)fcSel=Math.min(sel,Math.max(0,nDays-1));
-  if(fcSel>=nDays)fcSel=Math.max(0,nDays-1);
-  const dayTabs=nDays>0?`<div class="fc-days">${blocks.slice(anchor).map((bl,i)=>{
-    const d=new Date();d.setDate(d.getDate()+i);
-    const lbl=d.toLocaleDateString("en-GB",{weekday:"short"})+" "+String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0");
-    return `<button data-d="${i}" class="${i===fcSel?'on':''}">${lbl}</button>`;}).join("")}</div>`:"";
-  const b=blocks[anchor+fcSel];
+  const b=blocks[anchor+sel];
   const dayBox=b?`<div class="fc-day"><div class="fc-day-h">${escapeHtml(b.label)}</div><div>${highlight(b.body||"")}</div></div>
     <div class="fc-day" id="fcEnBox" style="display:none;background:#f2fbf7;border-color:#cdecdc"><div class="fc-day-h" style="color:#2c7a55">English (auto-translated)</div><div id="fcEnTxt"></div></div>`
     :`<div class="fc-day"><div class="fc-day-h">No text for this day</div><div style="color:var(--dim)">The bulletin does not reach this far ahead.</div></div>`;
@@ -300,7 +293,7 @@ function renderForecastPanel(){
     return line;
   }).join("\n");
   const when=TEXT.fetchedAtUTC?new Date(TEXT.fetchedAtUTC).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):"";
-  body.innerHTML=tabs+dayTabs+dayBox+`
+  body.innerHTML=tabs+dayBox+`
    <div class="fc-legend">
      <span><i style="background:#ffd9dc"></i>front</span><span><i style="background:#ffe0c2"></i>föhn</span>
      <span><i style="background:#fde7b0"></i>wind</span><span><i style="background:#d8eecf"></i>storm</span>
@@ -308,7 +301,6 @@ function renderForecastPanel(){
    <details class="fc-full"><summary>Show the full bulletin (German)</summary><div class="fc-text">${htmlTxt}</div></details>
    <div class="fc-meta">Source: MeteoSwiss${TEXT.pasted?" (pasted)":""}, fetched ${when}. Original official text; the English version is machine-translated and may contain errors. Highlighted words are the SHV "Alarmzeichen" hazard keywords. No interpretation here — read it and form your own picture first.</div>`;
   body.querySelectorAll(".fc-tabs button").forEach(bt=>bt.onclick=()=>{fcRegion=+bt.dataset.r;renderForecastPanel();});
-  body.querySelectorAll(".fc-days button").forEach(bt=>bt.onclick=()=>{fcSel=+bt.dataset.d;fcSelTouched=true;renderForecastPanel();});
   if(b)fillTranslation(b.body);
 }
 
