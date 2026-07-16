@@ -216,3 +216,30 @@ html{overflow-x:clip!important}
 /* fog: locations in 2 columns on wide screens, stacked on narrow */
 .fogwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:2px 28px}
 .fogwrap .foggrid{grid-template-columns:118px repeat(3,1fr)}
+
+/* ---- sticky top bar: brand + day selector (meteo.html) ----
+   Flex, not grid: the brand can shrink and ellipsize (never slides under the chips),
+   and the chip row scrolls inside its own box (never widens the bar). */
+.stickybar{position:-webkit-sticky;position:sticky;top:0;z-index:30;background:var(--bg);
+  display:flex;align-items:center;gap:12px;
+  padding:10px 4px 8px;margin:0 -4px;border-bottom:1px solid var(--line)}
+@media(max-width:992px){.stickybar{top:4em}} /* below the fixed mobile top bar */
+.sb-brand{display:flex;align-items:center;gap:10px;flex:0 1 auto;min-width:40px;overflow:hidden}
+.stickybar .logo{height:40px;width:40px;border-radius:50%;flex:0 0 auto}
+.sb-brand .brand{min-width:0;overflow:hidden}
+.sb-brand b{font-weight:800;font-size:14.5px;line-height:1.2;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-brand span{display:block;font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stickybar .days{flex:1 1 0;min-width:0;padding:2px 0;margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sb-sp{display:none}
+/* center the chips when there is room; auto margins collapse to 0 when the row
+   overflows, so the first chip stays reachable while scrolling (unlike justify-content:center) */
+.stickybar .days>.day:first-child{margin-left:auto}
+.stickybar .days>.day:last-child{margin-right:auto}
+@media(max-width:900px){
+  .sb-brand .brand{display:none}   /* logo only on small screens */
+}
+
+/* ---- reserve image space before load so day-switching doesn't shift the layout ----
+   `auto W/H` = use the intrinsic ratio once loaded, the given ratio as placeholder before */
+.embed.ar-front img{aspect-ratio:auto 640/478;width:100%}
+.embed.ar-pw img{aspect-ratio:auto 1350/900;width:100%}

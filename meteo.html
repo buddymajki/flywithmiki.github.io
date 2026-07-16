@@ -175,16 +175,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- TEXT PROGNOSIS ---------------------------------------------------------->
-<header><div class="head-in">
-  <img class="logo" src="https://flywithmiki.com/Images_v2/g760.webp" alt="FLYwithMIKI">
-  <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI</span></div>
-  <div class="head-sp"></div>
-</div></header>
-
 <div class="wrap">
-  <div class="days sticky" id="days"></div>
-
-  <div class="part p1"><b>Part 1 · Raw weather data</b><span>Objective meteorological information only. Analyse it yourself first — no AI judgement here.</span></div>
+  <div class="stickybar">
+    <div class="sb-brand">
+      <img class="logo" src="https://flywithmiki.com/Images_v2/g760.webp" alt="FLYwithMIKI">
+      <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI · km/h</span></div>
+    </div>
+    <div class="days" id="days"></div>
+    <div class="sb-sp"></div>
+  </div>
 
   <div class="fc" id="forecastPanel" style="display:none">
     <div class="fc-h" id="fcHead"><div class="ic">📰</div><div class="tt"><b>General forecast (MeteoSwiss)</b><small>Official regional text, hazard keywords highlighted</small></div><div class="pill" id="fcPill" style="display:none"></div></div>
@@ -255,7 +254,10 @@ function fillTranslation(deText){
   const box=$("#fcEnBox"),tgt=$("#fcEnTxt");if(!box||!tgt||!deText)return;
   const seq=++trSeq;
   translateDE(deText).then(en=>{if(seq!==trSeq||!en)return;
-    tgt.innerHTML=highlightEN(en);box.style.display="";}).catch(()=>{});
+    // the EN box appears async and grows the panel; re-anchor so cards below don't jump
+    const a=captureAnchor();
+    tgt.innerHTML=highlightEN(en);box.style.display="";
+    restoreAnchor(a);}).catch(()=>{});
 }
 
 // ---- General forecast panel: dedicated day selector, original DE text + auto EN, keywords highlighted ----
@@ -325,7 +327,7 @@ function frontChartSources(di){
     cap:`DWD front forecast (ICON), valid ≈12 UTC on the selected day (+${+map[di]} h from the 00 UTC run)`};
 }
 function chainImg(cands,alt){
-  return `<div class="embed"><img loading="lazy" src="${cands[0]}" data-srcs='${JSON.stringify(cands)}' data-i="0" onerror="nextSrc(this)" alt="${alt}"><div style="display:none;padding:10px;color:#9aa6b1;font-size:12px">Chart not available right now. Use the links below.</div></div>`;
+  return `<div class="embed ar-front"><img loading="lazy" src="${cands[0]}" data-srcs='${JSON.stringify(cands)}' data-i="0" onerror="nextSrc(this)" alt="${alt}"><div style="display:none;padding:10px;color:#9aa6b1;font-size:12px">Chart not available right now. Use the links below.</div></div>`;
 }
 
 // ---- Part 1 cards: raw meteorological information, no verdicts and no pills ----
@@ -345,8 +347,11 @@ function renderRawCards(){const S=DAYS[sel];const wrap=$("#cardsRaw");wrap.inner
     wrap.appendChild(card);
     initLazies(card);
   });}
+// cache-buster per hour, NOT per render: switching days must reuse the cached
+// profiwetter images instead of re-downloading them (that reload made the page jump)
+const BUST=Math.floor(Date.now()/3600000);
 function rawDetail(key,S){
-  const bust=Date.now();
+  const bust=BUST;
   if(key==="gfront"){const d=frontChartSources(S.di);
     const img=d?chainImg(d.cands,"DWD front chart")+`<div style="font-size:11px;color:var(--dim);margin-top:4px">${d.cap}</div>`
      :`<div style="font-size:13px;color:var(--slate-d);padding:6px 0">The DWD front forecast reaches about 4 days ahead — no chart for this day.</div>`;
@@ -365,7 +370,7 @@ function rawDetail(key,S){
       <td class="num"><span class="chip ${sCls(v.s925)}">${r0(v.s925)}</span></td>
       <td class="num"><span class="chip ${sCls(v.s850)}">${r0(v.s850)}</span></td>
       <td class="num"><span class="chip ${sCls(v.s800)}">${r0(v.s800)}</span></td></tr>`).join("");
-    return `<div class="embed"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
+    return `<div class="embed ar-pw"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_foehn_ch&lang=en">Föhn diagram (profiwetter)</a></div>
     <div class="kv" style="margin-top:10px"><span class="k">Δp Lugano–Zürich (08–16h peak)</span><span class="v"><span class="chip ${dpCls}">${dp!=null?(dp>0?"+":"")+dp.toFixed(1)+" hPa":"?"}</span></span></div>
     <table class="rt"><tr><th>Valley southerly</th><th>${LEVEL_M.p925}<br>(925 hPa)</th><th>${LEVEL_M.p850}<br>(850 hPa)</th><th>${LEVEL_M.p800}<br>(800 hPa)</th></tr>${rows}</table>
@@ -373,7 +378,7 @@ function rawDetail(key,S){
   if(key==="gnat"){return `
     <div class="embed" data-src="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5">Open wind map full size</a></div>
-    <div class="embed" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/wind_bise_en.png?t=${bust}"></div>
+    <div class="embed ar-pw" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/wind_bise_en.png?t=${bust}"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_bise&lang=en">Bise diagram (profiwetter)</a></div>
     <div class="kw">Top: forecast wind map (ICON). Bottom: Bise diagram — north-easterly pressure gradient flow over the Swiss plateau.</div>`;}
   if(key==="greg"){
@@ -401,7 +406,7 @@ function rawDetail(key,S){
       const body=prof.levels.map((lv,li)=>`<div class="lbl">${lv[0]} <span style="color:#aeb8c0">${lv[1]}m</span></div>`+prof.hours.map(h=>`<div class="c"><span class="cell ${h["l"+li]}" style="width:26px;height:18px;font-size:10px">${LV[h["l"+li]]?LV[h["l"+li]].e:'?'}</span></div>`).join('')).join('');
       return `<div style="margin-top:10px"><b style="font-size:12.5px">${f.n}</b> <span style="color:var(--dim);font-size:11px">(upper ref: ${f.up})</span><div class="foggrid">${head}${body}</div></div>`;}).join("");
     return `<div class="fogwrap">${blocks}</div>
-    <div class="embed" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/hochnebel_en.png?t=${bust}"></div>
+    <div class="embed ar-pw" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/hochnebel_en.png?t=${bust}"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=hochnebel&lang=en">High-fog ceiling (profiwetter)</a></div>
     <div class="kw">Humidity layers from the ground up to the local flying reference +400 m (RH interpolated from pressure levels; ground level also uses visibility/low cloud). 🟢 dry · 🟡 RH ≥88% (fog possible) · 🔴 RH ≥95% (in cloud).</div>`;}
   if(key==="gother"){
@@ -410,7 +415,30 @@ function rawDetail(key,S){
   return "";
 }
 
-function renderAll(){renderDays();renderForecastPanel();renderRawCards();}
+// ---- scroll anchoring: switching days rebuilds every card and the forecast text
+// length differs per day, so a raw scroll position would land somewhere else.
+// Instead we remember which block sits under the sticky bar and put it back there.
+function anchorCands(){
+  return [document.getElementById("forecastPanel"),...document.querySelectorAll("#cardsRaw .card"),document.querySelector(".pagelink")].filter(Boolean);
+}
+function captureAnchor(){
+  const bar=document.querySelector(".stickybar");
+  const barB=bar?bar.getBoundingClientRect().bottom:0;
+  const cands=anchorCands();
+  // anchor to the first block that STARTS below the sticky bar: everything the user
+  // currently sees sits between it and the bar, so height changes above it (rebuilt
+  // images, longer/shorter forecast text) are fully compensated
+  for(let i=0;i<cands.length;i++){const r=cands[i].getBoundingClientRect();
+    if(r.top>=barB-6)return {i,top:r.top};}
+  return null;
+}
+function restoreAnchor(a){
+  if(!a)return;
+  const c=anchorCands()[a.i];if(!c)return;
+  const diff=c.getBoundingClientRect().top-a.top;
+  if(Math.abs(diff)>1)window.scrollBy(0,diff);
+}
+function renderAll(){const a=captureAnchor();renderDays();renderForecastPanel();renderRawCards();restoreAnchor(a);}
 boot();
 </script>
 
