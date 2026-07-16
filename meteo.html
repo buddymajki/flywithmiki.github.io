@@ -65,166 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
-        <style>
-             :root{--green:#1dae80;--green-d:#149067;--slate:#586573;--slate-d:#3c4753;--teal-bg:#eafaf7;
-    --ink:#2b333c;--bg:#f4f7f8;--card:#fff;--line:#e4eaec;--dim:#7a8896;
-    --go:#1dae80;--goBg:#e7f7f1;--watch:#f5a623;--watchBg:#fef4e3;--stop:#e5484d;--stopBg:#fdebec;
-    --shadow:0 1px 2px rgba(40,60,70,.05),0 6px 20px rgba(40,60,70,.06);}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5;font-size:15px}
-  a{color:var(--green-d);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 16px 56px}
-  header{background:#fff;border-bottom:1px solid var(--line)}
-  .head-in{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .logo{height:42px;width:42px;border-radius:50%}
-  .brand b{font-weight:800}.brand span{display:block;font-size:12px;color:var(--dim)}
-  .head-sp{flex:1}
-  select,textarea{background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:8px 10px;font:inherit;font-size:14px}
-  textarea{width:100%;resize:vertical;font-size:13px}
-  .days{display:flex;gap:8px;overflow:auto;padding:14px 0 4px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
-  .day{flex:0 0 auto;min-width:104px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer;text-align:center;box-shadow:var(--shadow);transition:.12s}
-  .day:hover{border-color:var(--green)}
-  .day.on{border-color:var(--green);box-shadow:0 0 0 2px rgba(29,174,128,.18),var(--shadow)}
-  .day .dow{font-weight:700;font-size:14px}.day .dt{font-size:11px;color:var(--dim)}
-  .day .pct{font-size:21px;font-weight:800;margin-top:3px;line-height:1}
-  .day .dots{margin-top:6px;display:flex;gap:3px;justify-content:center}
-  .dot{width:9px;height:9px;border-radius:50%}
-  .dot.go{background:var(--go)}.dot.watch{background:var(--watch)}.dot.stop{background:var(--stop)}.dot.na{background:#d4dadd}
-  .day .ov{margin-top:6px;font-size:10.5px;font-weight:700;padding:2px 0;border-radius:6px;color:#fff}
-  .overall{background:#fff;border-radius:16px;box-shadow:var(--shadow);margin-top:14px;overflow:hidden;border:1px solid var(--line)}
-  .ov-top{display:flex;flex-wrap:wrap}
-  .ov-light{flex:0 0 168px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff;text-align:center}
-  .ov-light .big{font-size:34px;font-weight:800;line-height:1}
-  .ov-light .lbl{font-size:12px;opacity:.95;margin-top:6px;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
-  .ov-body{flex:1;min-width:280px;padding:16px 18px}
-  .ov-body h3{margin:0 0 4px;font-size:16px}.ov-date{color:var(--dim);font-size:13px;margin-bottom:8px}
-  .ov-text{font-size:14.5px;color:var(--slate-d)}
-  .breakdown{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  .breakdown .bh{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);font-weight:700;padding:8px 11px;background:#fbfdfd;border-bottom:1px solid var(--line)}
-  .brow{display:flex;align-items:center;gap:8px;padding:6px 11px;font-size:13px;border-bottom:1px dashed var(--line)}
-  .brow:last-child{border-bottom:none}
-  .brow .bn{flex:1}.brow .bn small{color:var(--dim);font-size:11.5px}
-  .brow .bd{font-weight:700;font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
-  .brow .bd.zero{color:var(--dim)}.brow .bd.minus{color:#c0353a}
-  .brow.cap{background:#fff7ee}.brow.nogo{background:var(--stopBg)}.brow.total{background:#f1f8f5;font-weight:800}
-  .brow.total .bd{color:var(--ink)}
-  .disclaimer{margin-top:12px;font-size:11px;line-height:1.5;color:var(--dim);border-top:1px solid var(--line);padding-top:9px}
-  .ov-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .btn{background:var(--green);color:#fff;border:none;border-radius:10px;padding:9px 13px;font:inherit;font-weight:700;cursor:pointer;font-size:13.5px}
-  .btn.sec{background:#fff;color:var(--slate-d);border:1px solid var(--line)}
-  .btn:active{transform:translateY(1px)}
-  .matrix{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:8px;overflow:auto}
-  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
-  th,td{padding:7px 8px;text-align:center}
-  th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase}
-  td.cat{text-align:left;color:var(--slate-d);font-weight:600;white-space:nowrap}
-  .cell{display:inline-flex;width:30px;height:22px;border-radius:6px;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
-  .cell.go{background:var(--go)}.cell.watch{background:var(--watch)}.cell.stop{background:var(--stop)}.cell.na{background:#d4dadd}
-  td.pctcell{font-weight:800}
-  .section-title{margin:18px 2px 8px;font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--dim);font-weight:700}
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  @media(max-width:760px){.cards{grid-template-columns:1fr}.ov-light{flex-basis:100%}}
-  .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-  .card.wide{grid-column:1 / -1}
-  .card.wide .embed iframe{height:480px}
-  .card-h{display:flex;align-items:center;gap:11px;padding:14px 16px;cursor:pointer}
-  .ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--teal-bg)}
-  .card-h .tt{flex:1}.card-h .tt b{font-size:15px}.card-h .tt small{display:block;color:var(--dim);font-size:12px}
-  .pill{padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
-  .pill.go{background:var(--goBg);color:var(--green-d)}.pill.watch{background:var(--watchBg);color:#b9770a}.pill.stop{background:var(--stopBg);color:#c0353a}
-  .card-b{border-top:1px solid var(--line);padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
-  .card.open .card-b{max-height:3200px;padding:14px 16px}
-  .kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
-  .kv:last-of-type{border-bottom:none}.kv .k{color:var(--dim)}.kv .v{font-weight:600}
-  .why{font-size:13px;color:var(--slate-d);margin:8px 0 0;background:var(--teal-bg);border-radius:8px;padding:9px 11px}
-  .embed{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#eef3f4}
-  .embed iframe{width:100%;height:300px;border:0;display:block}
-  .embed img{width:100%;display:block}
-  .spark{width:100%;height:96px;display:block;margin-top:6px}
-  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .lnk{font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--slate-d)}
-  .kw{font-size:11.5px;color:var(--dim);margin-top:8px;line-height:1.45}.kw b{color:var(--slate-d)}
-  .ovr{display:flex;gap:6px;align-items:center;margin-top:10px;flex-wrap:wrap}
-  .ovr small{color:var(--dim);font-size:12px}
-  .ovr button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;cursor:pointer;font:inherit;font-size:12px;font-weight:700}
-  .ovr button.on{color:#fff;border-color:transparent}
-  .ovr button[data-v=go].on{background:var(--go)}.ovr button[data-v=watch].on{background:var(--watch)}.ovr button[data-v=stop].on{background:var(--stop)}.ovr button[data-v=auto].on{background:var(--slate)}
-  .vtab{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-  .vtab .vt{font-size:11.5px;border:1px solid var(--line);border-radius:8px;padding:6px 9px;background:#fbfdfd;line-height:1.5}
-  .vt b{color:var(--slate-d)}
-  .vt.south,.vt.warn{border-color:#f3c08a;background:#fff7ee}
-  .vt.bad{border-color:#f3a0a3;background:#fdebec}
-  .vt.best{border-color:var(--green);background:var(--teal-bg)}
-  .foggrid{display:grid;grid-template-columns:96px repeat(3,1fr);align-items:center;gap:5px 4px;margin-top:6px;font-size:11.5px}
-  .foggrid .lbl{color:var(--dim);text-align:left}
-  .foggrid .hd{color:var(--dim);text-align:center;font-weight:700;font-size:11px}
-  .foggrid .c{display:flex;justify-content:center}
-  /* general forecast panel */
-  .fc{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}
-  .fc-h{display:flex;align-items:center;gap:11px;padding:13px 16px;cursor:pointer;border-bottom:1px solid var(--line)}
-  .fc-h .ic{background:#eef2ff}
-  .fc-h .tt{flex:1}.fc-h .tt b{font-size:15px}.fc-h .tt small{display:block;color:var(--dim);font-size:12px}
-  .fc-b{padding:14px 16px}
-  .fc-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-  .fc-tabs button{border:1px solid var(--line);background:#fbfdfd;border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:12px;font-weight:700;color:var(--slate-d)}
-  .fc-tabs button.on{background:var(--slate);color:#fff;border-color:transparent}
-  .fc-text{font-size:13.5px;line-height:1.6;white-space:pre-wrap;max-height:340px;overflow:auto;background:#fbfdfd;border:1px solid var(--line);border-radius:10px;padding:12px}
-  .fc-text .day-h{font-weight:800;color:var(--ink);display:block;margin-top:10px}
-  .fc-text .day-h:first-child{margin-top:0}
-  .fc-day{background:#eef6ff;border:1px solid #cfe0f2;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13.5px;line-height:1.55}
-  .fc-day-h{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#3f6b95;font-weight:700;margin-bottom:4px}
-  mark{padding:0 2px;border-radius:3px;font-weight:600}
-  mark.kw-front{background:#ffd9dc;color:#9c2a2f}
-  mark.kw-foehn{background:#ffe0c2;color:#9a5410}
-  mark.kw-wind{background:#fde7b0;color:#8a6a00}
-  mark.kw-storm{background:#d8eecf;color:#3f6b2b}
-  mark.kw-regwind{background:#cfe9f6;color:#1f5b78}
-  .fc-legend{font-size:11px;color:var(--dim);margin-top:8px;display:flex;flex-wrap:wrap;gap:10px}
-  .fc-legend span{display:inline-flex;align-items:center;gap:4px}
-  .fc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-  .fc-meta{font-size:11px;color:var(--dim);margin-top:8px}
-  details.fc-paste{margin-top:10px;font-size:12px;color:var(--dim)}
-  details.fc-paste summary{cursor:pointer;color:var(--green-d);font-weight:700}
-  #status{margin-top:12px;font-size:13px;color:var(--dim)}
-  footer{margin-top:26px;color:var(--dim);font-size:12.5px;line-height:1.6}
-  footer .disc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
-  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--slate-d);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:50}
-  .toast.show{opacity:1}
-  .loader{display:inline-block;width:14px;height:14px;border:2px solid #b7efe9;border-top-color:var(--green);border-radius:50%;animation:sp 1s linear infinite;vertical-align:-2px;margin-right:6px}
-  @keyframes sp{to{transform:rotate(360deg)}}
-  
-  
-			
-			html {scroll-behavior: smooth;}
-            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
-             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-            .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
-            .w3-third img:hover {opacity: 1}
-            .mySlides {display:none;} /* slideshowhoz kell */
-
- 
-            //Prediction
-            .forecast-container {
-              display: flex;
-              justify-content: space-between;
-              max-width: 1000px;
-              margin: auto;
-              padding-bottom: 20px;
-              }
-            .forecast-table {
-              flex: 1;
-              margin: 0 10px;
-              }
-            .justified-paragraph {
-              text-align: justify;
-              max-width: 1000px;
-              margin: auto;
-             padding-top: 20px;
-             }
-    //Prediction
-
-
-        </style>
+        <link rel="stylesheet" href="meteo.css">
 
 
 
@@ -336,521 +177,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- TEXT PROGNOSIS ---------------------------------------------------------->
 <header><div class="head-in">
   <img class="logo" src="https://flywithmiki.com/Images_v2/g760.webp" alt="FLYwithMIKI">
-  <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI . 5-point check + fog . km/h</span></div>
+  <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI . raw data first, AI second . km/h</span></div>
   <div class="head-sp"></div>
 </div></header>
 
 <div class="wrap">
-  <div class="days" id="days"></div>
-  <div class="overall" id="overall" style="display:none"><div class="ov-top">
-    <div class="ov-light" id="ovLight"><div class="big" id="ovBig">.</div><div class="lbl" id="ovLbl"></div></div>
-    <div class="ov-body">
-      <h3>FLYwithMIKI AI Assessment <span style="font-weight:600;color:var(--dim);font-size:12px">(v1.0)</span></h3>
-      <div class="ov-date" id="ovDate"></div>
-      <div class="ov-text" id="ovText"></div>
-      <div class="breakdown" id="ovBreak"></div>
-      <div class="ov-actions">
+  <div class="days sticky" id="days"></div>
 
-        <a class="btn sec" id="emaLink" href="emagram.html" target="_blank">Emagram (auto)</a>
-      </div>
-      <div class="disclaimer">Alien-Technology-generated estimate. These numbers and conclusions are produced automatically by software and may be wrong. FLYwithMIKI takes no responsibility for them. Every pilot must analyse the weather themselves and decide whether it is flyable.</div>
-    </div>
-  </div></div>
-  <div class="matrix" id="matrixWrap" style="display:none"><table id="matrix"></table></div>
+  <div class="part p1"><b>Part 1 · Raw weather data</b><span>Objective meteorological information only. Analyse it yourself first — no AI judgement here.</span></div>
 
-  <div class="section-title">5-point check</div>
   <div class="fc" id="forecastPanel" style="display:none">
     <div class="fc-h" id="fcHead"><div class="ic">📰</div><div class="tt"><b>General forecast (MeteoSwiss)</b><small>Official regional text, hazard keywords highlighted</small></div><div class="pill" id="fcPill" style="display:none"></div></div>
     <div class="fc-b" id="fcBody"></div>
   </div>
-  <div class="cards" id="cardsMain"></div>
-  <div class="section-title">Also check</div>
-  <div class="cards" id="cardsBonus"></div>
+  <div class="cards" id="cardsRaw"></div>
+
+  <div class="pagelink"><div class="ic" style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--teal-bg)">🤖</div>
+    <div class="tt"><b>Done with your own analysis?</b><small>Compare it with the algorithm's interpretation: warnings, flying-chance % and confidence.</small></div>
+    <a class="btn" id="aiPageLink" href="meteoAI.html" target="_blank" rel="noopener">Open AI prediction</a></div>
 
   <div id="status"><span class="loader"></span>Loading forecast.</div>
   <footer><div class="disc">
-    <b>How this works.</b> Each day gets a flying-chance % for the best of the launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten). Per site the 5-point check scores green=100, yellow=50, red=0 and averages; any red caps it at 50% (two reds at 30%), fog trims it, and two hard NO-GOs force 0%: clear föhn (Δp≥4 hPa and strong southerly in the föhn valleys) or clear rain 08-15h at that site. ≥75% GO, 50-74% CAUTION, &lt;50% NO-FLY. Föhn & nationwide wind use Lugano/Zürich/Altdorf/Sarnen/Engelberg/Wolfenschiessen; storms compare ICON-CH1 + ICON-D2 per site (blended fallback beyond their range); fog is sampled at landing / mid / launch / launch+400 m for each site. The General forecast panel pulls the official MeteoSwiss text and highlights the SHV "Alarmzeichen" keywords; when present it can only push a category to more caution, never less. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
+    <b>How this works.</b> This page shows only objective weather data for today + 4 days — learn to read it yourself first, following the SHV 5-point check: general situation, fronts, föhn, nationwide wind, regional wind, storms, plus fog. Sources: MeteoSwiss official text, DWD front charts, profiwetter föhn/Bise/high-fog diagrams, XC-Therm wind map and Open-Meteo model data (all wind in km/h). When you have formed your own picture, open the <a href="meteoAI.html">AI prediction</a> and compare. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
   </div></footer>
 </div>
 <div class="toast" id="toast"></div>
 
+<script src="meteo-core.js"></script>
 <script>
-// ================== CONFIG YOU CAN EDIT ==================
-// After setting up the meteoswiss-feed GitHub repo, paste your raw JSON URL here:
-const TEXT_JSON_URL = "https://raw.githubusercontent.com/buddymajki/FLYwithMIKI_Meteo/main/meteoswiss.json"; // e.g. "https://raw.githubusercontent.com/USER/meteoswiss-feed/main/meteoswiss.json"
-// =========================================================
+/* ============ meteo.html page script: Part 1, raw weather data only ============ */
+// selected day can be handed back from meteoAI.html via ?day=N
+(function(){const p=new URLSearchParams(location.search).get("day");if(p!=null&&!isNaN(+p))sel=Math.max(0,Math.min(4,+p));})();
 
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-// front is evaluated at one synoptic point (Engelberg); it is a large-scale phenomenon
-const FRONT_PT={n:"Engelberg",lat:46.8207,lon:8.4040};
-// the 4 launch sites (lat/lon = launch; landingEl/launchEl in m AMSL, used for fog layering)
-const SITES=[
- {n:"Zug",launch:"Zugerberg",lat:47.1470,lon:8.5480,landingEl:430,launchEl:947,dirs:[[225,315]],dirNote:"W-facing, needs west wind"},
- {n:"Engelberg",launch:"Brunni",lat:46.8100,lon:8.4250,landingEl:1000,launchEl:1800,dirs:[[120,300]],dirNote:"S to W facing, sheltered from N/E"},
- {n:"Wolfenschiessen",launch:"Büelen",lat:46.9050,lon:8.4050,landingEl:560,launchEl:1100,dirs:[[0,360]],dirNote:"low & wind-sheltered, tolerant of direction"},
- {n:"Emmetten",launch:"Niederbauen",lat:46.9468,lon:8.5365,landingEl:790,launchEl:1590,dirs:[[180,360],[0,30],[90,160]],dirNote:"N/NW, SW and SE launches, very versatile (not in föhn)"}];
-// fixed sampling points (foehn / nationwide)
-const P={LUGANO:{n:"Lugano",lat:46.00,lon:8.95},ZURICH:{n:"Zürich",lat:47.46,lon:8.55},
- ALTDORF:{n:"Altdorf",lat:46.88,lon:8.64},SARNEN:{n:"Sarnen",lat:46.90,lon:8.25},
- ENGELBERG:{n:"Engelberg",lat:46.82,lon:8.40},WOLFEN:{n:"Wolfenschiessen",lat:46.91,lon:8.40}};
-const WIND_PTS=[P.LUGANO,P.ZURICH,P.ALTDORF,P.SARNEN,P.ENGELBERG,P.WOLFEN];
-const WI={LUGANO:0,ZURICH:1,ALTDORF:2,SARNEN:3,ENGELBERG:4,WOLFEN:5};
-const CATS=[
- {key:"front",ic:"🌧️",name:"Front",sub:"Cold/warm front, trough",group:"main"},
- {key:"foehn",ic:"🌀",name:"Föhn",sub:"S overpressure + valley wind",group:"main"},
- {key:"natwind",ic:"💨",name:"Nationwide wind",sub:"Wolfenschiessen vs Zürich, 3 heights",group:"main",wide:true},
- {key:"regwind",ic:"🏔️",name:"Regional wind",sub:"4 launch sites",group:"main"},
- {key:"storm",ic:"⛈️",name:"Storms / precip",sub:"CH1 + ICON-D2, per site",group:"main"},
- {key:"fog",ic:"🌫️",name:"Fog / low stratus",sub:"Per site: landing to launch+400 m",group:"bonus"}];
-const FIVE=["front","foehn","natwind","regwind","storm"];
-const LV={go:{e:"🟢",t:"GO"},watch:{e:"🟡",t:"WATCH"},stop:{e:"🔴",t:"STOP"},na:{e:"⚪",t:"N/A"}};
-const OVLABEL={go:"FLYABLE",watch:"WATCH OUT",stop:"NOT FLYABLE"};
-const OVSHORT={go:"GO",watch:"CAUTION",stop:"NO-FLY"};
-const ORD={go:0,watch:1,stop:2};
-const worst=(a,b)=>ORD[a]>=ORD[b]?a:b;
-const VAL={go:1,watch:0.5,stop:0};
-
-// SHV "Alarmzeichen" keywords (from the Entscheidungsstrategie poster), mapped to category + severity
-const KEYWORDS=[
- // front
- {w:"Kaltfront",cat:"front",sev:"strong"},{w:"Warmfront",cat:"front",sev:"strong"},
- {w:"Okklusion",cat:"front",sev:"strong"},{w:"Front",cat:"front",sev:"normal"},
- {w:"Frontdurchgang",cat:"front",sev:"strong"},{w:"Störung",cat:"front",sev:"normal"},
- {w:"Kaltluft",cat:"front",sev:"normal"},{w:"Westwindlage",cat:"front",sev:"normal"},
- {w:"Westlage",cat:"front",sev:"normal"},{w:"Konvergenz",cat:"front",sev:"normal"},
- {w:"Kurzwellentrog",cat:"front",sev:"normal"},{w:"Höhentrog",cat:"front",sev:"normal"},
- {w:"Trog",cat:"front",sev:"normal"},{w:"Wolkenband",cat:"front",sev:"normal"},
- {w:"Wolkenbänder",cat:"front",sev:"normal"},{w:"Squall",cat:"front",sev:"strong"},
- {w:"Böenfront",cat:"front",sev:"strong"},
- // föhn
- {w:"Südföhn",cat:"foehn",sev:"strong"},{w:"Nordföhn",cat:"foehn",sev:"strong"},
- {w:"Föhntendenz",cat:"foehn",sev:"normal"},{w:"Föhnmauer",cat:"foehn",sev:"strong"},
- {w:"Linsenwolken",cat:"foehn",sev:"normal"},{w:"Rotorwolken",cat:"foehn",sev:"strong"},
- {w:"Föhnkanäle",cat:"foehn",sev:"normal"},{w:"Föhnlage",cat:"foehn",sev:"strong"},
- {w:"Föhnbise",cat:"foehn",sev:"normal"},{w:"Föhn",cat:"foehn",sev:"normal"},
- // überregional wind
- {w:"Sturmtief",cat:"wind",sev:"strong"},{w:"Sturmböen",cat:"wind",sev:"strong"},
- {w:"Sturm",cat:"wind",sev:"strong"},{w:"stürmisch",cat:"wind",sev:"strong"},
- {w:"Bisenlage",cat:"wind",sev:"normal"},{w:"Bise",cat:"wind",sev:"normal"},
- {w:"Westwind",cat:"wind",sev:"normal"},{w:"Nordwestwind",cat:"wind",sev:"normal"},
- {w:"Nordwind",cat:"wind",sev:"normal"},{w:"Ostwind",cat:"wind",sev:"normal"},
- {w:"böig",cat:"wind",sev:"normal"},{w:"starke Böen",cat:"wind",sev:"normal"},
- {w:"kräftige Böen",cat:"wind",sev:"normal"},{w:"starker Wind",cat:"wind",sev:"normal"},
- // storms / Luftschichtung
- {w:"Wärmegewitter",cat:"storm",sev:"strong"},{w:"Hitzegewitter",cat:"storm",sev:"strong"},
- {w:"Gewitter",cat:"storm",sev:"normal"},{w:"Gewitterneigung",cat:"storm",sev:"normal"},
- {w:"Schauer",cat:"storm",sev:"normal"},{w:"Überentwicklung",cat:"storm",sev:"normal"},
- {w:"Quellwolken",cat:"storm",sev:"normal"},{w:"Quellbewölkung",cat:"storm",sev:"normal"},
- {w:"Castellanus",cat:"storm",sev:"normal"},{w:"Blitz",cat:"storm",sev:"normal"},
- {w:"schwülwarm",cat:"storm",sev:"normal"},{w:"schwül",cat:"storm",sev:"normal"},
- {w:"Niederschlagsmengen",cat:"storm",sev:"normal"},{w:"Tagesgangwetter",cat:"storm",sev:"normal"},
- // regiowind
- {w:"Alpines Pumpen",cat:"regwind",sev:"normal"},{w:"Talwind",cat:"regwind",sev:"normal"},
- {w:"Nordüberdruck",cat:"regwind",sev:"normal"},{w:"Südüberdruck",cat:"regwind",sev:"normal"},
- {w:"Joran",cat:"regwind",sev:"normal"},{w:"Venturi",cat:"regwind",sev:"normal"}];
-const KW_BY_CAT={front:["front"],foehn:["foehn"],natwind:["wind"],regwind:["regwind"],storm:["storm"]};
-const KW_SORTED=[...KEYWORDS].sort((a,b)=>b.w.length-a.w.length);
-const KW_LOOKUP={};KEYWORDS.forEach(k=>{KW_LOOKUP[k.w.toLowerCase()]={cat:k.cat,sev:k.sev};});
-const DOW_DE=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
-const REGION_KEYS=["Wetterprognose für die Deutschschweiz, Nord- und Mittelbünden",
- "Wetterprognose für die Westschweiz und das Wallis","Wetterprognose für die Alpensüdseite und das Engadin"];
-const REGION_SHORT=["Deutschschweiz","Westschweiz / Wallis","Alpensüdseite / Engadin"];
-
-let MAIN=null,WIND=null,SITED=null,STORMD=null,DAYS=[],sel=0,TEXT=null,fcRegion=0;
-
-// ---- Open-Meteo ----
-const HV=["temperature_2m","precipitation","precipitation_probability","weather_code","cape",
- "pressure_msl","temperature_850hPa","wind_speed_850hPa","wind_direction_850hPa",
- "temperature_700hPa","wind_speed_700hPa","wind_direction_700hPa"];
-const DV=["temperature_2m_max","temperature_2m_min","precipitation_sum","precipitation_probability_max","weather_code"];
-const WV=["pressure_msl","wind_speed_10m","wind_gusts_10m",
- "wind_speed_925hPa","wind_direction_925hPa","wind_speed_850hPa","wind_direction_850hPa",
- "wind_speed_800hPa","wind_direction_800hPa","wind_speed_700hPa","wind_direction_700hPa"];
-// per-site detail (regional wind + fog): ground/120m winds + pressure-level RH + geopotential
-const SV=["wind_speed_10m","wind_direction_10m","wind_gusts_10m","wind_speed_120m","relative_humidity_2m","visibility","cloud_cover_low",
- "relative_humidity_925hPa","relative_humidity_850hPa","relative_humidity_800hPa","relative_humidity_700hPa",
- "geopotential_height_925hPa","geopotential_height_850hPa","geopotential_height_800hPa","geopotential_height_700hPa"];
-const STV=["precipitation","weather_code","cape","precipitation_probability"];
-async function omMulti(pts,hourly,daily,models){
-  let u=`https://api.open-meteo.com/v1/forecast?latitude=${pts.map(p=>p.lat).join(',')}&longitude=${pts.map(p=>p.lon).join(',')}&hourly=${hourly.join(',')}`;
-  if(daily)u+=`&daily=${daily.join(',')}`;
-  if(models)u+=`&models=${models}`;
-  u+=`&timezone=auto&forecast_days=7`;
-  const c=new AbortController(),to=setTimeout(()=>c.abort(),18000);let r;
-  try{r=await fetch(u,{signal:c.signal});}finally{clearTimeout(to);}
-  if(!r.ok)throw new Error("HTTP "+r.status);let j=await r.json();
-  if(!Array.isArray(j))j=[j];
-  if(j[0]&&j[0].error)throw new Error(j[0].reason);
-  return j;
-}
-
-// ---- helpers ----
-const dirTxt=d=>["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"][Math.round(((d%360)/22.5))%16];
-const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
-const mx=a=>a.length?Math.max(...a):null;
-const r0=v=>v==null?"?":Math.round(v);
-function idxFor(times,date,h0,h1){const o=[];for(let i=0;i<times.length;i++){const t=times[i];if(t.slice(0,10)===date){const h=+t.slice(11,13);if(h>=h0&&h<=h1)o.push(i);}}return o;}
-function vals(loc,v,date,h0,h1){const a=loc.hourly[v];if(!a)return [];return idxFor(loc.hourly.time,date,h0,h1).map(i=>a[i]).filter(x=>x!=null&&!isNaN(x));}
-function at(loc,v,date,h){const t=loc.hourly.time,a=loc.hourly[v];if(!a)return null;const key=date+"T"+String(h).padStart(2,"0")+":00";let i=t.indexOf(key);
-  if(i<0){const ids=idxFor(t,date,0,23);if(!ids.length)return null;i=ids.reduce((b,j)=>Math.abs(+t[j].slice(11,13)-h)<Math.abs(+t[b].slice(11,13)-h)?j:b,ids[0]);}
-  return a[i]!=null&&!isNaN(a[i])?a[i]:null;}
-const southComp=(spd,dir)=>(dir>=120&&dir<=240)?spd:0;
-const escapeHtml=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-const escapeRegex=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-
-// ---- text feed: parse the bulletin into ordered day blocks, map by day index ----
-function regionText(){if(!TEXT||!TEXT.regions)return null;return TEXT.regions[REGION_KEYS[0]]||null;}
-const DAY_HDR=/^(Heute\s+)?(Sonntag|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag)$/;
-// Returns ordered blocks [{label, dow, body}] starting at the first "Heute ..." line,
-// stopping at "Mögliche Entwicklung" (the long-range outlook). The trailing duplicate
-// weekday (e.g. a second "Montag" for next week) is a real day block and is kept;
-// because we index by position, duplicate names never collide.
-function dayBlocks(text){
-  if(!text)return [];
-  const lines=text.split("\n");
-  let startIdx=lines.findIndex(l=>/^Heute(\s|$)/.test(l.trim()));
-  if(startIdx<0)startIdx=lines.findIndex(l=>DAY_HDR.test(l.trim()));
-  if(startIdx<0)return [];
-  const blocks=[];let cur=null;
-  for(let i=startIdx;i<lines.length;i++){
-    const t=lines[i].trim();
-    if(/^Mögliche Entwicklung/i.test(t)||/^Aktualisiert am/i.test(t)||/^Legende/i.test(t))break;
-    if(DAY_HDR.test(t)){if(cur)blocks.push(cur);const m=t.match(DAY_HDR);cur={label:t,dow:m[2],body:[]};}
-    else if(cur)cur.body.push(lines[i]);
-  }
-  if(cur)blocks.push(cur);
-  return blocks.map(b=>({label:b.label,dow:b.dow,body:b.body.join("\n").trim()}));
-}
-// Map a forecast day index (di, 0 = today) to its bulletin block, anchoring on today's weekday.
-function blockForDay(di){
-  const blocks=dayBlocks(regionText());if(!blocks.length)return null;
-  const todayDow=DOW_DE[new Date().getDay()];
-  let anchor=blocks.findIndex(b=>b.dow===todayDow); // first block matching today's weekday
-  if(anchor<0)anchor=0;
-  const idx=anchor+di;
-  if(idx<0||idx>=blocks.length)return null;
-  return blocks[idx];
-}
-function textCatsFor(di){
-  const b=blockForDay(di);if(!b||!b.body)return null;
-  const low=(b.label+"\n"+b.body).toLowerCase();const found={};
-  KEYWORDS.forEach(k=>{if(low.includes(k.w.toLowerCase())){
-    const cat=k.cat;if(!found[cat]||k.sev==="strong")found[cat]=k.sev;}});
-  return {label:b.label,para:b.body,found};
-}
-function highlight(text){
-  const esc=escapeHtml(text);
-  const re=new RegExp("("+KW_SORTED.map(k=>escapeRegex(k.w)).join("|")+")","gi");
-  return esc.replace(re,m=>{const info=KW_LOOKUP[m.toLowerCase()];const cat=info?info.cat:"storm";return `<mark class="kw-${cat}" title="${cat}">${m}</mark>`;});
-}
-
-// ---- scoring ----
-function scoreDay(di){
-  const S0=MAIN[0],date=S0.daily.time[di];
-  const fly=idxFor(S0.hourly.time,date,9,19);if(!fly.length)return null;
-  const Tmax=S0.daily.temperature_2m_max[di],Tmin=S0.daily.temperature_2m_min[di];
-
-  // FÖHN
-  const lug=WIND[WI.LUGANO],zur=WIND[WI.ZURICH];
-  const Lp=vals(lug,"pressure_msl",date,8,16),Zp=vals(zur,"pressure_msl",date,8,16);
-  let dPmax=null,cross4=false;
-  if(Lp.length&&Zp.length){const dpa=Lp.map((v,i)=>v-(Zp[i]??Zp[Zp.length-1]));dPmax=mx(dpa);cross4=dpa.some(x=>x>=4);}
-  const valleys=[["Altdorf",WI.ALTDORF],["Sarnen",WI.SARNEN],["Engelberg",WI.ENGELBERG],["Wolfenschiessen",WI.WOLFEN]];
-  const valData=valleys.map(([nm,ix])=>{const loc=WIND[ix];
-    const s9=mx(vals(loc,"wind_speed_925hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_925hPa",date,8,16)[i]||0)))||0;
-    const s8=mx(vals(loc,"wind_speed_850hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_850hPa",date,8,16)[i]||0)))||0;
-    const s7=mx(vals(loc,"wind_speed_800hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_800hPa",date,8,16)[i]||0)))||0;
-    return {nm,s925:s9,s850:s8,s800:s7,smax:Math.max(s9,s8,s7)};});
-  const valMax=mx(valData.map(v=>v.smax))||0;
-  const clearFoehn=(dPmax>=4&&valMax>=18)||valMax>=30;
-  let foehn=(()=>{let lv="go",note="";
-    if(clearFoehn)lv="stop";else if(dPmax>=4||valMax>=18||(dPmax>=2&&valMax>=12))lv="watch";
-    note=lv==="stop"?"clear föhn":lv==="watch"?"foehn tendency":"";
-    const why=`Lugano-Zürich Δp peak ${dPmax!=null?(dPmax>0?"+":"")+dPmax.toFixed(1):"?"} hPa in 08-16h `+(cross4?"(crosses +4 hPa) ":"")+`. Valley southerly max ${r0(valMax)} km/h.`;
-    return {lv,note,why,valData,dPmax,cross4,clearFoehn};})();
-
-  // NATIONWIDE
-  const wol=WIND[WI.WOLFEN],zh=WIND[WI.ZURICH],TT=[8,12,15];
-  const coll=(loc,v)=>mx(TT.map(h=>at(loc,v,date,h)).filter(x=>x!=null))||0;
-  const gBase=coll(wol,"wind_speed_10m"),gGust=coll(wol,"wind_gusts_10m");
-  const wV15=coll(wol,"wind_speed_850hPa"),wV30=coll(wol,"wind_speed_700hPa");
-  const zG15=coll(zh,"wind_speed_850hPa"),zG30=coll(zh,"wind_speed_700hPa");
-  const aDir=mean(TT.map(h=>at(wol,"wind_direction_850hPa",date,h)).filter(x=>x!=null))||0;
-  let natwind=(()=>{
-    const groundLv=(gGust>35||gBase>=25)?"stop":(gGust>25||gBase>=15)?"watch":"go";
-    const alv=v=>v<20?"go":v<25?"watch":"stop";
-    const v15=alv(wV15),v30=alv(wV30);
-    const valAloft=v15==="stop"?"stop":(v30==="stop"||v15==="watch"||v30==="watch")?"watch":"go";
-    const genAloft=worst(alv(zG15),alv(zG30));
-    const high30Only=v15!=="stop"&&v30==="stop";
-    let aloftLv,aloftNote="";
-    if(valAloft==="stop"){aloftLv="stop";aloftNote="strong wind at flying height (1500 m)";}
-    else if(genAloft==="stop"){aloftLv="watch";aloftNote="sheltered valleys probably flyable, but strong wind aloft";}
-    else if(high30Only){aloftLv="watch";aloftNote="strong only at 3000 m; low launches fine";}
-    else if(valAloft==="watch"||genAloft==="watch"){aloftLv="watch";aloftNote="moderate aloft";}
-    else aloftLv="go";
-    const lv=worst(groundLv,aloftLv);
-    let note;
-    if(groundLv==="stop")note=`${dirTxt(aDir)} strong to the ground`;
-    else if(lv==="stop")note="strong wind at flying height";
-    else if(lv==="watch")note=(groundLv==="watch"&&aloftLv==="go")?`${dirTxt(aDir)} moderate to the ground`:aloftNote;
-    else note=(Math.max(wV15,wV30,gBase)<14?"weak":"");
-    const why=`Wolfenschiessen 10 m ${r0(gBase)} (gust ${r0(gGust)}), 1500 m ${r0(wV15)}, 3000 m ${r0(wV30)} km/h. Zürich 1500 m ${r0(zG15)}, 3000 m ${r0(zG30)} km/h. Times 08/12/15, ${dirTxt(aDir)}.`;
-    return {lv,note,why,gBase,gGust,wV15,wV30,zG15,zG30,aDir};
-  })();
-
-  // REGIONAL WIND per site (uses SITED launch points), now direction-aware
-  function inSector(d,sectors){return sectors.some(([a,b])=>{
-    a=((a%360)+360)%360;b=((b%360)+360)%360;d=((d%360)+360)%360;
-    return a<=b?(d>=a&&d<=b):(d>=a||d<=b);});}
-  function siteWind(loc,site){
-    const w10=mx(vals(loc,"wind_speed_10m",date,6,21))||0;
-    const w120=mx(vals(loc,"wind_speed_120m",date,6,21))||0;
-    const gu=mx(vals(loc,"wind_gusts_10m",date,6,21))||0;
-    const am=mean(vals(loc,"wind_speed_10m",date,8,12))||0;
-    const pm=mean(vals(loc,"wind_speed_10m",date,13,18))||0;
-    const trend=(pm-am)>5;
-    // dominant launch wind direction/speed in the soarable window
-    const wsp=vals(loc,"wind_speed_10m",date,10,17),wdr=vals(loc,"wind_direction_10m",date,10,17);
-    const dDir=wdr.length?wdr[wsp.indexOf(Math.max(...wsp))]??mean(wdr):null; // dir at the windiest hour
-    const dSpd=mean(wsp)||0;
-    let lv="go";if(w10>=25||gu>=30)lv="stop";else if(w10>=15||w120>=25||trend)lv="watch";
-    // direction mismatch: only matters once there is some wind (light wind = thermic launch, any direction)
-    let dirBad=false,dirNote="";
-    const tol=15; // widen each good sector by 15 deg
-    if(dDir!=null&&dSpd>=8){
-      const widened=site.dirs.map(([a,b])=>[a-tol,b+tol]);
-      if(!inSector(dDir,widened)){dirBad=true;
-        const wrong=dSpd>=15?"stop":"watch";lv=worst(lv,wrong);
-        dirNote=`${dirTxt(dDir)} wind ${r0(dSpd)} km/h is wrong for this launch (${site.dirNote})`;}
-    }
-    return {w10,w120,gu,am,pm,trend,lv,dDir,dSpd,dirBad,dirNote};
-  }
-  const regAll=SITES.map((s,i)=>({name:s.n,launch:s.launch,...siteWind(SITED[i],s)}));
-
-  // STORM per site (CH1+D2, blended fallback) + per-site rain 08-15h NOGO flag
-  function siteStorm(loc){
-    const winLen=idxFor(loc.hourly.time,date,9,19).length;
-    const chRain=vals(loc,"precipitation_meteoswiss_icon_ch1",date,9,19);
-    const deRain=vals(loc,"precipitation_icon_d2",date,9,19);
-    const chCov=winLen?chRain.length/winLen:0,deCov=winLen?deRain.length/winLen:0;
-    const rain815=(suf)=>{const a=vals(loc,"precipitation_"+suf,date,8,15);return a.filter(v=>v>0.3).length;};
-    if(chCov>=0.5&&deCov>=0.5){
-      const chWC=vals(loc,"weather_code_meteoswiss_icon_ch1",date,9,19),deWC=vals(loc,"weather_code_icon_d2",date,9,19);
-      const chCape=vals(loc,"cape_meteoswiss_icon_ch1",date,9,19),deCape=vals(loc,"cape_icon_d2",date,9,19);
-      const rainHoursCH=chRain.filter(v=>v>0.1).length,rainHoursDE=deRain.filter(v=>v>0.1).length;
-      const thunderCH=chWC.some(c=>c>=95),thunderDE=deWC.some(c=>c>=95);
-      const capeMax=Math.max(mx(chCape)||0,mx(deCape)||0);
-      const sustained=rainHoursCH>=4&&rainHoursDE>=4;
-      const active=rainHoursCH>=1||rainHoursDE>=1||thunderCH||thunderDE||capeMax>700;
-      const nogoRain=Math.min(rain815("meteoswiss_icon_ch1"),rain815("icon_d2"))>=3;
-      return {mode:"highres",lv:sustained?"stop":active?"watch":"go",rainHoursCH,rainHoursDE,thunderCH,thunderDE,capeMax,sustained,active,nogoRain};
-    }else{
-      const bmPP=vals(loc,"precipitation_probability_best_match",date,9,19);
-      const bmWC=vals(loc,"weather_code_best_match",date,9,19),bmCape=vals(loc,"cape_best_match",date,9,19);
-      const bmRain=vals(loc,"precipitation_best_match",date,9,19);
-      const ppMax=mx(bmPP)||0,capeMax=mx(bmCape)||0,thunder=bmWC.some(c=>c>=95),rainH=bmRain.filter(v=>v>0.1).length;
-      const pp815=mx(vals(loc,"precipitation_probability_best_match",date,8,15))||0;
-      const sustained=ppMax>=70&&rainH>=5,active=ppMax>=30||capeMax>600||thunder||rainH>=2;
-      const nogoRain=pp815>=80&&rain815("best_match")>=2;
-      return {mode:"blend",lv:sustained?"stop":active?"watch":"go",ppMax,capeMax,thunder,thunderCH:thunder,thunderDE:thunder,rainHoursCH:null,rainHoursDE:null,sustained,active,nogoRain};
-    }
-  }
-  const stormAll=SITES.map((s,i)=>({name:s.n,idx:i,...siteStorm(STORMD[i])}));
-
-  // FOG per site: landing / mid / launch / launch+400 (RH interpolated from pressure levels)
-  function fogProfile(loc,site){
-    const HRS=[8,12,15];
-    const levels=[["Landing",site.landingEl],["Mid",Math.round((site.landingEl+site.launchEl)/2)],
-      ["Launch",site.launchEl],["Launch +400 m",site.launchEl+400]];
-    const hours=HRS.map(h=>{
-      const pts=[[at(loc,"geopotential_height_925hPa",date,h),at(loc,"relative_humidity_925hPa",date,h)],
-        [at(loc,"geopotential_height_850hPa",date,h),at(loc,"relative_humidity_850hPa",date,h)],
-        [at(loc,"geopotential_height_800hPa",date,h),at(loc,"relative_humidity_800hPa",date,h)],
-        [at(loc,"geopotential_height_700hPa",date,h),at(loc,"relative_humidity_700hPa",date,h)]
-      ].filter(p=>p[0]!=null&&p[1]!=null).sort((a,b)=>a[0]-b[0]);
-      const rh2=at(loc,"relative_humidity_2m",date,h);
-      if(rh2!=null)pts.unshift([site.landingEl,rh2]);
-      const vis=at(loc,"visibility",date,h),low=at(loc,"cloud_cover_low",date,h);
-      function interp(target){if(!pts.length)return null;if(target<=pts[0][0])return pts[0][1];
-        for(let i=0;i<pts.length-1;i++){if(target>=pts[i][0]&&target<=pts[i+1][0]){const f=(target-pts[i][0])/(pts[i+1][0]-pts[i][0]);return pts[i][1]+f*(pts[i+1][1]-pts[i][1]);}}
-        return pts[pts.length-1][1];}
-      const cls=r=>r==null?"na":r>=95?"stop":r>=88?"watch":"go";
-      const out={h};
-      levels.forEach((lv,li)=>{
-        if(li===0){ // landing: combine RH with visibility / low cloud
-          let c=cls(interp(lv[1]));
-          if((vis!=null&&vis<1000)||(low!=null&&low>=90))c="stop";
-          else if(c==="go"&&((vis!=null&&vis<3000)||(low!=null&&low>=60)))c="watch";
-          out["l"+li]=c;
-        }else out["l"+li]=cls(interp(lv[1]));
-      });
-      return out;
-    });
-    return {levels,hours};
-  }
-  function fogLevel(prof){
-    const launchIdx=2; // "Launch" column
-    const midday=prof.hours[1];
-    const launchCls=midday["l"+launchIdx],landCls=midday["l0"];
-    if(launchCls==="stop")return "stop";
-    if(launchCls==="watch")return "watch";
-    if(landCls!=="go")return "watch";
-    // also check morning launch
-    if(prof.hours[0]["l"+launchIdx]!=="go")return "watch";
-    return "go";
-  }
-  const fogAll=SITES.map((s,i)=>{const prof=fogProfile(SITED[i],s);return {name:s.n,launch:s.launch,prof,lv:fogLevel(prof)};});
-
-  // FRONT (synoptic, Engelberg)
-  const ppF=S0.daily.precipitation_probability_max[di]||0,psum=S0.daily.precipitation_sum[di]||0;
-  const t850=mean(vals(S0,"temperature_850hPa",date,12,15));
-  let prev=di>0?mean(vals(S0,"temperature_850hPa",S0.daily.time[di-1],12,15)):null;
-  const d850T=(prev!=null&&t850!=null)?t850-prev:0;
-  const w850dir=mean(vals(S0,"wind_direction_850hPa",date,9,19))||0,w850spd=mx(vals(S0,"wind_speed_850hPa",date,9,19))||0;
-  const westy=(w850dir>=240&&w850dir<=330)&&w850spd>40;
-  const dir9=at(S0,"wind_direction_850hPa",date,9),dir19=at(S0,"wind_direction_850hPa",date,19);
-  let dirShift=0;if(dir9!=null&&dir19!=null){const dd=Math.abs(dir19-dir9);dirShift=Math.min(dd,360-dd);}
-  let autoF=(()=>{let s=0;if(d850T<=-5)s+=2;else if(d850T<=-3)s+=1;if(dirShift>=60)s+=1;if(ppF>=70)s+=1;else if(ppF>=50||psum>=2)s+=0.5;if(westy)s+=1;return s>=4?"stop":s>=2?"watch":"go";})();
-  const ovr=localStorage.getItem(`fw_front_${date}`)||"";
-  const coldSig=d850T<=-3,wetSig=ppF>=50,shiftSig=dirShift>=60;
-  let diag=coldSig&&(wetSig||shiftSig)?"Looks like a real airmass change: 850hPa cooling plus rain/wind-shift signal."
-    :coldSig?"850hPa cooling without much else — airmass change or a dry/weak front."
-    :wetSig?"High rain chance without strong cooling/wind-shift — likely convective storms, not a sharp front (see Storms)."
-    :"No strong front signal in the numbers.";
-  let front={lv:ovr||autoF,auto:autoF,override:ovr,
-    why:`${diag} (precip ${r0(ppF)}%, 850hPa ${d850T>0?"+":""}${d850T.toFixed(1)}°C vs yesterday, wind shift ${r0(dirShift)}°${westy?", strong W aloft":""}). Numeric hint — check the chart and the text above.`};
-
-  // shared category lights
-  const cats={front,foehn,natwind,regwind:null,storm:null,fog:null};
-
-  // ---- apply MeteoSwiss text keyword bump (safety-biased: only increases caution) ----
-  const tc=textCatsFor(di);
-  if(tc&&tc.found){
-    const bump=(cur,sev)=>sev==="strong"?worst(cur,"stop"):worst(cur,"watch");
-    if(tc.found.front)front.lv=bump(front.lv,tc.found.front);
-    if(tc.found.foehn)foehn.lv=bump(foehn.lv,tc.found.foehn);
-    if(tc.found.wind)natwind.lv=bump(natwind.lv,tc.found.wind);
-    // regwind/storm are per-site; bump applied per site below
-  }
-  const textBumpReg=tc&&tc.found&&tc.found.regwind?tc.found.regwind:null;
-  const textBumpStorm=tc&&tc.found&&tc.found.storm?tc.found.storm:null;
-
-  // ---- per-site percentage with a transparent breakdown ----
-  const CATNAME={front:"Front",foehn:"Föhn",natwind:"Nationwide wind",regwind:"Regional wind",storm:"Storms/precip"};
-  function pct(i){
-    const reg0=regAll[i].lv, st0=stormAll[i].lv, fg=fogAll[i].lv;
-    let reg2=reg0, st2=st0, regTxt=null, stTxt=null;
-    if(textBumpReg&&worst(reg2,"watch")!==reg2){reg2="watch";regTxt="MeteoSwiss text mentions regional wind";}
-    if(textBumpStorm){const nw=textBumpStorm==="strong"?"stop":"watch";if(ORD[nw]>ORD[st2]){st2=nw;stTxt="MeteoSwiss text mentions storms";}}
-    const five={front:front.lv,foehn:foehn.lv,natwind:natwind.lv,regwind:reg2,storm:st2};
-    // each of the 5 categories contributes up to 20 points; yellow -10, red -20
-    const items=FIVE.map(k=>{const lv=five[k];const ded=lv==="go"?0:lv==="watch"?10:20;
-      let why="";
-      if(k==="regwind"){if(regAll[i].dirBad)why=regAll[i].dirNote;else if(regTxt)why=regTxt;else if(lv!=="go")why="wind speed/gust or afternoon build-up";}
-      else if(k==="storm"){if(stormAll[i].nogoRain)why="clear rain 08-15h";else if(stTxt&&lv===st2&&st0!==st2)why=stTxt;else if(lv!=="go")why=(stormAll[i].mode==="highres"?"rain hours in CH1/D2":"rain probability");}
-      else if(k==="front"){if(lv!=="go")why=(tc&&tc.found&&tc.found.front)?"front signal + MeteoSwiss text":"front signal";}
-      else if(k==="foehn"){if(lv!=="go")why="föhn pressure/valley wind";}
-      else if(k==="natwind"){if(lv!=="go")why="nationwide wind aloft/ground";}
-      return {k,name:CATNAME[k],lv,ded,why};});
-    let p=100-items.reduce((a,b)=>a+b.ded,0);
-    const reds=FIVE.filter(k=>five[k]==="stop").length;
-    const mods=[];
-    if(fg==="watch"){p-=10;mods.push({txt:"Fog possible",ded:10});}
-    let cap=100,capTxt=null;
-    if(reds>=2){cap=30;capTxt="2+ red factors → capped at 30%";}
-    else if(reds>=1){cap=50;capTxt="1 red factor → capped at 50%";}
-    if(fg==="stop"){cap=Math.min(cap,25);capTxt=(capTxt?capTxt+"; ":"")+"thick fog at launch → capped at 25%";}
-    let sub=Math.max(0,p);
-    let final=Math.max(0,Math.min(sub,cap));
-    let nogo=null;
-    if(foehn.clearFoehn){final=0;nogo="Clear föhn (Δp≥4 hPa + strong southerly) → 0%";}
-    else if(stormAll[i].nogoRain){final=0;nogo="Clear rain 08-15h at this site → 0%";}
-    return {p:Math.round(final),sub:Math.round(sub),items,mods,cap,capTxt,nogo,reds,fg,five,dirBad:regAll[i].dirBad};
-  }
-  const sitePct=SITES.map((s,i)=>({name:s.n,launch:s.launch,...pct(i)}));
-  const best=sitePct.reduce((b,c)=>c.p>b.p?c:b,sitePct[0]);
-  const overallPct=best.p;
-  const overall=overallPct>=75?"go":overallPct>=50?"watch":"stop";
-
-  // category lights for matrix/cards: regwind/storm/fog = best site's light (matches "best site")
-  const bestIdx=sitePct.indexOf(best);
-  cats.regwind=Object.assign({},regAll[bestIdx],{lv:best.five.regwind,regAll,bestIdx});
-  cats.storm=Object.assign({},stormAll[bestIdx],{lv:best.five.storm,stormAll,worstSite:stormAll.reduce((b,s)=>ORD[s.lv]>=ORD[b.lv]?s:b,stormAll[0])});
-  cats.fog=Object.assign({},fogAll[bestIdx],{lv:fogAll.reduce((w,f)=>worst(w,f.lv),"go"),fogAll});
-
-  return {date,di,cats,foehn,natwind,front,sitePct,best,bestIdx,overall,overallPct,metrics:{Tmax,Tmin},textBlock:tc};
-}
-
-// ---- chat text ----
-function chatText(S){
-  const d=new Date(S.date+"T12:00"),dow=d.toLocaleDateString("en-GB",{weekday:"long"});
-  const dt=S.date.slice(8,10)+"."+S.date.slice(5,7),c=S.cats,m=S.metrics,e=k=>LV[c[k].lv].e,nz=s=>s?(" "+s):"";
-  let L=[`${dow} (${dt}) . ${S.overallPct}% . best: ${S.best.name}/${S.best.launch}`,
-    `Front: ${e("front")}${nz(c.front.override?"(set manually)":"")}`,
-    `Föhn: ${e("foehn")}${nz(S.foehn.note)}`,`Nationwide wind: ${e("natwind")}${nz(S.natwind.note)}`,
-    `Regional wind: ${e("regwind")}`,`Precipitation: ${e("storm")}`,`Fog: ${e("fog")}`];
-  const head=S.overall==="stop"?"🔴 Overall:":S.overall==="watch"?"⚠️ Overall:":"✅ Overall:";
-  const temp=`${r0(m.Tmin)}–${r0(m.Tmax)}°C`;let body;
-  if(S.overall==="stop"){const r=S.best.nogo?S.best.nogo:(c.natwind.lv==="stop"||c.regwind.lv==="stop"?"wind too strong":c.storm.lv==="stop"?"widespread storms":"too many cautions");
-    body=`most probably NOT flyable (${r}). ${temp}. 👉 Stand down, or dawn patrol only if calmer at sunrise.`;}
-  else if(S.overall==="watch"){let b=[];
-    if(c.storm.lv!=="go")b.push("convection builds, watch the cumulus");
-    if(c.regwind.lv!=="go")b.push("valley wind/thermals get punchy");
-    if(S.foehn.lv!=="go")b.push("foehn tendency");
-    if(S.natwind.lv!=="go")b.push("upper wind on the strong side");
-    if(c.fog.lv!=="go")b.push("morning fog possible");
-    body=`flyable but watch out: ${b.join(", ")}. ${temp}. Best at ${S.best.name}/${S.best.launch}. 👉 Morning to early afternoon is your window.`;}
-  else body=`flyable. ${temp}, light wind and low storm risk. Best at ${S.best.name}/${S.best.launch}. 👉 Enjoy, standard alpine caution in the afternoon.`;
-  L.push(`${head} ${body}`);return L.join("\n");
-}
-
-// ---- render ----
-function pctColor(p){return p>=75?"var(--go)":p>=50?"var(--watch)":"var(--stop)";}
+// ---- day selector: date only (no AI verdicts), sticky, today + 4 days ----
 function renderDays(){const days=$("#days");days.innerHTML="";DAYS.forEach((S,i)=>{
   const d=new Date(S.date+"T12:00"),dow=d.toLocaleDateString("en-GB",{weekday:"short"}),dt=S.date.slice(8,10)+"."+S.date.slice(5,7);
-  const dots=CATS.map(c=>`<span class="dot ${S.cats[c.key].lv}"></span>`).join("");
   const el=document.createElement("div");el.className="day"+(i===sel?" on":"");
-  el.innerHTML=`<div class="dow">${dow}</div><div class="dt">${dt}</div><div class="pct" style="color:${pctColor(S.overallPct)}">${S.overallPct}%</div><div class="dots">${dots}</div><div class="ov" style="background:var(--${S.overall})">${OVSHORT[S.overall]}</div>`;
-  el.onclick=()=>{sel=i;renderAll();};days.appendChild(el);});}
-function renderOverall(){const S=DAYS[sel];$("#overall").style.display="";const d=new Date(S.date+"T12:00");
-  $("#ovLight").style.background=`var(--${S.overall})`;$("#ovBig").textContent=S.overallPct+"%";$("#ovLbl").textContent=OVLABEL[S.overall];
-  $("#ovDate").textContent=d.toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long"})+" . best: "+S.best.name+" / "+S.best.launch;
-  const ct=chatText(S).split("\n");$("#ovText").textContent=ct[ct.length-1].replace(/^([✅⚠️🔴]+ )?Overall:\s*/,"");
-  $("#ovBreak").innerHTML=breakdownHtml(S.best);
-  const bs=SITES[S.sitePct.indexOf(S.best)]||SITES[0];
-  $("#emaLink").href=`emagram.html?lat=${bs.lat}&lon=${bs.lon}&date=${S.date}&hour=15`;}
-function breakdownHtml(sp){
-  const dedTxt=d=>d===0?`<span class="bd zero">0</span>`:`<span class="bd minus">-${d}</span>`;
-  let rows=`<div class="bh">Flying chance — ${sp.name} / ${sp.launch} (best site) . start 100%</div>`;
-  sp.items.forEach(it=>{rows+=`<div class="brow"><span>${LV[it.lv].e}</span><span class="bn">${it.name}${it.why?` <small>. ${it.why}</small>`:""}</span>${dedTxt(it.ded)}</div>`;});
-  sp.mods.forEach(mo=>{rows+=`<div class="brow"><span>🌫️</span><span class="bn">${mo.txt}</span>${dedTxt(mo.ded)}</div>`;});
-  if(!sp.nogo){
-    rows+=`<div class="brow total"><span></span><span class="bn">Subtotal</span><span class="bd">${sp.sub}%</span></div>`;
-    if(sp.capTxt&&sp.p<sp.sub)rows+=`<div class="brow cap"><span>⚠️</span><span class="bn">${sp.capTxt}</span><span class="bd">${sp.p}%</span></div>`;
-  }else{
-    rows+=`<div class="brow nogo"><span>🚫</span><span class="bn">${sp.nogo}</span><span class="bd minus">0%</span></div>`;
-  }
-  rows+=`<div class="brow total"><span></span><span class="bn">Final flying chance</span><span class="bd" style="color:${pctColor(sp.p)}">${sp.p}%</span></div>`;
-  return rows;
+  el.innerHTML=`<div class="dow">${dow}</div><div class="dt">${dt}</div>`;
+  el.onclick=()=>{sel=i;renderAll();};days.appendChild(el);});
+  const l=$("#aiPageLink");if(l)l.href="meteoAI.html?day="+sel;}
+
+// ---- DE -> EN auto-translation of the selected day's bulletin ----
+// English hazard keywords (translations of the SHV "Alarmzeichen") for highlighting the translated text
+const KEYWORDS_EN=[
+ {w:"cold front",cat:"front"},{w:"warm front",cat:"front"},{w:"occlusion",cat:"front"},{w:"occluded front",cat:"front"},
+ {w:"frontal",cat:"front"},{w:"front",cat:"front"},{w:"disturbance",cat:"front"},{w:"trough",cat:"front"},
+ {w:"squall",cat:"front"},{w:"gust front",cat:"front"},{w:"convergence",cat:"front"},{w:"cloud band",cat:"front"},
+ {w:"cold air",cat:"front"},{w:"westerly flow",cat:"front"},
+ {w:"foehn",cat:"foehn"},{w:"föhn",cat:"foehn"},{w:"lenticular",cat:"foehn"},{w:"rotor cloud",cat:"foehn"},{w:"lee wave",cat:"foehn"},
+ {w:"storm",cat:"wind"},{w:"stormy",cat:"wind"},{w:"gale",cat:"wind"},{w:"gusty",cat:"wind"},{w:"gusts",cat:"wind"},
+ {w:"strong wind",cat:"wind"},{w:"bise",cat:"wind"},{w:"westerly wind",cat:"wind"},{w:"west wind",cat:"wind"},
+ {w:"north wind",cat:"wind"},{w:"northwest wind",cat:"wind"},{w:"east wind",cat:"wind"},
+ {w:"thunderstorms",cat:"storm"},{w:"thunderstorm",cat:"storm"},{w:"thundery",cat:"storm"},{w:"thunder",cat:"storm"},
+ {w:"lightning",cat:"storm"},{w:"showers",cat:"storm"},{w:"shower",cat:"storm"},{w:"overdevelopment",cat:"storm"},
+ {w:"cumulus",cat:"storm"},{w:"sultry",cat:"storm"},{w:"muggy",cat:"storm"},{w:"humid",cat:"storm"},
+ {w:"valley wind",cat:"regwind"},{w:"alpine pumping",cat:"regwind"},{w:"venturi",cat:"regwind"}];
+const KWEN_SORTED=[...KEYWORDS_EN].sort((a,b)=>b.w.length-a.w.length);
+const KWEN_LOOKUP={};KEYWORDS_EN.forEach(k=>{KWEN_LOOKUP[k.w.toLowerCase()]=k.cat;});
+function highlightEN(text){
+  const esc=escapeHtml(text);
+  const re=new RegExp("\\b("+KWEN_SORTED.map(k=>escapeRegex(k.w)).join("|")+")\\b","gi");
+  return esc.replace(re,m=>{const cat=KWEN_LOOKUP[m.toLowerCase()]||"storm";return `<mark class="kw-${cat}" title="${cat}">${m}</mark>`;});
 }
-function renderMatrix(){$("#matrixWrap").style.display="";const t=$("#matrix");
-  let head="<tr><th class='cat'>Category</th>"+DAYS.map(S=>{const d=new Date(S.date+"T12:00");return `<th>${d.toLocaleDateString("en-GB",{weekday:"short"})}<br>${S.date.slice(8,10)}.${S.date.slice(5,7)}</th>`;}).join("")+"</tr>";
-  let rows=CATS.map(c=>`<tr><td class="cat">${c.ic} ${c.name}</td>`+DAYS.map(S=>`<td><span class="cell ${S.cats[c.key].lv}">${LV[S.cats[c.key].lv].e}</span></td>`).join("")+"</tr>").join("");
-  let pr=`<tr><td class="cat"><b>Chance %</b></td>`+DAYS.map(S=>`<td class="pctcell" style="color:${pctColor(S.overallPct)}">${S.overallPct}%</td>`).join("")+"</tr>";
-  let ov=`<tr><td class="cat"><b>Overall</b></td>`+DAYS.map(S=>`<td><span class="cell ${S.overall}">${LV[S.overall].e}</span></td>`).join("")+"</tr>";
-  t.innerHTML=head+rows+pr+ov;}
-function ymd(date){return date.replace(/-/g,"");}
-function tileClass(lv,isBest){if(isBest)return "best";return lv==="stop"?"bad":lv==="watch"?"warn":"";}
+const trHash=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return (h>>>0).toString(36);};
+async function translateDE(text){
+  const key="fw_tr_"+trHash(text);
+  try{const c=localStorage.getItem(key);if(c)return c;}catch(e){}
+  const u="https://translate.googleapis.com/translate_a/single?client=gtx&sl=de&tl=en&dt=t&q="+encodeURIComponent(text);
+  const r=await fetch(u);if(!r.ok)throw new Error("translate HTTP "+r.status);
+  const j=await r.json();
+  const out=(j[0]||[]).map(s=>s&&s[0]?s[0]:"").join("").trim();
+  if(out){try{localStorage.setItem(key,out);}catch(e){}}
+  return out;
+}
+let trSeq=0;
+function fillTranslation(deText){
+  const box=$("#fcEnBox"),tgt=$("#fcEnTxt");if(!box||!tgt||!deText)return;
+  const seq=++trSeq;
+  translateDE(deText).then(en=>{if(seq!==trSeq||!en)return;
+    tgt.innerHTML=highlightEN(en);box.style.display="";}).catch(()=>{});
+}
+
+// ---- General forecast panel: dedicated day selector, original DE text + auto EN, keywords highlighted ----
 function renderForecastPanel(){
   const panel=$("#forecastPanel"),body=$("#fcBody"),pill=$("#fcPill");
   panel.style.display="";
   if(!TEXT||!TEXT.regions||!Object.keys(TEXT.regions).length){
     pill.style.display="none";
-    body.innerHTML=`<div style="font-size:13px;color:var(--slate-d)">No MeteoSwiss text feed connected yet. The numbers below work without it; the text just adds the official wording and an extra safety check.</div>
-    <div class="fc-meta">Set up the free auto-feed (5 min): create the <b>meteoswiss-feed</b> GitHub repo from the files provided, then paste your <code>raw.githubusercontent.com</code> URL into <code>TEXT_JSON_URL</code> at the top of this file.</div>
+    body.innerHTML=`<div style="font-size:13px;color:var(--slate-d)">No MeteoSwiss text feed connected yet. The numbers below work without it; the text just adds the official wording.</div>
     <details class="fc-paste"><summary>Or paste the text once now</summary>
-      <div style="margin-top:6px;color:var(--dim)">Paste the MeteoSwiss "Deutschschweiz" forecast text. Stored locally in your browser; keyword highlighting and the safety check will use it.</div>
+      <div style="margin-top:6px;color:var(--dim)">Paste the MeteoSwiss "Deutschschweiz" forecast text. Stored locally in your browser.</div>
       <textarea id="fcPaste" style="height:90px;margin-top:6px" placeholder="Wetterprognose für die Deutschschweiz, Nord- und Mittelbünden ..."></textarea>
       <button class="btn" id="fcPasteBtn" style="margin-top:8px">Use this text</button></details>`;
     const pb=$("#fcPasteBtn");if(pb)pb.onclick=()=>{const v=$("#fcPaste").value.trim();if(!v)return;
@@ -862,12 +278,21 @@ function renderForecastPanel(){
   pill.style.display="";pill.className="pill go";pill.textContent="connected";
   const tabs=`<div class="fc-tabs">${REGION_KEYS.map((k,i)=>TEXT.regions[k]?`<button data-r="${i}" class="${i===fcRegion?'on':''}">${REGION_SHORT[i]}</button>`:"").join("")}</div>`;
   const key=REGION_KEYS[fcRegion];const txt=TEXT.regions[key]||"";
-  // selected-day extract (Deutschschweiz, anchored on the chosen calendar day) — updates as you switch days
-  const S=DAYS[sel];let dayBox="";
-  if(S){const b=blockForDay(S.di);
-    if(b){const dd=new Date(S.date+"T12:00").toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"short"});
-      dayBox=`<div class="fc-day"><div class="fc-day-h">Selected day . ${dd}</div><div>${highlight(b.body||b.label)}</div></div>`;}
-  }
+  // dedicated day selector for the bulletin: pick a day, see only that day's original text
+  const blocks=dayBlocks(txt);
+  const todayDow=DOW_DE[new Date().getDay()];
+  let anchor=blocks.findIndex(b=>b.dow===todayDow);if(anchor<0)anchor=0;
+  const nDays=blocks.length-anchor;
+  if(!fcSelTouched)fcSel=Math.min(sel,Math.max(0,nDays-1));
+  if(fcSel>=nDays)fcSel=Math.max(0,nDays-1);
+  const dayTabs=nDays>0?`<div class="fc-days">${blocks.slice(anchor).map((bl,i)=>{
+    const d=new Date();d.setDate(d.getDate()+i);
+    const lbl=d.toLocaleDateString("en-GB",{weekday:"short"})+" "+String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0");
+    return `<button data-d="${i}" class="${i===fcSel?'on':''}">${lbl}</button>`;}).join("")}</div>`:"";
+  const b=blocks[anchor+fcSel];
+  const dayBox=b?`<div class="fc-day"><div class="fc-day-h">${escapeHtml(b.label)}</div><div>${highlight(b.body||"")}</div></div>
+    <div class="fc-day" id="fcEnBox" style="display:none;background:#f2fbf7;border-color:#cdecdc"><div class="fc-day-h" style="color:#2c7a55">English (auto-translated)</div><div id="fcEnTxt"></div></div>`
+    :`<div class="fc-day"><div class="fc-day-h">No text for this day</div><div style="color:var(--dim)">The bulletin does not reach this far ahead.</div></div>`;
   let htmlTxt=highlight(txt);
   htmlTxt=htmlTxt.split("\n").map(line=>{
     if(/^(Heute )?(Sonntag|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag)$/.test(line.replace(/<[^>]+>/g,"")))
@@ -875,130 +300,126 @@ function renderForecastPanel(){
     return line;
   }).join("\n");
   const when=TEXT.fetchedAtUTC?new Date(TEXT.fetchedAtUTC).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):"";
-  body.innerHTML=tabs+(fcRegion===0?dayBox:"")+`<div class="fc-text">${htmlTxt}</div>
+  body.innerHTML=tabs+dayTabs+dayBox+`
    <div class="fc-legend">
      <span><i style="background:#ffd9dc"></i>front</span><span><i style="background:#ffe0c2"></i>föhn</span>
      <span><i style="background:#fde7b0"></i>wind</span><span><i style="background:#d8eecf"></i>storm</span>
      <span><i style="background:#cfe9f6"></i>regio wind</span></div>
-   <div class="fc-meta">Source: MeteoSwiss${TEXT.pasted?" (pasted)":""}, fetched ${when}. Highlighted keywords are the SHV "Alarmzeichen"; when a hazard word appears for the selected day, that category is nudged toward more caution automatically.</div>`;
-  body.querySelectorAll(".fc-tabs button").forEach(b=>b.onclick=()=>{fcRegion=+b.dataset.r;renderForecastPanel();});
+   <details class="fc-full"><summary>Show the full bulletin (German)</summary><div class="fc-text">${htmlTxt}</div></details>
+   <div class="fc-meta">Source: MeteoSwiss${TEXT.pasted?" (pasted)":""}, fetched ${when}. Original official text; the English version is machine-translated and may contain errors. Highlighted words are the SHV "Alarmzeichen" hazard keywords. No interpretation here — read it and form your own picture first.</div>`;
+  body.querySelectorAll(".fc-tabs button").forEach(bt=>bt.onclick=()=>{fcRegion=+bt.dataset.r;renderForecastPanel();});
+  body.querySelectorAll(".fc-days button").forEach(bt=>bt.onclick=()=>{fcSel=+bt.dataset.d;fcSelTouched=true;renderForecastPanel();});
+  if(b)fillTranslation(b.body);
 }
-function renderCards(){const S=DAYS[sel];
-  const wrapMain=$("#cardsMain"),wrapBonus=$("#cardsBonus");wrapMain.innerHTML="";wrapBonus.innerHTML="";
-  CATS.forEach(cat=>{
-    const c=S.cats[cat.key],card=document.createElement("div");card.className="card open"+(cat.wide?" wide":"");
-    card.innerHTML=`<div class="card-h"><div class="ic">${cat.ic}</div><div class="tt"><b>${cat.name}</b><small>${cat.sub}</small></div><div class="pill ${c.lv}">${LV[c.lv].e} ${LV[c.lv].t}</div></div><div class="card-b">${catDetail(cat.key,S)}</div>`;
+
+// ---- front charts: the clean DWD front/pressure rendering (as shown on wetteronline), DWD's own chart as fallback.
+// Analysis for today; forecasts valid ~12 UTC on day 1-4 (+36/60/84/108 h from the 00 UTC run).
+function frontChartSources(di){
+  const now=new Date();
+  const y=now.getFullYear(),mo=String(now.getMonth()+1).padStart(2,"0"),dd=String(now.getDate()).padStart(2,"0");
+  const run=`${y}${mo}${dd}`;
+  const wo=f=>`https://www.wetteronline.de/?pid=p_modell_expert&ireq=true&src=modell/vermarktung/wom/analyse/analyse2wom/dwd/${y}/${mo}/${dd}/${f}_small.jpg`;
+  if(di===0){
+    const cands=[];
+    [18,12,6,0].forEach(h=>{if(now.getUTCHours()>=h+4)cands.push(wo(`dwd_euro_${run}${String(h).padStart(2,"0")}`));});
+    cands.push(wo(`dwd_anal_${run}00`));
+    cands.push("https://www.dwd.de/DWD/wetter/wv_spez/hobbymet/wetterkarten/bwk_bodendruck_na_ana.png");
+    return {cands,cap:"DWD surface analysis with fronts (latest available run)"};
+  }
+  const map={1:"036",2:"060",3:"084",4:"108"};
+  if(!map[di])return null;
+  return {cands:[wo(`dwd_prog_${run}00_${map[di]}`),
+    `https://www.dwd.de/DWD/wetter/wv_spez/hobbymet/wetterkarten/ico_tkboden_na_${map[di]}.png`],
+    cap:`DWD front forecast (ICON), valid ≈12 UTC on the selected day (+${+map[di]} h from the 00 UTC run)`};
+}
+function chainImg(cands,alt){
+  return `<div class="embed"><img loading="lazy" src="${cands[0]}" data-srcs='${JSON.stringify(cands)}' data-i="0" onerror="nextSrc(this)" alt="${alt}"><div style="display:none;padding:10px;color:#9aa6b1;font-size:12px">Chart not available right now. Use the links below.</div></div>`;
+}
+
+// ---- Part 1 cards: raw meteorological information, no verdicts and no pills ----
+const RAWCATS=[
+ {key:"gfront",ic:"🗺️",name:"1 · Fronts",sub:"Surface pressure + fronts, up to 4 days ahead (DWD)",wide:true},
+ {key:"gfoehn",ic:"🌀",name:"2 · Föhn",sub:"Diagram, Δp Lugano–Zürich, valley southerlies",wide:true},
+ {key:"gnat",ic:"💨",name:"3 · Nationwide wind",sub:"XC-Therm wind map + Bise chart",wide:true},
+ {key:"greg",ic:"🏔️",name:"4 · Regional wind",sub:"6 locations, 10 m AGL, 08–16h",wide:true},
+ {key:"gprec",ic:"🌧️",name:"5 · Thunderstorms / precipitation",sub:"Per location, 08–16h",wide:true},
+ {key:"gfog",ic:"🌫️",name:"6 · Fog / low stratus",sub:"6 locations, humidity layers",wide:true},
+ {key:"gother",ic:"📈",name:"7 · Other",sub:"Sounding / emagram analysis",wide:true}];
+function renderRawCards(){const S=DAYS[sel];const wrap=$("#cardsRaw");wrap.innerHTML="";
+  RAWCATS.forEach(cat=>{
+    const card=document.createElement("div");card.className="card open"+(cat.wide?" wide":"");
+    card.innerHTML=`<div class="card-h"><div class="ic">${cat.ic}</div><div class="tt"><b>${cat.name}</b><small>${cat.sub}</small></div></div><div class="card-b">${rawDetail(cat.key,S)}</div>`;
     card.querySelector(".card-h").onclick=()=>{card.classList.toggle("open");};
-    (cat.group==="bonus"?wrapBonus:wrapMain).appendChild(card);
-    if(cat.key==="front")wireFront(card,S);
+    wrap.appendChild(card);
     initLazies(card);
   });}
-function catDetail(key,S){const c=S.cats[key],why=`<div class="why">${c.why||""}</div>`,kw=t=>`<div class="kw">${t}</div>`;
-  const date=S.date,bust=Date.now();
-  if(key==="front"){const f=S.front,img=`https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${ymd(date)}_1200.png`;
-    return `<div class="why">${f.why}</div>
-    <div class="ovr"><small>Set light from the chart:</small>
-      <button data-v="go">🟢</button><button data-v="watch">🟡</button><button data-v="stop">🔴</button><button data-v="auto">Auto (${LV[f.auto].t})</button></div>
-    <div class="embed"><img loading="lazy" src="${img}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div style="display:none;padding:10px;color:#9aa6b1;font-size:12px">Isobar chart for this day not published yet. Use the links below.</div></div>
-    <div style="font-size:11px;color:var(--dim);margin-top:4px">Isobar/front chart (meteonews) for ${date} 12 UTC. Evaluated at Engelberg (synoptic scale).</div>
-    <div class="links"><a class="lnk" target="_blank" href="https://www.wetteronline.ch/wetterfronten/europa">Front map (wetteronline)</a>
-      <a class="lnk" target="_blank" href="https://www.meteoschweiz.admin.ch/#tab=forecast-map">MeteoSwiss text</a></div>
-    ${kw("The General forecast panel above shows the official text with front keywords (Kaltfront, Okklusion, ...) highlighted. If one appears for this day, this card is bumped toward caution automatically.")}`;}
-  if(key==="foehn"){const f=S.foehn,tiles=f.valData.map(v=>{const south=v.smax>=18;return `<div class="vt ${south?'south':''}"><b>${v.nm}</b><br>S-comp 925/850/800: ${r0(v.s925)}/${r0(v.s850)}/${r0(v.s800)} km/h</div>`;}).join("");
-    return `<div class="kv"><span class="k">Δp Lugano-Zürich (08-16h peak)</span><span class="v">${f.dPmax!=null?(f.dPmax>0?"+":"")+f.dPmax.toFixed(1)+" hPa":"?"} ${f.cross4?"⚠️>4":""}</span></div>
-    <div class="kv"><span class="k">Valley southerly max</span><span class="v">${r0(mx(f.valData.map(v=>v.smax)))} km/h</span></div><div class="why">${f.why}</div>
-    <div class="vtab">${tiles}</div>
-    <div class="embed"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
+function rawDetail(key,S){
+  const bust=Date.now();
+  if(key==="gfront"){const d=frontChartSources(S.di);
+    const img=d?chainImg(d.cands,"DWD front chart")+`<div style="font-size:11px;color:var(--dim);margin-top:4px">${d.cap}</div>`
+     :`<div style="font-size:13px;color:var(--slate-d);padding:6px 0">The DWD front forecast reaches about 4 days ahead — no chart for this day.</div>`;
+    const mn=`https://media.meteonews.net/isobaren/EURNAt_700x450_c1/isobaren_${ymd(S.date)}_1200.png`;
+    return img+`
+    <details class="fc-full"><summary>Isobar chart (Meteonews, ${S.date} 12 UTC)</summary>
+      <div class="embed" style="margin-top:6px"><img loading="lazy" src="${mn}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div style="display:none;padding:10px;color:#9aa6b1;font-size:12px">Isobar chart for this day not published yet.</div></div></details>
+    <div class="links"><a class="lnk" target="_blank" href="https://www.wetteronline.ch/wetterfronten/europa">Front maps (WetterOnline)</a>
+      <a class="lnk" target="_blank" href="https://www.dwd.de/DE/leistungen/hobbymet_wk_europa/hobbyeuropakarten.html">DWD analysis & forecast charts</a>
+      <a class="lnk" target="_blank" href="https://www.meteoschweiz.admin.ch/#tab=forecast-map">MeteoSwiss</a></div>
+    <div class="kw">Where are the fronts now, and where will they be on your flying day? Look for cold fronts (blue), warm fronts (red) and occlusions (purple) approaching the Alps. Chart © Deutscher Wetterdienst.</div>`;}
+  if(key==="gfoehn"){const f=S.foehn;const dp=f.dPmax;
+    const dpCls=dp!=null&&dp>4?"red":dp!=null&&dp>3?"yellow":"";
+    const sCls=v=>v>30?"red":v>=25?"yellow":"";
+    const rows=f.valData.map(v=>`<tr><td>${v.nm}</td>
+      <td class="num"><span class="chip ${sCls(v.s925)}">${r0(v.s925)}</span></td>
+      <td class="num"><span class="chip ${sCls(v.s850)}">${r0(v.s850)}</span></td>
+      <td class="num"><span class="chip ${sCls(v.s800)}">${r0(v.s800)}</span></td></tr>`).join("");
+    return `<div class="embed"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_foehn_ch&lang=en">Föhn diagram (profiwetter)</a></div>
-    ${kw("<b>NO-GO:</b> Δp crosses +4 hPa during 08-16h AND a strong southerly at 800/1500/2000 m in the föhn valleys → flying chance forced to 0%.")}`;}
-  if(key==="natwind"){const n=S.natwind;return `<div class="kv"><span class="k">Wolfenschiessen ground (gust)</span><span class="v">${r0(n.gBase)} (${r0(n.gGust)}) km/h</span></div>
-    <div class="kv"><span class="k">Wolfenschiessen 1500 m / 3000 m</span><span class="v">${r0(n.wV15)} / ${r0(n.wV30)} km/h</span></div>
-    <div class="kv"><span class="k">Zürich 1500 m / 3000 m</span><span class="v">${r0(n.zG15)} / ${r0(n.zG30)} km/h ${dirTxt(n.aDir)}</span></div><div class="why">${n.why}</div>
+    <div class="kv" style="margin-top:10px"><span class="k">Δp Lugano–Zürich (08–16h peak)</span><span class="v"><span class="chip ${dpCls}">${dp!=null?(dp>0?"+":"")+dp.toFixed(1)+" hPa":"?"}</span></span></div>
+    <table class="rt"><tr><th>Valley southerly</th><th>${LEVEL_M.p925}<br>(925 hPa)</th><th>${LEVEL_M.p850}<br>(850 hPa)</th><th>${LEVEL_M.p800}<br>(800 hPa)</th></tr>${rows}</table>
+    <div class="kw">Southerly component (wind from 120–240°), km/h, max 08–16h. Colours: Δp &gt;4 hPa red, &gt;3 hPa yellow · southerly &gt;30 km/h red, 25–30 km/h yellow.</div>`;}
+  if(key==="gnat"){return `
     <div class="embed" data-src="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5">Open wind map full size</a></div>
-    ${kw("<b>Logic:</b> sheltered valley = Wolfenschiessen, general flow = Zürich, sampled at 08/12/15 and 10 m / 1500 m / 3000 m.")}`;}
-  if(key==="regwind"){const tiles=c.regAll.map((s,i)=>{const isBest=i===S.sitePct.indexOf(S.best);
-    const dirInfo=s.dDir!=null?` . ${dirTxt(s.dDir)}`:"";
-    const warn=s.dirBad?`<br><span style="color:#c0353a">⚠️ wrong wind direction (${SITES[i].dirNote})</span>`:"";
-    return `<div class="vt ${tileClass(s.lv,isBest)}"><b>${s.name} / ${s.launch}${isBest?' ★':''}</b> ${LV[s.lv].e}<br>${r0(s.am)}→${r0(s.pm)} km/h (gust ${r0(s.gu)})${s.trend?' ↑pm':''}${dirInfo}${warn}</div>`;}).join("");
-    return `<div class="vtab">${tiles}</div>
-    ${kw("<b>Logic:</b> wind speed AND direction at each launch. Each site only works with wind from its slope: Zugerberg needs west wind, the mountain launches (Brunni, Niederbauen) take many directions, Büelen is low and sheltered. Moderate wind from the wrong direction drops a site even if the speed is fine. Speed: 0-15 🟢/15-25 🟡/25+ 🔴, gust>30 🔴. The overall % uses the best usable site (★).")}`;}
-  if(key==="storm"){const tiles=c.stormAll.map(s=>{const label=s.mode==="highres"?`CH1 ${s.rainHoursCH}h / D2 ${s.rainHoursDE}h${(s.thunderCH||s.thunderDE)?' ⚡':''}`:`Extended: prob ${r0(s.ppMax)}%${s.thunder?' ⚡':''}`;
-    return `<div class="vt ${tileClass(s.lv,false)}"><b>${SITES[s.idx].n} / ${SITES[s.idx].launch}</b> ${LV[s.lv].e}${s.nogoRain?' 🚫':''}<br>${label}<br>CAPE ${r0(s.capeMax)}${s.mode==="blend"?' <i>(ext)</i>':''}</div>`;}).join("");
-    const ws=c.worstSite,wname=ws.name,wlat=SITES[ws.idx].lat,wlon=SITES[ws.idx].lon;
-    return `<div class="vtab">${tiles}</div>
-    <canvas class="spark" data-kind="storm" data-date="${date}" data-site="${ws.idx}" data-mode="${ws.mode}"></canvas>
-    <div style="font-size:11px;color:var(--dim)">Most active site (${wname}): CAPE (red) & precipitation mm (blue bars), 06-21h. Source: ${ws.mode==="highres"?"ICON-D2":"blended (beyond CH1/D2 range)"}.</div>
-    <div class="links"><a class="lnk" target="_blank" href="emagram.html?lat=${wlat}&lon=${wlon}&date=${date}&hour=15">Emagram @15:00, ${wname}</a>
-      <a class="lnk" target="_blank" href="emagram.html?lat=${wlat}&lon=${wlon}&date=${date}&hour=12">Emagram @12:00, ${wname}</a></div>
-    ${kw("<b>Method:</b> ICON-CH1 vs ICON-D2 per site, counting rain-coded hours (09-19h). Beyond their range, sites are flagged <i>(ext)</i> and use the blend. 🚫 = clear rain 08-15h at that site → that site's chance forced to 0%.")}`;}
-  if(key==="fog"){const blocks=c.fogAll.map(f=>{
-      const prof=f.prof;
+    <div class="embed" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/wind_bise_en.png?t=${bust}"></div>
+    <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_bise&lang=en">Bise diagram (profiwetter)</a></div>
+    <div class="kw">Top: forecast wind map (ICON). Bottom: Bise diagram — north-easterly pressure gradient flow over the Swiss plateau.</div>`;}
+  if(key==="greg"){
+    if(!S.raw)return `<div class="kw">Location data not loaded.</div>`;
+    const rows=S.raw.towns.map(t=>`<tr><td>${t.n}</td>
+      <td class="num">${t.wMin!=null?r0(t.wMin):"?"} – ${r0(t.wMax)}</td>
+      <td class="num">${r0(t.gMax)}</td>
+      <td>${t.dDir!=null?dirTxt(t.dDir)+" ("+r0(t.dDir)+"°)":"?"}</td></tr>`).join("");
+    return `<table class="rt"><tr><th>Location</th><th>Wind min–max (km/h)</th><th>Max gust (km/h)</th><th>Direction*</th></tr>${rows}</table>
+    <div class="kw">10 m above ground, 08:00–16:00 local time (Open-Meteo best match). *Direction at the windiest hour. These are grid-model values — local valley and slope effects can differ, always check live stations before launching.</div>`;}
+  if(key==="gprec"){
+    if(!S.raw)return `<div class="kw">Location data not loaded.</div>`;
+    const hdr=`<div class="pl"></div>`+Array.from({length:9},(_,k)=>`<div class="ph">${String(8+k).padStart(2,"0")}</div>`).join("")+`<div class="ph">max %</div><div class="ph">hrs</div>`;
+    const rows=S.raw.towns.map(t=>{
+      const cells=t.hrs.map(x=>{const a=Math.min(.9,x.pp/100*.9+(x.pr>0.1?.1:0));
+        return `<div class="pc" style="background:rgba(52,140,200,${a.toFixed(2)});${x.pp>=50?"color:#fff":""}">${Math.round(x.pp)}</div>`;}).join("");
+      return `<div class="pl">${t.n}</div>${cells}<div class="ps">${r0(t.ppMax)}%</div><div class="ps">${t.wetHours}<small>/9</small></div>`;
+    }).join("");
+    return `<div class="pgrid">${hdr}${rows}</div>
+    <div class="kw">Precipitation probability (%) per hour and location, 08:00–16:00 local. "hrs" = hours with possible precipitation (probability ≥30% or model rain &gt;0.1 mm). It can pour in one valley while another stays flyable — compare the locations before writing off the day.</div>`;}
+  if(key==="gfog"){
+    if(!S.raw)return `<div class="kw">Location data not loaded.</div>`;
+    const blocks=S.raw.fog.map(f=>{const prof=f.prof;
       const head=`<div class="lbl"></div>`+prof.hours.map(h=>`<div class="hd">${String(h.h).padStart(2,'0')}h</div>`).join('');
       const body=prof.levels.map((lv,li)=>`<div class="lbl">${lv[0]} <span style="color:#aeb8c0">${lv[1]}m</span></div>`+prof.hours.map(h=>`<div class="c"><span class="cell ${h["l"+li]}" style="width:26px;height:18px;font-size:10px">${LV[h["l"+li]]?LV[h["l"+li]].e:'?'}</span></div>`).join('')).join('');
-      return `<div style="margin-top:10px"><b style="font-size:12.5px">${f.name} / ${f.launch}</b> ${LV[f.lv].e}<div class="foggrid">${head}${body}</div></div>`;}).join("");
-    return `${blocks}
+      return `<div style="margin-top:10px"><b style="font-size:12.5px">${f.n}</b> <span style="color:var(--dim);font-size:11px">(upper ref: ${f.up})</span><div class="foggrid">${head}${body}</div></div>`;}).join("");
+    return `<div class="fogwrap">${blocks}</div>
     <div class="embed" style="margin-top:12px"><img loading="lazy" src="https://profiwetter.ch/hochnebel_en.png?t=${bust}"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=hochnebel&lang=en">High-fog ceiling (profiwetter)</a></div>
-    ${kw("<b>Per site, 4 heights:</b> landing, mid, launch, launch+400 m (RH interpolated from 925/850/800/700hPa; landing also uses visibility/low cloud). What matters most is the launch: 🔴 launch in cloud → site fog STOP, 🟡 possible/landing only → caution.")}`;}
-  return why;}
-function wireFront(card,S){card.querySelectorAll(".ovr button").forEach(b=>{
-  const v=b.dataset.v,cur=S.front.override||"";
-  if((v==="auto"&&!cur)||v===cur)b.classList.add("on");
-  b.onclick=ev=>{ev.stopPropagation();const key=`fw_front_${S.date}`;
-    if(v==="auto")localStorage.removeItem(key);else localStorage.setItem(key,v);
-    rescore();};});}
-function drawStormSite(cv,t,cape,precip){const ctx=cv.getContext("2d"),dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||300,H=96;
-  cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
-  const x=i=>8+i/(Math.max(1,t.length-1))*(W-16);
-  const pmax=Math.max(2,...precip.map(v=>v||0));
-  ctx.fillStyle="rgba(52,140,200,.22)";precip.forEach((v,i)=>{const h=(v||0)/pmax*(H-26);ctx.fillRect(x(i)-3,H-14-h,6,h);});
-  const cmax=Math.max(1000,...cape.map(v=>v||0)),y=v=>H-14-(v/cmax)*(H-26);
-  ctx.fillStyle="#9aa6b1";ctx.font="9px Inter";t.forEach((tt,i)=>{if(+tt.slice(11,13)%3===0)ctx.fillText(tt.slice(11,13),x(i)-6,H-2);});
-  ctx.beginPath();cape.forEach((v,i)=>{i?ctx.lineTo(x(i),y(v||0)):ctx.moveTo(x(i),y(v||0));});ctx.strokeStyle="#e5484d";ctx.lineWidth=2;ctx.stroke();
-  ctx.strokeStyle="rgba(229,72,77,.3)";ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(8,y(1000));ctx.lineTo(W-8,y(1000));ctx.stroke();ctx.setLineDash([]);}
-function initLazies(card){card.querySelectorAll(".embed[data-src]").forEach(e=>{if(e.dataset.loaded)return;e.dataset.loaded=1;
-    const f=document.createElement("iframe");f.loading="lazy";f.src=e.dataset.src;f.referrerPolicy="no-referrer";e.appendChild(f);
-    const n=document.createElement("div");n.style.cssText="font-size:11px;padding:6px 8px;color:#9aa6b1";n.textContent="If the map stays blank, the provider blocks embedding. Use the link below.";e.appendChild(n);});
-  card.querySelectorAll("canvas.spark").forEach(cv=>{if(cv.dataset.done)return;cv.dataset.done=1;
-    const date=cv.dataset.date;
-    if(cv.dataset.kind==="storm"){const si=+cv.dataset.site||0,mode=cv.dataset.mode,loc=STORMD[si];
-      const idx=idxFor(loc.hourly.time,date,6,21),t=idx.map(i=>loc.hourly.time[i]);
-      const suf=mode==="highres"?"icon_d2":"best_match";
-      const cape=idx.map(i=>loc.hourly["cape_"+suf]?loc.hourly["cape_"+suf][i]:0),precip=idx.map(i=>loc.hourly["precipitation_"+suf]?loc.hourly["precipitation_"+suf][i]:0);
-      drawStormSite(cv,t,cape,precip);}
-  });}
-function renderAll(){renderDays();renderOverall();renderMatrix();renderForecastPanel();renderCards();}
-function rescore(){DAYS=[];for(let di=0;di<MAIN[0].daily.time.length&&di<6;di++){const s=scoreDay(di);if(s)DAYS.push(s);}if(sel>=DAYS.length)sel=0;renderAll();}
-
-// boot
-
-async function loadText(){
-  try{const stored=localStorage.getItem("fw_text");if(stored){TEXT=JSON.parse(stored);}}catch(e){}
-  if(TEXT_JSON_URL){
-    // self-heal: a github.com/.../blob/... URL serves an HTML page, not JSON. Rewrite to raw.
-    const url=TEXT_JSON_URL.replace(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\//,"https://raw.githubusercontent.com/$1/$2/");
-    try{const r=await fetch(url,{cache:"no-store"});
-      if(r.ok){const j=await r.json();if(j&&j.regions){TEXT=j;}else console.warn("[fw] feed loaded but no .regions field");}
-      else console.warn("[fw] feed HTTP",r.status,url);
-    }catch(e){console.warn("[fw] feed fetch/parse failed:",e.message,url);}
-  }
+    <div class="kw">Humidity layers from the ground up to the local flying reference +400 m (RH interpolated from pressure levels; ground level also uses visibility/low cloud). 🟢 dry · 🟡 RH ≥88% (fog possible) · 🔴 RH ≥95% (in cloud).</div>`;}
+  if(key==="gother"){
+    return `<div style="padding:4px 0"><a class="btn" href="emagram.html" target="_blank">Open Emagram</a></div>
+    <div class="kw">Sounding analysis for thermal quality and stability: cloud base, thermal tops, trigger temperature, CAPE/CIN. Opens in a new tab.</div>`;}
+  return "";
 }
-async function boot(){$("#status").innerHTML='<span class="loader"></span>Loading forecast.';
-  try{
-    await loadText();
-    const [main,wind,sited,stormd]=await Promise.all([
-      omMulti([FRONT_PT],HV,DV),
-      omMulti(WIND_PTS,WV),
-      omMulti(SITES,SV),
-      omMulti(SITES,STV,null,"meteoswiss_icon_ch1,icon_d2,best_match")
-    ]);
-    MAIN=main;WIND=wind;SITED=sited;STORMD=stormd;rescore();
-    $("#status").innerHTML="Updated "+new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})+" . Open-Meteo (best match + ICON-CH1/D2 for storms)"+(TEXT&&TEXT.regions?" + MeteoSwiss text":"")+" . all wind km/h";
-  }catch(e){const net=(e&&e.name==="TypeError")||/failed to fetch|aborted|networkerror/i.test(e.message||"");
-    $("#status").innerHTML='<span style="color:var(--stop)">Could not load: '+(net?"network blocked. Open this on flywithmiki.com (not a sandboxed preview) and allow api.open-meteo.com.":e.message)+'</span>';}}
+
+function renderAll(){renderDays();renderForecastPanel();renderRawCards();}
 boot();
-window.addEventListener("resize",()=>{$$("canvas.spark").forEach(c=>c.dataset.done="");$$(".card").forEach(initLazies);});
 </script>
 
 
