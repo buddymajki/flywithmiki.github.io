@@ -243,3 +243,16 @@ html{overflow-x:clip!important}
    `auto W/H` = use the intrinsic ratio once loaded, the given ratio as placeholder before */
 .embed.ar-front img{aspect-ratio:auto 640/478;width:100%}
 .embed.ar-pw img{aspect-ratio:auto 1350/900;width:100%}
+
+/* ---- slide-in menu must cover the sticky day bar (z-index 30) ----
+   !important beats the inline z-index:3 on #mySidebar */
+#mySidebar{z-index:40!important}
+#myOverlay{z-index:35}
+
+/* ---- mobile: full-width cards, narrower day chips ----
+   .wrap sits inside .w3-content.w3-padding which already gives 16px, so drop
+   .wrap's own 16px — cards then line up with the header logo above */
+@media(max-width:760px){
+  .wrap{padding-left:0;padding-right:0}
+  .stickybar .day{min-width:72px;padding:8px 8px}
+}
