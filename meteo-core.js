@@ -15,12 +15,19 @@ const SITES=[
  {n:"Engelberg",launch:"Brunni",lat:46.8100,lon:8.4250,landingEl:1000,launchEl:1800,dirs:[[120,300]],dirNote:"S to W facing, sheltered from N/E"},
  {n:"Wolfenschiessen",launch:"Büelen",lat:46.9050,lon:8.4050,landingEl:560,launchEl:1100,dirs:[[0,360]],dirNote:"low & wind-sheltered, tolerant of direction"},
  {n:"Emmetten",launch:"Niederbauen",lat:46.9468,lon:8.5365,landingEl:790,launchEl:1590,dirs:[[180,360],[0,30],[90,160]],dirNote:"N/NW, SW and SE launches, very versatile (not in föhn)"}];
-// fixed sampling points (foehn / nationwide)
+// fixed sampling points (foehn / nationwide).
+// Föhn sentinels = the main Swiss föhn corridors (MeteoSwiss): Rhone/Visp, Haslital/Meiringen,
+// Reusstal/Altdorf, Linthal/Glarus, Rheintal/Chur. Föhn shows up there first and hardest;
+// Meiringen (over the Brünig) and Altdorf are the early-warning stations for our flying area.
+// GOTTHARD = crest reference point for the southerly flow aloft.
 const P={LUGANO:{n:"Lugano",lat:46.00,lon:8.95},ZURICH:{n:"Zürich",lat:47.46,lon:8.55},
  ALTDORF:{n:"Altdorf",lat:46.88,lon:8.64},SARNEN:{n:"Sarnen",lat:46.90,lon:8.25},
- ENGELBERG:{n:"Engelberg",lat:46.82,lon:8.40},WOLFEN:{n:"Wolfenschiessen",lat:46.91,lon:8.40}};
-const WIND_PTS=[P.LUGANO,P.ZURICH,P.ALTDORF,P.SARNEN,P.ENGELBERG,P.WOLFEN];
-const WI={LUGANO:0,ZURICH:1,ALTDORF:2,SARNEN:3,ENGELBERG:4,WOLFEN:5};
+ ENGELBERG:{n:"Engelberg",lat:46.82,lon:8.40},WOLFEN:{n:"Wolfenschiessen",lat:46.91,lon:8.40},
+ GOTTHARD:{n:"Gotthard",lat:46.56,lon:8.56},MEIRINGEN:{n:"Meiringen",lat:46.73,lon:8.19},
+ GLARUS:{n:"Glarus",lat:47.04,lon:9.07},CHUR:{n:"Chur",lat:46.85,lon:9.53},
+ VISP:{n:"Visp",lat:46.29,lon:7.88}};
+const WIND_PTS=[P.LUGANO,P.ZURICH,P.ALTDORF,P.SARNEN,P.ENGELBERG,P.WOLFEN,P.GOTTHARD,P.MEIRINGEN,P.GLARUS,P.CHUR,P.VISP];
+const WI={LUGANO:0,ZURICH:1,ALTDORF:2,SARNEN:3,ENGELBERG:4,WOLFEN:5,GOTTHARD:6,MEIRINGEN:7,GLARUS:8,CHUR:9,VISP:10};
 // Part 1 raw-data locations (fixed order), 10 m AGL wind + fog layering.
 // el = town elevation; upEl/upName = local flying reference used as the upper fog level.
 const RAW_PTS=[
@@ -30,11 +37,9 @@ const RAW_PTS=[
  {n:"Stans",lat:46.9580,lon:8.3660,el:452,upEl:1850,upName:"Stanserhorn"},
  {n:"Altdorf",lat:46.8800,lon:8.6440,el:458,upEl:1440,upName:"Eggberge"},
  {n:"Zug",lat:47.1662,lon:8.5155,el:430,upEl:947,upName:"Zugerberg"}];
-// approximate mid-level heights for the föhn pressure levels (standard atmosphere)
-const LEVEL_M={p925:"≈750 m",p850:"≈1500 m",p800:"≈1950 m"};
 const CATS=[
  {key:"front",ic:"🌧️",name:"Front",sub:"Cold/warm front, trough",group:"main"},
- {key:"foehn",ic:"🌀",name:"Föhn",sub:"S overpressure + valley wind",group:"main"},
+ {key:"foehn",ic:"🌀",name:"Föhn",sub:"Crest wind · Δp · shallow-föhn ΔT · breakthrough",group:"main"},
  {key:"natwind",ic:"💨",name:"Nationwide wind",sub:"Wolfenschiessen vs Zürich, 3 heights",group:"main",wide:true},
  {key:"regwind",ic:"🏔️",name:"Regional wind",sub:"4 launch sites",group:"main"},
  {key:"storm",ic:"⛈️",name:"Storms / precip",sub:"CH1 + ICON-D2, per site",group:"main"},
@@ -100,9 +105,13 @@ const HV=["temperature_2m","precipitation","precipitation_probability","weather_
  "pressure_msl","temperature_850hPa","wind_speed_850hPa","wind_direction_850hPa",
  "temperature_700hPa","wind_speed_700hPa","wind_direction_700hPa"];
 const DV=["temperature_2m_max","temperature_2m_min","precipitation_sum","precipitation_probability_max","weather_code"];
-const WV=["pressure_msl","wind_speed_10m","wind_gusts_10m",
+// föhn/nationwide points: 10 m wind incl. direction (breakthrough), 925 hPa = föhn-jet level just
+// above the corridor valley floors (all 450-650 m), ≈2000/3000 m winds (800/700 hPa), 850 hPa for
+// nationwide wind, and pressure-level temperatures for the shallow-föhn N-S comparison
+const WV=["pressure_msl","wind_speed_10m","wind_direction_10m","wind_gusts_10m",
  "wind_speed_925hPa","wind_direction_925hPa","wind_speed_850hPa","wind_direction_850hPa",
- "wind_speed_800hPa","wind_direction_800hPa","wind_speed_700hPa","wind_direction_700hPa"];
+ "wind_speed_800hPa","wind_direction_800hPa","wind_speed_700hPa","wind_direction_700hPa",
+ "temperature_850hPa","temperature_800hPa","temperature_700hPa"];
 // per-site detail (regional wind + fog): ground/120m winds + pressure-level RH + geopotential
 const SV=["wind_speed_10m","wind_direction_10m","wind_gusts_10m","wind_speed_120m","relative_humidity_2m","visibility","cloud_cover_low",
  "relative_humidity_925hPa","relative_humidity_850hPa","relative_humidity_800hPa","relative_humidity_700hPa",
@@ -136,7 +145,8 @@ function vals(loc,v,date,h0,h1){const a=loc.hourly[v];if(!a)return [];return idx
 function at(loc,v,date,h){const t=loc.hourly.time,a=loc.hourly[v];if(!a)return null;const key=date+"T"+String(h).padStart(2,"0")+":00";let i=t.indexOf(key);
   if(i<0){const ids=idxFor(t,date,0,23);if(!ids.length)return null;i=ids.reduce((b,j)=>Math.abs(+t[j].slice(11,13)-h)<Math.abs(+t[b].slice(11,13)-h)?j:b,ids[0]);}
   return a[i]!=null&&!isNaN(a[i])?a[i]:null;}
-const southComp=(spd,dir)=>(dir>=120&&dir<=240)?spd:0;
+// southerly sector 100-250°: SE-flow föhn (Guggiföhn-type situations) and SSW cases are real föhn too
+const southComp=(spd,dir)=>(dir>=100&&dir<=250)?spd:0;
 const escapeHtml=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const escapeRegex=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 
@@ -192,26 +202,98 @@ function scoreDay(di){
   const fly=idxFor(S0.hourly.time,date,9,19);if(!fly.length)return null;
   const Tmax=S0.daily.temperature_2m_max[di],Tmin=S0.daily.temperature_2m_min[di];
 
-  // FÖHN
-  const lug=WIND[WI.LUGANO],zur=WIND[WI.ZURICH];
-  const Lp=vals(lug,"pressure_msl",date,8,16),Zp=vals(zur,"pressure_msl",date,8,16);
-  let dPmax=null,cross4=false;
-  if(Lp.length&&Zp.length){const dpa=Lp.map((v,i)=>v-(Zp[i]??Zp[Zp.length-1]));dPmax=mx(dpa);cross4=dpa.some(x=>x>=4);}
-  const valleys=[["Altdorf",WI.ALTDORF],["Sarnen",WI.SARNEN],["Engelberg",WI.ENGELBERG],["Wolfenschiessen",WI.WOLFEN]];
-  const valData=valleys.map(([nm,ix])=>{const loc=WIND[ix];
-    const s9=mx(vals(loc,"wind_speed_925hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_925hPa",date,8,16)[i]||0)))||0;
-    const s8=mx(vals(loc,"wind_speed_850hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_850hPa",date,8,16)[i]||0)))||0;
-    const s7=mx(vals(loc,"wind_speed_800hPa",date,8,16).map((s,i)=>southComp(s,vals(loc,"wind_direction_800hPa",date,8,16)[i]||0)))||0;
-    return {nm,s925:s9,s850:s8,s800:s7,smax:Math.max(s9,s8,s7)};});
-  const valMax=mx(valData.map(v=>v.smax))||0;
-  // clear föhn needs BOTH the pressure gradient and a real valley southerly (or a very strong southerly alone);
-  // a lone 18 km/h southerly no longer forces stop — that over-triggered on ordinary S-flow days
-  const clearFoehn=(dPmax>=4&&valMax>=20)||valMax>=30;
-  let foehn=(()=>{let lv="go",note="";
-    if(clearFoehn)lv="stop";else if(dPmax>=3||valMax>=20||(dPmax>=2&&valMax>=15))lv="watch";
-    note=lv==="stop"?"clear föhn":lv==="watch"?"foehn tendency":"";
-    const why=`Lugano-Zürich Δp peak ${dPmax!=null?(dPmax>0?"+":"")+dPmax.toFixed(1):"?"} hPa in 08-16h `+(cross4?"(crosses +4 hPa) ":"")+`. Valley southerly max ${r0(valMax)} km/h.`;
-    return {lv,note,why,valData,dPmax,cross4,clearFoehn};})();
+  // FÖHN — four-signal diagnosis: crest flow, pressure gradient, shallow-föhn ΔT, valley breakthrough.
+  // Principles: RED always needs wind evidence (never Δp alone); GREEN needs every signal clean —
+  // a small Δp proves nothing, shallow föhn happens at Δp ≈ 0 (lu-glidz "Der wohltemperierte Föhn").
+  const lug=WIND[WI.LUGANO],zur=WIND[WI.ZURICH],got=WIND[WI.GOTTHARD];
+  const FH=[8,9,10,11,12,13,14,15,16,17,18]; // strip shows 08-18h; the 08-16h slice drives the day level
+  const sAt=(loc,lvl,h)=>{const s=at(loc,"wind_speed_"+lvl,date,h),d=at(loc,"wind_direction_"+lvl,date,h);return (s!=null&&d!=null)?southComp(s,d):null;};
+  const crestH=FH.map(h=>sAt(got,"700hPa",h));   // S1: southerly at the crest (≈3000 m over the Gotthard)
+  const passH=FH.map(h=>sAt(got,"800hPa",h));    //     pass level ≈2000 m (Gotthard pass 2106 m)
+  const dpH=FH.map(h=>{const a=at(lug,"pressure_msl",date,h),b=at(zur,"pressure_msl",date,h);return (a!=null&&b!=null)?a-b:null;}); // S2
+  const dTat=(lvl,h)=>{const a=at(lug,"temperature_"+lvl,date,h),b=at(zur,"temperature_"+lvl,date,h);return (a!=null&&b!=null)?a-b:null;};
+  const winIdx=(h0,h1)=>FH.map((h,i)=>i).filter(i=>FH[i]>=h0&&FH[i]<=h1);
+  const wvals=(arr,h0,h1)=>winIdx(h0,h1).map(i=>arr[i]).filter(v=>v!=null);
+  const crestMax=mx(wvals(crestH,8,16))||0;
+  let crestDir=null;winIdx(8,16).forEach(i=>{if(crestH[i]!=null&&crestH[i]===crestMax&&crestDir==null)crestDir=at(got,"wind_direction_700hPa",date,FH[i]);});
+  const passMax=mx(wvals(passH,8,16))||0;
+  const dpW=wvals(dpH,8,16);
+  const dPmax=dpW.length?mx(dpW):null;
+  const cross4=dpW.some(x=>x>=4);
+  // S3 shallow föhn: south side colder than north at ≈2000 m (cold pool below crest height, not a
+  // deep cold airmass) while air already moves over the passes. In this regime Δp is misleading and
+  // models systematically underestimate the valley wind — it can only raise caution, never lower it.
+  let dT2000=null,dT1500=null,dT3000=null;
+  winIdx(8,16).forEach(i=>{const v=dTat("800hPa",FH[i]);
+    if(v!=null&&(dT2000==null||v<dT2000)){dT2000=v;dT1500=dTat("850hPa",FH[i]);dT3000=dTat("700hPa",FH[i]);}});
+  const coldPool=dT2000!=null&&(dT3000==null||dT3000>=dT2000+1);
+  const shallowFlag=!!(dT2000!=null&&dT2000<=-2&&coldPool&&passMax>=10);
+  // S4 breakthrough: modelled 10 m wind at the sentinel corridors, counted only when it blows from
+  // that valley's own föhn sector (each corridor has its own axis). Thresholds deliberately low —
+  // grid models smooth föhn gusts; a modelled 20 km/h southerly at Altdorf is usually much more in reality.
+  const inSec=(d,sec)=>d!=null&&d>=sec[0]&&d<=sec[1];
+  const floorAt=(loc,h,sec)=>{const s=at(loc,"wind_speed_10m",date,h),d=at(loc,"wind_direction_10m",date,h);
+    if(s==null||d==null)return null;const w=inSec(d,sec)?s:0;
+    // gusts only count with a real föhn-direction base wind — an isolated convective gust over a 2 km/h drift is not föhn
+    return {w,g:w>=8?(at(loc,"wind_gusts_10m",date,h)||0):0};};
+  const btkOf=(w,g)=>w>=20?"sustained":(w>=10||g>=25)?"gusty":"none";
+  // name, point, föhn sector of the valley (direction the föhn arrives FROM at the station)
+  const senDef=[["Visp",WI.VISP,[120,220]],["Meiringen",WI.MEIRINGEN,[100,200]],["Altdorf",WI.ALTDORF,[100,200]],
+    ["Glarus",WI.GLARUS,[120,220]],["Chur",WI.CHUR,[140,230]]];
+  const HOME_SEC=[100,250];
+  const sentinels=senDef.map(([nm,ix,sec])=>{const loc=WIND[ix];
+    // "above": max wind at the föhn-jet level just above the valley floor (925 hPa ≈ 750 m; floors 450-650 m)
+    let aW=0,aD=null;winIdx(8,16).forEach(i=>{const s=at(loc,"wind_speed_925hPa",date,FH[i]);
+      if(s!=null&&s>aW){aW=s;aD=at(loc,"wind_direction_925hPa",date,FH[i]);}});
+    const aS=inSec(aD,sec)?aW:0; // föhn-direction part of the "above" wind
+    // floor: max 10 m wind (any direction, for display) + föhn-direction wind/gust (for the breakthrough level)
+    let fAll=0,fAllD=null,fW=0,fG=0;winIdx(8,16).forEach(i=>{const s=at(loc,"wind_speed_10m",date,FH[i]),d=at(loc,"wind_direction_10m",date,FH[i]);
+      if(s!=null&&s>fAll){fAll=s;fAllD=d;}
+      const f=floorAt(loc,FH[i],sec);if(f){if(f.w>fW)fW=f.w;if(f.g>fG)fG=f.g;}});
+    return {nm,sec,aW,aD,aS,fAll,fAllD,fW,fG,btk:btkOf(fW,fG)};});
+  // home valleys: how much southerly sits over the flying area (crest/launch level) + valley floor
+  const homeDef=[["Engelberg",WI.ENGELBERG],["Wolfenschiessen",WI.WOLFEN],["Sarnen",WI.SARNEN]];
+  const home=homeDef.map(([nm,ix])=>{let fW=0,fG=0;winIdx(8,16).forEach(i=>{const f=floorAt(WIND[ix],FH[i],HOME_SEC);if(f){if(f.w>fW)fW=f.w;if(f.g>fG)fG=f.g;}});
+    return {nm,s3000:mx(wvals(FH.map(h=>sAt(WIND[ix],"700hPa",h)),8,16))||0,
+      s2000:mx(wvals(FH.map(h=>sAt(WIND[ix],"800hPa",h)),8,16))||0,fW,fG};});
+  const homeMax2000=mx(home.map(v=>v.s2000))||0;
+  // hourly combined signal 08-18h (same rules as the day verdict, per hour)
+  const strip=FH.map((h,i)=>{
+    const c=crestH[i],dp=dpH[i];
+    let b="none";senDef.forEach(([,ix,sec])=>{const f=floorAt(WIND[ix],h,sec);
+      if(f){const lv=btkOf(f.w,f.g);if(lv==="sustained")b=lv;else if(lv==="gusty"&&b==="none")b=lv;}});
+    const hm=mx(homeDef.map(([,ix])=>sAt(WIND[ix],"800hPa",h)).filter(v=>v!=null))||0;
+    if(c==null&&dp==null)return {h,lv:"na"};
+    const stop=b==="sustained"||((c||0)>=30&&((dp!=null&&dp>=2)||shallowFlag))||hm>30;
+    const watch=b==="gusty"||(c||0)>=15||(dp!=null&&dp>=2)||shallowFlag||hm>=20;
+    return {h,lv:stop?"stop":watch?"watch":"go"};});
+  // trend: afternoon vs morning gradient / crest wind
+  const segMean=(arr,h0,h1)=>{const a=wvals(arr,h0,h1);return a.length?mean(a):null;};
+  const dpE=segMean(dpH,8,11),dpL=segMean(dpH,14,18),crE=segMean(crestH,8,11),crL=segMean(crestH,14,18);
+  const upT=(dpE!=null&&dpL!=null&&dpL-dpE>=1.5)||(crE!=null&&crL!=null&&crL-crE>=10);
+  const dnT=(dpE!=null&&dpL!=null&&dpE-dpL>=1.5)||(crE!=null&&crL!=null&&crE-crL>=10);
+  const fTrend=upT&&!dnT?"up":dnT&&!upT?"down":"flat";
+  // day verdict: RED needs wind evidence, GREEN needs all signals clean
+  const anySust=sentinels.some(s=>s.btk==="sustained"),anyBtk=sentinels.some(s=>s.btk!=="none");
+  const clearFoehn=anySust||(crestMax>=30&&((dPmax!=null&&dPmax>=2)||shallowFlag))||homeMax2000>30;
+  const watchFoehn=anyBtk||crestMax>=15||(dPmax!=null&&dPmax>=2)||shallowFlag||homeMax2000>=20;
+  // föhn-diagnosis confidence (3 = signals agree, 1 = conflicting/borderline)
+  let confN=3;const confWhyF=[];
+  if(shallowFlag){confN--;confWhyF.push("shallow-föhn regime: models often underestimate valley wind");}
+  if(dPmax!=null&&dPmax>=4&&crestMax<15){confN--;confWhyF.push("big Δp but weak southerly aloft — conflicting signals");}
+  if(crestMax>=25&&(dPmax==null||dPmax<1)&&!shallowFlag){confN--;confWhyF.push("southerly aloft without pressure support");}
+  if(!clearFoehn&&((dPmax!=null&&Math.abs(dPmax-2)<=0.5)||Math.abs(crestMax-15)<=5)){confN--;confWhyF.push("values close to the warning thresholds");}
+  confN=Math.max(1,confN);
+  let foehn=(()=>{
+    const lv=clearFoehn?"stop":watchFoehn?"watch":"go";
+    const note=lv==="stop"?(anySust?"föhn breakthrough":"clear föhn"):
+      lv==="watch"?((shallowFlag&&(dPmax==null||dPmax<2))?"possible shallow föhn":"foehn tendency"):"";
+    const btkTxt=sentinels.filter(s=>s.btk!=="none").map(s=>`${s.nm} ${r0(s.fW)}${s.fG>s.fW?` (G${r0(s.fG)})`:""} km/h`).join(", ")||"none";
+    const why=`Crest southerly (Gotthard ≈3000 m) max ${r0(crestMax)} km/h${crestDir!=null?" from "+dirTxt(crestDir):""}. Δp Lugano-Zürich peak ${dPmax!=null?(dPmax>0?"+":"")+dPmax.toFixed(1):"?"} hPa${cross4?" (crosses +4)":""}. ΔT south-north ≈2000 m ${dT2000!=null?dT2000.toFixed(1):"?"} °C${shallowFlag?" → shallow-föhn signature":""}. Valley breakthrough: ${btkTxt}. 08-16h.`;
+    return {lv,note,why,dPmax,cross4,trend:fTrend,crestMax,crestDir,passMax,
+      dpE,dpL,crE,crL,
+      shallow:{flag:shallowFlag,dT2000,dT1500,dT3000},
+      sentinels,home,strip,conf:{n:confN,lv:confN>=3?"hi":confN===2?"md":"lo",why:confWhyF},clearFoehn};})();
 
   // NATIONWIDE
   const wol=WIND[WI.WOLFEN],zh=WIND[WI.ZURICH],TT=[8,12,15];
@@ -419,7 +501,7 @@ function scoreDay(di){
     let sub=Math.max(0,p);
     let final=Math.max(0,Math.min(sub,cap));
     let nogo=null;
-    if(foehn.clearFoehn){final=0;nogo="Clear föhn (Δp≥4 hPa + strong southerly) → 0%";}
+    if(foehn.clearFoehn){final=0;nogo="Clear föhn (breakthrough in a föhn valley, or strong crest southerly with pressure/ΔT support) → 0%";}
     else if(stormAll[i].nogoRain){final=0;nogo="Clear rain 08-15h at this site → 0%";}
     return {p:Math.round(final),sub:Math.round(sub),items,mods,cap,capTxt,nogo,reds,fg,five,dirBad:regAll[i].dirBad};
   }
@@ -462,6 +544,7 @@ function scoreDay(di){
   if(stormAll.some(s=>s.mode==="blend")){confScore-=15;confWhy.push("beyond high-res storm-model range");}
   if(stormAll.some(s=>s.mode==="highres"&&Math.abs((s.rainHoursCH||0)-(s.rainHoursDE||0))>=3)){confScore-=10;confWhy.push("CH1 and D2 disagree on rain");}
   if(gustSusp){confScore-=10;confWhy.push("model gusts implausible vs base wind (downweighted)");}
+  if(foehn.shallow.flag){confScore-=10;confWhy.push("possible shallow föhn — hard for models, be extra conservative");}
   const confidence={score:confScore,lv:confScore>=80?"hi":confScore>=55?"md":"lo",why:confWhy};
 
   return {date,di,cats,foehn,natwind,front,sitePct,best,bestIdx,overall,overallPct,metrics:{Tmax,Tmin},textBlock:tc,raw,confidence};

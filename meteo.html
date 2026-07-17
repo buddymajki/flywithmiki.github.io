@@ -333,7 +333,7 @@ function chainImg(cands,alt){
 // ---- Part 1 cards: raw meteorological information, no verdicts and no pills ----
 const RAWCATS=[
  {key:"gfront",ic:"🗺️",name:"1 · Fronts",sub:"Surface pressure + fronts, up to 4 days ahead (DWD)",wide:true},
- {key:"gfoehn",ic:"🌀",name:"2 · Föhn",sub:"Diagram, Δp Lugano–Zürich, valley southerlies",wide:true},
+ {key:"gfoehn",ic:"🌀",name:"2 · Föhn",sub:"Crest wind · Δp · shallow-föhn ΔT · valley breakthrough",wide:true},
  {key:"gnat",ic:"💨",name:"3 · Nationwide wind",sub:"XC-Therm wind map + Bise chart",wide:true},
  {key:"greg",ic:"🏔️",name:"4 · Regional wind",sub:"6 locations, 10 m AGL, 08–16h",wide:true},
  {key:"gprec",ic:"🌧️",name:"5 · Thunderstorms / precipitation",sub:"Per location, 08–16h",wide:true},
@@ -363,18 +363,69 @@ function rawDetail(key,S){
       <a class="lnk" target="_blank" href="https://www.dwd.de/DE/leistungen/hobbymet_wk_europa/hobbyeuropakarten.html">DWD analysis & forecast charts</a>
       <a class="lnk" target="_blank" href="https://www.meteoschweiz.admin.ch/#tab=forecast-map">MeteoSwiss</a></div>
     <div class="kw">Where are the fronts now, and where will they be on your flying day? Look for cold fronts (blue), warm fronts (red) and occlusions (purple) approaching the Alps. Chart © Deutscher Wetterdienst.</div>`;}
-  if(key==="gfoehn"){const f=S.foehn;const dp=f.dPmax;
-    const dpCls=dp!=null&&dp>4?"red":dp!=null&&dp>3?"yellow":"";
-    const sCls=v=>v>30?"red":v>=25?"yellow":"";
-    const rows=f.valData.map(v=>`<tr><td>${v.nm}</td>
-      <td class="num"><span class="chip ${sCls(v.s925)}">${r0(v.s925)}</span></td>
-      <td class="num"><span class="chip ${sCls(v.s850)}">${r0(v.s850)}</span></td>
-      <td class="num"><span class="chip ${sCls(v.s800)}">${r0(v.s800)}</span></td></tr>`).join("");
-    return `<div class="embed ar-pw"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
-    <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_foehn_ch&lang=en">Föhn diagram (profiwetter)</a></div>
-    <div class="kv" style="margin-top:10px"><span class="k">Δp Lugano–Zürich (08–16h peak)</span><span class="v"><span class="chip ${dpCls}">${dp!=null?(dp>0?"+":"")+dp.toFixed(1)+" hPa":"?"}</span></span></div>
-    <table class="rt"><tr><th>Valley southerly</th><th>${LEVEL_M.p925}<br>(925 hPa)</th><th>${LEVEL_M.p850}<br>(850 hPa)</th><th>${LEVEL_M.p800}<br>(800 hPa)</th></tr>${rows}</table>
-    <div class="kw">Southerly component (wind from 120–240°), km/h, max 08–16h. Colours: Δp &gt;4 hPa red, &gt;3 hPa yellow · southerly &gt;30 km/h red, 25–30 km/h yellow.</div>`;}
+  if(key==="gfoehn"){const f=S.foehn,sh=f.shallow,dp=f.dPmax;
+    const cCrest=v=>v>=30?"red":v>=15?"yellow":"";
+    const cDp=v=>v==null?"":v>=4?"red":v>=2?"yellow":"";
+    const cDT=v=>v==null?"":v<=-3?"red":v<=-1?"yellow":"";
+    const cAloft=v=>v>30?"red":v>=20?"yellow":"";
+    const arrow=(a,b,step)=>a==null||b==null?"":(b-a>=step?" ↗":a-b>=step?" ↘":" →");
+    // one signal row: label + ⓘ toggle, value, and a hidden explanation box below
+    const sig=(label,sub,valueHtml,tip)=>`<div class="fsig">
+      <div class="kv"><span class="k">${label} <small>${sub}</small><span class="inf" role="button" tabindex="0" onclick="this.closest('.fsig').querySelector('.ftip').classList.toggle('show');event.stopPropagation()" onkeydown="if(event.key==='Enter')this.click()">i</span></span><span class="v">${valueHtml}</span></div>
+      <div class="ftip">${tip}</div></div>`;
+    const gradientWind=f.crestMax>=15&&(dp==null||dp<2)&&!sh.flag;
+    const btks=f.sentinels.filter(s=>s.btk!=="none");
+    const btkHtml=btks.length
+      ?btks.map(s=>`<span class="chip ${s.btk==="sustained"?"red":"yellow"}">${s.nm} ${r0(s.fW)}${s.fG>s.fW?` (G${r0(s.fG)})`:""} km/h</span>`).join(" ")
+      :`<span class="chip">none</span>`;
+    const signals=`
+    ${sig("1 · Southerly over the crest","(Gotthard ≈3000 m)",
+      `<span class="chip ${cCrest(f.crestMax)}">${r0(f.crestMax)} km/h${f.crestDir!=null?" "+dirTxt(f.crestDir):""}</span><small>${arrow(f.crE,f.crL,10)}</small>`,
+      `Model wind at ≈3000 m over the Gotthard, only its southerly part (from 100–250°). Föhn needs southerly flow across the main crest — no crest southerly, no south föhn. But a crest southerly alone is NOT yet föhn: without pressure or temperature forcing (rows 2–3) it is usually plain gradient wind at altitude (see the Nationwide wind card). Arrow = morning → afternoon change.`)}
+    ${gradientWind?`<div class="kw" style="margin-top:2px">ℹ️ Strong southerly aloft but no Δp/ΔT forcing → today this looks like <b>gradient wind at altitude</b>, not föhn. It becomes föhn if row 2 or 3 builds — and it is still wind: check the Nationwide wind card.</div>`:""}
+    ${sig("2 · Pressure gradient Δp","(Lugano − Zürich)",
+      `<span class="chip ${cDp(dp)}">${dp!=null?(dp>0?"+":"")+dp.toFixed(1)+" hPa":"?"}</span> <small>am ${f.dpE!=null?(f.dpE>0?"+":"")+f.dpE.toFixed(1):"?"} → pm ${f.dpL!=null?(f.dpL>0?"+":"")+f.dpL.toFixed(1):"?"}${arrow(f.dpE,f.dpL,1.5)}${f.cross4?" · crosses +4":""}</small>`,
+      `Sea-level pressure Lugano minus Zürich: the peak 08–16h, plus morning (08–11h) and afternoon (14–18h) averages. Positive = south overpressure pushing air across the Alps — the classical föhn driver (≥2 hPa noticeable, ≥4 hPa strong). BUT a small Δp alone never proves safety: shallow föhn runs at Δp ≈ 0. Clearly negative = north overpressure (Bise, or Nordföhn on the Alpine south side).`)}
+    ${sig("3 · ΔT Lugano − Zürich","(at ≈2000 m)",
+      `<span class="chip ${cDT(sh.dT2000)}">${sh.dT2000!=null?(sh.dT2000>0?"+":"")+sh.dT2000.toFixed(1)+" °C":"?"}</span>${sh.flag?" <small>⚠️ shallow föhn</small>":""}`,
+      `Model temperature at ≈2000 m: Lugano (south) minus Zürich (north), coldest hour 08–16h. Why 2000 m? That is pass height (Gotthard 2106 m) — the level where air spills over. If the south side is ≥2 °C COLDER below crest height while air already crosses the passes, dense air pours through Gotthard/Grimsel/Brünig: "seichter Föhn" — strong gusty valley wind with almost no Δp. Models regularly miss it; this row is the early warning. South WARMER (positive) is the normal föhn airmass, no cold-pool risk.`)}
+    ${sig("4 · Valley breakthrough","(10 m, föhn corridors)",btkHtml,
+      `Modelled 10 m wind at the five corridor stations, counted only when it blows from that valley's own föhn direction (e.g. SE–S at Altdorf). ≥10 km/h, or föhn-direction gusts ≥25 → "gusty"; ≥20 km/h sustained → the föhn is on the valley floor. Model gusts underestimate real föhn gusts (often by half) — any breakthrough signal is serious. Details per corridor below.`)}`;
+    const shNote=sh.flag?`<div class="why" style="background:#fff7ee">⚠️ <b>Shallow-föhn ("seichter Föhn") signature.</b> The air south of the Alps is ${Math.abs(sh.dT2000).toFixed(1)} °C colder than north at ≈2000 m, and it is already moving over the passes (${r0(f.passMax)} km/h southerly at pass level). Dense air can spill through Gotthard / Grimsel / Brünig and produce strong, gusty valley wind <b>even though Δp looks harmless</b>. Models underestimate this — treat calm-looking valley forecasts with suspicion today.</div>`:"";
+    const strip=`<div class="fstrip">${f.strip.map(c=>`<div class="fh ${c.lv}">${String(c.h).padStart(2,"0")}</div>`).join("")}</div>`;
+    const wtxt=(w,d)=>w>=5&&d!=null?`${dirTxt(d)} ${r0(w)}`:w>=5?r0(w):"calm";
+    const sens=f.sentinels.map(s=>{const cls=s.btk==="sustained"?"bad":s.btk==="gusty"||s.aS>=25?"warn":"";
+      return `<div class="sen ${cls}"><b>${s.nm}</b>${s.btk!=="none"?" ⬆":""}<br>
+      <small>above:</small> ${wtxt(s.aW,s.aD)}${s.aS>=25?" ⚠":""}<br>
+      <small>floor:</small> ${wtxt(s.fAll,s.fAllD)}${s.fG>Math.max(s.fAll,8)?` <small>(G${r0(s.fG)})</small>`:""}</div>`;}).join("");
+    const homeRows=f.home.map(v=>`<tr><td>${v.nm}</td>
+      <td class="num"><span class="chip ${cAloft(v.s3000)}">${r0(v.s3000)}</span></td>
+      <td class="num"><span class="chip ${cAloft(v.s2000)}">${r0(v.s2000)}</span></td>
+      <td class="num">${v.fW>=5?`<span class="chip ${v.fW>=20?"red":v.fW>=10?"yellow":""}">${r0(v.fW)}${v.fG>v.fW?` (G${r0(v.fG)})`:""}</span>`:`<span style="color:var(--dim)">calm</span>`}</td></tr>`).join("");
+    return `<div class="frow">
+      <div class="fcol-chart">
+        <div class="embed ar-pw"><img loading="lazy" src="https://profiwetter.ch/wind_foehn_ch_en.png?t=${bust}"></div>
+        <div class="links"><a class="lnk" target="_blank" href="https://profiwetter.ch/showdiagram.php?show=wind_foehn_ch&lang=en">Föhn diagram full size (profiwetter)</a></div>
+      </div>
+      <div class="fcol-sig">
+        <div class="fsec" style="margin-top:0">The four signals — read top to bottom (08–16h)</div>
+        ${signals}
+      </div>
+    </div>
+    ${shNote}
+    ${(dp!=null&&dp<=-4)?`<div class="kw">ℹ️ Strong <b>north</b> overpressure (Δp ${dp.toFixed(1)} hPa): Nordföhn situation — the föhn blows on the Alpine <b>south</b> side. For our region this is a north-wind day, not a south-föhn day (check the Nationwide wind card).</div>`:""}
+    <div class="fsec">Combined föhn signal by hour</div>
+    <div class="kw" style="margin:0 0 4px">All four signals merged per hour: 🟢 no föhn signal · 🟡 signals present, caution · 🔴 föhn likely in the valleys. Use it to spot a safe morning window and to see when it strengthens.</div>
+    ${strip}
+    <div class="fsec">Föhn corridors (west → east): where is it active?</div>
+    <div class="kw" style="margin:0 0 4px">Föhn appears in these valleys first — Meiringen and Altdorf are our early-warning stations. <b>above</b> = wind just above the valley floor (≈750 m, the föhn-jet level; corridor floors are at 450–650 m) · <b>floor</b> = 10 m station wind, max 08–16h with its direction. ⬆ = föhn-direction wind on the floor. Orange/red frame = föhn signs in that corridor.</div>
+    <div class="senrow">${sens}</div>
+    <div class="fsec">Your flying valleys — southerly wind, km/h, max 08–16h</div>
+    <table class="rt"><tr><th>Valley</th><th>Crest<br>≈3000 m</th><th>Launch/ridge<br>≈2000 m</th><th>Valley floor<br>(gust)</th></tr>${homeRows}</table>
+    <details class="fc-full"><summary>Method &amp; special föhn forms (Dimmerföhn, Guggiföhn)</summary>
+      <div class="kw"><b>Method.</b> Southerly = wind from 100–250° (per-corridor sectors on the floor). Heights are pressure surfaces: ≈3000 m / ≈2000 m / ≈750 m (700 / 800 / 925 hPa) — crest, launch/ridge and valley-jet level. The corridors are the main Swiss föhn valleys (MeteoSwiss): Rhone/Visp, Haslital/Meiringen, Reusstal/Altdorf, Linthal/Glarus, Rheintal/Chur. Föhn can spill from the Haslital over the Brünig into Obwalden and from the Reusstal toward Engelberg before it shows locally. Shallow föhn: cold pool south of the Alps below ≈3000 m spills over the passes with little or no Δp — detected by comparing Lugano vs Zürich model temperature at ≈2000 m. <b>Special forms:</b> <a target="_blank" href="https://www.meteoschweiz.admin.ch/wetter/wetter-und-klima-von-a-bis-z/dimmerfoehn.html">Dimmerföhn</a> = föhn WITH rain and murk — rain does not mean the föhn is gone. <a target="_blank" href="https://www.meteoschweiz.admin.ch/wetter/wetter-und-klima-von-a-bis-z/guggifoehn.html">Guggiföhn</a> = extreme local SE-flow föhn at the Jungfrau (outside our region; the 100–250° sector covers such SE cases).</div>
+    </details>
+    <div class="kw">Read it as a chain: is there southerly flow over the crest → is there pressure or temperature forcing → is it already down in the föhn valleys? <b>No single green number proves safety</b> — shallow föhn happens at Δp ≈ 0. Chips: yellow = caution, red = danger (crest ≥15 / ≥30 km/h · Δp ≥2 / ≥4 hPa · ΔT ≤−1 / ≤−3 °C · aloft southerly ≥20 / &gt;30 km/h · floor ≥10 / ≥20 km/h).</div>`;}
   if(key==="gnat"){return `
     <div class="embed" data-src="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5"></div>
     <div class="links"><a class="lnk" target="_blank" href="https://xctherm.com/icon?lang=en&lat=46.73&lon=8.33&zoom=6.5">Open wind map full size</a></div>
