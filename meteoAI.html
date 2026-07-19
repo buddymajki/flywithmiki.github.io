@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "name": "FLYwithMIKI Paragliding School",
   "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
   "url": "https://flywithmiki.com",
-  "logo": "https://flywithmiki.com/Images_v2/g760.webp", 
+  "logo": "https://flywithmiki.com/Images_v2/g760.webp",
   "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q136536762",
@@ -42,8 +42,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Wikidata összekötése ---------------------->
 
 
- 
- 
+
+
         <title>FLYwithMIKI - Meteo AI flight weather prediction</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -65,13 +65,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+
         <link rel="stylesheet" href="meteo.css">
 
 
 
 
-    </head> 
+    </head>
 
 
 
@@ -86,10 +86,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container ">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
-    
-    <div class="w3-margin w3-center"> 
+
+    <div class="w3-margin w3-center">
         <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
-        </a> 
+        </a>
     </div>
     <!--Language menu -->
     <div class="w3-margin w3-display-container">
@@ -138,7 +138,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
-  
+
   <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
 </header>
 
@@ -175,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<!-- TEXT PROGNOSIS ---------------------------------------------------------->
+<!-- AI PREDICTION ---------------------------------------------------------->
 <header><div class="head-in">
   <img class="logo" src="https://flywithmiki.com/Images_v2/g760.webp" alt="FLYwithMIKI">
   <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI . AI prediction . km/h</span></div>
@@ -183,24 +183,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div></header>
 
 <div class="wrap">
-  <div class="part p2" style="margin-top:14px"><b>AI prediction</b><span>The algorithm's interpretation of the weather. Analyse the raw data yourself first on the Meteo page, then compare — do you agree?</span></div>
+  <div class="part p2" style="margin-top:14px"><b>AI prediction</b><span>One question, one answer: how likely is it that today's beginner course can fly? Analyse the raw data yourself on the Meteo page, then compare — do you agree?</span></div>
 
   <div class="days" id="aiDays"></div>
-  <div class="overall" id="overall" style="display:none"><div class="ov-top">
-    <div class="ov-light" id="ovLight"><div class="big" id="ovBig">.</div><div class="lbl" id="ovLbl"></div></div>
-    <div class="ov-body">
-      <h3>FLYwithMIKI AI Assessment <span style="font-weight:600;color:var(--dim);font-size:12px">(v2.0)</span><span id="ovConf"></span></h3>
-      <div class="ov-date" id="ovDate"></div>
-      <div class="ov-text" id="ovText"></div>
-      <div class="breakdown" id="ovBreak"></div>
-      <div class="ov-actions">
-        <a class="btn sec" id="emaLink" href="emagram.html" target="_blank">Emagram (auto)</a>
-      </div>
-      <div class="disclaimer">Alien-Technology-generated estimate. These numbers and conclusions are produced automatically by software and may be wrong. FLYwithMIKI takes no responsibility for them. Every pilot must analyse the weather themselves and decide whether it is flyable.</div>
+
+  <!-- hero: the answer -->
+  <div class="hero3" id="hero" style="display:none">
+    <div class="h3-score" id="h3Score"><div class="big" id="h3Pct">·</div><div class="lbl" id="h3Lbl"></div></div>
+    <div class="h3-body">
+      <div class="h3-date" id="h3Date"></div>
+      <div class="h3-label" id="h3Label"></div>
+      <div class="h3-head" id="h3Head"></div>
+      <div class="h3-meta" id="h3Meta"></div>
+      <div class="disclaimer">⚠️ Experimental algorithm, work in progress. All numbers are automated model estimates for education and entertainment only — they can be wrong and are <b>never a green light to fly</b>. Do not base any flying decision on them.</div>
     </div>
-  </div></div>
-  <div class="matrix" id="matrixWrap" style="display:none"><table id="matrix"></table></div>
-  <div class="cards" id="cardsAI"></div>
+  </div>
+
+  <!-- only the negatives are explained -->
+  <div class="dcard" id="dedCard" style="display:none">
+    <div class="dcard-h" id="dedTitle">Why not higher?</div>
+    <div id="dedRows"></div>
+  </div>
+
+  <!-- thermal forecast (Engelberg / Brunni) -->
+  <div class="dcard" id="thermCard" style="display:none"></div>
+
+  <details class="fc-full dcard" id="siteBox" style="display:none;padding:12px 18px"><summary>Site comparison &amp; tools</summary><div id="siteRows"></div></details>
 
   <div class="pagelink"><div class="ic" style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--teal-bg)">📊</div>
     <div class="tt"><b>Check the raw weather data</b><small>Fronts, föhn, wind, precipitation and fog — the objective inputs behind this prediction.</small></div>
@@ -208,128 +216,119 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div id="status"><span class="loader"></span>Loading forecast.</div>
   <footer><div class="disc">
-    <b>How the AI scores.</b> Each day gets a flying-chance % for the best of the launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten). Per site each of the 5 categories deducts points (yellow −10, red −20); any red caps the day at 50% (two reds 30%), fog trims it, and two hard NO-GOs force 0%: clear föhn (modelled breakthrough in a föhn corridor, or a strong crest southerly backed by pressure or the shallow-föhn temperature signal) or clear rain 08-15h at that site. ≥75% GO, 50-74% CAUTION, &lt;50% NO-FLY. Model gusts only count when the base wind supports them — an isolated gust spike warns but cannot alone turn a day red. The confidence badge shows how much the algorithm trusts its own inputs (model range, model agreement, lead time). Storms compare ICON-CH1 + ICON-D2 per site (blended fallback beyond their range). The MeteoSwiss text keywords can only push a category toward more caution, never less. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
+    <b>How the AI scores (v3).</b> Each day starts at 100% at each of the 4 launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten) and everything that threatens a beginner course deducts points: rain is weighted by how many of the 9 course hours (09–17h) it likely eats, thunderstorms by ICON-CH1/ICON-D2 model agreement, föhn, wind strength &amp; direction, fronts and fog by severity — small stuff (a few clouds) costs nothing. Two situations force 0%: clear föhn and rain through most of the course day. The best site's score is the day's %. Uncertainty itself costs points — if the models disagree or the day is far ahead, the score drops and the confidence badge shows why. The MeteoSwiss text keywords can only push the score down, never up. ≥75% GO · 50–74% CAUTION · &lt;50% NO-FLY. The thermal forecast is a simplified parcel model on ICON data — a first estimate, not a sounding analysis. The algorithm is work in progress. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
   </div></footer>
 </div>
 <div class="toast" id="toast"></div>
 
+<script>window.FW_LANG="en";window.FW_THERMAL=true;</script>
 <script src="meteo-core.js"></script>
 <script>
-/* ============ meteoAI.html page script: Part 2, AI prediction ============ */
+/* ============ meteoAI.html page script: v3 minimal decision UI ============ */
 // selected day can be handed over from meteo.html via ?day=N
 (function(){const p=new URLSearchParams(location.search).get("day");if(p!=null&&!isNaN(+p))sel=Math.max(0,Math.min(4,+p));})();
-// AI day cards (Part 2): % + category dots + overall verdict
+
+const CONF_TXT={hi:"High",md:"Medium",lo:"Low"};
+const SHORT3={go:"GO",watch:"CAUTION",stop:"NO-FLY"};
+const QLBL={poor:"Poor",fair:"Fair",good:"Good",excellent:"Excellent"};
+const QCLS={poor:"stop",fair:"watch",good:"go",excellent:"go"};
+
 function renderAiDays(){const days=$("#aiDays");days.innerHTML="";DAYS.forEach((S,i)=>{
   const d=new Date(S.date+"T12:00"),dow=d.toLocaleDateString("en-GB",{weekday:"short"}),dt=S.date.slice(8,10)+"."+S.date.slice(5,7);
-  const dots=CATS.map(c=>`<span class="dot ${S.cats[c.key].lv}"></span>`).join("");
   const el=document.createElement("div");el.className="day"+(i===sel?" on":"");
-  el.innerHTML=`<div class="dow">${dow}</div><div class="dt">${dt}</div><div class="pct" style="color:${pctColor(S.overallPct)}">${S.overallPct}%</div><div class="dots">${dots}</div><div class="ov" style="background:var(--${S.overall})">${OVSHORT[S.overall]}</div>`;
+  el.innerHTML=`<div class="dow">${dow}</div><div class="dt">${dt}</div><div class="pct" style="color:${pctColor(S.v3.pct)}">${S.v3.pct}%</div><div class="ov" style="background:var(--${S.v3.lv})">${SHORT3[S.v3.lv]}</div>`;
   el.onclick=()=>{sel=i;renderAll();};days.appendChild(el);});}
 
-function renderOverall(){const S=DAYS[sel];$("#overall").style.display="";const d=new Date(S.date+"T12:00");
-  $("#ovLight").style.background=`var(--${S.overall})`;$("#ovBig").textContent=S.overallPct+"%";$("#ovLbl").textContent=OVLABEL[S.overall];
-  $("#ovDate").textContent=d.toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long"})+" . best: "+S.best.name+" / "+S.best.launch;
-  const ct=chatText(S).split("\n");$("#ovText").textContent=ct[ct.length-1].replace(/^([✅⚠️🔴]+ )?Overall:\s*/,"");
-  const cf=S.confidence,cfTxt={hi:"High",md:"Medium",lo:"Low"};
-  $("#ovConf").innerHTML=cf?`<span class="conf ${cf.lv}" title="${cf.why.join("; ")||"all inputs solid"}">Confidence: ${cfTxt[cf.lv]}</span>`:"";
-  let bhtml=breakdownHtml(S.best);
-  if(cf&&cf.why.length)bhtml+=`<div class="brow"><span>🎯</span><span class="bn">Confidence ${cfTxt[cf.lv]} <small>. ${cf.why.join(", ")}</small></span><span class="bd zero">${cf.score}%</span></div>`;
-  $("#ovBreak").innerHTML=bhtml;
-  const bs=SITES[S.sitePct.indexOf(S.best)]||SITES[0];
-  $("#emaLink").href=`emagram.html?lat=${bs.lat}&lon=${bs.lon}&date=${S.date}&hour=15`;}
+function renderHero(){const S=DAYS[sel],v=S.v3;$("#hero").style.display="";
+  const d=new Date(S.date+"T12:00");
+  $("#h3Score").style.background=pctColor(v.pct);
+  $("#h3Pct").textContent=v.pct+"%";
+  $("#h3Lbl").textContent=SHORT3[v.lv];
+  $("#h3Date").textContent=d.toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long"});
+  $("#h3Label").textContent=v.label;
+  $("#h3Head").textContent=v.deds.length||v.nogo?v.head:"";
+  const cf=v.conf;
+  let meta=`<span class="conf ${cf.lv}" title="${(cf.why||[]).join("; ")||"all inputs solid"}">Confidence: ${CONF_TXT[cf.lv]}</span>`;
+  if(v.window)meta+=`<span class="metachip">Driest window: <b>${v.window}</b></span>`;
+  $("#h3Meta").innerHTML=meta;}
 
-function breakdownHtml(sp){
-  const dedTxt=d=>d===0?`<span class="bd zero">0</span>`:`<span class="bd minus">-${d}</span>`;
-  let rows=`<div class="bh">Flying chance — ${sp.name} / ${sp.launch} (best site) . start 100%</div>`;
-  sp.items.forEach(it=>{rows+=`<div class="brow"><span>${LV[it.lv].e}</span><span class="bn">${it.name}${it.why?` <small>. ${it.why}</small>`:""}</span>${dedTxt(it.ded)}</div>`;});
-  sp.mods.forEach(mo=>{rows+=`<div class="brow"><span>🌫️</span><span class="bn">${mo.txt}</span>${dedTxt(mo.ded)}</div>`;});
-  if(!sp.nogo){
-    rows+=`<div class="brow total"><span></span><span class="bn">Subtotal</span><span class="bd">${sp.sub}%</span></div>`;
-    if(sp.capTxt&&sp.p<sp.sub)rows+=`<div class="brow cap"><span>⚠️</span><span class="bn">${sp.capTxt}</span><span class="bd">${sp.p}%</span></div>`;
-  }else{
-    rows+=`<div class="brow nogo"><span>🚫</span><span class="bn">${sp.nogo}</span><span class="bd minus">0%</span></div>`;
-  }
-  rows+=`<div class="brow total"><span></span><span class="bn">Final flying chance</span><span class="bd" style="color:${pctColor(sp.p)}">${sp.p}%</span></div>`;
-  return rows;
+function renderDeds(){const S=DAYS[sel],v=S.v3;$("#dedCard").style.display="";
+  $("#dedTitle").textContent=(v.deds.length||v.nogo)?"Why not higher?":"Nothing to deduct";
+  let rows="";
+  if(v.nogo)rows+=`<div class="ded nogo"><span class="di">${v.nogo.ic}</span><span class="dtx"><b>${v.nogo.txt}</b></span><span class="da">→ 0%</span></div>`;
+  v.deds.forEach(x=>{rows+=`<div class="ded"><span class="di">${x.ic}</span><span class="dtx">${x.txt}${x.dt?`<small>${x.dt}</small>`:""}</span><span class="da">−${x.amt}%</span></div>`;});
+  if(!v.deds.length&&!v.nogo)rows=`<div class="ded none"><span class="di">✅</span><span class="dtx">No significant negatives today — standard alpine caution applies.</span><span class="da">0</span></div>`;
+  $("#dedRows").innerHTML=rows;}
+
+// climb value → sequential single-hue ramp (value is always printed — never colour alone)
+function cellColor(c){
+  const bg=c<0.8?"#dcf3e9":c<1.3?"#abe5ce":c<1.8?"#5fcda5":c<2.3?"#1dae80":"#0f7f5d";
+  return {bg,fg:c>=1.8?"#fff":"#33413d"};
 }
+// time × altitude matrix: rows = 400 m bands, columns = hours; per cell the expected climb
+// at that height (vertical profile via thermalClimbAt), ☁ above cloudbase, ☔ in rain hours
+function thermalMatrix(t){
+  const fmtH=h=>String(h).padStart(2,"0");
+  const maxTop=Math.max(...t.hrs.map(x=>x.top||0),t.base||0,2600);
+  const zTop=Math.min(4200,Math.ceil(maxTop/200)*200);
+  const rows=[];for(let z=zTop;z>=1000;z-=200)rows.push(z);
+  let html=`<div class="tmx" style="grid-template-columns:52px repeat(${t.hrs.length},1fr)">`;
+  rows.forEach(z=>{
+    html+=`<div class="tml">${z===1800?"▲ ":""}${z}</div>`;
+    t.hrs.forEach(x=>{
+      const rain=x.pr>0.2||x.pp>=60;
+      if(rain){html+=`<div class="tmc rain" title="${fmtH(x.h)}:00 — rain">${z===1000?"☔":""}</div>`;return;}
+      if(z===rows[0]&&x.cape>=800&&x.pp>=30){html+=`<div class="tmc storm" title="${fmtH(x.h)}:00 — thunderstorm risk (CAPE ${Math.round(x.cape)}, precip ${Math.round(x.pp)}%)">⚡</div>`;return;}
+      const cloud=x.base!=null&&x.top!=null&&x.base<=x.top+100&&z>=x.base&&z<=x.top+400;
+      if(cloud){html+=`<div class="tmc cloud" title="${fmtH(x.h)}:00 · ${z} m — cumulus (base ~${x.base} m)">☁</div>`;return;}
+      const c=thermalClimbAt(x,z);
+      if(c>=0.3){const col=cellColor(c);
+        html+=`<div class="tmc" style="background:${col.bg};color:${col.fg}" title="${fmtH(x.h)}:00 · ${z} m — climb ≈${c.toFixed(1)} m/s">${c.toFixed(1)}</div>`;}
+      else if(x.top!=null&&z<=x.top&&x.climb>0)html+=`<div class="tmc weak" title="${fmtH(x.h)}:00 · ${z} m — weak">·</div>`;
+      else html+=`<div class="tmc off"></div>`;
+    });
+  });
+  html+=`<div class="tml" title="rows: metres above sea level · columns: local time">m / LT</div>`+t.hrs.map(x=>`<div class="tmh">${fmtH(x.h)}</div>`).join("");
+  return html+"</div>";
+}
+function renderThermal(){const S=DAYS[sel],t=S.thermal,v=S.v3,card=$("#thermCard");
+  if(!t){card.style.display="none";return;}
+  card.style.display="";
+  const fmtH=h=>String(h).padStart(2,"0");
+  const win=t.start!=null?`${fmtH(t.start)}–${fmtH(t.end+1)}h`:"—";
+  const best=t.bw?`${fmtH(t.bw.a)}–${fmtH(t.bw.b+1)}h`:"—";
+  const climbTxt=t.maxC>=0.4?`${(t.avgBw??t.maxC).toFixed(1)}–${t.maxC.toFixed(1)} m/s`:"—";
+  const baseTxt=t.blue?(t.top?`~${t.top} m · blue`:"—"):(t.base!=null?`~${t.base} m`:"—");
+  const topTxt=t.usableTop!=null?`~${t.usableTop} m`:"—";
+  const notes=t.notes.length?`<div class="tnotes">⚠️ ${t.notes.join(" · ")}</div>`:"";
+  const norel=v.pct<20?`<div class="tnotes">🚫 The course day scores ${v.pct}% — thermal quality is academic today.</div>`:"";
+  card.innerHTML=`
+   <div class="dcard-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">⛅ Thermal forecast — Engelberg / Brunni
+     <span class="inf" role="button" tabindex="0" title="How is this calculated?" onclick="document.getElementById('thInfo').classList.toggle('show');event.stopPropagation()" onkeydown="if(event.key==='Enter')this.click()">i</span>
+     <span class="pill ${QCLS[t.q]}">${QLBL[t.q]}</span><span style="flex:1"></span><span class="conf ${t.conf}" style="margin-left:0">Confidence: ${CONF_TXT[t.conf]}</span></div>
+   <div class="ftip" id="thInfo"><b>Every value is computed from the current ICON model run</b> (Open-Meteo, Engelberg grid point) — nothing is hand-set. Hourly inputs: 2 m temperature &amp; dewpoint, solar radiation (cloud shading included), temperature / humidity / wind at 850·800·700 hPa, CAPE and precipitation. Method: ① lapse rate 1500→3000 m → ② thermal top: a valley air parcel with +2 °C trigger excess follows the dry adiabat until it meets the model temperature profile → ③ cloudbase: Espy formula blended from valley (30%) and ≈1500 m mixed-layer (70%) moisture → ④ peak climb = 1.9 × sun drive (lagged ≈1 h for ground heat storage) × lapse steepness × thermal depth, reduced by wind shear ≥25 km/h at 2000 m and by rain → ⑤ each matrix cell = that hour's climb shaped by the standard boundary-layer profile (peak at ≈40% of the thermal depth, zero at the top). Rain hours are capped and marked ☔; ⚡ marks hours with storm energy (CAPE ≥800) plus precipitation risk — the full storm assessment is in the flyability card above. Calibrated against ICON-D2 vario values; cloudbase tends ~300 m low on humid days.</div>
+   <div class="ttiles">
+     <div class="tt1"><div class="v">${climbTxt}</div><div class="k">Expected climb</div></div>
+     <div class="tt1"><div class="v">${baseTxt}</div><div class="k">Cloudbase</div></div>
+     <div class="tt1"><div class="v">${topTxt}</div><div class="k">Usable height</div></div>
+     <div class="tt1"><div class="v">${best}</div><div class="k">Best window</div></div>
+   </div>
+   <div class="tmx-wrap">${thermalMatrix(t)}</div>
+   <div class="tleg">Rows = altitude in m AMSL (▲ 1800 = Brunni launch) · number = expected climb in m/s (greener = stronger) · ☁ = cumulus above cloudbase · ☔ = rain hour · ⚡ = thunderstorm risk · thermals ${win}</div>
+   ${notes}${norel}
+   <div class="tfoot">Data: ICON (DWD / MeteoSwiss) via Open-Meteo, Engelberg grid point${FETCHED_AT?` · pulled ${FETCHED_AT.toLocaleDateString("en-GB",{day:"2-digit",month:"2-digit"})} ${FETCHED_AT.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} LT`:""}</div>
+   <div class="tfoot">First site only — more launch sites will follow. Cross-check: <a href="emagram.html?lat=46.81&amp;lon=8.425&amp;date=${S.date}&amp;hour=13" target="_blank">Emagram Engelberg @13:00</a></div>
+   <div class="disclaimer">Predicted numbers from an algorithm that is work in progress — for education and entertainment only, never a basis for a flight decision.</div>`;}
 
-function renderMatrix(){$("#matrixWrap").style.display="";const t=$("#matrix");
-  let head="<tr><th class='cat'>Category</th>"+DAYS.map(S=>{const d=new Date(S.date+"T12:00");return `<th>${d.toLocaleDateString("en-GB",{weekday:"short"})}<br>${S.date.slice(8,10)}.${S.date.slice(5,7)}</th>`;}).join("")+"</tr>";
-  let rows=CATS.map(c=>`<tr><td class="cat">${c.ic} ${c.name}</td>`+DAYS.map(S=>`<td><span class="cell ${S.cats[c.key].lv}">${LV[S.cats[c.key].lv].e}</span></td>`).join("")+"</tr>").join("");
-  let pr=`<tr><td class="cat"><b>Chance %</b></td>`+DAYS.map(S=>`<td class="pctcell" style="color:${pctColor(S.overallPct)}">${S.overallPct}%</td>`).join("")+"</tr>";
-  let ov=`<tr><td class="cat"><b>Overall</b></td>`+DAYS.map(S=>`<td><span class="cell ${S.overall}">${LV[S.overall].e}</span></td>`).join("")+"</tr>";
-  t.innerHTML=head+rows+pr+ov;}
+function renderSites(){const S=DAYS[sel],v=S.v3;$("#siteBox").style.display="";
+  $("#siteRows").innerHTML=`<div class="vtab" style="margin-top:10px">`+v.sites.map((s,i)=>
+    `<div class="vt ${i===v.best.idx?"best":""}"><b>${s.name} / ${s.launch}${i===v.best.idx?" ★":""}</b><br><span style="font-weight:800;color:${pctColor(s.pct)}">${s.pct}%</span></div>`).join("")+`</div>
+   <div class="kw"><b>How these numbers are made:</b> every launch site starts at 100% and collects its own deductions — wind speed, gusts and, critically, <b>wind direction at that specific launch</b> (moderate wind from the wrong side costs more than the same wind from the right one), rain and thunderstorms from ICON-CH1/D2 at that exact location, and fog per site. Föhn, fronts and the nationwide wind hit all sites equally. The day's headline % is the best site's (★) score minus the forecast-confidence deduction.</div>
+   <div class="links"><a class="lnk" href="meteo.html?day=${sel}">Raw data for this day</a>
+     <a class="lnk" target="_blank" href="emagram.html?lat=${SITES[v.best.idx].lat}&amp;lon=${SITES[v.best.idx].lon}&amp;date=${S.date}&amp;hour=15">Emagram, best site @15:00</a></div>`;}
 
-function renderAiCards(){const S=DAYS[sel];const wrap=$("#cardsAI");wrap.innerHTML="";
-  CATS.forEach(cat=>{
-    const c=S.cats[cat.key],card=document.createElement("div");card.className="card open"+(cat.wide?" wide":"");
-    card.innerHTML=`<div class="card-h"><div class="ic">${cat.ic}</div><div class="tt"><b>${cat.name}</b><small>${cat.sub}</small></div><div class="pill ${c.lv}">${LV[c.lv].e} ${LV[c.lv].t}</div></div><div class="card-b">${catDetail(cat.key,S)}</div>`;
-    card.querySelector(".card-h").onclick=()=>{card.classList.toggle("open");};
-    wrap.appendChild(card);
-    if(cat.key==="front")wireFront(card,S);
-    initLazies(card);
-  });}
-
-function catDetail(key,S){const c=S.cats[key],why=`<div class="why">${c.why||""}</div>`,kw=t=>`<div class="kw">${t}</div>`;
-  const date=S.date,bust=Date.now();
-  if(key==="front"){const f=S.front;
-    return `<div class="why">${f.why}</div>
-    <div class="ovr"><small>Disagree? Set the light yourself from the front charts (Part 1.1):</small>
-      <button data-v="go">🟢</button><button data-v="watch">🟡</button><button data-v="stop">🔴</button><button data-v="auto">Auto (${LV[f.auto].t})</button></div>
-    ${kw("Numeric hint evaluated at Engelberg (synoptic scale): 850 hPa cooling vs yesterday, wind shift, precip signal. The General forecast text (Part 1.0) can bump this toward caution when front keywords (Kaltfront, Okklusion, ...) appear for this day.")}`;}
-  if(key==="foehn"){const f=S.foehn,sh=f.shallow;
-    const TR={up:"strengthening ↗",down:"easing ↘",flat:"steady →"};
-    const dots="●".repeat(f.conf.n)+"○".repeat(3-f.conf.n);
-    const act=f.lv==="stop"?"Do not fly in the föhn-affected valleys. Wait for the crest wind and the gradient to collapse — and remember it often ends with a sharp cold-air push."
-      :f.lv==="watch"?"Fly early, stay out of lee sides, land before it strengthens — and check Altdorf / Meiringen live wind before you launch."
-      :"No föhn signals — normal wind assessment applies.";
-    const tiles=f.sentinels.map(s=>{const cls=s.btk==="sustained"?"bad":s.btk==="gusty"||s.aS>=25?"warn":"";
-      const wtxt=(w,d)=>w>=5&&d!=null?`${dirTxt(d)} ${r0(w)}`:w>=5?r0(w):"calm";
-      return `<div class="vt ${cls}"><b>${s.nm}</b>${s.btk!=="none"?" ⬆":""}<br>above: ${wtxt(s.aW,s.aD)}${s.aS>=25?" ⚠":""}<br>floor: ${wtxt(s.fAll,s.fAllD)}${s.fG>Math.max(s.fAll,8)?` (G${r0(s.fG)})`:""}</div>`;}).join("");
-    const shTxt=sh.flag?`<div class="why" style="background:#fff7ee">⚠️ <b>Shallow föhn possible:</b> south side ${Math.abs(sh.dT2000).toFixed(1)} °C colder at ≈2000 m with air already over the passes. Valley wind can be far stronger than modelled and Δp is misleading today — a green-looking gradient means nothing.</div>`:"";
-    const dimTxt=(f.lv!=="go"&&S.cats.storm&&S.cats.storm.lv!=="go")?`<div class="kw">☔ <b>Dimmerföhn caution:</b> föhn signals AND precipitation together — rain does <b>not</b> mean the föhn is gone; it can stay violently gusty in the valleys.</div>`:"";
-    return `<div class="kv"><span class="k">Trend (morning → afternoon)</span><span class="v">${TR[f.trend]}</span></div>
-    <div class="kv"><span class="k">Diagnosis confidence</span><span class="v">${dots} <small style="color:var(--dim)">${f.conf.why.join("; ")||"signals agree"}</small></span></div>
-    <div class="why"><b>${act}</b></div>
-    <div class="why">${f.why}</div>
-    ${shTxt}
-    <div class="vtab">${tiles}</div>
-    ${dimTxt}
-    ${kw("<b>Logic (conservative):</b> RED needs wind evidence — modelled breakthrough in a föhn corridor, or a ≥30 km/h crest southerly backed by pressure (Δp ≥2) or the shallow-föhn ΔT, or >30 km/h southerly over the home valleys. Δp alone never makes RED — but GREEN needs <i>every</i> signal clean (crest <15 km/h, Δp <2 hPa, no cold pool south, no breakthrough), because shallow föhn happens at Δp ≈ 0. RED forces the day to 0%. The four raw signals, hourly evolution and per-valley values are in Part 1.2.")}`;}
-  if(key==="natwind"){const n=S.natwind;return `<div class="kv"><span class="k">Wolfenschiessen ground (gust)</span><span class="v">${r0(n.gBase)} (${r0(n.gGust)}) km/h</span></div>
-    <div class="kv"><span class="k">Wolfenschiessen 1500 m / 3000 m</span><span class="v">${r0(n.wV15)} / ${r0(n.wV30)} km/h</span></div>
-    <div class="kv"><span class="k">Zürich 1500 m / 3000 m</span><span class="v">${r0(n.zG15)} / ${r0(n.zG30)} km/h ${dirTxt(n.aDir)}</span></div><div class="why">${n.why}</div>
-    ${kw("<b>Logic:</b> sheltered valley = Wolfenschiessen, general flow = Zürich, sampled at 08/12/15 and 10 m / 1500 m / 3000 m. Gusts count only when the base wind supports them; an implausible gust spike warns but never forces stop alone. Wind map + Bise chart are in Part 1.3.")}`;}
-  if(key==="regwind"){const tiles=c.regAll.map((s,i)=>{const isBest=i===S.sitePct.indexOf(S.best);
-    const dirInfo=s.dDir!=null?` . ${dirTxt(s.dDir)}`:"";
-    const warn=s.dirBad?`<br><span style="color:#c0353a">⚠️ wrong wind direction (${SITES[i].dirNote})</span>`:"";
-    return `<div class="vt ${tileClass(s.lv,isBest)}"><b>${s.name} / ${s.launch}${isBest?' ★':''}</b> ${LV[s.lv].e}<br>${r0(s.am)}→${r0(s.pm)} km/h (gust ${r0(s.gu)})${s.trend?' ↑pm':''}${dirInfo}${warn}</div>`;}).join("");
-    return `<div class="vtab">${tiles}</div>
-    ${kw("<b>Logic:</b> wind speed AND direction at each launch. Each site only works with wind from its slope: Zugerberg needs west wind, the mountain launches (Brunni, Niederbauen) take many directions, Büelen is low and sheltered. Moderate wind from the wrong direction drops a site even if the speed is fine. Speed: 0-15 🟢/15-25 🟡/25+ 🔴, gust>30 🔴. The overall % uses the best usable site (★).")}`;}
-  if(key==="storm"){const tiles=c.stormAll.map(s=>{const label=s.mode==="highres"?`CH1 ${s.rainHoursCH}h / D2 ${s.rainHoursDE}h${(s.thunderCH||s.thunderDE)?' ⚡':''}`:`Extended: prob ${r0(s.ppMax)}%${s.thunder?' ⚡':''}`;
-    return `<div class="vt ${tileClass(s.lv,false)}"><b>${SITES[s.idx].n} / ${SITES[s.idx].launch}</b> ${LV[s.lv].e}${s.nogoRain?' 🚫':''}<br>${label}<br>CAPE ${r0(s.capeMax)}${s.mode==="blend"?' <i>(ext)</i>':''}</div>`;}).join("");
-    const ws=c.worstSite,wname=ws.name,wlat=SITES[ws.idx].lat,wlon=SITES[ws.idx].lon;
-    return `<div class="vtab">${tiles}</div>
-    <canvas class="spark" data-kind="storm" data-date="${date}" data-site="${ws.idx}" data-mode="${ws.mode}"></canvas>
-    <div style="font-size:11px;color:var(--dim)">Most active site (${wname}): CAPE (red) & precipitation mm (blue bars), 06-21h. Source: ${ws.mode==="highres"?"ICON-D2":"blended (beyond CH1/D2 range)"}.</div>
-    <div class="links"><a class="lnk" target="_blank" href="emagram.html?lat=${wlat}&lon=${wlon}&date=${date}&hour=15">Emagram @15:00, ${wname}</a>
-      <a class="lnk" target="_blank" href="emagram.html?lat=${wlat}&lon=${wlon}&date=${date}&hour=12">Emagram @12:00, ${wname}</a></div>
-    ${kw("<b>Method:</b> ICON-CH1 vs ICON-D2 per site, counting rain-coded hours (09-19h). Beyond their range, sites are flagged <i>(ext)</i> and use the blend. 🚫 = clear rain 08-15h at that site → that site's chance forced to 0%.")}`;}
-  if(key==="fog"){const tiles=c.fogAll.map(f=>{
-      const mid=f.prof.hours[1];const launchCls=mid?mid["l2"]:"na";
-      return `<div class="vt ${tileClass(f.lv,false)}"><b>${f.name} / ${f.launch}</b> ${LV[f.lv].e}<br>launch at 12h: ${LV[launchCls]?LV[launchCls].e:"?"}</div>`;}).join("");
-    return `<div class="vtab">${tiles}</div>
-    ${kw("<b>Per launch site:</b> RH layered landing → launch+400 m (interpolated from 925/850/800/700 hPa; landing also uses visibility/low cloud). 🔴 launch in cloud → site fog STOP, 🟡 possible or landing affected → caution; a morning-only problem that clears by noon stays yellow. Detailed layer grids are in Part 1.6.")}`;}
-  return why;}
-
-function wireFront(card,S){card.querySelectorAll(".ovr button").forEach(b=>{
-  const v=b.dataset.v,cur=S.front.override||"";
-  if((v==="auto"&&!cur)||v===cur)b.classList.add("on");
-  b.onclick=ev=>{ev.stopPropagation();const key=`fw_front_${S.date}`;
-    if(v==="auto")localStorage.removeItem(key);else localStorage.setItem(key,v);
-    rescore();};});}
-
-function renderAll(){renderAiDays();renderOverall();renderMatrix();renderAiCards();const l=document.querySelector("#rawPageLink");if(l)l.href="meteo.html?day="+sel;}
+function renderAll(){renderAiDays();renderHero();renderDeds();renderThermal();renderSites();
+  const l=$("#rawPageLink");if(l)l.href="meteo.html?day="+sel;}
 boot();
 </script>
 
@@ -340,7 +339,7 @@ boot();
 <footer class="w3-content w3-padding w3-center w3-light-gray w3-tiny" style="max-width:1000px">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
   <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
-   
+
 </footer>
 </div>
 <!------------------------FOOTER------------------------------------->
@@ -363,9 +362,9 @@ function myAccFunc(id) {
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
     x.previousElementSibling.className += " w3-green";
-  } else { 
+  } else {
     x.className = x.className.replace(" w3-show", "");
-    x.previousElementSibling.className = 
+    x.previousElementSibling.className =
     x.previousElementSibling.className.replace(" w3-green", "");
   }
 }
@@ -376,7 +375,7 @@ function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("myOverlay").style.display = "block";
 }
- 
+
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
@@ -409,7 +408,7 @@ function handleButtonClick(language) {
     window.location.href = newPath;
   }
 }
-        
+
 </script>
 
 

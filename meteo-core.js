@@ -37,6 +37,13 @@ const RAW_PTS=[
  {n:"Stans",lat:46.9580,lon:8.3660,el:452,upEl:1850,upName:"Stanserhorn"},
  {n:"Altdorf",lat:46.8800,lon:8.6440,el:458,upEl:1440,upName:"Eggberge"},
  {n:"Zug",lat:47.1662,lon:8.5155,el:430,upEl:947,upName:"Zugerberg"}];
+// Thermal forecast point (meteoAI.html only; first site — more will follow).
+// valleyEl = Engelberg valley floor, launchEl = Brunni launch.
+const THERM_PT={n:"Engelberg",lat:46.8210,lon:8.4010,valleyEl:1000,launchEl:1800,launch:"Brunni"};
+const THV=["temperature_2m","dew_point_2m","shortwave_radiation","cape","precipitation","precipitation_probability",
+ "temperature_850hPa","temperature_800hPa","temperature_700hPa","relative_humidity_850hPa",
+ "geopotential_height_850hPa","geopotential_height_800hPa","geopotential_height_700hPa",
+ "wind_speed_800hPa","wind_speed_700hPa"];
 const CATS=[
  {key:"front",ic:"🌧️",name:"Front",sub:"Cold/warm front, trough",group:"main"},
  {key:"foehn",ic:"🌀",name:"Föhn",sub:"Crest wind · Δp · shallow-föhn ΔT · breakthrough",group:"main"},
@@ -98,7 +105,7 @@ const REGION_KEYS=["Wetterprognose für die Deutschschweiz, Nord- und Mittelbün
  "Wetterprognose für die Westschweiz und das Wallis","Wetterprognose für die Alpensüdseite und das Engadin"];
 const REGION_SHORT=["Deutschschweiz","Westschweiz / Wallis","Alpensüdseite / Engadin"];
 
-let MAIN=null,WIND=null,SITED=null,STORMD=null,RAWD=null,DAYS=[],sel=0,TEXT=null,fcRegion=0,fcSel=0,fcSelTouched=false;
+let MAIN=null,WIND=null,SITED=null,STORMD=null,RAWD=null,THERM=null,DAYS=[],sel=0,TEXT=null,fcRegion=0,fcSel=0,fcSelTouched=false,FETCHED_AT=null;
 
 // ---- Open-Meteo ----
 const HV=["temperature_2m","precipitation","precipitation_probability","weather_code","cape",
@@ -150,6 +157,62 @@ const southComp=(spd,dir)=>(dir>=100&&dir<=250)?spd:0;
 const escapeHtml=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const escapeRegex=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 
+// ---- v3 strings: the fixed phrases of the AI verdict + thermal forecast.
+// A page may set window.FW_LANG="de" before boot(); default is English.
+const I18N={de:{
+ "Föhn breakthrough — no flying in our valleys":"Föhndurchbruch — kein Flugbetrieb in unseren Tälern",
+ "Rain through most of the course day":"Regen während des Grossteils des Kurstages",
+ "Föhn signals, possible shallow föhn":"Föhnsignale, möglicher seichter Föhn",
+ "Föhn tendency":"Föhntendenz",
+ ", strengthening":", zunehmend",
+ "Rain likely":"Regen wahrscheinlich","Rain possible":"Regen möglich",
+ "possible most of the day":"fast den ganzen Tag möglich",
+ "mainly after {a}:00":"vor allem nach {a}:00",
+ "mainly in the morning, drying later":"vor allem am Morgen, später trockener",
+ "between {a}:00 and {b}:00":"zwischen {a}:00 und {b}:00",
+ "≈{n} of 9 course hours at risk":"≈{n} von 9 Kursstunden betroffen",
+ "Thunderstorms forecast by both high-res models":"Gewitter in beiden hochauflösenden Modellen",
+ "Thunderstorm risk (one model)":"Gewitterrisiko (ein Modell)",
+ "Thunderstorm risk":"Gewitterrisiko",
+ "High storm energy — overdevelopment possible":"Hohe Gewitterenergie — Überentwicklung möglich",
+ "Some storm energy in the afternoon":"Etwas Gewitterenergie am Nachmittag",
+ "Strong wind at flying height":"Starker Wind auf Flughöhe",
+ "Moderate wind aloft":"Mässiger Höhenwind",
+ "Wind too strong at launch":"Wind am Startplatz zu stark",
+ "Strong wind at launch":"Starker Wind am Startplatz",
+ "Moderate wind at launch":"Mässiger Wind am Startplatz",
+ "Gusty at launch":"Böig am Startplatz",
+ "Wrong wind direction for this launch":"Falsche Windrichtung für diesen Startplatz",
+ "Valley wind builds in the afternoon":"Talwind legt am Nachmittag zu",
+ "Front passage expected":"Frontdurchgang erwartet",
+ "Front influence possible":"Fronteinfluss möglich",
+ "Launch likely in cloud (fog)":"Startplatz wahrscheinlich in Wolken (Nebel)",
+ "Morning fog possible, usually clears":"Morgennebel möglich, löst sich meist auf",
+ "Forecast text warns of storms/showers":"Prognosetext warnt vor Gewittern/Schauern",
+ "Forecast text mentions valley wind":"Prognosetext erwähnt Talwind",
+ "Low forecast confidence":"Geringes Vertrauen in die Prognose",
+ "Reduced forecast confidence":"Reduziertes Vertrauen in die Prognose",
+ "No flying today.":"Heute kein Flugbetrieb.",
+ "Good chance of flying.":"Gute Flugchancen.",
+ "Probably flyable — with limits.":"Wahrscheinlich fliegbar — mit Einschränkungen.",
+ "Uncertain — decision on site.":"Unsicher — Entscheid vor Ort.",
+ "Cancellation likely.":"Absage wahrscheinlich.",
+ "Main concern: {c}":"Hauptproblem: {c}",
+ "Light wind, dry, no föhn signals — a proper training day.":"Schwacher Wind, trocken, keine Föhnsignale — ein richtiger Schulungstag.",
+ "wind ≈{w} km/h at 2000 m breaks up the thermals":"Wind ≈{w} km/h auf 2000 m zerreisst die Thermik",
+ "overdevelopment / shower risk — land early if cumulus tower":"Überentwicklung/Schauerrisiko — früh landen, wenn Quellwolken türmen",
+ "energetic air — watch for overdevelopment":"energiereiche Luft — auf Überentwicklung achten",
+ "föhn influence — thermals gusty and broken":"Föhneinfluss — Thermik böig und zerrissen",
+ "mostly blue thermals (little cumulus marking)":"meist Blauthermik (kaum Cumulus-Markierung)",
+ "longer lead time":"längere Vorlaufzeit",
+ "beyond high-res storm-model range":"ausserhalb der Reichweite der hochauflösenden Modelle",
+ "CH1 and D2 disagree on rain":"CH1 und D2 uneinig beim Regen",
+ "model gusts implausible vs base wind (downweighted)":"Modellböen unplausibel zum Grundwind (abgeschwächt gewertet)",
+ "possible shallow föhn — hard for models, be extra conservative":"möglicher seichter Föhn — schwierig für Modelle, extra konservativ sein"
+}};
+const tr=s=>{const L=(typeof window!=="undefined"&&window.FW_LANG)||"en";return (I18N[L]&&I18N[L][s])||s;};
+const trF=(key,vars)=>{let s=tr(key);Object.keys(vars||{}).forEach(k=>{s=s.split("{"+k+"}").join(vars[k]);});return s;};
+
 // ---- text feed: parse the bulletin into ordered day blocks, map by day index ----
 function regionText(){if(!TEXT||!TEXT.regions)return null;return TEXT.regions[REGION_KEYS[0]]||null;}
 const DAY_HDR=/^(Heute\s+)?(Sonntag|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag)$/;
@@ -194,6 +257,108 @@ function highlight(text){
   const esc=escapeHtml(text);
   const re=new RegExp("("+KW_SORTED.map(k=>escapeRegex(k.w)).join("|")+")","gi");
   return esc.replace(re,m=>{const info=KW_LOOKUP[m.toLowerCase()];const cat=info?info.cat:"storm";return `<mark class="kw-${cat}" title="${cat}">${m}</mark>`;});
+}
+
+// ---- Thermal forecast (Engelberg / Brunni only for now) ----
+// Physics-lite parcel model on ICON pressure-level data; full spec in meteoAI.md.
+// Returns null when the THERM feed was not requested (meteo.html) or failed.
+function computeThermal(date,di,ctx){
+  if(!THERM)return null;
+  const loc=THERM,vEl=THERM_PT.valleyEl,lEl=THERM_PT.launchEl;
+  const hrs=[];
+  for(let h=8;h<=19;h++){
+    const T=at(loc,"temperature_2m",date,h),Td=at(loc,"dew_point_2m",date,h);
+    const sw=at(loc,"shortwave_radiation",date,h)??0;
+    // ground heat storage: thermals lag radiation by ~1-2 h, so the sun drive is a
+    // weighted mean of the last 3 model hours (centroid ≈ 1 h back) — peak shifts to mid-afternoon
+    const swm1=at(loc,"shortwave_radiation",date,h-1)??0,swm2=at(loc,"shortwave_radiation",date,h-2)??0;
+    const swEff=0.35*sw+0.40*swm1+0.25*swm2;
+    const cape=at(loc,"cape",date,h)??0;
+    const pr=at(loc,"precipitation",date,h)??0,pp=at(loc,"precipitation_probability",date,h)??0;
+    const t85=at(loc,"temperature_850hPa",date,h),t80=at(loc,"temperature_800hPa",date,h),t70=at(loc,"temperature_700hPa",date,h);
+    const z85=at(loc,"geopotential_height_850hPa",date,h),z80=at(loc,"geopotential_height_800hPa",date,h),z70=at(loc,"geopotential_height_700hPa",date,h);
+    const w20=at(loc,"wind_speed_800hPa",date,h)??0;
+    // mid-layer lapse rate ≈1500→3000 m: the engine of the thermal day
+    let lapse=null;
+    if(t85!=null&&t70!=null&&z85!=null&&z70!=null&&z70>z85)lapse=(t85-t70)/(z70-z85)*1000;
+    // thermal top: valley parcel (+2 °C trigger excess) along the dry adiabat vs the model profile
+    let top=null;
+    if(T!=null&&lapse!=null){
+      const env=[[z85,t85],[z80,t80],[z70,t70]].filter(p=>p[0]!=null&&p[1]!=null).sort((a,b)=>a[0]-b[0]);
+      const eT=z=>{
+        if(z<=env[0][0])return env[0][1]+(env[0][0]-z)*0.0065;
+        for(let k=0;k<env.length-1;k++)if(z>=env[k][0]&&z<=env[k+1][0]){
+          const f=(z-env[k][0])/(env[k+1][0]-env[k][0]);return env[k][1]+f*(env[k+1][1]-env[k][1]);}
+        const a=env[env.length-2],b=env[env.length-1];
+        return b[1]-(z-b[0])*((a[1]-b[1])/(b[0]-a[0]));
+      };
+      const pT=z=>T+2-0.0098*(z-vEl);
+      top=vEl;
+      for(let z=vEl;z<=5200;z+=50){if(pT(z)>=eT(z))top=z;else break;}
+    }
+    // cloudbase: Espy from the surface UNDERESTIMATES after rain (wet valley floor), so blend
+    // with an 850 hPa (≈1500 m, in-BL) moisture estimate — the mixed layer carries that air up
+    const rh85=at(loc,"relative_humidity_850hPa",date,h);
+    const baseSurf=(T!=null&&Td!=null)?vEl+125*Math.max(0,T-Td):null;
+    let base=baseSurf;
+    if(rh85!=null&&t85!=null&&z85!=null&&T!=null){
+      const g=Math.log(Math.max(1,rh85)/100)+17.62*t85/(243.12+t85); // Magnus dewpoint at 850
+      const td85=243.12*g/(17.62-g);
+      const tp85=T+2-0.0098*(z85-vEl);                               // parcel T at 850 level
+      const b850=z85+125*Math.max(0,tp85-td85);
+      base=baseSurf!=null?0.3*baseSurf+0.7*b850:b850; // mixed-layer moisture dominates
+    }
+    base=base!=null?Math.round(base/50)*50:null;
+    // climb heuristic (peak of the vertical profile): sun drive × lapse steepness × usable depth.
+    // Calibrated against XCTherm/ICON-D2 vario values: realistic ceiling ≈2.5 m/s.
+    let climb=0;
+    if(lapse!=null&&top!=null){
+      const sun=Math.min(1,swEff/620);                   // shortwave already includes cloud shading
+      const lf=Math.max(0,Math.min(1.2,(lapse-4)/3.2));  // 4 °C/km → dead, ≥7.8 → strong
+      const df=Math.max(0.15,Math.min(1.1,(top-lEl)/1800+0.3));
+      climb=1.9*sun*lf*df;
+    }
+    if(w20>=35)climb*=0.35;else if(w20>=25)climb*=0.65;  // wind shear breaks the columns
+    if(pr>0.2||pp>=60)climb=Math.min(climb,0.3);
+    climb=Math.round(climb*10)/10;
+    hrs.push({h,climb,top:top!=null?Math.round(top/50)*50:null,base,cape,pr,pp,w20,lapse});
+  }
+  const maxC=mx(hrs.map(x=>x.climb))||0;
+  const act=hrs.filter(x=>x.climb>=0.4);
+  const start=act.length?act[0].h:null,end=act.length?act[act.length-1].h:null;
+  // best window: longest contiguous run near the day's peak strength
+  const thr=Math.max(0.6,maxC*0.7);
+  let bw=null,cur=null;
+  hrs.forEach(x=>{if(x.climb>=thr){if(!cur)cur={a:x.h,b:x.h};else cur.b=x.h;}
+    else{if(cur&&(!bw||cur.b-cur.a>bw.b-bw.a))bw=cur;cur=null;}});
+  if(cur&&(!bw||cur.b-cur.a>bw.b-bw.a))bw=cur;
+  const bwHrs=bw?hrs.filter(x=>x.h>=bw.a&&x.h<=bw.b):[];
+  const avgBw=bwHrs.length?Math.round(mean(bwHrs.map(x=>x.climb))*10)/10:null;
+  const midH=bw?Math.round((bw.a+bw.b)/2):13;
+  const mid=hrs.find(x=>x.h===midH)||hrs[Math.floor(hrs.length/2)];
+  const base=mid?mid.base:null,top=mid?mid.top:null;
+  const blue=base!=null&&top!=null&&base>top+150;       // thermals stop below condensation → no cumulus
+  const usableTop=(base!=null&&top!=null)?Math.min(base,top):(top||base||null);
+  const wMax=mx(hrs.filter(x=>x.h>=10&&x.h<=17).map(x=>x.w20))||0;
+  const capeMax=mx(hrs.map(x=>x.cape))||0;
+  const notes=[];
+  let ql=maxC>=2&&act.length>=5?3:maxC>=1.3&&act.length>=3?2:maxC>=0.6?1:0;
+  if(wMax>=25){ql=Math.max(0,ql-1);notes.push(trF("wind ≈{w} km/h at 2000 m breaks up the thermals",{w:Math.round(wMax)}));}
+  if(ctx&&ctx.storm&&ctx.storm.lv!=="go"){ql=Math.max(0,ql-1);notes.push(tr("overdevelopment / shower risk — land early if cumulus tower"));}
+  else if(capeMax>=800)notes.push(tr("energetic air — watch for overdevelopment"));
+  if(ctx&&ctx.foehnLv&&ctx.foehnLv!=="go"){ql=Math.min(ql,1);notes.push(tr("föhn influence — thermals gusty and broken"));}
+  if(blue&&ql>=1)notes.push(tr("mostly blue thermals (little cumulus marking)"));
+  const conf=di>=3?"lo":di===2?"md":(ctx&&ctx.conf&&ctx.conf.lv==="lo"?"md":"hi");
+  return {hrs,maxC,avgBw,start,end,bw,base,top,usableTop,blue,q:["poor","fair","good","excellent"][ql],notes,conf,wMax,capeMax};
+}
+
+// Vertical climb profile for the time×altitude matrix: 0 at the ground, peak at ≈40 % of the
+// thermal depth, 0 at the top — g(x)=x^(1/3)·(1−x²), normalised so the peak equals hr.climb.
+function thermalClimbAt(hr,z){
+  if(!hr||hr.top==null||!(hr.climb>0))return 0;
+  const x=(z-THERM_PT.valleyEl)/Math.max(1,hr.top-THERM_PT.valleyEl);
+  if(x<=0.02||x>=1)return 0;
+  return Math.round(hr.climb*(Math.cbrt(x)*(1-x*x)/0.62)*10)/10;
 }
 
 // ---- scoring ----
@@ -332,6 +497,7 @@ function scoreDay(di){
 
   // REGIONAL WIND per site (uses SITED launch points), now direction-aware
   function inSector(d,sectors){return sectors.some(([a,b])=>{
+    if(b-a>=360)return true; // full-circle sector (e.g. [0,360] widened) accepts everything
     a=((a%360)+360)%360;b=((b%360)+360)%360;d=((d%360)+360)%360;
     return a<=b?(d>=a&&d<=b):(d>=a||d<=b);});}
   function siteWind(loc,site){
@@ -540,14 +706,155 @@ function scoreDay(di){
   // ---- AI confidence: how much the algorithm trusts its own verdict today ----
   const gustSusp=natwind.gustSuspect||regAll.some(r=>r.gustSuspect);
   let confScore=100;const confWhy=[];
-  if(di>=3){confScore-=10*(di-2);confWhy.push("longer lead time");}
-  if(stormAll.some(s=>s.mode==="blend")){confScore-=15;confWhy.push("beyond high-res storm-model range");}
-  if(stormAll.some(s=>s.mode==="highres"&&Math.abs((s.rainHoursCH||0)-(s.rainHoursDE||0))>=3)){confScore-=10;confWhy.push("CH1 and D2 disagree on rain");}
-  if(gustSusp){confScore-=10;confWhy.push("model gusts implausible vs base wind (downweighted)");}
-  if(foehn.shallow.flag){confScore-=10;confWhy.push("possible shallow föhn — hard for models, be extra conservative");}
+  if(di>=3){confScore-=10*(di-2);confWhy.push(tr("longer lead time"));}
+  if(stormAll.some(s=>s.mode==="blend")){confScore-=15;confWhy.push(tr("beyond high-res storm-model range"));}
+  if(stormAll.some(s=>s.mode==="highres"&&Math.abs((s.rainHoursCH||0)-(s.rainHoursDE||0))>=3)){confScore-=10;confWhy.push(tr("CH1 and D2 disagree on rain"));}
+  if(gustSusp){confScore-=10;confWhy.push(tr("model gusts implausible vs base wind (downweighted)"));}
+  if(foehn.shallow.flag){confScore-=10;confWhy.push(tr("possible shallow föhn — hard for models, be extra conservative"));}
   const confidence={score:confScore,lv:confScore>=80?"hi":confScore>=55?"md":"lo",why:confWhy};
 
-  return {date,di,cats,foehn,natwind,front,sitePct,best,bestIdx,overall,overallPct,metrics:{Tmax,Tmin},textBlock:tc,raw,confidence};
+  // ================== v3 "instructor score" (meteoAI.html) ==================
+  // Penalty-based: start at 100%, deduct only for things that actually threaten
+  // the beginner course, show ONLY the deductions. Full spec: meteoAI.md.
+  // Course window = 09-17 h local (the 9 possible flying hours of a school day).
+  function rainProfile(loc){
+    const hours=[];
+    for(let h=9;h<=17;h++){
+      const pp=at(loc,"precipitation_probability_best_match",date,h);
+      const ch=at(loc,"precipitation_meteoswiss_icon_ch1",date,h);
+      const de=at(loc,"precipitation_icon_d2",date,h);
+      const bm=at(loc,"precipitation_best_match",date,h);
+      const haveHR=ch!=null&&de!=null;
+      const wetCH=haveHR&&ch>0.1,wetDE=haveHR&&de>0.1;
+      // p = chance this hour is unusable because of rain
+      let p=pp!=null?pp/100:0;
+      if(haveHR){
+        if(wetCH&&wetDE)p=Math.max(p,0.85);      // both 1-2 km models paint rain → near-certain
+        else if(wetCH||wetDE)p=Math.max(p,0.4);  // one of them does → genuine risk
+        else p=Math.min(p,0.35);                 // both dry → cap the coarse-model probability
+      }
+      if(p<0.15)p=0;                             // background drizzle-probability noise is not a risk
+      const heavy=(haveHR&&Math.min(ch,de)>=1.2)||(bm!=null&&bm>=2);
+      hours.push({h,p,heavy});
+    }
+    const E=hours.reduce((a,x)=>a+x.p,0);        // expected lost hours out of 9
+    const heavyH=hours.filter(x=>x.heavy).length;
+    const risk=hours.filter(x=>x.p>=0.4).map(x=>x.h);
+    let dry=null,c=null;
+    hours.forEach(x=>{if(x.p<0.3){if(!c)c={a:x.h,b:x.h};else c.b=x.h;}
+      else{if(c&&(!dry||c.b-c.a>dry.b-dry.a))dry=c;c=null;}});
+    if(c&&(!dry||c.b-c.a>dry.b-dry.a))dry=c;
+    return {hours,E,heavyH,risk,dry};
+  }
+  const rainTiming=rp=>{
+    if(!rp.risk.length)return "";
+    const a=rp.risk[0],b=rp.risk[rp.risk.length-1];
+    if(rp.risk.length>=7)return tr("possible most of the day");
+    if(a>=14)return trF("mainly after {a}:00",{a});
+    if(b<=12)return tr("mainly in the morning, drying later");
+    return trF("between {a}:00 and {b}:00",{a,b:b+1});
+  };
+  function assessSite(i){
+    const reg=regAll[i],st=stormAll[i],fg=fogAll[i].lv;
+    const rp=rainProfile(STORMD[i]);
+    const D=[];let nogo=null;
+    const add=(amt,ic,txt,dt)=>{amt=Math.round(amt);if(amt>0)D.push({amt,ic,txt,dt:dt||""});};
+
+    // Föhn — the most dangerous trap for a school: hard NO-GO on breakthrough, heavy otherwise
+    if(foehn.clearFoehn)nogo={ic:"🌀",txt:tr("Föhn breakthrough — no flying in our valleys")};
+    else if(foehn.lv!=="go"){
+      // show the signals that actually fired, not a fixed pair of numbers
+      const fWhy=[];
+      if(foehn.crestMax>=15)fWhy.push(`crest ${r0(foehn.crestMax)} km/h`);
+      if(foehn.dPmax!=null&&foehn.dPmax>=2)fWhy.push(`Δp +${foehn.dPmax.toFixed(1)} hPa`);
+      if(foehn.shallow.flag&&foehn.shallow.dT2000!=null)fWhy.push(`ΔT ${foehn.shallow.dT2000.toFixed(1)} °C`);
+      const fBtk=foehn.sentinels.filter(s=>s.btk!=="none").map(s=>s.nm);
+      if(fBtk.length)fWhy.push(fBtk.join(", ")+" ⬆");
+      const fHome=mx(foehn.home.map(x=>x.s2000))||0;
+      if(fHome>=20)fWhy.push(`S ${r0(fHome)} km/h @2000 m`);
+      add(foehn.shallow.flag?35:28,"🌀",
+        tr(foehn.shallow.flag?"Föhn signals, possible shallow föhn":"Föhn tendency")+(foehn.trend==="up"?tr(", strengthening"):""),
+        fWhy.join(" · "));
+    }
+
+    // Rain — weighted by how much of the course window it eats, core hours (10-15) weigh extra
+    if(!nogo&&(st.nogoRain||rp.E>=6))nogo={ic:"🌧️",txt:tr("Rain through most of the course day")};
+    else if(rp.E>=0.35){
+      const core=rp.hours.filter(x=>x.h>=10&&x.h<=15).reduce((a,x)=>a+x.p,0);
+      add(Math.min(55,rp.E*9+core*3+rp.heavyH*4),"🌧️",
+        tr(rp.E>=3?"Rain likely":"Rain possible")+(rainTiming(rp)?" — "+rainTiming(rp):""),
+        trF("≈{n} of 9 course hours at risk",{n:Math.max(1,Math.round(rp.E))}));
+    }
+
+    // Thunderstorms — model agreement decides the size of the hit
+    if(st.mode==="highres"){
+      if(st.thunderCH&&st.thunderDE)add(45,"⛈️",tr("Thunderstorms forecast by both high-res models"));
+      else if(st.thunderCH||st.thunderDE)add(28,"⛈️",tr("Thunderstorm risk (one model)"));
+      else if(st.capeMax>=1200)add(18,"⛈️",tr("High storm energy — overdevelopment possible"),`CAPE ${r0(st.capeMax)}`);
+      else if(st.capeMax>=700)add(8,"⛈️",tr("Some storm energy in the afternoon"),`CAPE ${r0(st.capeMax)}`);
+    }else{
+      if(st.thunder)add(30,"⛈️",tr("Thunderstorm risk"));
+      else if(st.capeMax>=1000)add(14,"⛈️",tr("High storm energy — overdevelopment possible"),`CAPE ${r0(st.capeMax)}`);
+    }
+
+    // Nationwide wind (site-independent)
+    if(natwind.lv==="stop")add(40,"💨",tr("Strong wind at flying height"),`10 m ${r0(natwind.gBase)} (G${r0(natwind.gGust)}) / 1500 m ${r0(natwind.wV15)} / 3000 m ${r0(natwind.wV30)} km/h ${dirTxt(natwind.aDir)}`);
+    else if(natwind.lv==="watch")add(12,"💨",tr("Moderate wind aloft"),`1500 m ${r0(natwind.wV15)} / 3000 m ${r0(natwind.wV30)} km/h ${dirTxt(natwind.aDir)}`);
+
+    // Regional wind at this launch (gusts only when the base wind supports them)
+    const guEff=reg.gustSuspect?Math.min(reg.gu,reg.w10*3+12):reg.gu;
+    if(reg.w10>=25)add(50,"🏔️",tr("Wind too strong at launch"),`${r0(reg.w10)} km/h (gust ${r0(reg.gu)})`);
+    else if(reg.w10>=20)add(26,"🏔️",tr("Strong wind at launch"),`${r0(reg.w10)} km/h`);
+    else if(reg.w10>=15)add(13,"🏔️",tr("Moderate wind at launch"),`${r0(reg.w10)} km/h`);
+    if(guEff>=35&&reg.w10>=12)add(20,"🏔️",tr("Gusty at launch"),`gust ${r0(guEff)} km/h`);
+    else if(guEff>=30&&reg.w10<25)add(10,"🏔️",tr("Gusty at launch"),`gust ${r0(guEff)} km/h`);
+    if(reg.dirBad)add(reg.dSpd>=15?35:15,"🧭",tr("Wrong wind direction for this launch"),`${dirTxt(reg.dDir)} ${r0(reg.dSpd)} km/h — ${SITES[i].dirNote}`);
+    if(reg.trend&&reg.w10<15)add(6,"🏔️",tr("Valley wind builds in the afternoon"));
+
+    // Front (front.lv already includes the MeteoSwiss text bump)
+    if(front.lv==="stop")add(35,"🌦️",tr("Front passage expected"));
+    else if(front.lv==="watch")add(12,"🌦️",tr("Front influence possible"));
+
+    // Fog: a morning-only problem is small, launch in cloud is not
+    if(fg==="stop")add(28,"🌫️",tr("Launch likely in cloud (fog)"));
+    else if(fg==="watch")add(6,"🌫️",tr("Morning fog possible, usually clears"));
+
+    // MeteoSwiss text as a guard: if the official text warns and the numbers found nothing, deduct anyway
+    if(textBumpStorm&&!D.some(d=>d.ic==="⛈️"||d.ic==="🌧️"))add(textBumpStorm==="strong"?20:12,"📰",tr("Forecast text warns of storms/showers"));
+    if(textBumpReg&&!D.some(d=>d.ic==="🏔️"))add(8,"📰",tr("Forecast text mentions valley wind"));
+
+    D.sort((a,b)=>b.amt-a.amt);
+    const sc=nogo?0:Math.max(0,100-D.reduce((a,d)=>a+d.amt,0));
+    return {i,name:SITES[i].n,launch:SITES[i].launch,sc,D,nogo,rp};
+  }
+  const v3sites=SITES.map((s,i)=>assessSite(i));
+  const v3best=v3sites.reduce((b,c)=>c.sc>b.sc?c:b,v3sites[0]);
+  const v3ded=[...v3best.D];
+  // uncertainty itself costs points: disagreeing models on a marginal day = plan for the worse case
+  const confDed=confidence.lv==="lo"?10:confidence.lv==="md"?4:0;
+  if(confDed&&!v3best.nogo)v3ded.push({amt:confDed,ic:"🎯",
+    txt:tr(confidence.lv==="lo"?"Low forecast confidence":"Reduced forecast confidence"),
+    dt:confidence.why.join(", ")});
+  const v3pct=v3best.nogo?0:Math.max(0,v3best.sc-confDed);
+  const v3label=v3best.nogo?tr("No flying today."):
+    v3pct>=75?tr("Good chance of flying."):
+    v3pct>=60?tr("Probably flyable — with limits."):
+    v3pct>=40?tr("Uncertain — decision on site."):
+    v3pct>=15?tr("Cancellation likely."):tr("No flying today.");
+  const v3head=v3best.nogo?v3best.nogo.txt:
+    v3ded.length?trF("Main concern: {c}",{c:v3ded[0].txt}):tr("Light wind, dry, no föhn signals — a proper training day.");
+  let v3win=null;
+  const rd=v3best.rp&&v3best.rp.dry;
+  if(rd&&rd.b-rd.a>=1&&v3best.rp.risk.length&&!v3best.nogo)v3win=`${String(rd.a).padStart(2,"0")}:00–${String(rd.b+1).padStart(2,"0")}:00`;
+  const v3={pct:v3pct,lv:v3pct>=75?"go":v3pct>=50?"watch":"stop",label:v3label,head:v3head,
+    nogo:v3best.nogo,deds:v3ded,conf:confidence,window:v3win,
+    best:{name:v3best.name,launch:v3best.launch,idx:v3best.i},
+    sites:v3sites.map(s=>({name:s.name,launch:s.launch,pct:s.nogo?0:s.sc}))};
+
+  // thermal forecast (only when the page requested the THERM feed); Engelberg = SITES[1]
+  const thermal=computeThermal(date,di,{storm:stormAll[1],foehnLv:foehn.lv,conf:confidence,dayPct:v3pct});
+
+  return {date,di,cats,foehn,natwind,front,sitePct,best,bestIdx,overall,overallPct,metrics:{Tmax,Tmin},textBlock:tc,raw,confidence,v3,thermal};
 }
 
 // ---- chat text ----
@@ -624,14 +931,16 @@ async function loadText(){
 async function boot(){$("#status").innerHTML='<span class="loader"></span>Loading forecast.';
   try{
     await loadText();
-    const [main,wind,sited,stormd,rawd]=await Promise.all([
+    const wantTherm=(typeof window!=="undefined")&&window.FW_THERMAL;
+    const [main,wind,sited,stormd,rawd,therm]=await Promise.all([
       omMulti([FRONT_PT],HV,DV),
       omMulti(WIND_PTS,WV),
       omMulti(SITES,SV),
       omMulti(SITES,STV,null,"meteoswiss_icon_ch1,icon_d2,best_match"),
-      omMulti(RAW_PTS,RAWV)
+      omMulti(RAW_PTS,RAWV),
+      wantTherm?omMulti([THERM_PT],THV).catch(()=>null):Promise.resolve(null)
     ]);
-    MAIN=main;WIND=wind;SITED=sited;STORMD=stormd;RAWD=rawd;rescore();
+    MAIN=main;WIND=wind;SITED=sited;STORMD=stormd;RAWD=rawd;THERM=therm?therm[0]:null;FETCHED_AT=new Date();rescore();
     $("#status").innerHTML="Updated "+new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})+" . Open-Meteo (best match + ICON-CH1/D2 for storms)"+(TEXT&&TEXT.regions?" + MeteoSwiss text":"")+" . all wind km/h";
   }catch(e){const net=(e&&e.name==="TypeError")||/failed to fetch|aborted|networkerror/i.test(e.message||"");
     $("#status").innerHTML='<span style="color:var(--stop)">Could not load: '+(net?"network blocked. Open this on flywithmiki.com (not a sandboxed preview) and allow api.open-meteo.com.":e.message)+'</span>';}}
