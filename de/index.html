@@ -2,6 +2,20 @@
 <html lang="de">
 <head>
 
+<!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -239,7 +253,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- PROMO BANNER -->
   <div class="promo-banner">
-    &#9992; Sommerkurs 2026 &mdash; Anmeldung bis Ende Mai! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Sommerkurs%202026">Platz reservieren &rarr;</a>
+    &#9992; Herbstkurs 2026 &mdash; CHF 300 Startrabatt, Anmeldung bis Ende August! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Herbstkurs%202026">Platz reservieren &rarr;</a>
   </div>
 
   <!-- INTRO -->
@@ -606,9 +620,9 @@ function handleButtonClick(language) {
   <div class="popup-box">
     <button class="popup-close" onclick="closePopup()" aria-label="Close">&#10005;</button>
     <h3>&#9992; Bereit zum Fliegen?</h3>
-    <p style="color:#555; font-size:1.05em">Starte dein Gleitschirmabenteuer diesen Sommer! Unsere Kleingruppenplätze sind schnell vergeben.</p>
-    <p style="font-size:0.95em; color:#777"><b>Sommerkurs 2026</b> &mdash; Anmeldung bis Ende Mai!</p>
-    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Sommerkurs%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:10px auto 8px">&#128172; Miki auf WhatsApp kontaktieren</a>
+    <p style="color:#555; font-size:1.05em">Starte dein Gleitschirmabenteuer diesen Herbst! Unsere Kleingruppenplätze sind schnell vergeben.</p>
+    <p style="font-size:0.95em; color:#777"><b>Herbstkurs 2026</b> &mdash; CHF 300 Startrabatt, Anmeldung bis Ende August!</p>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Herbstkurs%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:10px auto 8px">&#128172; Miki auf WhatsApp kontaktieren</a>
     <a href="./school.html" class="cta-btn cta-btn-primary" style="display:block; margin:8px auto">&#127937; Unsere Kurse ansehen</a>
     <p style="font-size:0.8em; color:#aaa; margin-top:15px; cursor:pointer" onclick="closePopup()">Nein danke, ich schaue mich nur um</p>
   </div>

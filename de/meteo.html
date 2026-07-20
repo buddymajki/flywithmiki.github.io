@@ -1,6 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
+<!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -44,15 +58,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
  
  
-        <title>FLYwithMIKI - Daily program in our paragliding school</title>
+        <title>Flugwetter &amp; Meteo Zentralschweiz | FLYwithMIKI Gleitschirmschule</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="FLYwithMIKI - Weather data and AI prognosis">
+        <meta name="description" content="Aktuelle Flugwetterdaten und Meteo-Prognose für Gleitschirmpiloten in der Zentralschweiz – MeteoSchweiz-Text, Föhn, Bise, Wind und Thermik für heute + 4 Tage auf einen Blick.">
+        <link rel="canonical" href="https://flywithmiki.com/de/meteo.html">
 
-        <meta property="og:url" content="https://flywithmiki.com" />
+        <meta property="og:url" content="https://flywithmiki.com/de/meteo.html" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="FLYwithMIKI - Daily program in our paragliding school" />
-        <meta property="og:description" content="Check our daily program, where do we fly, what are the plans for the following days and weeks" />
+        <meta property="og:title" content="Flugwetter &amp; Meteo Zentralschweiz | FLYwithMIKI Gleitschirmschule" />
+        <meta property="og:description" content="Objektive Flugwetterdaten für heute und die nächsten 4 Tage – MeteoSchweiz, Föhn, Wind und Thermik für Gleitschirmpiloten in der Zentralschweiz." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
 
 		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
@@ -65,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
-        <link rel="stylesheet" href="meteo.css">
+        <link rel="stylesheet" href="../meteo.css">
 
 
 
@@ -110,24 +125,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
+    <a href="school.html" class="w3-bar-item w3-button">Gleitschirmausbildung</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Schulpreise</a>
+    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Ausrüstung</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="safety.html" class="w3-bar-item w3-button">Sicherheitsschulung</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Kontakt</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandemflüge</a>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Schülerbereich <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
-    <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
+    <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Tägliches Programm</a>
     <a href="meteo.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Meteo</a>
     <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
-    <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
+    <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffernrechner</a>
   </div>
 </nav>
 
@@ -164,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- METEO -->
 <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="meteo">
-  <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI paragliding school - Weather preparation for safe flying" style="width:100%; max-width:1000px"> <!--LOGO -->
+  <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI Gleitschirmschule – Wettervorbereitung für sicheres Fliegen" style="width:100%; max-width:1000px"> <!--LOGO -->
 </div>
 
 
@@ -179,30 +194,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="stickybar">
     <div class="sb-brand">
       <img class="logo" src="https://flywithmiki.com/Images_v2/g760.webp" alt="FLYwithMIKI">
-      <div class="brand"><b>Flight Weather</b><span>FLYwithMIKI · km/h</span></div>
+      <div class="brand"><b>Flugwetter</b><span>FLYwithMIKI · km/h</span></div>
     </div>
     <div class="days" id="days"></div>
     <div class="sb-sp"></div>
   </div>
 
   <div class="fc" id="forecastPanel" style="display:none">
-    <div class="fc-h" id="fcHead"><div class="ic">📰</div><div class="tt"><b>General forecast (MeteoSwiss)</b><small>Official regional text, hazard keywords highlighted</small></div><div class="pill" id="fcPill" style="display:none"></div></div>
+    <div class="fc-h" id="fcHead"><div class="ic">📰</div><div class="tt"><b>Allgemeine Prognose (MeteoSchweiz)</b><small>Offizieller Regionaltext, Gefahren-Stichwörter hervorgehoben</small></div><div class="pill" id="fcPill" style="display:none"></div></div>
     <div class="fc-b" id="fcBody"></div>
   </div>
   <div class="cards" id="cardsRaw"></div>
 
   <div class="pagelink"><div class="ic" style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--teal-bg)">🤖</div>
-    <div class="tt"><b>Done with your own analysis?</b><small>Compare it with the algorithm's interpretation: warnings, flying-chance % and confidence.</small></div>
-    <a class="btn" id="aiPageLink" href="meteoAI.html" target="_blank" rel="noopener">Open AI prediction</a></div>
+    <div class="tt"><b>Eigene Analyse fertig?</b><small>Vergleiche sie mit der Auswertung des Algorithmus: Warnungen, Flugchance % und Zuverlässigkeit.</small></div>
+    <a class="btn" id="aiPageLink" href="meteoAI.html" target="_blank" rel="noopener">KI-Prognose öffnen</a></div>
 
-  <div id="status"><span class="loader"></span>Loading forecast.</div>
+  <div id="status"><span class="loader"></span>Prognose wird geladen.</div>
   <footer><div class="disc">
-    <b>How this works.</b> This page shows only objective weather data for today + 4 days — learn to read it yourself first, following the SHV 5-point check: general situation, fronts, föhn, nationwide wind, regional wind, storms, plus fog. Sources: MeteoSwiss official text, DWD front charts, profiwetter föhn/Bise/high-fog diagrams, XC-Therm wind map and Open-Meteo model data (all wind in km/h). When you have formed your own picture, open the <a href="meteoAI.html">AI prediction</a> and compare. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
+    <b>So funktioniert es.</b> Diese Seite zeigt ausschliesslich objektive Wetterdaten für heute + 4 Tage — lerne zuerst, sie selbst zu lesen, nach dem SHV-5-Punkte-Check: Allgemeinsituation, Fronten, Föhn, landesweiter Wind, regionaler Wind, Gewitter sowie Nebel. Quellen: offizieller MeteoSchweiz-Text, DWD-Frontenkarten, profiwetter Föhn-/Bise-/Hochnebel-Diagramme, XC-Therm Windkarte und Open-Meteo-Modelldaten (alle Winde in km/h). Wenn du dir dein eigenes Bild gemacht hast, öffne die <a href="meteoAI.html">KI-Prognose</a> und vergleiche. Nur Entscheidungshilfe — <b>DU bist der Pilot, DU entscheidest.</b> Basierend auf der <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV-Entscheidungsstrategie</a>.
   </div></footer>
 </div>
 <div class="toast" id="toast"></div>
 
-<script src="meteo-core.js"></script>
+<script>window.FW_LANG="de";</script>
+<script src="../meteo-core.js"></script>
 <script>
 /* ============ meteo.html page script: Part 1, raw weather data only ============ */
 // selected day can be handed back from meteoAI.html via ?day=N

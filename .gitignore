@@ -1,0 +1,5 @@
+# Internal SEO audit exports — inputs only, must not be published on the public site
+ahrefs/
+
+# Python virtual environment
+.venv/

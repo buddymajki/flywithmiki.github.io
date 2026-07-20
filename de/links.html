@@ -1,6 +1,20 @@
  <!DOCTYPE html>
 <html lang="de">
     <head>
+<!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -390,6 +404,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="w3-half w3-hoverable w3-left-align">
                    <h3 style="font-weight:bold">Meteo und XC Prognose</h3>
                    <ul class="w3-ul w3-hoverable link-list">
+                      <li><a href="meteo.html"><b>FLYwithMIKI Flugwetter</b> — unser tägliches Flugwetter-Dashboard</a></li>
+                      <li><a href="emagram.html"><b>FLYwithMIKI Emagram</b> — Sondierung / Thermik &amp; Stabilität</a></li>
                       <li><a href="https://meteo-shv.ch/" target="_blank">SHV - Meteo-Prognose (für Mitglieder)</a></li>
                       <li><a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation"  target="_blank">MeteoSchweiz (Textprognose)</a></li>
                       <li><a href="https://xctherm.com/icon" target="_blank">XC-Therm (ICON - Wind)</a></li>
