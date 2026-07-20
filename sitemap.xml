@@ -107,13 +107,11 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/agb.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/agb.html"/>
   </url>
+  <!-- Standalone trilingual tool page (own in-page language switcher, English default) — single canonical URL, no hreflang alternates -->
   <url>
     <loc>https://flywithmiki.com/emagram.html</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-07-20</lastmod>
     <priority>0.30</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/emagram.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/emagram.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/emagram.html"/>
   </url>
 
 
@@ -221,14 +219,6 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/agb.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/agb.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/agb.html"/>
-  </url>
-  <url>
-    <loc>https://flywithmiki.com/de/emagram.html</loc>
-    <lastmod>2026-06-08</lastmod>
-    <priority>0.25</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/emagram.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/emagram.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/emagram.html"/>
   </url>
 
 </urlset>
