@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
     <head>
+<meta charset="UTF-8">
 <!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -36,7 +37,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
     "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
-    // Hozzádhatsz ide más releváns közösségi média profilokat is, pl. Facebook, Instagram.
   ],
   "address": {
     "@type": "PostalAddress",
@@ -57,19 +57,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
- <title>FLYwithMIKI - Useful links</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+ <title>Paragliding Links &amp; Webcams Switzerland | FLYwithMIKI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
         <meta name="description" content="FLYwithMIKI - Useful links to paragliding related websites and to prepare yourself for your next flying adventure">
 
-        <meta property="og:url" content="https://flywithmiki.com" />
+        <meta property="og:url" content="https://flywithmiki.com/links.html" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="FLYwithMIKI - Useful links and websites" />
-        <meta property="og:description" content="Useful links to paragliding related websites and to prepare yourself for your next flying adventure" />
+        <meta property="og:title" content="Paragliding Links &amp; Webcams Switzerland | FLYwithMIKI" />
+        <meta property="og:description" content="FLYwithMIKI - Useful links to paragliding related websites and to prepare yourself for your next flying adventure" />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="manifest" href="/site.webmanifest">
+		<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="manifest" href="site.webmanifest">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
@@ -107,11 +109,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .mySlides {
                 display: none;
             }
+                /* site-wide card consistency */
+        .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
+        
+        /* === SHARED PAGE HERO: identical top-of-page block on every page === */
+        .page-hero {
+            margin-top: 26px;
+            background: linear-gradient(135deg,#002d4e 0%,#0077b6 60%,#00b4d8 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 24px 34px;
+        }
+        .page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; }
+        .page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; }
+        .page-hero .hero-sub  { font-size: 1.1em; opacity: 0.94; max-width: 720px; margin: 0 auto 16px; }
+        .page-hero .hero-note { font-size: 0.92em; opacity: 0.85; max-width: 640px; margin: 0 auto 22px; }
+        .page-hero .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 18px;
+            font-size: 0.82em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero-btn {
+            display: inline-block; background: rgba(255,255,255,0.18); color: #fff; padding: 13px 30px;
+            border-radius: 30px; font-size: 1.02em; font-weight: bold; text-decoration: none; margin: 6px;
+            border: 2px solid rgba(255,255,255,0.4); transition: background .2s, transform .2s;
+        }
+        .hero-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+        .hero-btn-wa { background: #25D366; border-color: #25D366; }
+        .hero-btn-wa:hover { background: #1eb85a; }
+        @media (max-width: 600px) {
+            .page-hero { padding: 30px 18px 26px; }
+            .page-hero h1 { font-size: 1.55em; }
+            .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+        }
+        /* === ONE CONSISTENT CONTENT WIDTH FOR EVERY SECTION === */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .section-boxed {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+                /* hero keeps its breathing room under the promo banner regardless of rule order */
+        .page-hero.section-boxed { margin-top: 26px; }
         </style>
 
 
 
-    </head> 
+    <link rel="canonical" href="https://flywithmiki.com/links.html" />
+<meta name="robots" content="index, follow" />
+<meta property="og:site_name" content="FLYwithMIKI" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Paragliding Links &amp; Webcams Switzerland | FLYwithMIKI" />
+<meta name="twitter:description" content="FLYwithMIKI - Useful links to paragliding related websites and to prepare yourself for your next flying adventure" />
+<meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+</head> 
 
 
 
@@ -128,21 +185,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> </img>
         </a> 
     </div>
     <!--Language menu -->
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
-      </button>
+      <a href="links.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+      </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
-      </button>
+      <a href="de/" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+      </a>
      </div>
      </div>
     </div>
@@ -151,25 +208,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
+    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="links.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 
@@ -205,7 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
  <div class="w3-container w3-white w3-center w3-padding-32" id="links">
-        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI paragliding school - Useful links and live webcams for flight planning" style="width:100%; max-width:900px"> <!--LOGO -->
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI paragliding school - Useful links and live webcams for flight planning" style="width:100%; max-width:1000px"> <!--LOGO -->
         
         
 <!--WEBCAMS                                ------------------------------------------------------------------>      
@@ -216,7 +278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-row-padding">
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://www.abufdalp.ch/webcam" target="_blank">
+        <a href="https://www.abufdalp.ch/webcam" target="_blank" rel="noopener noreferrer">
           <img data-src="https://webcam.bielenbahn.ch/livebild.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Büelen takeoff site live webcam - 1115m elevation paragliding launch conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -227,7 +289,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://berghof.ch/" target="_blank">
+        <a href="https://berghof.ch/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://cam.tep.ch/Bilder/Start-Nord.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Brändlen Nord takeoff live webcam - 1240m paragliding launch above Engelberg valley" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -238,7 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://berghof.ch/" target="_blank">
+        <a href="https://berghof.ch/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://cam.tep.ch/Bilder/Start-Sued-Zoom.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Brändlen Süd takeoff live webcam - 1215m paragliding launch conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -251,7 +313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-row-padding">
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://brunni.ch/de/Info/webcam-wetter" target="_blank">
+        <a href="https://brunni.ch/de/Info/webcam-wetter" target="_blank" rel="noopener noreferrer">
           <img data-src="https://webcam.brunni.ch/cam3.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Brunni Härzlisee live webcam - 1860m Engelberg paragliding weather conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -262,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://brunni.ch/de/Info/webcam-wetter" target="_blank">
+        <a href="https://brunni.ch/de/Info/webcam-wetter" target="_blank" rel="noopener noreferrer">
           <img data-src="https://webcam.brunni.ch/cam5.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Engelberg valley station live webcam - landing zone weather conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -273,7 +335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://fuerenalp.roundshot.com/#/" target="_blank">
+        <a href="https://fuerenalp.roundshot.com/#/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://fuerenalp.roundshot.com/cams/19/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Fürenalp 360° panorama webcam - 1842m Engelberg paragliding conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -286,7 +348,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-row-padding">
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://niederbauen.ch/aussichten/webcams" target="_blank">
+        <a href="https://niederbauen.ch/aussichten/webcams" target="_blank" rel="noopener noreferrer">
           <img data-src="https://tapps.digitalhaus.ch/chayns/tapps/niederbauen/current.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Niederbauen 1610m - popular paragliding launch site live weather" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -297,7 +359,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://avisec.com/feed/rigi-kulm" target="_blank">
+        <a href="https://avisec.com/feed/rigi-kulm" target="_blank" rel="noopener noreferrer">
           <img data-src="https://rigi.roundshot.com/cams/901/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Rigi Kulm 360° panorama webcam - 1750m central Switzerland flying conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -308,7 +370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://pilatus.roundshot.com/#/" target="_blank">
+        <a href="https://pilatus.roundshot.com/#/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://pilatus.roundshot.com/cams/155/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Pilatus Kulm 360° panorama webcam - 2060m Lucerne paragliding conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -321,7 +383,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-row-padding">
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://rotenfluebahn.roundshot.com/rotenflue/#/" target="_blank">
+        <a href="https://rotenfluebahn.roundshot.com/rotenflue/#/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://rotenfluebahn.roundshot.com/cams/1598/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Rotenflue 360° panorama webcam - 1560m Mythen region paragliding conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -332,7 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://ksnw.roundshot.com/" target="_blank">
+        <a href="https://ksnw.roundshot.com/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://ksnw.roundshot.com/cams/559/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Stans 360° panorama webcam - 461m Nidwalden valley landing zone weather" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -343,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="w3-col s12 m4">
       <div class="w3-card webcam-card">
-        <a href="https://ga-weissenstein.roundshot.com/weissenstein/#/" target="_blank">
+        <a href="https://ga-weissenstein.roundshot.com/weissenstein/#/" target="_blank" rel="noopener noreferrer">
           <img data-src="https://ga-weissenstein.roundshot.com/cams/726/medium" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Weissenstein Jura 360° panorama webcam - 1284m Jura ridge soaring conditions" width="800" height="400" loading="lazy" decoding="async">
         </a>
         <div class="w3-container">
@@ -358,7 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-         <div class="w3-content" style="max-width:900px">
+         <div class="w3-content" style="max-width:1000px">
             <h2 class="w3-center w3-padding-large">Useful Links</h2>
             <p class="w3-justify">Here you find several useful links to plan your flight, extend your theoretical knowledge, find important and relevant information about the route to your paragliding license and so on.</p>
   
@@ -377,26 +439,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                    <h3 style="font-weight:bold">Partner Brands and platforms</h3> (for orders and discounts for our customers: contact Miki)<br><br>
 				   <strong>Equipment</strong>
                    <ul class="w3-ul w3-hoverable link-list">
-                      <li><a href="https://phi-air.com/" target="_blank">PHI - paragliders and harnesses</a></li>
-                      <li><a href="https://supair.com/en/" target="_blank">Supair - paragliders and harnesses</a></li>
-                      <li><a href="https://www.nova.eu/en/gliders/" target="_blank">Nova - paragliders</a></li>
-					  <li><a href="https://www.flugsau.ch/" target="_blank">Flugsau - tandem harnesses</a></li>
-					  <li><a href="https://u-turn.de/produkt-kategorie/rettungen/" target="_blank">U-Turn - rescue parachutes</a></li>
+                      <li><a href="https://phi-air.com/" target="_blank" rel="noopener noreferrer">PHI - paragliders and harnesses</a></li>
+                      <li><a href="https://supair.com/en/" target="_blank" rel="noopener noreferrer">Supair - paragliders and harnesses</a></li>
+                      <li><a href="https://www.nova.eu/en/gliders/" target="_blank" rel="noopener noreferrer">Nova - paragliders</a></li>
+					  <li><a href="https://www.flugsau.ch/" target="_blank" rel="noopener noreferrer">Flugsau - tandem harnesses</a></li>
+					  <li><a href="https://u-turn.de/produkt-kategorie/rettungen/" target="_blank" rel="noopener noreferrer">U-Turn - rescue parachutes</a></li>
                     </ul>
 					
 				   <br><br><strong>Accessories - Instruments</strong>
                    <ul class="w3-ul w3-hoverable link-list">					
-                      <li><a href="https://basisrausch.ch/en/"  target="_blank">Basisrausch - radios, gloves</a></li>
-                      <li><a href="https://www.skytraxx.eu/en" target="_blank">Skytraxx - variometers</a></li>
-                      <li><a href="https://www.xctracer.com/" target="_blank">XC Tracer - variometers</a></li>
-                      <li><a href="https://www.stodeus.com/en/" target="_blank">Stodeus - variometers</a></li>
-                      <li><a href="https://www.yowfly.com/shop/" target="_blank">YowFly - Fast bags, Mittens</a></li>
+                      <li><a href="https://basisrausch.ch/en/"  target="_blank" rel="noopener noreferrer">Basisrausch - radios, gloves</a></li>
+                      <li><a href="https://www.skytraxx.eu/en" target="_blank" rel="noopener noreferrer">Skytraxx - variometers</a></li>
+                      <li><a href="https://www.xctracer.com/" target="_blank" rel="noopener noreferrer">XC Tracer - variometers</a></li>
+                      <li><a href="https://www.stodeus.com/en/" target="_blank" rel="noopener noreferrer">Stodeus - variometers</a></li>
+                      <li><a href="https://www.yowfly.com/shop/" target="_blank" rel="noopener noreferrer">YowFly - Fast bags, Mittens</a></li>
 
                     </ul>
 
 				   <br><br><strong>Online tools</strong>
                    <ul class="w3-ul w3-hoverable link-list">
-					  <li><a href="https://www.burnair.cloud/" target="_blank">Burnair - The Swiss Army Knife of paragliding</a></li>                    </ul>
+					  <li><a href="https://www.burnair.cloud/" target="_blank" rel="noopener noreferrer">Burnair - The Swiss Army Knife of paragliding</a></li>                    </ul>
 
                  </div>
 				 
@@ -404,30 +466,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="w3-half w3-hoverable w3-left-align">
                    <h3 style="font-weight:bold">Meteo and XC Prognosis</h3>
                    <ul class="w3-ul w3-hoverable link-list">
-                      <li><a href="meteo.html"><b>FLYwithMIKI Flight Weather</b> — our daily flight-weather dashboard</a></li>
-                      <li><a href="emagram.html"><b>FLYwithMIKI Emagram</b> — sounding / thermal &amp; stability tool</a></li>
-                      <li><a href="https://meteo-shv.ch/" target="_blank">SHV - meteo prognosis (for members)</a></li>
-                      <li><a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation"  target="_blank">MeteoSchweiz (text prognosis)</a></li>
-                      <li><a href="https://xctherm.com/icon" target="_blank">XC-Therm (ICON - Wind)</a></li>
-                      <li><a href="https://www.windy.com/46.908/8.395/airgram?46.906,8.373,11" target="_blank">Windy (Airgram)</a></li>
-                      <li><a href="https://soaringmeteo.org/soarWRF2K0612ZE.html" target="_blank">Soaring meteo</a></li>
-                      <li><a href="https://paraglidable.com/?lat=46.918&lon=8.401&zoom=11" target="_blank">Paraglidable</a></li>
+                      <li><a href="meteo.html"><b>FLYwithMIKI Flight Weather</b>, our daily flight-weather dashboard</a></li>
+                      <li><a href="emagram.html"><b>FLYwithMIKI Emagram</b>, sounding / thermal &amp; stability tool</a></li>
+                      <li><a href="https://meteo-shv.ch/" target="_blank" rel="noopener noreferrer">SHV - meteo prognosis (for members)</a></li>
+                      <li><a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/allgemeine-lage.html#tab=generalsituation"  target="_blank" rel="noopener noreferrer">MeteoSchweiz (text prognosis)</a></li>
+                      <li><a href="https://xctherm.com/icon" target="_blank" rel="noopener noreferrer">XC-Therm (ICON - Wind)</a></li>
+                      <li><a href="https://www.windy.com/46.908/8.395/airgram?46.906,8.373,11" target="_blank" rel="noopener noreferrer">Windy (Airgram)</a></li>
+                      <li><a href="https://soaringmeteo.org/soarWRF2K0612ZE.html" target="_blank" rel="noopener noreferrer">Soaring meteo</a></li>
+                      <li><a href="https://paraglidable.com/?lat=46.918&lon=8.401&zoom=11" target="_blank" rel="noopener noreferrer">Paraglidable</a></li>
                     </ul>
                  </div>
 				 
                 <div class="w3-half w3-hoverable w3-left-align">
                    <h3 style="font-weight:bold">Meteo actual</h3>
                    <ul class="w3-ul w3-hoverable link-list">
-                      <li><a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/messwerte.html#lang=de&swisstopoApiKey=cpZJOL3HuO5yENksi97q&param=messwerte-lufttemperatur-10min" target="_blank">Current weather conditions - MeteoSchweiz</a></li>
+                      <li><a href="https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/messwerte.html#lang=de&swisstopoApiKey=cpZJOL3HuO5yENksi97q&param=messwerte-lufttemperatur-10min" target="_blank" rel="noopener noreferrer">Current weather conditions - MeteoSchweiz</a></li>
                     </ul>
                  </div>
 
                  <div class="w3-half w3-hoverable w3-left-align">
                    <h3 style="font-weight:bold">Airspaces in Switzerland</h3>
                    <ul class="w3-ul w3-hoverable link-list">
-                      <li><a href="https://map.geo.admin.ch/?zoom=4&bgLayer=ch.swisstopo.pixelkarte-farbe&time_current=latest&lang=de&topic=ech&layers=ch.bazl.segelflugkarte&E=2671113.65&N=1199511.70" target="_blank">Airspace map - GeoAdmin</a></li>
-                      <li><a href="https://airspace.shv-fsvl.ch/map"  target="_blank">Airspace map - SHV</a></li>
-                      <li><a href="https://www.skybriefing.com/dabs" target="_blank">Daily Airspace Bullettin Switzerland - DABS</a></li>
+                      <li><a href="https://map.geo.admin.ch/?zoom=4&bgLayer=ch.swisstopo.pixelkarte-farbe&time_current=latest&lang=de&topic=ech&layers=ch.bazl.segelflugkarte&E=2671113.65&N=1199511.70" target="_blank" rel="noopener noreferrer">Airspace map - GeoAdmin</a></li>
+                      <li><a href="https://airspace.shv-fsvl.ch/map"  target="_blank" rel="noopener noreferrer">Airspace map - SHV</a></li>
+                      <li><a href="https://www.skybriefing.com/dabs" target="_blank" rel="noopener noreferrer">Daily Airspace Bullettin Switzerland - DABS</a></li>
                     </ul>
                  </div>
 
@@ -437,9 +499,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                  <div class="w3-half w3-hoverable w3-left-align">
                    <h3 style="font-weight:bold">Other links</h3>
                    <ul class="w3-ul w3-hoverable link-list">
-                      <li><a href="https://www.shv-fsvl.ch/" target="_blank">SHV (Swiss Hang and Paragliding Association)</a></li>
+                      <li><a href="https://www.shv-fsvl.ch/" target="_blank" rel="noopener noreferrer">SHV (Swiss Hang and Paragliding Association)</a></li>
 
-                      <li><a href="https://www.xcontest.org/world/en/"  target="_blank">XContest</a></li>
+                      <li><a href="https://www.xcontest.org/world/en/"  target="_blank" rel="noopener noreferrer">XContest</a></li>
                     </ul>
                  </div>
 
@@ -449,82 +511,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <br><br>
  </div>
 
-<!-- PAPERWORK SECTION -->
-<div class="w3-content w3-padding-32" style="max-width:900px" id="paperwork">
-       <h3 style="text-align:left"><b>Paperwork - Registrations</b></h3>
-            <p>Before starting your paragliding training, you need to complete a few essential registrations to ensure compliance, insurance, and smooth learning progression. Here you find all mandatory and recommended things:</p>
-        
-            <table class="w3-table w3-bordered">
-                <tr class="">
-                    <th>What</th>
-                    <th>Why</th>
-                    <th>Annual Cost</th>
-                    <th>Link</th>
-                </tr>
-                <tr>
-                    <td>FlightDeck App</td>
-                    <td>We use the dedicated FlightDeck App to log your flights and track your progress. <b>Free to use for all our students.</b></td>
-                    <td>Free</td>
-                    <td><a href="flightdeck.html">Register</a></td>
-                </tr>
-                <tr>
-                    <td>SHV Membership</td>
-                    <td>Swiss Paragliding Association membership. Several benefits, makes sense to register.</td>
-                    <td>120CHF</td>
-                    <td><a href="https://www.shv-fsvl.ch/verband/mitgliedschaft/" target="_blank">More info</a> | <a href="https://admin.webmembership.ch/shv/pages/public/registration.jsf" target="_blank">Register</a></td>
-                </tr>
-                <tr>
-                    <td>Insurance (Liability)</td>
-                    <td>3rd party liability for Pilots (mandatory by law). Minimum 1MCHF coverage!</td>
-                    <td>82.5CHF</td>
-                    <td><a href="https://www.shv-fsvl.ch/mitgliederservice/versicherungen/" target="_blank">More info</a> | <a href="https://www.shv-fsvl.ch/mitgliederservice/versicherungsantrag/" target="_blank">Register</a></td>
-                </tr>
-                <tr>
-                    <td>Insurance (tree rescue)</td>
-                    <td>Highly recommended.</td>
-                    <td>28CHF</td>
-                    <td><a href="https://www.shv-fsvl.ch/mitgliederservice/versicherungen/" target="_blank">More info</a> | <a href="https://www.shv-fsvl.ch/mitgliederservice/versicherungsantrag/" target="_blank">Register</a></td>
-                </tr>
-                <tr>
-                    <td>Insurance (accident)</td>
-                    <td>Check your accident insurance if you have coverage for paragliding (swiss accident insurances usually cover it by default)</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>REGA (Patron)</td>
-                    <td>Highly recommended!</td>
-                    <td>40CHF</td>
-                    <td><a href="https://www.rega.ch/en/rega-patron/become-a-patron" target="_blank">Register</a></td>
-                </tr>
-                <tr>
-                    <td>E-learning</td>
-                    <td>Practice the theory exam questions (SHV membership required).</td>
-                    <td>FREE for SHV members</td>
-                    <td><a href="https://elearning.shv-fsvl.ch/" target="_blank">Start learning</a></td>
-                </tr>
-                <tr>
-                    <td>Exam Registration</td>
-                    <td>Mandatory theory and practical exams.</td>
-                    <td>125 CHF/exam</td>
-                    <td><a href="https://www.shv-fsvl.ch/ausbildung/pruefungen/pruefungsanmeldung/" target="_blank">Sign up</a></td>
-                </tr>
-                <tr>
-                    <td>License "Plate"</td>
-                    <td> Mandatory identification on your glider's lower surface. Minimum 40cm height. (you can order the digits from me)</td>
-                    <td>Varies</td>
-                    <td><a href="shv-calc.html">Calculator</a></td>
-                </tr>
-            </table>
-        </section>
+<!-- PAPERWORK SECTION (moved to prices.html#paperwork) -->
+<div class="w3-content w3-padding-32" style="max-width:1000px" id="paperwork">
+       <h3 style="text-align:left"><b>Paperwork and registrations</b></h3>
+       <p>SHV membership, liability insurance, exam registration, REGA and the rest: every official fee, what it is for and where to sign up, is now listed with the full cost picture on our prices page.</p>
+       <p><a href="prices.html#paperwork" class="w3-button w3-round-xlarge w3-padding" style="background:#0077b6;color:white"><b>Open the registrations checklist &rarr;</b></a></p>
 </div>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
+
+</div><!-- /#links -->
+</div><!-- /w3-main -->
 <!------------------------FOOTER------------------------------------->
 
 
@@ -616,7 +619,12 @@ function handleButtonClick(language) {
     }
   } else if (language === "german") {
     if (!basePath.includes('/de/')) {
-      newPath = `${basePath}de/`; // Add "/de/" to the base path
+      if (fileName === "intensive.html" || fileName === "agb.html") {
+        window.location.href = `${basePath}de/` + fileName;
+      } else {
+        window.location.href = `${basePath}de/`;
+      }
+      return;
     }
   }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,13 +24,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
   <title>Register for FlightDeck | FLYwithMIKI Student Area</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="Register for FlightDeck – the free digital flight log app used at FLYwithMIKI paragliding school.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
@@ -60,7 +63,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .feature-card h3 { margin-top: 0; margin-bottom: 12px; }
     .feature-card p { flex: 1; margin: 0; }
-  </style>
+          /* site-wide card consistency */
+        .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
+        
+        /* === SHARED PAGE HERO: identical top-of-page block on every page === */
+        .page-hero {
+            margin-top: 26px;
+            background: linear-gradient(135deg,#002d4e 0%,#0077b6 60%,#00b4d8 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 24px 34px;
+        }
+        .page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; }
+        .page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; }
+        .page-hero .hero-sub  { font-size: 1.1em; opacity: 0.94; max-width: 720px; margin: 0 auto 16px; }
+        .page-hero .hero-note { font-size: 0.92em; opacity: 0.85; max-width: 640px; margin: 0 auto 22px; }
+        .page-hero .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 18px;
+            font-size: 0.82em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero-btn {
+            display: inline-block; background: rgba(255,255,255,0.18); color: #fff; padding: 13px 30px;
+            border-radius: 30px; font-size: 1.02em; font-weight: bold; text-decoration: none; margin: 6px;
+            border: 2px solid rgba(255,255,255,0.4); transition: background .2s, transform .2s;
+        }
+        .hero-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+        .hero-btn-wa { background: #25D366; border-color: #25D366; }
+        .hero-btn-wa:hover { background: #1eb85a; }
+        @media (max-width: 600px) {
+            .page-hero { padding: 30px 18px 26px; }
+            .page-hero h1 { font-size: 1.55em; }
+            .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+        }
+        /* === ONE CONSISTENT CONTENT WIDTH FOR EVERY SECTION === */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .section-boxed {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+                /* hero keeps its breathing room under the promo banner regardless of rule order */
+        .page-hero.section-boxed { margin-top: 26px; }
+        </style>
+<link rel="canonical" href="https://flywithmiki.com/flightdeck.html" />
 </head>
 <body class="w3-white w3-content" style="max-width:1600px">
 
@@ -74,44 +126,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-container w3-display-container">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <div class="w3-margin w3-center">
-      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"></a>
+      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
     </div>
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
         <div class="w3-col s6 m6 l6 w3-center">
-          <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
-          </button>
+          <a href="flightdeck.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+          </a>
         </div>
         <div class="w3-col s6 m6 l6 w3-center">
-          <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
-          </button>
+          <a href="de/" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+          </a>
         </div>
       </div>
     </div>
   </div>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
+    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Overlay on small screens -->
@@ -128,11 +185,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Hero -->
   <div class="w3-padding-64 w3-center" style="background: linear-gradient(135deg, #e0f7fa, #ffffff); padding-top: 80px;">
     <h1 class="w3-xxxlarge" style="color:#0077b6; font-weight:bold">&#128196; Register for FlightDeck</h1>
-    <p class="w3-large" style="max-width:700px; margin:0 auto; color:#555">Your digital flight logbook — free for all FLYwithMIKI students</p>
+    <p class="w3-large" style="max-width:700px; margin:0 auto; color:#555">Your digital flight logbook, free for all FLYwithMIKI students</p>
   </div>
 
   <!-- Main content -->
-  <div class="w3-content w3-padding-32" style="max-width:900px">
+  <div class="w3-content w3-padding-32" style="max-width:1000px">
 
     <div class="feature-card">
       <h2 style="color:#0077b6; margin-top:0">&#9992; What is FlightDeck?</h2>
@@ -143,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-half">
         <div class="feature-card">
           <h3 style="color:#0077b6">✅ Free for students</h3>
-          <p>FlightDeck is completely free to use for all FLYwithMIKI students — no subscription, no hidden fees.</p>
+          <p>FlightDeck is completely free to use for all FLYwithMIKI students, no subscription, no hidden fees.</p>
         </div>
       </div>
       <div class="w3-half">
@@ -158,7 +215,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-half">
         <div class="feature-card">
           <h3 style="color:#0077b6">📱 Always with you</h3>
-          <p>Access your logbook from your smartphone, tablet, or computer — no paper required.</p>
+          <p>Access your logbook from your smartphone, tablet, or computer, no paper required.</p>
         </div>
       </div>
       <div class="w3-half">
@@ -202,8 +259,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          class="cta-btn" style="background:#25D366; color:white; font-size:1.2em;">
         💬 WhatsApp: Register me to FlightDeck
       </a>
-      <p class="w3-small" style="color:#888; margin-top:12px">The message will be pre-filled — just add your email address and send!</p>
-     <!-- <p class="w3-margin-top">Already registered? <a href="/flightdeck/" target="_blank" style="color:#0077b6; font-weight:bold">Open FlightDeck &#8594;</a></p>
+      <p class="w3-small" style="color:#888; margin-top:12px">The message will be pre-filled, just add your email address and send!</p>
+     <!-- <p class="w3-margin-top">Already registered? <a href="/flightdeck/" target="_blank" style="color:#0077b6; font-weight:bold" rel="noopener noreferrer">Open FlightDeck &#8594;</a></p>
     -->
     </div>
 
@@ -212,7 +269,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Footer -->
   <footer class="w3-container w3-center w3-light-grey w3-tiny">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
 
@@ -249,7 +307,7 @@ function handleButtonClick(language) {
   if (language === "english") {
     if (basePath.includes('/de/')) { newPath = basePath.replace('/de/', '/'); }
   } else if (language === "german") {
-    if (!basePath.includes('/de/')) { newPath = `${basePath}de/`; }
+    if (!basePath.includes('/de/')) { if (fileName === "intensive.html" || fileName === "agb.html") { window.location.href = `${basePath}de/` + fileName; } else { window.location.href = `${basePath}de/`; } return; }
   }
   if (newPath !== currentPath) { newPath += fileName; window.location.href = newPath; }
 }

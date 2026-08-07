@@ -1,5 +1,8 @@
 # Internal SEO audit exports — inputs only, must not be published on the public site
 ahrefs/
 
+# Internal WhatsApp forecast export + auto-sender — must not be published on the public site
+internal/
+
 # Python virtual environment
 .venv/

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<meta charset="UTF-8">
 <!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -16,11 +17,11 @@
   });
 </script>
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
+<script>(function(w, d, s, l, i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(), event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j, f);
+})(window, document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
 
 <!-- Wikidata összekötése ---------------------->
@@ -37,7 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
     "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
-    // Hozzádhatsz ide más releváns közösségi média profilokat is, pl. Facebook, Instagram.
   ],
   "address": {
     "@type": "PostalAddress",
@@ -57,22 +57,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
  
         <title>Paragliding School Switzerland | Small Groups | FLYwithMIKI</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
         <meta name="description" content="Paragliding training, beginner to license. Small groups, eco-friendly EV transport, video analysis & mental training. FLYwithMIKI Switzerland.">
         <meta name="keywords" content="paragliding course, learn to fly paragliding, paragliding license Switzerland, eco-friendly flight school, small group training, Luzern, Engelberg">
-        <meta name="robots" content="index, follow">
-        <link rel="alternate" hreflang="en" href="https://flywithmiki.com/school.html" />
-        <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/school.html" />
-        <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/school.html" />
-		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="manifest" href="/site.webmanifest">
+        <meta name="robots" content="index, follow" />
+<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="manifest" href="site.webmanifest">
 		
 		<meta property="og:url" content="https://flywithmiki.com/school.html" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="FLYwithMIKI Paragliding School" />
-        <meta property="og:title" content="Learn Paragliding in Switzerland | Small Groups, Eco-Friendly, Expert Training" />
+        <meta property="og:site_name" content="FLYwithMIKI" />
+        <meta property="og:title" content="Paragliding School Switzerland | Small Groups | FLYwithMIKI" />
         <meta property="og:description" content="Complete paragliding training from zero to licensed pilot. Small groups (3-8 students/instructor), video analysis, mental training, eco-friendly approach. Switzerland's first sustainable flight school." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -83,10 +82,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <style>
             html {scroll-behavior: smooth;}
             .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
-             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+             body, h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
             .w3-third img:hover {opacity: 1}
             .mySlides {display:none;} /* slideshowhoz kell */
+
+        /* === PHASE SECTIONS: images stay in their own band, text never wraps around them === */
+        .phase-section { overflow: hidden; }           /* contains the floats, nothing leaks into the next phase */
+        .phase-gallery {                               /* multi-image strip, full width above the text */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 4px 0 22px;
+        }
+        .phase-gallery img {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+        .phase-figure {                                /* single image, floated beside the text on desktop */
+            max-height: 250px;
+            max-width: 45%;
+            border-radius: 12px;
+            float: right;
+            margin: 0 0 14px 24px;
+        }
+        @media (max-width: 800px) {
+            .phase-gallery img { height: 130px; }
+            .phase-gallery { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+            .phase-figure { float: none; display: block; max-width: 100%; max-height: 220px; margin: 0 auto 18px; }
+        }
 
         .floating-wa {
             position: fixed;
@@ -132,20 +159,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
             color: white;
             padding: 12px 20px;
-            text-align: center;
-            font-size: 1.05em;
+            font-size: 1.02em;
             font-weight: bold;
+            line-height: 1.45;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 14px;
+            text-align: center;
         }
         .promo-banner a {
             color: #fff;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 16px;
+            background: rgba(255,255,255,0.22);
+            padding: 6px 16px;
             border-radius: 25px;
             text-decoration: none;
-            margin-left: 10px;
+            margin-left: 0;
             transition: background 0.3s;
+            white-space: nowrap;
         }
-        .promo-banner a:hover { background: rgba(255,255,255,0.35); }
+        .promo-banner a:hover { background: rgba(255,255,255,0.38); }
 
         .faq-section { max-width: 900px; margin: 40px auto; padding: 20px; }
         .faq-section h2 { text-align: center; color: #0077b6; margin-bottom: 25px; }
@@ -165,7 +201,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 0 0 0 0; color: #555; line-height: 1.6;
         }
         .faq-answer.open { max-height: 600px; padding-bottom: 18px; }
-        .journey-section { max-width: 900px; margin: 30px auto 10px; padding: 20px; text-align: center; }
+        .journey-section { max-width: 900px; margin: 0 auto 10px; padding: 6px 20px 20px; text-align: center; }
         .journey-section h2 { color: #0077b6; margin-bottom: 25px; }
         .journey-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; position: relative; }
         .journey-step {
@@ -189,11 +225,84 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .journey-step { max-width: 100%; flex: 1 1 100%; }
         }
 
-		</style>
+		        /* site-wide card consistency */
+        .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
+                /* === PROMO VIDEO: silent autoplay loop, click for the full film === */
+        .promo-block { text-align:center; }
+        .promo-video { display:block; margin:0 auto; border-radius:16px; background:#000; box-shadow:0 4px 20px rgba(0,0,0,0.18); max-width:100%; height:auto; }
+        .promo-landscape { width:100%; max-width:860px; aspect-ratio:16 / 9; }
+        .promo-portrait  { display:none; width:100%; max-width:320px; aspect-ratio:9 / 16; }
+        @media (max-width: 767px) { .promo-landscape { display:none; } .promo-portrait { display:block; } }
+        .promo-stage .promo-full { display:none; }
+        .promo-stage.playing .promo-loop { display:none; }
+        .promo-stage.playing .promo-full.promo-landscape { display:block; }
+        @media (max-width: 767px) {
+            .promo-stage.playing .promo-full.promo-landscape { display:none; }
+            .promo-stage.playing .promo-full.promo-portrait { display:block; }
+        }
+        .promo-play-btn {
+            display:inline-block; margin-top:14px; padding:12px 26px; border:none; border-radius:30px;
+            background:#0077b6; color:#fff; font-weight:bold; font-size:1em; cursor:pointer;
+            font-family:"Montserrat",sans-serif; transition:transform .2s, box-shadow .2s;
+        }
+        .promo-play-btn:hover { transform:translateY(-2px); box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+        
+        /* === SHARED PAGE HERO: identical top-of-page block on every page === */
+        .page-hero {
+            margin-top: 26px;
+            background: linear-gradient(135deg,#002d4e 0%,#0077b6 60%,#00b4d8 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 24px 34px;
+        }
+        .page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; }
+        .page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; }
+        .page-hero .hero-sub  { font-size: 1.1em; opacity: 0.94; max-width: 720px; margin: 0 auto 16px; }
+        .page-hero .hero-note { font-size: 0.92em; opacity: 0.85; max-width: 640px; margin: 0 auto 22px; }
+        .page-hero .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 18px;
+            font-size: 0.82em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero-btn {
+            display: inline-block; background: rgba(255,255,255,0.18); color: #fff; padding: 13px 30px;
+            border-radius: 30px; font-size: 1.02em; font-weight: bold; text-decoration: none; margin: 6px;
+            border: 2px solid rgba(255,255,255,0.4); transition: background .2s, transform .2s;
+        }
+        .hero-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+        .hero-btn-wa { background: #25D366; border-color: #25D366; }
+        .hero-btn-wa:hover { background: #1eb85a; }
+        @media (max-width: 600px) {
+            .page-hero { padding: 30px 18px 26px; }
+            .page-hero h1 { font-size: 1.55em; }
+            .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+        }
+        /* === ONE CONSISTENT CONTENT WIDTH FOR EVERY SECTION === */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .section-boxed {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+                /* hero keeps its breathing room under the promo banner regardless of rule order */
+        .page-hero.section-boxed { margin-top: 26px; }
+        </style>
      <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
 
-    </head> 
+    <link rel="canonical" href="https://flywithmiki.com/school.html" />
+<meta property="og:description" content="Paragliding training, beginner to license. Small groups, eco-friendly EV transport, video analysis & mental training. FLYwithMIKI Switzerland." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Paragliding School Switzerland | Small Groups | FLYwithMIKI" />
+<meta name="twitter:description" content="Paragliding training, beginner to license. Small groups, eco-friendly EV transport, video analysis & mental training. FLYwithMIKI Switzerland." />
+<meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+</head> 
 
 
 
@@ -214,21 +323,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> </img>
         </a> 
     </div>
     <!--Language menu -->
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
-      </button>
+      <a href="school.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+      </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
-      </button>
+      <a href="de/" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+      </a>
      </div>
      </div>
     </div>
@@ -237,18 +346,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button w3-light-grey">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
+    <a href="school.html" class="w3-bar-item w3-button w3-light-grey">Learn to Fly</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -256,6 +361,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 
@@ -284,20 +398,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- PROMO BANNER -->
  <div class="promo-banner">
-   &#9992; Autumn Course 2026 — CHF 300 starting discount, sign up before end of August! <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20the%20Autumn%20Course%202026">Reserve Your Spot &rarr;</a>
+   &#9992; Autumn Course 2026: CHF 300 starting discount, sign up before end of August! <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20the%20Autumn%20Course%202026">Reserve Your Spot &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEW: Intensive Course 2027 &rarr;</a>
  </div>
 
 
+<!-- HERO: one H1, one promise, and the film that shows it -->
+ <div class="page-hero section-boxed promo-block" id="video">
+   <span class="hero-badge">Central Switzerland &middot; 3&ndash;8 students per instructor</span>
+   <h1>Learn to Fly: Your Eco-Friendly Paragliding School</h1>
+   <p class="hero-sub">Your journey from the very first inflation on the training hill to your Swiss pilot licence, with one instructor who knows your name.</p>
+   <div class="promo-stage">
+     <video class="promo-video promo-landscape promo-loop" autoplay muted loop playsinline preload="metadata" poster="video/promo_poster_16x9.jpg">
+       <source src="video/promo_loop_16x9.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-portrait promo-loop" autoplay muted loop playsinline preload="metadata" poster="video/promo_poster_9x16.jpg">
+       <source src="video/promo_loop_9x16.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-landscape promo-full" playsinline preload="none" poster="video/promo_poster_16x9.jpg">
+       <source src="video/promo_16x9.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-portrait promo-full" playsinline preload="none" poster="video/promo_poster_9x16.jpg">
+       <source src="video/promo_9x16.mp4" type="video/mp4">
+     </video>
+   </div>
+   <button class="hero-btn" onclick="playFullPromo(this)">&#9654; Watch the full film with sound (56 s)</button>
+   <p class="hero-note" style="margin:8px auto 20px">Filmed with our own students. The preview plays without sound.</p>
+   <a href="prices.html" class="hero-btn">See Course Prices</a>
+   <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'd%20like%20to%20know%20more%20about%20your%20school" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Ask Miki Anything</a>
+ </div>
+
 <!-- SCHOOL section -->
-  <div class="w3-container w3-white w3-center w3-padding-16" id="school">
+  <div class="w3-container w3-white w3-center" id="school">
      <div class="w3-content" style="max-width:1000px">
-        <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="logoc" style="width:100%; max-width:900px"> <!--LOGO -->
 
-        <h1><b>Your Eco-Friendly Paragliding School</b></h1>
-		
-		<h2><b>Journey from the beginning to your license</b></h2>
-
-		<!-- YOUR JOURNEY -->
+<!-- YOUR JOURNEY -->
 		<div class="journey-section">
 		  <h2>&#128204; Your Path to Becoming a Pilot</h2>
 		  <div class="journey-steps">
@@ -310,19 +444,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 
     <!-- WHY FLYWITHMIKI -->
-    <div class="w3-padding-32" id="why-us" style="max-width:900px; margin:0 auto">
+    <div class="w3-padding-32" id="why-us" style="max-width:1000px; margin:0 auto">
       <h2 style="color:#0077b6">&#127775; Why FLYwithMIKI?</h2>
       <div class="w3-row-padding w3-margin-top" style="display:flex;flex-wrap:wrap;align-items:stretch">
         <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:12px; border-top:3px solid #0077b6; height:100%; flex:1">
+          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #0077b6; height:100%; flex:1">
             <p style="font-size:1.6em; text-align:center; margin:0">&#128100;</p>
             <h4 style="color:#0077b6; margin-top:8px">Small Groups</h4>
             <p class="w3-small">We keep groups tiny intentionally. Your progress (not throughput) is what matters. Real attention, real feedback, real progress.</p>
           </div>
         </div>
         <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:12px; border-top:3px solid #25D366; height:100%; flex:1">
-            <p style="font-size:1.6em; text-align:center; margin:0">&#127481;&#127469;</p>
+          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #25D366; height:100%; flex:1">
+            <p style="font-size:1.6em; text-align:center; margin:0">&#127468;&#127463;&nbsp;&#127465;&#127466;&nbsp;&#127469;&#127482;</p>
             <h4 style="color:#0077b6; margin-top:8px">3 Languages</h4>
             <p class="w3-small">Miki teaches in English, German, and Hungarian, so you learn paragliding in the language you think in, not struggle in.</p>
           </div>
@@ -330,14 +464,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="w3-row-padding" style="display:flex;flex-wrap:wrap;align-items:stretch">
         <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:12px; border-top:3px solid #f5a623; height:100%; flex:1">
+          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #f5a623; height:100%; flex:1">
             <p style="font-size:1.6em; text-align:center; margin:0">&#128241;</p>
             <h4 style="color:#0077b6; margin-top:8px">FlightDeck App</h4>
             <p class="w3-small">Track your training progress with our exclusive digital platform. Personalized milestones, maneuver checklists, and real-time instructor feedback. No other school has this.</p>
           </div>
         </div>
         <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:12px; border-top:3px solid #0077b6; height:100%; flex:1">
+          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #0077b6; height:100%; flex:1">
             <p style="font-size:1.6em; text-align:center; margin:0">&#127807;</p>
             <h4 style="color:#0077b6; margin-top:8px">Eco-First Approach</h4>
             <p class="w3-small">Electric vehicle transport, 400+ trees planted, SHV-certified. We believe flying and environmental responsibility go together.</p>
@@ -351,13 +485,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 		<!------TRAINING HILL---------->
-     <div class="w3-content w3-padding-32" style="max-width:900px">
-  
-  	<!------WINTER DISCOUNT----------       <a href="https://flywithmiki.com/class2025.html" target="_blank"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->
+     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
+
+  	<!------WINTER DISCOUNT----------       <a href="https://flywithmiki.com/class2025.html" target="_blank" rel="noopener noreferrer"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->
 
        <h3 style="text-align:left"><b>Training hill:</b></h3>
-         <p class="w3-justify"> The training hill is your gateway to soaring through the skies, and those first few days (2-5 days) lay the foundation for your aerial adventures. Here's a glimpse of what to expect: <br><br>
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="uh2" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
+         <p class="w3-justify"> The training hill is your gateway to soaring through the skies, and those first few days (2-5 days) lay the foundation for your aerial adventures. Here's a glimpse of what to expect:</p>
+         <p class="w3-justify">
+            <img class="phase-figure" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="Student practising ground handling on the training hill" loading="lazy">
 
             <strong>Harnessing Your Potential</strong>:  Literally!  Getting comfortable in the harness is key. You'll learn how to wear it securely and adjust it for maximum comfort during flight.<br><br>
             
@@ -376,14 +511,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      </div>
 
     <!------HIGH FLIGHTS---------->
-     <div class="w3-content w3-padding-32" style="max-width:900px">
+     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
        <h3 style="text-align:left"><b>High flights:</b></h3>
-         <p class="w3-justify"> Once you've mastered the basics, you are ready to take your paragliding adventure to new heights. High altitude flights are where the magic truly unfolds. Get ready for breathtaking views, exhilarating maneuvers, and the art of staying aloft for extended periods. The high flights and theory phase usually takes 1-12 months, depending on your time and weather. <br><br>
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf1.webp" alt="hf1" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf2.webp" alt="hf2" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf3.webp" alt="hf3" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy"> 
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/hf4.webp" alt="hf4" style="max-height:250px; float:left; margin:0px 20px 10px 0px" loading="lazy">
+         <p class="w3-justify"> Once you've mastered the basics, you are ready to take your paragliding adventure to new heights. High altitude flights are where the magic truly unfolds. Get ready for breathtaking views, exhilarating maneuvers, and the art of staying aloft for extended periods. The high flights and theory phase usually takes 1-12 months, depending on your time and weather.</p>
 
+         <div class="phase-gallery">
+            <img src="https://flywithmiki.com/Images_v2/hf1.webp" alt="Student on a high flight above the Alps" loading="lazy">
+            <img src="https://flywithmiki.com/Images_v2/hf2.webp" alt="Paraglider launching for a high flight" loading="lazy">
+            <img src="https://flywithmiki.com/Images_v2/hf3.webp" alt="Student flying with radio guidance" loading="lazy">
+            <img src="https://flywithmiki.com/Images_v2/hf4.webp" alt="Landing approach during high flight training" loading="lazy">
+         </div>
+
+         <p class="w3-justify">
             <strong>Taking Control</strong> We'll refine your glider handling skills, teaching you precise steering techniques that allow you to navigate the vastness of the sky with confidence. This includes mastering turns, banks, and maintaining a steady course - all while enjoying the incredible panorama below.<br><br>
             
             <strong>Understanding Your Wing</strong>: High altitude flights provide the perfect opportunity to truly feel the behavior of your paraglider. We'll delve into wing characteristics, teaching you how to read air currents and anticipate how your wing reacts, ensuring you stay comfortably above your head at all times.<br><br>
@@ -392,7 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <strong>Descent with Finesse</strong>:  Learning to gracefully descend is as important as soaring high. You'll practice maneuvers like big ears and fast circles, gaining control over your descent rate before a smooth and safe landing.<br><br>
             
-            <strong>The Art of Thermalling</strong>:  magine using rising air currents to extend your flight time, sometimes for hours on end!  That's the magic of thermalling. We'll guide you through identifying thermals, entering them smoothly, and maximizing their lift to keep you soaring effortlessly.<br><br>
+            <strong>The Art of Thermalling</strong>: Imagine using rising air currents to extend your flight time, sometimes for hours on end!  That's the magic of thermalling. We'll guide you through identifying thermals, entering them smoothly, and maximizing their lift to keep you soaring effortlessly.<br><br>
 
 
 
@@ -409,18 +548,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!------Flight Deck---------->
-         <div class="w3-content w3-padding-32" style="max-width:900px">
+         <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
 		 <h3 style="text-align:left"><b>The Digital Advantage, Introducing Flight Deck:</b></h3>
 
-			 
-			 <p class="w3-justify"> Leave the outdated paper logbooks and scattered notes behind. The <strong>Flight Deck</strong> is our exclusive digital platform designed to maximize the efficiency and safety of your paragliding education. Unlike traditional methods, this system ensures you are always connected to your progress and your instructor.             <br><br>   
-			 
-			 <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/flightdeck.webp" alt="flightdeck" style="max-height:250px;  float:right; margin:0px 0px 10px 20px" loading="lazy"> 
-			        
-			 
-			                          
+			 <p class="w3-justify"> Leave the outdated paper logbooks and scattered notes behind. The <strong>Flight Deck</strong> is our exclusive digital platform designed to maximize the efficiency and safety of your paragliding education. Unlike traditional methods, this system ensures you are always connected to your progress and your instructor.</p>
+
+			 <p class="w3-justify">
+			 <img class="phase-figure" src="https://flywithmiki.com/Images_v2/flightdeck.webp" alt="FlightDeck progress-tracking dashboard" loading="lazy">
+
 			 <strong>See Your Success:</strong> The core feature is the personalized <ins>dashboard</ins>, where you can visually track your personal advancement against training milestones. This transparency is a powerful motivator. You get <ins>instant access</ins> to a comprehensive maneuver list that complements and enhances the mandatory SHV syllabus. This unique structure ensures maneuvers are taught in a much more <ins>logical, sequential building-block order</ins>, making the training process smoother and safer.             <br><br>             
-			 <strong>Instructor Collaboration:</strong> The platform allows your instructor to see your real-time progress. This instant transparency is crucial—it enables us to quickly decide together exactly what you need to practice and develop next. By eliminating guesswork and streamlining communication, Flight Deck makes your entire training regimen dramatically <ins>more efficient and safer</ins>, ensuring every flight is focused and productive.           
+			 <strong>Instructor Collaboration:</strong> The platform allows your instructor to see your real-time progress. This instant transparency is crucial, it enables us to quickly decide together exactly what you need to practice and develop next. By eliminating guesswork and streamlining communication, Flight Deck makes your entire training regimen dramatically <ins>more efficient and safer</ins>, ensuring every flight is focused and productive.           
 			 </p>      
 		 </div>
     <!------Flight Deck---------->
@@ -429,13 +566,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!------THEORY---------->
-     <div class="w3-content w3-padding-32" style="max-width:900px">
+     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
        <h3 style="text-align:left"><b>Theory:</b></h3>
-         <p class="w3-justify"> Paragliding isn't just about feeling the wind in your hair. It's about becoming a pilot who understands the science and art of flight. While practice makes the master, a solid foundation in theory is essential for safe and enjoyable flying. That's where theory class comes in! <br><br>
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th1.webp" alt="th1" style="max-height:250px; float:right; margin:0px 0px 10px 20px" loading="lazy"> 
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th2.webp" alt="th2" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
-            <img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/th3.webp" alt="th3" style="max-height:250px; float:right; margin:10px 0px 10px 20px" loading="lazy"> 
+         <p class="w3-justify"> Paragliding isn't just about feeling the wind in your hair. It's about becoming a pilot who understands the science and art of flight. While practice makes the master, a solid foundation in theory is essential for safe and enjoyable flying. That's where theory class comes in!</p>
 
+         <div class="phase-gallery">
+            <img src="https://flywithmiki.com/Images_v2/th1.webp" alt="Theory lesson in the classroom" loading="lazy">
+            <img src="https://flywithmiki.com/Images_v2/th2.webp" alt="Meteorology briefing with students" loading="lazy">
+            <img src="https://flywithmiki.com/Images_v2/th3.webp" alt="Students working through the theory syllabus" loading="lazy">
+         </div>
+
+         <p class="w3-justify">
             <strong>Weather wisdom</strong> Meteorology takes center stage.  You'll learn to read weather patterns, understand wind dynamics, clouds, fronts, alpine weather and most importantly, make informed decisions about when to fly and when to stay grounded.  Safety is paramount, and knowing how weather conditions impact your flight is crucial.<br><br>
             
             <strong>The Physics of Flight</strong>: Aerodynamics demystifies the magic behind your wing.  You'll explore the science of lift, drag, and how your glider interacts with the air.  This knowledge empowers you to fly with confidence, understanding the forces at play and how to manipulate them for optimal performance.<br><br>
@@ -467,16 +608,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- SOCIAL PROOF STRIP -->
-<div style="max-width:900px; margin: 30px auto 0; padding: 25px 20px; background: linear-gradient(135deg, #f0f8ff, #e8f4fd); border-radius: 12px; text-align: center;">
-  <p style="font-size:1.15em; margin:0 0 5px; color:#0077b6; font-weight:bold">&#11088; Rated 5.0 on Google &mdash; See what our students say</p>
-  <p style="font-style:italic; color:#555; margin:0 0 10px; max-width:600px; display:inline-block">"An outstanding paragliding school with an exceptional instructor! Miki has deep knowledge of both theory and practice." &mdash; Renata F.</p>
+<div style="max-width:1000px; margin: 30px auto 0; padding: 25px 20px; background: linear-gradient(135deg, #f0f8ff, #e8f4fd); border-radius:16px; text-align: center;">
+  <p style="font-size:1.15em; margin:0 0 5px; color:#0077b6; font-weight:bold">&#11088; Rated 4.9 on Google, see what our students say</p>
+  <p style="font-style:italic; color:#555; margin:0 0 10px; max-width:600px; display:inline-block">"An outstanding paragliding school with an exceptional instructor! Miki has deep knowledge of both theory and practice.", Renata F.</p>
   <a href="./#reviews" style="color:#0077b6; font-weight:bold; text-decoration:underline">Read all reviews &rarr;</a>
 </div>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV aegistry</a></p>
    
 </footer>
 <!------------------------FOOTER------------------------------------->
@@ -569,7 +711,12 @@ function handleButtonClick(language) {
     }
   } else if (language === "german") {
     if (!basePath.includes('/de/')) {
-      newPath = `${basePath}de/`; // Add "/de/" to the base path
+      if (fileName === "intensive.html" || fileName === "agb.html") {
+        window.location.href = `${basePath}de/` + fileName;
+      } else {
+        window.location.href = `${basePath}de/`;
+      }
+      return;
     }
   }
 
@@ -588,6 +735,18 @@ function handleButtonClick(language) {
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<script>
+function playFullPromo(btn){
+  var block = btn.closest('.promo-block');
+  var stage = block.querySelector('.promo-stage');
+  stage.classList.add('playing');
+  stage.querySelectorAll('.promo-loop').forEach(function(v){ try { v.pause(); } catch(e){} });
+  var sel = (window.innerWidth < 768) ? '.promo-full.promo-portrait' : '.promo-full.promo-landscape';
+  var v = stage.querySelector(sel);
+  if (v) { v.muted = false; v.controls = true; v.play(); }
+  btn.style.display = 'none';
+}
+</script>
 </body>
 
 </html>

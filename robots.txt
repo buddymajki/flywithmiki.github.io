@@ -1,4 +1,7 @@
 User-agent: *
-Disallow: /private/
-Disallow: /hidden/
+Allow: /
+
+# Internal / student-only tools: crawlable so the noindex meta tag can be read,
+# but kept out of the sitemap on purpose.
+
 Sitemap: https://flywithmiki.com/sitemap.xml

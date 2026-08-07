@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<meta charset="UTF-8">
 <!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -39,7 +40,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
     "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
-    // Hozzádhatsz ide más releváns közösségi média profilokat is, pl. Facebook, Instagram.
   ],
   "address": {
     "@type": "PostalAddress",
@@ -58,21 +58,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-        <title>AI Flight Weather Prediction for Paragliding | FLYwithMIKI Zentralschweiz</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="AI-based flight weather prediction for paragliding in Central Switzerland: daily flying-chance %, hazard warnings (föhn, wind, fronts, fog) and confidence — a decision-support layer on top of the raw MeteoSwiss data.">
-        <link rel="canonical" href="https://flywithmiki.com/meteoAI.html">
+        <title>AI Flight Weather for Paragliding | FLYwithMIKI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="description" content="AI flight-weather prediction for paragliding in Central Switzerland: daily flying-chance %, hazard warnings for föhn, wind, fronts and fog, plus confidence.">
+        <link rel="canonical" href="https://flywithmiki.com/meteoAI.html" />
 
         <meta property="og:url" content="https://flywithmiki.com/meteoAI.html" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="AI Flight Weather Prediction for Paragliding | FLYwithMIKI" />
-        <meta property="og:description" content="Daily AI interpretation of the flight weather for paraglider pilots: flying-chance %, hazard warnings and confidence — decision support on top of the raw data." />
+        <meta property="og:title" content="AI Flight Weather for Paragliding | FLYwithMIKI" />
+        <meta property="og:description" content="AI flight-weather prediction for paragliding in Central Switzerland: daily flying-chance %, hazard warnings for föhn, wind, fronts and fog, plus confidence." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
 
-		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="manifest" href="/site.webmanifest">
+		<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="manifest" href="site.webmanifest">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -85,7 +87,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-    </head>
+    <meta name="robots" content="index, follow" />
+<meta property="og:site_name" content="FLYwithMIKI" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Flight Weather for Paragliding | FLYwithMIKI" />
+<meta name="twitter:description" content="AI flight-weather prediction for paragliding in Central Switzerland: daily flying-chance %, hazard warnings for föhn, wind, fronts and fog, plus confidence." />
+<meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+</head>
 
 
 
@@ -102,21 +110,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
 
     <div class="w3-margin w3-center">
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"> </img>
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> </img>
         </a>
     </div>
     <!--Language menu -->
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
-      </button>
+      <a href="meteoAI.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+      </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
-      <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
-      </button>
+      <a href="de/" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+      </a>
      </div>
      </div>
     </div>
@@ -125,25 +133,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
+    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
-    <a href="meteo.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Meteo</a>
+    <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 
@@ -180,6 +193,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- METEO -->
 <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="meteo">
   <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI paragliding school - Weather preparation for safe flying" style="width:100%; max-width:1000px"> <!--LOGO -->
+  <h1 style="font-size:1.3rem; font-weight:700; margin:14px 0 0; color:#0b3c5d">AI Flight Weather Prediction for Paragliding in Central Switzerland</h1>
 </div>
 
 
@@ -197,7 +211,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div></header>
 
 <div class="wrap">
-  <div class="part p2" style="margin-top:14px"><b>AI prediction</b><span>One question, one answer: how likely is it that today's beginner course can fly? Analyse the raw data yourself on the Meteo page, then compare — do you agree?</span></div>
+  <div class="part p2" style="margin-top:14px"><b>AI prediction</b><span>One question, one answer: how likely is it that today's beginner course can fly? Analyse the raw data yourself on the Meteo page, then compare, do you agree?</span></div>
 
   <div class="days" id="aiDays"></div>
 
@@ -209,7 +223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="h3-label" id="h3Label"></div>
       <div class="h3-head" id="h3Head"></div>
       <div class="h3-meta" id="h3Meta"></div>
-      <div class="disclaimer">⚠️ Experimental algorithm, work in progress. All numbers are automated model estimates for education and entertainment only — they can be wrong and are <b>never a green light to fly</b>. Do not base any flying decision on them.</div>
+      <div class="disclaimer">⚠️ Experimental algorithm, work in progress. All numbers are automated model estimates for education and entertainment only, they can be wrong and are <b>never a green light to fly</b>. Do not base any flying decision on them.</div>
     </div>
   </div>
 
@@ -225,12 +239,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <details class="fc-full dcard" id="siteBox" style="display:none;padding:12px 18px"><summary>Site comparison &amp; tools</summary><div id="siteRows"></div></details>
 
   <div class="pagelink"><div class="ic" style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--teal-bg)">📊</div>
-    <div class="tt"><b>Check the raw weather data</b><small>Fronts, föhn, wind, precipitation and fog — the objective inputs behind this prediction.</small></div>
+    <div class="tt"><b>Check the raw weather data</b><small>Fronts, föhn, wind, precipitation and fog, the objective inputs behind this prediction.</small></div>
     <a class="btn sec" id="rawPageLink" href="meteo.html">Open raw data</a></div>
 
   <div id="status"><span class="loader"></span>Loading forecast.</div>
   <footer><div class="disc">
-    <b>How the AI scores (v3).</b> Each day starts at 100% at each of the 4 launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten) and everything that threatens a beginner course deducts points: rain is weighted by how many of the 9 course hours (09–17h) it likely eats, thunderstorms by ICON-CH1/ICON-D2 model agreement, föhn, wind strength &amp; direction, fronts and fog by severity — small stuff (a few clouds) costs nothing. Two situations force 0%: clear föhn and rain through most of the course day. The best site's score is the day's %. Uncertainty itself costs points — if the models disagree or the day is far ahead, the score drops and the confidence badge shows why. The MeteoSwiss text keywords can only push the score down, never up. ≥75% GO · 50–74% CAUTION · &lt;50% NO-FLY. The thermal forecast is a simplified parcel model on ICON data — a first estimate, not a sounding analysis. The algorithm is work in progress. Decision support only — <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank">SHV strategy</a>.
+    <b>How the AI scores (v3).</b> Each day starts at 100% at each of the 4 launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten) and everything that threatens a beginner course deducts points: rain is weighted by how many of the 9 course hours (09–17h) it likely eats, thunderstorms by ICON-CH1/ICON-D2 model agreement, föhn, wind strength &amp; direction, fronts and fog by severity, small stuff (a few clouds) costs nothing. Two situations force 0%: clear föhn and rain through most of the course day. The best site's score is the day's %. Uncertainty itself costs points, if the models disagree or the day is far ahead, the score drops and the confidence badge shows why. The MeteoSwiss text keywords can only push the score down, never up. ≥75% GO · 50–74% CAUTION · &lt;50% NO-FLY. The thermal forecast is a simplified parcel model on ICON data, a first estimate, not a sounding analysis. The algorithm is work in progress. Decision support only, <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank" rel="noopener noreferrer">SHV strategy</a>.
   </div></footer>
 </div>
 <div class="toast" id="toast"></div>
@@ -271,10 +285,10 @@ function renderDeds(){const S=DAYS[sel],v=S.v3;$("#dedCard").style.display="";
   let rows="";
   if(v.nogo)rows+=`<div class="ded nogo"><span class="di">${v.nogo.ic}</span><span class="dtx"><b>${v.nogo.txt}</b></span><span class="da">→ 0%</span></div>`;
   v.deds.forEach(x=>{rows+=`<div class="ded"><span class="di">${x.ic}</span><span class="dtx">${x.txt}${x.dt?`<small>${x.dt}</small>`:""}</span><span class="da">−${x.amt}%</span></div>`;});
-  if(!v.deds.length&&!v.nogo)rows=`<div class="ded none"><span class="di">✅</span><span class="dtx">No significant negatives today — standard alpine caution applies.</span><span class="da">0</span></div>`;
+  if(!v.deds.length&&!v.nogo)rows=`<div class="ded none"><span class="di">✅</span><span class="dtx">No significant negatives today, standard alpine caution applies.</span><span class="da">0</span></div>`;
   $("#dedRows").innerHTML=rows;}
 
-// climb value → sequential single-hue ramp (value is always printed — never colour alone)
+// climb value → sequential single-hue ramp (value is always printed, never colour alone)
 function cellColor(c){
   const bg=c<0.8?"#dcf3e9":c<1.3?"#abe5ce":c<1.8?"#5fcda5":c<2.3?"#1dae80":"#0f7f5d";
   return {bg,fg:c>=1.8?"#fff":"#33413d"};
@@ -291,14 +305,14 @@ function thermalMatrix(t){
     html+=`<div class="tml">${z===1800?"▲ ":""}${z}</div>`;
     t.hrs.forEach(x=>{
       const rain=x.pr>0.2||x.pp>=60;
-      if(rain){html+=`<div class="tmc rain" title="${fmtH(x.h)}:00 — rain">${z===1000?"☔":""}</div>`;return;}
-      if(z===rows[0]&&x.cape>=800&&x.pp>=30){html+=`<div class="tmc storm" title="${fmtH(x.h)}:00 — thunderstorm risk (CAPE ${Math.round(x.cape)}, precip ${Math.round(x.pp)}%)">⚡</div>`;return;}
+      if(rain){html+=`<div class="tmc rain" title="${fmtH(x.h)}:00, rain">${z===1000?"☔":""}</div>`;return;}
+      if(z===rows[0]&&x.cape>=800&&x.pp>=30){html+=`<div class="tmc storm" title="${fmtH(x.h)}:00, thunderstorm risk (CAPE ${Math.round(x.cape)}, precip ${Math.round(x.pp)}%)">⚡</div>`;return;}
       const cloud=x.base!=null&&x.top!=null&&x.base<=x.top+100&&z>=x.base&&z<=x.top+400;
-      if(cloud){html+=`<div class="tmc cloud" title="${fmtH(x.h)}:00 · ${z} m — cumulus (base ~${x.base} m)">☁</div>`;return;}
+      if(cloud){html+=`<div class="tmc cloud" title="${fmtH(x.h)}:00 · ${z} m, cumulus (base ~${x.base} m)">☁</div>`;return;}
       const c=thermalClimbAt(x,z);
       if(c>=0.3){const col=cellColor(c);
-        html+=`<div class="tmc" style="background:${col.bg};color:${col.fg}" title="${fmtH(x.h)}:00 · ${z} m — climb ≈${c.toFixed(1)} m/s">${c.toFixed(1)}</div>`;}
-      else if(x.top!=null&&z<=x.top&&x.climb>0)html+=`<div class="tmc weak" title="${fmtH(x.h)}:00 · ${z} m — weak">·</div>`;
+        html+=`<div class="tmc" style="background:${col.bg};color:${col.fg}" title="${fmtH(x.h)}:00 · ${z} m, climb ≈${c.toFixed(1)} m/s">${c.toFixed(1)}</div>`;}
+      else if(x.top!=null&&z<=x.top&&x.climb>0)html+=`<div class="tmc weak" title="${fmtH(x.h)}:00 · ${z} m, weak">·</div>`;
       else html+=`<div class="tmc off"></div>`;
     });
   });
@@ -309,18 +323,18 @@ function renderThermal(){const S=DAYS[sel],t=S.thermal,v=S.v3,card=$("#thermCard
   if(!t){card.style.display="none";return;}
   card.style.display="";
   const fmtH=h=>String(h).padStart(2,"0");
-  const win=t.start!=null?`${fmtH(t.start)}–${fmtH(t.end+1)}h`:"—";
-  const best=t.bw?`${fmtH(t.bw.a)}–${fmtH(t.bw.b+1)}h`:"—";
-  const climbTxt=t.maxC>=0.4?`${(t.avgBw??t.maxC).toFixed(1)}–${t.maxC.toFixed(1)} m/s`:"—";
-  const baseTxt=t.blue?(t.top?`~${t.top} m · blue`:"—"):(t.base!=null?`~${t.base} m`:"—");
-  const topTxt=t.usableTop!=null?`~${t.usableTop} m`:"—";
+  const win=t.start!=null?`${fmtH(t.start)}–${fmtH(t.end+1)}h`:",";
+  const best=t.bw?`${fmtH(t.bw.a)}–${fmtH(t.bw.b+1)}h`:",";
+  const climbTxt=t.maxC>=0.4?`${(t.avgBw??t.maxC).toFixed(1)}–${t.maxC.toFixed(1)} m/s`:",";
+  const baseTxt=t.blue?(t.top?`~${t.top} m · blue`:","):(t.base!=null?`~${t.base} m`:",");
+  const topTxt=t.usableTop!=null?`~${t.usableTop} m`:",";
   const notes=t.notes.length?`<div class="tnotes">⚠️ ${t.notes.join(" · ")}</div>`:"";
-  const norel=v.pct<20?`<div class="tnotes">🚫 The course day scores ${v.pct}% — thermal quality is academic today.</div>`:"";
+  const norel=v.pct<20?`<div class="tnotes">🚫 The course day scores ${v.pct}%, thermal quality is academic today.</div>`:"";
   card.innerHTML=`
-   <div class="dcard-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">⛅ Thermal forecast — Engelberg / Brunni
+   <div class="dcard-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">⛅ Thermal forecast, Engelberg / Brunni
      <span class="inf" role="button" tabindex="0" title="How is this calculated?" onclick="document.getElementById('thInfo').classList.toggle('show');event.stopPropagation()" onkeydown="if(event.key==='Enter')this.click()">i</span>
      <span class="pill ${QCLS[t.q]}">${QLBL[t.q]}</span><span style="flex:1"></span><span class="conf ${t.conf}" style="margin-left:0">Confidence: ${CONF_TXT[t.conf]}</span></div>
-   <div class="ftip" id="thInfo"><b>Every value is computed from the current ICON model run</b> (Open-Meteo, Engelberg grid point) — nothing is hand-set. Hourly inputs: 2 m temperature &amp; dewpoint, solar radiation (cloud shading included), temperature / humidity / wind at 850·800·700 hPa, CAPE and precipitation. Method: ① lapse rate 1500→3000 m → ② thermal top: a valley air parcel with +2 °C trigger excess follows the dry adiabat until it meets the model temperature profile → ③ cloudbase: Espy formula blended from valley (30%) and ≈1500 m mixed-layer (70%) moisture → ④ peak climb = 1.9 × sun drive (lagged ≈1 h for ground heat storage) × lapse steepness × thermal depth, reduced by wind shear ≥25 km/h at 2000 m and by rain → ⑤ each matrix cell = that hour's climb shaped by the standard boundary-layer profile (peak at ≈40% of the thermal depth, zero at the top). Rain hours are capped and marked ☔; ⚡ marks hours with storm energy (CAPE ≥800) plus precipitation risk — the full storm assessment is in the flyability card above. Calibrated against ICON-D2 vario values; cloudbase tends ~300 m low on humid days.</div>
+   <div class="ftip" id="thInfo"><b>Every value is computed from the current ICON model run</b> (Open-Meteo, Engelberg grid point), nothing is hand-set. Hourly inputs: 2 m temperature &amp; dewpoint, solar radiation (cloud shading included), temperature / humidity / wind at 850·800·700 hPa, CAPE and precipitation. Method: ① lapse rate 1500→3000 m → ② thermal top: a valley air parcel with +2 °C trigger excess follows the dry adiabat until it meets the model temperature profile → ③ cloudbase: Espy formula blended from valley (30%) and ≈1500 m mixed-layer (70%) moisture → ④ peak climb = 1.9 × sun drive (lagged ≈1 h for ground heat storage) × lapse steepness × thermal depth, reduced by wind shear ≥25 km/h at 2000 m and by rain → ⑤ each matrix cell = that hour's climb shaped by the standard boundary-layer profile (peak at ≈40% of the thermal depth, zero at the top). Rain hours are capped and marked ☔; ⚡ marks hours with storm energy (CAPE ≥800) plus precipitation risk, the full storm assessment is in the flyability card above. Calibrated against ICON-D2 vario values; cloudbase tends ~300 m low on humid days.</div>
    <div class="ttiles">
      <div class="tt1"><div class="v">${climbTxt}</div><div class="k">Expected climb</div></div>
      <div class="tt1"><div class="v">${baseTxt}</div><div class="k">Cloudbase</div></div>
@@ -331,15 +345,15 @@ function renderThermal(){const S=DAYS[sel],t=S.thermal,v=S.v3,card=$("#thermCard
    <div class="tleg">Rows = altitude in m AMSL (▲ 1800 = Brunni launch) · number = expected climb in m/s (greener = stronger) · ☁ = cumulus above cloudbase · ☔ = rain hour · ⚡ = thunderstorm risk · thermals ${win}</div>
    ${notes}${norel}
    <div class="tfoot">Data: ICON (DWD / MeteoSwiss) via Open-Meteo, Engelberg grid point${FETCHED_AT?` · pulled ${FETCHED_AT.toLocaleDateString("en-GB",{day:"2-digit",month:"2-digit"})} ${FETCHED_AT.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} LT`:""}</div>
-   <div class="tfoot">First site only — more launch sites will follow. Cross-check: <a href="emagram.html?lat=46.81&amp;lon=8.425&amp;date=${S.date}&amp;hour=13" target="_blank">Emagram Engelberg @13:00</a></div>
-   <div class="disclaimer">Predicted numbers from an algorithm that is work in progress — for education and entertainment only, never a basis for a flight decision.</div>`;}
+   <div class="tfoot">First site only, more launch sites will follow. Cross-check: <a href="emagram.html?lat=46.81&amp;lon=8.425&amp;date=${S.date}&amp;hour=13" target="_blank" rel="noopener noreferrer">Emagram Engelberg @13:00</a></div>
+   <div class="disclaimer">Predicted numbers from an algorithm that is work in progress, for education and entertainment only, never a basis for a flight decision.</div>`;}
 
 function renderSites(){const S=DAYS[sel],v=S.v3;$("#siteBox").style.display="";
   $("#siteRows").innerHTML=`<div class="vtab" style="margin-top:10px">`+v.sites.map((s,i)=>
     `<div class="vt ${i===v.best.idx?"best":""}"><b>${s.name} / ${s.launch}${i===v.best.idx?" ★":""}</b><br><span style="font-weight:800;color:${pctColor(s.pct)}">${s.pct}%</span></div>`).join("")+`</div>
-   <div class="kw"><b>How these numbers are made:</b> every launch site starts at 100% and collects its own deductions — wind speed, gusts and, critically, <b>wind direction at that specific launch</b> (moderate wind from the wrong side costs more than the same wind from the right one), rain and thunderstorms from ICON-CH1/D2 at that exact location, and fog per site. Föhn, fronts and the nationwide wind hit all sites equally. The day's headline % is the best site's (★) score minus the forecast-confidence deduction.</div>
+   <div class="kw"><b>How these numbers are made:</b> every launch site starts at 100% and collects its own deductions, wind speed, gusts and, critically, <b>wind direction at that specific launch</b> (moderate wind from the wrong side costs more than the same wind from the right one), rain and thunderstorms from ICON-CH1/D2 at that exact location, and fog per site. Föhn, fronts and the nationwide wind hit all sites equally. The day's headline % is the best site's (★) score minus the forecast-confidence deduction.</div>
    <div class="links"><a class="lnk" href="meteo.html?day=${sel}">Raw data for this day</a>
-     <a class="lnk" target="_blank" href="emagram.html?lat=${SITES[v.best.idx].lat}&amp;lon=${SITES[v.best.idx].lon}&amp;date=${S.date}&amp;hour=15">Emagram, best site @15:00</a></div>`;}
+     <a class="lnk" target="_blank" href="emagram.html?lat=${SITES[v.best.idx].lat}&amp;lon=${SITES[v.best.idx].lon}&amp;date=${S.date}&amp;hour=15" rel="noopener noreferrer">Emagram, best site @15:00</a></div>`;}
 
 function renderAll(){renderAiDays();renderHero();renderDeds();renderThermal();renderSites();
   const l=$("#rawPageLink");if(l)l.href="meteo.html?day="+sel;}
@@ -352,9 +366,12 @@ boot();
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-content w3-padding w3-center w3-light-gray w3-tiny" style="max-width:1000px">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
 
 </footer>
+
+</div><!-- /w3-main -->
 </div>
 <!------------------------FOOTER------------------------------------->
 
@@ -411,7 +428,12 @@ function handleButtonClick(language) {
     }
   } else if (language === "german") {
     if (!basePath.includes('/de/')) {
-      newPath = `${basePath}de/`; // Add "/de/" to the base path
+      if (fileName === "intensive.html" || fileName === "agb.html") {
+        window.location.href = `${basePath}de/` + fileName;
+      } else {
+        window.location.href = `${basePath}de/`;
+      }
+      return;
     }
   }
 

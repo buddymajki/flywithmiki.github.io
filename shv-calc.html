@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,13 +24,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
   <title>SHV Number Calculator | FLYwithMIKI Student Area</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="Calculate how many LED digit stickers you need for your paraglider SHV number.">
-  <meta name="robots" content="noindex, nofollow">
-		<link rel="icon" href="/Images_v2/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <meta name="robots" content="noindex, nofollow" />
+		<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
@@ -103,7 +106,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .law-list li:last-child { border-bottom: none; }
     .law-list .ico { flex-shrink: 0; font-size: 1.15em; width: 24px; text-align: center; }
     .law-src { font-size: 0.8em; color: #888; border-top: 1px dashed #cde; padding-top: 10px; margin-top: 4px; }
-  </style>
+          /* site-wide card consistency */
+        .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
+        
+        /* === SHARED PAGE HERO: identical top-of-page block on every page === */
+        .page-hero {
+            margin-top: 26px;
+            background: linear-gradient(135deg,#002d4e 0%,#0077b6 60%,#00b4d8 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 24px 34px;
+        }
+        .page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; }
+        .page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; }
+        .page-hero .hero-sub  { font-size: 1.1em; opacity: 0.94; max-width: 720px; margin: 0 auto 16px; }
+        .page-hero .hero-note { font-size: 0.92em; opacity: 0.85; max-width: 640px; margin: 0 auto 22px; }
+        .page-hero .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 18px;
+            font-size: 0.82em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero-btn {
+            display: inline-block; background: rgba(255,255,255,0.18); color: #fff; padding: 13px 30px;
+            border-radius: 30px; font-size: 1.02em; font-weight: bold; text-decoration: none; margin: 6px;
+            border: 2px solid rgba(255,255,255,0.4); transition: background .2s, transform .2s;
+        }
+        .hero-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+        .hero-btn-wa { background: #25D366; border-color: #25D366; }
+        .hero-btn-wa:hover { background: #1eb85a; }
+        @media (max-width: 600px) {
+            .page-hero { padding: 30px 18px 26px; }
+            .page-hero h1 { font-size: 1.55em; }
+            .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+        }
+        /* === ONE CONSISTENT CONTENT WIDTH FOR EVERY SECTION === */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .section-boxed {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+                /* hero keeps its breathing room under the promo banner regardless of rule order */
+        .page-hero.section-boxed { margin-top: 26px; }
+        </style>
+<link rel="canonical" href="https://flywithmiki.com/shv-calc.html" />
 </head>
 <body class="w3-white w3-content" style="max-width:1600px">
 
@@ -117,44 +169,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w3-container w3-display-container">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <div class="w3-margin w3-center">
-      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="logo_circ" loading="lazy"></a>
+      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
     </div>
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
         <div class="w3-col s6 m6 l6 w3-center">
-          <button onclick="handleButtonClick('english')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="logo_eng" loading="lazy">
-          </button>
+          <a href="shv-calc.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+          </a>
         </div>
         <div class="w3-col s6 m6 l6 w3-center">
-          <button onclick="handleButtonClick('german')" class="w3-hover-opacity" style="width:40%; background: none; border: none; padding: 0;">
-            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="logo_ger" loading="lazy">
-          </button>
+          <a href="de/" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+          </a>
         </div>
       </div>
     </div>
   </div>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Paragliding Training</a>
-    <a href="prices.html" class="w3-bar-item w3-button">School Prices</a>
-    <a href="equipment.html" class="w3-bar-item w3-button">Shop / Equipment</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
+    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
+    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="safety.html" class="w3-bar-item w3-button">Safety Training</a>
-    <a href="index.html#contact" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6">&#9992; Tandem Flights</a>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.9em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block w3-show" style="padding-left:20px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Overlay on small screens -->
@@ -176,7 +233,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-content w3-padding-32" style="max-width:900px">
     <div class="w3-panel w3-pale-yellow w3-border w3-border-yellow" style="border-radius:8px; padding:20px; max-width:600px; margin:0 auto 20px;">
-      <p style="margin:0; color:#555;">&#9888;&#65039; <b>Don't forget:</b> Swiss regulations require your SHV number to be displayed on your paraglider in <b>40 cm height letters</b>. Each digit is an LED-segment sticker — use this calculator to find out how many segment pieces you need to order.</p>
+      <p style="margin:0; color:#555;">&#9888;&#65039; <b>Don't forget:</b> Swiss regulations require your SHV number to be displayed on your paraglider in <b>40 cm height letters</b>. Each digit is an LED-segment sticker, use this calculator to find out how many segment pieces you need to order.</p>
     </div>
 
     <div class="calc-box">
@@ -192,12 +249,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 7-Segment Visual Preview (shown after calculation) -->
     <div id="segPreviewSection" style="display:none; text-align:center; max-width:860px; margin:28px auto 0; padding:0 12px;">
       <h3 style="color:#0077b6; margin-bottom:4px;">Visual Sticker Preview</h3>
-      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">Actual sticker shape assembled — not to scale. Sample: 12345 (enter your number above to update)</p>
+      <p style="color:#555; font-size:0.9em; margin-bottom:14px;">Actual sticker shape assembled, not to scale. Sample: 12345 (enter your number above to update)</p>
       <div class="seg-display-bg">
         <div id="segPreviewSvg"></div>
       </div>
       <p class="seg-scale-note">
-        Total width: <strong id="prevTotalW">—</strong> &nbsp;·&nbsp;
+        Total width: <strong id="prevTotalW">,</strong> &nbsp;·&nbsp;
         Digit height: <strong>42.5 cm</strong> &nbsp;✓&nbsp; (meets ≥40 cm requirement) &nbsp;·&nbsp;
         Digit width: <strong>23.5 cm</strong>
       </p>
@@ -263,14 +320,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <tr class="w3-blue-grey w3-text-white"><th>Feature</th><th>Formula</th><th style="text-align:right;">cm</th></tr>
           <tr><td>Segment length L</td><td>tip-to-tip</td><td style="text-align:right;font-weight:bold;">19</td></tr>
           <tr><td>Segment flat F</td><td>non-bevel</td><td style="text-align:right;font-weight:bold;">14.5</td></tr>
-          <tr><td>Segment thickness T</td><td>—</td><td style="text-align:right;font-weight:bold;">4.5</td></tr>
+          <tr><td>Segment thickness T</td><td>,</td><td style="text-align:right;font-weight:bold;">4.5</td></tr>
           <tr><td>Bevel run</td><td>(L−F)/2</td><td style="text-align:right;font-weight:bold;">2.25</td></tr>
           <tr style="background:#e8f4fd"><td><strong>Digit width W</strong></td><td>L + T</td><td style="text-align:right;font-weight:bold;">23.5</td></tr>
           <tr style="background:#e8f4fd"><td><strong>Digit height H</strong></td><td>2L + T</td><td style="text-align:right;font-weight:bold;">42.5</td></tr>
           <tr><td>Char spacing G*</td><td>assumed</td><td style="text-align:right;font-weight:bold;">4.5</td></tr>
-          <tr><td>Pitch (W+G)</td><td>—</td><td style="text-align:right;font-weight:bold;">28</td></tr>
+          <tr><td>Pitch (W+G)</td><td>,</td><td style="text-align:right;font-weight:bold;">28</td></tr>
         </table>
-        <p style="color:#888; font-size:0.78em; margin-top:8px;">*Inter-digit gap G is set by your mounting — change as needed.</p>
+        <p style="color:#888; font-size:0.78em; margin-top:8px;">*Inter-digit gap G is set by your mounting, change as needed.</p>
       </div>
     </div>
   </div>
@@ -281,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="color:#555; margin-bottom:18px;">Swiss regulations require the number to be <strong>visible from below</strong> during flight (on the lower surface). Pilots may place them wherever they prefer; the two most practical spots are:</p>
     <div class="placement-grid">
 
-      <!-- Card 1: Ear / Tip — Nr mid-chord, portrait -->
+      <!-- Card 1: Ear / Tip, Nr mid-chord, portrait -->
       <div class="placement-card">
         <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
@@ -314,7 +371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>On the outermost cells <em>(Randkappe)</em> at the wing tip, centered along the chord.</p>
       </div>
 
-      <!-- Card 2: Trailing Edge — mid-span, landscape Nr -->
+      <!-- Card 2: Trailing Edge, mid-span, landscape Nr -->
       <div class="placement-card">
         <svg viewBox="0 0 360 96" style="width:100%; max-width:360px; display:block; margin:0 auto;">
           <defs>
@@ -340,7 +397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <text x="180" y="93" text-anchor="middle" fill="#aaa" font-size="7" font-family="sans-serif">▼ trailing edge</text>
         </svg>
-        <h4>Trailing Edge — Center</h4>
+        <h4>Trailing Edge, Center</h4>
         <p>At the trailing edge <em>(on the lower surface)</em>, around the center of the span.</p>
       </div>
 
@@ -364,7 +421,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </li>
         <li>
           <span class="ico">🎨</span>
-          <span><strong>Color:</strong> Must clearly contrast with the glider fabric — dark numbers on a bright glider, or bright numbers on a dark glider. Black fabric stickers on orange/yellow gliders are typical.</span>
+          <span><strong>Color:</strong> Must clearly contrast with the glider fabric, dark numbers on a bright glider, or bright numbers on a dark glider. Black fabric stickers on orange/yellow gliders are typical.</span>
         </li>
         <li>
           <span class="ico">✈️</span>
@@ -393,7 +450,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Footer -->
   <footer class="w3-container w3-center w3-light-grey w3-tiny">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
 
@@ -446,13 +504,13 @@ function vSeg(cx, y1, y2) {
 function digitPolys(dx, dy) {
   var T2=SEG.T2, L=SEG.L, W=SEG.W, H=SEG.H, g=SEG.gap, H2=H/2;
   return [
-    hSeg(dx+T2+g,   dx+T2+L-g,  dy+T2),        // a top
-    vSeg(dx+W-T2,   dy+T2+g,    dy+H2-g),       // b top-right
-    vSeg(dx+W-T2,   dy+H2+g,    dy+H-T2-g),     // c bot-right
-    hSeg(dx+T2+g,   dx+T2+L-g,  dy+H-T2),       // d bottom
-    vSeg(dx+T2,     dy+H2+g,    dy+H-T2-g),     // e bot-left
-    vSeg(dx+T2,     dy+T2+g,    dy+H2-g),       // f top-left
-    hSeg(dx+T2+g,   dx+T2+L-g,  dy+H2)          // g middle
+    hSeg(dx+T2+g,  dx+T2+L-g, dy+T2),       // a top
+    vSeg(dx+W-T2,  dy+T2+g,   dy+H2-g),      // b top-right
+    vSeg(dx+W-T2,  dy+H2+g,   dy+H-T2-g),    // c bot-right
+    hSeg(dx+T2+g,  dx+T2+L-g, dy+H-T2),      // d bottom
+    vSeg(dx+T2,    dy+H2+g,   dy+H-T2-g),    // e bot-left
+    vSeg(dx+T2,    dy+T2+g,   dy+H2-g),      // f top-left
+    hSeg(dx+T2+g,  dx+T2+L-g, dy+H2)          // g middle
   ];
 }
 
@@ -535,7 +593,7 @@ function handleButtonClick(language) {
   if (language === "english") {
     if (basePath.includes('/de/')) { newPath = basePath.replace('/de/', '/'); }
   } else if (language === "german") {
-    if (!basePath.includes('/de/')) { newPath = `${basePath}de/`; }
+    if (!basePath.includes('/de/')) { if (fileName === "intensive.html" || fileName === "agb.html") { window.location.href = `${basePath}de/` + fileName; } else { window.location.href = `${basePath}de/`; } return; }
   }
   if (newPath !== currentPath) { newPath += fileName; window.location.href = newPath; }
 }
