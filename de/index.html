@@ -3,7 +3,7 @@
     <head>
 <meta charset="UTF-8">
 
-<!-- Google Consent Mode v2 default -->
+<!-- Google Consent Mode v2 default (must run BEFORE GTM so the consent signal exists before any Google tag fires) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -25,49 +25,159 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window, document,'script','dataLayer','GTM-NZF9NRR5');</script>
 <!-- End Google Tag Manager -->
 
-<!-- Structured Data -->
+<!-- Structured Data - Enhanced ---------------------->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["EducationalOrganization", "SportsActivityLocation"],
-  "@id": "https://flywithmiki.com/#organization",
-  "name": "FLYwithMIKI Gleitschirmschule",
-  "url": "https://flywithmiki.com/de/",
-  "description": "Persoenliche Gleitschirmschule in der Zentralschweiz. Kleingruppen (3-8 Schueler pro Fluglehrer), Coaching auf Deutsch im Flug, Schulbetrieb auf Englisch. Vollausbildung, Intensivkurs, Tandemfluege.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "CH",
-    "addressRegion": "Kanton Luzern",
-    "addressLocality": "Kriens",
-    "postalCode": "6012"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": 47.0358577, "longitude": 8.2584166 },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "47", "bestRating": "5", "worstRating": "1" },
-  "founder": {
-    "@type": "Person",
-    "name": "Miklos Mohos",
-    "jobTitle": "SHV/BAZL-zertifizierter Fluglehrer und Tandempilot",
-    "sameAs": "https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/"
-  },
-  "telephone": "+41779766164",
-  "email": "info@flywithmiki.com",
-  "areaServed": ["Luzern", "Zürich", "Zug", "Engelberg", "Emmetten", "Wolfenschiessen"]
+  "@graph": [
+    {
+      "@type": ["EducationalOrganization", "SportsActivityLocation"],
+      "@id": "https://flywithmiki.com/#organization",
+      "name": "FLYwithMIKI Paragliding School",
+      "alternateName": "M Mohos - FLYwithMIKI Gleitschirmschule",
+      "url": "https://flywithmiki.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://flywithmiki.com/Images_v2/g760.webp",
+        "width": 760,
+        "height": 760
+      },
+      "image": "https://flywithmiki.com/Images_v2/12.webp",
+      "description": "Premium-Gleitschirmschule in der Zentralschweiz. Ausbildung in kleinen Gruppen (3-8 Schueler pro Fluglehrer), umweltfreundlich mit Elektrofahrzeug, individuelles Coaching und Fokus auf Mentaltraining.",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q136536762",
+        "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
+        "https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH",
+        "addressRegion": "Kanton Luzern",
+        "addressLocality": "Kriens",
+        "postalCode": "6012"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.0358577,
+        "longitude": 8.2584166
+      },
+      "hasMap": "https://maps.app.goo.gl/eSeMSCsrgF4obtGL7",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Miklos Mohos",
+        "jobTitle": "SHV/BAZL-zertifizierter Gleitschirm-Fluglehrer & Tandempilot",
+        "sameAs": "https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/"
+      },
+      "sport": "Paragliding",
+      "telephone": "+41779766164",
+      "email": "info@flywithmiki.com",
+      "priceRange": "CHF 185 - CHF 5000",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "areaServed": ["Luzern", "Zürich", "Zug", "Engelberg", "Emmetten", "Wolfenschiessen"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Gleitschirm-Angebote & Ausruestung",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Komplette Gleitschirm-Ausbildung",
+              "description": "Vollstaendige Ausbildung vom Anfaenger bis zum brevetierten Piloten in kleinen Gruppen (3-8 Schueler pro Fluglehrer)",
+              "provider": {
+                "@id": "https://flywithmiki.com/#organization"
+              }
+            },
+            "price": "4500",
+            "priceCurrency": "CHF"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tandem-Gleitschirmfluege",
+              "description": "Professionelle Tandemfluege mit umweltfreundlichem Ansatz"
+            },
+            "price": "185",
+            "priceCurrency": "CHF",
+            "priceRange": "CHF 185 - CHF 350"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Gleitschirm-Ausruestung",
+              "description": "Premium-Gleitschirmausruestung von Top-Marken mit persoenlicher Beratung",
+              "image": "https://flywithmiki.com/Images_v2/12.webp",
+              "brand": { "@type": "Brand", "name": "FLYwithMIKI" },
+              "offers": {
+                "@type": "Offer",
+                "price": "5000",
+                "priceCurrency": "CHF",
+                "availability": "https://schema.org/InStock",
+                "url": "https://flywithmiki.com/equipment.html",
+                "seller": { "@id": "https://flywithmiki.com/#organization" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://flywithmiki.com/#website",
+      "url": "https://flywithmiki.com/de/",
+      "name": "FLYwithMIKI",
+      "description": "Premium-Gleitschirmschule und Ausruestungsanbieter in der Schweiz",
+      "publisher": {
+        "@id": "https://flywithmiki.com/#organization"
+      },
+      "inLanguage": ["en", "de"]
+    }
+  ]
 }
 </script>
+<!-- Structured Data - Enhanced ---------------------->
 
-        <title>Gleitschirmschule Luzern &amp; Zentralschweiz | FLYwithMIKI</title>
+
+
+
+
+
+        <title>FLYwithMIKI | Gleitschirmschule &amp; Tandemflüge Schweiz</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="Gleitschirmschule Zentralschweiz (Luzern, Zug, Engelberg): Kleingruppen 3-8, Coaching im Flug auf Deutsch. Vollausbildung CHF 4'500, Tandem ab CHF 185."500, Tandemflüge ab CHF 185.">
+        <meta name="description" content="Gleitschirmschule in der Zentralschweiz. Kleine Gruppen, umweltfreundlicher EV-Transport, Coaching &amp; Tandemfluege. Ausruestungsverkauf. Luzern, Zuerich, Engelberg.">
+        <meta name="keywords" content="Gleitschirmschule Schweiz, Gleitschirmschule Luzern, Tandemfluege, Gleitschirmkurse, umweltfreundliches Gleitschirmfliegen, kleine Gruppen, Gleitschirm Ausruestung, Engelberg, Pilatus, Zuerich">
         <meta name="author" content="Miklos Mohos - FLYwithMIKI">
         <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://flywithmiki.com/de/" />
-        <meta property="og:url" content="https://flywithmiki.com/de/" />
+<meta property="og:url" content="https://flywithmiki.com/de/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="FLYwithMIKI" />
-        <meta property="og:title" content="Gleitschirmschule Luzern &amp; Zentralschweiz | FLYwithMIKI" />
-        <meta property="og:description" content="Gleitschirmschule Zentralschweiz (Luzern, Zug, Engelberg): Kleingruppen 3-8, Coaching im Flug auf Deutsch. Vollausbildung CHF 4" />
+        <meta property="og:title" content="FLYwithMIKI | Gleitschirmschule &amp; Tandemflüge Schweiz" />
+        <meta property="og:description" content="Gleitschirmschule in der Zentralschweiz. Kleine Gruppen, umweltfreundlicher EV-Transport, Coaching &amp; Tandemfluege. Ausruestungsverkauf. Luzern, Zuerich, Engelberg." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="de_CH" />
+        <meta property="og:locale:alternate" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FLYwithMIKI | Gleitschirmschule &amp; Tandemflüge Schweiz" />
+        <meta name="twitter:description" content="Gleitschirmschule in der Zentralschweiz. Kleine Gruppen, umweltfreundlicher EV-Transport, Coaching &amp; Tandemfluege. Ausruestungsverkauf. Luzern, Zuerich, Engelberg." />
+        <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+
+        <link rel="canonical" href="https://flywithmiki.com/de/" />
 		<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
 		<link rel="icon" href="../favicon.ico" sizes="any">
 		<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -75,14 +185,71 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 		<link rel="manifest" href="../site.webmanifest">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
+
+         .w3-row-padding {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .w3-half, .w3-third, .w3-quarter{
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        .w3-half {
+            flex: 1 0 50%;
+        }
+        .w3-third {
+            flex: 1 0 33.33%;
+        }
+
+        .w3-quarter {
+            flex: 1 0 25.00%;
+        }
+        .w3-card-4 {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .w3-display-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin:auto;
+        }
+        @media (max-width: 600px) {
+            .w3-half, .w3-third {
+                width: 100%;
+                flex: 1 0 100%;
+            }
+        }
+        @media (max-width: 1200px) {
+           .w3-quarter {
+                width: 100%;
+                flex: 1 0 50%;
+            }
+        }
+        @media (max-width: 500px) {
+           .w3-quarter {
+                width: 100%;
+                flex: 1 0 100%;
+            }
+        }
             html {scroll-behavior: smooth;}
-            body, h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-            .promo-banner {
+            .w3-sidebar a {font-family: "Roboto", sans-serif; font-size: 1.5em}
+             body, h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            /* .w3-third img {margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+            /*.w3-third img:hover {opacity: 1}
+            .mySlides {display:none;} /* slideshowhoz kell */
+
+        /* === MARKETING ELEMENTS === */
+        .promo-banner {
             background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
             color: white;
             padding: 12px 20px;
@@ -109,20 +276,126 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             white-space: nowrap;
         }
         .promo-banner a:hover { background: rgba(255,255,255,0.38); }
-            .cta-btn {
-                display: inline-block; padding: 14px 32px; border-radius: 30px; font-size: 1.1em;
-                font-weight: bold; text-decoration: none; margin: 8px; transition: transform 0.2s, box-shadow 0.2s;
-            }
-            .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-            .cta-btn-primary { background: #0077b6; color: #fff; }
-            .cta-btn-secondary { background: #25D366; color: #fff; }
-            .diff-card { background:white; border-radius:12px; padding:22px; box-shadow:0 2px 10px rgba(0,0,0,0.08); text-align:left; height:100%; }
-            .floating-wa {
-                position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: #25D366; color: white;
-                width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-                font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.25); text-decoration: none;
-            }
-            .topbar { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:10px 20px; }
+        /* === ONE CONSISTENT CONTENT WIDTH FOR EVERY SECTION === */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .section-boxed {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+        .hero-cta-section {
+            background: linear-gradient(180deg, #f0f8ff 0%, #ffffff 100%);
+            border: 1px solid #e4f0fa;
+            text-align: center;
+        }
+        .hero-cta-section h2 { margin: 0 0 10px; font-size: 1.6em; }
+        .hero-cta-section p { font-size: 1.1em; color: #555; max-width: 700px; margin: 0 auto 22px; }
+        .intensive-strip {
+            background: #fff4ec;
+            border: 1px solid #ffd9bd;
+            text-align: center;
+            padding: 18px 24px;
+            line-height: 1.6;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cta-btn-primary { background: #0077b6; color: #fff; }
+        .cta-btn-secondary { background: #25D366; color: #fff; }
+        .testimonial-section { background: #f9f9f9; border: 1px solid #eee; text-align: center; }
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+        .testimonial-card .stars { color: #f5a623; font-size: 1.2em; margin-bottom: 8px; }
+        .testimonial-card blockquote { font-style: italic; margin: 0 0 10px; color: #333; }
+        .testimonial-card .author { font-weight: bold; color: #777; font-size: 0.9em; }
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-overlay.active { display: flex; }
+        .popup-box {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .popup-box h3 { margin-top: 0; font-size: 1.5em; color: #0077b6; }
+        .popup-box .popup-close {
+            position: absolute;
+            top: 12px; right: 16px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+        .popup-box .popup-close:hover { color: #333; }
+        .trust-bar {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+            max-width: 1000px; margin: 0 auto 28px; padding: 12px 20px;
+            background: #f0f8ff; border-radius: 16px; box-sizing: border-box;
+        }
+        .trust-bar-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 20px; font-size: 0.95em; color: #333;
+            border-right: 1px solid #d0e4f0;
+        }
+        .trust-bar-item:last-child { border-right: none; }
+        .trust-bar-item .trust-icon { font-size: 1.4em; }
+        .trust-bar-item strong { color: #0077b6; }
+        @media (max-width: 600px) {
+            .trust-bar-item { border-right: none; padding: 6px 12px; font-size: 0.85em; }
+        }
+        /* === END MARKETING === */
+
                 /* site-wide card consistency */
         .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
                 /* === PROMO VIDEO: silent autoplay loop, click for the full film === */
@@ -144,70 +417,185 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-family:"Montserrat",sans-serif; transition:transform .2s, box-shadow .2s;
         }
         .promo-play-btn:hover { transform:translateY(-2px); box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+
+        /* === SHARED PAGE HERO: identical top-of-page block on every page === */
+        .page-hero {
+            margin-top: 26px;
+            background: linear-gradient(135deg,#002d4e 0%,#0077b6 60%,#00b4d8 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 24px 34px;
+        }
+        .page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; }
+        .page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; }
+        .page-hero .hero-sub  { font-size: 1.1em; opacity: 0.94; max-width: 720px; margin: 0 auto 16px; }
+        .page-hero .hero-note { font-size: 0.92em; opacity: 0.85; max-width: 640px; margin: 0 auto 22px; }
+        .page-hero .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 18px;
+            font-size: 0.82em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero-btn {
+            display: inline-block; background: rgba(255,255,255,0.18); color: #fff; padding: 13px 30px;
+            border-radius: 30px; font-size: 1.02em; font-weight: bold; text-decoration: none; margin: 6px;
+            border: 2px solid rgba(255,255,255,0.4); transition: background .2s, transform .2s;
+        }
+        .hero-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+        .hero-btn-wa { background: #25D366; border-color: #25D366; }
+        .hero-btn-wa:hover { background: #1eb85a; }
+        @media (max-width: 600px) {
+            .page-hero { padding: 30px 18px 26px; }
+            .page-hero h1 { font-size: 1.55em; }
+            .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+        }
+                /* hero keeps its breathing room under the promo banner regardless of rule order */
+        .page-hero.section-boxed { margin-top: 26px; }
         </style>
+
+
         <link rel="alternate" hreflang="en" href="https://flywithmiki.com/" />
     <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/" />
     <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Gleitschirmschule Luzern &amp; Zentralschweiz | FLYwithMIKI" />
-<meta name="twitter:description" content="Gleitschirmschule Zentralschweiz (Luzern, Zug, Engelberg): Kleingruppen 3-8, Coaching im Flug auf Deutsch. Vollausbildung CHF 4" />
-<meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+<link rel="stylesheet" href="../flywithmiki.css?v=1">
 </head>
 
-<body class="w3-white">
 
+
+<body class="w3-white w3-content" style="max-width:1600px">
+
+<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZF9NRR5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-<!-- TOP BAR (one-pager: no sidebar) -->
-<div style="background:white; border-bottom:1px solid #eee">
-  <div class="topbar">
-    <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:56px" alt="FLYwithMIKI Logo"></a>
-    <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap">
-      <a href="#angebote" style="color:#0077b6; text-decoration:none; font-weight:bold">Angebote</a>
-      <a href="#fragen" style="color:#0077b6; text-decoration:none; font-weight:bold">Ehrliche Antworten</a>
-      <a href="#kontakt" style="color:#0077b6; text-decoration:none; font-weight:bold">Kontakt</a>
-      <a href="../" style="background:#f0f8ff; border:1px solid #0077b6; color:#0077b6; border-radius:20px; padding:5px 14px; text-decoration:none; font-weight:bold">&#127468;&#127463; English site</a>
+<!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
+  <div class="w3-container w3-display-container ">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+
+    <div class="w3-margin w3-center">
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI Gleitschirmschule Logo" loading="lazy"> 
+        </a>
     </div>
+    <!--Language menu -->
+    <div class="w3-margin w3-display-container">
+      <div class="w3-row">
+       <div class="w3-col s6 m6 l6 w3-center">
+      <a href="../" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+      </a>
+     </div>
+     <div class="w3-col s6 m6 l6 w3-center">
+      <a href="./" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+      </a>
+     </div>
+     </div>
+    </div>
+
   </div>
-</div>
 
-<!-- PROMO BANNER -->
-<div class="promo-banner">
-   &#9992; Herbstkurs 2026: CHF 300 Startrabatt bis Ende August! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Herbstkurs%202026">Platz reservieren &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEU: Intensivkurs 2027 &rarr;</a>
-</div>
 
-<!-- HERO -->
-<div style="background:linear-gradient(180deg,#f0f8ff 0%,#ffffff 100%); text-align:center; padding:48px 20px 40px">
-  <h1 style="font-size:2.2em; font-weight:bold; margin:0 0 6px">Gleitschirmschule in der Zentralschweiz</h1>
-  <p style="font-size:1.5em; color:#0077b6; font-weight:bold; margin:0 0 14px">In der Luft: Deutsch. Am Boden: Englisch.</p>
-  <p style="font-size:1.1em; color:#555; max-width:680px; margin:0 auto 10px">Wir sind anders als die anderen Schweizer Flugschulen, und diese Seite erklärt dir ehrlich, wie und warum. Wenn dir gefällt, was du liest, bist du bei uns richtig.</p>
-  <div style="margin:18px 0 8px">
-    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20f%C3%BCr%20die%20Gleitschirm-Ausbildung" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary">&#128172; Schreib Miki auf WhatsApp (auf Deutsch!)</a>
-    <a href="#angebote" class="cta-btn cta-btn-primary">Angebote ansehen</a>
+  <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="school.html" class="w3-bar-item w3-button">Gleitschirm-Ausbildung</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensivkurs 2027</a>
+    <a href="preise.html" class="w3-bar-item w3-button">Preise</a>
+    <a href="vergleich.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Schulwahl-Guide</a>
+    <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Kontakt</a>
   </div>
-  <p style="color:#777; font-size:0.9em">&#11088; 4.9 Google-Bewertung &middot; &#128101; 3&ndash;8 Schüler pro Fluglehrer &middot; &#127464;&#127469; SHV/BAZL-zertifizierter Fluglehrer &middot; Luzern &middot; Zug &middot; Zürich &middot; Engelberg</p>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="../program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Tagesprogramm</a>
+    <a href="../meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
+    <a href="../links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
+    <a href="../flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
+    <a href="../shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffern-Rechner</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; Für brevetierte Piloten <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Ausrüstung</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Manövertraining</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemflüge</a>
+</nav>
+
+
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
+
+  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+
 </div>
 
-<!-- THE HONEST EXPLANATION -->
-<div class="w3-container" style="max-width:800px; margin:auto; padding:32px 20px">
-  <h2 style="color:#0077b6"><b>Die ehrliche Erklärung: Warum ist diese Seite nur eine Seite?</b></h2>
-  <p style="line-height:1.8; color:#333">
-    FLYwithMIKI ist eine <b>internationale Schule mit englischem Schulbetrieb</b>: Theorieunterlagen, FlightDeck-App, Tagesprogramm, alles läuft auf Englisch, weil unsere Schüler aus der ganzen Welt kommen (und weil die Fliegerei nun mal international ist). <b>Aber: Ich unterrichte auch auf Deutsch.</b> Im Flug, wenn es zählt, coache ich dich per Funk in deiner Sprache: Deutsch, Englisch oder Ungarisch. Du musst in der Luft jedes Wort verstehen, und das wirst du.
-  </p>
-  <p style="line-height:1.8; color:#333">
-    Statt dir eine halbherzig übersetzte deutsche Kopie der ganzen Website vorzusetzen, sage ich es dir lieber direkt: <b>Wenn du gut genug Englisch liest, um Angebote zu vergleichen, kannst du bei uns problemlos fliegen lernen.</b> Die Details findest du auf der <a href="../" style="color:#0077b6"><b>englischen Hauptseite</b></a>, und jede Frage kannst du mir jederzeit <b>auf Deutsch</b> per <a href="https://wa.me/41779766164" style="color:#0077b6">WhatsApp</a> stellen.
-  </p>
-  <!-- TODO_CLAIM: konkret szam kell, hany tanulo jott at mas svajci iskolabol -->
-  <p style="line-height:1.8; color:#333">
-    Übrigens: Es kommen regelmässig Schülerinnen und Schüler von anderen Schweizer Flugschulen zu uns, für Manövertraining, 1:1-Coaching oder um ihre Ausbildung bei uns fertig zu machen. Frag sie, warum. Oder lies unsere <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer" style="color:#0077b6">Google-Bewertungen (4.9 &#11088;)</a>.
-  </p>
-</div>
+
+
+
+
+
+
+    <!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+        <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:4em">
+
+    </div>
+
+ <!-- PROMO BANNER -->
+ <div class="promo-banner">
+    &#9992; Herbstkurs 2026: CHF 300 Startrabatt, Anmeldung bis Ende August! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20den%20Herbstkurs%202026">Platz sichern &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEU: Intensivkurs 2027 &rarr;</a>
+ </div>
+
+ <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+ <div class="w3-container w3-white w3-center" id="Intro">
+        <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI Gleitschirmschule - umweltfreundliche Flugausbildung in der Schweiz" style="width:100%; max-width:1000px"> <!--LOGO -->
+
+        <img class="w3-image w3-round-xxlarge w3-padding" src="https://flywithmiki.com/Images_v2/anim.webp" alt="Gleitschirmflug über den Schweizer Alpen - FLYwithMIKI Schüler in der Zentralschweiz" style="width:100%; max-width:1000px">
+
+        <h1><b>Gleitschirmschule &amp; Tandemflüge in der Zentralschweiz</b></h1>
+        <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
+ </div>
+
+ <!-- HERO CTA SECTION -->
+ <div class="hero-cta-section section-boxed">
+    <h2><b>Dein Traum vom Fliegen beginnt hier</b></h2>
+    <p>Kleine Gruppen von 3&ndash;8 Schülern pro SHV/BAZL-zertifiziertem Fluglehrer, und bewusst nicht mehr als etwa 20 neue Schüler pro Jahr. Persönliches Coaching vom allerersten Schritt bis zum Schweizer Brevet, in deinem Tempo, auf Deutsch, Englisch oder Ungarisch.</p>
+    <a href="school.html" class="cta-btn cta-btn-primary">Starte deine Pilotenausbildung</a>
+    <a href="tandem.html" class="cta-btn cta-btn-secondary">Tandemflug buchen, ab CHF 185</a>
+    <p style="margin:16px auto 0; font-weight:bold; font-size:0.98em; max-width:560px">&#9889; Keine fixen Kurstermine. Melde dich heute an, und du stehst innert Tagen am Übungshang.</p>
+ </div>
+
+ <!-- TRUST STATS BAR -->
+ <div class="trust-bar">
+    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google-Bewertung</div>
+    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Schüler/Fluglehrer</div>
+    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV/BAZL</strong> zertifizierter Fluglehrer</div>
+    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>400+</strong> gepflanzte Bäume</div>
+    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Sprachen</div>
+ </div>
+
+ <!-- INTENSIVE 2027 TEASER STRIP -->
+ <div class="intensive-strip section-boxed">
+    <span style="color:#e85d04;font-weight:bold">&#9889; NEU für 2027:</span>
+    <span style="color:#444">Der 3-Wochen-Intensivkurs, von null bis prüfungsbereit in einem konzentrierten Sommerblock, danach fliegst du bis Ende Juli mit der Schule weiter. Limitiert auf 12 Teilnehmende.</span>
+    <a href="intensive.html" style="color:#e85d04;font-weight:bold;text-decoration:underline;margin-left:4px">Mehr erfahren und auf die Frühbucherliste &rarr;</a>
+ </div>
 
  <!-- PROMO VIDEO -->
  <div class="section-boxed promo-block" id="video" style="background:#f9f9f9;border:1px solid #eee">
-   <h2 style="margin-top:0"><b>Schau es dir an, statt es zu lesen</b></h2>
-   <p style="color:#555;max-width:700px;margin:0 auto 18px">Keine Werbebilder aus der Konserve: So sieht ein echter Schulungstag bei uns aus, vom Übungshang bis zum Bergstart.</p>
+   <h2 style="margin-top:0"><b>So sieht ein echter Schulungstag aus</b></h2>
+   <p style="color:#555;max-width:700px;margin:0 auto 18px">Kein Stockmaterial und keine Versprechen: Das sind unsere eigenen Schüler, unsere eigenen Fluggebiete, gefilmt über eine Saison.</p>
    <div class="promo-stage">
      <video class="promo-video promo-landscape promo-loop" autoplay muted loop playsinline preload="metadata" poster="../video/promo_poster_16x9.jpg">
        <source src="../video/promo_loop_16x9.mp4" type="video/mp4">
@@ -223,149 +611,547 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      </video>
    </div>
    <button class="promo-play-btn" onclick="playFullPromo(this)">&#9654; Ganzen Film mit Ton ansehen (56 s)</button>
-   <p style="color:#999;font-size:0.82em;margin:10px 0 0">Die Vorschau läuft ohne Ton. Für den ganzen Film auf den Knopf drücken.</p>
+   <p style="color:#999;font-size:0.82em;margin:10px 0 0">Die Vorschau oben läuft ohne Ton. Drück den Knopf für den ganzen Film.</p>
+ </div>
+ <div class="section" style="text-align:center">
+
+      <div class="w3-row-padding" style="width:100%">
+
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+          <p class="w3-xlarge">Mehrsprachig</p>
+
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="Mehrsprachiger Gleitschirmunterricht - Lektionen auf Deutsch, Englisch und Ungarisch" style="width:100%; max-width:200px" loading="lazy">
+           <p class="w3-justify w3-padding">Du musst alles verstehen, besonders in der Luft. Unterricht auf Deutsch, Englisch und Ungarisch</p>
+          </div>
+        </div>
+
+        <div class="w3-quarter">
+          <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+
+          <p class="w3-xlarge">Kleine Gruppe</p>
+          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Gleitschirmausbildung in kleiner Gruppe - maximal 3-8 Schüler pro Fluglehrer für persönliches Lernen" style="width:100%; max-width:200px" loading="lazy">
+          <p class="w3-justify w3-padding">Auf die Grösse kommt es an! Effektiver Unterricht ist nur in einer kleinen Gruppe möglich, in der sich der Fluglehrer auf dich konzentrieren kann. Deshalb nehmen wir bewusst nur etwa 20 neue Schüler pro Jahr auf.</p>
+          </div>
+        </div>
+
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+            <p class="w3-xlarge">ECO-freundlich</p>
+            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="Umweltfreundliches Gleitschirmfliegen - Baumpflanzung nach jedem Flug, nachhaltige Fliegerei" style="width:100%; max-width:200px" loading="lazy">
+           <p class="w3-display-bottommidle w3-justify w3-padding">Wir pflanzen Bäume nach jedem Schüler- und Tandemflug. Unterwegs mit dem EV-Bus</p>
+           <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe"></a>
+          </div>
+        </div>
+
+        <div class="w3-quarter">
+          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
+           <p class="w3-xlarge">Flexibel</p>
+           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="Flexibler Gleitschirmkurs-Zeitplan - lerne in deinem eigenen Tempo mit persönlichem Fahrplan" style="width:100%; max-width:200px" loading="lazy">
+
+
+           <p class="w3-display-bottommidle w3-justify w3-padding">Hast du einen hektischen Terminkalender? Kein Problem, unsere Ausbildung ist völlig flexibel.</p>
+
+           </div>
+        </div>
+      </div>
  </div>
 
-<!-- WHAT MAKES US DIFFERENT -->
-<div style="background:#f9f9f9; padding:36px 20px">
-  <div style="max-width:1000px; margin:auto; text-align:center">
-    <h2 style="color:#0077b6"><b>Was uns von anderen Schweizer Flugschulen unterscheidet</b></h2>
-    <div class="w3-row-padding" style="margin-top:20px">
+  <div class="section" id="sch">
+	<p class="w3-justify w3-margin-top" >
+
+		<strong>WARUM WIR? Dein Flug ist eine persönliche Reise</strong>	<br><br>
+		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="Gleitschirm über einem Schweizer Schloss - spektakuläre Alpenkulisse in der Zentralschweiz" style="height:250px; width:250px; object-fit:cover; float:right; margin:00px 0px 10px 20px" loading="lazy">
+
+		Bei der Wahl einer Gleitschirmschule ist es entscheidend zu erkennen, dass Fliegen eine zutiefst <strong>persönliche Reise</strong> ist. Es ist eine Erfahrung, bei der du dich ständig deinen eigenen inneren Grenzen stellst und über sie hinauswächst, denn die Luft ist grundsätzlich nicht unser natürlicher Lebensraum. Das macht die Rolle deines Fluglehrers so zentral. Bei FLYwithMIKI verpflichten wir uns zu einem Fluglehrer, der dich in diesem Prozess buchstäblich <strong>&laquo;an der Hand hält&raquo;</strong> und dich unerschütterlich unterstützt: bei deinen technischen Fähigkeiten und, ganz entscheidend, bei deiner <strong>mentalen Entwicklung</strong>. Deshalb bestehen wir auf der <strong>Ausbildung in kleinen Gruppen</strong>: Nur so ist der hochgradig persönliche Unterricht möglich, der sich intensiv auf den Fortschritt, die Herausforderungen und den Vertrauensaufbau jedes Einzelnen konzentriert.
+		<br><br>
+		Wir verbinden diesen massgeschneiderten Ansatz mit den besten <strong>modernen pädagogischen Methoden</strong> und modernster Technologie. Unsere Ausbildung geht weit über den Standardunterricht hinaus: mit gezielter <strong>Videoanalyse</strong> deiner Flüge, fokussierten <strong>1:1-Debriefings</strong> und essenziellem <strong>Mentaltraining</strong>. Diese Werkzeuge beschleunigen deine Lernkurve, verbessern deine Entscheidungsprozesse und festigen das Selbstvertrauen, das du für selbstständiges Fliegen brauchst. Durch diese einzigartige Kombination aus persönlicher Betreuung und fortschrittlichen Methoden gewinnst du nicht nur fliegerisches Können, sondern auch die tiefe mentale Stärke, die einen herausragenden Piloten ausmacht. <br><br>
+
+		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH6.webp" alt="Gleitschirmtraining am Übungshang - Groundhandling und Starttechnik für Anfänger" style="height:250px; width: 250px; object-fit:cover; float:left; margin:00px 20px 10px 0px" loading="lazy">
+
+		Unsere Schüler erhalten <strong>kostenlosen Zugang zur einzigartigen Flight Deck App</strong>, einem unschätzbaren technologischen Werkzeug. Mit dieser App kannst du <strong>deinen eigenen Fortschritt</strong> online verfolgen, <strong>die gesamte Theorie und den theoretischen Hintergrund</strong> an einem Ort abrufen und deine nächsten Schritte sogar noch am Berg durchgehen. So bleibt der Lernprozess kontinuierlich, effizient und völlig transparent.
+		<br><br>
+
+		Unser eigentliches Ziel ist nicht nur ein Brevet, sondern dich in einen <strong>sicheren, selbstständigen Piloten</strong> zu verwandeln, der fundierte Entscheidungen trifft und mit echtem Selbstvertrauen startet, fliegt und landet. Und als erste Gleitschirmschule der Schweiz, die konsequent auf <strong>Nachhaltigkeit</strong> setzt, nutzen wir einen Elektro-Van und pflanzen nach jedem Flug Bäume, damit deine Reise auch ökologisch verantwortungsvoll ist.
+
+	</p>
+  </div>
+
+
+<!-- SAFETY & FEARS section ---------------------------------------------------------->
+  <div class="section" id="safety-first" style="text-align:center">
+    <h2><b>Ehrliche Antworten auf die Fragen, die alle stellen</b></h2>
+    <p style="color:#555; max-width:700px; margin:0 auto 24px">Fliegen zu lernen ist eine grosse Entscheidung. Du verdienst klare Antworten, kein Verkaufsgespräch.</p>
+    <div class="w3-row-padding">
       <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#128101; Wirklich kleine Gruppen</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">3&ndash;8 Schüler pro Fluglehrer, keine Massenabfertigung; wir nehmen bewusst nur rund 20 neue Schüler pro Jahr auf. Dein Fortschritt zählt, nicht der Durchsatz. Bei jedem einzelnen Flug bist du per Funk begleitet.</p>
+        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
+          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Ist Gleitschirmfliegen sicher?&raquo;</p>
+          <p class="w3-small w3-justify" style="line-height:1.6">Beginnen wir mit der offiziellen Antwort: Die SUVA stuft Gleitschirmfliegen <b>nicht</b> als Risikosportart ein, und deine normale Schweizer Unfallversicherung deckt es ab, ohne Zuschlag, ohne Spezialpolice. Trotzdem: Es ist Fliegerei, und sie birgt reale Risiken; etwas anderes zu behaupten wäre unehrlich. Den Unterschied machen die Qualität der Ausbildung und die Entscheidungen. Deshalb fliegst du bei jedem einzelnen Flug mit Funk im Ohr, deshalb schulen wir in Gruppen von 3&ndash;8 (nie mehr pro Fluglehrer), und deshalb gehören Mentaltraining und ehrliche Wetterentscheide vom ersten Tag an zum Lehrplan.</p>
         </div>
       </div>
       <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#128176; Ehrliche Gesamtkosten</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Wir sagen dir am Tag null, was das Ganze wirklich kostet: Vollausbildung CHF 4'500 plus dein Ausrüstungsset (CHF 5'500 Regular oder CHF 6'000 Light), oder CHF 6'500 mit eigenem Material inkl. voller Materialkontrolle und Rettungspackung, <b>alles inklusive ca. CHF 11'000 bis 12'000</b>. Keine versteckten Überraschungen im Kleingedruckten.</p>
+        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
+          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Werde ich Angst haben?&raquo;</p>
+          <p class="w3-small w3-justify" style="line-height:1.6">Wahrscheinlich ein bisschen, und das ist völlig normal. Höhenangst und Flugangst sind zwei verschiedene Dinge: Die meisten Menschen mit Höhenangst fühlen sich unter einem Schirm ruhig. Wir beginnen an sanften Übungshängen, gehen nur in deinem Tempo weiter, und ich halte dich bei jedem Schritt buchstäblich an der Hand. Ein bisschen Respekt vor der Luft ist genau das, was einen guten Piloten ausmacht.</p>
         </div>
       </div>
       <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#127891; Dein Fluglehrer, verifizierbar</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Miki Mohos, SHV/BAZL-zertifizierter Fluglehrer (Prüfung 2022, SHV-Nr. <b>54547</b>), Tandempilot (Biplace 1-3), promovierter Ingenieur. Seit 2017 in der Luft, seit 2020 in der Schulung tätig, seit 2022 zertifizierter Fluglehrer: <b>950+</b> Flüge, <b>435+</b> Stunden. XC-Rekorde auf EN-A-Schirmen, also genau der Klasse, auf der du lernst: <a href="https://www.xcontest.org/2021/world/en/flights/detail:flywithmiki.com/3.5.2021/09:42" target="_blank" rel="noopener noreferrer" style="color:#0077b6">113 km Freiflug</a>, <a href="https://www.xcontest.org/2022/world/en/flights/detail:flywithmiki.com/24.7.2022/09:17" target="_blank" rel="noopener noreferrer" style="color:#0077b6">105 km flaches Dreieck</a>. Hat bei der Ausbildung von 250+ Piloten mitgewirkt, u.a. jahrelang an einer der grössten Flugschulen der Schweiz. <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="color:#0077b6">Offiziellen SHV-Eintrag prüfen &rarr;</a><br><br>
-          <b>Und danach?</b> Nach dem Brevet übernehmen unsere Coaches: Marcel Schmid (XC und Hike &amp; Fly, 30 Jahre Schweizer Luft) und Mihai Lazar (Hike &amp; Fly, Speedflying, Ski-Fly). Am Startplatz sorgt unsere Startcrew dafür, dass jeder Start sauber und ohne Hektik abläuft.</p>
+        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
+          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Bin ich zu alt dafür?&raquo;</p>
+          <p class="w3-small w3-justify" style="line-height:1.6">Nein. Viele der besten Schüler starten mit 40 oder 50; sie fliegen mit mehr Geduld und besserem Urteilsvermögen als die meisten 20-Jährigen. Wenn du einen kleinen Hügel hinauflaufen kannst, kannst du Gleitschirmfliegen lernen. Du musst kein Athlet sein; eine Grundfitness reicht, und unser flexibler Zeitplan ist für Berufstätige gemacht.</p>
         </div>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#128241; FlightDeck-App und Videoanalyse</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Digitales Fortschritts-Tracking, Theorie in der Tasche, Zeitlupen-Analyse deiner Flüge und mentales Training inklusive. Das bietet dir sonst keine Schule in der Region.</p>
+    </div>
+    <a href="faq.html" class="cta-btn cta-btn-primary" style="margin-top:10px">Mehr Fragen? Lies das ganze FAQ</a>
+  </div>
+
+<!-- TESTIMONIALS section ---------------------------------------------------------->
+  <div class="testimonial-section section-boxed" id="reviews">
+    <div style="text-align:center">
+      <h2 style="margin-top:0"><b>Was unsere Schüler &amp; Gäste sagen</b></h2>
+      <p style="color:#555; margin-bottom:25px">Bewertet mit <b>4.9 &#11088;</b> auf Google (47 Bewertungen)</p>
+      <div class="w3-row-padding">
+        <div class="w3-third" style="margin-bottom:16px">
+          <div class="testimonial-card">
+            <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <blockquote>"I met Miki completely randomly while he was training students at Zugerberg. He assisted me with all my queries about a glider upgrade. Today he brought a test wing and basically gave me a full solid training just for me to get comfortable with the new wing. He explained how to work with higher aspect ratio wings and helped make big collapses with it. I definitely left with more confidence. Small group coaching and customer support for a new wing? Totally worth it."</blockquote>
+            <div class="author">- Diederik M., Google-Bewertung</div>
+          </div>
+        </div>
+        <div class="w3-third" style="margin-bottom:16px">
+          <div class="testimonial-card">
+            <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <blockquote>"An outstanding paragliding school with an exceptional instructor! Miki has deep knowledge of both theory and practice and explains everything in a clear and structured way. He is always ready to help, literally around the clock, ensuring that every student feels supported at every step. Highly recommended!"</blockquote>
+            <div class="author">- Renata F., Google-Bewertung</div>
+          </div>
+        </div>
+        <div class="w3-third" style="margin-bottom:16px">
+          <div class="testimonial-card">
+            <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <blockquote>"The 1:1 coaching with Miki is absolutely top-notch. I learned an incredible amount in one day and gained enormous confidence. If I could go back, I would do the entire training here. Thanks for the valuable tips and the great day, Miki. We'll definitely see each other again."</blockquote>
+            <div class="author">- M H., Google-Bewertung</div>
+          </div>
         </div>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#9201; Tandem-Airtime-Garantie</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Zu kurze Flüge sind die häufigste Tandem-Beschwerde der Schweiz. Bei uns: Fliegst du beim Deluxe-Flug unter 15 Min. oder beim Special unter 30 Min., bekommst du <b>CHF 60 zurück. Garantiert.</b></p>
-        </div>
-      </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card">
-          <p style="font-weight:bold; color:#0077b6; margin-top:0">&#127793; Verifizierte Nachhaltigkeit</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">E-Bus statt Diesel, 400+ gepflanzte Bäume, extern verifiziert (Ecodrive-Veritree), kein Greenwashing. <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer" style="color:#0077b6">Live-Dashboard ansehen &rarr;</a></p>
+      <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer" class="cta-btn" style="background:#4285f4; color:#fff; margin-top:15px">&#128172; Alle Bewertungen auf Google lesen</a>
+    </div>
+  </div>
+
+<!-- TEAM section------------------------------------------------------------>
+  <div class="section" style="text-align:center" id="team">
+    <h2>Das Team</h2>
+    <div class="w3-content" style="max-width:760px">
+        <p style="color:#555">Ein Fluglehrer bildet dich aus, zwei Coaches bringen dich weiter, und ein Startteam hält jeden Start sauber. Du weisst immer genau, wer in der Luft für dich verantwortlich ist.</p>
+    </div>
+  </div>
+
+  <!-- Chief Instructor -->
+  <div class="section" style="text-align:center">
+    <h3 style="color:#555; font-size:1em; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">Dein Fluglehrer</h3>
+    <p style="color:#888; font-size:0.85em; margin:0 0 16px">Derjenige, der jeden Schritt deiner Ausbildung abzeichnet</p>
+    <div style="display:flex; justify-content:center;">
+      <div style="max-width:620px; width:100%;">
+        <div class="w3-card-4 w3-section" style="border-top: 4px solid #0077b6;">
+          <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki Mohos - SHV/BAZL-zertifizierter Gleitschirm-Fluglehrer und Tandempilot bei FLYwithMIKI" style="width:100%; max-height:340px; object-fit:cover;" loading="lazy">
+          <div class="w3-padding">
+            <p class="w3-xlarge" style="margin-bottom:2px"><strong>Miki Mohos</strong></p>
+            <p style="color:#0077b6; font-weight:bold; margin-top:0">Chef-Fluglehrer &amp; Tandempilot</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 14px">
+              <span style="background:#f0f8ff;color:#0077b6;border-radius:20px;padding:5px 14px;font-size:0.82em;font-weight:bold">SHV/BAZL-Fluglehrer, Nr. 54547</span>
+              <span style="background:#f0f8ff;color:#0077b6;border-radius:20px;padding:5px 14px;font-size:0.82em;font-weight:bold">Tandempilot (Biplace 1-3)</span>
+              <span style="background:#f0f8ff;color:#0077b6;border-radius:20px;padding:5px 14px;font-size:0.82em;font-weight:bold">950+ Flüge, 435+ Stunden</span>
+              <span style="background:#f0f8ff;color:#0077b6;border-radius:20px;padding:5px 14px;font-size:0.82em;font-weight:bold">250+ Piloten ausgebildet</span>
+            </div>
+            <p class="w3-justify w3-small">Ich kenne jeden meiner Schüler persönlich: wie du mit einem nervösen Start umgehst, welches Manöver du immer wieder überhastest, was letzte Woche &laquo;klick&raquo; gemacht hat. Genau das ist der Sinn davon, die Schule klein zu halten: So kann ich den Ausbildungsplan um dein tatsächliches Niveau bauen statt um einen fixen Lehrplan.<br><br>
+            Meine längsten Flüge bin ich auf EN-A-Schirmen geflogen, derselben Klasse, auf der du lernst: <a href="https://www.xcontest.org/2021/world/en/flights/detail:flywithmiki.com/3.5.2021/09:42" target="_blank" rel="noopener noreferrer" style="color:#0077b6">113 km Streckenflug</a> und ein <a href="https://www.xcontest.org/2022/world/en/flights/detail:flywithmiki.com/24.7.2022/09:17" target="_blank" rel="noopener noreferrer" style="color:#0077b6">105 km Flachdreieck</a>. Keine Trophäe, sondern schlicht der Grund, warum ich dir das Lesen der Luft auf genau dem Schirm beibringen kann, den du tatsächlich fliegst. Dazu die Gewohnheiten eines Ingenieurs aus meinen PhD-Jahren, und du bekommst Wetterbriefings und Materialberatung, die halten.<br><br>
+            <span style="color:#777">Fliegen seit 2017, unterrichten seit 2020, SHV/BAZL-zertifizierter Fluglehrer seit 2022, mit mehreren Jahren im Team einer der grössten Flugschulen der Schweiz. <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="color:#0077b6">Prüf meinen offiziellen SHV-Eintrag &rarr;</a></span></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- HONEST ANSWERS -->
-<div class="w3-container" id="fragen" style="max-width:900px; margin:auto; padding:36px 20px; text-align:center">
-  <h2 style="color:#0077b6"><b>Ehrliche Antworten auf die Fragen, die alle stellen</b></h2>
-  <div class="w3-row-padding" style="margin-top:20px">
-    <div class="w3-third" style="margin-bottom:16px">
-      <div class="diff-card">
-        <p style="font-weight:bold; color:#0077b6; margin-top:0">«Ist Gleitschirmfliegen gefährlich?»</p>
-        <p style="font-size:0.9em; line-height:1.6; color:#444">Zuerst die offizielle Antwort: Laut SUVA ist Gleitschirmfliegen <b>kein</b> Risikosport, die normale Unfallversicherung deckt es, ohne Zuschlag und ohne Zusatzpolice. Trotzdem ist es Luftfahrt und es gibt echte Risiken, wer etwas anderes sagt, verkauft, statt zu unterrichten. Entscheidend sind Ausbildungsqualität und Urteilsvermögen: Funk im Ohr bei jedem Flug, kleine Gruppen, ehrliche Wetterentscheide, mentales Training.</p>
-      </div>
-    </div>
-    <div class="w3-third" style="margin-bottom:16px">
-      <div class="diff-card">
-        <p style="font-weight:bold; color:#0077b6; margin-top:0">«Werde ich Angst haben?»</p>
-        <p style="font-size:0.9em; line-height:1.6; color:#444">Wahrscheinlich ein bisschen, und das ist völlig normal. Höhenangst und Flugangst sind zwei verschiedene Dinge: Unter dem Schirm sitzt du sicher im Gurtzeug und die meisten Höhenängstlichen fühlen sich überraschend ruhig. Wir starten am sanften Übungshang und gehen nur in deinem Tempo weiter.</p>
-      </div>
-    </div>
-    <div class="w3-third" style="margin-bottom:16px">
-      <div class="diff-card">
-        <p style="font-weight:bold; color:#0077b6; margin-top:0">«Bin ich zu alt dafür?»</p>
-        <p style="font-size:0.9em; line-height:1.6; color:#444">Nein. Viele der besten Schüler starten mit 40+ oder 50+, sie fliegen geduldiger und mit besserem Urteilsvermögen als die meisten 20-Jährigen. Wer einen kleinen Hügel hochlaufen kann, kann Gleitschirmfliegen lernen. Unser flexibler Zeitplan ist für Berufstätige gebaut. (Mindestalter: 15.)</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- OFFERS -->
-<div style="background:#f0f8ff; padding:36px 20px" id="angebote">
-  <div style="max-width:1000px; margin:auto; text-align:center">
-    <h2 style="color:#0077b6"><b>Unsere Angebote</b></h2>
-    <div class="w3-row-padding" style="margin-top:20px">
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card" style="border-top:4px solid #0077b6">
-          <p style="font-weight:bold; font-size:1.15em; margin-top:0">Vollausbildung</p>
-          <p style="font-size:1.6em; font-weight:bold; color:#0077b6; margin:4px 0">CHF 4'500</p>
-          <p style="font-size:0.85em; color:#777; margin:0 0 10px">plus dein Set: CHF 5'500 Regular oder CHF 6'000 Light &middot; CHF 6'500 mit eigenem Material</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Vom ersten Schritt bis zum Schweizer Brevet (IPPI4). Unbegrenzte Höhenflüge während 12 Monaten, gesamte Theorie, Videoanalyse, FlightDeck-App.</p>
-          <a href="../prices.html" style="color:#0077b6; font-weight:bold; font-size:0.9em">Alle Details (EN) &rarr;</a>
+  <!-- Coaches & Mentors -->
+  <div class="section" style="text-align:center">
+    <h3 style="color:#555; font-size:1em; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">Coaches &amp; Mentoren</h3>
+    <p style="color:#888; font-size:0.85em; margin:0 0 16px">Wohin du nach dem Brevet gehst: Streckenflug, Hike &amp; Fly, grosse Tage in den Alpen</p>
+    <div class="w3-row-padding" style="display:flex; justify-content:center; flex-wrap:wrap;">
+      <div class="w3-half" style="max-width:460px;">
+        <div class="w3-card-4 w3-section" style="border-top: 4px solid #00b4d8;">
+          <img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel Schmid - XC- und Hike-and-Fly-Coach, Tandempilot mit 30 Jahren Gleitschirm-Erfahrung" style="width:100%; max-height:300px; object-fit:cover;" loading="lazy">
+          <div class="w3-padding">
+            <p class="w3-xlarge" style="margin-bottom:2px"><strong>Marcel Schmid</strong></p>
+            <p style="color:#00b4d8; font-weight:bold; margin-top:0">XC- &amp; Hike-and-Fly-Coach, Tandempilot</p>
+            <p class="w3-justify w3-small">Drei Jahrzehnte Schweizer Luft im Flugbuch und ein Name, den die meisten Piloten in der Zentralschweiz kennen. Drei Jahrzehnte Schweizer Luft im Flugbuch, ein Name, den die meisten Piloten der Zentralschweiz kennen, und ganz leise einer der besten Streckenflieger des Landes. Ob der Plan dein erster 20-km-Gleitflug ist oder eine 200-300-km-Rekordlinie: Marcel hat sie geplant und ist sie geflogen; den Tag lesen, die Linie wählen, wissen, wann man weiterzieht und wann man umkehrt. Er fliegt mit uns an Strecken- und Hike-&amp;-Fly-Tagen statt im täglichen Schulbetrieb, und genau dann willst du ihn neben dir haben.</p>
+          </div>
         </div>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card" style="border-top:4px solid #e85d04">
-          <p style="font-weight:bold; font-size:1.15em; margin-top:0">&#9889; Intensivkurs 2027</p>
-          <p style="font-size:1.6em; font-weight:bold; color:#e85d04; margin:4px 0">CHF 3'900</p>
-          <p style="font-size:0.85em; color:#777; margin:0 0 10px">3 Wochen im Juni + Schulungstage den ganzen Juli &middot; max. 12 Teilnehmende</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Von null bis prüfungsbereit in einem Sommer, und danach lassen wir dich nicht allein. Frühbucherliste offen, CHF 300 Rabatt für die Ersten.</p>
-          <a href="intensive.html" style="color:#e85d04; font-weight:bold; font-size:0.9em">Zur Intensivkurs-Seite (Deutsch) &rarr;</a>
-        </div>
-      </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="diff-card" style="border-top:4px solid #25D366">
-          <p style="font-weight:bold; font-size:1.15em; margin-top:0">Tandemflüge</p>
-          <p style="font-size:1.6em; font-weight:bold; color:#25D366; margin:4px 0">CHF 185&ndash;350</p>
-          <p style="font-size:0.85em; color:#777; margin:0 0 10px">Emmetten, Engelberg, Pilatus, Rigi &middot; mit Airtime-Garantie</p>
-          <p style="font-size:0.92em; line-height:1.6; color:#444">Vier Stufen vom Schnupperflug bis zum Pilatus-Erlebnis. Foto/Video, Baumpflanzung und faire Wetterregeln (kostenlose Umbuchung).</p>
-          <a href="../tandem.html" style="color:#25D366; font-weight:bold; font-size:0.9em">Alle Details (EN) &rarr;</a>
+      <div class="w3-half" style="max-width:460px;">
+        <div class="w3-card-4 w3-section" style="border-top: 4px solid #00b4d8;">
+          <img src="https://flywithmiki.com/Images_v2/Mihai.webp" alt="Mihai Lazar - Hike-and-Fly-Coach bei der Gleitschirmschule FLYwithMIKI" style="width:100%; max-height:300px; object-fit:cover;" loading="lazy">
+          <div class="w3-padding">
+            <p class="w3-xlarge" style="margin-bottom:2px"><strong>Mihai Lazar</strong></p>
+            <p style="color:#00b4d8; font-weight:bold; margin-top:0">Hike-and-Fly-Coach</p>
+            <p class="w3-justify w3-small">Sechs Jahre und mehr quer durch die Alpen, von Streckenflug-Etappen über Speedflying bis Ski-Fly. Mihai ist auf Hike &amp; Fly spezialisiert: einen Gipfel wählen, der wirklich funktioniert, leicht packen, ohne bei der Sicherheit zu sparen, einen wilden Startplatz ohne Windsack und ohne Publikum beurteilen. Wenn dein Ziel ist, aus eigener Kraft hinaufzugehen und hinunterzufliegen, bringt er dich dorthin.</p>
+          </div>
         </div>
       </div>
     </div>
-    <p style="color:#555; font-size:0.95em; margin-top:8px">Gutscheine für Tandemflüge? Gerne, <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20Tandem-Gutschein%20kaufen" style="color:#0077b6"><b>per WhatsApp bestellen</b></a>.</p>
+  </div>
+
+  <!-- Launch Crew -->
+  <div class="section" style="text-align:center">
+    <h3 style="color:#555; font-size:1em; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">Startteam</h3>
+    <p style="color:#888; font-size:0.85em; margin:0 0 16px">Der letzte Check, bevor du den Boden verlässt, und die ersten Hände, wenn du landest</p>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:18px;">
+      <div style="flex:0 1 240px; max-width:250px;">
+        <div class="w3-card-4" style="border-top: 4px solid #90e0ef; height:100%; display:flex; flex-direction:column;">
+          <img src="https://flywithmiki.com/Images_v2/Barni.webp" alt="Barni Kis - Startleiter bei der Gleitschirmschule FLYwithMIKI" style="width:100%; height:175px; object-fit:cover; object-position:top center;" loading="lazy">
+          <div style="padding:10px 12px;">
+            <p style="margin:0 0 2px; font-weight:bold; font-size:1.05em;">Barni Kis</p>
+            <p style="color:#0096c7; font-weight:bold; margin:0 0 6px; font-size:0.78em;">Startleiter</p>
+            <p class="w3-justify" style="font-size:0.78em; line-height:1.45; margin:0;">Ich lege deinen Schirm aus, entwirre deine Leinen und beobachte die Zyklen, bis das Fenster stimmt. An einem vollen Startplatz ist genau dieser Job das, was alles ruhig und ohne Hektik hält, und bei deinem ersten Bergstart ist er der Unterschied zwischen Hetzen und Fliegen.</p>
+          </div>
+        </div>
+      </div>
+      <div style="flex:0 1 240px; max-width:250px;">
+        <div class="w3-card-4" style="border-top: 4px solid #90e0ef; height:100%; display:flex; flex-direction:column;">
+          <img src="https://flywithmiki.com/Images_v2/david.webp" alt="David Rokonay - Startleiter und Tandempilot in Ausbildung bei der Gleitschirmschule FLYwithMIKI" style="width:100%; height:175px; object-fit:cover; object-position:top center;" loading="lazy">
+          <div style="padding:10px 12px;">
+            <p style="margin:0 0 2px; font-weight:bold; font-size:1.05em;">David Rokonay</p>
+            <p style="color:#0096c7; font-weight:bold; margin:0 0 6px; font-size:0.78em;">Startleiter, Tandempilot in Ausbildung</p>
+            <p class="w3-justify" style="font-size:0.78em; line-height:1.45; margin:0;">Gurtzeugschnallen, Beschleuniger, Rettergriff, Wind: Ich gehe mit dir vor jedem einzelnen Start denselben Fünf-Punkte-Check durch, bis du dich dabei erwischst, wie du ihn ohne mich machst. Ich mache bei Miki die Ausbildung zum Tandempiloten, ich weiss also, wie ein sauberer Start aussehen und sich anfühlen muss.</p>
+          </div>
+        </div>
+      </div>
+      <div style="flex:0 1 240px; max-width:250px;">
+        <div class="w3-card-4" style="border-top: 4px solid #90e0ef; height:100%; display:flex; flex-direction:column;">
+          <img src="https://flywithmiki.com/Images_v2/Noemi.webp" alt="Noemi Szanto - Startleiterin bei der Gleitschirmschule FLYwithMIKI" style="width:100%; height:175px; object-fit:cover; object-position:top center;" loading="lazy">
+          <div style="padding:10px 12px;">
+            <p style="margin:0 0 2px; font-weight:bold; font-size:1.05em;">Noémi Szántó</p>
+            <p style="color:#0096c7; font-weight:bold; margin:0 0 6px; font-size:0.78em;">Startleiterin</p>
+            <p class="w3-justify" style="font-size:0.78em; line-height:1.45; margin:0;">Nervöse Schüler sind meine Spezialität. Ich begleite dich durch die letzte Minute vor dem Start, verlangsame deine Atmung und nehme den Druck raus, denn ein gehetzter Pilot macht einen schlechten Start. Jahre der Arbeit mit Pferden haben mich Geduld und Timing gelehrt, und beides lässt sich überraschend gut auf einen Startplatz übertragen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!------------------------CONTACT SECTION------------------------------------->
+<div id="contact" style="background: linear-gradient(135deg, #002d4e 0%, #0077b6 60%, #00b4d8 100%); color: white; padding: 64px 20px; text-align: center;">
+  <div style="max-width:1000px; margin: 0 auto;">
+    <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 8px;">&#128172; Kontakt aufnehmen</h2>
+    <p style="font-size: 1.1em; opacity: 0.9; margin-bottom: 36px;">Fragen? Willst du einen Kurs oder Tandemflug buchen? Miki hilft dir gern.</p>
+    <div class="w3-row-padding" style="max-width: 800px; margin: 0 auto 32px;">
+      <div class="w3-col m3 s6" style="margin-bottom: 20px;">
+        <a href="https://wa.me/41779766164/" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #25D366; color: white; padding: 22px 12px; border-radius:16px; text-decoration: none; font-weight: bold; min-height: 140px;">
+          <div style="font-size: 2em; margin-bottom: 8px;">&#128172;</div>
+          <div style="font-size: 0.95em;">WhatsApp</div>
+          <div style="font-size: 0.82em; opacity: 0.9; margin-top: 4px;">Sofortige Antwort</div>
+        </a>
+      </div>
+      <div class="w3-col m3 s6" style="margin-bottom: 20px;">
+        <a href="tel:+41779766164" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.15); color: white; padding: 22px 12px; border-radius:16px; text-decoration: none; font-weight: bold; border: 2px solid rgba(255,255,255,0.3); min-height: 140px;">
+          <div style="font-size: 2em; margin-bottom: 8px;">&#128222;</div>
+          <div style="font-size: 0.95em;">+41 77 976 6164</div>
+          <div style="font-size: 0.82em; opacity: 0.9; margin-top: 4px;">Ruf Miki direkt an</div>
+        </a>
+      </div>
+      <div class="w3-col m3 s6" style="margin-bottom: 20px;">
+        <a href="mailto:info@flywithmiki.com" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.15); color: white; padding: 22px 12px; border-radius:16px; text-decoration: none; font-weight: bold; border: 2px solid rgba(255,255,255,0.3); word-break: break-word; overflow-wrap: break-word; min-height: 140px;">
+          <div style="font-size: 2em; margin-bottom: 8px;">&#9993;&#65039;</div>
+          <div style="font-size: 0.85em;">info@flywithmiki.com</div>
+          <div style="font-size: 0.82em; opacity: 0.9; margin-top: 4px;">E-Mail senden</div>
+        </a>
+      </div>
+      <div class="w3-col m3 s6" style="margin-bottom: 20px;">
+        <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.15); color: white; padding: 22px 12px; border-radius:16px; text-decoration: none; font-weight: bold; border: 2px solid rgba(255,255,255,0.3); min-height: 140px;">
+          <div style="font-size: 2em; margin-bottom: 8px;">&#11088;</div>
+          <div style="font-size: 0.95em;">Google-Bewertungen</div>
+          <div style="font-size: 0.82em; opacity: 0.9; margin-top: 4px;">4.9 &#9733;</div>
+        </a>
+      </div>
+    </div>
+    <!-- CONTACT FORM: async path for visitors who prefer not to start a chat -->
+    <div style="max-width:560px; margin:0 auto 32px; background:rgba(255,255,255,0.12); border:2px solid rgba(255,255,255,0.3); border-radius:16px; padding:26px 24px; text-align:left">
+      <p style="font-weight:bold; margin:0 0 4px; text-align:center">Schreibst du lieber, statt zu chatten?</p>
+      <p style="font-size:0.9em; opacity:0.85; margin:0 0 16px; text-align:center">Hinterlass eine Nachricht und Miki meldet sich per E-Mail bei dir, meist innerhalb eines Tages.</p>
+      <form action="https://formsubmit.co/info@flywithmiki.com" method="POST">
+        <input type="hidden" name="_subject" value="Neue Nachricht von flywithmiki.com/de">
+        <input type="text" name="_honey" style="display:none">
+        <label for="cf-email" style="font-size:0.88em; font-weight:bold">Deine E-Mail</label>
+        <input id="cf-email" type="email" name="email" required placeholder="du@beispiel.ch" style="width:100%; padding:12px 14px; border:none; border-radius:10px; margin:6px 0 14px; font-family:inherit; font-size:1em; box-sizing:border-box">
+        <label for="cf-msg" style="font-size:0.88em; font-weight:bold">Deine Nachricht</label>
+        <textarea id="cf-msg" name="message" required rows="4" placeholder="Was möchtest du fragen oder buchen?" style="width:100%; padding:12px 14px; border:none; border-radius:10px; margin:6px 0 16px; font-family:inherit; font-size:1em; box-sizing:border-box; resize:vertical"></textarea>
+        <button type="submit" style="display:block; width:100%; background:#25D366; color:white; border:none; border-radius:30px; padding:14px; font-size:1.05em; font-weight:bold; cursor:pointer; font-family:'Montserrat',sans-serif">&#9993;&#65039; Nachricht senden</button>
+      </form>
+    </div>
+    <p style="font-size: 1em; opacity: 0.8; margin: 0;">Zuhause in Kriens, Luzern &bull; Wir fliegen in der Zentralschweiz (Zugerberg, Rigi, Engelberg, Emmetten, Wolfenschiessen  &amp; mehr)</p>
   </div>
 </div>
+<!------------------------CONTACT SECTION------------------------------------->
 
-<!-- REVIEW -->
-<div class="w3-container" style="max-width:700px; margin:auto; padding:36px 20px; text-align:center">
-  <h2 style="color:#0077b6"><b>Was unsere Schüler sagen</b></h2>
-  <p style="color:#f5a623; font-size:1.3em; margin:4px 0">&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-  <blockquote style="font-style:italic; color:#333; line-height:1.7; margin:10px 0">«Eine herausragende Gleitschirmschule mit einem aussergewöhnlichen Fluglehrer! Miki hat tiefes Wissen in Theorie und Praxis und erklärt alles klar und strukturiert. Er ist immer erreichbar, buchstäblich rund um die Uhr.»</blockquote>
-  <p style="color:#777; font-size:0.9em">Renata F., Google-Bewertung (übersetzt)</p>
-  <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer" class="cta-btn" style="background:#4285f4; color:#fff">Alle Google-Bewertungen lesen (4.9 &#11088;)</a>
-</div>
+ <!-- EQUIPMENT SALES ------------------------------------------------------------>
+  <div class="section-boxed" id="equipment" style="text-align:center; background:#f0f8ff; border:1px solid #e4f0fa">
+           <h2 class="w3-text-teal"><b>⭐ Gleitschirm-Ausrüstung kaufen ⭐</b></h2>
+            <h3>Dein verlässlicher Partner für Premium-Gleitschirmausrüstung</h3>
 
-<!-- CONTACT -->
-<div id="kontakt" style="background: linear-gradient(135deg, #002d4e 0%, #0077b6 60%, #00b4d8 100%); color: white; padding: 48px 20px; text-align: center;">
-  <h2 style="font-weight:bold; margin-bottom:8px">Sprich mit Miki, auf Deutsch</h2>
-  <p style="opacity:0.9; margin-bottom:24px">Fragen zur Ausbildung, zum Intensivkurs oder zu Tandemflügen? Direkt, persönlich, ohne Formular-Bürokratie.</p>
-  <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; max-width:800px; margin:0 auto">
-    <a href="https://wa.me/41779766164/" target="_blank" rel="noopener noreferrer" style="background:#25D366; color:white; padding:16px 26px; border-radius:14px; text-decoration:none; font-weight:bold">&#128172; WhatsApp<br><span style="font-size:0.8em; opacity:0.9">Sofortige Antwort</span></a>
-    <a href="tel:+41779766164" style="background:rgba(255,255,255,0.15); color:white; padding:16px 26px; border-radius:14px; text-decoration:none; font-weight:bold; border:2px solid rgba(255,255,255,0.3)">&#128222; +41 77 976 6164<br><span style="font-size:0.8em; opacity:0.9">Ruf Miki direkt an</span></a>
-    <a href="mailto:info@flywithmiki.com" style="background:rgba(255,255,255,0.15); color:white; padding:16px 26px; border-radius:14px; text-decoration:none; font-weight:bold; border:2px solid rgba(255,255,255,0.3)">&#9993; E-Mail<br><span style="font-size:0.8em; opacity:0.9">info@flywithmiki.com</span></a>
+                <p class="w3-justify w3-large" style="max-width:1000px; margin:auto">
+                  <strong>Wir bringen dir nicht nur das Fliegen bei, wir rüsten dich für den Erfolg aus!</strong> Bei FLYwithMIKI bieten wir ein umfassendes Sortiment an hochwertiger Gleitschirmausrüstung der weltweit führenden Marken. Ob du als Einsteiger deinen ersten Schirm suchst oder als erfahrener Pilot aufrüstest, wir bieten dir:
+                </p>
+
+                <div class="w3-row-padding w3-margin-top">
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">🎯 Persönliche Beratung</h4>
+                      <p class="w3-small w3-justify">Expertenberatung, zugeschnitten auf DEINEN Flugstil, deine Ziele und dein Können. Wir nehmen uns Zeit, deine Bedürfnisse zu verstehen, und empfehlen dir die perfekt passende Ausrüstung.</p>
+                    </div>
+                  </div>
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">💰 Attraktive Preise</h4>
+                      <p class="w3-small w3-justify">Wettbewerbsfähige Preise für Premium-Marken. Gute Ausrüstung muss kein Vermögen kosten; wir bieten ein hervorragendes Preis-Leistungs-Verhältnis, ohne bei Sicherheit oder Leistung Kompromisse zu machen.</p>
+                    </div>
+                  </div>
+                  <div class="w3-third">
+                    <div class="w3-card-4 w3-white w3-padding">
+                      <h4 class="w3-text-teal">🛠️ After-Sales-Support</h4>
+                      <p class="w3-small w3-justify">Die Betreuung endet nicht beim Kauf. Wir sind da für Wartungstipps, Materialchecks und alle Fragen, die auf deinem fliegerischen Weg auftauchen.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w3-margin-top w3-padding">
+                  <p class="w3-large w3-justify" style="max-width:1000px; margin:auto">
+                    <strong>Was wir anbieten:</strong><br>
+                    ✈️ <strong>Gleitschirme</strong>, EN-A, EN-B und Spezialschirme für alle Könnensstufen<br>
+                    🪂 <strong>Gurtzeuge</strong>, bequem und sicherheitszertifiziert für jeden Körperbau<br>
+                    🆘 <strong>Rettungsschirme</strong>, Sicherheitsausrüstung in Top-Qualität<br>
+                    📡 <strong>Instrumente</strong>, GPS, Varios und Flugcomputer<br>
+                    👕 <strong>Zubehör</strong>, Helme, Handschuhe, Rucksäcke und mehr<br>
+                  </p>
+
+                  <p class="w3-center w3-margin-top">
+                    <a href="preise.html#Material" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo w3-large">
+                      <b>📋 Ausrüstung &amp; Preise ansehen</b>
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20Gleitschirm-Ausruestung" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xxlarge w3-padding-large" style="background-color:#25D366; color:white">
+                      <b>💬 Kontaktiere uns zur Ausrüstung</b>
+                    </a>
+                  </p>
+                </div>
   </div>
-  <p style="font-size:0.95em; opacity:0.8; margin-top:24px">Basis in Kriens, Luzern &bull; Fluggebiete in der ganzen Zentralschweiz (Zugerberg, Rigi, Engelberg, Emmetten, Wolfenschiessen und mehr)</p>
-</div>
+
+ <!-- Sustainability------------------------------------------------------------>
+  <div class="section" style="text-align:center" id="sustainability">
+           <h2 class="">Nachhaltigkeit</h2>
+            <h3 >Fliegen auf neue Höhen bringen, Baum für Baum, mit jedem Flug unserer Schüler</h3>
+
+                <p class="w3-justify" style="margin:auto">
+                  Ich glaube, dass Sorge zur Umwelt nicht nur eine Option, sondern eine Verantwortung ist. Mit meinem Ingenieur-Hintergrund war ich schon immer leidenschaftlich dabei, umweltfreundliche Technologien zu entwickeln. Heute, als Fluglehrer und Tandempilot, hat das Wohl unseres Planeten für mich weiterhin Priorität.</p>
+  </div>
+
+    <div class="section">
+      <div class="w3-row-padding" style="width:100%">
+
+              <div class="w3-half">
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+               <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="Elektro-Van-Transport - umweltfreundliches Fahrzeug der Gleitschirmschule, geladen mit erneuerbarer Energie"  loading="lazy">
+               <p class="w3-xlarge">Umweltfreundlicher Transport</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Meine Gleitschirmschule setzt konsequent auf Nachhaltigkeit: Wir nutzen einen Elektro-Van und laden ihn wann immer möglich mit erneuerbarer Energie. So minimieren wir unseren ökologischen Fussabdruck und setzen einen Standard für umweltbewussten Abenteuersport und verantwortungsvollen Tourismus.</p>
+               </div>
+              </div>
+
+              <div class="w3-half">
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+               <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="Mangroven-Pflanzung in Kenia - CO2-Kompensationsprojekt für nachhaltiges Gleitschirmfliegen" loading="lazy">
+               <p class="w3-xlarge">Bäume pflanzen, während wir am Himmel sind</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Bäume pflanzen und abheben! Wir kompensieren den CO2-Fussabdruck deines Gleitschirm-Abenteuers. Unser Partner pflanzt Mangroven in Kenia (verifiziertes Projekt), während wir in der Schweiz fliegen. Bis zu vier Bäume nach jedem Tandemflug und bis zu fünfundzwanzig Bäume nach jedem Schüler!</p>
+               </div>
+              </div>
+
+              <div class="w3-half">
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer">
+				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verifizierte CO2-Kompensation - gepflanzte Bäume und gebundenes CO2 der Gleitschirmschule FLYwithMIKI" />
+				</a>
+               <p class="w3-xlarge">Unser Impact</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Unsere Baumpflanz-Initiative wird von einem renommierten US-Tech-Unternehmen (Ecodrive-Veritree) verifiziert. Das garantiert Transparenz und echten Umweltnutzen, kein Greenwashing. Klick auf das Bild und sieh dir unsere verifizierte Baumpflanz-Projektseite auf der Website unseres Partners an </p>
+               </div>
+              </div>
+
+
+
+
+
+         </div>
+
+      </div>
+
+
+
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <p>&copy; 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>Alle Rechte vorbehalten.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">Allgemeine Geschäftsbedingungen (AGB)</a> &middot; <a href="../">English site</a></p>
-  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV-Register</a></p>
+  <img src="../Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>Alle Rechte vorbehalten.</p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">Allgemeine Geschäftsbedingungen (AGB)</a></p>
+  <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV-Eintrag</a></p>
+
 </footer>
+<!------------------------FOOTER------------------------------------->
+
+
+  <!-- End page content -->
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+//Accordion egyszerre többet is tud kezelni
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+
+
+// Nyelv választó
+function handleButtonClick(language) {
+  const currentPath = window.location.pathname;
+
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const basePath = currentPath.substring(0, lastSlashIndex + 1); // Extracting the base path
+  const fileName = currentPath.substring(lastSlashIndex + 1); // Extracting the filename
+
+  let newPath = currentPath;
+
+  if (language === "english") {
+    if (basePath.includes('/de/')) {
+      newPath = basePath.replace('/de/', '/'); // Remove "/de/" from the base path
+    }
+  } else if (language === "german") {
+    if (!basePath.includes('/de/')) {
+      if (fileName === "intensive.html" || fileName === "agb.html") {
+        window.location.href = `${basePath}de/` + fileName;
+      } else {
+        window.location.href = `${basePath}de/`;
+      }
+      return;
+    }
+  }
+
+  if (newPath !== currentPath) {
+    // Append the filename only if the path is modified
+    newPath += fileName;
+    // Redirect to the new path
+    window.location.href = newPath;
+  }
+}
+
+</script>
+
+
+
+
+
+
 
 <!-- FLOATING WHATSAPP BUTTON -->
-<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20habe%20eine%20Frage" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20habe%20eine%20Frage%20zu%20FLYwithMIKI" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat auf WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+<!-- WELCOME POPUP -->
+<div class="popup-overlay" id="welcomePopup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()" aria-label="Schliessen">&#10005;</button>
+    <h3>&#9992; Bereit zum Fliegen?</h3>
+    <p style="color:#555; font-size:1.05em">Starte dein Gleitschirm-Abenteuer diesen Herbst! Unsere Kleingruppen-Kurse sind schnell ausgebucht.</p>
+    <p style="font-size:0.95em; color:#777"><b>Herbstkurs 2026</b>: CHF 300 Startrabatt, Anmeldung bis Ende August!</p>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20den%20Herbstkurs%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:10px auto 8px">&#128172; Mit Miki auf WhatsApp chatten</a>
+    <a href="school.html" class="cta-btn cta-btn-primary" style="display:block; margin:8px auto">&#127937; Unsere Kurse entdecken</a>
+    <p style="font-size:0.8em; color:#aaa; margin-top:15px; cursor:pointer" onclick="closePopup()">Nein danke, ich schaue nur</p>
+  </div>
+</div>
+
+<script>
+// Welcome popup - show once per session after 8 seconds
+function closePopup() {
+  document.getElementById('welcomePopup').classList.remove('active');
+  sessionStorage.setItem('popupClosed', 'true');
+}
+if (!sessionStorage.getItem('popupClosed')) {
+  setTimeout(function() {
+    if (!sessionStorage.getItem('popupClosed')) {
+      document.getElementById('welcomePopup').classList.add('active');
+    }
+  }, 8000);
+}
+</script>
+
+<!-- Handle anchor scrolling on page load -->
+<script>
+// Land on #contact (or any anchor) straight away and keep it pinned while the
+// lazy images above it load in, so the target does not drift down the page.
+// As soon as the visitor scrolls themselves, we stop interfering.
+(function () {
+  if (!window.location.hash) return;
+  var targetId = window.location.hash.substring(1);
+  var userTookOver = false;
+
+  function release() { userTookOver = true; }
+  window.addEventListener('wheel', release, { passive: true });
+  window.addEventListener('touchstart', release, { passive: true });
+  window.addEventListener('keydown', release);
+
+  function pin() {
+    if (userTookOver) return;
+    var el = document.getElementById(targetId);
+    if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', pin);
+  } else {
+    pin();
+  }
+  window.addEventListener('load', function () { pin(); setTimeout(pin, 150); });
+
+  // repeated correction while images resolve, capped so it can never annoy
+  var ticker = setInterval(pin, 200);
+  setTimeout(function () { clearInterval(ticker); }, 4000);
+})();
+</script>
 
 <script>
 function playFullPromo(btn){
@@ -380,4 +1166,5 @@ function playFullPromo(btn){
 }
 </script>
 </body>
+
 </html>

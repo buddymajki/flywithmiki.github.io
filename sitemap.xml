@@ -5,7 +5,7 @@
   <!-- ======================= ENGLISH (x-default) ======================= -->
   <url>
     <loc>https://flywithmiki.com/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>1.00</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/"/>
@@ -13,17 +13,23 @@
   </url>
   <url>
     <loc>https://flywithmiki.com/school.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/school.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/school.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/school.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/tandem.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/tandem.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/tandem.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/tandem.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/intensive.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.90</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/intensive.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/intensive.html"/>
@@ -31,28 +37,51 @@
   </url>
   <url>
     <loc>https://flywithmiki.com/prices.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/prices.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/preise.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/prices.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/compare.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/compare.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/vergleich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/compare.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/faq.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/faq.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/equipment.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/equipment.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/equipment.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/equipment.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/safety.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/safety.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/checkcenter.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/checkcenter.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/checkcenter.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/checkcenter.html"/>
   </url>
   <url>
     <loc>https://flywithmiki.com/program.html</loc>
@@ -92,23 +121,87 @@
   <!-- ======================= GERMAN ======================= -->
   <url>
     <loc>https://flywithmiki.com/de/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/"/>
   </url>
   <url>
+    <loc>https://flywithmiki.com/de/school.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/school.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/school.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/school.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/tandem.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/tandem.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/tandem.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/tandem.html"/>
+  </url>
+  <url>
     <loc>https://flywithmiki.com/de/intensive.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/intensive.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/intensive.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/intensive.html"/>
   </url>
   <url>
+    <loc>https://flywithmiki.com/de/preise.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/preise.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/prices.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/prices.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/vergleich.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/vergleich.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/compare.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/compare.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/faq.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/equipment.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/equipment.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/equipment.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/equipment.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/safety.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/safety.html"/>
+  </url>
+  <url>
+    <loc>https://flywithmiki.com/de/checkcenter.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/checkcenter.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/checkcenter.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/checkcenter.html"/>
+  </url>
+  <url>
     <loc>https://flywithmiki.com/de/agb.html</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <priority>0.25</priority>
     <xhtml:link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/agb.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flywithmiki.com/agb.html"/>
@@ -116,10 +209,12 @@
   </url>
 
   <!--
-    Deliberately NOT listed (noindex, nofollow — reachable by direct URL only):
-      /flightdeck.html      student app registration
-      /shv-calc.html        student tool
-      /startleiter.html     internal takeoff-marshall calculator
+    Deliberately NOT listed:
+      /flightdeck.html      student app registration (noindex)
+      /shv-calc.html        student tool (noindex)
+      /startleiter.html     internal takeoff-marshall calculator (noindex)
+      /de/prices.html, /de/meteo.html, /de/program.html, /de/links.html,
+      /flightdeck/          redirect stubs (meta refresh + canonical)
   -->
 
 </urlset>

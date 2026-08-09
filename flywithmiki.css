@@ -1,0 +1,226 @@
+/* ==========================================================================
+   FLYwithMIKI unified design skin, v1 (2026-08-09)
+   Loaded LAST in <head> on every page: overrides w3.css and per-page styles
+   by cascade order. Remove this one <link> per page (or restore the
+   website_backup_predesign_2026-08-09 folder) to roll back to the old look.
+   Palette from the logo: deep navy ring #0d2436, canopy blue #0b79c0,
+   sky cyan #00b4d8, plus the warm intensive orange #e85d04.
+   ========================================================================== */
+
+:root {
+  --fwm-navy:      #0d2436;
+  --fwm-navy-2:    #143850;
+  --fwm-blue:      #0b79c0;
+  --fwm-blue-deep: #075e97;
+  --fwm-cyan:      #00b4d8;
+  --fwm-orange:    #e85d04;
+  --fwm-green:     #25D366;
+  --fwm-bg:        #f4f8fb;
+  --fwm-ink:       #22333f;
+  --fwm-muted:     #5d707d;
+  --fwm-line:      #dfeaf2;
+  --fwm-card:      #ffffff;
+  --fwm-radius:    18px;
+  --fwm-shadow:    0 6px 24px rgba(13, 36, 54, 0.07);
+  --fwm-shadow-lg: 0 14px 40px rgba(13, 36, 54, 0.13);
+  --fwm-grad-hero: linear-gradient(140deg, #0d2436 0%, #114a74 38%, #0b79c0 72%, #00b4d8 100%);
+  --fwm-grad-band: linear-gradient(120deg, #075e97 0%, #0b79c0 55%, #00b4d8 100%);
+}
+
+/* ---------- base ---------- */
+html { scroll-behavior: smooth; }
+body, body.w3-white {
+  background-color: var(--fwm-bg) !important;
+  color: var(--fwm-ink) !important;
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, h5, h6, .w3-wide {
+  font-family: "Montserrat", "Segoe UI", sans-serif !important;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+p, li, td { line-height: 1.7; }
+::selection { background: var(--fwm-cyan); color: #fff; }
+a { transition: color .15s ease; }
+img { max-width: 100%; }
+
+/* content column of every page gets the soft page background,
+   while the outer frame stays calm */
+.w3-main { background: var(--fwm-bg); min-height: 100vh; }
+
+/* ---------- sidebar navigation ---------- */
+.w3-sidebar {
+  background: #fff !important;
+  border-right: 1px solid var(--fwm-line);
+  box-shadow: 2px 0 18px rgba(13, 36, 54, 0.05);
+}
+.w3-sidebar a { font-family: "Montserrat", sans-serif; font-size: 1.02em; }
+.w3-sidebar .w3-bar-item.w3-button,
+.w3-sidebar .w3-button {
+  border-radius: 10px;
+  margin: 1px 8px;
+  width: calc(100% - 16px);
+  transition: background .15s ease, color .15s ease, padding-left .15s ease;
+}
+.w3-sidebar .w3-bar-item.w3-button:hover,
+.w3-sidebar .w3-button:hover {
+  background: #eaf4fb !important;
+  color: var(--fwm-blue-deep) !important;
+}
+/* active menu item: quiet blue pill with an accent bar */
+.w3-sidebar .w3-bar-item.w3-light-grey,
+.w3-sidebar .w3-button.w3-light-grey {
+  background: #e7f2fa !important;
+  color: var(--fwm-blue-deep) !important;
+  box-shadow: inset 3px 0 0 var(--fwm-blue);
+}
+
+/* ---------- promo banner ---------- */
+.promo-banner {
+  background: var(--fwm-grad-band) !important;
+  box-shadow: 0 2px 12px rgba(13, 36, 54, 0.18);
+}
+.promo-banner a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.promo-banner a:hover { background: rgba(255, 255, 255, 0.34); }
+
+/* ---------- page hero: one identical gradient everywhere ----------
+   Full base styles live here so ANY page (student tools included) can use
+   a .page-hero block without defining local CSS for it. */
+.page-hero,
+.page-hero.section-boxed {
+  background: var(--fwm-grad-hero) !important;
+  box-shadow: var(--fwm-shadow-lg);
+  border-radius: var(--fwm-radius);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  padding: 40px 24px 34px;
+  margin-top: 26px;
+}
+.page-hero.section-boxed { max-width: 1000px; margin-left: auto; margin-right: auto; margin-bottom: 28px; box-sizing: border-box; }
+.page-hero h1 { font-size: 2.1em; margin: 16px 0 6px; font-weight: bold; line-height: 1.2; color: #fff; }
+.page-hero h2 { font-size: 1.15em; font-weight: normal; margin: 0 auto 18px; max-width: 720px; opacity: 0.94; color: #fff; }
+.page-hero .hero-sub  { font-size: 1.08em; opacity: 0.94; max-width: 720px; margin: 0 auto 6px; }
+.page-hero .hero-badge {
+  display: inline-block; border-radius: 30px; padding: 6px 18px;
+  font-size: 0.82em; font-weight: bold; text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .page-hero { padding: 30px 18px 26px; }
+  .page-hero h1 { font-size: 1.55em; }
+  .page-hero h2, .page-hero .hero-sub { font-size: 1em; }
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  top: -40%; right: -12%;
+  width: 55%; height: 160%;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.10), transparent 70%);
+  pointer-events: none;
+}
+.page-hero > * { position: relative; z-index: 1; }
+.page-hero .hero-badge {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.14em;
+}
+
+/* ---------- buttons ---------- */
+.hero-btn, .cta-btn, .promo-play-btn {
+  font-family: "Montserrat", sans-serif !important;
+  border-radius: 30px;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.hero-btn:hover, .cta-btn:hover, .promo-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(13, 36, 54, 0.22);
+}
+.hero-btn-wa { background: var(--fwm-green); border-color: var(--fwm-green); }
+.cta-btn-primary { background: var(--fwm-blue) !important; }
+.promo-play-btn { background: var(--fwm-blue); }
+
+/* ---------- cards: one radius, one border, one shadow ---------- */
+.w3-card, .w3-card-4,
+.info-box, .q-card, .diff-card, .choice-card,
+details.detail-box {
+  border-radius: var(--fwm-radius) !important;
+  border: 1px solid var(--fwm-line);
+  box-shadow: var(--fwm-shadow) !important;
+  background-color: var(--fwm-card);
+}
+.q-card, .choice-card, details.detail-box {
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.q-card:hover, .choice-card:hover {
+  box-shadow: var(--fwm-shadow-lg) !important;
+  transform: translateY(-2px);
+}
+.info-box-accent { border-left: 5px solid var(--fwm-blue) !important; background: #eef6fc; }
+.info-box-warn   { border-left: 5px solid #e8a004 !important; }
+
+/* ---------- tables ---------- */
+.price-table {
+  border: 1px solid var(--fwm-line);
+  border-radius: var(--fwm-radius);
+  box-shadow: var(--fwm-shadow);
+}
+.price-table thead th, .price-table tr.head th {
+  background: var(--fwm-navy) !important;
+  letter-spacing: 0.02em;
+}
+.price-table tr:nth-child(even):not(.head) td { background: #f8fbfd; }
+.price-table tr:hover:not(.head) td { background: #eef6fc; }
+
+/* ---------- FAQ accordion ---------- */
+.faq-question {
+  font-family: "Montserrat", sans-serif !important;
+  border-radius: 12px !important;
+  transition: background .15s ease;
+}
+.faq-question:hover { background: #eaf4fb !important; }
+
+/* ---------- forms ---------- */
+input[type="text"], input[type="email"], textarea, select {
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  outline: 3px solid rgba(11, 121, 192, 0.35);
+  outline-offset: 1px;
+}
+button[type="submit"] { transition: transform .18s ease, box-shadow .18s ease; }
+button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(13,36,54,.25); }
+
+/* ---------- footer: calm navy, brand logo above ---------- */
+footer.w3-light-grey, footer.w3-container {
+  background: var(--fwm-navy) !important;
+  color: #b9c9d6 !important;
+  padding: 30px 16px 26px !important;
+  margin-top: 44px;
+}
+footer a { color: #9fd6ef !important; text-decoration: none; }
+footer a:hover { color: #ffffff !important; }
+footer .fwm-footer-logo {
+  max-width: 250px; width: 68%;
+  display: block; margin: 4px auto 14px;
+  opacity: 0.95;
+}
+
+/* ---------- floating WhatsApp ---------- */
+.floating-wa { box-shadow: 0 6px 22px rgba(13, 36, 54, 0.35); }
+
+/* ---------- small touches ---------- */
+.trust-bar, .trust-bar-item { font-family: "Montserrat", sans-serif; }
+hr { border: none; border-top: 1px solid var(--fwm-line); }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-thumb { background: #b7cddc; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fwm-blue); }
+::-webkit-scrollbar-track { background: #eef3f7; }
+
+/* keep W3 layout helpers untouched: this skin restyles, it does not re-lay-out */

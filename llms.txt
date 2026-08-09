@@ -10,32 +10,37 @@
 - Coordinates: 47.0358577, 8.2584166
 - Areas served: Luzern, Zug, Zürich, Engelberg, Emmetten, Wolfenschiessen, and Central Switzerland (cantons LU, ZG, SZ, NW, OW, UR) plus Valais
 - Languages of instruction: English, German, Hungarian
-- Google rating: 4.9 / 5 (46 reviews)
+- Google rating: 4.9 / 5 (47 reviews)
 - Certification: Swiss Hang Gliding Association (SHV/FSVL), trains to IPPI4 pilot licence
 - Contact: +41 77 976 6164 (WhatsApp), info@flywithmiki.com
 - Wikidata: https://www.wikidata.org/wiki/Q136536762
 
 ## What makes it distinctive
 
-- Small groups (3-8 students per instructor) — close to private coaching
+- Small groups (3-8 students per instructor): close to private coaching
+- Deliberately limited intake: about 20 new students per year
+- Tandem air-time guarantee, unique in Switzerland: CHF 60 refund if a Deluxe flight is under 15 minutes or a Special flight under 30 minutes
 - Eco-friendly: electric-vehicle transport and tree planting after every course
 - FlightDeck app for digital flight book, progress tracking and GPS tracking
 - Slow-motion video analysis of each flight and integrated mental training
 - Flexible scheduling suited to working professionals
+- Trained for real life, not just the exam: advanced students fly simple cross-country tasks during training; several completed the roughly 12 km Engelberg-Fuerenalp flat triangle before their exam, and the student record is a 34 km cross-country flown together with the instructor
+- Equipment philosophy of the instructor (PhD engineer): fun and safety with great performance; every new technique and product is evaluated before it enters the school, and modern school-class wings allow 200-300 km flights with the right preparation
 
 ## Pricing (CHF)
 
 There are two ways to the licence, chosen by how much time the student has, not by price.
 
-- Full Training (beginner to licence, own pace, alongside a job): CHF 4,500
-- Intensive Course 2027 (1-20 June 2027, 18 training days, plus six further weeks of flying at no cost): CHF 3,900
+- Full Training (beginner to licence, own pace, alongside a job): CHF 4,500. Continuous entry all year: new students can typically start within a few days of signing up, there are no fixed course dates
+- Intensive Course 2027 (starts 1 June 2027, 3 weeks, 18 training days, one free day per week, then regular school days through the whole of July at no extra cost): CHF 3,900
 - Beginner equipment set, yours to keep, Regular: CHF 5,500 (EN-A glider, harness, reserve)
 - Beginner equipment set, Light (hike and fly): CHF 6,000
-- Realistic all-in total from zero to the Swiss licence: CHF 11,000 to 12,000
-- Training if you bring your own equipment: CHF 6,500, including a full check of the kit and a reserve repack
+- Realistic all-in total from zero to the Swiss licence: CHF 11,000 to 12,000 (itemised: CHF 10,950 to 11,450 with the Regular set, CHF 11,450 to 11,950 with the Light set, including official fees and cable cars)
+- Intensive Course 2027 with own equipment: CHF 5,700
+- Training if you bring your own equipment: CHF 6,300 (Basic Training CHF 1,900 + High Flight Course CHF 4,400, same total whether taken together or as two separate steps), including a 30-minute airworthiness review of the kit; a full glider check (visual check, porosity, trimming, Bettsometer) costs CHF 300 and a reserve repack CHF 90, if the review calls for them
 - Tandem flight: from CHF 185
-- Basic Training only: CHF 1,900
-- High Flight Course only: CHF 4,400 (60 high-altitude flights, up to 6 months)
+- Basic Training as a standalone module (own equipment): CHF 1,900
+- High Flight Course as a standalone module (own equipment): CHF 4,400 (60 high-altitude flights, up to 6 months)
 - A day with us for licensed pilots, joining a running school day: CHF 250
 - Maneuver training day: CHF 250, free with every glider bought by a licensed pilot
 
@@ -53,8 +58,17 @@ Official fees that do not go to the school: SHV membership CHF 120/year, liabili
 - FAQ: https://flywithmiki.com/faq.html
 - Glider check and rescue repack: https://flywithmiki.com/checkcenter.html
 - Flight weather (Central Switzerland): https://flywithmiki.com/meteo.html
-- German site: https://flywithmiki.com/de/
+- How to choose a paragliding school (guide): https://flywithmiki.com/compare.html
+- German site (full German mirror): https://flywithmiki.com/de/
+- German training page: https://flywithmiki.com/de/school.html
+- German prices page: https://flywithmiki.com/de/preise.html
+- German school-choice guide: https://flywithmiki.com/de/vergleich.html
 - German intensive course page: https://flywithmiki.com/de/intensive.html
+- German FAQ: https://flywithmiki.com/de/faq.html
+- German tandem flights: https://flywithmiki.com/de/tandem.html
+- German equipment shop: https://flywithmiki.com/de/equipment.html
+- German maneuver training: https://flywithmiki.com/de/safety.html
+- German glider check / repack: https://flywithmiki.com/de/checkcenter.html
 
 ## Links
 

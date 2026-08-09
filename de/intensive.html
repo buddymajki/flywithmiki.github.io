@@ -67,8 +67,8 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 		<link rel="manifest" href="../site.webmanifest">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
@@ -121,6 +121,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Gleitschirm Intensivkurs 2027 Schweiz | FLYwithMIKI" />
 <meta name="twitter:description" content="3-wöchiger Gleitschirm-Intensivkurs in der Zentralschweiz, Juni 2027, plus Schulungstage im Juli. Max. 12 Teilnehmende. Jetzt auf die Frühbucherliste." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+<link rel="stylesheet" href="../flywithmiki.css?v=1">
 </head>
 
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -153,19 +154,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="../school.html" class="w3-bar-item w3-button">Gleitschirm-Ausbildung</a>
+    <a href="school.html" class="w3-bar-item w3-button">Gleitschirm-Ausbildung</a>
     <a href="intensive.html" class="w3-bar-item w3-button w3-light-grey" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensivkurs 2027</a>
-    <a href="../prices.html" class="w3-bar-item w3-button">Preise</a>
-    <a href="../equipment.html" class="w3-bar-item w3-button">Shop / Ausrüstung</a>
-    <a href="../checkcenter.html" class="w3-bar-item w3-button">Checkcenter</a>
-    <a href="../faq.html" class="w3-bar-item w3-button">FAQ</a>
-    <a href="../safety.html" class="w3-bar-item w3-button">Sicherheitstraining</a>
-    <a href="./#kontakt" class="w3-bar-item w3-button">Kontakt</a>
+    <a href="preise.html" class="w3-bar-item w3-button">Preise</a>
+    <a href="vergleich.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Schulwahl-Guide</a>
+    <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
+    <a href="index.html#contact" class="w3-bar-item w3-button">Kontakt</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="./" class="w3-bar-item w3-button" style="font-size:0.9em">&#8592; Zur deutschen Übersicht</a>
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="../program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Tagesprogramm</a>
+    <a href="../meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
+    <a href="../links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
+    <a href="../flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
+    <a href="../shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffern-Rechner</a>
+  </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="../tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemflüge</a>
+  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; Für brevetierte Piloten <i class="fa fa-caret-down"></i></a>
+  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Ausrüstung</a>
+    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Manövertraining</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemflüge</a>
 </nav>
 
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
@@ -201,7 +214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      </div>
    </div>
    <p style="font-size:0.85em;opacity:0.85;margin:2px 0 6px">Frühbucher: <b>CHF 300 Rabatt</b> für die ersten Anmeldungen. Preise werden noch finalisiert; Listenmitglieder erhalten Erstzugang und den fixierten Rabatt.</p>
-   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 24px">&#128197; Termine: <b>Juni 2027 (3 Wochen, genaue Daten folgen)</b>, danach reguläre Schulungstage den ganzen Juli hindurch<!-- TODO_DATES --></p>
+   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 24px">&#128197; Termine: <b>ab 1. Juni 2027</b> (3 Wochen, 18 Trainingstage, ein freier Tag pro Woche), danach reguläre Schulungstage den ganzen Juli hindurch</p>
    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:white;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px;box-shadow:0 4px 15px rgba(0,0,0,0.2)">&#128172; Unverbindlich auf die Liste</a>
    <a href="#how" style="display:inline-block;background:rgba(255,255,255,0.18);color:white;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px;border:2px solid rgba(255,255,255,0.4)">So funktioniert's &#8595;</a>
  </div>
@@ -314,6 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
+  <img src="../Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>&copy; 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>Alle Rechte vorbehalten.</p>
   <p><a href="agb.html" target="_blank" rel="noopener noreferrer">Allgemeine Geschäftsbedingungen (AGB)</a> &middot; <a href="../">English site</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV-Register</a></p>

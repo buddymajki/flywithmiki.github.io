@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "FLYwithMIKI Paragliding School",
-  "alternateName": "M Mohos – FLYwithMIKI Paragliding School",
+  "alternateName": "M Mohos, FLYwithMIKI Paragliding School",
   "url": "https://flywithmiki.com",
   "logo": "https://flywithmiki.com/Images_v2/g760.webp",
   "description": "Swiss paragliding school and sustainability initiative based in Central Switzerland, focusing on flight education and mental training.",
@@ -78,8 +78,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" font-display: "swap;">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" font-display: "swap;">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="meteo.css">
@@ -93,6 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="AI Flight Weather for Paragliding | FLYwithMIKI" />
 <meta name="twitter:description" content="AI flight-weather prediction for paragliding in Central Switzerland: daily flying-chance %, hazard warnings for föhn, wind, fronts and fog, plus confidence." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
+<link rel="stylesheet" href="flywithmiki.css?v=1">
 </head>
 
 
@@ -110,7 +111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
 
     <div class="w3-margin w3-center">
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> </img>
+        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> 
         </a>
     </div>
     <!--Language menu -->
@@ -136,6 +137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
     <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
     <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
   </div>
@@ -190,11 +192,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
 
-<!-- METEO -->
-<div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="meteo">
-  <img src="https://flywithmiki.com/Images_v2/logo1.webp" alt="FLYwithMIKI paragliding school - Weather preparation for safe flying" style="width:100%; max-width:1000px"> <!--LOGO -->
-  <h1 style="font-size:1.3rem; font-weight:700; margin:14px 0 0; color:#0b3c5d">AI Flight Weather Prediction for Paragliding in Central Switzerland</h1>
-</div>
+<!-- PAGE HERO -->
+ <div class="page-hero section-boxed">
+   <span class="hero-badge">Student Area</span>
+   <h1>AI Flight Weather Prediction</h1>
+   <p class="hero-sub">The algorithm&#39;s read of the day: warnings, flying-chance and confidence. Decision support only. YOU are the pilot, YOU decide.</p>
+ </div>
 
 
 
@@ -243,7 +246,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="btn sec" id="rawPageLink" href="meteo.html">Open raw data</a></div>
 
   <div id="status"><span class="loader"></span>Loading forecast.</div>
-  <footer><div class="disc">
+  <footer>
+  <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy"><div class="disc">
     <b>How the AI scores (v3).</b> Each day starts at 100% at each of the 4 launch sites (Zugerberg, Brunni/Engelberg, Büelen/Wolfenschiessen, Niederbauen/Emmetten) and everything that threatens a beginner course deducts points: rain is weighted by how many of the 9 course hours (09–17h) it likely eats, thunderstorms by ICON-CH1/ICON-D2 model agreement, föhn, wind strength &amp; direction, fronts and fog by severity, small stuff (a few clouds) costs nothing. Two situations force 0%: clear föhn and rain through most of the course day. The best site's score is the day's %. Uncertainty itself costs points, if the models disagree or the day is far ahead, the score drops and the confidence badge shows why. The MeteoSwiss text keywords can only push the score down, never up. ≥75% GO · 50–74% CAUTION · &lt;50% NO-FLY. The thermal forecast is a simplified parcel model on ICON data, a first estimate, not a sounding analysis. The algorithm is work in progress. Decision support only, <b>YOU are the pilot, YOU decide.</b> Based on the <a href="https://www.meteo-shv.ch/home/entscheidungsstrategie/infos.html" target="_blank" rel="noopener noreferrer">SHV strategy</a>.
   </div></footer>
 </div>
