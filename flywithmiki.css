@@ -131,7 +131,26 @@ img { max-width: 100%; }
   letter-spacing: 0.14em;
 }
 
+/* ---------- intensive pages: the one deliberate exception ----------
+   The Intensive Course is the special product; its hero and banner keep the
+   warm orange identity instead of the sitewide blue, on EN and DE alike. */
+.page-hero.hero-intensive,
+.page-hero.hero-intensive.section-boxed {
+  background: linear-gradient(140deg, #2b1a0e 0%, #a84203 45%, #e85d04 78%, #ffb703 100%) !important;
+}
+.promo-banner.promo-intensive {
+  background: linear-gradient(120deg, #c94d03 0%, #e85d04 55%, #ffb703 100%) !important;
+}
+
 /* ---------- buttons ---------- */
+/* full .hero-btn base lives here too, so pages without local hero CSS
+   (e.g. de/intensive.html) render the same buttons as everywhere else */
+.hero-btn {
+  display: inline-block; background: rgba(255, 255, 255, 0.18); color: #fff;
+  padding: 13px 30px; font-size: 1.02em; font-weight: bold; text-decoration: none;
+  margin: 6px; border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.hero-btn:hover { background: rgba(255, 255, 255, 0.32); }
 .hero-btn, .cta-btn, .promo-play-btn {
   font-family: "Montserrat", sans-serif !important;
   border-radius: 30px;
