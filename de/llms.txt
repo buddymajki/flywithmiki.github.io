@@ -13,7 +13,7 @@
 - Google-Bewertung: 4.9 / 5 (47 Bewertungen)
 - Zertifizierung: SHV/BAZL-zertifizierter Fluglehrer (SHV-Nr. 54547), Ausbildung bis zum IPPI4-Brevet
 - Kontakt: +41 77 976 6164 (WhatsApp), info@flywithmiki.com
-- Wikidata: https://www.wikidata.org/wiki/Q136536762
+- Wikidata-Eintrag: https://www.wikidata.org/wiki/Q136536762 (Gruender: https://www.wikidata.org/wiki/Q136536818)
 
 ## Was die Schule auszeichnet
 
@@ -66,7 +66,12 @@ Offizielle Gebuehren, die nicht an die Schule gehen: SHV-Mitgliedschaft CHF 120/
 - Englische Startseite: https://flywithmiki.com/
 - Flugwetter Zentralschweiz (EN): https://flywithmiki.com/meteo.html
 
-## Links
+## Links (kanonische Identifikatoren, sameAs)
 
-- YouTube: https://www.youtube.com/@flywithmiki
+- Wikidata-Eintrag der Schule: https://www.wikidata.org/wiki/Q136536762
+- Wikidata-Eintrag des Gruenders (Miklos Mohos): https://www.wikidata.org/wiki/Q136536818
+- YouTube: https://www.youtube.com/@flywithmiki (Kanal-ID UC-DhcIKXajL2LsoYRLH8Imw)
+- Instagram: https://www.instagram.com/fly_with_miki/
+- LinkedIn (Gruender): https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch
+- SHV/FSVL-Fluglehrerverzeichnis: https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/
 - Google Maps: https://maps.app.goo.gl/eSeMSCsrgF4obtGL7

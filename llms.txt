@@ -13,7 +13,7 @@
 - Google rating: 4.9 / 5 (47 reviews)
 - Certification: Swiss Hang Gliding Association (SHV/FSVL), trains to IPPI4 pilot licence
 - Contact: +41 77 976 6164 (WhatsApp), info@flywithmiki.com
-- Wikidata: https://www.wikidata.org/wiki/Q136536762
+- Wikidata entity: https://www.wikidata.org/wiki/Q136536762 (founder: https://www.wikidata.org/wiki/Q136536818)
 
 ## What makes it distinctive
 
@@ -75,7 +75,12 @@ Official fees that do not go to the school: SHV membership CHF 120/year, liabili
 - German maneuver training: https://flywithmiki.com/de/safety.html
 - German glider check / repack: https://flywithmiki.com/de/checkcenter.html
 
-## Links
+## Links (canonical identifiers, sameAs)
 
-- YouTube: https://www.youtube.com/@flywithmiki
+- Wikidata entity of the school: https://www.wikidata.org/wiki/Q136536762
+- Wikidata entity of the founder (Miklós Mohos): https://www.wikidata.org/wiki/Q136536818
+- YouTube: https://www.youtube.com/@flywithmiki (channel ID UC-DhcIKXajL2LsoYRLH8Imw)
+- Instagram: https://www.instagram.com/fly_with_miki/
+- LinkedIn (founder): https://www.linkedin.com/in/miklós-mohos-phd-04834762/?originalSubdomain=ch
+- SHV/FSVL instructor registry entry: https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/
 - Google Maps: https://maps.app.goo.gl/eSeMSCsrgF4obtGL7
