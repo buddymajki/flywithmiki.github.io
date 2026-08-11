@@ -30,7 +30,7 @@
   .lang button{background:var(--panel2);color:var(--dim);border:1px solid var(--line);
     padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
   .lang button.on{background:var(--cyan);color:#04222a;border-color:var(--cyan)}
-  .wrap{display:grid;grid-template-columns:340px 1fr 300px;min-height:calc(100vh - 53px)}
+  .wrap{display:grid;grid-template-columns:340px 1fr 300px;min-height:calc(100vh - 92px)}
   @media(max-width:1100px){.wrap{grid-template-columns:1fr}}
   .col{padding:16px;border-right:1px solid var(--line)}
   .col:last-child{border-right:none}
@@ -71,6 +71,25 @@
   .legend span{display:inline-flex;align-items:center;gap:5px}
   .sw{width:14px;height:3px;border-radius:2px;display:inline-block}
   .empty{color:var(--faint);font-size:13px;padding:20px 0;text-align:center}
+  /* site navigation + prose block (crawlable, matches the dark tool theme) */
+  .sitenav{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center;
+    padding:9px 18px;border-bottom:1px solid var(--line);background:var(--panel);font-size:12.5px}
+  .sitenav a{color:var(--dim);text-decoration:none;font-weight:600}
+  .sitenav a:hover{color:var(--cyan)}
+  .sitenav a.brand{color:var(--ink);letter-spacing:.3px}
+  .sitenav .sep{color:var(--faint)}
+  .about{border-top:1px solid var(--line);background:var(--panel);padding:28px 18px 32px}
+  .about .inner{max-width:860px;margin:0 auto}
+  .about h2{font-size:15px;color:var(--ink);margin:0 0 10px;font-weight:600;
+    text-transform:none;letter-spacing:0}
+  .about h3{font-size:13px;color:var(--ink);margin:22px 0 6px;font-weight:600;
+    text-transform:none;letter-spacing:0}
+  .about p{color:var(--dim);font-size:13px;line-height:1.65;margin:0 0 10px}
+  .about a{color:var(--cyan)}
+  .sitefoot{padding:16px 18px 26px;color:var(--faint);font-size:12px;text-align:center;
+    background:var(--panel);border-top:1px solid var(--line)}
+  .sitefoot a{color:var(--dim);text-decoration:none}
+  .sitefoot a:hover{color:var(--cyan)}
         /* site-wide card consistency */
         .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
         </style>
@@ -89,6 +108,16 @@
 <link rel="stylesheet" href="flywithmiki.css?v=1">
 </head>
 <body>
+<nav class="sitenav" aria-label="FLYwithMIKI">
+  <a class="brand" href="https://flywithmiki.com/">FLYwithMIKI</a>
+  <span class="sep">/</span>
+  <a href="meteo.html" data-i18n="navMeteo">Flight weather</a>
+  <a href="meteoAI.html" data-i18n="navMeteoAI">AI weather briefing</a>
+  <a href="school.html" data-i18n="navSchool">Learn to fly</a>
+  <a href="links.html" data-i18n="navLinks">Links &amp; webcams</a>
+  <a href="faq.html" data-i18n="navFaq">FAQ</a>
+  <a href="contact.html" data-i18n="navContact">Contact</a>
+</nav>
 <header>
   <h1 data-i18n="appTitle">FLYwithMIKI Emagram Analyser v1.0</h1>
   <span class="sub mono" data-i18n="appSub">cloud base . CAPE . thermals . overdevelopment</span>
@@ -101,28 +130,28 @@
 
 <div class="wrap">
   <div class="col">
-    <h2 data-i18n="srcHead">Adatforrás</h2>
+    <h2 data-i18n="srcHead">Data source</h2>
     <div class="seg">
-      <button id="tabFetch" class="on" data-i18n="tabFetch">Letöltés</button>
-      <button id="tabPaste" data-i18n="tabPaste">Beillesztés</button>
+      <button id="tabFetch" class="on" data-i18n="tabFetch">Fetch (Open-Meteo)</button>
+      <button id="tabPaste" data-i18n="tabPaste">Paste</button>
     </div>
 
     <div id="panelFetch">
-      <label data-i18n="loc">Helyszín</label>
+      <label data-i18n="loc">Location</label>
       <select id="loc"></select>
       <div id="map"></div>
-      <div class="hint" data-i18n="mapHint">Bökj a térképre vagy válassz helyszínt.</div>
+      <div class="hint" data-i18n="mapHint">Click the map or pick a location.</div>
       <div class="row">
-        <div><label data-i18n="lat">Szélesség</label><input id="lat" class="mono" value="47.03"></div>
-        <div><label data-i18n="lon">Hosszúság</label><input id="lon" class="mono" value="8.28"></div>
+        <div><label data-i18n="lat">Latitude</label><input id="lat" class="mono" value="47.03"></div>
+        <div><label data-i18n="lon">Longitude</label><input id="lon" class="mono" value="8.28"></div>
       </div>
       <div class="row">
-        <div><label data-i18n="date">Dátum</label><input id="date" type="date"></div>
-        <div><label data-i18n="hour">Óra (helyi)</label>
+        <div><label data-i18n="date">Date</label><input id="date" type="date"></div>
+        <div><label data-i18n="hour">Hour (local)</label>
           <select id="hour"><option>10</option><option>11</option><option>12</option><option>13</option>
             <option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option></select></div>
       </div>
-      <label data-i18n="model">Modell</label>
+      <label data-i18n="model">Model</label>
       <select id="model">
         <option id="optBest" value="best_match">Best match</option>
         <option id="optIcon" value="icon_seamless">ICON</option>
@@ -130,16 +159,16 @@
         <option id="optGfs" value="gfs_seamless">GFS</option>
         <option id="optArome" value="meteofrance_arome_france_hd">AROME HD</option>
       </select>
-      <button class="btn" id="fetchBtn" data-i18n="btnFetch">Letöltés és elemzés</button>
-      <div class="hint" data-i18n="fetchHint">Ingyenes, kulcs nélkül (open-meteo.com). Nyisd meg letöltve.</div>
+      <button class="btn" id="fetchBtn" data-i18n="btnFetch">Fetch and analyze</button>
+      <div class="hint" data-i18n="fetchHint">Free, no API key needed (open-meteo.com).</div>
     </div>
 
     <div id="panelPaste" style="display:none">
-      <label data-i18n="pasteLabel">Szondázó tábla</label>
+      <label data-i18n="pasteLabel">Sounding table (p, height, T, Td, [wind dir, knots])</label>
       <textarea id="raw" class="mono" data-i18n-ph="pastePh"></textarea>
-      <button class="btn" id="parseBtn" data-i18n="btnParse">Elemzés</button>
-      <button class="btn ghost" id="demoBtn" data-i18n="btnDemo">Payerne példa</button>
-      <div class="hint" data-i18n="pasteHint">Oszlopok: nyomás, magasság, T, harmatpont, [szélirány, csomó].</div>
+      <button class="btn" id="parseBtn" data-i18n="btnParse">Analyze pasted data</button>
+      <button class="btn ghost" id="demoBtn" data-i18n="btnDemo">Load Payerne example</button>
+      <div class="hint" data-i18n="pasteHint">Columns: pressure, height (m), T, dew point, [wind dir, knots]. Header and missing rows are skipped.</div>
     </div>
     <div id="status"></div>
   </div>
@@ -148,19 +177,98 @@
     <canvas id="chart"></canvas>
     <div class="meta mono"><span id="metaTitle"></span><span id="metaSfc"></span></div>
     <div class="legend">
-      <span><i class="sw" style="background:var(--temp)"></i><b data-i18n="legT">Hőmérséklet</b></span>
-      <span><i class="sw" style="background:var(--dew)"></i><b data-i18n="legTd">Harmatpont</b></span>
-      <span><i class="sw" style="background:var(--parcel)"></i><b data-i18n="legParcel">Parcella</b></span>
+      <span><i class="sw" style="background:var(--temp)"></i><b data-i18n="legT">Temperature</b></span>
+      <span><i class="sw" style="background:var(--dew)"></i><b data-i18n="legTd">Dew point</b></span>
+      <span><i class="sw" style="background:var(--parcel)"></i><b data-i18n="legParcel">Parcel path</b></span>
       <span><i class="sw" style="background:rgba(255,93,93,.5)"></i>CAPE</span>
-      <span><i class="sw" style="background:rgba(220,228,238,.85)"></i><b data-i18n="legCloud">Felhő</b></span>
+      <span><i class="sw" style="background:rgba(220,228,238,.85)"></i><b data-i18n="legCloud">Cloud</b></span>
     </div>
   </div>
 
   <div class="col">
-    <h2 data-i18n="resHead">Eredmény</h2>
-    <div id="results"><div class="empty" data-i18n="empty">Tölts be vagy illessz be adatot.</div></div>
+    <h2 data-i18n="resHead">Result</h2>
+    <div id="results"><div class="empty" data-i18n="empty">Fetch or paste data to start.</div></div>
   </div>
 </div>
+
+<section class="about">
+  <div class="inner">
+    <h2 data-i18n="abH1">What is an emagram?</h2>
+    <p data-i18n="abP1">An emagram is a thermodynamic diagram that plots air temperature and dew point against altitude. For a paraglider pilot it answers the questions the surface forecast cannot: how high the thermals will go, whether they will form cumulus clouds or stay blue, where an inversion will cap the day, and whether the atmosphere will overdevelop into showers or thunderstorms by the afternoon.</p>
+
+    <h3 data-i18n="abH2">What this analyser calculates</h3>
+    <p data-i18n="abP2">Lift the surface parcel along the dry adiabat and you get the dry thermal top and the condensation level (LCL), which is the cloud base. Follow it further along the moist adiabat and you get the equilibrium level (EL), the cloud top. From the same sounding the tool derives the 0 °C level, CAPE, CIN (the capping inversion), the trigger temperature the ground has to reach before convection starts, the LFC, and from those a verdict on overdevelopment and thunderstorm risk.</p>
+
+    <h3 data-i18n="abH3">How to use it for a flying day</h3>
+    <p data-i18n="abP3">Pick a launch site or click the map, choose tomorrow's date and the hour you expect the strongest thermals, then fetch the forecast sounding. Compare the trigger temperature with the forecast surface temperature: if the ground never gets there, the day stays flat. A cloud base well above the dry thermal top means classic cumulus; a cloud top far above the base means the day is likely to overdevelop, and you want to be on the ground before it does. You can also paste a real radiosonde table, for example the Payerne ascent, instead of using the model data.</p>
+
+    <h3 data-i18n="abH4">Data and limitations</h3>
+    <p data-i18n="abP4">Forecast soundings come from Open-Meteo (ICON, ECMWF IFS, GFS and AROME HD). Model soundings smooth out valley inversions and local terrain effects, which in the Alps can matter a lot. Treat the result as a planning aid, not as a flight briefing: always cross-check it against the official MeteoSwiss and SHV aviation forecast, and against what the sky actually does.</p>
+
+    <p data-i18n="abCta">Built by FLYwithMIKI, a paragliding school in Kriens, Central Switzerland, offering complete pilot training to the SHV / IPPI 4 licence in small groups, taught in English, German and Hungarian.</p>
+    <p>
+      <a href="school.html" data-i18n="abL1">Paragliding courses</a> &middot;
+      <a href="meteo.html" data-i18n="abL2">Live flight weather</a> &middot;
+      <a href="meteoAI.html" data-i18n="abL3">AI weather briefing</a> &middot;
+      <a href="faq.html" data-i18n="abL4">FAQ</a> &middot;
+      <a href="contact.html" data-i18n="abL5">Contact</a>
+    </p>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <a href="https://flywithmiki.com/">flywithmiki.com</a> &middot; FLYwithMIKI Paragliding School &middot; Kriens, Switzerland
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://flywithmiki.com/emagram.html#app",
+  "name": "FLYwithMIKI Emagram Analyser",
+  "url": "https://flywithmiki.com/emagram.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": ["en", "de", "hu"],
+  "description": "Free emagram / sounding analyser for paraglider pilots: cloud base (LCL), dry thermal top, cloud top (EL), 0 °C level, CAPE, CIN, trigger temperature and overdevelopment risk, from Open-Meteo forecast soundings or a pasted radiosonde table.",
+  "featureList": [
+    "Cloud base (LCL) and dry thermal top",
+    "Cloud top (EL) and cloud depth",
+    "CAPE, CIN and LFC",
+    "Trigger (convective) temperature",
+    "Overdevelopment and thunderstorm assessment",
+    "Central Switzerland launch-site presets"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CHF"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://flywithmiki.com/#website",
+    "url": "https://flywithmiki.com/"
+  },
+  "publisher": {
+    "@id": "https://flywithmiki.com/#organization"
+  },
+  "author": {
+    "@id": "https://flywithmiki.com/#miklos-mohos"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "FLYwithMIKI", "item": "https://flywithmiki.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Flight weather", "item": "https://flywithmiki.com/meteo.html" },
+    { "@type": "ListItem", "position": 3, "name": "Emagram Analyser", "item": "https://flywithmiki.com/emagram.html" }
+  ]
+}
+</script>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -170,11 +278,11 @@ const I18N={
    tabFetch:"Letöltés (Open-Meteo)",tabPaste:"Beillesztés",loc:"Helyszín",lat:"Szélesség",lon:"Hosszúság",
    date:"Dátum",hour:"Óra (helyi)",model:"Modell",mapHint:"Bökj a térképre vagy válassz helyszínt.",
    mdlBest:"Best match (auto, ajánlott)",mdlIcon:"ICON (DWD, Alpok jó)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
-   btnFetch:"Letöltés és elemzés",fetchHint:"Ingyenes, kulcs nélkül (open-meteo.com). Nyisd meg letöltve, böngészőben.",
+   btnFetch:"Letöltés és elemzés",fetchHint:"Ingyenes, API-kulcs nélkül (open-meteo.com).",
    pasteLabel:"Szondázó tábla (p, magasság, T, Td, [szélirány, csomó])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
    btnParse:"Elemzés a beillesztett adatból",btnDemo:"Payerne példa betöltése",
    pasteHint:"Oszlopok: nyomás, magasság (m), T, harmatpont, [szélirány, csomó]. A fejléc és a hiányzó sorok kimaradnak.",
-   resHead:"Eredmény",empty:"Tölts be vagy illessz be adatot.",
+   resHead:"Eredmény",empty:"Tölts le vagy illessz be adatot.",
    legT:"Hőmérséklet",legTd:"Harmatpont",legParcel:"Parcella útja",legCloud:"Felhő",
    kCloudBase:"Felhőalap (LCL)",kDryTop:"Száraz termik teteje",kCloudTop:"Felhőtető (EL)",kCloudDepth:"Felhővastagság",
    kZero:"0 °C szint",kCape:"CAPE",kCin:"CIN (gát)",kTrigger:"Trigger hőm.",kLfc:"LFC",
@@ -191,16 +299,28 @@ const I18N={
    nDry:"Száraz középszint: erős kifutószél / leszálló él kockázata, ha beépül.",
    sReady:"Kész.",sFetch:"Letöltés.",sData:"Adat: {t} . talaj {z} m",sNoDate:"Adj meg dátumot.",
    sFew:"Túl kevés érvényes szint az elemzéshez.",sErr:"Hiba: ",
-   sNet:"Nem sikerült elérni az Open-Meteo-t. Ha a fájlt a Claude előnézetében nyitottad meg, az tiltja a külső kéréseket: töltsd le és nyisd meg a böngészőben. Ha letöltve sem megy, reklámblokkoló / pajzs tiltja az api.open-meteo.com-ot, vagy nincs net. A Beillesztés mód mindig működik."},
- en:{appTitle:"FLYwithMIKI Emagram Analyzer v1.0",appSub:"cloud base . CAPE . thermals . overdevelopment",srcHead:"Data source",
+   sNet:"Nem sikerült elérni az Open-Meteo-t. Valószínűleg reklámblokkoló vagy böngészőpajzs tiltja az api.open-meteo.com-ot, vagy nincs hálózat. A Beillesztés mód mindig működik.",
+   navMeteo:"Repülési időjárás",navMeteoAI:"AI időjárás-briefing",navSchool:"Tanulj repülni",
+   navLinks:"Linkek és webkamerák",navFaq:"GYIK",navContact:"Kapcsolat",
+   abH1:"Mi az az emagram?",
+   abP1:"Az emagram olyan termodinamikai diagram, amely a hőmérsékletet és a harmatpontot a magasság függvényében ábrázolja. A siklóernyős pilótának arra ad választ, amire a felszíni előrejelzés nem: milyen magasra jönnek fel a termikek, lesz-e gomolyfelhő vagy kék termik marad a nap, hol zárja le inverzió a légteret, és túlfejlődik-e a délután záporba vagy zivatarba.",
+   abH2:"Mit számol ki ez az elemző",
+   abP2:"A felszíni parcellát a száraz adiabata mentén emelve megkapod a száraz termik tetejét és a kondenzációs szintet (LCL), azaz a felhőalapot. Tovább követve a nedves adiabata mentén jön az egyensúlyi szint (EL), a felhőtető. Ugyanabból a szondázásból adódik a 0 °C-os szint, a CAPE, a CIN (a lezáró inverzió), a trigger-hőmérséklet, amit a talajnak el kell érnie a konvekció beindulásához, az LFC, és ezekből a túlfejlődés és a zivatar kockázata.",
+   abH3:"Hogyan használd egy repülőnapra",
+   abP3:"Válassz startot vagy bökj a térképre, add meg a holnapi dátumot és azt az órát, amikor a legerősebb termiket várod, majd töltsd le az előrejelzett szondázást. Vesd össze a trigger-hőmérsékletet az előrejelzett felszíni hőmérséklettel: ha a talaj sosem éri el, a nap lapos marad. Ha a felhőalap jóval a száraz termik teteje fölött van, klasszikus gomolyos napra számíts; ha a felhőtető messze az alap fölött van, a nap nagy eséllyel túlfejlődik, és addigra jobb, ha a földön vagy. Modelladat helyett valódi rádiószonda-táblát is beilleszthetsz, például a payerne-i felszállást.",
+   abH4:"Adatok és korlátok",
+   abP4:"Az előrejelzett szondázások az Open-Meteo-tól jönnek (ICON, ECMWF IFS, GFS és AROME HD). A modellszondázás elsimítja a völgyi inverziókat és a helyi domborzati hatásokat, ami az Alpokban sokat számít. Tervezési segédeszközként kezeld, ne repülési briefingként: mindig vesd össze a MeteoSchweiz és az SHV hivatalos légiforgalmi előrejelzésével, és azzal, amit az ég ténylegesen csinál.",
+   abCta:"A FLYwithMIKI készítette: siklóernyős iskola a Luzern melletti Kriensben, teljes pilótaképzés az SHV / IPPI 4 licencig, kis csoportokban, angol, német és magyar nyelven.",
+   abL1:"Siklóernyős tanfolyamok",abL2:"Élő repülési időjárás",abL3:"AI időjárás-briefing",abL4:"GYIK",abL5:"Kapcsolat"},
+ en:{appTitle:"FLYwithMIKI Emagram Analyser v1.0",appSub:"cloud base . CAPE . thermals . overdevelopment",srcHead:"Data source",
    tabFetch:"Fetch (Open-Meteo)",tabPaste:"Paste",loc:"Location",lat:"Latitude",lon:"Longitude",
    date:"Date",hour:"Hour (local)",model:"Model",mapHint:"Click the map or pick a location.",
    mdlBest:"Best match (auto, recommended)",mdlIcon:"ICON (DWD, good for Alps)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
-   btnFetch:"Fetch and analyze",fetchHint:"Free, no key (open-meteo.com). Open the downloaded file in a browser.",
+   btnFetch:"Fetch and analyze",fetchHint:"Free, no API key needed (open-meteo.com).",
    pasteLabel:"Sounding table (p, height, T, Td, [wind dir, knots])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
    btnParse:"Analyze pasted data",btnDemo:"Load Payerne example",
    pasteHint:"Columns: pressure, height (m), T, dew point, [wind dir, knots]. Header and missing rows are skipped.",
-   resHead:"Result",empty:"Load or paste data.",
+   resHead:"Result",empty:"Fetch or paste data to start.",
    legT:"Temperature",legTd:"Dew point",legParcel:"Parcel path",legCloud:"Cloud",
    kCloudBase:"Cloud base (LCL)",kDryTop:"Dry thermal top",kCloudTop:"Cloud top (EL)",kCloudDepth:"Cloud depth",
    kZero:"0 °C level",kCape:"CAPE",kCin:"CIN (cap)",kTrigger:"Trigger temp",kLfc:"LFC",
@@ -217,16 +337,28 @@ const I18N={
    nDry:"Dry mid levels: risk of strong outflow / gust front if it develops.",
    sReady:"Done.",sFetch:"Fetching.",sData:"Data: {t} . ground {z} m",sNoDate:"Pick a date.",
    sFew:"Too few valid levels to analyze.",sErr:"Error: ",
-   sNet:"Could not reach Open-Meteo. If you opened the file in the Claude preview, it blocks external requests: download it and open in a browser. If it still fails, an ad blocker / shield is blocking api.open-meteo.com, or there is no network. Paste mode always works."},
+   sNet:"Could not reach Open-Meteo. An ad blocker or browser shield is most likely blocking api.open-meteo.com, or there is no network. Paste mode always works.",
+   navMeteo:"Flight weather",navMeteoAI:"AI weather briefing",navSchool:"Learn to fly",
+   navLinks:"Links & webcams",navFaq:"FAQ",navContact:"Contact",
+   abH1:"What is an emagram?",
+   abP1:"An emagram is a thermodynamic diagram that plots air temperature and dew point against altitude. For a paraglider pilot it answers the questions the surface forecast cannot: how high the thermals will go, whether they will form cumulus clouds or stay blue, where an inversion will cap the day, and whether the atmosphere will overdevelop into showers or thunderstorms by the afternoon.",
+   abH2:"What this analyser calculates",
+   abP2:"Lift the surface parcel along the dry adiabat and you get the dry thermal top and the condensation level (LCL), which is the cloud base. Follow it further along the moist adiabat and you get the equilibrium level (EL), the cloud top. From the same sounding the tool derives the 0 °C level, CAPE, CIN (the capping inversion), the trigger temperature the ground has to reach before convection starts, the LFC, and from those a verdict on overdevelopment and thunderstorm risk.",
+   abH3:"How to use it for a flying day",
+   abP3:"Pick a launch site or click the map, choose tomorrow's date and the hour you expect the strongest thermals, then fetch the forecast sounding. Compare the trigger temperature with the forecast surface temperature: if the ground never gets there, the day stays flat. A cloud base well above the dry thermal top means classic cumulus; a cloud top far above the base means the day is likely to overdevelop, and you want to be on the ground before it does. You can also paste a real radiosonde table, for example the Payerne ascent, instead of using the model data.",
+   abH4:"Data and limitations",
+   abP4:"Forecast soundings come from Open-Meteo (ICON, ECMWF IFS, GFS and AROME HD). Model soundings smooth out valley inversions and local terrain effects, which in the Alps can matter a lot. Treat the result as a planning aid, not as a flight briefing: always cross-check it against the official MeteoSwiss and SHV aviation forecast, and against what the sky actually does.",
+   abCta:"Built by FLYwithMIKI, a paragliding school in Kriens, Central Switzerland, offering complete pilot training to the SHV / IPPI 4 licence in small groups, taught in English, German and Hungarian.",
+   abL1:"Paragliding courses",abL2:"Live flight weather",abL3:"AI weather briefing",abL4:"FAQ",abL5:"Contact"},
  de:{appTitle:"FLYwithMIKI - Emagramm-Analyse v1.0",appSub:"Wolkenbasis . CAPE . Thermik . Überentwicklung",srcHead:"Datenquelle",
    tabFetch:"Abruf (Open-Meteo)",tabPaste:"Einfügen",loc:"Standort",lat:"Breite",lon:"Länge",
    date:"Datum",hour:"Stunde (lokal)",model:"Modell",mapHint:"Auf die Karte klicken oder Standort wählen.",
    mdlBest:"Best match (auto, empfohlen)",mdlIcon:"ICON (DWD, gut für Alpen)",mdlEcmwf:"ECMWF IFS",mdlGfs:"GFS (NOAA)",mdlArome:"AROME HD (1.5 km)",
-   btnFetch:"Abrufen und analysieren",fetchHint:"Kostenlos, ohne Schlüssel (open-meteo.com). Heruntergeladene Datei im Browser öffnen.",
+   btnFetch:"Abrufen und analysieren",fetchHint:"Kostenlos, ohne API-Schlüssel (open-meteo.com).",
    pasteLabel:"Radiosonden-Tabelle (p, Höhe, T, Td, [Windrichtung, Knoten])",pastePh:"962 491 35.4 14.2 311 4\n850 1594 22.4 11.4 241 8\n...",
    btnParse:"Eingefügte Daten analysieren",btnDemo:"Payerne-Beispiel laden",
    pasteHint:"Spalten: Druck, Höhe (m), T, Taupunkt, [Windrichtung, Knoten]. Kopf- und fehlende Zeilen werden ignoriert.",
-   resHead:"Ergebnis",empty:"Daten laden oder einfügen.",
+   resHead:"Ergebnis",empty:"Daten abrufen oder einfügen.",
    legT:"Temperatur",legTd:"Taupunkt",legParcel:"Paketkurve",legCloud:"Wolke",
    kCloudBase:"Wolkenbasis (LCL)",kDryTop:"Thermikobergrenze (trocken)",kCloudTop:"Wolkenobergrenze (EL)",kCloudDepth:"Wolkenmächtigkeit",
    kZero:"0 °C-Niveau",kCape:"CAPE",kCin:"CIN (Sperre)",kTrigger:"Auslösetemp.",kLfc:"LFC",
@@ -243,7 +375,19 @@ const I18N={
    nDry:"Trockene Mittelschichten: Risiko starker Böenfront / Abwinde bei Entwicklung.",
    sReady:"Fertig.",sFetch:"Lädt.",sData:"Daten: {t} . Boden {z} m",sNoDate:"Datum wählen.",
    sFew:"Zu wenige gültige Niveaus für die Analyse.",sErr:"Fehler: ",
-   sNet:"Open-Meteo nicht erreichbar. Wenn die Datei in der Claude-Vorschau geöffnet wurde, blockiert diese externe Anfragen: herunterladen und im Browser öffnen. Wenn es weiterhin scheitert, blockiert ein Adblocker / Schutzschild api.open-meteo.com, oder es gibt kein Netz. Einfügen-Modus funktioniert immer."}
+   sNet:"Open-Meteo nicht erreichbar. Wahrscheinlich blockiert ein Adblocker oder Browser-Schutzschild api.open-meteo.com, oder es gibt kein Netz. Der Einfügen-Modus funktioniert immer.",
+   navMeteo:"Flugwetter",navMeteoAI:"KI-Wetterbriefing",navSchool:"Fliegen lernen",
+   navLinks:"Links & Webcams",navFaq:"FAQ",navContact:"Kontakt",
+   abH1:"Was ist ein Emagramm?",
+   abP1:"Ein Emagramm ist ein thermodynamisches Diagramm, das Lufttemperatur und Taupunkt über der Höhe darstellt. Für Gleitschirmpiloten beantwortet es genau die Fragen, die die Bodenvorhersage offen lässt: wie hoch die Thermik trägt, ob sich Cumulus bildet oder der Tag blau bleibt, wo eine Inversion den Tag deckelt, und ob sich die Atmosphäre am Nachmittag zu Schauern oder Gewittern überentwickelt.",
+   abH2:"Was dieser Analyser berechnet",
+   abP2:"Hebt man das Bodenpaket entlang der Trockenadiabate, erhält man die Obergrenze der Trockenthermik und das Kondensationsniveau (LCL), also die Wolkenbasis. Weiter entlang der Feuchtadiabate ergibt sich das Gleichgewichtsniveau (EL), die Wolkenobergrenze. Aus derselben Sondierung folgen das 0-°C-Niveau, CAPE, CIN (die Sperrschicht), die Auslösetemperatur, die der Boden für den Konvektionsstart erreichen muss, das LFC, und daraus eine Einschätzung von Überentwicklung und Gewitterrisiko.",
+   abH3:"So nutzt du es für einen Flugtag",
+   abP3:"Wähle einen Startplatz oder klicke auf die Karte, gib das Datum von morgen und die Stunde mit der stärksten erwarteten Thermik ein und lade die Vorhersagesondierung. Vergleiche die Auslösetemperatur mit der vorhergesagten Bodentemperatur: erreicht der Boden sie nie, bleibt der Tag flach. Liegt die Wolkenbasis deutlich über der Trockenthermik-Obergrenze, gibt es klassische Cumulusbewölkung; liegt die Wolkenobergrenze weit über der Basis, überentwickelt sich der Tag wahrscheinlich, und du solltest vorher am Boden sein. Statt Modelldaten kannst du auch eine echte Radiosonden-Tabelle einfügen, zum Beispiel den Aufstieg von Payerne.",
+   abH4:"Daten und Grenzen",
+   abP4:"Die Vorhersagesondierungen stammen von Open-Meteo (ICON, ECMWF IFS, GFS und AROME HD). Modellsondierungen glätten Talinversionen und lokale Geländeeffekte, was in den Alpen viel ausmacht. Behandle das Ergebnis als Planungshilfe, nicht als Flugbriefing: gleiche es immer mit der offiziellen Flugwettervorhersage von MeteoSchweiz und SHV ab, und mit dem, was der Himmel tatsächlich macht.",
+   abCta:"Erstellt von FLYwithMIKI, einer Gleitschirmschule in Kriens, Zentralschweiz: vollständige Pilotenausbildung bis zum SHV-/IPPI-4-Ausweis in kleinen Gruppen, auf Englisch, Deutsch und Ungarisch.",
+   abL1:"Gleitschirmkurse",abL2:"Live-Flugwetter",abL3:"KI-Wetterbriefing",abL4:"FAQ",abL5:"Kontakt"}
 };
 let lang='en';
 function t(k,vals){let s=(I18N[lang]&&I18N[lang][k])??I18N.en[k]??k;
@@ -264,7 +408,7 @@ const LOCS=[
  {n:"Fiesch / Eggishorn",lat:46.423,lon:8.133},
  {n:"Verbier (La Chaux)",lat:46.096,lon:7.228},
  {n:"Flumserberg (Walenstadt)",lat:47.090,lon:9.281},
- {n:"Payerne (szonda állomás)",lat:46.811,lon:6.942}
+ {n:"Payerne (radiosonde station)",lat:46.811,lon:6.942}
 ];
 
 // ===================== THERMODYNAMICS =====================
