@@ -461,6 +461,34 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
                 /* hero keeps its breathing room under the promo banner regardless of rule order */
         .page-hero.section-boxed { margin-top: 26px; }
+
+        /* === WHERE / WHEN / COST fact tiles in the hero === */
+        .fact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; max-width:900px; margin:24px auto 8px; text-align:left; }
+        .fact-tile { background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.28); border-radius:14px; padding:16px 18px; }
+        .fact-kicker { font-size:0.75em; letter-spacing:2px; text-transform:uppercase; opacity:0.85; margin-bottom:6px; font-weight:bold; }
+        .fact-main { font-size:1.12em; font-weight:bold; margin-bottom:5px; line-height:1.3; }
+        .fact-sub { font-size:0.87em; opacity:0.92; line-height:1.5; }
+        .fact-tile a { color:#caf0f8; font-weight:bold; }
+
+        /* === CLICKABLE HOOK CARDS: headline visible, details on click === */
+        .hook-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; text-align:left; }
+        details.hook { background:#fff; border:1px solid #e4f0fa; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+        details.hook summary { list-style:none; cursor:pointer; padding:16px 18px; display:flex; gap:12px; align-items:flex-start; }
+        details.hook summary::-webkit-details-marker { display:none; }
+        details.hook .hook-icon { font-size:1.5em; line-height:1.2; }
+        details.hook .hook-title { font-weight:bold; color:#003049; line-height:1.35; }
+        details.hook .hook-teaser { font-size:0.84em; color:#0077b6; margin-top:3px; line-height:1.45; }
+        details.hook .hook-plus { margin-left:auto; color:#0077b6; font-size:1.3em; font-weight:bold; transition:transform .2s; flex-shrink:0; }
+        details.hook[open] .hook-plus { transform:rotate(45deg); }
+        details.hook .hook-body { padding:12px 18px 16px; margin:0 14px 4px; color:#444; line-height:1.65; font-size:0.93em; border-top:1px dashed #dbe9f4; padding-left:4px; padding-right:4px; }
+        details.hook summary:hover { background:#f7fbfe; border-radius:14px; }
+
+        /* === HOW JOINING WORKS steps === */
+        .start-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:22px 0 6px; text-align:left; }
+        .start-step { background:#fff; border-radius:14px; padding:20px 18px; box-shadow:0 2px 8px rgba(0,0,0,0.07); position:relative; }
+        .start-step .step-badge { width:34px; height:34px; border-radius:50%; background:#0077b6; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; margin-bottom:10px; }
+        .start-step b.step-title { display:block; color:#003049; margin-bottom:6px; }
+        .start-step p { margin:0; font-size:0.9em; color:#555; line-height:1.6; }
         </style>
 
 
@@ -568,45 +596,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- PROMO BANNER -->
  <div class="promo-banner">
-    &#9992; Autumn Course 2026: CHF 300 starting discount, sign up before end of August! <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20the%20Autumn%20Course%202026">Reserve Your Spot &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEW: Intensive Course 2027 &rarr;</a>
+    &#9992; Autumn Course 2026: CHF 300 starting discount, sign up before end of August! <a href="#start">Reserve Your Spot &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEW: Intensive Course 2027 &rarr;</a>
  </div>
 
- <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+ <!-- INTRO: compact brand strip -->
  <div class="w3-container w3-white w3-center" id="Intro">
-        <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI paragliding school - eco-friendly flight training in Switzerland" style="width:100%; max-width:1000px"> <!--LOGO -->
-  
-        <img class="w3-image w3-round-xxlarge w3-padding" src="https://flywithmiki.com/Images_v2/anim.webp" alt="Paragliding flight over Swiss Alps - FLYwithMIKI student soaring in Central Switzerland" style="width:100%; max-width:1000px">
-        
-        <h1><b>Paragliding School &amp; Tandem Flights in Central Switzerland</b></h1>
-        <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI paragliding school - eco-friendly flight training in Switzerland" style="width:100%; max-width:440px"> <!--LOGO -->
  </div>
 
- <!-- HERO CTA SECTION -->
- <div class="hero-cta-section section-boxed">
-    <h2><b>Your Dream of Flying Starts Here</b></h2>
-    <p>Small groups of 3&ndash;8 students per SHV/BAZL-certified instructor, and deliberately no more than about 20 new students per year. Personal coaching from your very first step to the Swiss pilot license, at your pace, in English, German or Hungarian.</p>
-    <a href="school.html" class="cta-btn cta-btn-primary">Start Your Pilot Training</a>
-    <a href="tandem.html" class="cta-btn cta-btn-secondary">Book a Tandem Flight from CHF 185</a>
-    <p style="margin:16px auto 0; font-weight:bold; font-size:0.98em; max-width:560px">&#9889; No fixed course dates. Sign up today and you can be on the training hill within days.</p>
+ <!-- HERO: where, when, how much + the elevator pitch, all above the fold -->
+ <div class="page-hero section-boxed">
+    <span class="hero-badge">Small Paragliding School &middot; Central Switzerland</span>
+    <h1><b>Paragliding School &amp; Tandem Flights in Central Switzerland</b></h1>
+    <p class="hero-sub"><b>Why FLYwithMIKI?</b> Because learning to fly is personal. One instructor who knows your name, 3&ndash;8 students per group, only ~20 new students a year, and personal coaching from your first step to the Swiss licence, in English, German or Hungarian.</p>
+
+    <div class="fact-grid">
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128205; Where</div>
+        <div class="fact-main">Luzern &middot; Zug &middot; Z&uuml;rich area</div>
+        <div class="fact-sub">We fly in entire Central Switzerland (Engelberg Valley with several takeoffs, Rigi, Emmetten, Zugerberg, and many more). Meeting point in Kriens (Luzern), shuttle to the flying sites. <a href="contact.html">Getting here &rarr;</a></div>
+      </div>
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128197; When</div>
+        <div class="fact-main">No fixed dates, start within days</div>
+        <div class="fact-sub">Training days Thursday&ndash;Sunday, all year, whenever the weather is good. Built to fit around a full-time job.</div>
+      </div>
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128176; How much</div>
+        <div class="fact-main">CHF 4,500 training</div>
+        <div class="fact-sub">+ your own equipment and official fees. Realistic all-in total to your licence: CHF 11&ndash;12k. <a href="prices.html">Every franc itemised &rarr;</a></div>
+      </div>
+    </div>
+
+    <a href="#start" class="hero-btn">&#128640; How joining works &darr;</a>
+    <a href="tandem.html" class="hero-btn hero-btn-wa">&#9992; Tandem Flight from CHF 185</a>
  </div>
 
- <!-- TRUST STATS BAR -->
- <div class="trust-bar">
-    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google Rating</div>
-    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Students/Instructor</div>
-    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV/BAZL</strong> Certified Instructor</div>
-    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>400+</strong> Trees Planted</div>
-    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Languages</div>
- </div>
-
- <!-- INTENSIVE 2027 TEASER STRIP -->
- <div class="intensive-strip section-boxed">
-    <span style="color:#e85d04;font-weight:bold">&#9889; NEW for 2027:</span>
-    <span style="color:#444">The 3-Week Intensive Course, from zero to exam-ready in one focused summer block, then keep flying with the school through July. Limited to 12 students.</span>
-    <a href="intensive.html" style="color:#e85d04;font-weight:bold;text-decoration:underline;margin-left:4px">Learn more and join the early list &rarr;</a>
- </div>
-
- <!-- PROMO VIDEO -->
+ <!-- PROMO VIDEO: right under the hero, the proof in 56 seconds -->
  <div class="section-boxed promo-block" id="video" style="background:#f9f9f9;border:1px solid #eee">
    <h2 style="margin-top:0"><b>See What a Real Training Day Looks Like</b></h2>
    <p style="color:#555;max-width:700px;margin:0 auto 18px">No stock footage and no promises: this is our own students, our own sites, filmed over one season.</p>
@@ -627,96 +653,189 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    <button class="promo-play-btn" onclick="playFullPromo(this)">&#9654; Watch the full film with sound (56 s)</button>
    <p style="color:#999;font-size:0.82em;margin:10px 0 0">The preview above plays without sound. Press the button for the full film.</p>
  </div>
- <div class="section" style="text-align:center">
 
-      <div class="w3-row-padding" style="width:100%">
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-          <p class="w3-xlarge">Multilingual</p>
-        
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="Multilingual paragliding instruction - English, German, Hungarian lessons available" style="width:100%; max-width:200px" loading="lazy">
-           <p class="w3-justify w3-padding">You have to understand everything, especially in the air. Teaching in English, German and Hungarian</p>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-
-          <p class="w3-xlarge">Small group</p>
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Small group paragliding training - maximum 3-8 students per instructor for personalized learning" style="width:100%; max-width:200px" loading="lazy">
-          <p class="w3-justify w3-padding">Size matters! Effective teaching is only possible in a small group, where the instructor can focus on you. That is why we deliberately accept only about 20 new students per year.</p>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-            <p class="w3-xlarge">ECO-friendly</p>
-            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="Eco-friendly paragliding - tree planting after each flight, sustainable aviation" style="width:100%; max-width:200px" loading="lazy">
-           <p class="w3-display-bottommidle w3-justify w3-padding">Planting trees after each student and tandem flights. Traveling with EV-bus</p>
-           <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe"></a>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-           <p class="w3-xlarge">Flexible</p>
-           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="Flexible paragliding course schedule - train at your own pace with personalized timeline" style="width:100%; max-width:200px" loading="lazy">
-           
-
-           <p class="w3-display-bottommidle w3-justify w3-padding">Do you have a hectic schedule? No problem, our training is completely flexible.</p>
-           
-           </div> 
-        </div>
-      </div>
+ <!-- TRUST STATS BAR -->
+ <div class="trust-bar">
+    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google Rating</div>
+    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Students/Instructor</div>
+    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV/BAZL</strong> Certified Instructor</div>
+    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>500+</strong> Trees Planted</div>
+    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Languages</div>
  </div>
 
-  <div class="section" id="sch"> 
-	<p class="w3-justify w3-margin-top" >
-		
-		<strong>WHY CHOOSE US? Your flight is a personal journey</strong>	<br><br>
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="Paraglider flying over Swiss castle - spectacular alpine scenery in Central Switzerland" style="height:250px; width:250px; object-fit:cover; float:right; margin:00px 0px 10px 20px" loading="lazy">
-		
-		When choosing a paragliding school, it’s vital to recognize that flight is a truly <strong>personal journey</strong>. It’s an experience where you are constantly confronting and pushing past your own internal limits, as the air is fundamentally not our natural environment. This makes the role of your instructor paramount. At FLYwithMIKI, we commit to providing an instructor who will genuinely <strong>"hold your hand"</strong> throughout this process, offering unwavering support for your technical skills and, crucially, your <strong>mental development</strong>. This is why we insist on <strong>small group training</strong>, it’s the only way to ensure the highly personalized instruction necessary to focus intensely on each individual's progress, challenges, and confidence building.
-		<br><br>
-		We integrate this highly tailored approach with the very best in <strong>modern pedagogical methods</strong> and cutting-edge technology. Our training goes far beyond standard instruction by incorporating dedicated <strong>video analysis</strong> of your flights, focused <strong>one-on-one de-briefing</strong> sessions, and essential <strong>mental training</strong>. These tools are designed to accelerate your learning curve, improve your decision-making processes, and cement the confidence required for independent flight. Through this unique combination of personalized attention and advanced methods, we ensure you gain not just flying skills, but the profound psychological strength needed to excel as a pilot. <br><br>
+ <!-- INTENSIVE 2027 TEASER STRIP -->
+ <div class="intensive-strip section-boxed">
+    <span style="color:#e85d04;font-weight:bold">&#9889; NEW for 2027:</span>
+    <span style="color:#444">The 3-Week Intensive Course, from zero to exam-ready in one focused summer block, then keep flying with the school through July. Limited to 12 students.</span>
+    <a href="intensive.html" style="color:#e85d04;font-weight:bold;text-decoration:underline;margin-left:4px">Learn more and join the early list &rarr;</a>
+ </div>
+ <!-- EYE-OPENERS: the questions nobody thinks to ask when comparing schools -->
+ <div class="section" id="questions" style="text-align:center">
+    <h2><b>Choosing a School? Ask These Four Questions</b></h2>
+    <p style="color:#555; max-width:700px; margin:0 auto 22px">Most people compare schools on the course price. These four questions decide what kind of pilot you become, and almost nobody thinks to ask them. Click each one.</p>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129666;</span>
+          <span><span class="hook-title">&ldquo;How many flights will I get per day?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">The single biggest difference between schools: 4&ndash;6 with us vs 2&ndash;3 in large groups.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">You need at least <b>50 flights before your Swiss exam</b>, and the number is only half the story: repetition is how launching and landing become reflexes. On a normal training day our students log <b>4&ndash;6 flights</b>; in large groups 2&ndash;3 per day is typical. Not bad will, simply arithmetic when many students share one cable car, one launch window and one instructor. Same weather, same mountain, double the flying. Over a full training that is months of difference, and it is why the per-flight cost here is usually the best on the market.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129309;</span>
+          <span><span class="hook-title">&ldquo;Who will actually stand next to me?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">One name you know, or a rotating roster?</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">At many schools you meet a different instructor every weekend, and with dozens of students nobody can really track where you are. Here there is <b>one instructor: Miki</b>. He signs off every step of your training, knows how you handle a nervous launch and which manoeuvre you keep rushing, and adjusts the plan to your actual level, with <b>video analysis, one-on-one debriefings and mental training</b> built into the course, not sold as extras. In the air you meet your own limits; a mentor who genuinely holds your hand through that is what you will remember in thirty years.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128101;</span>
+          <span><span class="hook-title">&ldquo;How many students share one instructor?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">3&ndash;8 here, by design. And only ~20 new students a year.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">We cap every group at <b>3&ndash;8 students per instructor</b> and deliberately accept only about <b>20 new students a year</b>. That is the only group size where the instructor can watch every launch, radio-guide every flight and debrief every landing, instead of you queuing for attention. It is also why we cannot be the cheapest school, and why we do not want to be: your progress, not throughput, is the product.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128269;</span>
+          <span><span class="hook-title">&ldquo;What is really in the price, and what is not?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">Read any school's price list with this question in mind.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Our CHF 4,500 training includes <b>unlimited high flights</b>: a weather-ruined weekend costs you nothing, and there is never a per-flight fee. When you compare schools, always ask for the <b>all-in total</b>: course + equipment + exams + cable cars. Advertised prices of CHF 2,000&ndash;3,000 are real but they are fragments; the honest Swiss total lands at CHF 11&ndash;12k almost everywhere. We simply print it first. <a href="prices.html" style="color:#0077b6">Our full price list &rarr;</a></div>
+      </details>
+    </div>
+    <a href="compare.html" class="cta-btn cta-btn-primary" style="margin-top:18px">All 8 questions: The Ultimate Guide to Choosing Your School &rarr;</a>
+ </div>
 
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH6.webp" alt="Paragliding training on practice hill - beginner ground handling and launch techniques" style="height:250px; width: 250px; object-fit:cover; float:left; margin:00px 20px 10px 0px" loading="lazy">
-		
-		Our students receive <strong>free access to the unique Flight Deck app</strong>, an invaluable technological tool. This app allows students to <strong>track their own progress</strong> online, access <strong>all necessary theory and theoretical background</strong> in one place, and review their next steps even while on the mountain. This ensures that the learning process is continuous, efficient, and fully transparent.
-		<br><br>
-		
-		Our ultimate goal is not just a certification, but transforming you into a <strong>safe, autonomous pilot</strong> who can make sound judgments and launch, fly, and land with unique confidence. Additionally, as the first paragliding school in Switzerland to fully embrace <strong>sustainability</strong>, we utilize an electric van and plant trees after every flight, ensuring your journey is also an environmentally responsible one.
-		
-	</p>		  
-  </div>
+ <!-- WHY FLYWITHMIKI: hook cards instead of a wall of text -->
+ <div class="section" id="why" style="text-align:center">
+    <h2><b>What Makes FLYwithMIKI Different</b></h2>
+    <p style="color:#555; max-width:700px; margin:0 auto 22px">Click what matters to you.</p>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128100;</span>
+          <span><span class="hook-title">Small groups, by design</span>
+          <span class="hook-teaser" style="display:block">3&ndash;8 students per instructor</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Size matters. Effective teaching is only possible in a small group, where the instructor can genuinely focus on you: your launches, your landings, your confidence. That is why we deliberately accept only about 20 new students per year. When the spots are gone, they are gone.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129504;</span>
+          <span><span class="hook-title">Personal coaching &amp; mental training</span>
+          <span class="hook-teaser" style="display:block">Because in the air, you meet your own limits</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Flight is a personal journey: the air is not our natural environment, and learning to trust it means pushing past internal limits. Your instructor's job is to hold your hand through exactly that, supporting your technique <i>and</i> your mental development. We use video analysis of your flights, one-on-one debriefings and dedicated mental training to build not just skills but the psychological strength of a safe, autonomous pilot.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128483;&#65039;</span>
+          <span><span class="hook-title">Three languages</span>
+          <span class="hook-teaser" style="display:block">English &middot; German &middot; Hungarian</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">You have to understand everything, especially in the air. Miki teaches in English, German and Hungarian, so you learn in the language you actually think in: radio guidance, theory and all.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128197;</span>
+          <span><span class="hook-title">Completely flexible schedule</span>
+          <span class="hook-teaser" style="display:block">No fixed dates, built around your job</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Hectic calendar? No problem. There are no fixed course dates: you sign up, we agree your starting days, and you come whenever you can. Training runs Thursday to Sunday all year, whenever the weather plays along. Most students finish the high-flight phase in 1&ndash;12 months at their own pace, and a slower stretch never costs you extra.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128241;</span>
+          <span><span class="hook-title">FlightDeck app</span>
+          <span class="hook-teaser" style="display:block">Your progress and theory, in your pocket, free</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Every student gets free access to FlightDeck, our own digital platform: track your progress against training milestones, review the full theory material, and see your next steps even standing on the mountain. Your instructor sees the same dashboard, so every training day starts exactly where you left off. No other school has this.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#127807;</span>
+          <span><span class="hook-title">Eco-first flying</span>
+          <span class="hook-teaser" style="display:block">EV transport, 500+ trees planted</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">The first Swiss paragliding school to fully embrace sustainability: we travel in an electric van and plant trees after every student and tandem flight. Verified, not green-washed. <a href="#sustainability" style="color:#0077b6">See our verified impact &darr;</a></div>
+      </details>
+    </div>
+ </div>
 
 
 <!-- SAFETY & FEARS section ---------------------------------------------------------->
   <div class="section" id="safety-first" style="text-align:center">
     <h2><b>Honest Answers to the Questions Everyone Asks</b></h2>
     <p style="color:#555; max-width:700px; margin:0 auto 24px">Learning to fly is a big decision. You deserve straight answers, not sales talk.</p>
-    <div class="w3-row-padding">
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">"Is paragliding safe?"</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">Start with the official answer: SUVA does <b>not</b> classify paragliding as a high-risk sport, and your standard Swiss accident insurance covers it, no surcharge, no special policy. That said, it is aviation, and it carries real risks; pretending otherwise would be dishonest. What makes the difference is training quality and decision-making. That's why you fly with a radio in your ear on every single flight, why we train in groups of 3&ndash;8 (never more per instructor), and why mental training and honest weather decisions are part of the curriculum from day one.</p>
-        </div>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128737;&#65039;</span>
+          <span><span class="hook-title">&ldquo;Is paragliding safe?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">The official answer, and the honest one</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Start with the official answer: SUVA does <b>not</b> classify paragliding as a high-risk sport, and your standard Swiss accident insurance covers it, no surcharge, no special policy. That said, it is aviation, and it carries real risks; pretending otherwise would be dishonest. What makes the difference is training quality and decision-making. That's why you fly with a radio in your ear on every single flight, why we train in groups of 3&ndash;8 (never more per instructor), and why mental training and honest weather decisions are part of the curriculum from day one.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128531;</span>
+          <span><span class="hook-title">&ldquo;Will I be scared?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">Probably a little, and that is fine</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Probably a little, and that's completely normal. Fear of heights and fear of flying are different things: most people with height-anxiety feel calm under a wing. We start on gentle training hills, progress only at your pace, and I will genuinely hold your hand through every step. A bit of respect for the air is what makes a good pilot.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#127793;</span>
+          <span><span class="hook-title">&ldquo;Am I too old for this?&rdquo;</span>
+          <span class="hook-teaser" style="display:block">Many of our best students start in their 40s and 50s</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">No. Many of the best students start in their 40s and 50s, they fly with more patience and better judgment than most 20-year-olds. If you can walk up a small hill, you can learn to paraglide. You don't need to be an athlete; basic fitness is enough, and our flexible schedule is built for working professionals.</div>
+      </details>
+    </div>
+    <a href="faq.html" class="cta-btn cta-btn-primary" style="margin-top:18px">More Questions? Read the Full FAQ</a>
+  </div>
+
+<!-- HOW JOINING WORKS: the intermediate step before any WhatsApp chat -->
+  <div class="section-boxed" id="start" style="background:linear-gradient(180deg,#f0f8ff 0%,#ffffff 100%); border:1px solid #e4f0fa; text-align:center">
+    <h2 style="margin-top:0"><b>&#128640; How Joining Works</b></h2>
+    <p style="color:#555; max-width:680px; margin:0 auto 6px">No forms, no deposit, no course date you have to wait for. Three steps, and the first two cost you nothing.</p>
+    <div class="start-steps">
+      <div class="start-step">
+        <span class="step-badge">1</span>
+        <b class="step-title">&#128172; Say hi</b>
+        <p>WhatsApp, email or the form below, whatever you prefer. No commitment, and you talk to Miki himself, not an office.</p>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">"Will I be scared?"</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">Probably a little, and that's completely normal. Fear of heights and fear of flying are different things: most people with height-anxiety feel calm under a wing. We start on gentle training hills, progress only at your pace, and I will genuinely hold your hand through every step. A bit of respect for the air is what makes a good pilot.</p>
-        </div>
+      <div class="start-step">
+        <span class="step-badge">2</span>
+        <b class="step-title">&#127909; Free video call, 30&ndash;60 min</b>
+        <p>Just the two of you: how the training works, prices, your schedule, your questions, and whether the chemistry is right. You don't pay a franc before this call.</p>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">"Am I too old for this?"</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">No. Many of the best students start in their 40s and 50s, they fly with more patience and better judgment than most 20-year-olds. If you can walk up a small hill, you can learn to paraglide. You don't need to be an athlete; basic fitness is enough, and our flexible schedule is built for working professionals.</p>
-        </div>
+      <div class="start-step">
+        <span class="step-badge">3</span>
+        <b class="step-title">&#129666; Pick your start</b>
+        <p>No fixed course dates: we agree your starting days flexibly around your calendar, usually within days. School equipment is provided for the first phase, so you start with zero gear.</p>
       </div>
     </div>
-    <a href="faq.html" class="cta-btn cta-btn-primary" style="margin-top:10px">More Questions? Read the Full FAQ</a>
+    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'd%20like%20to%20learn%20paragliding%20-%20can%20we%20talk%3F" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary">&#128172; Say Hi to Miki on WhatsApp</a>
+    <p style="color:#888; font-size:0.85em; margin:10px 0 0">Typical reply time: a few hours. Prefer email? Use the <a href="#contact" style="color:#0077b6">form below</a>.</p>
   </div>
 
 <!-- TESTIMONIALS section ---------------------------------------------------------->
@@ -910,102 +1029,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!------------------------CONTACT SECTION------------------------------------->
 
- <!-- EQUIPMENT SALES ------------------------------------------------------------>
+ <!-- EQUIPMENT SALES: compact pointer, the details live on equipment.html ------------------------------------------------------------>
   <div class="section-boxed" id="equipment" style="text-align:center; background:#f0f8ff; border:1px solid #e4f0fa">
-           <h2 class="w3-text-teal"><b>⭐ Paragliding Equipment Sales ⭐</b></h2>
-            <h3>Your Trusted Partner for Premium Paragliding Gear</h3>
-
-                <p class="w3-justify w3-large" style="max-width:1000px; margin:auto">
-                  <strong>We don't just teach you to fly, we equip you for success!</strong> At FLYwithMIKI, we offer a comprehensive range of high-quality paragliding equipment from the world's leading brands. Whether you're a beginner looking for your first wing or an experienced pilot upgrading your gear, we provide:
+           <h2 class="w3-text-teal" style="margin-top:0"><b>Paragliding Equipment</b></h2>
+                <p style="max-width:760px; margin:0 auto 18px; color:#444; line-height:1.65">
+                  For our students, the beginner set is part of the transparent course pricing. For licensed pilots we supply <strong>wings (EN-A to EN-C), harnesses, reserves and instruments</strong> from Supair, PHI, Nova and U-Turn, with personal consultation, correct sizing for your weight, and the same person at every check afterwards.
                 </p>
-                
-                <div class="w3-row-padding w3-margin-top">
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">🎯 Personal Consultation</h4>
-                      <p class="w3-small w3-justify">Expert advice tailored to YOUR flying style, goals, and skill level. We take time to understand your needs and recommend the perfect equipment match.</p>
-                    </div>
-                  </div>
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">💰 Attractive Prices</h4>
-                      <p class="w3-small w3-justify">Competitive pricing on premium brands. Quality equipment shouldn't break the bank, we offer excellent value without compromising on safety or performance.</p>
-                    </div>
-                  </div>
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">🛠️ After-Sales Support</h4>
-                      <p class="w3-small w3-justify">Ongoing support doesn't end at purchase. We're here for maintenance advice, equipment checks, and answering any questions as you progress in your flying journey.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="w3-margin-top w3-padding">
-                  <p class="w3-large w3-justify" style="max-width:1000px; margin:auto">
-                    <strong>What We Offer:</strong><br>
-                    ✈️ <strong>Paragliders</strong>, EN-A, EN-B, and specialty wings for all skill levels<br>
-                    🪂 <strong>Harnesses</strong>, Comfortable and safety-certified for every body type<br>
-                    🆘 <strong>Reserve Parachutes</strong>, Top-quality safety equipment<br>
-                    📡 <strong>Instruments</strong>, GPS, varios, and flight computers<br>
-                    👕 <strong>Accessories</strong>, Helmets, gloves, bags, and more<br>
-                  </p>
-                  
-                  <p class="w3-center w3-margin-top">
-                    <a href="prices.html#Material" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo w3-large">
-                      <b>📋 View Equipment & Prices</b>
+                  <p class="w3-center" style="margin:0">
+                    <a href="equipment.html" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo">
+                      <b>&#129666; Brands &amp; Equipment</b>
                     </a>
-                    &nbsp;&nbsp;
-                    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20paragliding%20equipment" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xxlarge w3-padding-large" style="background-color:#25D366; color:white">
-                      <b>💬 Contact Us About Equipment</b>
+                    &nbsp;
+                    <a href="prices.html#Material" class="w3-button w3-round-xxlarge w3-padding-large" style="background:#fff; color:#0077b6; border:2px solid #0077b6">
+                      <b>&#128203; Equipment Prices</b>
                     </a>
                   </p>
-                </div>
   </div>
 
- <!-- Sustainability------------------------------------------------------------>
+ <!-- Sustainability: one compact, verified block ------------------------------------------------------------>
   <div class="section" style="text-align:center" id="sustainability">
-           <h2 class="">Sustainability</h2>
-            <h3 >Taking flight to new heights, one tree at a time, with every student's soar</h3>
-
-                <p class="w3-justify" style="margin:auto">
-                  I believe that caring for the environment is not just an option but a responsibility. With my background in engineering, I have always been passionate about developing eco-friendly technologies. Today, as a flying instructor and tandem pilot, I continue to prioritize the well-being of our planet.</p>
-  </div>
-
-    <div class="section">
-      <div class="w3-row-padding" style="width:100%"> 
-
+           <h2>Sustainability</h2>
+      <div class="w3-row-padding" style="width:100%; display:flex; flex-wrap:wrap; align-items:stretch">
               <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-               <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="Electric van transportation - eco-friendly paragliding school vehicle powered by renewable energy"  loading="lazy"> 
-               <p class="w3-xlarge">Eco-Friendly Transportation</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Committed to sustainability, my paragliding school uses an electric van and charges it with renewable energy whenever possible, thus minimizing our environmental footprint and setting a standard for eco-friendly adventure sports enthusiasts and responsible tourism practices.</p>
-               </div>
-              </div>
-
-              <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="height:100%">
                <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="Mangrove tree planting in Kenya - carbon offset project for sustainable paragliding" loading="lazy">
-               <p class="w3-xlarge">Planting trees while soaring the skies</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Plant Trees, Take Flight! We offset your paragliding adventure's carbon footprint. Our partner is planting Mangroves in Kenya (verified project), while we are flying in Switzerland. Up to four trees after each tandem flights and up to twenty-five trees planted after each student!</p>          
+               <p class="w3-xlarge">Trees planted, EV powered</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">We travel to the flying sites in an electric van and offset every flight's footprint: our partner plants verified mangroves in Kenya: up to four trees after each tandem flight and up to twenty-five after each student. Caring for the playground we fly over is part of the job.</p>
                </div>
               </div>
-
               <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="height:100%">
 				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer">
 				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verified carbon offset impact - trees planted and CO2 sequestered by FLYwithMIKI paragliding school" />
 				</a>
-               <p class="w3-xlarge">Our impact</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Our tree planting initiative is verified by a reputable US-based tech company (Ecodrive-Veritree), ensuring transparency and genuine environmental impact, not green-washing. Click on the picture and check our verified tree planting project page on our partner's website </p>          
+               <p class="w3-xlarge">Verified impact, not green-washing</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Our tree planting is verified by Ecodrive-Veritree, a reputable US-based tech company, so the impact is transparent and real. Click the badge to see our live project page on our partner's website.</p>
                </div>
-              </div>              
-          
-
-              
-
-
-         </div>  
-
+              </div>
+         </div>
       </div>
 
 
@@ -1113,9 +1174,9 @@ function handleButtonClick(language) {
     <button class="popup-close" onclick="closePopup()" aria-label="Close">&#10005;</button>
     <h3>&#9992; Ready to Fly?</h3>
     <p style="color:#555; font-size:1.05em">Start your paragliding adventure this autumn! Our small-group courses fill up fast.</p>
-    <p style="font-size:0.95em; color:#777"><b>Autumn 2026 Course</b>: CHF 300 starting discount, sign up before end of August!</p>
-    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20the%20Autumn%20Course%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:10px auto 8px">&#128172; Chat with Miki on WhatsApp</a>
-    <a href="school.html" class="cta-btn cta-btn-primary" style="display:block; margin:8px auto">&#127937; Explore Our Courses</a>
+    <p style="font-size:0.95em; color:#777"><b>Autumn 2026 Course</b>: CHF 300 starting discount, sign up before end of August! It starts with a free video call, not an invoice.</p>
+    <a href="#start" onclick="closePopup()" class="cta-btn cta-btn-primary" style="display:block; margin:10px auto 8px">&#128640; See How Joining Works</a>
+    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20the%20Autumn%20Course%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:8px auto">&#128172; Chat with Miki on WhatsApp</a>
     <p style="font-size:0.8em; color:#aaa; margin-top:15px; cursor:pointer" onclick="closePopup()">No thanks, just browsing</p>
   </div>
 </div>
@@ -1180,6 +1241,21 @@ function playFullPromo(btn){
   if (v) { v.muted = false; v.controls = true; v.play(); }
   btn.style.display = 'none';
 }
+</script>
+
+<script>
+// Hook cards: on wide screens the grid row grows as one card opens, so open the
+// whole group together; on phones (single column) each card toggles on its own.
+(function () {
+  document.querySelectorAll('.hook-grid').forEach(function (grid) {
+    grid.querySelectorAll('details.hook').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (window.innerWidth < 768) return;
+        grid.querySelectorAll('details.hook').forEach(function (o) { o.open = d.open; });
+      });
+    });
+  });
+})();
 </script>
 </body>
 

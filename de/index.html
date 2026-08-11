@@ -461,6 +461,34 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
                 /* hero keeps its breathing room under the promo banner regardless of rule order */
         .page-hero.section-boxed { margin-top: 26px; }
+
+        /* === WHERE / WHEN / COST fact tiles in the hero === */
+        .fact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; max-width:900px; margin:24px auto 8px; text-align:left; }
+        .fact-tile { background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.28); border-radius:14px; padding:16px 18px; }
+        .fact-kicker { font-size:0.75em; letter-spacing:2px; text-transform:uppercase; opacity:0.85; margin-bottom:6px; font-weight:bold; }
+        .fact-main { font-size:1.12em; font-weight:bold; margin-bottom:5px; line-height:1.3; }
+        .fact-sub { font-size:0.87em; opacity:0.92; line-height:1.5; }
+        .fact-tile a { color:#caf0f8; font-weight:bold; }
+
+        /* === CLICKABLE HOOK CARDS: headline visible, details on click === */
+        .hook-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; text-align:left; }
+        details.hook { background:#fff; border:1px solid #e4f0fa; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+        details.hook summary { list-style:none; cursor:pointer; padding:16px 18px; display:flex; gap:12px; align-items:flex-start; }
+        details.hook summary::-webkit-details-marker { display:none; }
+        details.hook .hook-icon { font-size:1.5em; line-height:1.2; }
+        details.hook .hook-title { font-weight:bold; color:#003049; line-height:1.35; }
+        details.hook .hook-teaser { font-size:0.84em; color:#0077b6; margin-top:3px; line-height:1.45; }
+        details.hook .hook-plus { margin-left:auto; color:#0077b6; font-size:1.3em; font-weight:bold; transition:transform .2s; flex-shrink:0; }
+        details.hook[open] .hook-plus { transform:rotate(45deg); }
+        details.hook .hook-body { padding:12px 18px 16px; margin:0 14px 4px; color:#444; line-height:1.65; font-size:0.93em; border-top:1px dashed #dbe9f4; padding-left:4px; padding-right:4px; }
+        details.hook summary:hover { background:#f7fbfe; border-radius:14px; }
+
+        /* === HOW JOINING WORKS steps === */
+        .start-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:22px 0 6px; text-align:left; }
+        .start-step { background:#fff; border-radius:14px; padding:20px 18px; box-shadow:0 2px 8px rgba(0,0,0,0.07); position:relative; }
+        .start-step .step-badge { width:34px; height:34px; border-radius:50%; background:#0077b6; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; margin-bottom:10px; }
+        .start-step b.step-title { display:block; color:#003049; margin-bottom:6px; }
+        .start-step p { margin:0; font-size:0.9em; color:#555; line-height:1.6; }
         </style>
 
 
@@ -568,45 +596,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- PROMO BANNER -->
  <div class="promo-banner">
-    &#9992; Herbstkurs 2026: CHF 300 Startrabatt, Anmeldung bis Ende August! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20den%20Herbstkurs%202026">Platz sichern &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEU: Intensivkurs 2027 &rarr;</a>
+    &#9992; Herbstkurs 2026: CHF 300 Startrabatt, Anmeldung bis Ende August! <a href="#start">Platz sichern &rarr;</a> <a href="intensive.html" style="background:#e85d04">&#9889; NEU: Intensivkurs 2027 &rarr;</a>
  </div>
 
- <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
+ <!-- INTRO: compact brand strip -->
  <div class="w3-container w3-white w3-center" id="Intro">
-        <br><img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI Gleitschirmschule - umweltfreundliche Flugausbildung in der Schweiz" style="width:100%; max-width:1000px"> <!--LOGO -->
-
-        <img class="w3-image w3-round-xxlarge w3-padding" src="https://flywithmiki.com/Images_v2/anim.webp" alt="Gleitschirmflug über den Schweizer Alpen - FLYwithMIKI Schüler in der Zentralschweiz" style="width:100%; max-width:1000px">
-
-        <h1><b>Gleitschirmschule &amp; Tandemflüge in der Zentralschweiz</b></h1>
-        <p class="w3-xlarge">Luzern-Zug-Zürich-Emmetten-Wolfenschiessen-Engelberg</p>
+        <img src="https://flywithmiki.com/Images_v2/logo1.webp" class="w3-padding" alt="FLYwithMIKI Gleitschirmschule - umweltfreundliche Flugausbildung in der Schweiz" style="width:100%; max-width:440px"> <!--LOGO -->
  </div>
 
- <!-- HERO CTA SECTION -->
- <div class="hero-cta-section section-boxed">
-    <h2><b>Dein Traum vom Fliegen beginnt hier</b></h2>
-    <p>Kleine Gruppen von 3&ndash;8 Schülern pro SHV/BAZL-zertifiziertem Fluglehrer, und bewusst nicht mehr als etwa 20 neue Schüler pro Jahr. Persönliches Coaching vom allerersten Schritt bis zum Schweizer Brevet, in deinem Tempo, auf Deutsch, Englisch oder Ungarisch.</p>
-    <a href="school.html" class="cta-btn cta-btn-primary">Starte deine Pilotenausbildung</a>
-    <a href="tandem.html" class="cta-btn cta-btn-secondary">Tandemflug buchen, ab CHF 185</a>
-    <p style="margin:16px auto 0; font-weight:bold; font-size:0.98em; max-width:560px">&#9889; Keine fixen Kurstermine. Melde dich heute an, und du stehst innert Tagen am Übungshang.</p>
+ <!-- HERO: wo, wann, wie viel + der Elevator-Pitch, alles above the fold -->
+ <div class="page-hero section-boxed">
+    <span class="hero-badge">Kleine Gleitschirmschule &middot; Zentralschweiz</span>
+    <h1><b>Gleitschirmschule &amp; Tandemflüge in der Zentralschweiz</b></h1>
+    <p class="hero-sub"><b>Warum FLYwithMIKI?</b> Weil Fliegenlernen etwas Persönliches ist. Ein Fluglehrer, der deinen Namen kennt, 3&ndash;8 Schüler pro Gruppe, nur ~20 neue Schüler pro Jahr und persönliches Coaching vom ersten Schritt bis zum Schweizer Brevet, auf Deutsch, Englisch oder Ungarisch.</p>
+
+    <div class="fact-grid">
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128205; Wo</div>
+        <div class="fact-main">Luzern &middot; Zug &middot; Raum Z&uuml;rich</div>
+        <div class="fact-sub">Wir fliegen in der ganzen Zentralschweiz (Engelberger Tal mit mehreren Startpl&auml;tzen, Rigi, Emmetten, Zugerberg und viele mehr). Treffpunkt in Kriens (Luzern), Shuttle ins Fluggebiet. <a href="kontakt.html">Anreise &rarr;</a></div>
+      </div>
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128197; Wann</div>
+        <div class="fact-main">Keine fixen Termine, Start innert Tagen</div>
+        <div class="fact-sub">Schulungstage Donnerstag&ndash;Sonntag, das ganze Jahr, wann immer das Wetter passt. Gemacht f&uuml;r Berufst&auml;tige.</div>
+      </div>
+      <div class="fact-tile">
+        <div class="fact-kicker">&#128176; Wie viel</div>
+        <div class="fact-main">CHF 4'500 Ausbildung</div>
+        <div class="fact-sub">+ deine eigene Ausr&uuml;stung und offizielle Geb&uuml;hren. Realistische Gesamtkosten bis zum Brevet: CHF 11&ndash;12k. <a href="preise.html">Jeder Franken aufgelistet &rarr;</a></div>
+      </div>
+    </div>
+
+    <a href="#start" class="hero-btn">&#128640; So l&auml;uft die Anmeldung &darr;</a>
+    <a href="tandem.html" class="hero-btn hero-btn-wa">&#9992; Tandemflug ab CHF 185</a>
  </div>
 
- <!-- TRUST STATS BAR -->
- <div class="trust-bar">
-    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google-Bewertung</div>
-    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Schüler/Fluglehrer</div>
-    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV/BAZL</strong> zertifizierter Fluglehrer</div>
-    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>400+</strong> gepflanzte Bäume</div>
-    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Sprachen</div>
- </div>
-
- <!-- INTENSIVE 2027 TEASER STRIP -->
- <div class="intensive-strip section-boxed">
-    <span style="color:#e85d04;font-weight:bold">&#9889; NEU für 2027:</span>
-    <span style="color:#444">Der 3-Wochen-Intensivkurs, von null bis prüfungsbereit in einem konzentrierten Sommerblock, danach fliegst du bis Ende Juli mit der Schule weiter. Limitiert auf 12 Teilnehmende.</span>
-    <a href="intensive.html" style="color:#e85d04;font-weight:bold;text-decoration:underline;margin-left:4px">Mehr erfahren und auf die Frühbucherliste &rarr;</a>
- </div>
-
- <!-- PROMO VIDEO -->
+ <!-- PROMO VIDEO: direkt unter dem Hero, der Beweis in 56 Sekunden -->
  <div class="section-boxed promo-block" id="video" style="background:#f9f9f9;border:1px solid #eee">
    <h2 style="margin-top:0"><b>So sieht ein echter Schulungstag aus</b></h2>
    <p style="color:#555;max-width:700px;margin:0 auto 18px">Kein Stockmaterial und keine Versprechen: Das sind unsere eigenen Schüler, unsere eigenen Fluggebiete, gefilmt über eine Saison.</p>
@@ -627,96 +653,189 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    <button class="promo-play-btn" onclick="playFullPromo(this)">&#9654; Ganzen Film mit Ton ansehen (56 s)</button>
    <p style="color:#999;font-size:0.82em;margin:10px 0 0">Die Vorschau oben läuft ohne Ton. Drück den Knopf für den ganzen Film.</p>
  </div>
- <div class="section" style="text-align:center">
 
-      <div class="w3-row-padding" style="width:100%">
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-          <p class="w3-xlarge">Mehrsprachig</p>
-
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/multilingual.webp" alt="Mehrsprachiger Gleitschirmunterricht - Lektionen auf Deutsch, Englisch und Ungarisch" style="width:100%; max-width:200px" loading="lazy">
-           <p class="w3-justify w3-padding">Du musst alles verstehen, besonders in der Luft. Unterricht auf Deutsch, Englisch und Ungarisch</p>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div  class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-
-          <p class="w3-xlarge">Kleine Gruppe</p>
-          <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/flywithmik_parag.webp" alt="Gleitschirmausbildung in kleiner Gruppe - maximal 3-8 Schüler pro Fluglehrer für persönliches Lernen" style="width:100%; max-width:200px" loading="lazy">
-          <p class="w3-justify w3-padding">Auf die Grösse kommt es an! Effektiver Unterricht ist nur in einer kleinen Gruppe möglich, in der sich der Fluglehrer auf dich konzentrieren kann. Deshalb nehmen wir bewusst nur etwa 20 neue Schüler pro Jahr auf.</p>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-            <p class="w3-xlarge">ECO-freundlich</p>
-            <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/planting.webp" alt="Umweltfreundliches Gleitschirmfliegen - Baumpflanzung nach jedem Flug, nachhaltige Fliegerei" style="width:100%; max-width:200px" loading="lazy">
-           <p class="w3-display-bottommidle w3-justify w3-padding">Wir pflanzen Bäume nach jedem Schüler- und Tandemflug. Unterwegs mit dem EV-Bus</p>
-           <a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe"></a>
-          </div>
-        </div>
-
-        <div class="w3-quarter">
-          <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="width:100%">
-           <p class="w3-xlarge">Flexibel</p>
-           <img class="w3-image w3-margin" src="https://flywithmiki.com/Images_v2/education1.webp" alt="Flexibler Gleitschirmkurs-Zeitplan - lerne in deinem eigenen Tempo mit persönlichem Fahrplan" style="width:100%; max-width:200px" loading="lazy">
-
-
-           <p class="w3-display-bottommidle w3-justify w3-padding">Hast du einen hektischen Terminkalender? Kein Problem, unsere Ausbildung ist völlig flexibel.</p>
-
-           </div>
-        </div>
-      </div>
+ <!-- TRUST STATS BAR -->
+ <div class="trust-bar">
+    <div class="trust-bar-item"><span class="trust-icon">⭐</span> <strong>4.9</strong> Google-Bewertung</div>
+    <div class="trust-bar-item"><span class="trust-icon">👥</span> <strong>3-8</strong> Schüler/Fluglehrer</div>
+    <div class="trust-bar-item"><span class="trust-icon">🇨🇭</span> <strong>SHV/BAZL</strong> zertifizierter Fluglehrer</div>
+    <div class="trust-bar-item"><span class="trust-icon">🌱</span> <strong>500+</strong> gepflanzte Bäume</div>
+    <div class="trust-bar-item"><span class="trust-icon">🗣️</span> <strong>3</strong> Sprachen</div>
  </div>
 
-  <div class="section" id="sch">
-	<p class="w3-justify w3-margin-top" >
+ <!-- INTENSIVE 2027 TEASER STRIP -->
+ <div class="intensive-strip section-boxed">
+    <span style="color:#e85d04;font-weight:bold">&#9889; NEU für 2027:</span>
+    <span style="color:#444">Der 3-Wochen-Intensivkurs, von null bis prüfungsbereit in einem konzentrierten Sommerblock, danach fliegst du bis Ende Juli mit der Schule weiter. Limitiert auf 12 Teilnehmende.</span>
+    <a href="intensive.html" style="color:#e85d04;font-weight:bold;text-decoration:underline;margin-left:4px">Mehr erfahren und auf die Frühbucherliste &rarr;</a>
+ </div>
+ <!-- EYE-OPENERS: die Fragen, an die beim Schulvergleich niemand denkt -->
+ <div class="section" id="questions" style="text-align:center">
+    <h2><b>Schule am Aussuchen? Stell diese vier Fragen</b></h2>
+    <p style="color:#555; max-width:700px; margin:0 auto 22px">Die meisten vergleichen Schulen über den Kurspreis. Diese vier Fragen entscheiden, was für ein Pilot aus dir wird, und fast niemand denkt daran, sie zu stellen. Klick sie an.</p>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129666;</span>
+          <span><span class="hook-title">&laquo;Wie viele Flüge mache ich pro Tag?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Der grösste Unterschied zwischen Schulen: 4&ndash;6 bei uns vs. 2&ndash;3 in grossen Gruppen.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Du brauchst mindestens <b>50 Flüge vor der Schweizer Prüfung</b>, und die Zahl ist nur die halbe Geschichte: Wiederholung macht Start und Landung zum Reflex. An einem normalen Schulungstag loggen unsere Schüler <b>4&ndash;6 Flüge</b>; in grossen Gruppen sind 2&ndash;3 pro Tag typisch. Kein böser Wille, einfach Arithmetik, wenn sich viele Schüler eine Bahn, ein Startfenster und einen Fluglehrer teilen. Gleiches Wetter, gleicher Berg, doppelt so viel Fliegen. Über die ganze Ausbildung sind das Monate Unterschied, und deshalb ist der Preis pro Flug bei uns meist der beste am Markt.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129309;</span>
+          <span><span class="hook-title">&laquo;Wer steht wirklich neben mir?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Ein Name, den du kennst, oder ein wechselndes Team?</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">An vielen Schulen triffst du jedes Wochenende einen anderen Fluglehrer, und bei Dutzenden Schülern kann niemand wirklich verfolgen, wo du stehst. Hier gibt es <b>einen Fluglehrer: Miki</b>. Er zeichnet jeden Schritt deiner Ausbildung ab, weiss, wie du mit einem nervösen Start umgehst und welches Manöver du immer wieder überhastest, und passt den Plan an dein tatsächliches Niveau an, mit <b>Videoanalyse, 1:1-Debriefings und Mentaltraining</b> als Teil des Kurses, nicht als Extra. In der Luft begegnest du deinen eigenen Grenzen; ein Mentor, der dich dabei buchstäblich an der Hand hält, ist das, woran du dich in dreissig Jahren erinnern wirst.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128101;</span>
+          <span><span class="hook-title">&laquo;Wie viele Schüler teilen sich einen Fluglehrer?&raquo;</span>
+          <span class="hook-teaser" style="display:block">3&ndash;8 bei uns, mit Absicht. Und nur ~20 neue Schüler pro Jahr.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Wir begrenzen jede Gruppe auf <b>3&ndash;8 Schüler pro Fluglehrer</b> und nehmen bewusst nur etwa <b>20 neue Schüler pro Jahr</b> auf. Nur bei dieser Gruppengrösse kann der Fluglehrer jeden Start beobachten, jeden Flug per Funk begleiten und jede Landung besprechen, statt dass du in der Warteschlange um Aufmerksamkeit stehst. Deshalb können wir nicht die günstigste Schule sein, und wollen es auch nicht: Dein Fortschritt ist das Produkt, nicht der Durchsatz.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128269;</span>
+          <span><span class="hook-title">&laquo;Was steckt wirklich im Preis, und was nicht?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Lies jede Preisliste mit dieser Frage im Kopf.</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Unsere Ausbildung für CHF 4'500 enthält <b>unlimitierte Höhenflüge</b>: Ein verregnetes Wochenende kostet dich nichts, und es gibt nie eine Gebühr pro Flug. Wenn du Schulen vergleichst, frag immer nach den <b>Gesamtkosten</b>: Kurs + Ausrüstung + Prüfungen + Bergbahnen. Beworbene Preise von CHF 2'000&ndash;3'000 sind real, aber es sind Fragmente; die ehrliche Schweizer Gesamtsumme landet fast überall bei CHF 11&ndash;12k. Wir drucken sie einfach zuerst. <a href="preise.html" style="color:#0077b6">Unsere volle Preisliste &rarr;</a></div>
+      </details>
+    </div>
+    <a href="vergleich.html" class="cta-btn cta-btn-primary" style="margin-top:18px">Alle 8 Fragen: der ultimative Guide zur Schulwahl &rarr;</a>
+ </div>
 
-		<strong>WARUM WIR? Dein Flug ist eine persönliche Reise</strong>	<br><br>
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/12.webp" alt="Gleitschirm über einem Schweizer Schloss - spektakuläre Alpenkulisse in der Zentralschweiz" style="height:250px; width:250px; object-fit:cover; float:right; margin:00px 0px 10px 20px" loading="lazy">
-
-		Bei der Wahl einer Gleitschirmschule ist es entscheidend zu erkennen, dass Fliegen eine zutiefst <strong>persönliche Reise</strong> ist. Es ist eine Erfahrung, bei der du dich ständig deinen eigenen inneren Grenzen stellst und über sie hinauswächst, denn die Luft ist grundsätzlich nicht unser natürlicher Lebensraum. Das macht die Rolle deines Fluglehrers so zentral. Bei FLYwithMIKI verpflichten wir uns zu einem Fluglehrer, der dich in diesem Prozess buchstäblich <strong>&laquo;an der Hand hält&raquo;</strong> und dich unerschütterlich unterstützt: bei deinen technischen Fähigkeiten und, ganz entscheidend, bei deiner <strong>mentalen Entwicklung</strong>. Deshalb bestehen wir auf der <strong>Ausbildung in kleinen Gruppen</strong>: Nur so ist der hochgradig persönliche Unterricht möglich, der sich intensiv auf den Fortschritt, die Herausforderungen und den Vertrauensaufbau jedes Einzelnen konzentriert.
-		<br><br>
-		Wir verbinden diesen massgeschneiderten Ansatz mit den besten <strong>modernen pädagogischen Methoden</strong> und modernster Technologie. Unsere Ausbildung geht weit über den Standardunterricht hinaus: mit gezielter <strong>Videoanalyse</strong> deiner Flüge, fokussierten <strong>1:1-Debriefings</strong> und essenziellem <strong>Mentaltraining</strong>. Diese Werkzeuge beschleunigen deine Lernkurve, verbessern deine Entscheidungsprozesse und festigen das Selbstvertrauen, das du für selbstständiges Fliegen brauchst. Durch diese einzigartige Kombination aus persönlicher Betreuung und fortschrittlichen Methoden gewinnst du nicht nur fliegerisches Können, sondern auch die tiefe mentale Stärke, die einen herausragenden Piloten ausmacht. <br><br>
-
-		<img class="w3-round-xlarge" src="https://flywithmiki.com/Images_v2/UH6.webp" alt="Gleitschirmtraining am Übungshang - Groundhandling und Starttechnik für Anfänger" style="height:250px; width: 250px; object-fit:cover; float:left; margin:00px 20px 10px 0px" loading="lazy">
-
-		Unsere Schüler erhalten <strong>kostenlosen Zugang zur einzigartigen Flight Deck App</strong>, einem unschätzbaren technologischen Werkzeug. Mit dieser App kannst du <strong>deinen eigenen Fortschritt</strong> online verfolgen, <strong>die gesamte Theorie und den theoretischen Hintergrund</strong> an einem Ort abrufen und deine nächsten Schritte sogar noch am Berg durchgehen. So bleibt der Lernprozess kontinuierlich, effizient und völlig transparent.
-		<br><br>
-
-		Unser eigentliches Ziel ist nicht nur ein Brevet, sondern dich in einen <strong>sicheren, selbstständigen Piloten</strong> zu verwandeln, der fundierte Entscheidungen trifft und mit echtem Selbstvertrauen startet, fliegt und landet. Und als erste Gleitschirmschule der Schweiz, die konsequent auf <strong>Nachhaltigkeit</strong> setzt, nutzen wir einen Elektro-Van und pflanzen nach jedem Flug Bäume, damit deine Reise auch ökologisch verantwortungsvoll ist.
-
-	</p>
-  </div>
+ <!-- WARUM FLYWITHMIKI: Hook-Karten statt Textwand -->
+ <div class="section" id="why" style="text-align:center">
+    <h2><b>Was FLYwithMIKI anders macht</b></h2>
+    <p style="color:#555; max-width:700px; margin:0 auto 22px">Klick an, was dich interessiert.</p>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128100;</span>
+          <span><span class="hook-title">Kleine Gruppen, mit Absicht</span>
+          <span class="hook-teaser" style="display:block">3&ndash;8 Schüler pro Fluglehrer</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Auf die Grösse kommt es an. Effektiver Unterricht ist nur in einer kleinen Gruppe möglich, in der sich der Fluglehrer wirklich auf dich konzentrieren kann: deine Starts, deine Landungen, dein Selbstvertrauen. Deshalb nehmen wir bewusst nur etwa 20 neue Schüler pro Jahr auf. Sind die Plätze weg, sind sie weg.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#129504;</span>
+          <span><span class="hook-title">Persönliches Coaching &amp; Mentaltraining</span>
+          <span class="hook-teaser" style="display:block">Denn in der Luft begegnest du deinen eigenen Grenzen</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Fliegen ist eine persönliche Reise: Die Luft ist nicht unser natürlicher Lebensraum, und ihr zu vertrauen heisst, über innere Grenzen hinauszuwachsen. Die Aufgabe deines Fluglehrers ist es, dich genau dabei an der Hand zu halten, bei deiner Technik <i>und</i> deiner mentalen Entwicklung. Mit Videoanalyse deiner Flüge, 1:1-Debriefings und gezieltem Mentaltraining bauen wir nicht nur Können auf, sondern die mentale Stärke eines sicheren, selbstständigen Piloten.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128483;&#65039;</span>
+          <span><span class="hook-title">Drei Sprachen</span>
+          <span class="hook-teaser" style="display:block">Deutsch &middot; Englisch &middot; Ungarisch</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Du musst alles verstehen, besonders in der Luft. Miki unterrichtet auf Deutsch, Englisch und Ungarisch, damit du in der Sprache lernst, in der du wirklich denkst: Funkbegleitung, Theorie und alles andere.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128197;</span>
+          <span><span class="hook-title">Völlig flexibler Zeitplan</span>
+          <span class="hook-teaser" style="display:block">Keine fixen Termine, gebaut um deinen Job</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Hektischer Kalender? Kein Problem. Es gibt keine fixen Kurstermine: Du meldest dich an, wir vereinbaren deine Starttage, und du kommst, wann du kannst. Geschult wird Donnerstag bis Sonntag, das ganze Jahr, wann immer das Wetter mitspielt. Die meisten Schüler schliessen die Höhenflugphase in 1&ndash;12 Monaten im eigenen Tempo ab, und eine langsamere Phase kostet dich nie extra.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128241;</span>
+          <span><span class="hook-title">FlightDeck App</span>
+          <span class="hook-teaser" style="display:block">Dein Fortschritt und die Theorie in deiner Tasche, gratis</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Jeder Schüler erhält kostenlosen Zugang zu FlightDeck, unserer eigenen digitalen Plattform: Verfolge deinen Fortschritt entlang der Ausbildungs-Meilensteine, geh die komplette Theorie durch und sieh deine nächsten Schritte sogar noch am Berg. Dein Fluglehrer sieht dasselbe Dashboard, jeder Schulungstag beginnt also genau dort, wo du aufgehört hast. Keine andere Schule hat das.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#127807;</span>
+          <span><span class="hook-title">Eco-first Fliegen</span>
+          <span class="hook-teaser" style="display:block">EV-Transport, 500+ gepflanzte Bäume</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Die erste Schweizer Gleitschirmschule, die konsequent auf Nachhaltigkeit setzt: Wir fahren mit dem Elektro-Van und pflanzen nach jedem Schüler- und Tandemflug Bäume. Verifiziert, kein Greenwashing. <a href="#sustainability" style="color:#0077b6">Unser verifizierter Impact &darr;</a></div>
+      </details>
+    </div>
+ </div>
 
 
 <!-- SAFETY & FEARS section ---------------------------------------------------------->
   <div class="section" id="safety-first" style="text-align:center">
     <h2><b>Ehrliche Antworten auf die Fragen, die alle stellen</b></h2>
     <p style="color:#555; max-width:700px; margin:0 auto 24px">Fliegen zu lernen ist eine grosse Entscheidung. Du verdienst klare Antworten, kein Verkaufsgespräch.</p>
-    <div class="w3-row-padding">
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Ist Gleitschirmfliegen sicher?&raquo;</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">Beginnen wir mit der offiziellen Antwort: Die SUVA stuft Gleitschirmfliegen <b>nicht</b> als Risikosportart ein, und deine normale Schweizer Unfallversicherung deckt es ab, ohne Zuschlag, ohne Spezialpolice. Trotzdem: Es ist Fliegerei, und sie birgt reale Risiken; etwas anderes zu behaupten wäre unehrlich. Den Unterschied machen die Qualität der Ausbildung und die Entscheidungen. Deshalb fliegst du bei jedem einzelnen Flug mit Funk im Ohr, deshalb schulen wir in Gruppen von 3&ndash;8 (nie mehr pro Fluglehrer), und deshalb gehören Mentaltraining und ehrliche Wetterentscheide vom ersten Tag an zum Lehrplan.</p>
-        </div>
+    <div class="hook-grid">
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128737;&#65039;</span>
+          <span><span class="hook-title">&laquo;Ist Gleitschirmfliegen sicher?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Die offizielle Antwort, und die ehrliche</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Beginnen wir mit der offiziellen Antwort: Die SUVA stuft Gleitschirmfliegen <b>nicht</b> als Risikosportart ein, und deine normale Schweizer Unfallversicherung deckt es ab, ohne Zuschlag, ohne Spezialpolice. Trotzdem: Es ist Fliegerei, und sie birgt reale Risiken; etwas anderes zu behaupten wäre unehrlich. Den Unterschied machen die Qualität der Ausbildung und die Entscheidungen. Deshalb fliegst du bei jedem einzelnen Flug mit Funk im Ohr, deshalb schulen wir in Gruppen von 3&ndash;8 (nie mehr pro Fluglehrer), und deshalb gehören Mentaltraining und ehrliche Wetterentscheide vom ersten Tag an zum Lehrplan.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128531;</span>
+          <span><span class="hook-title">&laquo;Werde ich Angst haben?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Wahrscheinlich ein bisschen, und das ist okay</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Wahrscheinlich ein bisschen, und das ist völlig normal. Höhenangst und Flugangst sind zwei verschiedene Dinge: Die meisten Menschen mit Höhenangst fühlen sich unter einem Schirm ruhig. Wir beginnen an sanften Übungshängen, gehen nur in deinem Tempo weiter, und ich halte dich bei jedem Schritt buchstäblich an der Hand. Ein bisschen Respekt vor der Luft ist genau das, was einen guten Piloten ausmacht.</div>
+      </details>
+      <details class="hook">
+        <summary>
+          <span class="hook-icon">&#127793;</span>
+          <span><span class="hook-title">&laquo;Bin ich zu alt dafür?&raquo;</span>
+          <span class="hook-teaser" style="display:block">Viele unserer besten Schüler starten mit 40 oder 50</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">Nein. Viele der besten Schüler starten mit 40 oder 50; sie fliegen mit mehr Geduld und besserem Urteilsvermögen als die meisten 20-Jährigen. Wenn du einen kleinen Hügel hinauflaufen kannst, kannst du Gleitschirmfliegen lernen. Du musst kein Athlet sein; eine Grundfitness reicht, und unser flexibler Zeitplan ist für Berufstätige gemacht.</div>
+      </details>
+    </div>
+    <a href="faq.html" class="cta-btn cta-btn-primary" style="margin-top:18px">Mehr Fragen? Lies das ganze FAQ</a>
+  </div>
+
+<!-- SO LÄUFT DIE ANMELDUNG: der Zwischenschritt vor jedem WhatsApp-Chat -->
+  <div class="section-boxed" id="start" style="background:linear-gradient(180deg,#f0f8ff 0%,#ffffff 100%); border:1px solid #e4f0fa; text-align:center">
+    <h2 style="margin-top:0"><b>&#128640; So läuft die Anmeldung</b></h2>
+    <p style="color:#555; max-width:680px; margin:0 auto 6px">Kein Formular, keine Anzahlung, kein Kurstermin, auf den du warten musst. Drei Schritte, und die ersten zwei kosten dich nichts.</p>
+    <div class="start-steps">
+      <div class="start-step">
+        <span class="step-badge">1</span>
+        <b class="step-title">&#128172; Sag hallo</b>
+        <p>WhatsApp, E-Mail oder das Formular unten, was dir lieber ist. Unverbindlich, und du sprichst mit Miki selbst, nicht mit einem Büro.</p>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Werde ich Angst haben?&raquo;</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">Wahrscheinlich ein bisschen, und das ist völlig normal. Höhenangst und Flugangst sind zwei verschiedene Dinge: Die meisten Menschen mit Höhenangst fühlen sich unter einem Schirm ruhig. Wir beginnen an sanften Übungshängen, gehen nur in deinem Tempo weiter, und ich halte dich bei jedem Schritt buchstäblich an der Hand. Ein bisschen Respekt vor der Luft ist genau das, was einen guten Piloten ausmacht.</p>
-        </div>
+      <div class="start-step">
+        <span class="step-badge">2</span>
+        <b class="step-title">&#127909; Gratis Videocall, 30&ndash;60 Min.</b>
+        <p>Nur ihr zwei: wie die Ausbildung funktioniert, Preise, dein Zeitplan, deine Fragen, und ob die Chemie stimmt. Vor diesem Gespräch zahlst du keinen Franken.</p>
       </div>
-      <div class="w3-third" style="margin-bottom:16px">
-        <div class="w3-card-4 w3-white" style="border-radius:16px; padding:22px; height:100%; text-align:left">
-          <p style="font-weight:bold; color:#0077b6; font-size:1.1em; margin-top:0">&laquo;Bin ich zu alt dafür?&raquo;</p>
-          <p class="w3-small w3-justify" style="line-height:1.6">Nein. Viele der besten Schüler starten mit 40 oder 50; sie fliegen mit mehr Geduld und besserem Urteilsvermögen als die meisten 20-Jährigen. Wenn du einen kleinen Hügel hinauflaufen kannst, kannst du Gleitschirmfliegen lernen. Du musst kein Athlet sein; eine Grundfitness reicht, und unser flexibler Zeitplan ist für Berufstätige gemacht.</p>
-        </div>
+      <div class="start-step">
+        <span class="step-badge">3</span>
+        <b class="step-title">&#129666; Wähl deinen Start</b>
+        <p>Keine fixen Kurstermine: Wir legen deine Starttage flexibel um deinen Kalender, meist innert Tagen. Die Schulausrüstung ist für die erste Phase gestellt, du startest also ohne eigenes Material.</p>
       </div>
     </div>
-    <a href="faq.html" class="cta-btn cta-btn-primary" style="margin-top:10px">Mehr Fragen? Lies das ganze FAQ</a>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20Gleitschirmfliegen%20lernen%20-%20koennen%20wir%20sprechen%3F" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary">&#128172; Sag Miki hallo auf WhatsApp</a>
+    <p style="color:#888; font-size:0.85em; margin:10px 0 0">Typische Antwortzeit: ein paar Stunden. Lieber E-Mail? Nutz das <a href="#contact" style="color:#0077b6">Formular unten</a>.</p>
   </div>
 
 <!-- TESTIMONIALS section ---------------------------------------------------------->
@@ -910,102 +1029,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!------------------------CONTACT SECTION------------------------------------->
 
- <!-- EQUIPMENT SALES ------------------------------------------------------------>
+ <!-- EQUIPMENT SALES: kompakter Verweis, die Details stehen auf equipment.html ------------------------------------------------------------>
   <div class="section-boxed" id="equipment" style="text-align:center; background:#f0f8ff; border:1px solid #e4f0fa">
-           <h2 class="w3-text-teal"><b>⭐ Gleitschirm-Ausrüstung kaufen ⭐</b></h2>
-            <h3>Dein verlässlicher Partner für Premium-Gleitschirmausrüstung</h3>
-
-                <p class="w3-justify w3-large" style="max-width:1000px; margin:auto">
-                  <strong>Wir bringen dir nicht nur das Fliegen bei, wir rüsten dich für den Erfolg aus!</strong> Bei FLYwithMIKI bieten wir ein umfassendes Sortiment an hochwertiger Gleitschirmausrüstung der weltweit führenden Marken. Ob du als Einsteiger deinen ersten Schirm suchst oder als erfahrener Pilot aufrüstest, wir bieten dir:
+           <h2 class="w3-text-teal" style="margin-top:0"><b>Gleitschirm-Ausr&uuml;stung</b></h2>
+                <p style="max-width:760px; margin:0 auto 18px; color:#444; line-height:1.65">
+                  F&uuml;r unsere Sch&uuml;ler ist das Einsteiger-Set Teil der transparenten Kurspreise. F&uuml;r brevetierte Piloten liefern wir <strong>Schirme (EN-A bis EN-C), Gurtzeuge, Retter und Instrumente</strong> von Supair, PHI, Nova und U-Turn, mit pers&ouml;nlicher Beratung, korrekter Gr&ouml;sse f&uuml;r dein Gewicht und derselben Person bei jedem Check danach.
                 </p>
-
-                <div class="w3-row-padding w3-margin-top">
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">🎯 Persönliche Beratung</h4>
-                      <p class="w3-small w3-justify">Expertenberatung, zugeschnitten auf DEINEN Flugstil, deine Ziele und dein Können. Wir nehmen uns Zeit, deine Bedürfnisse zu verstehen, und empfehlen dir die perfekt passende Ausrüstung.</p>
-                    </div>
-                  </div>
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">💰 Attraktive Preise</h4>
-                      <p class="w3-small w3-justify">Wettbewerbsfähige Preise für Premium-Marken. Gute Ausrüstung muss kein Vermögen kosten; wir bieten ein hervorragendes Preis-Leistungs-Verhältnis, ohne bei Sicherheit oder Leistung Kompromisse zu machen.</p>
-                    </div>
-                  </div>
-                  <div class="w3-third">
-                    <div class="w3-card-4 w3-white w3-padding">
-                      <h4 class="w3-text-teal">🛠️ After-Sales-Support</h4>
-                      <p class="w3-small w3-justify">Die Betreuung endet nicht beim Kauf. Wir sind da für Wartungstipps, Materialchecks und alle Fragen, die auf deinem fliegerischen Weg auftauchen.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="w3-margin-top w3-padding">
-                  <p class="w3-large w3-justify" style="max-width:1000px; margin:auto">
-                    <strong>Was wir anbieten:</strong><br>
-                    ✈️ <strong>Gleitschirme</strong>, EN-A, EN-B und Spezialschirme für alle Könnensstufen<br>
-                    🪂 <strong>Gurtzeuge</strong>, bequem und sicherheitszertifiziert für jeden Körperbau<br>
-                    🆘 <strong>Rettungsschirme</strong>, Sicherheitsausrüstung in Top-Qualität<br>
-                    📡 <strong>Instrumente</strong>, GPS, Varios und Flugcomputer<br>
-                    👕 <strong>Zubehör</strong>, Helme, Handschuhe, Rucksäcke und mehr<br>
-                  </p>
-
-                  <p class="w3-center w3-margin-top">
-                    <a href="preise.html#Material" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo w3-large">
-                      <b>📋 Ausrüstung &amp; Preise ansehen</b>
+                  <p class="w3-center" style="margin:0">
+                    <a href="equipment.html" class="w3-button w3-round-xxlarge w3-padding-large w3-teal w3-hover-indigo">
+                      <b>&#129666; Marken &amp; Ausr&uuml;stung</b>
                     </a>
-                    &nbsp;&nbsp;
-                    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20Gleitschirm-Ausruestung" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xxlarge w3-padding-large" style="background-color:#25D366; color:white">
-                      <b>💬 Kontaktiere uns zur Ausrüstung</b>
+                    &nbsp;
+                    <a href="preise.html#Material" class="w3-button w3-round-xxlarge w3-padding-large" style="background:#fff; color:#0077b6; border:2px solid #0077b6">
+                      <b>&#128203; Ausr&uuml;stungspreise</b>
                     </a>
                   </p>
-                </div>
   </div>
 
- <!-- Sustainability------------------------------------------------------------>
+ <!-- Nachhaltigkeit: ein kompakter, verifizierter Block ------------------------------------------------------------>
   <div class="section" style="text-align:center" id="sustainability">
-           <h2 class="">Nachhaltigkeit</h2>
-            <h3 >Fliegen auf neue Höhen bringen, Baum für Baum, mit jedem Flug unserer Schüler</h3>
-
-                <p class="w3-justify" style="margin:auto">
-                  Ich glaube, dass Sorge zur Umwelt nicht nur eine Option, sondern eine Verantwortung ist. Mit meinem Ingenieur-Hintergrund war ich schon immer leidenschaftlich dabei, umweltfreundliche Technologien zu entwickeln. Heute, als Fluglehrer und Tandempilot, hat das Wohl unseres Planeten für mich weiterhin Priorität.</p>
-  </div>
-
-    <div class="section">
-      <div class="w3-row-padding" style="width:100%">
-
+           <h2>Nachhaltigkeit</h2>
+      <div class="w3-row-padding" style="width:100%; display:flex; flex-wrap:wrap; align-items:stretch">
               <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-               <img class="w3-image" src="https://flywithmiki.com/Images_v2/13.webp" alt="Elektro-Van-Transport - umweltfreundliches Fahrzeug der Gleitschirmschule, geladen mit erneuerbarer Energie"  loading="lazy">
-               <p class="w3-xlarge">Umweltfreundlicher Transport</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Meine Gleitschirmschule setzt konsequent auf Nachhaltigkeit: Wir nutzen einen Elektro-Van und laden ihn wann immer möglich mit erneuerbarer Energie. So minimieren wir unseren ökologischen Fussabdruck und setzen einen Standard für umweltbewussten Abenteuersport und verantwortungsvollen Tourismus.</p>
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="height:100%">
+               <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="Mangroven-Pflanzung in Kenia - CO2-Kompensationsprojekt f&uuml;r nachhaltiges Gleitschirmfliegen" loading="lazy">
+               <p class="w3-xlarge">B&auml;ume gepflanzt, elektrisch unterwegs</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Wir fahren mit dem Elektro-Van in die Fluggebiete und kompensieren den Fussabdruck jedes Flugs: Unser Partner pflanzt verifizierte Mangroven in Kenia: bis zu vier B&auml;ume nach jedem Tandemflug und bis zu f&uuml;nfundzwanzig nach jedem Sch&uuml;ler. Sorge zum Spielplatz, &uuml;ber dem wir fliegen, geh&ouml;rt zum Job.</p>
                </div>
               </div>
-
               <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
-               <img class="w3-image" src="https://flywithmiki.com/Images_v2/Kenyatree2.webp" alt="Mangroven-Pflanzung in Kenia - CO2-Kompensationsprojekt für nachhaltiges Gleitschirmfliegen" loading="lazy">
-               <p class="w3-xlarge">Bäume pflanzen, während wir am Himmel sind</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Bäume pflanzen und abheben! Wir kompensieren den CO2-Fussabdruck deines Gleitschirm-Abenteuers. Unser Partner pflanzt Mangroven in Kenia (verifiziertes Projekt), während wir in der Schweiz fliegen. Bis zu vier Bäume nach jedem Tandemflug und bis zu fünfundzwanzig Bäume nach jedem Schüler!</p>
-               </div>
-              </div>
-
-              <div class="w3-half">
-               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" >
+               <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="height:100%">
 				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer">
-				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verifizierte CO2-Kompensation - gepflanzte Bäume und gebundenes CO2 der Gleitschirmschule FLYwithMIKI" />
+				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verifizierte CO2-Kompensation - gepflanzte B&auml;ume und gebundenes CO2 der Gleitschirmschule FLYwithMIKI" />
 				</a>
-               <p class="w3-xlarge">Unser Impact</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Unsere Baumpflanz-Initiative wird von einem renommierten US-Tech-Unternehmen (Ecodrive-Veritree) verifiziert. Das garantiert Transparenz und echten Umweltnutzen, kein Greenwashing. Klick auf das Bild und sieh dir unsere verifizierte Baumpflanz-Projektseite auf der Website unseres Partners an </p>
+               <p class="w3-xlarge">Verifizierter Impact, kein Greenwashing</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Unsere Baumpflanz-Initiative wird von Ecodrive-Veritree verifiziert, einem renommierten US-Tech-Unternehmen; der Nutzen ist transparent und real. Klick auf das Badge und sieh dir unsere Live-Projektseite auf der Website unseres Partners an.</p>
                </div>
               </div>
-
-
-
-
-
          </div>
-
       </div>
 
 
@@ -1113,9 +1174,9 @@ function handleButtonClick(language) {
     <button class="popup-close" onclick="closePopup()" aria-label="Schliessen">&#10005;</button>
     <h3>&#9992; Bereit zum Fliegen?</h3>
     <p style="color:#555; font-size:1.05em">Starte dein Gleitschirm-Abenteuer diesen Herbst! Unsere Kleingruppen-Kurse sind schnell ausgebucht.</p>
-    <p style="font-size:0.95em; color:#777"><b>Herbstkurs 2026</b>: CHF 300 Startrabatt, Anmeldung bis Ende August!</p>
-    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20den%20Herbstkurs%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:10px auto 8px">&#128172; Mit Miki auf WhatsApp chatten</a>
-    <a href="school.html" class="cta-btn cta-btn-primary" style="display:block; margin:8px auto">&#127937; Unsere Kurse entdecken</a>
+    <p style="font-size:0.95em; color:#777"><b>Herbstkurs 2026</b>: CHF 300 Startrabatt, Anmeldung bis Ende August! Es beginnt mit einem gratis Videocall, nicht mit einer Rechnung.</p>
+    <a href="#start" onclick="closePopup()" class="cta-btn cta-btn-primary" style="display:block; margin:10px auto 8px">&#128640; So l&auml;uft die Anmeldung</a>
+    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20interessiere%20mich%20fuer%20den%20Herbstkurs%202026" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-secondary" style="display:block; margin:8px auto">&#128172; Mit Miki auf WhatsApp chatten</a>
     <p style="font-size:0.8em; color:#aaa; margin-top:15px; cursor:pointer" onclick="closePopup()">Nein danke, ich schaue nur</p>
   </div>
 </div>
@@ -1180,6 +1241,21 @@ function playFullPromo(btn){
   if (v) { v.muted = false; v.controls = true; v.play(); }
   btn.style.display = 'none';
 }
+</script>
+
+<script>
+// Hook cards: on wide screens the grid row grows as one card opens, so open the
+// whole group together; on phones (single column) each card toggles on its own.
+(function () {
+  document.querySelectorAll('.hook-grid').forEach(function (grid) {
+    grid.querySelectorAll('details.hook').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (window.innerWidth < 768) return;
+        grid.querySelectorAll('details.hook').forEach(function (o) { o.open = d.open; });
+      });
+    });
+  });
+})();
 </script>
 </body>
 

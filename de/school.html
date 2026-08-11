@@ -343,6 +343,24 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
                 /* hero keeps its breathing room under the promo banner regardless of rule order */
         .page-hero.section-boxed { margin-top: 26px; }
+
+        /* === QUICK FACTS STRIP: wo / wann / wie viel auf einen Blick === */
+        .fact-strip { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; max-width:1000px; margin:0 auto 28px; padding:0 20px; box-sizing:border-box; }
+        .fact-chip { background:#f0f8ff; border:1px solid #dbe9f4; border-radius:12px; padding:10px 18px; font-size:0.9em; color:#333; line-height:1.5; }
+        .fact-chip b { color:#0077b6; }
+        .fact-chip a { color:#0077b6; font-weight:bold; }
+
+        /* === CLICKABLE HOOK BLOCKS: headline visible, long text on click === */
+        details.hook { background:#fff; border:1px solid #e4f0fa; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin:0 0 14px; }
+        details.hook summary { list-style:none; cursor:pointer; padding:16px 18px; display:flex; gap:12px; align-items:flex-start; text-align:left; }
+        details.hook summary::-webkit-details-marker { display:none; }
+        details.hook .hook-icon { font-size:1.5em; line-height:1.2; }
+        details.hook .hook-title { font-weight:bold; color:#003049; line-height:1.35; font-size:1.05em; }
+        details.hook .hook-teaser { font-size:0.84em; color:#0077b6; margin-top:3px; line-height:1.45; display:block; }
+        details.hook .hook-plus { margin-left:auto; color:#0077b6; font-size:1.3em; font-weight:bold; transition:transform .2s; flex-shrink:0; }
+        details.hook[open] .hook-plus { transform:rotate(45deg); }
+        details.hook .hook-body { padding:12px 22px 18px; color:#444; line-height:1.65; border-top:1px dashed #dbe9f4; margin:0 14px 4px; padding-left:4px; padding-right:4px; }
+        details.hook summary:hover { background:#f7fbfe; border-radius:14px; }
         </style>
      <!--   <script src="https://kit.fontawesome.com/24620a8de6.js" crossorigin="anonymous"></script> -->
 
@@ -484,6 +502,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20mehr%20ueber%20deine%20Schule%20erfahren" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Frag Miki alles</a>
  </div>
 
+ <!-- QUICK FACTS: wo, wann, wie viel, auf einen Blick -->
+ <div class="fact-strip">
+   <div class="fact-chip">&#128205; <b>Wo:</b> die ganze Zentralschweiz (Engelberger Tal, Rigi, Emmetten, Zugerberg &amp; mehr) &middot; Treffpunkt Kriens (Luzern)</div>
+   <div class="fact-chip">&#128197; <b>Wann:</b> Donnerstag&ndash;Sonntag, das ganze Jahr &middot; keine fixen Termine, Start innert Tagen</div>
+   <div class="fact-chip">&#128176; <b>Kosten:</b> CHF 4'500 Ausbildung &middot; gesamt bis zum Brevet CHF 11&ndash;12k &middot; <a href="preise.html">Details &rarr;</a></div>
+ </div>
+
 <!-- SCHOOL section -->
   <div class="w3-container w3-white w3-center" id="school">
      <div class="w3-content" style="max-width:1000px">
@@ -493,9 +518,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		  <h2 style="color:#0077b6; text-align:center">&#129309; Der Fluglehrer, an den du dich in dreissig Jahren erinnerst</h2>
 		  <div class="w3-card-4 w3-padding-large" style="border-radius:16px; border-left:4px solid #0b79c0; background:#fdfefe">
 		    <p class="w3-justify">Fliegen lernen ist eine seltsam intime Sache. In deinen ersten Tagen musst du deinem Fluglehrer so vertrauen, wie ein Kind der Hand vertraut, die den Fahrradsattel h&auml;lt: vollst&auml;ndig, und bevor du wissen kannst, ob dieses Vertrauen verdient ist. Diese ersten Fl&uuml;ge k&ouml;nnen zu den sch&ouml;nsten Erinnerungen deines Lebens werden, oder zu den schlimmsten, und der Unterschied ist selten das Wetter. Es ist der Mensch, der neben dir steht.</p>
-		    <p class="w3-justify">Ich treffe viele Piloten, die frustriert von woanders zu uns kommen. Nicht weil man ihnen Falsches beigebracht h&auml;tte, sondern weil niemand die Geduld und Empathie hatte, die sie in dem Moment gebraucht h&auml;tten. Denn in der Luft begegnest du in Wahrheit nicht dem Wind. <b>Du begegnest deinen eigenen Grenzen.</b> Mit einem guten Mentor an deiner Seite ist genau diese Begegnung der Weg, auf dem du zu einem sicheren, selbstbewussten Piloten w&auml;chst. Ohne ihn kann sie der Weg sein, auf dem du Angst lernst.</p>
+		    <details style="margin:0 0 10px">
+		      <summary style="cursor:pointer; color:#0077b6; font-weight:bold; list-style:none">Lies den Rest von Mikis Brief: warum die Anmeldung mit einem gratis Videocall beginnt, nicht mit einer Rechnung &rarr;</summary>
+		    <p class="w3-justify" style="margin-top:14px">Ich treffe viele Piloten, die frustriert von woanders zu uns kommen. Nicht weil man ihnen Falsches beigebracht h&auml;tte, sondern weil niemand die Geduld und Empathie hatte, die sie in dem Moment gebraucht h&auml;tten. Denn in der Luft begegnest du in Wahrheit nicht dem Wind. <b>Du begegnest deinen eigenen Grenzen.</b> Mit einem guten Mentor an deiner Seite ist genau diese Begegnung der Weg, auf dem du zu einem sicheren, selbstbewussten Piloten w&auml;chst. Ohne ihn kann sie der Weg sein, auf dem du Angst lernst.</p>
 		    <p class="w3-justify" style="margin-bottom:8px">Man kann Gleitschirmfliegen auch in der Fabrik lernen, zwanzig Sch&uuml;ler pro Hang, der N&auml;chste bitte. Auf dem Papier funktioniert das. Aber fast jeder Pilot erinnert sich sein Leben lang an seinen ersten Fluglehrer; die Worte kommen zur&uuml;ck, auf 2000 Metern, dreissig Jahre sp&auml;ter. <b>Diese Verantwortung nehme ich pers&ouml;nlich.</b></p>
 		    <p class="w3-justify" style="margin-bottom:8px">Deshalb beginnt der Weg zu uns nicht mit einer Rechnung. Er beginnt mit einem Gespr&auml;ch: <b>Bevor du dich anmeldest, setzen wir uns zu einem 30- bis 60-min&uuml;tigen Videocall zusammen, nur wir zwei.</b> Du erf&auml;hrst, wie ich denke und wie ich unterrichte, ich erfahre, was du brauchst, und wir finden beide heraus, ob die Chemie stimmt. An den meisten Schulen ist dein erster Kontakt eine Nachricht, die eine Administration beantwortet, oder ein kurzes Telefonat; hier ist es der Mensch, der bei deinem ersten Start neben dir stehen wird. So ein Kurs ist eine grosse Investition, und der teuerste Fehler ist, eine Schule zu bezahlen und dann festzustellen, dass du mit deinem Fluglehrer nicht auf derselben Wellenl&auml;nge bist, oder dass es so viele Fluglehrer gibt, dass niemand auch nur deinen Namen kennt. Das schliessen wir aus, bevor du einen einzigen Franken zahlst.</p>
+		    </details>
 		    <p style="text-align:right; color:#5d707d; margin:0; font-style:italic">Miki</p>
 		  </div>
 		</div>
@@ -512,40 +540,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		  </div>
 		</div>
 
-    <!-- WHY FLYWITHMIKI -->
-    <div class="w3-padding-32" id="why-us" style="max-width:1000px; margin:0 auto">
-      <h2 style="color:#0077b6">&#127775; Warum FLYwithMIKI?</h2>
-      <div class="w3-row-padding w3-margin-top" style="display:flex;flex-wrap:wrap;align-items:stretch">
-        <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #0077b6; height:100%; flex:1">
-            <p style="font-size:1.6em; text-align:center; margin:0">&#128100;</p>
-            <h4 style="color:#0077b6; margin-top:8px">Kleine Gruppen</h4>
-            <p class="w3-small">Wir halten die Gruppen bewusst klein. Dein Fortschritt zählt, nicht der Durchsatz. Echte Aufmerksamkeit, echtes Feedback, echter Fortschritt.</p>
-          </div>
-        </div>
-        <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #25D366; height:100%; flex:1">
-            <p style="font-size:1.6em; text-align:center; margin:0">&#127468;&#127463;&nbsp;&#127465;&#127466;&nbsp;&#127469;&#127482;</p>
-            <h4 style="color:#0077b6; margin-top:8px">3 Sprachen</h4>
-            <p class="w3-small">Miki unterrichtet auf Deutsch, Englisch und Ungarisch. So lernst du Gleitschirmfliegen in der Sprache, in der du denkst, statt dich abzumühen.</p>
-          </div>
-        </div>
-      </div>
-      <div class="w3-row-padding" style="display:flex;flex-wrap:wrap;align-items:stretch">
-        <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #f5a623; height:100%; flex:1">
-            <p style="font-size:1.6em; text-align:center; margin:0">&#128241;</p>
-            <h4 style="color:#0077b6; margin-top:8px">FlightDeck App</h4>
-            <p class="w3-small">Verfolge deinen Ausbildungsfortschritt mit unserer exklusiven digitalen Plattform. Persönliche Meilensteine, Manöver-Checklisten und Echtzeit-Feedback vom Fluglehrer. Keine andere Schule hat das.</p>
-          </div>
-        </div>
-        <div class="w3-half w3-margin-bottom" style="display:flex">
-          <div class="w3-card-4 w3-padding" style="border-radius:16px; border-top:3px solid #0077b6; height:100%; flex:1">
-            <p style="font-size:1.6em; text-align:center; margin:0">&#127807;</p>
-            <h4 style="color:#0077b6; margin-top:8px">Eco-First-Ansatz</h4>
-            <p class="w3-small">Elektroauto-Transport, 400+ gepflanzte Bäume, SHV-zertifiziert. Wir sind überzeugt: Fliegen und Umweltverantwortung gehören zusammen.</p>
-          </div>
-        </div>
+    <!-- WHY FLYWITHMIKI: die volle Geschichte steht auf der Startseite, hier keine Wiederholung -->
+    <div class="w3-padding-16" id="why-us" style="max-width:1000px; margin:0 auto">
+      <div style="background:#f0f8ff; border:1px solid #dbe9f4; border-radius:14px; padding:16px 20px; text-align:center; color:#444; line-height:1.6">
+        <b style="color:#0077b6">&#127775; Warum wir?</b> Kleine Gruppen (3&ndash;8), ein Fluglehrer, drei Sprachen, die FlightDeck App und ein Eco-First-Ansatz. Die schnelle, klickbare Version steht auf der <a href="./#why" style="color:#0077b6; font-weight:bold">Startseite &rarr;</a>
       </div>
       <div class="w3-center w3-margin-top">
         <a href="preise.html" class="cta-btn cta-btn-primary">Kurspreise ansehen</a>
@@ -565,11 +563,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 		<!------TRAINING HILL---------->
-     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
+     <div class="w3-content phase-section" style="max-width:1000px; padding-top:6px; padding-bottom:6px">
 
   	<!------WINTER DISCOUNT----------       <a href="https://flywithmiki.com/class2025.html" target="_blank" rel="noopener noreferrer"><img src="https://flywithmiki.com/Images_v2/winter2024.webp" alt="logoc" class="w3-image w3-auto w3-card" style="width:100%; max-width:1000px"> </a> 	<!------WINTER DISCOUNT---------->
 
-       <h3 style="text-align:left"><b>Übungshang:</b></h3>
+       <h2 style="color:#0077b6; text-align:center; margin:10px 0 6px">&#128220; Die Ausbildung, Phase f&uuml;r Phase</h2>
+       <p style="text-align:center; color:#888; margin:0 0 18px; font-size:0.95em">Alles hier ist im Kurspreis enthalten. Klick auf eine Phase f&uuml;r die ganze Geschichte.</p>
+       <details class="hook">
+        <summary>
+          <span class="hook-icon">&#9968;</span>
+          <span><span class="hook-title">&Uuml;bungshang (2&ndash;5 Tage)</span>
+          <span class="hook-teaser">Gurtzeug, Aufziehen, Groundhandling und deine allerersten Fl&uuml;ge, tief und langsam</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">
          <p class="w3-justify"> Der Übungshang ist dein Tor zum Himmel, und diese ersten Tage (2-5 Tage) legen das Fundament für deine Abenteuer in der Luft. Hier ein Vorgeschmack darauf, was dich erwartet:</p>
          <p class="w3-justify">
             <img class="phase-figure" src="https://flywithmiki.com/Images_v2/UH2.webp" alt="Schüler übt Groundhandling am Übungshang" loading="lazy">
@@ -588,11 +595,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             Am Übungshang beginnt deine Gleitschirm-Reise wirklich. Es ist ein unterstützendes, fröhliches Umfeld, in dem du die Fähigkeiten und das Selbstvertrauen entwickelst, um in den Himmel aufzusteigen. Mach dich also bereit, dich vom neugierigen Anfänger zum aufblühenden Gleitschirmpiloten zu verwandeln!  Wir können es kaum erwarten, die Magie des Fliegens mit dir zu teilen. <br>
           </p>
+        </div>
+       </details>
      </div>
 
     <!------HIGH FLIGHTS---------->
-     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
-       <h3 style="text-align:left"><b>Höhenflüge:</b></h3>
+     <div class="w3-content phase-section" style="max-width:1000px; padding-top:6px; padding-bottom:6px">
+       <details class="hook">
+        <summary>
+          <span class="hook-icon">&#127748;</span>
+          <span><span class="hook-title">H&ouml;henfl&uuml;ge (1&ndash;12 Monate, dein Tempo)</span>
+          <span class="hook-teaser">Funkbegleitete Fl&uuml;ge vom Berg: Thermik, Man&ouml;ver, Landungen. Unlimitiert, 4&ndash;6 pro gutem Tag</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">
          <p class="w3-justify"> Sobald du die Grundlagen beherrschst, bist du bereit, dein Gleitschirm-Abenteuer auf ein neues Niveau zu heben. Bei den Höhenflügen entfaltet sich die wahre Magie. Freu dich auf atemberaubende Ausblicke, aufregende Manöver und die Kunst, lange oben zu bleiben. Die Phase der Höhenflüge und Theorie dauert in der Regel 1-12 Monate, je nach deiner Zeit und dem Wetter.</p>
 
          <div class="phase-gallery">
@@ -623,14 +639,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             Bei Höhenflügen geht es um viel mehr als nur höher zu fliegen. Es geht darum, Selbstvertrauen aufzubauen, Kontrolle zu meistern und das wahre Potenzial des Gleitschirmfliegens freizusetzen.  Mit fachkundiger Begleitung und Übung wirst du vom fähigen Piloten zum Meister der Lüfte, bereit, die Welt aus einer völlig neuen Perspektive zu erkunden.  Freu dich auf lange Flüge, atemberaubende Ausblicke und die pure Freude, mit dem Wind zu tanzen! <br>
           </p>
+        </div>
+       </details>
      </div>
 
 
 
     <!------Flight Deck---------->
-         <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
-		 <h3 style="text-align:left"><b>Der digitale Vorsprung, wir stellen vor: Flight Deck:</b></h3>
-
+         <div class="w3-content phase-section" style="max-width:1000px; padding-top:6px; padding-bottom:6px">
+       <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128241;</span>
+          <span><span class="hook-title">Der digitale Vorsprung: FlightDeck</span>
+          <span class="hook-teaser">Dein Fortschritt, die Man&ouml;verliste und die Theorie in einer App, gratis f&uuml;r unsere Sch&uuml;ler</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">
 			 <p class="w3-justify"> Lass veraltete Papier-Flugbücher und verstreute Notizen hinter dir. Das <strong>Flight Deck</strong> ist unsere exklusive digitale Plattform, die die Effizienz und Sicherheit deiner Gleitschirm-Ausbildung maximiert. Anders als bei traditionellen Methoden bist du mit diesem System immer mit deinem Fortschritt und deinem Fluglehrer verbunden.</p>
 
 			 <p class="w3-justify">
@@ -639,6 +663,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			 <strong>Sieh deinen Erfolg:</strong> Das Herzstück ist das persönliche <ins>Dashboard</ins>, auf dem du deinen Fortschritt entlang der Ausbildungs-Meilensteine visuell verfolgen kannst. Diese Transparenz ist ein starker Motivator. Du bekommst <ins>sofortigen Zugriff</ins> auf eine umfassende Manöverliste, die das obligatorische SHV-Ausbildungsprogramm ergänzt und erweitert. Diese einzigartige Struktur sorgt dafür, dass Manöver in einer viel <ins>logischeren, aufeinander aufbauenden Reihenfolge</ins> unterrichtet werden, was den Ausbildungsprozess reibungsloser und sicherer macht.             <br><br>
 			 <strong>Zusammenarbeit mit dem Fluglehrer:</strong> Die Plattform zeigt deinem Fluglehrer deinen Fortschritt in Echtzeit. Diese sofortige Transparenz ist entscheidend: Sie ermöglicht es uns, gemeinsam schnell zu entscheiden, was du als Nächstes üben und entwickeln solltest. Indem Flight Deck Rätselraten eliminiert und die Kommunikation vereinfacht, wird deine gesamte Ausbildung deutlich <ins>effizienter und sicherer</ins>, und jeder Flug ist fokussiert und produktiv.
 			 </p>
+        </div>
+       </details>
 		 </div>
     <!------Flight Deck---------->
 
@@ -646,8 +672,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!------THEORY---------->
-     <div class="w3-content w3-padding-32 phase-section" style="max-width:1000px">
-       <h3 style="text-align:left"><b>Theorie:</b></h3>
+     <div class="w3-content phase-section" style="max-width:1000px; padding-top:6px; padding-bottom:6px">
+       <details class="hook">
+        <summary>
+          <span class="hook-icon">&#128214;</span>
+          <span><span class="hook-title">Theorie (5 F&auml;cher, inbegriffen)</span>
+          <span class="hook-teaser">Meteorologie, Aerodynamik, Flugtechnik, Luftrecht und Materialkunde. Unterrichtet, nicht nur ausgeh&auml;ndigt</span></span>
+          <span class="hook-plus">+</span>
+        </summary>
+        <div class="hook-body">
          <p class="w3-justify"> Beim Gleitschirmfliegen geht es nicht nur darum, den Wind in den Haaren zu spüren. Es geht darum, ein Pilot zu werden, der die Wissenschaft und Kunst des Fliegens versteht. Übung macht den Meister, aber ein solides theoretisches Fundament ist unerlässlich für sicheres und genussvolles Fliegen. Genau dafür ist der Theorieunterricht da!</p>
 
          <div class="phase-gallery">
@@ -673,11 +706,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             Theorielektionen sind vielleicht nicht so berauschend wie das Gleiten durch den Himmel, aber sie sind der Grundstein für sicheres und erfolgreiches Gleitschirmfliegen. Mit einem soliden theoretischen Fundament steigst du selbstbewusst in die Luft, bereit, die grenzenlosen Möglichkeiten des Fliegens zu erkunden. <br>
           </p>
+        </div>
+       </details>
      </div>
 
 
      </div>
-     <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20Gleitschirmfliegen%20lernen" class="w3-button w3-large w3-hover-light-grey w3-margin-bottom" style="background-color:#ADCDFF; color:black;">Jetzt anmelden</a>
+     <a href="./#start" class="w3-button w3-large w3-hover-light-grey w3-margin-bottom" style="background-color:#ADCDFF; color:black;">Anmelden: so l&auml;uft es (gratis Videocall zuerst)</a>
  </div>
 
 
