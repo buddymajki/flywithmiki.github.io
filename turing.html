@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kódfejtő — solo dedukciós játék</title>
+<style>
+:root{
+  --ink:#141c1f;
+  --panel:#1d282c;
+  --panel2:#243237;
+  --paper:#efe6d0;
+  --paper-edge:#d9cdb0;
+  --paper-ink:#2a2620;
+  --amber:#f0a63a;
+  --amber-dim:#8a6a33;
+  --teal:#4fa8a0;
+  --ok:#4caf6e;
+  --bad:#d05a48;
+  --tri:#4f8fd0;
+  --sq:#e0b13f;
+  --ci:#a06fc8;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:#e8e2d2;font-family:var(--sans);min-height:100%}
+body{max-width:540px;margin:0 auto;padding:12px 12px 90px}
+
+/* nagy képernyőn: oszlopos elrendezés */
+@media(min-width:980px){
+  body{max-width:1420px}
+  .layout{display:grid;grid-template-columns:1.15fr 1fr 1.1fr;gap:22px;align-items:start}
+  .tape{max-height:320px}
+}
+
+/* ---------- header ---------- */
+header{
+  border:2px solid var(--amber-dim);border-radius:10px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  padding:12px 14px;margin-bottom:12px;
+}
+header h1{font-family:var(--mono);font-size:19px;letter-spacing:2px;color:var(--amber)}
+header p{font-size:12px;color:#9fb0aa;margin-top:2px}
+.statusbar{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-family:var(--mono);font-size:12px;
+}
+.statusbar span{
+  background:#101718;border:1px solid #33443f;border-radius:6px;
+  padding:4px 8px;color:#cfe3d8;
+}
+.statusbar b{color:var(--amber)}
+
+/* ---------- sections ---------- */
+h2{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;
+  color:#8fa39b;text-transform:uppercase;margin:16px 2px 8px;
+}
+
+/* ---------- verifier cards ---------- */
+.vcard{
+  background:var(--paper);color:var(--paper-ink);
+  border-radius:8px;border:1px solid var(--paper-edge);
+  margin-bottom:10px;overflow:hidden;
+  box-shadow:0 2px 0 rgba(0,0,0,.35);
+}
+.vhead{display:flex;align-items:center;gap:10px;padding:8px 10px;background:#e4d9bd;border-bottom:1px dashed #c4b48d}
+.vletter{
+  font-family:var(--mono);font-weight:700;font-size:16px;
+  background:var(--paper-ink);color:var(--paper);
+  width:28px;height:28px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.vtitle{font-size:13px;font-weight:600;flex:1}
+.vlamp{
+  width:26px;height:26px;border-radius:50%;flex:0 0 auto;
+  border:2px solid #b6a780;background:#efe6d0;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;transition:all .25s;
+}
+.vlamp.ok{background:var(--ok);border-color:#2f7a4d;color:#fff}
+.vlamp.bad{background:var(--bad);border-color:#93392c;color:#fff}
+.vicon{
+  flex:0 0 auto;min-width:52px;padding:4px 6px;border-radius:5px;
+  background:var(--paper-ink);color:#e8e2d2;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  text-align:center;letter-spacing:1px;line-height:1.2;
+}
+.vicon .t{color:var(--tri)} .vicon .s{color:var(--sq)} .vicon .c{color:var(--ci)}
+.vicon .q{color:var(--amber)}
+.vdim{
+  flex:0 0 auto;width:26px;height:26px;border-radius:6px;
+  border:1px solid #b6a780;background:transparent;color:#7a6c48;
+  font-family:var(--mono);font-size:13px;font-weight:700;cursor:pointer;
+}
+.vcard.dimmed{opacity:.45}
+.vcard.dimmed .vbody{display:none}
+.vcard.dimmed .vdim{background:#7a6c48;color:var(--paper)}
+.vbody{padding:8px 10px;display:flex;gap:8px;align-items:flex-start}
+.vopts{flex:1;font-size:12px;line-height:1.5;color:#4a4335}
+.vopts li{list-style:none;padding-left:12px;position:relative}
+.vopts li::before{content:"▸";position:absolute;left:0;color:#a8975f}
+.vopts li.active-reveal{color:#1a5c38;font-weight:700}
+.vopts li.active-reveal::before{content:"●";color:#1a5c38}
+.vopts li.out{opacity:.4;text-decoration:line-through}
+.vfound{
+  display:block;font-family:var(--mono);font-size:12px;font-weight:700;
+  color:#1a6b3d;margin-top:2px;letter-spacing:.5px;
+}
+.vtest{
+  flex:0 0 auto;font-family:var(--mono);font-size:13px;font-weight:700;
+  background:var(--paper-ink);color:var(--amber);
+  border:none;border-radius:8px;padding:10px 12px;cursor:pointer;
+}
+.vtest:disabled{opacity:.35;cursor:default}
+
+/* ---------- code composer ---------- */
+.composer{
+  background:var(--panel);border:2px solid var(--amber-dim);border-radius:10px;
+  padding:12px;display:flex;gap:10px;justify-content:space-between;
+}
+.shapecol{flex:1;text-align:center}
+.shapecol .shp{font-size:22px;margin-bottom:6px;display:block}
+.shp.t{color:var(--tri)} .shp.s{color:var(--sq)} .shp.c{color:var(--ci)}
+.keys{display:flex;flex-direction:column;gap:6px}
+.key{
+  font-family:var(--mono);font-size:16px;font-weight:700;
+  background:#101718;color:#cfe3d8;border:1px solid #33443f;
+  border-radius:8px;padding:9px 0;cursor:pointer;width:100%;
+}
+.key.sel-t{background:var(--tri);color:#0c1c2c;border-color:var(--tri)}
+.key.sel-s{background:var(--sq);color:#2c220c;border-color:var(--sq)}
+.key.sel-c{background:var(--ci);color:#1e0c2c;border-color:var(--ci)}
+.composer.locked .key{opacity:.55;pointer-events:none}
+.lockmsg{font-family:var(--mono);font-size:11px;color:#c98f3a;margin-top:6px;text-align:center;min-height:14px}
+
+/* ---------- action buttons ---------- */
+.actions{display:flex;gap:8px;margin-top:10px}
+.btn{
+  flex:1;font-family:var(--mono);font-size:14px;font-weight:700;
+  padding:12px;border-radius:10px;border:none;cursor:pointer;letter-spacing:1px;
+}
+.btn.primary{background:var(--amber);color:#241a08}
+.btn.ghost{background:transparent;color:#cfe3d8;border:1px solid #46584f}
+.btn.danger{background:var(--bad);color:#fff}
+.btn:disabled{opacity:.35;cursor:default}
+
+/* ---------- log tape ---------- */
+.tape{
+  background:var(--paper);color:var(--paper-ink);border-radius:8px;
+  padding:10px 12px;font-family:var(--mono);font-size:13px;line-height:1.8;
+  max-height:180px;overflow-y:auto;border:1px solid var(--paper-edge);
+}
+.tape:empty::before{content:"— még nincs lekérdezés —";color:#a29572}
+.tape .r-ok{color:#1a6b3d;font-weight:700}
+.tape .r-bad{color:#a4321f;font-weight:700}
+.tape .rnd{color:#8a7c53}
+
+/* ---------- notes ---------- */
+.notes{background:var(--panel);border:1px solid #33443f;border-radius:10px;padding:10px}
+.nrow{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.nrow:last-child{margin-bottom:0}
+.nrow .shp{width:24px;font-size:18px;text-align:center}
+.ncell{
+  flex:1;font-family:var(--mono);font-size:14px;font-weight:700;
+  background:#101718;color:#cfe3d8;border:1px solid #33443f;
+  border-radius:6px;padding:8px 0;text-align:center;cursor:pointer;user-select:none;
+}
+.ncell.x{color:#5a4a44;background:#191214;text-decoration:line-through;border-color:#3a2c28}
+.ncell.o{color:#0c1c14;background:var(--ok);border-color:var(--ok)}
+.nhint{font-size:11px;color:#8fa39b;margin-top:6px}
+
+/* ---------- combinations ---------- */
+.combos{background:var(--panel);border:1px solid #33443f;border-radius:10px;padding:10px}
+.cbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cleft{font-family:var(--mono);font-size:12px;color:#cfe3d8}
+.cleft b{color:var(--amber)}
+.creset{font-family:var(--mono);font-size:11px;color:#8fa39b;background:none;border:1px solid #46584f;border-radius:6px;padding:4px 8px;cursor:pointer}
+.cblock{margin-bottom:10px}
+.cblock:last-child{margin-bottom:0}
+.cblock h4{font-family:var(--mono);font-size:12px;color:#9fb0aa;margin:0 0 4px;font-weight:400}
+.cblock h4 .t{color:var(--tri);font-weight:700}
+.cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.cblockgrid{margin-bottom:12px}
+.cblockgrid:last-child{margin-bottom:0}
+.chead{margin-bottom:6px}
+.chcell{font-family:var(--mono);font-size:12px;text-align:center;letter-spacing:2px}
+.chcell .t{color:var(--tri)} .chcell .s{color:var(--sq)} .chcell .c{color:var(--ci)}
+.ccell{
+  font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:2px;
+  background:#101718;border:1px solid #33443f;border-radius:5px;
+  padding:7px 0;text-align:center;cursor:pointer;user-select:none;
+}
+.ccell .t{color:var(--tri)} .ccell .s{color:var(--sq)} .ccell .c{color:var(--ci)}
+.ccell.x{background:#191214;border-color:#3a2c28;text-decoration:line-through;opacity:.35}
+.ccell.x .t,.ccell.x .s,.ccell.x .c{color:#5a4a44}
+.ccell.ax{background:#131a17;border-color:#2a4a3f;border-style:dashed;text-decoration:line-through;opacity:.35}
+.ccell.ax .t,.ccell.ax .s,.ccell.ax .c{color:#4a5f56}
+
+/* ---------- overlays ---------- */
+.overlay{
+  position:fixed;inset:0;background:rgba(10,14,15,.88);
+  display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;
+}
+.modal{
+  background:var(--panel2);border:2px solid var(--amber-dim);border-radius:12px;
+  padding:20px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto;
+}
+.modal h3{font-family:var(--mono);color:var(--amber);font-size:16px;letter-spacing:1px;margin-bottom:10px}
+.modal p{font-size:13px;color:#cfd8cf;line-height:1.5;margin-bottom:10px}
+.hidden{display:none!important}
+.bigcode{font-family:var(--mono);font-size:30px;letter-spacing:6px;text-align:center;margin:10px 0;color:#fff}
+.bigcode .t{color:var(--tri)} .bigcode .s{color:var(--sq)} .bigcode .c{color:var(--ci)}
+.result-win{color:var(--ok);font-family:var(--mono);font-size:20px;text-align:center;margin-bottom:8px}
+.result-lose{color:var(--bad);font-family:var(--mono);font-size:20px;text-align:center;margin-bottom:8px}
+.diffbtns{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.rules{font-size:13px;color:#cfd8cf;line-height:1.6}
+.rules li{margin:0 0 8px 18px}
+.linkline{font-family:var(--mono);font-size:12px;color:#8fa39b;text-align:center;margin-top:10px;cursor:pointer;text-decoration:underline}
+footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>KÓDFEJTŐ</h1>
+  <p>Solo dedukciós játék — találd meg a hármas kódot a lehető legkevesebb kérdésből.</p>
+  <div class="statusbar" id="statusbar">
+    <span>Szint <b id="stDiff">–</b></span>
+    <span>Kör <b id="stRound">–</b></span>
+    <span>Kérdés e körben <b id="stQ">0</b>/3</span>
+    <span>Összes <b id="stTotal">0</b></span>
+  </div>
+</header>
+
+<div id="gameArea" class="hidden">
+<div class="layout">
+<div class="lcol">
+  <h2>Ellenőrzők</h2>
+  <div id="verifiers"></div>
+</div>
+<div class="lcol">
+  <h2>Kódjavaslat</h2>
+  <div class="composer" id="composer">
+    <div class="shapecol"><span class="shp t">▲</span><div class="keys" id="keysT"></div></div>
+    <div class="shapecol"><span class="shp s">■</span><div class="keys" id="keysS"></div></div>
+    <div class="shapecol"><span class="shp c">●</span><div class="keys" id="keysC"></div></div>
+  </div>
+  <div class="lockmsg" id="lockMsg"></div>
+
+  <div class="actions">
+    <button class="btn ghost" id="btnNewRound">ÚJ KÖR</button>
+    <button class="btn primary" id="btnGuess">MEGFEJTÉS</button>
+  </div>
+
+  <h2>Napló</h2>
+  <div class="tape" id="tape"></div>
+</div>
+<div class="lcol">
+  <h2>Jegyzet</h2>
+  <div class="notes" id="notes"></div>
+  <div class="nhint">Koppintás: normál → kihúzva → biztos. A kihúzott érték kódjait a lenti rács automatikusan kihúzza; a „biztos" jelölésnél minden más érték kiesik annál az alakzatnál.</div>
+
+  <h2>Összes kombináció</h2>
+  <div class="combos">
+    <div class="cbar">
+      <div class="cleft">Még szóba jöhet: <b id="comboCount">125</b>/125</div>
+      <button class="creset" id="comboReset">VISSZAÁLLÍT</button>
+    </div>
+    <div class="cbar" style="margin-top:-2px">
+      <label class="cleft" style="cursor:pointer;display:flex;align-items:center;gap:6px">
+        <input type="checkbox" id="autoRules">
+        Megerősített szabályok automatikus kihúzása
+      </label>
+    </div>
+    <div id="comboBlocks"></div>
+  </div>
+  <div class="nhint">Koppintással kézzel is kihúzhatsz kódokat — ezeket a jegyzet változása nem írja felül. A szaggatott szegélyű cellák a jegyzetből következnek, és a jegyzet visszaállításával térnek vissza. A VISSZAÁLLÍT csak a kézi kihúzásokat törli.</div>
+</div>
+</div>
+
+  <footer>
+    <span class="linkline" id="btnRules">Szabályok</span>
+  </footer>
+</div>
+
+<!-- setup -->
+<div class="overlay" id="setupOverlay">
+  <div class="modal">
+    <h3>ÚJ JÁTSZMA</h3>
+    <p>A gép kisorsol egy titkos kódot (▲ ■ ●, mindegyik 1–5) és minden ellenőrzőhöz egy rejtett szabályt a kártyán felsoroltak közül. Kérdezz okosan, és fejtsd meg a kódot!</p>
+    <p>Válassz nehézségi szintet:</p>
+    <div class="diffbtns">
+      <button class="btn primary" data-diff="easy">KÖNNYŰ — 4 ellenőrző, egyszerű kártyák</button>
+      <button class="btn primary" data-diff="med">KÖZEPES — 5 ellenőrző, bővebb kártyakészlet</button>
+      <button class="btn primary" data-diff="hard">NEHÉZ — 6 ellenőrző, összes kártya</button>
+    </div>
+    <div class="linkline" id="btnRules2">Szabályok</div>
+  </div>
+</div>
+
+<!-- rules -->
+<div class="overlay hidden" id="rulesOverlay">
+  <div class="modal">
+    <h3>SZABÁLYOK</h3>
+    <ul class="rules">
+      <li>A titkos kód három számjegy: <b style="color:var(--tri)">▲</b>, <b style="color:var(--sq)">■</b>, <b style="color:var(--ci)">●</b> — mindegyik 1 és 5 között.</li>
+      <li>Minden ellenőrző kártyán több lehetséges szabály van. A gép mindegyikhez <b>pontosan egyet</b> választott ki titokban. A titkos kód az összes kiválasztott szabálynak megfelel, és csak az felel meg mindnek.</li>
+      <li>Egy körben: állíts össze egy kódjavaslatot, majd kérdezz meg legfeljebb <b>3 ellenőrzőt</b>. Az ellenőrző azt mondja meg (✓/✗), hogy a <b>javaslatod</b> megfelel-e az ő rejtett szabályának — nem azt, hogy a javaslat a titkos kód-e!</li>
+      <li>Az első kérdés után a javaslat a kör végéig rögzül. Új körben új javaslatot adhatsz.</li>
+      <li>Minden ellenőrző szabálya <b>szükséges</b>: egyik sem felesleges a megfejtéshez.</li>
+      <li>Ha biztos vagy benne, nyomd meg a MEGFEJTÉS gombot. Helyes kód = győzelem. Rossz kód = vereség.</li>
+      <li>Pontszám: minél kevesebb kör és kérdés, annál jobb.</li>
+    </ul>
+    <div class="actions"><button class="btn primary" id="btnRulesClose">RENDBEN</button></div>
+  </div>
+</div>
+
+<!-- guess confirm -->
+<div class="overlay hidden" id="guessOverlay">
+  <div class="modal">
+    <h3>MEGFEJTÉS</h3>
+    <p>Állítsd be a végleges kódot — nem kell egyeznie az aktuális javaslattal. Ha téves, a játszma elveszett.</p>
+    <div class="composer gpick" id="gpick">
+      <div class="shapecol"><span class="shp t">▲</span><div class="keys" id="gkeysT"></div></div>
+      <div class="shapecol"><span class="shp s">■</span><div class="keys" id="gkeysS"></div></div>
+      <div class="shapecol"><span class="shp c">●</span><div class="keys" id="gkeysC"></div></div>
+    </div>
+    <div class="bigcode" id="guessCode"></div>
+    <div class="actions">
+      <button class="btn ghost" id="btnGuessCancel">MÉGSE</button>
+      <button class="btn danger" id="btnGuessConfirm">BEADOM</button>
+    </div>
+  </div>
+</div>
+
+<!-- end -->
+<div class="overlay hidden" id="endOverlay">
+  <div class="modal">
+    <div id="endResult"></div>
+    <p style="text-align:center">A titkos kód:</p>
+    <div class="bigcode" id="endCode"></div>
+    <p id="endScore" style="text-align:center;font-family:var(--mono)"></p>
+    <p style="margin-top:8px">Az aktív szabályok:</p>
+    <div id="endReveal" style="font-size:13px;line-height:1.7;color:#cfd8cf"></div>
+    <div class="actions" style="margin-top:14px">
+      <button class="btn primary" id="btnAgain">ÚJ JÁTSZMA</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ================= kártya-definíciók ================= */
+const SH = ["▲","■","●"];
+const SHC = ["t","s","c"];
+function cnt(code, v){ return code.filter(x=>x===v).length; }
+function evens(code){ return code.filter(x=>x%2===0).length; }
+function cmpOpts(label, fn){ // <,=,> hármas
+  return [
+    {d:label+" < ", t:(a,b)=>fn(a)<b},
+    {d:label+" = ", t:(a,b)=>fn(a)===b},
+    {d:label+" > ", t:(a,b)=>fn(a)>b},
+  ];
+}
+// seged: szín vs konstans hármas
+function shapeVs(si, n){
+  return [
+    {d:`${SH[si]} < ${n}`, t:c=>c[si]<n},
+    {d:`${SH[si]} = ${n}`, t:c=>c[si]===n},
+    {d:`${SH[si]} > ${n}`, t:c=>c[si]>n},
+  ];
+}
+function shapeEq(si,n){ return {d:`${SH[si]} = ${n}`, t:c=>c[si]===n}; }
+function shapeCmp(a,b){
+  return [
+    {d:`${SH[a]} < ${SH[b]}`, t:c=>c[a]<c[b]},
+    {d:`${SH[a]} = ${SH[b]}`, t:c=>c[a]===c[b]},
+    {d:`${SH[a]} > ${SH[b]}`, t:c=>c[a]>c[b]},
+  ];
+}
+function countOpts(v, max){ // hány darab v van a kódban
+  const o=[];
+  for(let k=0;k<=max;k++) o.push({d:`${k} db ${v}-es`, t:c=>cnt(c,v)===k});
+  return o;
+}
+function stepLen(code, dir){ // leghosszabb szomszédos +1 (dir=1) vagy -1 lépcső
+  let best=1, cur=1;
+  for(let i=1;i<3;i++){
+    if(code[i]-code[i-1]===dir){cur++; best=Math.max(best,cur);}else cur=1;
+  }
+  return best;
+}
+const CARDS = [
+ {id:1, name:"▲ és az 1", opts:[{d:"▲ = 1",t:c=>c[0]===1},{d:"▲ > 1",t:c=>c[0]>1}]},
+ {id:2, name:"▲ és a 3", opts:shapeVs(0,3)},
+ {id:3, name:"■ és a 3", opts:shapeVs(1,3)},
+ {id:4, name:"■ és a 4", opts:shapeVs(1,4)},
+ {id:5, name:"▲ paritása", opts:[{d:"▲ páros",t:c=>c[0]%2===0},{d:"▲ páratlan",t:c=>c[0]%2===1}]},
+ {id:6, name:"■ paritása", opts:[{d:"■ páros",t:c=>c[1]%2===0},{d:"■ páratlan",t:c=>c[1]%2===1}]},
+ {id:7, name:"● paritása", opts:[{d:"● páros",t:c=>c[2]%2===0},{d:"● páratlan",t:c=>c[2]%2===1}]},
+ {id:8, name:"1-esek száma", opts:countOpts(1,3)},
+ {id:9, name:"3-asok száma", opts:countOpts(3,3)},
+ {id:10,name:"4-esek száma", opts:countOpts(4,3)},
+ {id:11,name:"▲ és ■ viszonya", opts:shapeCmp(0,1)},
+ {id:12,name:"▲ és ● viszonya", opts:shapeCmp(0,2)},
+ {id:13,name:"■ és ● viszonya", opts:shapeCmp(1,2)},
+ {id:14,name:"Melyik a legkisebb?", opts:[0,1,2].map(i=>({d:`${SH[i]} szigorúan a legkisebb`, t:c=>c.every((v,j)=>j===i||c[i]<v)}))},
+ {id:15,name:"Melyik a legnagyobb?", opts:[0,1,2].map(i=>({d:`${SH[i]} szigorúan a legnagyobb`, t:c=>c.every((v,j)=>j===i||c[i]>v)}))},
+ {id:16,name:"Páros–páratlan többség", opts:[{d:"több a páros",t:c=>evens(c)>=2},{d:"több a páratlan",t:c=>evens(c)<=1}]},
+ {id:17,name:"Párosak száma", opts:[0,1,2,3].map(k=>({d:`${k} db páros`, t:c=>evens(c)===k}))},
+ {id:18,name:"Az összeg paritása", opts:[{d:"összeg páros",t:c=>(c[0]+c[1]+c[2])%2===0},{d:"összeg páratlan",t:c=>(c[0]+c[1]+c[2])%2===1}]},
+ {id:19,name:"▲ + ■ és a 6", opts:[
+   {d:"▲+■ < 6",t:c=>c[0]+c[1]<6},{d:"▲+■ = 6",t:c=>c[0]+c[1]===6},{d:"▲+■ > 6",t:c=>c[0]+c[1]>6}]},
+ {id:20,name:"Ismétlődés", opts:[
+   {d:"három azonos számjegy",t:c=>c[0]===c[1]&&c[1]===c[2]},
+   {d:"pontosan kettő azonos",t:c=>new Set(c).size===2},
+   {d:"nincs ismétlődés",t:c=>new Set(c).size===3}]},
+ {id:21,name:"Van-e pár?", opts:[
+   {d:"pontosan egy pár van",t:c=>new Set(c).size===2},
+   {d:"nincs pár",t:c=>new Set(c).size!==2}]},
+ {id:22,name:"A számjegyek sorrendje", opts:[
+   {d:"szigorúan növekvő (▲<■<●)",t:c=>c[0]<c[1]&&c[1]<c[2]},
+   {d:"szigorúan csökkenő (▲>■>●)",t:c=>c[0]>c[1]&&c[1]>c[2]},
+   {d:"se nem növekvő, se nem csökkenő",t:c=>!(c[0]<c[1]&&c[1]<c[2])&&!(c[0]>c[1]&&c[1]>c[2])}]},
+ {id:23,name:"Az összeg és a 6", opts:[
+   {d:"összeg < 6",t:c=>c[0]+c[1]+c[2]<6},{d:"összeg = 6",t:c=>c[0]+c[1]+c[2]===6},{d:"összeg > 6",t:c=>c[0]+c[1]+c[2]>6}]},
+ {id:24,name:"Növekvő lépcső (+1 egymás után)", opts:[
+   {d:"3 hosszú növekvő lépcső",t:c=>stepLen(c,1)===3},
+   {d:"2 hosszú növekvő lépcső",t:c=>stepLen(c,1)===2},
+   {d:"nincs növekvő lépcső",t:c=>stepLen(c,1)===1}]},
+ {id:25,name:"Lépcső bármely irányban", opts:[
+   {d:"3 hosszú lépcső (fel vagy le)",t:c=>stepLen(c,1)===3||stepLen(c,-1)===3},
+   {d:"2 hosszú lépcső (fel vagy le)",t:c=>Math.max(stepLen(c,1),stepLen(c,-1))===2},
+   {d:"nincs lépcső",t:c=>stepLen(c,1)===1&&stepLen(c,-1)===1}]},
+ {id:26,name:"Valamelyik szín < 3", opts:[0,1,2].map(i=>({d:`${SH[i]} < 3`,t:c=>c[i]<3}))},
+ {id:27,name:"Valamelyik szín < 4", opts:[0,1,2].map(i=>({d:`${SH[i]} < 4`,t:c=>c[i]<4}))},
+ {id:28,name:"Valamelyik szín = 1", opts:[0,1,2].map(i=>shapeEq(i,1))},
+ {id:29,name:"Valamelyik szín = 3", opts:[0,1,2].map(i=>shapeEq(i,3))},
+ {id:30,name:"Valamelyik szín = 4", opts:[0,1,2].map(i=>shapeEq(i,4))},
+ {id:31,name:"Valamelyik szín > 1", opts:[0,1,2].map(i=>({d:`${SH[i]} > 1`,t:c=>c[i]>1}))},
+ {id:32,name:"Valamelyik szín > 3", opts:[0,1,2].map(i=>({d:`${SH[i]} > 3`,t:c=>c[i]>3}))},
+ {id:33,name:"Egy szín paritása", opts:[0,1,2].flatMap(i=>[
+   {d:`${SH[i]} páros`,t:c=>c[i]%2===0},{d:`${SH[i]} páratlan`,t:c=>c[i]%2===1}])},
+ {id:34,name:"Hol a legkisebb érték? (holtverseny lehet)", opts:[0,1,2].map(i=>({d:`${SH[i]} ≤ a másik kettő`,t:c=>c.every(v=>c[i]<=v)}))},
+ {id:35,name:"Hol a legnagyobb érték? (holtverseny lehet)", opts:[0,1,2].map(i=>({d:`${SH[i]} ≥ a másik kettő`,t:c=>c.every(v=>c[i]>=v)}))},
+ {id:36,name:"Az összeg oszthatósága", opts:[3,4,5].map(n=>({d:`összeg osztható ${n}-tel`,t:c=>(c[0]+c[1]+c[2])%n===0}))},
+ {id:37,name:"Két szín összege = 4", opts:[[0,1],[0,2],[1,2]].map(([a,b])=>({d:`${SH[a]}+${SH[b]} = 4`,t:c=>c[a]+c[b]===4}))},
+ {id:38,name:"Két szín összege = 6", opts:[[0,1],[0,2],[1,2]].map(([a,b])=>({d:`${SH[a]}+${SH[b]} = 6`,t:c=>c[a]+c[b]===6}))},
+ {id:39,name:"Egy szín és az 1", opts:[0,1,2].flatMap(i=>[
+   {d:`${SH[i]} = 1`,t:c=>c[i]===1},{d:`${SH[i]} > 1`,t:c=>c[i]>1}])},
+ {id:40,name:"Egy szín és a 3", opts:[0,1,2].flatMap(i=>shapeVs(i,3))},
+ {id:41,name:"Egy szín és a 4", opts:[0,1,2].flatMap(i=>shapeVs(i,4))},
+ {id:42,name:"Szélsőérték", opts:[0,1,2].flatMap(i=>[
+   {d:`${SH[i]} szigorúan a legkisebb`,t:c=>c.every((v,j)=>j===i||c[i]<v)},
+   {d:`${SH[i]} szigorúan a legnagyobb`,t:c=>c.every((v,j)=>j===i||c[i]>v)}])},
+ {id:43,name:"▲ egy másik színhez képest", opts:[...shapeCmp(0,1),...shapeCmp(0,2)]},
+ {id:44,name:"■ egy másik színhez képest", opts:[...shapeCmp(1,0),...shapeCmp(1,2)]},
+ {id:45,name:"1-esek vagy 3-asok száma", opts:[
+   ...[0,1,2].map(k=>({d:`${k} db 1-es`,t:c=>cnt(c,1)===k})),
+   ...[0,1,2].map(k=>({d:`${k} db 3-as`,t:c=>cnt(c,3)===k}))]},
+ {id:46,name:"3-asok vagy 4-esek száma", opts:[
+   ...[0,1,2].map(k=>({d:`${k} db 3-as`,t:c=>cnt(c,3)===k})),
+   ...[0,1,2].map(k=>({d:`${k} db 4-es`,t:c=>cnt(c,4)===k}))]},
+ {id:47,name:"1-esek vagy 4-esek száma", opts:[
+   ...[0,1,2].map(k=>({d:`${k} db 1-es`,t:c=>cnt(c,1)===k})),
+   ...[0,1,2].map(k=>({d:`${k} db 4-es`,t:c=>cnt(c,4)===k}))]},
+ {id:48,name:"Két szín viszonya", opts:[...shapeCmp(0,1),...shapeCmp(0,2),...shapeCmp(1,2)]},
+];
+
+/* ---------- kártya-piktogramok (saját jelrendszer) ---------- */
+// ? = valamelyik alakzat, # = darabszám, Σ = összeg, %2 = paritás, ⋚ = összehasonlítás
+const ICONS = {
+  1:"▲⋚1", 2:"▲⋚3", 3:"■⋚3", 4:"■⋚4",
+  5:"▲%2", 6:"■%2", 7:"●%2",
+  8:"#1", 9:"#3", 10:"#4",
+  11:"▲⋚■", 12:"▲⋚●", 13:"■⋚●",
+  14:"min", 15:"max",
+  16:"pr⋚pt", 17:"#pr", 18:"Σ%2", 19:"▲+■⋚6",
+  20:"xxx?", 21:"xx?", 22:"↗↘?", 23:"Σ⋚6", 24:"↗+1", 25:"⇅+1",
+  26:"?<3", 27:"?<4", 28:"?=1", 29:"?=3", 30:"?=4", 31:"?>1", 32:"?>3",
+  33:"?%2", 34:"min~", 35:"max~", 36:"Σ÷?",
+  37:"?+?=4", 38:"?+?=6",
+  39:"?⋚1", 40:"?⋚3", 41:"?⋚4", 42:"m/M",
+  43:"▲⋚?", 44:"■⋚?",
+  45:"#1/#3", 46:"#3/#4", 47:"#1/#4", 48:"?⋚?",
+};
+function iconHTML(id){
+  return (ICONS[id]||"")
+    .replace(/▲/g,'<span class="t">▲</span>')
+    .replace(/■/g,'<span class="s">■</span>')
+    .replace(/●/g,'<span class="c">●</span>')
+    .replace(/\?/g,'<span class="q">?</span>');
+}
+
+/* ================= rejtvénygenerálás ================= */
+const ALL_CODES = [];
+for(let t=1;t<=5;t++)for(let s=1;s<=5;s++)for(let c=1;c<=5;c++)ALL_CODES.push([t,s,c]);
+
+function rnd(n){ return Math.floor(Math.random()*n); }
+function pickCards(n){
+  const pool=[...CARDS], out=[];
+  while(out.length<n){ out.push(pool.splice(rnd(pool.length),1)[0]); }
+  return out;
+}
+/* ================= nehézségi szintek ================= */
+// saját szintezés: könnyű = kevés, egyszerű kártya; nehéz = teljes készlet
+const DIFFS = {
+  easy: {label:"Könnyű",  n:4, maxId:25, bot:"easy"},
+  med:  {label:"Közepes", n:5, maxId:36, bot:"med"},
+  hard: {label:"Nehéz",   n:6, maxId:48, bot:"hard"},
+};
+
+function generatePuzzle(nVerifiers, maxId){
+  const POOL = CARDS.filter(cd=>cd.id<=(maxId||48));
+  // titkos kód először, aztán hozzá illő szabályok — így 6 ellenőrzővel is megbízható
+  for(let attempt=0; attempt<3000; attempt++){
+    const secret = ALL_CODES[rnd(ALL_CODES.length)];
+    const pool = [...POOL];
+    const chosen = [];
+    while(chosen.length<nVerifiers && pool.length){
+      const cd = pool.splice(rnd(pool.length),1)[0];
+      // olyan szabályok a kártyán, amelyeknek a titkos kód megfelel
+      const matching = cd.opts.map((o,j)=>o.t(secret)?j:-1).filter(j=>j>=0);
+      if(matching.length===0) continue;
+      chosen.push({card:cd, crit:matching[rnd(matching.length)]});
+    }
+    if(chosen.length<nVerifiers) continue;
+    const tests = chosen.map(v=>v.card.opts[v.crit].t);
+    const sols = ALL_CODES.filter(code=>tests.every(fn=>fn(code)));
+    if(sols.length!==1) continue;
+    // minden ellenőrző legyen szükséges (nélküle >1 megoldás)
+    let allNeeded = true;
+    for(let i=0;i<tests.length;i++){
+      const rest = tests.filter((_,j)=>j!==i);
+      if(ALL_CODES.filter(code=>rest.every(fn=>fn(code))).length===1){ allNeeded=false; break; }
+    }
+    if(!allNeeded) continue;
+    return {secret, verifiers:chosen};
+  }
+  return null; // gyakorlatban nem fordul elő
+}
+
+/* ================= játékállapot ================= */
+const LETTERS = "ABCDEF";
+let G = null; // {puzzle, round, qRound, qTotal, roundStarted, code:[..], locked, askedThisRound:Set, over}
+
+function newGame(diffKey){
+  const D = DIFFS[diffKey] || DIFFS.easy;
+  let p = generatePuzzle(D.n, D.maxId);
+  if(!p){ p = generatePuzzle(4, 48); }
+  G = {
+    puzzle:p, diff:D, round:1, qRound:0, qTotal:0,
+    code:[null,null,null], locked:false,
+    asked:new Set(), dimmed:new Set(), lastAns:{}, over:false,
+    // a játékos szemszögéből még lehetséges szabályok ellenőrzőnként
+    possible: p.verifiers.map(v=>new Set(v.card.opts.map((_,j)=>j))),
+  };
+  document.getElementById("setupOverlay").classList.add("hidden");
+  document.getElementById("endOverlay").classList.add("hidden");
+  document.getElementById("gameArea").classList.remove("hidden");
+  document.getElementById("tape").innerHTML="";
+  buildVerifiers();
+  buildComposer();
+  buildNotes();
+  buildCombos();
+  startBot();
+  refresh();
+}
+
+/* ---------- verifier UI ---------- */
+function buildVerifiers(){
+  const box = document.getElementById("verifiers");
+  box.innerHTML="";
+  G.puzzle.verifiers.forEach((v,i)=>{
+    const el = document.createElement("div");
+    el.className="vcard";
+    el.id = "vcard"+i;
+    el.innerHTML = `
+      <div class="vhead">
+        <div class="vletter">${LETTERS[i]}</div>
+        <div class="vicon">${iconHTML(v.card.id)}</div>
+        <div class="vtitle">${v.card.name}<span class="vfound" id="found${i}"></span></div>
+        <button class="vdim" id="dim${i}" title="Kiszürkítés, ha már nem kell">−</button>
+        <div class="vlamp" id="lamp${i}"></div>
+      </div>
+      <div class="vbody">
+        <ul class="vopts" id="opts${i}">
+          ${v.card.opts.map((o,j)=>`<li data-j="${j}">${o.d}</li>`).join("")}
+        </ul>
+        <button class="vtest" id="test${i}">TESZT</button>
+      </div>`;
+    box.appendChild(el);
+    el.querySelector(`#test${i}`).addEventListener("click",()=>askVerifier(i));
+    el.querySelector(`#dim${i}`).addEventListener("click",()=>{
+      if(G.dimmed.has(i)) G.dimmed.delete(i); else G.dimmed.add(i);
+      el.classList.toggle("dimmed", G.dimmed.has(i));
+      document.getElementById("dim"+i).textContent = G.dimmed.has(i)?"+":"−";
+      refresh();
+    });
+  });
+}
+
+function askVerifier(i){
+  if(G.over) return;
+  if(G.qRound>=3) return;
+  if(G.asked.has(i)) return;
+  if(G.dimmed.has(i)) return;
+  if(G.code.some(v=>v===null)){ flashLock("Előbb állítsd be mindhárom számjegyet!"); return; }
+  G.locked = true;
+  G.asked.add(i);
+  G.qRound++; G.qTotal++;
+  const v = G.puzzle.verifiers[i];
+  const pass = v.card.opts[v.crit].t(G.code);
+  G.lastAns[i] = pass;
+  // dedukció: mely szabályok maradnak lehetségesek e válasz után?
+  const sat = new Set(v.card.opts.map((o,j)=>o.t(G.code)?j:-1).filter(j=>j>=0));
+  G.possible[i] = new Set([...G.possible[i]].filter(j=>pass ? sat.has(j) : !sat.has(j)));
+  renderDeduction(i);
+  const lamp = document.getElementById("lamp"+i);
+  lamp.textContent = pass ? "✓" : "✗";
+  lamp.className = "vlamp " + (pass?"ok":"bad");
+  logLine(i, pass);
+  refresh();
+}
+
+function renderDeduction(i){
+  const v = G.puzzle.verifiers[i];
+  const poss = G.possible[i];
+  // kiesett szabályok áthúzása a listában
+  document.querySelectorAll(`#opts${i} li`).forEach(li=>{
+    li.classList.toggle("out", !poss.has(+li.dataset.j));
+  });
+  // ha pontosan egy szabály maradt: megerősített — kiírjuk a címsávba
+  const badge = document.getElementById("found"+i);
+  if(poss.size===1){
+    const j=[...poss][0];
+    badge.textContent = "→ " + v.card.opts[j].d;
+  } else {
+    badge.textContent = "";
+  }
+  if(document.getElementById("autoRules").checked) recomputeCombos();
+}
+
+function logLine(i, pass){
+  const tape = document.getElementById("tape");
+  const codeStr = `<span style="color:#3a6ea5">${G.code[0]}</span><span style="color:#9a7a1f">${G.code[1]}</span><span style="color:#6f4a8f">${G.code[2]}</span>`;
+  const line = document.createElement("div");
+  line.innerHTML = `<span class="rnd">K${G.round}</span> · ${codeStr} → ${LETTERS[i]} <span class="${pass?'r-ok':'r-bad'}">${pass?"✓":"✗"}</span>`;
+  tape.prepend(line);
+}
+
+/* ---------- composer ---------- */
+function buildComposer(){
+  [["keysT",0],["keysS",1],["keysC",2]].forEach(([id,si])=>{
+    const col = document.getElementById(id);
+    col.innerHTML="";
+    for(let n=1;n<=5;n++){
+      const b=document.createElement("button");
+      b.className="key"; b.textContent=n;
+      b.addEventListener("click",()=>{
+        if(G.locked||G.over) return;
+        G.code[si]=n; refresh();
+      });
+      col.appendChild(b);
+    }
+  });
+}
+
+function flashLock(msg){
+  const el=document.getElementById("lockMsg");
+  el.textContent=msg;
+  setTimeout(()=>{ if(el.textContent===msg) refresh(); },1600);
+}
+
+/* ---------- notes ---------- */
+let noteState = null;
+function buildNotes(){
+  noteState = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+  const box=document.getElementById("notes");
+  box.innerHTML="";
+  for(let si=0;si<3;si++){
+    const row=document.createElement("div");
+    row.className="nrow";
+    row.innerHTML=`<span class="shp ${SHC[si]}">${SH[si]}</span>`;
+    for(let n=1;n<=5;n++){
+      const cell=document.createElement("div");
+      cell.className="ncell"; cell.textContent=n;
+      cell.addEventListener("click",()=>{
+        noteState[si][n-1]=(noteState[si][n-1]+1)%3;
+        cell.className="ncell"+(noteState[si][n-1]===1?" x":noteState[si][n-1]===2?" o":"");
+        recomputeCombos();
+      });
+      row.appendChild(cell);
+    }
+    box.appendChild(row);
+  }
+}
+
+/* ---------- összes kombináció ---------- */
+// kézi kihúzások (megmaradnak akkor is, ha a jegyzet változik)
+let comboManual = new Set();
+let comboCells = {};
+
+function isAutoExcluded(t,s,c){
+  const code=[t,s,c];
+  for(let si=0;si<3;si++){
+    const st = noteState[si][code[si]-1];
+    if(st===1) return true; // az érték ki van húzva a jegyzetben
+    // "biztos" jelölés: ha egy alakzatnál van biztosra jelölt érték,
+    // minden más érték kiesik annál az alakzatnál
+    let hasSure=false, isSure=false;
+    for(let n=1;n<=5;n++){
+      if(noteState[si][n-1]===2){ hasSure=true; if(n===code[si]) isSure=true; }
+    }
+    if(hasSure && !isSure) return true;
+  }
+  // opcionális: megerősített szabályok (ha a kapcsoló be van kapcsolva)
+  if(G && G.possible && document.getElementById("autoRules").checked){
+    for(let i=0;i<G.possible.length;i++){
+      if(G.possible[i].size===1){
+        const j=[...G.possible[i]][0];
+        if(!G.puzzle.verifiers[i].card.opts[j].t(code)) return true;
+      }
+    }
+  }
+  return false;
+}
+
+function recomputeCombos(){
+  let alive=0;
+  for(const key in comboCells){
+    const t=+key[0], s=+key[1], c=+key[2];
+    const man = comboManual.has(key);
+    const auto = isAutoExcluded(t,s,c);
+    const el = comboCells[key];
+    el.classList.toggle("x", man);
+    el.classList.toggle("ax", auto && !man);
+    if(!(man||auto)) alive++;
+  }
+  document.getElementById("comboCount").textContent = alive;
+}
+
+function buildCombos(){
+  comboManual = new Set();
+  comboCells = {};
+  const box = document.getElementById("comboBlocks");
+  box.innerHTML = "";
+  // fejléc-sor: ▲■● oszloponként
+  const head = document.createElement("div");
+  head.className = "cgrid chead";
+  for(let t=1;t<=5;t++){
+    const h = document.createElement("div");
+    h.className = "chcell";
+    h.innerHTML = `<span class="t">▲</span><span class="s">■</span><span class="c">●</span>`;
+    head.appendChild(h);
+  }
+  box.appendChild(head);
+  // blokkok ■ szerint, blokkon belül sor = ●, oszlop = ▲
+  for(let s=1;s<=5;s++){
+    const grid = document.createElement("div");
+    grid.className = "cgrid cblockgrid";
+    for(let c=1;c<=5;c++){
+      for(let t=1;t<=5;t++){
+        const key = ""+t+s+c;
+        const cell = document.createElement("div");
+        cell.className = "ccell";
+        cell.innerHTML = `<span class="t">${t}</span><span class="s">${s}</span><span class="c">${c}</span>`;
+        cell.addEventListener("click",()=>{
+          if(comboManual.has(key)) comboManual.delete(key); else comboManual.add(key);
+          recomputeCombos();
+        });
+        comboCells[key] = cell;
+        grid.appendChild(cell);
+      }
+    }
+    box.appendChild(grid);
+  }
+  recomputeCombos();
+}
+document.getElementById("comboReset").addEventListener("click",()=>{
+  comboManual.clear();
+  recomputeCombos();
+});
+document.getElementById("autoRules").addEventListener("change",()=>{
+  recomputeCombos();
+});
+
+/* ================= gép-ellenfél (bot) ================= */
+/*
+ A bot ugyanazt a feladványt oldja meg, ugyanazokkal a szabályokkal:
+ 1) Felsorolja az összes "világot": kritérium-kombinációkat, amelyek érvényes
+    feladványt adnának (pontosan 1 megoldás + nincs felesleges ellenőrző).
+ 2) Körönként mohó stratégiával kérdez: azt a (kód, ellenőrző) párt választja,
+    amelyik a legrosszabb esetben is a legjobban felezi a világok halmazát.
+ 3) A valódi rejtett szabályok válaszai alapján szűkít, amíg minden megmaradt
+    világ ugyanarra a kódra mutat — akkor "beadja" a megfejtést.
+*/
+function popcnt32(x){x=x-((x>>>1)&0x55555555);x=(x&0x33333333)+((x>>>2)&0x33333333);return (((x+(x>>>4))&0x0F0F0F0F)*0x01010101)>>>24;}
+function maskPop(m){return popcnt32(m[0])+popcnt32(m[1])+popcnt32(m[2])+popcnt32(m[3]);}
+
+function computeBot(puzzle, skill){
+  skill = skill || "hard";
+  // kérdésválasztás szint szerint: nehéz = mindig a legjobb felezés,
+  // közepes = véletlen a legjobb néhányból, könnyű = bármelyik informatív kérdés
+  function pick(cands){ // cands: score szerint növekvően rendezve
+    if(!cands.length) return null;
+    if(skill==="hard") return cands[rnd(Math.min(2, cands.length))];
+    if(skill==="med")  return cands[rnd(Math.min(4, cands.length))];
+    return cands[rnd(cands.length)];
+  }
+  const n = puzzle.verifiers.length;
+  // pass[i][j] = Uint8Array(125): az i. ellenőrző j. szabálya igaz-e a kódra
+  // mask[i][j] = 128 bites bitmaszk ugyanerről
+  const pass=[], mask=[];
+  for(let i=0;i<n;i++){
+    const opts = puzzle.verifiers[i].card.opts;
+    pass.push([]); mask.push([]);
+    for(let j=0;j<opts.length;j++){
+      const pa = new Uint8Array(125);
+      const mk = new Uint32Array(4);
+      for(let ci=0;ci<125;ci++){
+        if(opts[j].t(ALL_CODES[ci])){ pa[ci]=1; mk[ci>>5] |= (1<<(ci&31)); }
+      }
+      pass[i].push(pa); mask[i].push(mk);
+    }
+  }
+  // világok felsorolása korai vágással — a bot "tudása" szintfüggő:
+  //  easy: bármely ellentmondásmentes kombináció (nem használja ki, hogy a
+  //        feladványnak egyetlen megoldása van) → sokkal több kérdés kell neki
+  //  med:  csak az egyértelmű (pontosan 1 megoldású) kombinációk
+  //  hard: + azt is tudja, hogy egyik ellenőrző sem felesleges
+  const worlds=[]; // {crits:[...], mask}
+  const crits=new Array(n), chain=new Array(n+1);
+  chain[0]=new Uint32Array([0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0x1FFFFFFF]); // 125 bit
+  (function rec(i){
+    if(i===n){
+      const pop=maskPop(chain[n]);
+      if(skill!=="easy" && pop!==1) return;
+      if(skill==="hard"){
+        // nincs felesleges ellenőrző?
+        for(let k=0;k<n;k++){
+          const m=new Uint32Array([0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0x1FFFFFFF]);
+          for(let x=0;x<n;x++){ if(x===k) continue; const mm=mask[x][crits[x]];
+            m[0]&=mm[0]; m[1]&=mm[1]; m[2]&=mm[2]; m[3]&=mm[3]; }
+          if(maskPop(m)===1) return;
+        }
+      }
+      worlds.push({crits:[...crits], mask:chain[n].slice()});
+      return;
+    }
+    for(let j=0;j<mask[i].length;j++){
+      const mm=mask[i][j], pr=chain[i];
+      const nx=new Uint32Array([pr[0]&mm[0], pr[1]&mm[1], pr[2]&mm[2], pr[3]&mm[3]]);
+      if(maskPop(nx)===0) continue;
+      crits[i]=j; chain[i+1]=nx; rec(i+1);
+    }
+  })(0);
+
+  // valódi rejtett szabályok (a válaszokhoz)
+  const realCrit = puzzle.verifiers.map(v=>v.crit);
+
+  // mohó szimuláció (szint szerinti zajjal)
+  let W = worlds;
+  let rounds=0, questions=0, guard=0;
+  const unionMask = ()=>{
+    const u=new Uint32Array(4);
+    for(const w of W){ u[0]|=w.mask[0]; u[1]|=w.mask[1]; u[2]|=w.mask[2]; u[3]|=w.mask[3]; }
+    return u;
+  };
+  const solved = ()=>maskPop(unionMask())===1;
+  while(!solved() && guard++<50){
+    rounds++;
+    // első kérdés: informatív (kód, ellenőrző) párok pontszám szerint
+    let cands=[];
+    for(let ci=0;ci<125;ci++){
+      for(let v=0;v<n;v++){
+        let t=0; for(const w of W){ t+=pass[v][w.crits[v]][ci]; }
+        if(t===0||t===W.length) continue;
+        cands.push({ci, v, sc:Math.max(t,W.length-t)});
+      }
+    }
+    cands.sort((a,b)=>a.sc-b.sc);
+    const first = pick(cands);
+    if(!first) break; // nincs informatív kérdés
+    const bCode = first.ci;
+    let usedV=new Set(), qr=0;
+    const askBot=(v)=>{
+      questions++; qr++; usedV.add(v);
+      const ans = pass[v][realCrit[v]][bCode];
+      W = W.filter(w=>pass[v][w.crits[v]][bCode]===ans);
+    };
+    askBot(first.v);
+    while(qr<3 && !solved()){
+      let c2=[];
+      for(let v=0;v<n;v++){
+        if(usedV.has(v)) continue;
+        let t=0; for(const w of W){ t+=pass[v][w.crits[v]][bCode]; }
+        if(t===0||t===W.length) continue;
+        c2.push({v, sc:Math.max(t,W.length-t)});
+      }
+      c2.sort((a,b)=>a.sc-b.sc);
+      const nx = pick(c2);
+      if(!nx) break;
+      askBot(nx.v);
+    }
+  }
+  // a bot végső tippje: az egyetlen megmaradt kód a világok uniójában
+  const u=unionMask();
+  let sol=-1;
+  if(maskPop(u)===1){
+    outer: for(let w=0;w<4;w++){
+      if(!u[w]) continue;
+      for(let b=0;b<32;b++){ if(u[w]&(1<<b)){ sol=w*32+b; break outer; } }
+    }
+  }
+  return {rounds:Math.max(rounds,1), questions, sol};
+}
+
+let botResult=null, botTimer=null;
+function startBot(){
+  botResult=null;
+  if(botTimer) clearTimeout(botTimer);
+  const myPuzzle=G.puzzle, skill=G.diff.bot;
+  botTimer=setTimeout(()=>{
+    if(G && G.puzzle===myPuzzle) botResult=computeBot(myPuzzle, skill);
+  },80);
+}
+function ensureBot(){
+  if(!botResult) botResult=computeBot(G.puzzle, G.diff.bot);
+  return botResult;
+}
+
+/* ---------- round / guess / end ---------- */
+document.getElementById("btnNewRound").addEventListener("click",()=>{
+  if(G.over) return;
+  if(G.qRound>0){ G.round++; }
+  G.qRound=0; G.locked=false; G.asked=new Set();
+  G.code=[null,null,null];
+  G.puzzle.verifiers.forEach((_,i)=>{
+    const l=document.getElementById("lamp"+i);
+    if(G.lastAns[i]===true){
+      // pipás ellenőrző: automatikusan összecsukjuk, a pipa marad látható;
+      // a + gombbal bármikor kinyitható és újra tesztelhető
+      G.dimmed.add(i);
+      document.getElementById("vcard"+i).classList.add("dimmed");
+      document.getElementById("dim"+i).textContent="+";
+    } else {
+      delete G.lastAns[i];
+      l.textContent=""; l.className="vlamp";
+    }
+  });
+  refresh();
+});
+
+let guessSel = [null,null,null];
+function renderGuessPick(){
+  [["gkeysT",0,"sel-t"],["gkeysS",1,"sel-s"],["gkeysC",2,"sel-c"]].forEach(([id,si,cls])=>{
+    [...document.getElementById(id).children].forEach((b,idx)=>{
+      b.className="key"+(guessSel[si]===idx+1?" "+cls:"");
+    });
+  });
+  const full = guessSel.every(v=>v!==null);
+  document.getElementById("guessCode").innerHTML = full
+    ? `<span class="t">${guessSel[0]}</span><span class="s">${guessSel[1]}</span><span class="c">${guessSel[2]}</span>`
+    : `<span style="color:#5d6f67;font-size:16px;letter-spacing:1px">válaszd ki mindhárom számjegyet</span>`;
+  document.getElementById("btnGuessConfirm").disabled = !full;
+}
+function buildGuessPick(){
+  [["gkeysT",0],["gkeysS",1],["gkeysC",2]].forEach(([id,si])=>{
+    const col = document.getElementById(id);
+    col.innerHTML="";
+    for(let n=1;n<=5;n++){
+      const b=document.createElement("button");
+      b.className="key"; b.textContent=n;
+      b.addEventListener("click",()=>{ guessSel[si]=n; renderGuessPick(); });
+      col.appendChild(b);
+    }
+  });
+}
+buildGuessPick();
+
+document.getElementById("btnGuess").addEventListener("click",()=>{
+  if(G.over) return;
+  guessSel = [...G.code]; // előtöltés az aktuális javaslattal (lehet üres is)
+  renderGuessPick();
+  document.getElementById("guessOverlay").classList.remove("hidden");
+});
+document.getElementById("btnGuessCancel").addEventListener("click",()=>{
+  document.getElementById("guessOverlay").classList.add("hidden");
+});
+document.getElementById("btnGuessConfirm").addEventListener("click",()=>{
+  if(guessSel.some(v=>v===null)) return;
+  document.getElementById("guessOverlay").classList.add("hidden");
+  const win = guessSel.join("")===G.puzzle.secret.join("");
+  endGame(win);
+});
+
+function endGame(win){
+  G.over=true;
+  const s=G.puzzle.secret;
+  const bot=ensureBot();
+  // verdikt a géppel szemben: kevesebb kör nyer, egyenlőnél kevesebb kérdés
+  let vs="";
+  if(!win){
+    vs=`<span style="color:var(--bad)">A gép nyert</span> — ő megfejtette: ${bot.rounds} kör · ${bot.questions} kérdés.`;
+  } else {
+    const better = G.round<bot.rounds || (G.round===bot.rounds && G.qTotal<bot.questions);
+    const tie = G.round===bot.rounds && G.qTotal===bot.questions;
+    vs = better ? `<span style="color:var(--ok)">Legyőzted a gépet!</span>`
+       : tie    ? `<span style="color:var(--amber)">Döntetlen a géppel.</span>`
+                : `<span style="color:var(--bad)">A gép gyorsabb volt.</span>`;
+    vs += ` Gép: ${bot.rounds} kör · ${bot.questions} kérdés.`;
+  }
+  document.getElementById("endResult").innerHTML =
+    win ? `<div class="result-win">✓ MEGFEJTVE</div>` : `<div class="result-lose">✗ TÉVES KÓD</div>`;
+  document.getElementById("endCode").innerHTML =
+    `<span class="t">${s[0]}</span><span class="s">${s[1]}</span><span class="c">${s[2]}</span>`;
+  document.getElementById("endScore").innerHTML =
+    `Te: ${G.round} kör · ${G.qTotal} kérdés<br><span style="font-size:13px">${vs}</span>`;
+  document.getElementById("endReveal").innerHTML =
+    G.puzzle.verifiers.map((v,i)=>`<b style="font-family:var(--mono)">${LETTERS[i]}</b> — ${v.card.name}: <b style="color:var(--teal)">${v.card.opts[v.crit].d}</b>`).join("<br>");
+  document.getElementById("endOverlay").classList.remove("hidden");
+}
+
+/* ---------- refresh ---------- */
+function refresh(){
+  document.getElementById("stDiff").textContent=G.diff.label;
+  document.getElementById("stRound").textContent=G.round;
+  document.getElementById("stQ").textContent=G.qRound;
+  document.getElementById("stTotal").textContent=G.qTotal;
+  // keys
+  [["keysT",0,"sel-t"],["keysS",1,"sel-s"],["keysC",2,"sel-c"]].forEach(([id,si,cls])=>{
+    [...document.getElementById(id).children].forEach((b,idx)=>{
+      b.className="key"+(G.code[si]===idx+1?" "+cls:"");
+    });
+  });
+  document.getElementById("composer").classList.toggle("locked", G.locked);
+  document.getElementById("lockMsg").textContent =
+    G.locked ? "A javaslat e körre rögzítve. Új javaslathoz kezdj új kört." :
+    (G.code.some(v=>v===null) ? "Válassz értéket mindhárom alakzathoz." : "");
+  // test buttons
+  G.puzzle.verifiers.forEach((_,i)=>{
+    const btn=document.getElementById("test"+i);
+    btn.disabled = G.over || G.qRound>=3 || G.asked.has(i) || G.dimmed.has(i) || G.code.some(v=>v===null);
+  });
+}
+
+/* ---------- overlays ---------- */
+document.querySelectorAll("[data-diff]").forEach(b=>{
+  b.addEventListener("click",()=>newGame(b.dataset.diff));
+});
+function showRules(){ document.getElementById("rulesOverlay").classList.remove("hidden"); }
+document.getElementById("btnRules").addEventListener("click",showRules);
+document.getElementById("btnRules2").addEventListener("click",showRules);
+document.getElementById("btnRulesClose").addEventListener("click",()=>{
+  document.getElementById("rulesOverlay").classList.add("hidden");
+});
+document.getElementById("btnAgain").addEventListener("click",()=>{
+  document.getElementById("endOverlay").classList.add("hidden");
+  document.getElementById("gameArea").classList.add("hidden");
+  document.getElementById("setupOverlay").classList.remove("hidden");
+});
+</script>
+</body>
+</html>
