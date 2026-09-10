@@ -20,10 +20,31 @@
   --tri:#4f8fd0;
   --sq:#e0b13f;
   --ci:#a06fc8;
+  /* világos (papír) háttéren olvasható változatok, ugyanaz a színcsalád */
+  --tri-ink:#2b6aa8;
+  --sq-ink:#9a7414;
+  --ci-ink:#6f3fa0;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+/* ---------- alakzat-glifák (mindenhol azonos színnel) ---------- */
+.sg{display:inline-block;vertical-align:-2px;margin:0 1.5px;flex:0 0 auto}
+.sg-t{color:var(--tri)}
+.sg-s{color:var(--sq)}
+.sg-c{color:var(--ci)}
+.sg-u{color:#8fa39b}
+/* papír (világos) háttéren sötétebb árnyalat, hogy olvasható maradjon */
+.vcard .sg-t,.modal .vcard .sg-t{color:var(--tri-ink)}
+.vcard .sg-s{color:var(--sq-ink)}
+.vcard .sg-c{color:var(--ci-ink)}
+.vcard .sg-u{color:#6b6555}
+/* az ikon-badge sötét alapon van, ott a világos változat kell */
+.vicon .sg-t{color:var(--tri)}
+.vicon .sg-s{color:var(--sq)}
+.vicon .sg-c{color:var(--ci)}
+.vicon .sg-u{color:#9aa6a2}
 html,body{background:var(--ink);color:#e8e2d2;font-family:var(--sans);min-height:100%}
 body{max-width:540px;margin:0 auto;padding:12px 12px 90px}
 
@@ -81,13 +102,20 @@ h2{
 .vlamp.ok{background:var(--ok);border-color:#2f7a4d;color:#fff}
 .vlamp.bad{background:var(--bad);border-color:#93392c;color:#fff}
 .vicon{
-  flex:0 0 auto;min-width:52px;padding:4px 6px;border-radius:5px;
+  flex:0 0 auto;min-width:64px;padding:3px 6px;border-radius:5px;
   background:var(--paper-ink);color:#e8e2d2;
   font-family:var(--mono);font-size:12px;font-weight:700;
-  text-align:center;letter-spacing:1px;line-height:1.2;
+  text-align:center;letter-spacing:.5px;line-height:1.25;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
+.vicon .l2{font-size:9.5px;letter-spacing:0;color:#c9bd9a}
+.vicon i{font-style:normal}
 .vicon .t{color:var(--tri)} .vicon .s{color:var(--sq)} .vicon .c{color:var(--ci)}
-.vicon .q{color:var(--amber)}
+.vicon .u{color:#9aa6a2}
+.vadv{
+  flex:0 0 auto;font-size:10px;color:#a8752c;font-weight:700;
+  align-self:flex-start;margin-top:-2px;
+}
 .vdim{
   flex:0 0 auto;width:26px;height:26px;border-radius:6px;
   border:1px solid #b6a780;background:transparent;color:#7a6c48;
@@ -120,8 +148,7 @@ h2{
   padding:12px;display:flex;gap:10px;justify-content:space-between;
 }
 .shapecol{flex:1;text-align:center}
-.shapecol .shp{font-size:22px;margin-bottom:6px;display:block}
-.shp.t{color:var(--tri)} .shp.s{color:var(--sq)} .shp.c{color:var(--ci)}
+.shapecol .shp{display:block;margin-bottom:6px;line-height:1}
 .keys{display:flex;flex-direction:column;gap:6px}
 .key{
   font-family:var(--mono);font-size:16px;font-weight:700;
@@ -155,12 +182,15 @@ h2{
 .tape .r-ok{color:#1a6b3d;font-weight:700}
 .tape .r-bad{color:#a4321f;font-weight:700}
 .tape .rnd{color:#8a7c53}
+.tape .lt{color:var(--tri-ink);font-weight:700}
+.tape .ls{color:var(--sq-ink);font-weight:700}
+.tape .lc{color:var(--ci-ink);font-weight:700}
 
 /* ---------- notes ---------- */
 .notes{background:var(--panel);border:1px solid #33443f;border-radius:10px;padding:10px}
 .nrow{display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .nrow:last-child{margin-bottom:0}
-.nrow .shp{width:24px;font-size:18px;text-align:center}
+.nrow .shp{width:24px;text-align:center;line-height:1;flex:0 0 auto}
 .ncell{
   flex:1;font-family:var(--mono);font-size:14px;font-weight:700;
   background:#101718;color:#cfe3d8;border:1px solid #33443f;
@@ -227,6 +257,7 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
   <p>Solo dedukciós játék — találd meg a hármas kódot a lehető legkevesebb kérdésből.</p>
   <div class="statusbar" id="statusbar">
     <span>Szint <b id="stDiff">–</b></span>
+    <span>Nehézség <b id="stStars">–</b></span>
     <span>Kör <b id="stRound">–</b></span>
     <span>Kérdés e körben <b id="stQ">0</b>/3</span>
     <span>Összes <b id="stTotal">0</b></span>
@@ -242,9 +273,9 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
 <div class="lcol">
   <h2>Kódjavaslat</h2>
   <div class="composer" id="composer">
-    <div class="shapecol"><span class="shp t">▲</span><div class="keys" id="keysT"></div></div>
-    <div class="shapecol"><span class="shp s">■</span><div class="keys" id="keysS"></div></div>
-    <div class="shapecol"><span class="shp c">●</span><div class="keys" id="keysC"></div></div>
+    <div class="shapecol"><span class="shp" id="hdT"></span><div class="keys" id="keysT"></div></div>
+    <div class="shapecol"><span class="shp" id="hdS"></span><div class="keys" id="keysS"></div></div>
+    <div class="shapecol"><span class="shp" id="hdC"></span><div class="keys" id="keysC"></div></div>
   </div>
   <div class="lockmsg" id="lockMsg"></div>
 
@@ -288,12 +319,12 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
 <div class="overlay" id="setupOverlay">
   <div class="modal">
     <h3>ÚJ JÁTSZMA</h3>
-    <p>A gép kisorsol egy titkos kódot (▲ ■ ●, mindegyik 1–5) és minden ellenőrzőhöz egy rejtett szabályt a kártyán felsoroltak közül. Kérdezz okosan, és fejtsd meg a kódot!</p>
+    <p>A gép kisorsol egy titkos kódot (<span id="setupShapes"></span>, mindegyik 1–5) és minden ellenőrzőhöz egy rejtett szabályt a kártyán felsoroltak közül. Kérdezz okosan, és fejtsd meg a kódot!</p>
     <p>Válassz nehézségi szintet:</p>
     <div class="diffbtns">
-      <button class="btn primary" data-diff="easy">KÖNNYŰ — 4 ellenőrző, egyszerű kártyák</button>
-      <button class="btn primary" data-diff="med">KÖZEPES — 5 ellenőrző, bővebb kártyakészlet</button>
-      <button class="btn primary" data-diff="hard">NEHÉZ — 6 ellenőrző, összes kártya</button>
+      <button class="btn primary" data-diff="easy">KÖNNYŰ — 4 ellenőrző, alapkártyák (1–25)</button>
+      <button class="btn primary" data-diff="med">KÖZEPES — 5 ellenőrző, haladó kártyákkal (1–36)</button>
+      <button class="btn primary" data-diff="hard">NEHÉZ — 6 ellenőrző, mind a 48 kártya</button>
     </div>
     <div class="linkline" id="btnRules2">Szabályok</div>
   </div>
@@ -304,7 +335,7 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
   <div class="modal">
     <h3>SZABÁLYOK</h3>
     <ul class="rules">
-      <li>A titkos kód három számjegy: <b style="color:var(--tri)">▲</b>, <b style="color:var(--sq)">■</b>, <b style="color:var(--ci)">●</b> — mindegyik 1 és 5 között.</li>
+      <li>A titkos kód három számjegy: <span id="rulesShapes"></span> — mindegyik 1 és 5 között.</li>
       <li>Minden ellenőrző kártyán több lehetséges szabály van. A gép mindegyikhez <b>pontosan egyet</b> választott ki titokban. A titkos kód az összes kiválasztott szabálynak megfelel, és csak az felel meg mindnek.</li>
       <li>Egy körben: állíts össze egy kódjavaslatot, majd kérdezz meg legfeljebb <b>3 ellenőrzőt</b>. Az ellenőrző azt mondja meg (✓/✗), hogy a <b>javaslatod</b> megfelel-e az ő rejtett szabályának — nem azt, hogy a javaslat a titkos kód-e!</li>
       <li>Az első kérdés után a javaslat a kör végéig rögzül. Új körben új javaslatot adhatsz.</li>
@@ -312,6 +343,18 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
       <li>Ha biztos vagy benne, nyomd meg a MEGFEJTÉS gombot. Helyes kód = győzelem. Rossz kód = vereség.</li>
       <li>Pontszám: minél kevesebb kör és kérdés, annál jobb.</li>
     </ul>
+    <h3 style="margin-top:14px">JELMAGYARÁZAT</h3>
+    <ul class="rules">
+      <li><span id="legendShapes"></span> — a három alakzat, mindegyik 1–5 értékű.</li>
+      <li><span id="legendUnknown"></span> — az ellenőrző tudja, melyik alakzatról van szó, te viszont nem. Ezek a <b style="color:#a8752c">◆</b>-tel jelölt haladó kártyák.</li>
+      <li><b style="font-family:var(--mono)">⋛</b> — kisebb, egyenlő vagy nagyobb (a három lehetőség egyike).</li>
+      <li><b style="font-family:var(--mono)">×?</b> — hány darab van belőle a kódban.</li>
+      <li><b style="font-family:var(--mono)">PÁ | PT</b> — páros vagy páratlan. <b style="font-family:var(--mono)">Σ</b> — a számjegyek összege.</li>
+      <li><b style="font-family:var(--mono)">XXY? · XX?</b> — ismétlődés, illetve pár a kódban.</li>
+      <li><b style="font-family:var(--mono)">↗ ↘ — · +1</b> — növekvő, csökkenő vagy rendezetlen sorrend, illetve egymást követő értékekből álló lépcső.</li>
+      <li><b style="font-family:var(--mono)">MIN · MAX</b> — melyik alakzat a legkisebb, illetve a legnagyobb.</li>
+    </ul>
+    <p style="font-size:12px;color:#8fa39b;margin-top:10px">Vigyázat a <b style="color:#a8752c">◆</b> kártyákkal: ha például a szabály „valamelyik alakzat &lt; 3", és a javaslatodban több érték is 3 alatt van, a ✓ akkor sem árulja el, melyikről van szó.</p>
     <div class="actions"><button class="btn primary" id="btnRulesClose">RENDBEN</button></div>
   </div>
 </div>
@@ -322,9 +365,9 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
     <h3>MEGFEJTÉS</h3>
     <p>Állítsd be a végleges kódot — nem kell egyeznie az aktuális javaslattal. Ha téves, a játszma elveszett.</p>
     <div class="composer gpick" id="gpick">
-      <div class="shapecol"><span class="shp t">▲</span><div class="keys" id="gkeysT"></div></div>
-      <div class="shapecol"><span class="shp s">■</span><div class="keys" id="gkeysS"></div></div>
-      <div class="shapecol"><span class="shp c">●</span><div class="keys" id="gkeysC"></div></div>
+      <div class="shapecol"><span class="shp" id="ghdT"></span><div class="keys" id="gkeysT"></div></div>
+      <div class="shapecol"><span class="shp" id="ghdS"></span><div class="keys" id="gkeysS"></div></div>
+      <div class="shapecol"><span class="shp" id="ghdC"></span><div class="keys" id="gkeysC"></div></div>
     </div>
     <div class="bigcode" id="guessCode"></div>
     <div class="actions">
@@ -352,6 +395,29 @@ footer{margin-top:18px;text-align:center;font-size:11px;color:#5d6f67}
 <script>
 "use strict";
 /* ================= kártya-definíciók ================= */
+/* ================= alakzat-glifák ================= */
+// Saját rajzolatú SVG alakzatok. A szín mindenhol ugyanaz:
+// kék háromszög, sárga négyzet, lila kör. A "?" azt jelöli, hogy az
+// ellenőrző ismeri az alakzatot, te viszont nem.
+function sgSVG(kind, px){
+  px = px || 13;
+  const open = `<svg class="sg sg-${kind}" width="${px}" height="${px}" viewBox="0 0 14 14" aria-hidden="true">`;
+  let body;
+  if(kind==="t") body = `<polygon points="7,1.5 12.8,12 1.2,12" fill="currentColor"/>`;
+  else if(kind==="s") body = `<rect x="2" y="2.2" width="10" height="10" rx="1" fill="currentColor"/>`;
+  else if(kind==="c") body = `<circle cx="7" cy="7.2" r="5.2" fill="currentColor"/>`;
+  else body = `<rect x="1.6" y="1.8" width="10.8" height="10.8" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2.6 1.8"/>`
+            + `<text x="7" y="10.4" font-size="8.5" font-weight="700" text-anchor="middle" fill="currentColor" font-family="monospace">?</text>`;
+  return open + body + `</svg>`;
+}
+const SGT = sgSVG("t"), SGS = sgSVG("s"), SGC = sgSVG("c"), SGU = sgSVG("u");
+const SG = [SGT, SGS, SGC];
+// szövegben előforduló alakzat-karakterek lecserélése a színes glifákra
+function csh(text){
+  return String(text)
+    .replace(/▲/g, SGT).replace(/■/g, SGS).replace(/●/g, SGC);
+}
+
 const SH = ["▲","■","●"];
 const SHC = ["t","s","c"];
 function cnt(code, v){ return code.filter(x=>x===v).length; }
@@ -468,29 +534,34 @@ const CARDS = [
  {id:48,name:"Két szín viszonya", opts:[...shapeCmp(0,1),...shapeCmp(0,2),...shapeCmp(1,2)]},
 ];
 
-/* ---------- kártya-piktogramok (saját jelrendszer) ---------- */
-// ? = valamelyik alakzat, # = darabszám, Σ = összeg, %2 = paritás, ⋚ = összehasonlítás
+/* ---------- kártya-piktogramok (az eredeti vizuális nyelvtan alapján, saját rajzolat) ---------- */
+const _T=SGT, _S=SGS, _C=SGC, _U=SGU;
+// _U = "az ellenőrző tudja, melyik alakzat, de te nem"
 const ICONS = {
-  1:"▲⋚1", 2:"▲⋚3", 3:"■⋚3", 4:"■⋚4",
-  5:"▲%2", 6:"■%2", 7:"●%2",
-  8:"#1", 9:"#3", 10:"#4",
-  11:"▲⋚■", 12:"▲⋚●", 13:"■⋚●",
-  14:"min", 15:"max",
-  16:"pr⋚pt", 17:"#pr", 18:"Σ%2", 19:"▲+■⋚6",
-  20:"xxx?", 21:"xx?", 22:"↗↘?", 23:"Σ⋚6", 24:"↗+1", 25:"⇅+1",
-  26:"?<3", 27:"?<4", 28:"?=1", 29:"?=3", 30:"?=4", 31:"?>1", 32:"?>3",
-  33:"?%2", 34:"min~", 35:"max~", 36:"Σ÷?",
-  37:"?+?=4", 38:"?+?=6",
-  39:"?⋚1", 40:"?⋚3", 41:"?⋚4", 42:"m/M",
-  43:"▲⋚?", 44:"■⋚?",
-  45:"#1/#3", 46:"#3/#4", 47:"#1/#4", 48:"?⋚?",
+  1:{a:_T+"⋛1"},           2:{a:_T+"⋛3"},          3:{a:_S+"⋛3"},          4:{a:_S+"⋛4"},
+  5:{a:_T, b:"PÁ|PT"},     6:{a:_S, b:"PÁ|PT"},    7:{a:_C, b:"PÁ|PT"},
+  8:{a:"1", b:"×?"},       9:{a:"3", b:"×?"},      10:{a:"4", b:"×?"},
+  11:{a:_T+"⋛"+_S},        12:{a:_T+"⋛"+_C},       13:{a:_S+"⋛"+_C},
+  14:{a:_T+_S+_C, b:"MIN"},15:{a:_T+_S+_C, b:"MAX"},
+  16:{a:"PÁ⋛PT"},          17:{a:"PÁ", b:"×?"},    18:{a:"Σ", b:"PÁ|PT"},
+  19:{a:_T+"+"+_S, b:"⋛6"},20:{a:"XXY?"},          21:{a:"XX?"},
+  22:{a:"↗↘—"},            23:{a:"Σ⋛6"},           24:{a:"↗+1"},          25:{a:"⇅+1"},
+  26:{a:_U+"<3"},          27:{a:_U+"<4"},         28:{a:_U+"=1"},
+  29:{a:_U+"=3"},          30:{a:_U+"=4"},         31:{a:_U+">1"},        32:{a:_U+">3"},
+  33:{a:_U, b:"PÁ|PT"},    34:{a:_U, b:"MIN ≤"},   35:{a:_U, b:"MAX ≥"},
+  36:{a:"Σ", b:"3×4×5×"},
+  37:{a:_U+"+"+_U, b:"=4"},38:{a:_U+"+"+_U, b:"=6"},
+  39:{a:_U+"⋛1"},          40:{a:_U+"⋛3"},         41:{a:_U+"⋛4"},
+  42:{a:_U, b:"MIN|MAX"},  43:{a:_T+"⋛"+_U},       44:{a:_S+"⋛"+_U},
+  45:{a:"1|3", b:"×?"},    46:{a:"3|4", b:"×?"},   47:{a:"1|4", b:"×?"},
+  48:{a:_U+"⋛"+_U},
 };
+// haladó kártyák: az ellenőrző ismer egy alakzatot, amit te nem — az eredeti
+// szabálykönyv ezeket külön jelöli, mert könnyű félreérteni ("X-paradoxon")
+const ADVANCED = new Set([26,27,28,29,30,31,32,33,34,35,37,38,39,40,41,42,43,44,48]);
 function iconHTML(id){
-  return (ICONS[id]||"")
-    .replace(/▲/g,'<span class="t">▲</span>')
-    .replace(/■/g,'<span class="s">■</span>')
-    .replace(/●/g,'<span class="c">●</span>')
-    .replace(/\?/g,'<span class="q">?</span>');
+  const ic = ICONS[id] || {a:"?"};
+  return ic.a + (ic.b ? `<span class="l2">${ic.b}</span>` : "");
 }
 
 /* ================= rejtvénygenerálás ================= */
@@ -564,6 +635,7 @@ function newGame(diffKey){
   buildComposer();
   buildNotes();
   buildCombos();
+  G.stars = puzzleStars(p);
   startBot();
   refresh();
 }
@@ -580,13 +652,14 @@ function buildVerifiers(){
       <div class="vhead">
         <div class="vletter">${LETTERS[i]}</div>
         <div class="vicon">${iconHTML(v.card.id)}</div>
-        <div class="vtitle">${v.card.name}<span class="vfound" id="found${i}"></span></div>
+        <div class="vtitle">${csh(v.card.name)}<span class="vfound" id="found${i}"></span></div>
+        ${ADVANCED.has(v.card.id) ? '<span class="vadv" title="Haladó kártya: az ellenőrző ismer egy alakzatot, amit te nem">◆</span>' : ''}
         <button class="vdim" id="dim${i}" title="Kiszürkítés, ha már nem kell">−</button>
         <div class="vlamp" id="lamp${i}"></div>
       </div>
       <div class="vbody">
         <ul class="vopts" id="opts${i}">
-          ${v.card.opts.map((o,j)=>`<li data-j="${j}">${o.d}</li>`).join("")}
+          ${v.card.opts.map((o,j)=>`<li data-j="${j}">${csh(o.d)}</li>`).join("")}
         </ul>
         <button class="vtest" id="test${i}">TESZT</button>
       </div>`;
@@ -635,7 +708,7 @@ function renderDeduction(i){
   const badge = document.getElementById("found"+i);
   if(poss.size===1){
     const j=[...poss][0];
-    badge.textContent = "→ " + v.card.opts[j].d;
+    badge.innerHTML = "→ " + csh(v.card.opts[j].d);
   } else {
     badge.textContent = "";
   }
@@ -644,7 +717,7 @@ function renderDeduction(i){
 
 function logLine(i, pass){
   const tape = document.getElementById("tape");
-  const codeStr = `<span style="color:#3a6ea5">${G.code[0]}</span><span style="color:#9a7a1f">${G.code[1]}</span><span style="color:#6f4a8f">${G.code[2]}</span>`;
+  const codeStr = `<span class="lt">${G.code[0]}</span><span class="ls">${G.code[1]}</span><span class="lc">${G.code[2]}</span>`;
   const line = document.createElement("div");
   line.innerHTML = `<span class="rnd">K${G.round}</span> · ${codeStr} → ${LETTERS[i]} <span class="${pass?'r-ok':'r-bad'}">${pass?"✓":"✗"}</span>`;
   tape.prepend(line);
@@ -652,6 +725,9 @@ function logLine(i, pass){
 
 /* ---------- composer ---------- */
 function buildComposer(){
+  document.getElementById("hdT").innerHTML = sgSVG("t",20);
+  document.getElementById("hdS").innerHTML = sgSVG("s",20);
+  document.getElementById("hdC").innerHTML = sgSVG("c",20);
   [["keysT",0],["keysS",1],["keysC",2]].forEach(([id,si])=>{
     const col = document.getElementById(id);
     col.innerHTML="";
@@ -682,7 +758,7 @@ function buildNotes(){
   for(let si=0;si<3;si++){
     const row=document.createElement("div");
     row.className="nrow";
-    row.innerHTML=`<span class="shp ${SHC[si]}">${SH[si]}</span>`;
+    row.innerHTML=`<span class="shp">${SG[si]}</span>`;
     for(let n=1;n<=5;n++){
       const cell=document.createElement("div");
       cell.className="ncell"; cell.textContent=n;
@@ -752,7 +828,7 @@ function buildCombos(){
   for(let t=1;t<=5;t++){
     const h = document.createElement("div");
     h.className = "chcell";
-    h.innerHTML = `<span class="t">▲</span><span class="s">■</span><span class="c">●</span>`;
+    h.innerHTML = `${sgSVG("t",11)}${sgSVG("s",11)}${sgSVG("c",11)}`;
     head.appendChild(h);
   }
   box.appendChild(head);
@@ -917,6 +993,17 @@ function computeBot(puzzle, skill){
   return {rounds:Math.max(rounds,1), questions, sol};
 }
 
+function puzzleStars(puzzle){
+  // az eredeti játék "nehézségi faktorához" hasonló becslés:
+  // ellenőrzők száma + az optimális megfejtéshez szükséges kérdések
+  const opt = computeBot(puzzle, "hard");
+  const n = puzzle.verifiers.length;
+  const adv = puzzle.verifiers.filter(v=>ADVANCED.has(v.card.id)).length;
+  let s = Math.round((n-4) + opt.questions/2.5 + adv/3);
+  s = Math.max(1, Math.min(5, s));
+  return "★".repeat(s) + "☆".repeat(5-s);
+}
+
 let botResult=null, botTimer=null;
 function startBot(){
   botResult=null;
@@ -967,6 +1054,9 @@ function renderGuessPick(){
   document.getElementById("btnGuessConfirm").disabled = !full;
 }
 function buildGuessPick(){
+  document.getElementById("ghdT").innerHTML = sgSVG("t",20);
+  document.getElementById("ghdS").innerHTML = sgSVG("s",20);
+  document.getElementById("ghdC").innerHTML = sgSVG("c",20);
   [["gkeysT",0],["gkeysS",1],["gkeysC",2]].forEach(([id,si])=>{
     const col = document.getElementById(id);
     col.innerHTML="";
@@ -1019,13 +1109,14 @@ function endGame(win){
   document.getElementById("endScore").innerHTML =
     `Te: ${G.round} kör · ${G.qTotal} kérdés<br><span style="font-size:13px">${vs}</span>`;
   document.getElementById("endReveal").innerHTML =
-    G.puzzle.verifiers.map((v,i)=>`<b style="font-family:var(--mono)">${LETTERS[i]}</b> — ${v.card.name}: <b style="color:var(--teal)">${v.card.opts[v.crit].d}</b>`).join("<br>");
+    G.puzzle.verifiers.map((v,i)=>`<b style="font-family:var(--mono)">${LETTERS[i]}</b> — ${csh(v.card.name)}: <b style="color:var(--teal)">${csh(v.card.opts[v.crit].d)}</b>`).join("<br>");
   document.getElementById("endOverlay").classList.remove("hidden");
 }
 
 /* ---------- refresh ---------- */
 function refresh(){
   document.getElementById("stDiff").textContent=G.diff.label;
+  document.getElementById("stStars").textContent=G.stars||"–";
   document.getElementById("stRound").textContent=G.round;
   document.getElementById("stQ").textContent=G.qRound;
   document.getElementById("stTotal").textContent=G.qTotal;
@@ -1050,6 +1141,10 @@ function refresh(){
 document.querySelectorAll("[data-diff]").forEach(b=>{
   b.addEventListener("click",()=>newGame(b.dataset.diff));
 });
+document.getElementById("legendShapes").innerHTML = sgSVG("t",15)+sgSVG("s",15)+sgSVG("c",15);
+document.getElementById("legendUnknown").innerHTML = sgSVG("u",15);
+document.getElementById("setupShapes").innerHTML = sgSVG("t",14)+sgSVG("s",14)+sgSVG("c",14);
+document.getElementById("rulesShapes").innerHTML = sgSVG("t",14)+sgSVG("s",14)+sgSVG("c",14);
 function showRules(){ document.getElementById("rulesOverlay").classList.remove("hidden"); }
 document.getElementById("btnRules").addEventListener("click",showRules);
 document.getElementById("btnRules2").addEventListener("click",showRules);
