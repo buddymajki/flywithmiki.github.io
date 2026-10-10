@@ -60,8 +60,21 @@
   .ac-facts { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.22); }
   .ac-facts div { font-size: 0.92em; opacity: 0.92; }
   .ac-facts b { display: block; font-size: 1.9em; line-height: 1; font-family: "Montserrat", sans-serif; color: var(--ac-mint); }
-  .ac-who { margin: 14px 0 0; font-size: 0.88em !important; opacity: 0.8 !important; }
+  .ac-who { margin: 14px 0 0; font-size: 0.92em !important; opacity: 0.95 !important; }
+  .ac-who b { color: var(--ac-mint); }
   .ac-who a { color: #ffd2a8; }
+
+  /* short summary first, the fine print folded away */
+  details.more { margin-top: 8px; }
+  details.more summary { cursor: pointer; color: var(--ac-deep); font-weight: bold; font-size: 0.86em; list-style: none; font-family: "Montserrat", sans-serif; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::after { content: " +"; }
+  details.more[open] summary::after { content: " \2212"; }
+  details.more p { margin: 6px 0 0; font-size: 0.92em; }
+  .topics details summary { cursor: pointer; list-style: none; }
+  .topics details summary::-webkit-details-marker { display: none; }
+  .topics details summary b::after { content: " +"; color: var(--ac); }
+  .topics details[open] summary b::after { content: " \2212"; }
 
   /* ---------- why it is worth it ---------- */
   .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -273,6 +286,14 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Sind an diesen Tagen auch Flugschüler dabei?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Die Flugtage sind nur für brevetierte Piloten: SHV-Brevet, IPPI 4 oder IPPI 5. Das gilt für Pass-Inhaber, für Einzeltage und für Freunde, die du an deiner Stelle schickst. Flugschüler trainieren in den eigenen Kursen der Schule."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Warum nur 12 Plätze?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -375,7 +396,7 @@
     <div class="ac-hero-in">
       <span class="ac-kicker">FLYwithMIKI Academy 2027</span>
       <h1>Ein Pass.<br><span>Bereit für deine ganze Flugsaison.</span></h1>
-      <p>Können, Kopf und Ausrüstung: ein Komplettpaket mit allem, was ein bewusster Pilot für die Saison braucht. Vier Coaching-Wochenenden ganz in deiner Nähe, vier Theorie-Abende online und die jährliche Wartung deiner Ausrüstung. Alles für etwa den Preis einer Flugreise von einer Woche, ohne deine Ferien auf das Wetter zu setzen.</p>
+      <p>Vier Coaching-Wochenenden ganz in deiner Nähe, vier Theorie-Abende online und die jährliche Wartung deiner Ausrüstung. Ein Preis, etwa wie eine Flugreise von einer Woche, ohne deine Ferien auf das Wetter zu setzen.</p>
       <div class="ac-badges"><div class="ac-scarce">&#128293; Nur 12 Plätze pro Jahr &middot; Pass-Verkauf bis 20. Februar 2027</div><a href="#weather" class="ac-wg">&#9730;&#65039; Wettergarantie mit voller Rückzahlung</a></div>
       <div class="ac-hero-cta">
         <a href="#pass" class="btn-main">&#127915; Einen der 12 Plätze sichern</a>
@@ -388,7 +409,7 @@
         <div><b>1</b>jährliche Wartung</div>
         <div><b>12</b>Plätze pro Jahr</div>
       </div>
-      <p class="ac-who">Für Piloten mit SHV-Brevet oder IPPI 4. Noch kein Brevet? Starte mit dem <a href="../de/intensive.html">Intensivkurs</a>.</p>
+      <p class="ac-who"><b>Nur für brevetierte Piloten:</b> SHV-Brevet, IPPI 4 oder IPPI 5. Keine Flugschüler an diesen Tagen. Noch kein Brevet? Starte mit dem <a href="../de/intensive.html">Intensivkurs</a>.</p>
     </div>
   </section>
 
@@ -396,12 +417,12 @@
   <div class="ac-wrap" id="why">
     <span class="ac-eyebrow">Warum der Pass</span>
     <h2 class="ac-h">Die Saison, die jeder Pilot eigentlich vorhat</h2>
-    <p class="ac-lead">Gleitschirmfliegen ist ein komplexer Sport. Nach dem Brevet wachsen deine Fähigkeiten weiter, oder sie verblassen langsam. Die meisten Piloten wissen, was sie üben sollten, nur wenige machen es wirklich jedes Jahr. Der Pass macht daraus einen Plan.</p>
+    <p class="ac-lead">Nach dem Brevet wachsen deine Fähigkeiten weiter, oder sie verblassen langsam. Der Pass macht aus dem Üben einen Plan.</p>
     <div class="why-grid">
-      <div class="why"><div class="wi">&#127919;</div><div><h3>Was jeder regelmässige Pilot braucht</h3><p>Schirmkontrolle am Boden und in der Luft, Thermik und Streckenflug: die Fähigkeiten, mit denen du sicher bleibst und weiterkommst, jede Saison trainiert, in der Reihenfolge, die die Saison braucht.</p></div></div>
-      <div class="why"><div class="wi">&#127897;&#65039;</div><div><h3>Coaching, nicht nur gemeinsam fliegen</h3><p>Nicht ein Briefing, und dann macht jeder sein eigenes Ding. Miki bleibt bei dir, am Funk, am Startplatz und manchmal direkt neben dir in der Luft, mit Feedback nach jedem Flug. Darum ist die Gruppe begrenzt.</p></div></div>
-      <div class="why"><div class="wi">&#128197;</div><div><h3>Einmal planen, dann einfach fliegen</h3><p>Fixe Wochenenden, im Winter publiziert, mit Ersatztagen. Zwei Tage in deiner Nähe: keine Ferientage, keine Woche weg von der Familie, keine teuren Hotelzimmer und Restaurants. Wir konzentrieren uns aufs Fliegen.</p></div></div>
-      <div class="why"><div class="wi">&#128295;</div><div><h3>Wartung, für dich erledigt</h3><p>Die Wartung der Ausrüstung ist lebenswichtig, und viele Piloten vergessen sie. Als Pass-Inhaber musst du nicht daran denken: Schirm-Check und Retterpackung sind inbegriffen.</p></div></div>
+      <div class="why"><div class="wi">&#127919;</div><div><h3>Was jeder regelmässige Pilot braucht</h3><p>Schirmkontrolle, Thermik und Streckenflug, jede Saison trainiert, in der Reihenfolge, die die Saison braucht.</p></div></div>
+      <div class="why"><div class="wi">&#127897;&#65039;</div><div><h3>Coaching, nicht nur gemeinsam fliegen</h3><p>Miki bleibt bei dir am Funk, am Startplatz und manchmal in der Luft, mit Feedback nach jedem Flug.</p></div></div>
+      <div class="why"><div class="wi">&#128197;</div><div><h3>Einmal planen, dann einfach fliegen</h3><p>Fixe Wochenenden in deiner Nähe, im Winter publiziert, mit Ersatztagen. Keine Ferientage, kein Hotel.</p></div></div>
+      <div class="why"><div class="wi">&#128295;</div><div><h3>Wartung, für dich erledigt</h3><p>Schirm-Check und Retterpackung inbegriffen, damit deine Ausrüstung bereit ist für den Frühling.</p></div></div>
     </div>
   </div>
 
@@ -409,24 +430,24 @@
   <div class="ac-wrap" id="season" style="padding-top:8px">
     <span class="ac-eyebrow">Deine Saison</span>
     <h2 class="ac-h">Vier Themen, acht Flugtage</h2>
-    <p class="ac-lead">Vier Wochenenden, zwei im Frühling und zwei im Sommer, mit Miki an deiner Seite: am Funk, am Startplatz und manchmal direkt neben dir in der Luft. Das Wetter wählt das Thema des Tages: kein Groundhandling an einem perfekten Thermiktag, kein Thermiktag ohne Thermik. Miki kündigt den Plan in der Gruppe an, meistens am Vorabend.</p>
+    <p class="ac-lead">Zwei Wochenenden im Frühling, zwei im Sommer. Das Wetter wählt das Thema des Tages, und Miki kündigt es am Vorabend an.</p>
     <div class="season">
       <div class="step" id="groundhandling">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-groundhandling.webp')"><span>Frühling</span></div>
-        <div class="bd"><h3>Advanced Groundhandling</h3><p>Wenn du deinen Schirm am Boden mit geschlossenen Augen kontrollieren kannst, kontrollierst du ihn auch in der Luft, wenn es darauf ankommt. Wir feilen nicht nur an deinem Start: Wir bauen die automatischen Reflexe von Händen und Gewichtsverlagerung auf, die später jede Situation in der Luft von selbst lösen.</p></div>
+        <div class="bd"><h3>Advanced Groundhandling</h3><p>Kontrollierst du deinen Schirm am Boden mit geschlossenen Augen, kontrollierst du ihn auch in der Luft, wenn es darauf ankommt. Wir bauen die automatischen Reflexe auf, nicht nur einen saubereren Start.</p></div>
       </div>
       <div class="step" id="maneuvers">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-maneuvers.webp')"><span>Frühling</span></div>
-        <div class="bd"><h3>Advanced Maneuver Training</h3><p>Klapper, Rotationen um alle Achsen und Schnellabstiegs-Manöver, mit viel Höhe und Miki am Funk: alles, was fürs Fliegen im Alltag zählt.</p>
+        <div class="bd"><h3>Advanced Maneuver Training</h3><p>Klapper, Rotationen und Schnellabstiege, mit viel Höhe und Miki am Funk.</p>
           <div class="note">Beschleunigte Klapper, Fullstalls und Trudeln gehören ins SIKU. Gültiger Schirm-Check und gültige Retterpackung nötig.</div></div>
       </div>
       <div class="step" id="thermal">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-thermal.webp');background-position:center 30%"><span>Sommer</span></div>
-        <div class="bd"><h3>Thermik</h3><p>Viele Piloten tun sich schwer, eine Thermik zu finden und darin zu bleiben. Und selbst wenn du drin bist, ist es eine Kunst, den Kern zu finden und die Zeichen zu lesen. Das lässt sich lernen: zuerst in der Theorie, dann in der Luft.</p></div>
+        <div class="bd"><h3>Thermik</h3><p>Die Thermik finden, drin bleiben, den Kern finden. Eine Kunst, die sich lernen lässt: zuerst in der Theorie, dann in der Luft.</p></div>
       </div>
       <div class="step" id="xc">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-xc.webp');background-position:center 35%"><span>Sommer</span></div>
-        <div class="bd"><h3>Streckenflug</h3><p>Zeit, die Komfortzone zu verlassen. Miki stellt eine Aufgabe für den Tag, und wir fliegen sie gemeinsam: eine kleine Runde oder eine freie Strecke im Engelbergertal oder im Jura. Deine ersten 20, 30, 50 oder 100 km.</p></div>
+        <div class="bd"><h3>Streckenflug</h3><p>Miki stellt eine Aufgabe, wir fliegen sie gemeinsam im Engelbergertal oder im Jura. Deine ersten 20, 30, 50 oder 100 km.</p></div>
       </div>
     </div>
 
@@ -439,12 +460,14 @@
     <div class="extra-grid">
       <div class="extra" id="online-theory">
         <div class="extra-top"><span class="ex-ic">&#128218;</span><div><h3>Advanced Theory: 4 Abende online</h3><p>Live, 19:00 bis 21:00 Uhr. Jeder Abend bereitet das nächste Wochenende vor. <span class="todo">TODO_RECORDING</span></p></div><span class="ex-val">Wert CHF 240 &middot; <b>INKLUSIVE</b></span></div>
-        <ol class="topics"><li><span class="td">23.<br>Feb.</span><b>Advanced Manöver</b><span class="tx">Die Theorie hinter jedem wichtigen Manöver: Wir verstehen, was passiert, und welches Werkzeug aus unserer Werkzeugkiste wir in welcher Situation einsetzen.</span></li><li><span class="td">13.<br>Apr.</span><b>Emagramm und Wetter</b><span class="tx">Ein Emagramm selbst lesen: Basis, Inversionen, Thermikstärke und das fliegbare Zeitfenster des Tages, mit echten Schweizer Beispielen.</span></li><li><span class="td">4.<br>Mai</span><b>Thermik und Streckenplanung</b><span class="tx">Woher die Thermik kommt und wie du sie zentrierst, dazu die Werkzeuge, um eine Strecke zu planen: Instrumente, Online-Prognosen, Karten und Apps. Nützlich, wo immer du fliegst.</span></li><li><span class="td">22.<br>Juni</span><b>Risikobeurteilung</b><span class="tx">Wie wir am Leben bleiben: sicher fliegen und es nicht zu weit treiben. Wenn wir verstehen, was zu Unfällen führt, und uns mental vorbereiten, treffen wir gute Entscheidungen und werden sichere Piloten.</span></li></ol>
+        <ol class="topics"><li><span class="td">23.<br>Feb.</span><details><summary><b>Advanced Manöver</b></summary><span class="tx">Die Theorie hinter jedem wichtigen Manöver: Wir verstehen, was passiert, und welches Werkzeug aus unserer Werkzeugkiste wir in welcher Situation einsetzen.</span></details></li><li><span class="td">13.<br>Apr.</span><details><summary><b>Emagramm und Wetter</b></summary><span class="tx">Ein Emagramm selbst lesen: Basis, Inversionen, Thermikstärke und das fliegbare Zeitfenster des Tages, mit echten Schweizer Beispielen.</span></details></li><li><span class="td">4.<br>Mai</span><details><summary><b>Thermik und Streckenplanung</b></summary><span class="tx">Woher die Thermik kommt und wie du sie zentrierst, dazu die Werkzeuge, um eine Strecke zu planen: Instrumente, Online-Prognosen, Karten und Apps. Nützlich, wo immer du fliegst.</span></details></li><li><span class="td">22.<br>Juni</span><details><summary><b>Risikobeurteilung</b></summary><span class="tx">Wie wir am Leben bleiben: sicher fliegen und es nicht zu weit treiben. Wenn wir verstehen, was zu Unfällen führt, und uns mental vorbereiten, treffen wir gute Entscheidungen und werden sichere Piloten.</span></details></li></ol>
       </div>
       <div class="extra chk" id="check">
         <div class="extra-top"><span class="ex-ic">&#128295;</span><div><h3>Jährliche Wartung</h3><p>Schirm-Check und Retterpackung. Deine Ausrüstung ist bereit, bevor der Frühling loslegt.</p></div><span class="ex-val">Wert CHF 390 &middot; <b>INKLUSIVE</b></span></div>
-        <div class="check-cols"><div><h4>&#129666; Dein Schirm</h4><ul><li>Porositätstest</li><li>Sichtkontrolle von Kappe, Leinen und Tragegurten</li><li>Laser-Leinenvermessung</li><li>Trimmen nach Herstellervorgabe</li><li>Kleine Lochreparaturen</li><li>Schriftlicher Bericht</li></ul></div><div><h4>&#128735; Dein Retter</h4><ul><li>48 Stunden im Feuchtraum</li><li>Sichtkontrolle vor dem Packen</li><li>Sorgfältiges Packen</li><li>Packkarte für deine Unterlagen</li></ul></div></div>
+        <details class="more"><summary>Was der Check umfasst</summary>
+        <div class="check-cols" style="margin-top:10px"><div><h4>&#129666; Dein Schirm</h4><ul><li>Porositätstest</li><li>Sichtkontrolle von Kappe, Leinen und Tragegurten</li><li>Laser-Leinenvermessung</li><li>Trimmen nach Herstellervorgabe</li><li>Kleine Lochreparaturen</li><li>Schriftlicher Bericht</li></ul></div><div><h4>&#128735; Dein Retter</h4><ul><li>48 Stunden im Feuchtraum</li><li>Sichtkontrolle vor dem Packen</li><li>Sorgfältiges Packen</li><li>Packkarte für deine Unterlagen</li></ul></div></div>
         <p class="ex-foot">Lufttüchtigkeits-Check ohne Leinenfestigkeitstest. Zusätze: Leinenfestigkeitstest mit bis zu 2 Ersatzleinen CHF 50, steuerbarer Retter CHF 10, Schirm mit Softlinks CHF 40. <a href="../de/checkcenter.html">Mehr zum Checkcenter</a></p>
+        </details>
       </div>
     </div>
   </div>
@@ -471,15 +494,15 @@
           <li><b>-10%</b> und Vorrang bei der Buchung für Pro XC und das SIKU</li>
           <li>Partner-Rabatte <span class="todo">TODO_PARTNER_DISCOUNTS</span></li>
         </ul>
-        <p class="bonus-note">Ein neuer Schirm kostet etwa CHF 4'500 bis 6'000, mit -20% sparst du also mehr als CHF 1'000. Die Ausrüstungsrabatte gelten für Käufe in deinem Pass-Jahr.</p>
+        <p class="bonus-note">Mit -20% auf einen neuen Schirm sparst du mehr als CHF 1'000. Gültig in deinem Pass-Jahr.</p>
       </div>
       <div class="pass-right">
         <div class="pass-price">CHF 2'400</div>
         <span class="pass-save">Deine Wartung geht auf uns</span>
         <ul>
           <li>Ein garantierter Platz an allen 8 Flugtagen</li>
-          <li>Wettergarantie mit voller Rückzahlung: 8 Ersatztage, danach CHF 220 bar oder ein Gutschein über CHF 270 pro verlorenem Tag</li>
-          <li>Du kannst nicht? Schick einen brevetierten Freund. Krank? Mach an einem Ersatztag mit, oder hol dir einen Gutschein, wenn die Saison für dich gelaufen ist</li>
+          <li>Wettergarantie: 8 Ersatztage, danach volle Rückzahlung</li>
+          <li>Du kannst nicht? Schick einen brevetierten Freund</li>
           <li>Eine persönliche Pilotenanalyse zum Start</li>
           <li>Feedback nach jedem Flug</li>
         </ul>
@@ -494,7 +517,12 @@
     <div class="wg-in">
       <div class="wg-badge"><span>&#9730;&#65039;</span>Volle<br>Rückzahlung</div>
       <div><h3>Wettergarantie mit voller Rückzahlung: Du verlierst keinen Flugtag ans Wetter</h3>
-        <p><b>8 Flugtage, 8 Ersatztage.</b> Ein Tag, der ans Wetter verloren geht, wird auf den nächsten freien Ersatztag verschoben (22. bis 23. Mai, 24. bis 25. Juli, 4. bis 5. September, 2. bis 3. Oktober). Als verloren gilt ein Tag nur, wenn gar kein Flug möglich ist. Sobald geflogen wird, auch nur ein einziger Flug, gilt der Tag als durchgeführt: auch wenn der Wind auffrischt, Regen uns früher stoppt oder du selbst nicht startest. Und wenn das Wetter trotzdem gewinnt, bekommst du den vollen Wert zurück, nach deiner Wahl pro verlorenem Flugtag: <b>CHF 220 bar</b>, was dich der Tag im Pass kostet, oder <b>einen Gutschein über CHF 270</b>, den Preis eines Einzeltags. Die Garantie zählt die Flugtage der Saison, nicht deine eigene Teilnahme: Alle Pass-Inhaber bekommen pro fehlendem Tag dasselbe.</p></div>
+        <p><b>8 Flugtage, 8 Ersatztage.</b> Ein Tag, der ans Wetter verloren geht, wird auf einen Ersatztag verschoben. Gewinnt das Wetter trotzdem, bekommst du pro verlorenem Tag den vollen Wert zurück: <b>CHF 220 bar</b> oder <b>einen Gutschein über CHF 270</b>.</p>
+        <details class="more"><summary>Das Kleingedruckte</summary>
+          <p>Ersatztage: 22. bis 23. Mai, 24. bis 25. Juli, 4. bis 5. September, 2. bis 3. Oktober. Wir entscheiden am Vorabend um 18:00 Uhr und posten es in der Gruppe.</p>
+          <p>Als verloren gilt ein Tag nur, wenn gar kein Flug möglich ist. Sobald geflogen wird, auch nur ein einziger Flug, gilt der Tag als durchgeführt: auch wenn der Wind auffrischt, Regen uns früher stoppt oder du selbst nicht startest.</p>
+          <p>CHF 220 kostet dich ein Flugtag im Pass, CHF 270 ist der Preis eines Einzeltags. Die Garantie zählt die Flugtage der Saison, nicht deine eigene Teilnahme: Alle Pass-Inhaber bekommen pro fehlendem Tag dasselbe.</p>
+        </details></div>
     </div>
   </div>
 
@@ -537,12 +565,13 @@
   <div class="ac-wrap" id="how" style="padding-top:8px">
     <h2 class="ac-h">So funktioniert's</h2>
     <div class="rules">
-      <div class="rule"><b>Wettergarantie mit voller Rückzahlung.</b> Ein Tag, der ans Wetter verloren geht, wird auf den nächsten freien Ersatztag verschoben (8 Ersatztage: 22. bis 23. Mai, 24. bis 25. Juli, 4. bis 5. September, 2. bis 3. Oktober). Als verloren gilt ein Tag nur, wenn gar kein Flug möglich ist. Sobald geflogen wird, auch nur ein einziger Flug, gilt der Tag als durchgeführt: auch wenn der Wind auffrischt, Regen uns früher stoppt oder du selbst nicht startest. Sind sogar die Ersatztage aufgebraucht, bekommst du CHF 220 bar oder einen Gutschein über CHF 270 pro verlorenem Tag. Wir entscheiden am Vorabend um 18:00 Uhr und posten es in der Gruppe.</div>
-      <div class="rule"><b>Die Saison findet ab 4 Pässen statt.</b> Sobald 4 Pässe verkauft sind, findet jeder Flugtag statt, egal wie viele Piloten an dem Tag kommen. Sind bis am 20. Februar weniger als 4 Pässe verkauft, bekommst du dein Geld zurück.</div>
-      <div class="rule"><b>Das Wetter wählt das Thema.</b> Groundhandling oder Manöver im Frühling, Thermik oder Streckenflug im Sommer: Miki wählt, was zum Tag passt, und kündigt es in der Gruppe an, meistens am Vorabend.</div>
-      <div class="rule"><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle. Krank? Mach an einem Ersatztag mit, der stattfindet. Bis Ende Saison krank oder verletzt? Melde es Miki vor dem nächsten Flugtag, dann bekommst du für jeden noch offenen Flugtag einen Gutschein über CHF 220. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. <span class="todo">TODO_CONFIRM</span></div>
-      <div class="rule"><b>Nur für brevetierte Piloten.</b> Du fliegst auf eigene Verantwortung: Der Coach schlägt vor, du entscheidest.</div>
-      <div class="rule"><b>Nächstes Jahr wieder dabei?</b> Die Pass-Inhaber dieses Jahres buchen zuerst: ein Vorkaufsfenster, bevor die Pässe für alle in den Verkauf gehen. Deine zweite Saison ist keine Wiederholung: dieselben vier Themen, höhere Ziele, von längeren Streckenflügen bis zu anspruchsvolleren Manövern.</div>
+      <div class="rule"><b>Nur für brevetierte Piloten.</b> SHV-Brevet, IPPI 4 oder IPPI 5. Keine Flugschüler an diesen Tagen, auch nicht an Einzeltagen. Du fliegst auf eigene Verantwortung: Der Coach schlägt vor, du entscheidest.</div>
+      <div class="rule"><b>Die Saison findet ab 4 Pässen statt.</b> Mit 4 verkauften Pässen findet jeder Flugtag statt. Weniger bis am 20. Februar? Du bekommst dein Geld zurück.</div>
+      <div class="rule"><b>Das Wetter wählt das Thema.</b> Frühling: Groundhandling oder Manöver. Sommer: Thermik oder Streckenflug.</div>
+      <div class="rule"><b>Entscheid am Vorabend.</b> Um 18:00 Uhr postet Miki in der Gruppe, ob geflogen wird, und das Thema.</div>
+      <div class="rule"><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle.
+        <details class="more"><summary>Krank oder verletzt?</summary><p>Krank? Mach an einem Ersatztag mit, der stattfindet. Bis Ende Saison krank oder verletzt? Melde es Miki vor dem nächsten Flugtag, dann bekommst du für jeden noch offenen Flugtag einen Gutschein über CHF 220. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. <span class="todo">TODO_CONFIRM</span></p></details></div>
+      <div class="rule"><b>Nächstes Jahr wieder dabei?</b> Pass-Inhaber buchen zuerst, und deine zweite Saison hat höhere Ziele.</div>
       <div class="rule" style="grid-column:1 / -1"><b>Nicht inbegriffen:</b> Bergbahnen, Unterkunft, Verpflegung, Rückholdienst. Du brauchst ein eigenes Brevet, eine eigene gecheckte Ausrüstung und eine eigene Versicherung.</div>
     </div>
   </div>
@@ -551,6 +580,7 @@
   <div class="ac-wrap" id="faq" style="padding-top:8px">
     <h2 class="ac-h">Gute Fragen</h2>
     <div style="max-width:820px; margin:18px auto 0">
+      <details class="faq"><summary>Sind an diesen Tagen auch Flugschüler dabei?</summary><p>Nein. Die Flugtage sind nur für brevetierte Piloten: SHV-Brevet, IPPI 4 oder IPPI 5. Das gilt für Pass-Inhaber, für Einzeltage und für Freunde, die du an deiner Stelle schickst. Flugschüler trainieren in den eigenen Kursen der Schule.</p></details>
       <details class="faq"><summary>Warum nur 12 Plätze?</summary><p>Weil das Coaching persönlich ist: Miki bleibt mit der Gruppe am Funk und am Startplatz und gibt nach jedem Flug Feedback. Mit 12 Pass-Inhabern bleiben die Gruppen klein genug dafür, und Einzelplätze verkaufen wir nur, wo Pass-Inhaber Platz lassen.</p></details>
       <details class="faq"><summary>Was passiert, wenn das Wetter einen Tag verhindert?</summary><p>Genau dafür gibt es die Wettergarantie mit voller Rückzahlung. Der verlorene Tag wird auf den nächsten freien Ersatztag verschoben: Für 8 Flugtage gibt es 8 Ersatztage. Als verloren gilt ein Tag nur, wenn gar kein Flug möglich ist. Sobald geflogen wird, auch nur ein einziger Flug, gilt der Tag als durchgeführt: auch wenn der Wind auffrischt, Regen uns früher stoppt oder du selbst nicht startest. Sind sogar sie aufgebraucht, wählst du pro verlorenem Tag: CHF 220 bar zurück (was dich ein Flugtag im Pass kostet) oder einen Gutschein über CHF 270 (der Preis eines Einzeltags). Der Gutschein gilt für die Academy-Saison im nächsten Jahr (Pass oder Einzeltage) oder für Ausrüstung (Schirm, Gurtzeug oder Retter zum Listenpreis) im nächsten Kalenderjahr.</p></details>
       <details class="faq"><summary>Welches Thema ist an welchem Tag?</summary><p>Das Wetter entscheidet. Über die Saison decken wir alle vier Themen ab: Groundhandling und Manöver im Frühling, Thermik und Streckenflug im Sommer. Miki wählt das Thema, das zum Tag passt, und kündigt es in der Gruppe an, meistens am Vorabend.</p></details>
@@ -567,7 +597,7 @@
   <div class="ac-wrap" id="dates" style="padding-top:8px">
     <span class="ac-eyebrow">Daten 2027</span>
     <h2 class="ac-h">Nur einen einzelnen Tag?</h2>
-    <p class="ac-lead">Einzelne Flugtage gibt es ab dem 20. Februar, und nur dort, wo Pass-Inhaber Platz lassen. Pass-Inhaber buchen immer zuerst.</p>
+    <p class="ac-lead">Einzelne Flugtage gibt es ab dem 20. Februar, nur dort, wo Pass-Inhaber Platz lassen, und nur für brevetierte Piloten.</p>
     <div class="table-scroll">
       <table class="date-table">
         <tr><th></th><th>Daten</th><th>Thema</th><th>Einzelner Tag</th></tr>
