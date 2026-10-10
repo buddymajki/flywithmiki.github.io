@@ -199,6 +199,16 @@
   .vs-legend { text-align: center; font-size: 0.82em; color: #5d707d; margin-top: 10px; }
   @media (max-width: 640px) { .vs th, .vs td { padding: 10px 6px; } .vs td.f { font-size: 0.82em; } .vs .vs-why { font-size: 0.78em; } .vs .ic { width: 28px; height: 28px; font-size: 1em; } }
 
+  /* groundhandling video: click-to-play, YouTube loads only after the click */
+  .gh-vid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; align-items: center; background: #fff; border-radius: 18px; padding: 16px; margin-top: 22px; box-shadow: 0 8px 26px rgba(13,36,54,0.08); }
+  .gh-vid .vbox { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #0d2436 center / cover no-repeat; cursor: pointer; }
+  .gh-vid .vbox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .gh-vid .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: rgba(13,36,54,0.78); border: 3px solid #fff; color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center; padding-left: 5px; }
+  .gh-vid .vbox:hover .play { background: var(--ac); }
+  .gh-vid h3 { margin: 0 0 6px; font-family: "Montserrat", sans-serif; }
+  .gh-vid p { margin: 0; color: #4a5d6a; }
+  @media (max-width: 760px) { .gh-vid { grid-template-columns: 1fr; } }
+
   /* concept preview bar */
   .cp-bar { position: sticky; top: 0; z-index: 50; background: #0d2436; color: #fff; padding: 10px 18px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; font-size: 0.92em; box-shadow: 0 4px 14px rgba(13,36,54,0.25); }
   .cp-bar b { color: #ffd166; }
@@ -274,7 +284,7 @@
       "name": "Was passiert, wenn das Wetter einen Tag verhindert?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Genau dafür gibt es die Wettergarantie mit voller Rückzahlung. Der verlorene Tag wird auf den nächsten freien Ersatztag verschoben: Für 8 Flugtage gibt es 8 Ersatztage. Sind sogar sie aufgebraucht, wählst du pro verlorenem Tag: CHF 220 bar zurück (was dich ein Flugtag im Pass kostet) oder einen Gutschein über CHF 270 (der Preis eines Einzeltags). Der Gutschein gilt im nächsten Jahr: für den nächsten Academy-Pass, einen Einzeltag oder einen Schirm, ein Gurtzeug oder einen Retter zum Listenpreis."
+        "text": "Genau dafür gibt es die Wettergarantie mit voller Rückzahlung. Der verlorene Tag wird auf den nächsten freien Ersatztag verschoben: Für 8 Flugtage gibt es 8 Ersatztage. Sind sogar sie aufgebraucht, wählst du pro verlorenem Tag: CHF 220 bar zurück (was dich ein Flugtag im Pass kostet) oder einen Gutschein über CHF 270 (der Preis eines Einzeltags). Der Gutschein gilt für die Academy-Saison im nächsten Jahr (Pass oder Einzeltage) oder für Ausrüstung (Schirm, Gurtzeug oder Retter zum Listenpreis) im nächsten Kalenderjahr."
       }
     },
     {
@@ -290,7 +300,7 @@
       "name": "Und wenn ich an einem Tag nicht kann?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Schick einen brevetierten Freund an deiner Stelle. Bist du krank, kannst du stattdessen an jedem Ersatztag mitmachen, der stattfindet. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. Nur so bleibt der Pass so günstig."
+        "text": "Schick einen brevetierten Freund an deiner Stelle. Bist du krank, kannst du stattdessen an jedem Ersatztag mitmachen, der stattfindet. Bis Ende Saison krank oder verletzt? Melde es Miki vor dem nächsten Flugtag, dann bekommst du für jeden noch offenen Flugtag einen Gutschein über CHF 220. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. Nur so bleibt der Pass so günstig."
       }
     },
     {
@@ -394,22 +404,27 @@
     <p class="ac-lead">Vier Wochenenden, zwei im Frühling und zwei im Sommer, mit Miki an deiner Seite: am Funk, am Startplatz und manchmal direkt neben dir in der Luft. Das Wetter wählt das Thema des Tages: kein Groundhandling an einem perfekten Thermiktag, kein Thermiktag ohne Thermik. Miki kündigt den Plan in der Gruppe an, meistens am Vorabend.</p>
     <div class="season">
       <div class="step" id="groundhandling">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/12.webp')"><span>Frühling</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-groundhandling.webp')"><span>Frühling</span></div>
         <div class="bd"><h3>Advanced Groundhandling</h3><p>Wenn du deinen Schirm am Boden mit geschlossenen Augen kontrollieren kannst, kontrollierst du ihn auch in der Luft, wenn es darauf ankommt. Wir feilen nicht nur an deinem Start: Wir bauen die automatischen Reflexe von Händen und Gewichtsverlagerung auf, die später jede Situation in der Luft von selbst lösen.</p></div>
       </div>
       <div class="step" id="maneuvers">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/17.webp')"><span>Frühling</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-maneuvers.webp')"><span>Frühling</span></div>
         <div class="bd"><h3>Advanced Maneuver Training</h3><p>Klapper, Rotationen um alle Achsen und Schnellabstiegs-Manöver, mit viel Höhe und Miki am Funk: alles, was fürs Fliegen im Alltag zählt.</p>
           <div class="note">Beschleunigte Klapper, Fullstalls und Trudeln gehören ins SIKU. Gültiger Schirm-Check und gültige Retterpackung nötig.</div></div>
       </div>
       <div class="step" id="thermal">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/18.webp')"><span>Sommer</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-thermal.webp');background-position:center 30%"><span>Sommer</span></div>
         <div class="bd"><h3>Thermik</h3><p>Viele Piloten tun sich schwer, eine Thermik zu finden und darin zu bleiben. Und selbst wenn du drin bist, ist es eine Kunst, den Kern zu finden und die Zeichen zu lesen. Das lässt sich lernen: zuerst in der Theorie, dann in der Luft.</p></div>
       </div>
       <div class="step" id="xc">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/hf1.webp')"><span>Sommer</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-xc.webp');background-position:center 35%"><span>Sommer</span></div>
         <div class="bd"><h3>Streckenflug</h3><p>Zeit, die Komfortzone zu verlassen. Miki stellt eine Aufgabe für den Tag, und wir fliegen sie gemeinsam: eine kleine Runde oder eine freie Strecke im Engelbergertal oder im Jura. Deine ersten 20, 30, 50 oder 100 km.</p></div>
       </div>
+    </div>
+
+    <div class="gh-vid">
+      <div class="vbox" style="background-image:url('../Images_v2/academy-groundhandling.webp')" onclick="ghPlay(this)" role="button" tabindex="0" aria-label="Video: Groundhandling"><span class="play">&#9658;</span></div>
+      <div><span class="ac-eyebrow">Video: Groundhandling</span><h3>Advanced Groundhandling in Aktion</h3><p>Eine echte Session in Wolfenschiessen: Schirmkontrolle, Reflexe und Beinarbeit, die Basis für alles, was später in der Luft passiert.</p></div>
     </div>
 
     <span class="ac-eyebrow" style="margin-top:30px">Ebenfalls im Pass</span>
@@ -456,7 +471,7 @@
         <ul>
           <li>Ein garantierter Platz an allen 8 Flugtagen</li>
           <li>Wettergarantie mit voller Rückzahlung: 8 Ersatztage, danach CHF 220 bar oder ein Gutschein über CHF 270 pro verlorenem Tag</li>
-          <li>Du kannst nicht? Schick einen brevetierten Freund. Krank? Mach an einem Ersatztag mit</li>
+          <li>Du kannst nicht? Schick einen brevetierten Freund. Krank? Mach an einem Ersatztag mit, oder hol dir einen Gutschein, wenn die Saison für dich gelaufen ist</li>
           <li>Eine persönliche Pilotenanalyse zum Start</li>
           <li>Feedback nach jedem Flug</li>
         </ul>
@@ -517,7 +532,7 @@
       <div class="rule"><b>Wettergarantie mit voller Rückzahlung.</b> Ein Tag, der ans Wetter verloren geht, wird auf den nächsten freien Ersatztag verschoben (8 Ersatztage: 22. bis 23. Mai, 24. bis 25. Juli, 4. bis 5. September, 2. bis 3. Oktober). Einen halben Tag verloren? Wir beenden ihn dort. Sind sogar die Ersatztage aufgebraucht, bekommst du CHF 220 bar oder einen Gutschein über CHF 270 pro verlorenem Tag. Wir entscheiden am Vorabend um 18:00 Uhr und posten es in der Gruppe.</div>
       <div class="rule"><b>Die Saison findet ab 4 Pässen statt.</b> Sobald 4 Pässe verkauft sind, findet jeder Flugtag statt, egal wie viele Piloten an dem Tag kommen. Sind bis am 20. Februar weniger als 4 Pässe verkauft, bekommst du dein Geld zurück.</div>
       <div class="rule"><b>Das Wetter wählt das Thema.</b> Groundhandling oder Manöver im Frühling, Thermik oder Streckenflug im Sommer: Miki wählt, was zum Tag passt, und kündigt es in der Gruppe an, meistens am Vorabend.</div>
-      <div class="rule"><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle. Krank? Mach an einem Ersatztag mit, der stattfindet. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. <span class="todo">TODO_CONFIRM</span></div>
+      <div class="rule"><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle. Krank? Mach an einem Ersatztag mit, der stattfindet. Bis Ende Saison krank oder verletzt? Melde es Miki vor dem nächsten Flugtag, dann bekommst du für jeden noch offenen Flugtag einen Gutschein über CHF 220. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. <span class="todo">TODO_CONFIRM</span></div>
       <div class="rule"><b>Nur für brevetierte Piloten.</b> Du fliegst auf eigene Verantwortung: Der Coach schlägt vor, du entscheidest.</div>
       <div class="rule" style="grid-column:1 / -1"><b>Nicht inbegriffen:</b> Bergbahnen, Unterkunft, Verpflegung, Rückholdienst. Du brauchst ein eigenes Brevet, eine eigene gecheckte Ausrüstung und eine eigene Versicherung.</div>
     </div>
@@ -528,9 +543,9 @@
     <h2 class="ac-h">Gute Fragen</h2>
     <div style="max-width:820px; margin:18px auto 0">
       <details class="faq"><summary>Warum nur 12 Plätze?</summary><p>Weil das Coaching persönlich ist: Miki bleibt mit der Gruppe am Funk und am Startplatz und gibt nach jedem Flug Feedback. Mit 12 Pass-Inhabern bleiben die Gruppen klein genug dafür, und Einzelplätze verkaufen wir nur, wo Pass-Inhaber Platz lassen.</p></details>
-      <details class="faq"><summary>Was passiert, wenn das Wetter einen Tag verhindert?</summary><p>Genau dafür gibt es die Wettergarantie mit voller Rückzahlung. Der verlorene Tag wird auf den nächsten freien Ersatztag verschoben: Für 8 Flugtage gibt es 8 Ersatztage. Sind sogar sie aufgebraucht, wählst du pro verlorenem Tag: CHF 220 bar zurück (was dich ein Flugtag im Pass kostet) oder einen Gutschein über CHF 270 (der Preis eines Einzeltags). Der Gutschein gilt im nächsten Jahr: für den nächsten Academy-Pass, einen Einzeltag oder einen Schirm, ein Gurtzeug oder einen Retter zum Listenpreis.</p></details>
+      <details class="faq"><summary>Was passiert, wenn das Wetter einen Tag verhindert?</summary><p>Genau dafür gibt es die Wettergarantie mit voller Rückzahlung. Der verlorene Tag wird auf den nächsten freien Ersatztag verschoben: Für 8 Flugtage gibt es 8 Ersatztage. Sind sogar sie aufgebraucht, wählst du pro verlorenem Tag: CHF 220 bar zurück (was dich ein Flugtag im Pass kostet) oder einen Gutschein über CHF 270 (der Preis eines Einzeltags). Der Gutschein gilt für die Academy-Saison im nächsten Jahr (Pass oder Einzeltage) oder für Ausrüstung (Schirm, Gurtzeug oder Retter zum Listenpreis) im nächsten Kalenderjahr.</p></details>
       <details class="faq"><summary>Welches Thema ist an welchem Tag?</summary><p>Das Wetter entscheidet. Über die Saison decken wir alle vier Themen ab: Groundhandling und Manöver im Frühling, Thermik und Streckenflug im Sommer. Miki wählt das Thema, das zum Tag passt, und kündigt es in der Gruppe an, meistens am Vorabend.</p></details>
-      <details class="faq"><summary>Und wenn ich an einem Tag nicht kann?</summary><p>Schick einen brevetierten Freund an deiner Stelle. Bist du krank, kannst du stattdessen an jedem Ersatztag mitmachen, der stattfindet. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. Nur so bleibt der Pass so günstig. <span class="todo">TODO_CONFIRM</span></p></details>
+      <details class="faq"><summary>Und wenn ich an einem Tag nicht kann?</summary><p>Schick einen brevetierten Freund an deiner Stelle. Bist du krank, kannst du stattdessen an jedem Ersatztag mitmachen, der stattfindet. Bis Ende Saison krank oder verletzt? Melde es Miki vor dem nächsten Flugtag, dann bekommst du für jeden noch offenen Flugtag einen Gutschein über CHF 220. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. Nur so bleibt der Pass so günstig. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Kann ich den Pass stornieren?</summary><p>Bis am 20. Februar bekommst du alles zurück ausser CHF 200. Danach wird der Pass nicht zurückerstattet, aber du kannst einen Freund an deiner Stelle schicken. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Kann ich einzelne Tage buchen?</summary><p>Ja, wenn Plätze frei sind. Einzelne Flugtage kosten CHF 270 und gibt es ab dem 20. Februar, nach den Pass-Inhabern. Das Thema ist das, das Miki für diesen Tag ankündigt.</p></details>
       <details class="faq"><summary>Hilfst du bei der Ausrüstung?</summary><p>Ja. Die Ausrüstungsberatung ist gratis, wenn du deine Ausrüstung <a href="../de/equipment.html">bei uns</a> kaufst, und kostet CHF 200, wenn du sie woanders kaufst. Pass-Inhaber bekommen in ihrem Pass-Jahr -20% auf einen neuen Schirm.</p></details>
@@ -599,5 +614,8 @@ var _af = document.getElementById('academy-form'); if (_af) _af.addEventListener
 });
 </script>
 
+<script>
+function ghPlay(el) { el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/UinUDk5Szt0?autoplay=1&rel=0" title="Advanced groundhandling" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'; el.onclick = null; }
+</script>
 </body>
 </html>

@@ -199,6 +199,16 @@
   .vs-legend { text-align: center; font-size: 0.82em; color: #5d707d; margin-top: 10px; }
   @media (max-width: 640px) { .vs th, .vs td { padding: 10px 6px; } .vs td.f { font-size: 0.82em; } .vs .vs-why { font-size: 0.78em; } .vs .ic { width: 28px; height: 28px; font-size: 1em; } }
 
+  /* groundhandling video: click-to-play, YouTube loads only after the click */
+  .gh-vid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; align-items: center; background: #fff; border-radius: 18px; padding: 16px; margin-top: 22px; box-shadow: 0 8px 26px rgba(13,36,54,0.08); }
+  .gh-vid .vbox { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #0d2436 center / cover no-repeat; cursor: pointer; }
+  .gh-vid .vbox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .gh-vid .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: rgba(13,36,54,0.78); border: 3px solid #fff; color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center; padding-left: 5px; }
+  .gh-vid .vbox:hover .play { background: var(--ac); }
+  .gh-vid h3 { margin: 0 0 6px; font-family: "Montserrat", sans-serif; }
+  .gh-vid p { margin: 0; color: #4a5d6a; }
+  @media (max-width: 760px) { .gh-vid { grid-template-columns: 1fr; } }
+
   /* concept preview bar */
   .cp-bar { position: sticky; top: 0; z-index: 50; background: #0d2436; color: #fff; padding: 10px 18px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; font-size: 0.92em; box-shadow: 0 4px 14px rgba(13,36,54,0.25); }
   .cp-bar b { color: #ffd166; }
@@ -274,7 +284,7 @@
       "name": "What if the weather takes a day?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for the next year: for the next Academy Pass, a single day, or a glider, harness or reserve at list price."
+        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year."
       }
     },
     {
@@ -290,7 +300,7 @@
       "name": "What if I cannot make a day?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable."
+        "text": "Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Ill or injured for the rest of the season? Tell Miki before the next flying day and you get a CHF 220 voucher for every flying day still ahead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable."
       }
     },
     {
@@ -394,22 +404,27 @@
     <p class="ac-lead">Four weekends, two in spring and two in summer, with Miki next to you: on the radio, on launch, and sometimes flying right beside you. The weather picks the topic of the day: no groundhandling on a perfect thermal day, no thermal day without thermals. Miki announces the plan in the group, usually the evening before.</p>
     <div class="season">
       <div class="step" id="groundhandling">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/12.webp')"><span>Spring</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-groundhandling.webp')"><span>Spring</span></div>
         <div class="bd"><h3>Advanced Groundhandling</h3><p>If you can control your glider on the ground with your eyes closed, you can control it in the air when it counts. We do not only polish your launch: we build the automatic reflexes of hands and weight shift that later handle any situation in the air by themselves.</p></div>
       </div>
       <div class="step" id="maneuvers">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/17.webp')"><span>Spring</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-maneuvers.webp')"><span>Spring</span></div>
         <div class="bd"><h3>Advanced Maneuver Training</h3><p>Collapses, rotations around all axes and fast descent maneuvers, with plenty of height and Miki on the radio: everything that matters for everyday flying.</p>
           <div class="note">Accelerated collapses, full stalls and spins belong to the SIKU. Valid glider check and reserve repack required.</div></div>
       </div>
       <div class="step" id="thermal">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/18.webp')"><span>Summer</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-thermal.webp');background-position:center 30%"><span>Summer</span></div>
         <div class="bd"><h3>Thermals</h3><p>Many pilots struggle to find a thermal and to stay in it. And even once you are in, finding the core and reading the signs is an art. It can be learned: in theory first, then in the air.</p></div>
       </div>
       <div class="step" id="xc">
-        <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/hf1.webp')"><span>Summer</span></div>
+        <div class="ph" style="background-image:url('../Images_v2/academy-xc.webp');background-position:center 35%"><span>Summer</span></div>
         <div class="bd"><h3>Cross-country</h3><p>Time to leave the comfort zone. Miki sets a task for the day and we fly it together: a small loop or free distance in the Engelberg valley or the Jura. Your first 20, 30, 50 or 100 km.</p></div>
       </div>
+    </div>
+
+    <div class="gh-vid">
+      <div class="vbox" style="background-image:url('../Images_v2/academy-groundhandling.webp')" onclick="ghPlay(this)" role="button" tabindex="0" aria-label="Watch: groundhandling"><span class="play">&#9658;</span></div>
+      <div><span class="ac-eyebrow">Watch: groundhandling</span><h3>Advanced groundhandling in action</h3><p>A real session in Wolfenschiessen: wing control, reflexes and footwork, the base for everything that happens later in the air.</p></div>
     </div>
 
     <span class="ac-eyebrow" style="margin-top:30px">Also in your pass</span>
@@ -456,7 +471,7 @@
         <ul>
           <li>A guaranteed place on all 8 flying days</li>
           <li>Full-payback weather guarantee: 8 backup days, then CHF 220 cash or a CHF 270 voucher per lost day</li>
-          <li>Can't come? Send a licensed friend. Ill? Join any backup day</li>
+          <li>Can't come? Send a licensed friend. Ill? Join any backup day, or get a voucher if you are out for the season</li>
           <li>A personal pilot assessment at the start</li>
           <li>Feedback after every flight</li>
         </ul>
@@ -517,7 +532,7 @@
       <div class="rule"><b>Full-payback weather guarantee.</b> A day lost to the weather moves to the next free backup day (8 backup days: 22 to 23 May, 24 to 25 July, 4 to 5 September, 2 to 3 October). Half a day lost? We finish it there. If even the backup days are used up, you get CHF 220 in cash or a CHF 270 voucher per lost day. We decide at 18:00 the evening before and post it in the group.</div>
       <div class="rule"><b>The season runs from 4 passes.</b> As soon as 4 passes are sold, every flying day takes place, however many pilots come that day. If fewer than 4 passes are sold by 20 February, you get your money back.</div>
       <div class="rule"><b>The weather picks the topic.</b> Groundhandling or maneuvers in spring, thermals or cross-country in summer: Miki picks what fits the day and announces it in the group, usually the evening before.</div>
-      <div class="rule"><b>Can't come?</b> Send a licensed friend in your place. Ill? Join any backup day that runs. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. <span class="todo">TODO_CONFIRM</span></div>
+      <div class="rule"><b>Can't come?</b> Send a licensed friend in your place. Ill? Join any backup day that runs. Ill or injured for the rest of the season? Tell Miki before the next flying day and you get a CHF 220 voucher for every flying day still ahead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. <span class="todo">TODO_CONFIRM</span></div>
       <div class="rule"><b>Licensed pilots only.</b> You fly on your own responsibility: the coach suggests, you decide.</div>
       <div class="rule" style="grid-column:1 / -1"><b>Not included:</b> cable cars, accommodation, meals, retrieve. You need your own licence, your own checked equipment and your own insurance.</div>
     </div>
@@ -528,9 +543,9 @@
     <h2 class="ac-h">Good questions</h2>
     <div style="max-width:820px; margin:18px auto 0">
       <details class="faq"><summary>Why only 12 places?</summary><p>Because the coaching is personal: Miki stays with the group on the radio and on launch, and gives feedback after every flight. With 12 pass holders the groups stay small enough for that, and single places are only sold where pass holders leave room.</p></details>
-      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for the next year: for the next Academy Pass, a single day, or a glider, harness or reserve at list price.</p></details>
+      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year.</p></details>
       <details class="faq"><summary>Which topic is on which day?</summary><p>The weather decides. Over the season we cover all four topics: groundhandling and maneuvers in spring, thermals and cross-country in summer. Miki picks the topic that fits the day and announces it in the group, usually the evening before.</p></details>
-      <details class="faq"><summary>What if I cannot make a day?</summary><p>Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable. <span class="todo">TODO_CONFIRM</span></p></details>
+      <details class="faq"><summary>What if I cannot make a day?</summary><p>Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Ill or injured for the rest of the season? Tell Miki before the next flying day and you get a CHF 220 voucher for every flying day still ahead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Can I cancel the pass?</summary><p>Until 20 February you get everything back except CHF 200. After that the pass is not refunded, but you can send a friend in your place. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Can I book single days?</summary><p>Yes, if places are left. Single flying days cost CHF 270 and open on 20 February, after the pass holders. The topic is the one Miki announces for that day.</p></details>
       <details class="faq"><summary>Do you help with equipment?</summary><p>Yes. Equipment advice is free if you buy your gear <a href="../equipment.html">with us</a>, and CHF 200 if you buy elsewhere. Pass holders get -20% on a new glider in their pass year.</p></details>
@@ -599,5 +614,8 @@ var _af = document.getElementById('academy-form'); if (_af) _af.addEventListener
 });
 </script>
 
+<script>
+function ghPlay(el) { el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/UinUDk5Szt0?autoplay=1&rel=0" title="Advanced groundhandling" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'; el.onclick = null; }
+</script>
 </body>
 </html>
