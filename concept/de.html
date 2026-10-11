@@ -267,6 +267,15 @@
   .cmp td:first-child { font-weight: bold; color: var(--ac-navy); }
   .cmp td.us { background: var(--ac-soft); color: var(--ac-deep); font-weight: bold; }
   @media (max-width: 640px) { .bonus { grid-template-columns: 1fr; } .cmp { font-size: 0.85em; } .cmp th, .cmp td { padding: 9px 8px; } }
+  .pass.flex { margin-top: 18px; padding: 24px 30px; background: linear-gradient(135deg, #0f4c5c 0%, #0f8b8d 100%); grid-template-columns: 1.3fr 1fr; gap: 26px; }
+  .pass.flex h2 { font-size: 1.35em; margin: 10px 0 4px; }
+  .pass.flex .claim { margin: 0 0 10px; }
+  .flex-list { list-style: none; padding: 0; margin: 0; font-size: 0.93em; }
+  .flex-list li { padding: 4px 0 4px 24px; position: relative; }
+  .flex-list li::before { content: "¹3"; position: absolute; left: 0; color: var(--ac-mint); font-weight: bold; }
+  .pass.flex .pass-right { padding: 18px; }
+  .pass.flex .pass-price { font-size: 2.4em; }
+  @media (max-width: 900px) { .pass.flex { grid-template-columns: 1fr; padding: 22px 20px; } }
 </style>
 
 <script type="application/ld+json">
@@ -508,6 +517,25 @@
         </ul>
         <a href="#feedback" class="btn-main">&#127915; Einen der 12 Plätze sichern</a>
         <p class="small">Pass-Verkauf bis 20. Februar 2027. Bis dahin kannst du stornieren und bekommst alles zurück ausser CHF 200 <span class="todo">TODO_CONFIRM</span>. Danach: Schick einen Freund an deiner Stelle.</p>
+      </div>
+    </div>
+    <div class="pass flex" id="flex">
+      <div>
+        <span class="badge">Flex-Pass</span>
+        <h2>Du kannst dich nicht auf vier fixe Wochenenden festlegen?</h2>
+        <p class="claim">Wähl 4 beliebige Flugtage der Saison, dann, wenn sie in deinen Kalender passen.</p>
+        <ul class="flex-list">
+          <li>4 Flugtage nach Wahl, auch einzelne Tage an verschiedenen Wochenenden</li>
+          <li>Alle 4 Advanced-Theory-Abende</li>
+          <li>Dieselbe Wettergarantie und derselbe Ausrüstungs-Gutschein über CHF 1'050</li>
+          <li>Kaufst du dieses Jahr einen neuen Schirm? Dann bezahlt der Gutschein den Pass fast selbst</li>
+        </ul>
+      </div>
+      <div class="pass-right">
+        <div class="pass-price">CHF 1'240</div>
+        <span class="pass-save">Deine Saison, deine Daten</span>
+        <a href="#feedback" class="btn-main">Flex-Pass sichern</a>
+        <p class="small">Nur 8 Flex-Pässe. Buch einen Tag, wann immer er Platz hat: Inhaber des ganzen Passes behalten ihren garantierten Platz. Ohne Wartung. <span class="todo">TODO_CONFIRM</span></p>
       </div>
     </div>
   </div>

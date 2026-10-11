@@ -267,6 +267,15 @@
   .cmp td:first-child { font-weight: bold; color: var(--ac-navy); }
   .cmp td.us { background: var(--ac-soft); color: var(--ac-deep); font-weight: bold; }
   @media (max-width: 640px) { .bonus { grid-template-columns: 1fr; } .cmp { font-size: 0.85em; } .cmp th, .cmp td { padding: 9px 8px; } }
+  .pass.flex { margin-top: 18px; padding: 24px 30px; background: linear-gradient(135deg, #0f4c5c 0%, #0f8b8d 100%); grid-template-columns: 1.3fr 1fr; gap: 26px; }
+  .pass.flex h2 { font-size: 1.35em; margin: 10px 0 4px; }
+  .pass.flex .claim { margin: 0 0 10px; }
+  .flex-list { list-style: none; padding: 0; margin: 0; font-size: 0.93em; }
+  .flex-list li { padding: 4px 0 4px 24px; position: relative; }
+  .flex-list li::before { content: "¹3"; position: absolute; left: 0; color: var(--ac-mint); font-weight: bold; }
+  .pass.flex .pass-right { padding: 18px; }
+  .pass.flex .pass-price { font-size: 2.4em; }
+  @media (max-width: 900px) { .pass.flex { grid-template-columns: 1fr; padding: 22px 20px; } }
 </style>
 
 <script type="application/ld+json">
@@ -508,6 +517,25 @@
         </ul>
         <a href="#feedback" class="btn-main">&#127915; Get one of the 12 places</a>
         <p class="small">Pass sales close on 20 February 2027. Until then you can cancel and get everything back except CHF 200 <span class="todo">TODO_CONFIRM</span>. After that: send a friend in your place.</p>
+      </div>
+    </div>
+    <div class="pass flex" id="flex">
+      <div>
+        <span class="badge">Flex Pass</span>
+        <h2>Can't commit to four fixed weekends?</h2>
+        <p class="claim">Pick any 4 flying days of the season, whenever they fit your calendar.</p>
+        <ul class="flex-list">
+          <li>4 flying days of your choice, also on single days of different weekends</li>
+          <li>All 4 Advanced Theory evenings</li>
+          <li>The same weather guarantee and the same CHF 1,050 equipment voucher</li>
+          <li>Buying a new glider this year? The voucher almost pays for the pass</li>
+        </ul>
+      </div>
+      <div class="pass-right">
+        <div class="pass-price">CHF 1,240</div>
+        <span class="pass-save">Your season, your dates</span>
+        <a href="#feedback" class="btn-main">Get a Flex Pass</a>
+        <p class="small">Only 8 Flex Passes. Book a day any time it has room: full pass holders keep their guaranteed place. Maintenance not included. <span class="todo">TODO_CONFIRM</span></p>
       </div>
     </div>
   </div>
