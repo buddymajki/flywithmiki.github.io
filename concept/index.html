@@ -267,7 +267,7 @@
   .cmp td:first-child { font-weight: bold; color: var(--ac-navy); }
   .cmp td.us { background: var(--ac-soft); color: var(--ac-deep); font-weight: bold; }
   @media (max-width: 640px) { .bonus { grid-template-columns: 1fr; } .cmp { font-size: 0.85em; } .cmp th, .cmp td { padding: 9px 8px; } }
-  .pass.flex { margin-top: 18px; padding: 24px 30px; background: linear-gradient(135deg, #0f4c5c 0%, #0f8b8d 100%); grid-template-columns: 1.3fr 1fr; gap: 26px; }
+  .pass.flex { margin: 0 0 18px; padding: 24px 30px; background: linear-gradient(135deg, #0f4c5c 0%, #0f8b8d 100%); grid-template-columns: 1.3fr 1fr; gap: 26px; }
   .pass.flex h2 { font-size: 1.35em; margin: 10px 0 4px; }
   .pass.flex .claim { margin: 0 0 10px; }
   .flex-list { list-style: none; padding: 0; margin: 0; font-size: 0.93em; }
@@ -314,7 +314,7 @@
       "name": "What if the weather takes a day?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day only counts as lost if no flight is possible at all. As soon as we fly, even a single flight, the day counts as held: also if the wind picks up, rain stops us early or you decide not to launch. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year."
+        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year."
       }
     },
     {
@@ -456,7 +456,7 @@
       </div>
       <div class="step" id="xc">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-xc.webp');background-position:center 35%"><span>Summer</span></div>
-        <div class="bd"><h3>Cross-country</h3><p>Miki sets a task, we fly it together in the Engelberg valley or the Jura. Your first 20, 30, 50 or 100 km.</p></div>
+        <div class="bd"><h3>Cross-country</h3><p>Miki sets a task, we fly it together wherever the day's best conditions are within reach: the Engelberg valley, the Jura, the Bernese Oberland or beyond. Your first 20, 30, 50 or 100 km.</p></div>
       </div>
     </div>
 
@@ -483,10 +483,29 @@
 
   <!-- THE PASS -->
   <div class="ac-wrap" id="pass">
+    <div class="pass flex" id="flex">
+      <div>
+        <span class="badge">Flex Pass</span>
+        <h2>Pick your 4 flying days</h2>
+        <p class="claim">Any 4 days of the season, whenever they fit your calendar.</p>
+        <ul class="flex-list">
+          <li>4 flying days of your choice, also on single days of different weekends</li>
+          <li>All 4 Advanced Theory evenings</li>
+          <li>The same weather guarantee and the same CHF 1,050 equipment voucher</li>
+          <li>Buying a new glider this year? The voucher almost pays for the pass</li>
+        </ul>
+      </div>
+      <div class="pass-right">
+        <div class="pass-price">CHF 1,240</div>
+        <span class="pass-save">Your season, your dates</span>
+        <a href="#feedback" class="btn-main">Get a Flex Pass</a>
+        <p class="small">Only 8 Flex Passes. Book a day any time it has room: full pass holders keep their guaranteed place. Maintenance not included. <span class="todo">TODO_CONFIRM</span></p>
+      </div>
+    </div>
     <div class="pass">
       <div>
-        <span class="badge">Only 12 places a year</span>
-        <h2>Academy Pass 2027</h2>
+        <span class="badge">Best value &middot; only 12 places a year</span>
+        <h2>Academy Pass 2027: the whole season</h2>
         <p class="claim">Book the whole season. Your yearly maintenance is included.</p>
         <table class="stack">
           <tr class="free"><td>8 flying days with Miki</td><td class="n"><s>2,160</s> <b>INCLUDED</b></td></tr>
@@ -507,7 +526,7 @@
       </div>
       <div class="pass-right">
         <div class="pass-price">CHF 2,400</div>
-        <span class="pass-save">Your maintenance is on us</span>
+        <span class="pass-save">Save CHF 470 vs. 2 Flex Passes + maintenance</span>
         <ul>
           <li>A guaranteed place on all 8 flying days</li>
           <li>Weather guarantee: 8 backup days, then full payback</li>
@@ -516,26 +535,7 @@
           <li>Feedback after every flight</li>
         </ul>
         <a href="#feedback" class="btn-main">&#127915; Get one of the 12 places</a>
-        <p class="small">Pass sales close on 20 February 2027. Until then you can cancel and get everything back except CHF 200 <span class="todo">TODO_CONFIRM</span>. After that: send a friend in your place.</p>
-      </div>
-    </div>
-    <div class="pass flex" id="flex">
-      <div>
-        <span class="badge">Flex Pass</span>
-        <h2>Can't commit to four fixed weekends?</h2>
-        <p class="claim">Pick any 4 flying days of the season, whenever they fit your calendar.</p>
-        <ul class="flex-list">
-          <li>4 flying days of your choice, also on single days of different weekends</li>
-          <li>All 4 Advanced Theory evenings</li>
-          <li>The same weather guarantee and the same CHF 1,050 equipment voucher</li>
-          <li>Buying a new glider this year? The voucher almost pays for the pass</li>
-        </ul>
-      </div>
-      <div class="pass-right">
-        <div class="pass-price">CHF 1,240</div>
-        <span class="pass-save">Your season, your dates</span>
-        <a href="#feedback" class="btn-main">Get a Flex Pass</a>
-        <p class="small">Only 8 Flex Passes. Book a day any time it has room: full pass holders keep their guaranteed place. Maintenance not included. <span class="todo">TODO_CONFIRM</span></p>
+        <p class="small">Pass sales close on 20 February 2027. Until then you can cancel and get everything back except CHF 200 <span class="todo">TODO_CONFIRM</span>. After that: send a friend in your place. Pay in 2 instalments if you like: half when you book, half on 1 June.</p>
       </div>
     </div>
   </div>
@@ -548,7 +548,7 @@
         <p><b>8 flying days, 8 backup days.</b> A day lost to the weather moves to a backup day. If the weather still wins, you get the full value back per lost day: <b>CHF 220 in cash</b> or <b>a CHF 270 voucher</b>.</p>
         <details class="more"><summary>The fine print</summary>
           <p>Backup days: 22 to 23 May, 24 to 25 July, 4 to 5 September, 2 to 3 October. We decide at 18:00 the evening before and post it in the group.</p>
-          <p>A day only counts as lost if no flight is possible at all. As soon as we fly, even a single flight, the day counts as held: also if the wind picks up, rain stops us early or you decide not to launch.</p>
+          <p>A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves.</p>
           <p>CHF 220 is what a flying day costs you in the pass, CHF 270 is the price of a single day. The guarantee counts the season's flying days, not your own attendance: every pass holder gets the same per missing day.</p>
         </details></div>
     </div>
@@ -610,7 +610,7 @@
     <div style="max-width:820px; margin:18px auto 0">
       <details class="faq"><summary>Are there students on these days?</summary><p>No. The flying days are for licensed pilots only: SHV brevet, IPPI 4 or IPPI 5. That goes for pass holders, single-day pilots and friends sent in your place. Students train in the school's own courses.</p></details>
       <details class="faq"><summary>Why only 12 places?</summary><p>Because the coaching is personal: Miki stays with the group on the radio and on launch, and gives feedback after every flight. With 12 pass holders the groups stay small enough for that, and single places are only sold where pass holders leave room.</p></details>
-      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day only counts as lost if no flight is possible at all. As soon as we fly, even a single flight, the day counts as held: also if the wind picks up, rain stops us early or you decide not to launch. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year.</p></details>
+      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year.</p></details>
       <details class="faq"><summary>Which topic is on which day?</summary><p>The weather decides. Over the season we cover all four topics: groundhandling and maneuvers in spring, thermals and cross-country in summer. Miki picks the topic that fits the day and announces it in the group, usually the evening before.</p></details>
       <details class="faq"><summary>What if I cannot make a day?</summary><p>Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Ill or injured for the rest of the season? Tell Miki before the next flying day and you get a CHF 220 voucher for every flying day still ahead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Can I cancel the pass?</summary><p>Until 20 February you get everything back except CHF 200. After that the pass is not refunded, but you can send a friend in your place. <span class="todo">TODO_CONFIRM</span></p></details>
