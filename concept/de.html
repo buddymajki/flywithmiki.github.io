@@ -276,6 +276,9 @@
   .pass.flex .pass-right { padding: 18px; }
   .pass.flex .pass-price { font-size: 2.4em; }
   @media (max-width: 900px) { .pass.flex { grid-template-columns: 1fr; padding: 22px 20px; } }
+  .plus-h { margin: 4px 0 8px; font-weight: bold; color: #fff; font-family: "Montserrat", sans-serif; font-size: 0.95em; text-align: left; }
+  .pass-right ul.plus li::before { content: "+"; color: #ffd166; font-size: 1.15em; line-height: 1; }
+  .pass-right ul.plus b { color: #ffd166; }
 </style>
 
 <script type="application/ld+json">
@@ -489,7 +492,7 @@
         <h2>Deine Coaching-Saison, zu deinen Terminen</h2>
         <p class="claim">4 beliebige Tage der Saison, dann, wenn sie in deinen Kalender passen.</p>
         <table class="stack">
-          <tr class="free"><td>4 Coaching-Tage mit Miki<br><small>Coaching am Funk, Feedback nach jedem Flug, max. 6 Piloten pro Coach</small></td><td class="n"><s>1'080</s> <b>INKLUSIVE</b></td></tr>
+          <tr class="free"><td>4 Coaching-Tage mit Miki<br><small>Briefing, Coaching am Funk, Feedback nach jedem Flug, max. 6 Piloten pro Coach</small></td><td class="n"><s>1'080</s> <b>INKLUSIVE</b></td></tr>
           <tr class="free"><td>4 Advanced-Theory-Abende</td><td class="n"><s>240</s> <b>INKLUSIVE</b></td></tr>
           <tr class="free"><td>Persönliche Pilotenanalyse und Saisonziele</td><td class="n"><b>INKLUSIVE</b></td></tr>
           <tr class="free"><td>Wettergarantie</td><td class="n"><b>INKLUSIVE</b></td></tr>
@@ -511,7 +514,7 @@
         <h2>Academy-Pass 2027: die ganze Saison</h2>
         <p class="claim">Buch die ganze Saison. Deine jährliche Wartung ist inklusive.</p>
         <table class="stack">
-          <tr class="free"><td>8 Coaching-Tage mit Miki<br><small>Coaching am Funk, Feedback nach jedem Flug, max. 6 Piloten pro Coach</small></td><td class="n"><s>2'160</s> <b>INKLUSIVE</b></td></tr>
+          <tr class="free"><td>8 Coaching-Tage mit Miki<br><small>Briefing, Coaching am Funk, Feedback nach jedem Flug, max. 6 Piloten pro Coach</small></td><td class="n"><s>2'160</s> <b>INKLUSIVE</b></td></tr>
           <tr class="free"><td>4 Advanced-Theory-Abende</td><td class="n"><s>240</s> <b>INKLUSIVE</b></td></tr>
           <tr class="free"><td>Jährliche Wartung: Schirm-Check + Retterpackung</td><td class="n"><s>390</s> <b>INKLUSIVE</b></td></tr>
           <tr class="value"><td>Gesamtwert</td><td class="n">CHF 2'790</td></tr>
@@ -530,12 +533,13 @@
       <div class="pass-right">
         <div class="pass-price">CHF 2'400</div>
         <span class="pass-save">CHF 470 günstiger als 2 Flex-Pässe + Wartung</span>
-        <ul>
-          <li>Ein garantierter Platz an allen 8 Flugtagen</li>
-          <li>Wettergarantie: 8 Ersatztage, danach volle Rückzahlung</li>
-          <li>Du kannst nicht? Schick einen brevetierten Freund</li>
-          <li>Eine persönliche Pilotenanalyse zum Start</li>
-          <li>Feedback nach jedem Flug</li>
+        <p class="plus-h">Alles aus dem Flex-Pass, dazu:</p>
+        <ul class="plus">
+          <li><b>4 zusätzliche Coaching-Tage</b>: 8 statt 4</li>
+          <li><b>Gratis jährliche Wartung</b>: Schirm-Check + Retterpackung (CHF 390)</li>
+          <li><b>Ein garantierter Platz</b> an jedem Coaching-Tag</li>
+          <li><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle</li>
+          <li><b>Vorkaufsrecht</b> für den Pass des nächsten Jahres</li>
         </ul>
         <a href="#feedback" class="btn-main">&#127915; Sichere dir deinen Pass</a>
         <p class="small">Pass-Verkauf bis 20. Februar 2027. Bis dahin kannst du stornieren und bekommst alles zurück ausser CHF 200 <span class="todo">TODO_CONFIRM</span>. Danach: Schick einen Freund an deiner Stelle. Auf Wunsch in 2 Raten: die Hälfte bei der Buchung, die Hälfte am 1. Juni.</p>
