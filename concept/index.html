@@ -7,14 +7,14 @@
 
 <title>Paragliding Coaching Weekends and Online Theory 2027 for Licensed Pilots | Central Switzerland | FLYwithMIKI Academy (concept preview)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-<meta name="description" content="FLYwithMIKI Academy 2027: one pass that gets you ready for your whole flying season. 8 flying days with 8 backup days and a full-payback weather guarantee, 4 theory evenings online and your yearly equipment maintenance. Max. 6 pilots per coach, from CHF 1,240.">
+<meta name="description" content="Coaching for licensed pilots in Central Switzerland: Flex Pass with 4 coaching days on your dates (CHF 1,240) or Season Pass with 8 coaching days, mentoring with Miki and yearly maintenance (CHF 2,400). Theory evenings online, weather guarantee, limited places, max. 12 pilots a day.">
 <meta name="author" content="Miklos Mohos - FLYwithMIKI">
 <meta name="robots" content="noindex, nofollow" />
 <meta property="og:url" content="https://flywithmiki.com/academy.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="FLYwithMIKI" />
 <meta property="og:title" content="FLYwithMIKI Academy 2027: weekend coaching for licensed pilots" />
-<meta property="og:description" content="One pass, ready for your whole flying season: four coaching weekends close to home, four theory evenings online and your yearly equipment maintenance. Max. 6 pilots per coach." />
+<meta property="og:description" content="Coaching for licensed pilots: 4 days on your dates or the whole season, theory evenings online and a coach for your season. Limited places, max. 12 pilots a day." />
 <meta property="og:image" content="https://flywithmiki.com/Images_v2/21.webp" />
 <link rel="canonical" href="https://flywithmiki.com/concept/" />
 <link rel="icon" href="../favicon.ico" sizes="any">
@@ -60,7 +60,8 @@
   .ac-facts { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.22); }
   .ac-facts div { font-size: 0.92em; opacity: 0.92; }
   .ac-facts b { display: block; font-size: 1.9em; line-height: 1; font-family: "Montserrat", sans-serif; color: var(--ac-mint); }
-  .ac-who { margin: 14px 0 0; font-size: 0.92em !important; opacity: 0.95 !important; }
+  .ac-hero p.ac-watch { color: var(--ac-mint); font-weight: bold; font-size: 1.2em; margin: -8px 0 18px; }
+ .ac-who { margin: 14px 0 0; font-size: 0.92em !important; opacity: 0.95 !important; }
   .ac-who b { color: var(--ac-mint); }
   .ac-who a { color: #ffd2a8; }
 
@@ -280,6 +281,71 @@
   .pass-right ul.plus li::before { content: "+"; color: #ffd166; font-size: 1.15em; line-height: 1; }
   .pass-right ul.plus b { color: #ffd166; }
   .pass-was { font-size: 1.15em; opacity: 0.7; margin-top: 4px; }
+  /* v20: two options in the hero, one comparison table for the passes */
+  .ac-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 22px; }
+  .ac-opt { display: block; text-decoration: none; color: #fff !important; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35); border-radius: 14px; padding: 12px 14px; }
+  .ac-opt.best { background: rgba(255,209,102,0.16); border-color: #ffd166; }
+  .ac-opt b { display: block; font-family: "Montserrat", sans-serif; font-size: 1.05em; }
+  .ac-opt span { display: block; font-size: 0.85em; opacity: 0.9; margin: 2px 0 6px; }
+  .ac-opt em { font-style: normal; font-weight: bold; color: var(--ac-mint); font-family: "Montserrat", sans-serif; }
+  .ac-opt.best em { color: #ffd166; }
+  .pt { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 26px rgba(13,36,54,0.08); }
+  .pt th, .pt td { padding: 12px 14px; border-top: 1px solid #edf2f6; vertical-align: top; text-align: center; }
+  .pt th { border-top: none; font-family: "Montserrat", sans-serif; }
+  .pt td.f { text-align: left; font-weight: bold; color: var(--ac-navy); width: 34%; font-size: 0.93em; }
+  .pt .flx { background: #f1faf9; width: 33%; }
+  .pt .ssn { background: #fffaf0; width: 33%; }
+  .pt th.flx { background: var(--ac); color: #fff; }
+  .pt th.ssn { background: var(--ac-navy); color: #fff; }
+  .pt th .nm { display: block; font-size: 1.1em; }
+  .pt th .tag { display: inline-block; background: #ffd166; color: #3d2c00; border-radius: 20px; padding: 2px 10px; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .pt th .was { display: block; font-weight: normal; opacity: 0.7; font-size: 0.85em; margin-top: 6px; }
+  .pt th .pr { display: block; font-size: 1.7em; line-height: 1.1; }
+  .pt th .sub { display: block; font-weight: normal; font-size: 0.8em; opacity: 0.9; }
+  .pt td small { display: block; color: #5d707d; font-size: 0.82em; font-weight: normal; }
+  .pt .y { color: #1f9d55; font-weight: bold; font-size: 1.15em; }
+  .pt .n { color: #b8c4cc; font-size: 1.15em; }
+  .pt td.cta .btn-main { background: var(--ac); color: #fff !important; padding: 11px 18px; font-size: 0.9em; }
+  .pt td.cta.ssn .btn-main { background: var(--ac-navy); }
+  .pt-below { max-width: 820px; margin: 14px auto 0; }
+  .pt-below .small { color: #5d707d; font-size: 0.85em; margin: 10px 0 0; text-align: center; }
+  @media (max-width: 640px) { .ac-opts { grid-template-columns: 1fr; } .pt th, .pt td { padding: 9px 6px; } .pt td.f { font-size: 0.82em; } .pt td { font-size: 0.85em; } .pt th .pr { font-size: 1.3em; } }
+  /* v21: season in three rows: theory online, topics in the air, equipment */
+  .sub-h { text-align: center; margin: 28px 0 12px; }
+  .sub-h .ac-eyebrow { margin-bottom: 2px; }
+  .sub-h p { margin: 0; color: #5d707d; font-size: 0.9em; }
+  .step .thh { height: 92px; background: linear-gradient(135deg, #0d2436 0%, #0f8b8d 100%); color: #fff; display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+  .step .thh .d { font-family: "Montserrat", sans-serif; font-weight: bold; font-size: 1.7em; line-height: 1; }
+  .step .thh .d small { display: block; font-size: 0.45em; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; margin-top: 4px; }
+  .step .thh .ic { margin-left: auto; font-size: 1.9em; }
+  .mnt { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 16px; background: #fff; border: 1px solid #dfeaf2; border-top: 5px solid #e85d04; border-radius: 18px; padding: 16px; box-shadow: 0 8px 26px rgba(13,36,54,0.07); align-items: start; scroll-margin-top: 20px; }
+  .mnt figure { margin: 0; }
+  .mnt img { width: 100%; height: 230px; object-fit: cover; border-radius: 12px; display: block; }
+  .mnt figcaption { font-size: 0.8em; color: #5d707d; margin-top: 6px; text-align: center; }
+  .mnt h3 { margin: 4px 0 6px; color: var(--ac-navy); font-size: 1.15em; }
+  .mnt p { margin: 0 0 8px; color: #4a5c68; font-size: 0.95em; }
+  .mnt .ex-val { display: inline-block; margin: 0 0 10px; background: #fff1e6; color: #a84203; }
+  @media (max-width: 900px) { .mnt { grid-template-columns: 1fr 1fr; } .mnt .mnt-tx { grid-column: 1 / -1; } }
+  @media (max-width: 480px) { .mnt img { height: 170px; } }
+  #more details .ac-h { font-size: 1.25em !important; margin-top: 18px !important; } #more details .ac-lead { font-size: 0.95em; margin-bottom: 14px; }
+  .ac-pillars { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+  .ac-pillars span { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 7px 14px; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.82em; font-family: "Montserrat", sans-serif; }
+  .ac-hero p.ac-fine { font-size: 0.85em; opacity: 0.85; margin: 14px 0 0; }
+  .ac-hero p.ac-fine a { color: #ffd2a8; }
+  .sub-h .ac-eyebrow { font-size: 1.15em; letter-spacing: 0.16em; color: var(--ac-navy); }
+  .sub-h .ac-eyebrow small { font-size: 0.7em; letter-spacing: 0.08em; color: var(--ac); text-transform: none; font-weight: bold; }
+  .img-credit { text-align: center; font-size: 0.72em; color: #8a99a3; margin: 8px 0 0; }
+  .cch { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; background: #fff; border: 1px solid #dfeaf2; border-top: 5px solid var(--ac); border-radius: 18px; padding: 22px 24px; box-shadow: 0 8px 26px rgba(13,36,54,0.07); align-items: start; }
+  .cch h3 { margin: 0 0 8px; color: var(--ac-navy); font-size: 1.2em; }
+  .cch p { margin: 0 0 10px; color: #4a5c68; }
+  .cch ul { list-style: none; padding: 0; margin: 0; }
+  .cch li { padding: 7px 0 7px 28px; position: relative; border-top: 1px solid #edf2f6; color: #34505a; font-size: 0.95em; }
+  .cch li:first-child { border-top: none; }
+  .cch li::before { content: "\2713"; position: absolute; left: 4px; color: var(--ac); font-weight: bold; }
+  .cch li small { display: block; color: #8a99a3; font-size: 0.85em; }
+  @media (max-width: 760px) { .cch { grid-template-columns: 1fr; } }
+  .ac-keys { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 16px 0 0; }
+  .ac-keys span { background: rgba(255,209,102,0.16); border: 1px solid rgba(255,209,102,0.6); color: #ffe7a8; border-radius: 10px; padding: 5px 10px; font-size: 0.82em; font-weight: bold; }
 </style>
 
 <script type="application/ld+json">
@@ -302,7 +368,7 @@
       "name": "Are there students on these days?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The flying days are for licensed pilots only: SHV brevet, IPPI 4 or IPPI 5. That goes for pass holders, single-day pilots and friends sent in your place. Students train in the school's own courses."
+        "text": "No. The flying days are for licensed pilots only: SHV brevet, IPPI 4 or IPPI 5. That goes for pass holders and friends sent in your place. Students train in the school's own courses."
       }
     },
     {
@@ -310,7 +376,7 @@
       "name": "How big are the groups?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Small enough for personal coaching. On groundhandling, thermal and cross-country days there are max. 6 pilots per coach: from 7 pilots, a second experienced coach joins. On maneuver days you fly one at a time with Miki on the radio, and a launch assistant keeps the turnaround fast. Max. 12 pilots per day: full pass holders always have their place, Flex Pass holders and single days fill the rest."
+        "text": "Small enough for personal coaching. On groundhandling, thermal and cross-country days there are max. 6 pilots per coach: from 7 pilots, a second experienced coach joins. On maneuver days you fly one at a time with Miki on the radio, and a launch assistant keeps the turnaround fast. Max. 12 pilots per day: Season Pass holders always have their place, Flex Pass holders fill the rest."
       }
     },
     {
@@ -318,7 +384,7 @@
       "name": "What if the weather takes a day?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year."
+        "text": "That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher. The voucher is valid for next year's Academy pass or for equipment (glider, harness or reserve at list price) in the next calendar year."
       }
     },
     {
@@ -347,14 +413,6 @@
     },
     {
       "@type": "Question",
-      "name": "Can I book single days?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, if places are left. Single flying days cost CHF 270 and open on 20 February, after the pass holders. The topic is the one Miki announces for that day."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Do you help with equipment?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -366,7 +424,7 @@
       "name": "Can I book online coaching without a pass?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. CHF 60 for 30 minutes, about anything that moves you as a pilot: XC analysis, your flying day, gear, weather or mindset. Full pass holders get 1 hour every month included."
+        "text": "Yes. CHF 60 for 30 minutes, about anything that moves you as a pilot: XC analysis, your flying day, gear, weather or mindset. Mentoring is included in both passes: a 30-minute session once a month (Flex Pass) or every two weeks (Season Pass)."
       }
     },
     {
@@ -374,7 +432,7 @@
       "name": "How do the online evenings work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "They are live and last two hours. One evening costs CHF 60, all 4 evenings CHF 200, and they are included in the Academy Pass."
+        "text": "They are live and last two hours. One evening costs CHF 60, all 4 evenings CHF 200, and they are included in both passes."
       }
     },
     {
@@ -416,42 +474,32 @@
   <section class="ac-hero">
     <div class="ac-hero-in">
       <span class="ac-kicker">FLYwithMIKI Academy 2027</span>
-      <h1>One pass.<br><span>Ready for your whole flying season.</span></h1>
-      <p>Four coaching weekends close to home, four theory evenings online and your yearly equipment maintenance. One price, around the cost of a one-week trip, without betting your holiday on the weather.</p>
-      <div class="ac-badges"><div class="ac-scarce">&#128293; Max. 6 pilots per coach &middot; pass sales close on 20 February 2027</div><a href="#weather" class="ac-wg">&#9730;&#65039; Full-payback weather guarantee</a></div>
-      <div class="ac-hero-cta">
-        <a href="#pass" class="btn-main">&#127915; Get your pass</a>
-        <a href="#season" class="btn-ghost">See the season</a>
+      <h1>Coaching for licensed pilots.<br><span>Your season, your pace.</span></h1>
+      <div class="ac-pillars"><span>&#128218; Theory</span><span>&#129666; Practice</span><span>&#128295; Maintenance</span></div>
+      <p class="ac-watch">Flying together is free. Being watched, corrected and pushed is what makes you better.</p>
+      <div class="ac-opts">
+        <a href="#pass" class="ac-opt"><b>Flex Pass</b><span>4 days, mentoring, your dates</span><em>CHF 1,240</em></a>
+        <a href="#pass" class="ac-opt best"><b>Season Pass</b><span>8 days, mentoring, maintenance</span><em>CHF 2,400</em></a>
       </div>
-      <div class="ac-facts">
-        <div><b>8</b>coaching days</div>
-        <div><b>8</b>backup days</div>
-        <div><b>4</b>theory evenings</div>
-        <div><b>1</b>yearly maintenance</div>
-        <div><b>6</b>pilots max. per coach</div>
-      </div>
-      <p class="ac-who"><b>Licensed pilots only:</b> SHV brevet, IPPI 4 or IPPI 5. No students on these days. No licence yet? Start with the <a href="../intensive.html">Intensive Course</a>.</p>
+      <a href="#pass" class="btn-main">&#127915; Compare the passes</a>
+      <div class="ac-keys"><span>&#128293; Limited places</span><span>Max. 12 pilots a day</span><span>2nd coach above 6 pilots</span><span>1:1 mentoring with Miki</span></div>
+      <p class="ac-fine">Licensed pilots only &middot; <a href="#weather">weather guarantee</a></p>
     </div>
   </section>
 
-  <!-- WHY IT IS WORTH IT -->
-  <div class="ac-wrap" id="why">
-    <span class="ac-eyebrow">Why the pass</span>
-    <h2 class="ac-h">The season every pilot means to have</h2>
-    <p class="ac-lead">After the licence, your skills either grow or slowly fade. The pass turns practice into a plan.</p>
-    <div class="why-grid">
-      <div class="why"><div class="wi">&#127919;</div><div><h3>What every regular pilot needs</h3><p>Glider control, thermals and cross-country, trained every season in the order the season needs them.</p></div></div>
-      <div class="why"><div class="wi">&#127897;&#65039;</div><div><h3>Coaching, not just flying together</h3><p>Miki stays with you on the radio, on launch and sometimes in the air, with feedback after every flight.</p></div></div>
-      <div class="why"><div class="wi">&#128197;</div><div><h3>Plan it once, then just fly</h3><p>Fixed weekends close to home, published in winter, with backup days. No holidays, no hotel.</p></div></div>
-      <div class="why"><div class="wi">&#128295;</div><div><h3>Maintenance, done for you</h3><p>Glider check and reserve repack included, so your equipment is ready for spring.</p></div></div>
-    </div>
-  </div>
-
   <!-- THE SEASON -->
   <div class="ac-wrap" id="season" style="padding-top:8px">
-    <span class="ac-eyebrow">Your season</span>
-    <h2 class="ac-h">Four topics, one coach, one season</h2>
-    <p class="ac-lead">Two weekends in spring, two in summer. The weather picks the topic of the day, and Miki announces it the evening before.</p>
+    <h2 class="ac-h">What is included</h2>
+    <div class="sub-h"><span class="ac-eyebrow">Theory <small>(online)</small></span><p>Live, 19:00 to 21:00. Each evening prepares the next weekend. <span class="todo">TODO_RECORDING</span></p></div>
+    <div class="season" id="online-theory">
+      <div class="step"><div class="ph" style="background-image:url('img/theory-maneuvers.jpg');background-size:230%;background-position:58% 42%"><span>23 Feb</span></div><div class="bd"><h3>Advanced maneuvers</h3><p>What happens in every important maneuver, and which tool to use when.</p></div></div>
+      <div class="step"><div class="ph" style="background-image:url('img/theory-emagram.png');background-size:150%;background-position:45% 72%;background-color:#fff"><span>13 Apr</span></div><div class="bd"><h3>Emagram and weather</h3><p>Read the emagram yourself: cloud base, inversions, thermal strength, the flyable window.</p></div></div>
+      <div class="step"><div class="ph" style="background-image:url('img/theory-xc.svg')"><span>4 May</span></div><div class="bd"><h3>Thermals and XC planning</h3><p>Where thermals come from, how to centre them, how to plan a line.</p></div></div>
+      <div class="step"><div class="ph" style="background-image:url('img/theory-risk.svg')"><span>22 Jun</span></div><div class="bd"><h3>Risk assessment</h3><p>What leads to accidents, and how to make good decisions in the air.</p></div></div>
+    </div>
+    <p class="img-credit">Placeholder images: asymmetric collapse by PiRK and emagram after Emagramme.svg, Wikimedia Commons, CC BY-SA 3.0.</p>
+
+    <div class="sub-h"><span class="ac-eyebrow">Practice <small>(in Central Switzerland)</small></span></div>
     <div class="season">
       <div class="step" id="groundhandling">
         <div class="ph" style="background-image:url('https://flywithmiki.com/Images_v2/academy-groundhandling.webp')"><span>Spring</span></div>
@@ -472,91 +520,56 @@
       </div>
     </div>
 
-    <div class="gh-vid">
-      <div class="vbox" style="background-image:url('https://flywithmiki.com/Images_v2/academy-groundhandling.webp')" onclick="ghPlay(this)" role="button" tabindex="0" aria-label="Watch: groundhandling"><span class="play">&#9658;</span></div>
-      <div><span class="ac-eyebrow">Watch: groundhandling</span><h3>Advanced groundhandling in action</h3><p>A real session in Wolfenschiessen: wing control, reflexes and footwork, the base for everything that happens later in the air.</p></div>
-    </div>
-
-    <span class="ac-eyebrow" style="margin-top:30px">Also in your pass</span>
-    <div class="extra-grid">
-      <div class="extra" id="online-theory">
-        <div class="extra-top"><span class="ex-ic">&#128218;</span><div><h3>Advanced Theory: 4 evenings online</h3><p>Live, 19:00 to 21:00. Each evening prepares the next weekend. <span class="todo">TODO_RECORDING</span></p></div><span class="ex-val">Value CHF 240 &middot; <b>INCLUDED</b></span></div>
-        <ol class="topics"><li><span class="td">23<br>Feb</span><details><summary><b>Advanced maneuvers</b></summary><span class="tx">The theory behind every important maneuver: we understand what is going on, and which tool from our toolbox to use in which situation.</span></details></li><li><span class="td">13<br>Apr</span><details><summary><b>Emagram and weather</b></summary><span class="tx">Reading an emagram yourself: cloud base, inversions, thermal strength and the day's flyable window, with real Swiss examples.</span></details></li><li><span class="td">4<br>May</span><details><summary><b>Thermals and XC planning</b></summary><span class="tx">Where thermals come from and how to centre them, and the tools for planning a line: instruments, online forecasts, maps and apps. Useful wherever you fly.</span></details></li><li><span class="td">22<br>Jun</span><details><summary><b>Risk assessment</b></summary><span class="tx">How to stay alive: flying safely and not pushing too far. When we understand what leads to accidents and prepare ourselves mentally, we make good decisions and become safe pilots.</span></details></li></ol>
-      </div>
-      <div class="extra chk" id="check">
-        <div class="extra-top"><span class="ex-ic">&#128295;</span><div><h3>Yearly maintenance</h3><p>Glider check and reserve repack. Your equipment is ready before spring kicks in.</p></div><span class="ex-val">Value CHF 390 &middot; <b>INCLUDED</b></span></div>
+    <div class="sub-h"><span class="ac-eyebrow">Maintenance <small>(only in the Season Pass)</small></span></div>
+    <div class="mnt" id="check">
+      <figure><img src="https://flywithmiki.com/Images_v2/check2.webp" alt="Glider check and line measurement" loading="lazy"><figcaption>Glider check and line measurement</figcaption></figure>
+      <figure><img src="https://flywithmiki.com/Images_v2/check3.webp" alt="Reserve repack" loading="lazy"><figcaption>Reserve repack</figcaption></figure>
+      <div class="mnt-tx"><h3>We take care of your equipment</h3><p>Every year we check your glider and repack your reserve, so you can fly the whole season without worries.</p><span class="ex-val">Glider check and reserve repack, every year</span>
         <details class="more"><summary>What the check includes</summary>
         <div class="check-cols" style="margin-top:10px"><div><h4>&#129666; Your glider</h4><ul><li>Porosity test</li><li>Visual check of canopy, lines and risers</li><li>Laser line measurement</li><li>Trimming to the manufacturer's spec</li><li>Small hole repairs</li><li>Written report</li></ul></div><div><h4>&#128735; Your reserve</h4><ul><li>48 hours in the humidity room</li><li>Visual inspection before packing</li><li>Methodical repack</li><li>Repack card for your records</li></ul></div></div>
         <p class="ex-foot">Airworthiness check without tensile test. Add-ons: tensile test with up to 2 replacement lines CHF 50, steerable reserve CHF 10, glider with soft links CHF 40. <a href="../checkcenter.html">More about the Checkcenter</a></p>
         </details>
       </div>
     </div>
+
+    <div class="sub-h"><span class="ac-eyebrow">Mentoring <small>(March to August, in both passes)</small></span></div>
+    <div class="cch" id="coaching">
+      <div><h3>Not a trip. A mentor for your season.</h3><p>On a trip you do the maneuver and go home. Here Miki follows your progress all season: where you stand, what comes next, and what is holding you back.</p><span class="ex-val" style="margin:0">Fixed office hours, book your slot</span></div>
+      <ul>
+        <li>Personal assessment and training plan<small>At the start of the season</small></li>
+        <li>1:1 mentoring sessions<small>30 minutes every two weeks in the Season Pass, once a month in the Flex Pass</small></li>
+        <li>Questions on WhatsApp<small>Reply within 2 days</small></li>
+        <li>Feedback after every flight<small>On every coaching day</small></li>
+      </ul>
+    </div>
   </div>
 
-  <!-- THE PASS -->
+  <!-- THE PASSES -->
   <div class="ac-wrap" id="pass">
-    <div class="pass flex" id="flex">
-      <div>
-        <span class="badge">Flex Pass</span>
-        <h2>Your coaching season, on your dates</h2>
-        <p class="claim">Pick any 4 days of the season, whenever they fit your calendar.</p>
-        <table class="stack">
-          <tr class="free"><td>4 coaching days with Miki<br><small>Briefing, radio coaching, feedback after every flight, max. 6 pilots per coach</small></td><td class="n"><s>1,080</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>4 Advanced Theory evenings</td><td class="n"><s>240</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>Personal season coaching<br><small>Questionnaire, assessment talk, individual coaching plan, your questions on WhatsApp from March to August (reply within 2 days)</small></td><td class="n"><s>200</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>Weather guarantee</td><td class="n"><b>INCLUDED</b></td></tr>
-          <tr class="value"><td>Total value</td><td class="n">CHF 1,520</td></tr>
-        </table>
-        <p class="bonus-h">+ an equipment voucher worth CHF 1,050</p>
-        <p class="bonus-note">Buying a new glider this year? The voucher almost pays for the pass.</p>
-      </div>
-      <div class="pass-right">
-        <div class="pass-was"><s>CHF 1,520</s></div>
-        <div class="pass-price">CHF 1,240</div>
-        <span class="pass-save">You save CHF 280 &middot; your season, your dates</span>
-        <a href="#feedback" class="btn-main">Get a Flex Pass</a>
-        <p class="small">Limited number of Flex Passes. Book a day any time it has room: full pass holders keep their guaranteed place. Maintenance not included. <span class="todo">TODO_CONFIRM</span></p>
-      </div>
+    <span class="ac-eyebrow">Two passes &middot; limited places</span>
+    <h2 class="ac-h">Choose your season</h2>
+    <p class="ac-lead">Same coaching, same small groups, same weather guarantee. The difference: how many days, and how much of Miki you get in between.</p>
+    <div class="table-scroll" id="flex">
+      <table class="pt">
+        <tr><th></th>
+          <th class="flx"><span class="nm">Flex Pass</span><span class="was"><s>CHF 1,880</s></span><span class="pr">CHF 1,240</span><span class="sub">4 days, your dates</span></th>
+          <th class="ssn"><span class="tag">Best value</span><span class="nm">Season Pass</span><span class="was"><s>CHF 3,710</s></span><span class="pr">CHF 2,400</span><span class="sub">The whole season</span></th></tr>
+        <tr><td class="f">Coaching days with Miki<small>Briefing, radio coaching, feedback after every flight. Max. 12 pilots a day, a second coach above 6 on groundhandling, thermal and XC days</small></td><td class="flx"><b>4</b><small>any of the 8 dates, when they have room</small></td><td class="ssn"><b>8</b><small>a guaranteed place on every date</small></td></tr>
+        <tr><td class="f">Advanced Theory evenings online</td><td class="flx"><b>4</b></td><td class="ssn"><b>4</b></td></tr>
+        <tr><td class="f">Weather guarantee</td><td class="flx"><span class="y">&#10003;</span></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
+        <tr><td class="f">Equipment voucher<small>A gift, not a cost: money off new gear in your academy year, e.g. CHF 750 off a new glider</small></td><td class="flx"><b>Included</b><small>worth CHF 1,050</small></td><td class="ssn"><b>Included</b><small>worth CHF 1,050</small></td></tr>
+        <tr><td class="f">Mentoring with Miki<small>Fixed weekly office hours, March to August: your progress, your concerns, maneuvers, XC</small></td><td class="flx"><b>30 min once a month</b><small>plus assessment, training plan, WhatsApp</small></td><td class="ssn"><b>30 min every two weeks</b><small>plus assessment, training plan, WhatsApp</small></td></tr>
+        <tr><td class="f">Yearly maintenance<small>Glider check + reserve repack</small></td><td class="flx"><span class="n">&ndash;</span></td><td class="ssn"><span class="y">&#10003;</span><small>worth CHF 390</small></td></tr>
+        <tr><td class="f">Can't come? Send a licensed friend</td><td class="flx"><span class="n">&ndash;</span></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
+        <tr><td class="f">Priority booking for next year</td><td class="flx"><span class="n">&ndash;</span></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
+        <tr><td class="f">Pay in 2 instalments</td><td class="flx"><span class="n">&ndash;</span></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
+        <tr><td></td><td class="flx cta"><a href="#feedback" class="btn-main">Get Flex</a></td><td class="ssn cta"><a href="#feedback" class="btn-main">Get Season</a></td></tr>
+      </table>
     </div>
-    <div class="pass">
-      <div>
-        <span class="badge">Best value &middot; a guaranteed place every day</span>
-        <h2>Academy Pass 2027: the whole season</h2>
-        <p class="claim">Book the whole season. Your yearly maintenance is included.</p>
-        <table class="stack">
-          <tr class="free"><td>8 coaching days with Miki<br><small>Briefing, radio coaching, feedback after every flight, max. 6 pilots per coach</small></td><td class="n"><s>2,160</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>4 Advanced Theory evenings</td><td class="n"><s>240</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>Yearly maintenance: glider check + reserve repack</td><td class="n"><s>390</s> <b>INCLUDED</b></td></tr>
-          <tr class="free"><td>Your coach for the season<br><small>1 hour of online coaching every month, March to August: XC analysis, your flying day, gear, weather, mindset, whatever is on your mind. Plus assessment talk and your individual coaching plan.</small></td><td class="n"><s>920</s> <b>INCLUDED</b></td></tr>
-          <tr class="value"><td>Total value</td><td class="n">CHF 3,710</td></tr>
-        </table>
-        <p class="bonus-h">Pass holder bonus: an equipment voucher worth CHF 1,050</p>
-        <ul class="bonus">
-          <li><b>CHF 750</b> off a new glider</li>
-          <li><b>CHF 150</b> off a new reserve</li>
-          <li><b>CHF 100</b> off a new harness</li>
-          <li><b>CHF 50</b> off a GPS vario</li>
-          <li><b>-10%</b> and priority booking on Pro XC and the SIKU</li>
-          <li>Partner discounts <span class="todo">TODO_PARTNER_DISCOUNTS</span></li>
-        </ul>
-        <p class="bonus-note">Off the list price, valid in your academy year, once per item. You can pass it on to a friend, it is not paid out in cash. <span class="todo">TODO_CONFIRM</span></p>
-      </div>
-      <div class="pass-right">
-        <div class="pass-was"><s>CHF 3,710</s></div>
-        <div class="pass-price">CHF 2,400</div>
-        <span class="pass-save">You save CHF 1,310 + CHF 1,050 equipment voucher</span>
-        <p class="plus-h">Everything in the Flex Pass, plus:</p>
-        <ul class="plus">
-          <li><b>4 extra coaching days</b>: 8 instead of 4</li>
-          <li><b>Your coach for the season</b>: 1 hour of online coaching every month</li>
-          <li><b>Free yearly maintenance</b>: glider check + reserve repack (CHF 390)</li>
-          <li><b>A guaranteed place</b> on every coaching day</li>
-          <li><b>Can't come?</b> Send a licensed friend in your place</li>
-          <li><b>Priority booking</b> for next year's pass</li>
-        </ul>
-        <a href="#feedback" class="btn-main">&#127915; Get your pass</a>
-        <p class="small">Pass sales close on 20 February 2027. Until then you can cancel and get everything back except CHF 200 <span class="todo">TODO_CONFIRM</span>. After that: send a friend in your place. Pay in 2 instalments if you like: half when you book, half on 1 June.</p>
-      </div>
+    <div class="pt-below">
+      <details class="faq"><summary>What is it worth?</summary><p><b>Flex Pass:</b> 4 coaching days CHF 1,080 + 4 theory evenings CHF 240 + mentoring with assessment, training plan and 6 sessions CHF 560 = CHF 1,880.<br><b>Season Pass:</b> 8 coaching days CHF 2,160 + 4 theory evenings CHF 240 + yearly maintenance CHF 390 + mentoring with assessment, training plan and 12 sessions CHF 920 = CHF 3,710.<br>For comparison: a coaching day in Switzerland costs around CHF 270, a theory evening CHF 60, online coaching CHF 60 for 30 minutes.</p></details>
+      <details class="faq"><summary>The equipment voucher: CHF 1,050</summary><p>CHF 750 off a new glider, CHF 150 off a new reserve, CHF 100 off a new harness, CHF 50 off a GPS vario, plus -10% and priority booking on Pro XC and the SIKU. Partner discounts <span class="todo">TODO_PARTNER_DISCOUNTS</span>. Off the list price, valid in your academy year, once per item. You can pass it on to a friend, it is not paid out in cash. Buying a new glider this year? Then the voucher almost pays for a Flex Pass. <span class="todo">TODO_CONFIRM</span></p></details>
+      <p class="small">Pass sales close on 20 February 2027. Until then you can cancel and get everything back except CHF 200 <span class="todo">TODO_CONFIRM</span>. Limited number of Flex Passes: Season Pass holders always keep their place.</p>
     </div>
   </div>
 
@@ -569,43 +582,8 @@
         <details class="more"><summary>The fine print</summary>
           <p>Backup days: 22 to 23 May, 24 to 25 July, 4 to 5 September, 2 to 3 October. We decide at 18:00 the evening before and post it in the group.</p>
           <p>A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves.</p>
-          <p>CHF 220 is what a flying day costs you in the pass, CHF 270 is the price of a single day. The guarantee counts the season's flying days, not your own attendance: every pass holder gets the same per missing day.</p>
+          <p>The guarantee counts the season's flying days, not your own attendance: every pass holder gets the same per missing day.</p>
         </details></div>
-    </div>
-  </div>
-
-  <!-- COMMUNITY -->
-  <div class="ac-wrap" id="community" style="padding-top:0; padding-bottom:10px">
-    <div class="community">
-      <div style="flex:1; min-width:240px">
-        <h3>&#128172; Just want to fly with others? FLYwithMIKI Pilots is free.</h3>
-        <p>A group chat for our pilots: evening flights in summer, now and then a pizza, and the weekends are announced here first.</p>
-        <p style="color:#5d707d; font-size:0.85em; margin-top:4px">The evening flights are not instruction. Everybody flies on their own responsibility.</p>
-      </div>
-      <div style="text-align:center">
-        <a href="#feedback" class="btn-main" style="background:var(--ac); color:#fff !important; margin:0">&#128101; Join (free)</a>
-        <p style="font-size:0.8em; margin-top:6px"><span class="todo">TODO_COMMUNITY_LINK</span></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- COMPARISON -->
-  <div class="ac-wrap" id="compare" style="padding-top:18px">
-    <span class="ac-eyebrow">Compared</span>
-    <h2 class="ac-h">Academy Pass or a typical paragliding trip?</h2>
-    <p class="ac-lead">Both have their place. Green is good for you, red costs you.</p>
-    <div class="table-scroll">
-      <table class="vs">
-        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy Pass</th><th class="them">Typical paragliding trip</th></tr>
-        <tr><td class="f">Days off work needed</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Weekends only</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">A full week of holidays</span></td></tr>
-        <tr><td class="f">Extra costs for hotel, restaurants, travel</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">You sleep at home</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">On top of the price, every day</span></td></tr>
-        <tr><td class="f">Weather guarantee</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">8 backup days, then full payback</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">A lost day is usually gone</span></td></tr>
-        <tr><td class="f">Personal coaching after every flight</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Max. 6 pilots per coach</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Often a briefing, then you are on your own</span></td></tr>
-        <tr><td class="f">Complete syllabus</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Groundhandling, maneuvers, thermals, cross-country and theory</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Usually one focus</span></td></tr>
-        <tr><td class="f">Familiar sites</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Train what matters where you fly all season, in Central Switzerland</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">New sites, improvising every day</span></td></tr>
-        <tr><td class="f">Equipment maintenance included</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Glider check and reserve repack</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Not included</span></td></tr>
-        <tr><td class="f">One price for the whole season</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">CHF 2,400, all included</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">About the same for one week, if the weather plays along</span></td></tr>
-      </table>
     </div>
   </div>
 
@@ -613,7 +591,7 @@
   <div class="ac-wrap" id="how" style="padding-top:8px">
     <h2 class="ac-h">How it works</h2>
     <div class="rules">
-      <div class="rule"><b>Licensed pilots only.</b> SHV brevet, IPPI 4 or IPPI 5. No students on these days, also not on single days. You fly on your own responsibility: the coach suggests, you decide.</div>
+      <div class="rule"><b>Licensed pilots only.</b> SHV brevet, IPPI 4 or IPPI 5. No students on these days. You fly on your own responsibility: the coach suggests, you decide.</div>
       <div class="rule"><b>The season runs from 4 passes.</b> With 4 passes sold, every flying day takes place. Fewer by 20 February? You get your money back.</div>
       <div class="rule"><b>The weather picks the topic.</b> Spring: groundhandling or maneuvers. Summer: thermals or cross-country.</div>
       <div class="rule"><b>Decided the evening before.</b> At 18:00 Miki posts in the group whether the day flies, and the topic.</div>
@@ -624,39 +602,108 @@
     </div>
   </div>
 
+  <!-- DATES -->
+  <div class="ac-wrap" id="dates" style="padding-top:8px">
+    <span class="ac-eyebrow">Dates 2027</span>
+    <h2 class="ac-h">The 2027 dates</h2>
+    <p class="ac-lead">8 coaching dates, 8 backup dates and 4 theory evenings.</p>
+    <div class="table-scroll">
+      <table class="date-table">
+        <tr><th></th><th>Dates</th><th>Topic</th></tr>
+        <tr><td><b>Spring flying days</b></td><td>3 to 4 April, 17 to 18 April</td><td>Groundhandling or maneuvers, by the weather</td></tr>
+        <tr><td><b>Summer flying days</b></td><td>3 to 4 July, 17 to 18 July</td><td>Thermals or cross-country, by the weather</td></tr>
+        <tr><td><b>Backup days</b></td><td>22 to 23 May, 24 to 25 July, 4 to 5 September, 2 to 3 October</td><td>Used when the weather takes a flying day</td></tr>
+        <tr><td><a href="#online-theory"><b>Advanced Theory</b></a></td><td>23 Feb, 13 Apr, 4 May, 22 Jun</td><td>Online, 19:00 to 21:00</td></tr>
+      </table>
+    </div>
+    <p class="date-note">4 to 12 pilots per flying day &middot; <span class="todo">Proposed 2027 dates</span><br>Looking for trips and safety days with guest coaches? Trips and safety 2027 &rarr;</p>
+  </div>
+
   <!-- FAQ -->
   <div class="ac-wrap" id="faq" style="padding-top:8px">
     <h2 class="ac-h">Good questions</h2>
     <div style="max-width:820px; margin:18px auto 0">
-      <details class="faq"><summary>Are there students on these days?</summary><p>No. The flying days are for licensed pilots only: SHV brevet, IPPI 4 or IPPI 5. That goes for pass holders, single-day pilots and friends sent in your place. Students train in the school's own courses.</p></details>
-      <details class="faq"><summary>How big are the groups?</summary><p>Small enough for personal coaching. On groundhandling, thermal and cross-country days there are max. 6 pilots per coach: from 7 pilots, a second experienced coach joins. On maneuver days you fly one at a time with Miki on the radio, and a launch assistant keeps the turnaround fast. Max. 12 pilots per day: full pass holders always have their place, Flex Pass holders and single days fill the rest.</p></details>
-      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher (the price of a single day). The voucher is valid for next year's Academy season (pass or single days) or for equipment (glider, harness or reserve at list price) in the next calendar year.</p></details>
+      <details class="faq"><summary>Are there students on these days?</summary><p>No. The flying days are for licensed pilots only: SHV brevet, IPPI 4 or IPPI 5. That goes for pass holders and friends sent in your place. Students train in the school's own courses.</p></details>
+      <details class="faq"><summary>How big are the groups?</summary><p>Small enough for personal coaching. On groundhandling, thermal and cross-country days there are max. 6 pilots per coach: from 7 pilots, a second experienced coach joins. On maneuver days you fly one at a time with Miki on the radio, and a launch assistant keeps the turnaround fast. Max. 12 pilots per day: Season Pass holders always have their place, Flex Pass holders fill the rest.</p></details>
+      <details class="faq"><summary>What if the weather takes a day?</summary><p>That is what the full-payback weather guarantee is for. The lost day moves to the next free backup day: there are 8 backup days for 8 flying days. A day counts as held once we have trained for at least half a day, on the ground or in the air, also if you decide not to launch. If the weather stops us earlier, it counts as half a day and you get half a backup day. No training possible at all? The whole day moves. If even they are used up, you choose per lost day: CHF 220 back in cash (what a flying day costs you in the pass) or a CHF 270 voucher. The voucher is valid for next year's Academy pass or for equipment (glider, harness or reserve at list price) in the next calendar year.</p></details>
       <details class="faq"><summary>Which topic is on which day?</summary><p>The weather decides. Over the season we cover all four topics: groundhandling and maneuvers in spring, thermals and cross-country in summer. Miki picks the topic that fits the day and announces it in the group, usually the evening before.</p></details>
       <details class="faq"><summary>What if I cannot make a day?</summary><p>Send a licensed friend in your place. If you are ill, you can join any backup day that runs instead. Ill or injured for the rest of the season? Tell Miki before the next flying day and you get a CHF 220 voucher for every flying day still ahead. Other missed days are not refunded, also when a backup day you wanted to join is rained off: the weather guarantee covers the season's flying days, not your own attendance. That is what keeps the pass this affordable. <span class="todo">TODO_CONFIRM</span></p></details>
       <details class="faq"><summary>Can I cancel the pass?</summary><p>Until 20 February you get everything back except CHF 200. After that the pass is not refunded, but you can send a friend in your place. <span class="todo">TODO_CONFIRM</span></p></details>
-      <details class="faq"><summary>Can I book single days?</summary><p>Yes, if places are left. Single flying days cost CHF 270 and open on 20 February, after the pass holders. The topic is the one Miki announces for that day.</p></details>
       <details class="faq"><summary>Do you help with equipment?</summary><p>Yes. Equipment advice is free if you buy your gear <a href="../equipment.html">with us</a>, and CHF 200 if you buy elsewhere. Pass holders get an equipment voucher worth CHF 1,050 in their academy year, CHF 750 of it on a new glider.</p></details>
-      <details class="faq"><summary>Can I book online coaching without a pass?</summary><p>Yes. CHF 60 for 30 minutes, about anything that moves you as a pilot: XC analysis, your flying day, gear, weather or mindset. Full pass holders get 1 hour every month included.</p></details>
-      <details class="faq"><summary>How do the online evenings work?</summary><p>They are live and last two hours. One evening costs CHF 60, all 4 evenings CHF 200, and they are included in the Academy Pass. <span class="todo">TODO_RECORDING</span></p></details>
+      <details class="faq"><summary>Can I book online coaching without a pass?</summary><p>Yes. CHF 60 for 30 minutes, about anything that moves you as a pilot: XC analysis, your flying day, gear, weather or mindset. Mentoring is included in both passes: a 30-minute session once a month (Flex Pass) or every two weeks (Season Pass).</p></details>
+      <details class="faq"><summary>How do the online evenings work?</summary><p>They are live and last two hours. One evening costs CHF 60, all 4 evenings CHF 200, and they are included in both passes. <span class="todo">TODO_RECORDING</span></p></details>
       <details class="faq"><summary>Does a second season make sense?</summary><p>Yes. The four topics stay, your goals grow: a longer cross-country line, more demanding maneuvers, stronger thermals. Miki sets your personal targets at the start of each season. This year's pass holders also get a priority window to book next year's pass before sales open to everyone.</p></details>
     </div>
   </div>
 
-  <!-- DATES AND SINGLE DAYS -->
-  <div class="ac-wrap" id="dates" style="padding-top:8px">
-    <span class="ac-eyebrow">Dates 2027</span>
-    <h2 class="ac-h">Only want a single day?</h2>
-    <p class="ac-lead">Single flying days open on 20 February, only where pass holders leave room, and only for licensed pilots.</p>
+  <!-- VIDEO -->
+  <div class="ac-wrap" id="video" style="padding-top:0">
+    <div class="gh-vid">
+      <div class="vbox" style="background-image:url('https://flywithmiki.com/Images_v2/academy-groundhandling.webp')" onclick="ghPlay(this)" role="button" tabindex="0" aria-label="Watch: groundhandling"><span class="play">&#9658;</span></div>
+      <div><span class="ac-eyebrow">Watch: groundhandling</span><h3>Advanced groundhandling in action</h3><p>A real session in Wolfenschiessen: wing control, reflexes and footwork, the base for everything that happens later in the air.</p></div>
+    </div>
+  </div>
+
+  <!-- MORE: WHY AND COMPARISON -->
+  <div class="ac-wrap" id="more" style="padding-top:8px">
+    <span class="ac-eyebrow">More about the Academy</span>
+    <h2 class="ac-h">Why the Academy, and how it compares</h2>
+    <div style="max-width:960px; margin:18px auto 0">
+      <details class="faq" id="why"><summary>Why the Academy?</summary><div style="padding:0 16px 16px">
+    <h2 class="ac-h">The season every pilot means to have</h2>
+    <p class="ac-lead">After the licence, your skills either grow or slowly fade. The pass turns practice into a plan.</p>
+    <div class="why-grid">
+      <div class="why"><div class="wi">&#128064;</div><div><h3>Someone is actually watching you</h3><p>In a club or on a fly-together weekend everybody does their own thing. Here Miki watches your launch, your turns and your landing, tells you on the radio what to change, and goes through every flight with you afterwards.</p></div></div>
+      <div class="why"><div class="wi">&#127919;</div><div><h3>What every regular pilot needs</h3><p>Glider control, thermals and cross-country, trained every season in the order the season needs them.</p></div></div>
+      <div class="why"><div class="wi">&#128197;</div><div><h3>Plan it once, then just fly</h3><p>Fixed weekends close to home, published in winter, with backup days. No holidays, no hotel.</p></div></div>
+      <div class="why"><div class="wi">&#128295;</div><div><h3>Maintenance, done for you</h3><p>Glider check and reserve repack included, so your equipment is ready for spring.</p></div></div>
+    </div>
+  </div></details>
+      <details class="faq" id="compare"><summary>Compared with a typical trip or a club weekend</summary><div style="padding:0 16px 16px">
+    <h2 class="ac-h">The Academy or a typical paragliding trip?</h2>
+    <p class="ac-lead">Both have their place. Green is good for you, red costs you.</p>
     <div class="table-scroll">
-      <table class="date-table">
-        <tr><th></th><th>Dates</th><th>Topic</th><th>Single day</th></tr>
-        <tr><td><b>Spring flying days</b></td><td>3 to 4 April, 17 to 18 April</td><td>Groundhandling or maneuvers, by the weather</td><td>CHF 270</td></tr>
-        <tr><td><b>Summer flying days</b></td><td>3 to 4 July, 17 to 18 July</td><td>Thermals or cross-country, by the weather</td><td>CHF 270</td></tr>
-        <tr><td><b>Backup days</b></td><td>22 to 23 May, 24 to 25 July, 4 to 5 September, 2 to 3 October</td><td>Used when the weather takes a flying day</td><td>&nbsp;</td></tr>
-        <tr><td><a href="#online-theory"><b>Advanced Theory</b></a></td><td>23 Feb, 13 Apr, 4 May, 22 Jun</td><td>Online, 19:00 to 21:00</td><td>CHF 60, all 4 CHF 200</td></tr>
+      <table class="vs">
+        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy</th><th class="them">Typical paragliding trip</th></tr>
+        <tr><td class="f">Days off work needed</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Weekends only</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">A full week of holidays</span></td></tr>
+        <tr><td class="f">Extra costs for hotel, restaurants, travel</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">You sleep at home</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">On top of the price, every day</span></td></tr>
+        <tr><td class="f">Weather guarantee</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">8 backup days, then full payback</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">A lost day is usually gone</span></td></tr>
+        <tr><td class="f">Personal coaching after every flight</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Max. 12 a day, a second coach above 6</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Often a briefing, then you are on your own</span></td></tr>
+        <tr><td class="f">Complete syllabus</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Groundhandling, maneuvers, thermals, cross-country and theory</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Usually one focus</span></td></tr>
+        <tr><td class="f">Familiar sites</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Train what matters where you fly all season, in Central Switzerland</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">New sites, improvising every day</span></td></tr>
+        <tr><td class="f">Equipment maintenance included</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Glider check and reserve repack</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Not included</span></td></tr>
+        <tr><td class="f">One price for the whole season</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">CHF 2,400, all included</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">About the same for one week, if the weather plays along</span></td></tr>
       </table>
     </div>
-    <p class="date-note">4 to 12 pilots per flying day &middot; <span class="todo">Proposed 2027 dates</span><br>Looking for trips and safety days with guest coaches? Trips and safety 2027 &rarr;</p>
+
+    <h3 class="ac-h" style="font-size:1.45em; margin-top:34px">The Academy or a club / fly-together weekend?</h3>
+    <p class="ac-lead">Same mountain, same sky. The difference is whether anyone is watching you.</p>
+    <div class="table-scroll">
+      <table class="vs">
+        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy</th><th class="them">Club or fly-together weekend</th></tr>
+        <tr><td class="f">Someone watches your flying</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Miki follows your launch, turns and landing</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Everybody is busy with their own flight</span></td></tr>
+        <tr><td class="f">Feedback after every flight</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">On the radio during the flight, and a debrief after</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Maybe a tip at the bar, if you ask</span></td></tr>
+        <tr><td class="f">A plan for your season</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Four topics in the right order, personal goals</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Everybody does what they want that day</span></td></tr>
+      </table>
+    </div>
+  </div></details>
+    </div>
+  </div>
+
+  <!-- COMMUNITY -->
+  <div class="ac-wrap" id="community" style="padding-top:0; padding-bottom:10px">
+    <div class="community">
+      <div style="flex:1; min-width:240px">
+        <h3>&#128172; Just want to fly with others? FLYwithMIKI Pilots is free.</h3>
+        <p>A group chat for our pilots: evening flights in summer, now and then a pizza, and the weekends are announced here first.</p>
+        <p style="color:#5d707d; font-size:0.85em; margin-top:4px">The evening flights are not instruction. Everybody flies on their own responsibility.</p>
+        <p style="margin-top:6px"><b>Here we fly together. In the Academy, Miki coaches you.</b></p>
+      </div>
+      <div style="text-align:center">
+        <a href="#feedback" class="btn-main" style="background:var(--ac); color:#fff !important; margin:0">&#128101; Join (free)</a>
+        <p style="font-size:0.8em; margin-top:6px"><span class="todo">TODO_COMMUNITY_LINK</span></p>
+      </div>
+    </div>
   </div>
 
   <!-- FEEDBACK -->
@@ -667,6 +714,7 @@
       <div class="row"><a class="btn-main" href="feedback.html">Open the questionnaire</a><a class="wa" href="https://wa.me/41779766164/?text=Hi%20Miki%2C%20my%20feedback%20on%20the%20Academy%20concept%3A%20" target="_blank" rel="noopener noreferrer">Write on WhatsApp</a></div>
     </div>
   </div>
+
 
   <!-- FOOTER -->
   <footer class="w3-container w3-center w3-light-grey w3-tiny">

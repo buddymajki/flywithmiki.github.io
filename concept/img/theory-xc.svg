@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <rect width="400" height="260" fill="#e9f0dc"/>
+  <!-- terrain -->
+  <path d="M0 70 C60 40 120 90 190 60 S320 20 400 55 L400 0 L0 0Z" fill="#cfdcb6"/>
+  <path d="M0 200 C80 170 150 230 240 200 S360 170 400 190 L400 260 L0 260Z" fill="#d6e3bf"/>
+  <g fill="none" stroke="#a9bb8a" stroke-width="1.2">
+    <path d="M10 60 C70 30 130 80 200 50 S320 10 395 45"/>
+    <path d="M20 95 C80 65 140 115 210 85 S330 45 390 80"/>
+    <path d="M0 130 C70 105 150 150 220 120 S340 90 400 115"/>
+    <path d="M30 170 C90 150 160 185 230 160 S340 135 395 155"/>
+    <path d="M5 215 C80 190 150 245 245 215 S360 185 400 205"/>
+  </g>
+  <!-- lake and valley road -->
+  <path d="M250 150 C270 135 310 140 320 158 C330 178 290 190 265 182 C245 176 238 160 250 150Z" fill="#9cc9e3"/>
+  <path d="M0 150 C90 140 160 160 240 155 S350 150 400 140" fill="none" stroke="#c9b48a" stroke-width="3" stroke-dasharray="1 0"/>
+  <!-- start cylinder -->
+  <circle cx="70" cy="185" r="22" fill="rgba(15,139,141,0.15)" stroke="#0f8b8d" stroke-width="2" stroke-dasharray="5 4"/>
+  <!-- route -->
+  <path d="M70 185 L170 55 L340 95 L70 185" fill="rgba(232,93,4,0.08)" stroke="#e85d04" stroke-width="3.5" stroke-linejoin="round"/>
+  <g stroke="#e85d04" stroke-width="3">
+    <path d="M118 122 l9 -3 l-2 9" fill="none"/>
+    <path d="M258 76 l8 4 l-7 6" fill="none"/>
+    <path d="M200 142 l-9 -1 l5 -8" fill="none"/>
+  </g>
+  <!-- turnpoints -->
+  <g font-family="Montserrat, Arial, sans-serif" font-weight="bold" font-size="13">
+    <circle cx="170" cy="55" r="9" fill="#fff" stroke="#0d2436" stroke-width="3"/>
+    <text x="184" y="48" fill="#0d2436">TP1</text>
+    <circle cx="340" cy="95" r="9" fill="#fff" stroke="#0d2436" stroke-width="3"/>
+    <text x="318" y="78" fill="#0d2436">TP2</text>
+    <circle cx="70" cy="185" r="6" fill="#0f8b8d"/>
+    <text x="40" y="226" fill="#0f8b8d">START</text>
+  </g>
+  <!-- distance badge -->
+  <rect x="268" y="214" width="118" height="32" rx="16" fill="#0d2436"/>
+  <text x="327" y="235" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="bold" font-size="14" fill="#fff">52 km FAI</text>
+  <!-- thermal hint -->
+  <g fill="none" stroke="#0f8b8d" stroke-width="2">
+    <circle cx="230" cy="110" r="5"/><circle cx="230" cy="110" r="10" opacity="0.6"/><circle cx="230" cy="110" r="15" opacity="0.3"/>
+  </g>
+</svg>
