@@ -1,0 +1,670 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vagyonterv kalkulátor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: munkalap bal oldalt (4 lépés), ragadós eredménypanel jobbra; telefonon egymás alatt, alul mini sáv */
+:root{
+  --bg:#EDF1F0; --panel:#FFFFFF; --panel-2:#E2E8E6; --panel-3:#F6F8F7;
+  --ink:#13201D; --ink-2:#4A5C57; --muted:#7A8B86; --line:#CBD6D2; --line-2:#DFE6E3;
+  --accent:#0F6B5C; --accent-soft:#D3E9E2; --signal:#B4611B; --signal-soft:#F5E6D8;
+  --good:#2D7A4C; --warn:#A27409; --bad:#B03A2E;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --shadow:0 1px 2px rgba(19,32,29,.06),0 10px 28px -18px rgba(19,32,29,.3);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1412; --panel:#151E1B; --panel-2:#1D2824; --panel-3:#121A17;
+  --ink:#E3ECE9; --ink-2:#A7B8B2; --muted:#7A8D87; --line:#2A3833; --line-2:#212D29;
+  --accent:#5CC2A9; --accent-soft:#16302A; --signal:#E39A5A; --signal-soft:#33251A;
+  --good:#5CBC85; --warn:#D9AE52; --bad:#EE7A6C;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1412; --panel:#151E1B; --panel-2:#1D2824; --panel-3:#121A17;
+  --ink:#E3ECE9; --ink-2:#A7B8B2; --muted:#7A8D87; --line:#2A3833; --line-2:#212D29;
+  --accent:#5CC2A9; --accent-soft:#16302A; --signal:#E39A5A; --signal-soft:#33251A;
+  --good:#5CBC85; --warn:#D9AE52; --bad:#EE7A6C;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 110px}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+header{padding:44px 0 26px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:end;justify-content:space-between}
+.brand .eb{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(34px,5.4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-top:10px}
+h1 em{font-style:normal;color:var(--accent)}
+.brand p{color:var(--ink-2);max-width:36em;margin-top:12px;font-size:16.5px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:500 13px var(--body);padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);
+  color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+.btn.warnb{border-color:var(--bad);color:var(--bad)}
+select,input{font:inherit;color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.banner{background:var(--signal-soft);border:1px solid var(--signal);color:var(--ink);border-radius:6px;padding:10px 14px;
+  font-size:14px;margin-bottom:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+
+.grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:1040px){.grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}
+  .results{position:sticky;top:max(12px,env(safe-area-inset-top,0px));max-height:calc(100vh - 24px);overflow:auto}}
+.grid>*{min-width:0}
+
+.step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;box-shadow:var(--shadow)}
+.step+.step{margin-top:16px}
+.step-h{display:flex;gap:12px;align-items:baseline;margin-bottom:12px;flex-wrap:wrap}
+.step-h .n{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--panel);background:var(--ink);
+  border-radius:4px;padding:2px 7px}
+.step-h h2{font-size:21px;font-weight:600;letter-spacing:-.01em}
+.step-h .tot{margin-left:auto;font-family:var(--mono);font-size:14px;color:var(--ink-2)}
+.hint{color:var(--ink-2);font-size:13.5px;margin:-4px 0 12px}
+
+.rows{display:flex;flex-direction:column;gap:6px}
+.row{display:grid;gap:6px;align-items:center}
+.row input,.row select,.field input,.field select{width:100%;min-width:0;background:var(--panel-3);border:1px solid var(--line-2);
+  border-radius:6px;padding:7px 9px;font-size:14px}
+.row input.v,.field input.v{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.row input:focus,.row select:focus,.field input:focus,.field select:focus{border-color:var(--accent);outline:none;background:var(--panel)}
+.row .del{border:none;background:none;color:var(--muted);cursor:pointer;font-size:18px;width:28px;height:30px;border-radius:5px}
+.row .del:hover{color:var(--bad);background:var(--panel-2)}
+.head{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.r-asset{grid-template-columns:minmax(0,1.6fr) minmax(0,1.1fr) minmax(0,1fr) 54px 28px}
+.r-debt{grid-template-columns:minmax(0,2.7fr) minmax(0,1fr) 54px 28px}
+.r-spend{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 28px}
+.r-inc{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) 56px 56px 54px 28px}
+.r-ev{grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr) minmax(0,1fr) 56px 56px 28px}
+.chk{display:flex;justify-content:center}
+.chk input{width:18px;height:18px;accent-color:var(--accent)}
+@media(max-width:560px){
+  .r-asset{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 28px}
+  .r-asset .t-type{grid-column:1}.r-asset .chk{grid-column:2;justify-content:flex-start}
+  .r-inc{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 28px}
+  .r-ev{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 28px}
+  .r-asset.head,.r-inc.head,.r-ev.head{display:none}
+  .rows .row:not(.head){padding-bottom:8px;border-bottom:1px dashed var(--line-2)}
+  .mob-lab{display:block!important}
+}
+.mob-lab{display:none;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.sub-h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.adds{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.add{font:500 12.5px var(--body);border:1px dashed var(--line);background:none;color:var(--ink-2);padding:6px 10px;border-radius:6px;cursor:pointer}
+.add:hover{border-color:var(--accent);color:var(--accent)}
+
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.goal{border:1px solid var(--line);border-radius:8px;padding:11px 12px;cursor:pointer;background:var(--panel-3);text-align:left;font:inherit;color:var(--ink)}
+.goal b{display:block;font-family:var(--display);font-size:16px;font-weight:600}
+.goal span{font-size:12.5px;color:var(--ink-2);line-height:1.35;display:block;margin-top:3px}
+.goal.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 12px;margin-top:14px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+details.more{margin-top:14px;border-top:1px solid var(--line-2);padding-top:10px}
+details.more summary{cursor:pointer;font-size:13.5px;color:var(--ink-2);font-weight:500}
+
+/* eredmények */
+.results{display:flex;flex-direction:column;gap:14px}
+.verdict{background:var(--ink);color:var(--bg);border-radius:10px;padding:20px 20px 18px}
+.verdict .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.verdict .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:6px}
+.verdict .pct{font-family:var(--display);font-weight:800;font-size:58px;letter-spacing:-.03em;line-height:1}
+.verdict .lbl{font-size:15px;opacity:.85;max-width:20em}
+.verdict p.say{margin-top:12px;font-size:15px;line-height:1.5;opacity:.92}
+.meter{height:6px;background:rgba(127,127,127,.3);border-radius:3px;margin-top:14px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:3px}
+
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+@media(min-width:600px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tile{background:var(--panel);padding:13px 14px}
+.tile .k{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.tile .v{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.015em;margin-top:4px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .s{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.card .cap{font-size:13px;color:var(--ink-2);margin-top:3px}
+.stack{display:flex;height:14px;border-radius:4px;overflow:hidden;margin-top:12px;background:var(--panel-2)}
+.stack i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:9px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+.spend-split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.spend-split div{border-left:3px solid var(--line);padding-left:10px}
+.spend-split .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.spend-split .v{font-family:var(--display);font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.spend-split .s{font-size:12px;color:var(--ink-2)}
+
+.scen{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}
+.scen th,.scen td{padding:8px 6px;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap}
+.scen th:first-child,.scen td:first-child{text-align:left;padding-left:0}
+.scen thead th{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.scen td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.scen td:first-child{font-family:var(--body);font-weight:500}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600}
+.pill.good{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.scroll{overflow-x:auto}
+
+.chart-wrap{position:relative;margin-top:10px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.ax{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.gl{stroke:var(--line-2);stroke-width:1}
+.mk{font-family:var(--mono);font-size:10.5px;fill:var(--ink-2)}
+.readout{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:6px;min-height:1.4em}
+
+.foot{font-size:13px;color:var(--muted);margin-top:36px;max-width:60em;line-height:1.55}
+.foot p+p{margin-top:8px}
+
+.minibar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--bg);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  display:flex;gap:18px;justify-content:space-between;align-items:center;font-size:13px}
+.minibar b{font-family:var(--mono);font-size:15px}
+.minibar a{color:var(--bg);font-weight:600}
+@media(min-width:1040px){.minibar{display:none}body{padding-block:0 40px}}
+
+.modal{position:fixed;inset:0;z-index:40;background:rgba(10,16,14,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal .box{background:var(--panel);border-radius:10px;padding:18px;max-width:560px;width:100%;border:1px solid var(--line)}
+.modal textarea{width:100%;height:180px;font-family:var(--mono);font-size:12px;background:var(--panel-3);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px;margin:10px 0}
+.modal .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(70px + env(safe-area-inset-bottom,0px));background:var(--accent);color:var(--panel);padding:8px 14px;border-radius:6px;font-size:13.5px;z-index:50}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="eb">Saját pénzügyi terv · minden szám mai pénzben</div>
+    <h1>Mennyi a vagyonod, és <em>meddig visz el?</em></h1>
+    <p>Írd be, mid van, mire költesz és mit szeretnél. A lap kiszámolja a nettó vagyonodat, hogy mennyit költhetsz a célodhoz mérve, és hogy jó, közepes és rossz piacon hogyan alakul a pálya.</p>
+  </div>
+  <div class="toolbar">
+    <label class="head" for="cur" style="letter-spacing:.06em">Pénznem</label>
+    <select id="cur" class="btn"><option>CHF</option><option>EUR</option><option>HUF</option><option>USD</option></select>
+    <button class="btn" id="b-export" type="button">Adatok mentése</button>
+    <button class="btn" id="b-import" type="button">Betöltés</button>
+    <button class="btn" id="b-reset" type="button">Üres lap</button>
+  </div>
+</header>
+
+<div class="banner" id="ex-banner" hidden>
+  <span><b>Ez egy kitalált példa.</b> Írd át a saját számaidra, vagy kezdj üres lappal. Az adataid csak ebben a böngészőben maradnak, senki más nem látja őket.</span>
+  <button class="btn" id="b-reset2" type="button">Üres lap</button>
+</div>
+
+<div class="grid">
+<main>
+  <section class="step">
+    <div class="step-h"><span class="n">1</span><h2>Mid van</h2><span class="tot" id="tot-assets"></span></div>
+    <p class="hint">Minden, aminek pénzértéke van. A pipa jelzi, hogy ez a rész felélhető-e. A lakás, amiben laksz, általában nem: az a nettó vagyonba beleszámít, a költésbe nem.</p>
+    <div class="rows" id="assets"></div>
+    <div class="adds">
+      <button class="add" data-add="asset" data-p='["Folyószámla","likvid"]' type="button">+ Folyószámla</button>
+      <button class="add" data-add="asset" data-p='["ETF / részvény","befektetes"]' type="button">+ Befektetés</button>
+      <button class="add" data-add="asset" data-p='["Nyugdíjszámla","nyugdij"]' type="button">+ Nyugdíjszámla</button>
+      <button class="add" data-add="asset" data-p='["Ingatlan","ingatlan"]' type="button">+ Ingatlan</button>
+      <button class="add" data-add="asset" data-p='["Egyéb","egyeb"]' type="button">+ Egyéb</button>
+    </div>
+    <div class="sub-h">Tartozások</div>
+    <div class="rows" id="debts"></div>
+    <div class="adds">
+      <button class="add" data-add="debt" data-p='["Jelzálog"]' type="button">+ Jelzálog</button>
+      <button class="add" data-add="debt" data-p='["Hitel"]' type="button">+ Egyéb hitel</button>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-h"><span class="n">2</span><h2>Mire mennyit költesz</h2><span class="tot" id="tot-spend"></span></div>
+    <p class="hint">Havi összegek. Az <b>alap</b> az, ami elfogy és pótolni kell (lakhatás, kaja, biztosítás, a törlesztés is ide). A <b>választás</b> az, amiről te döntesz (utazás, programok, tárgyak). Ha a pénz szűkül, ezt kell visszavenni, nem az alapot.</p>
+    <div class="rows" id="spend"></div>
+    <div class="adds">
+      <button class="add" data-add="spend" data-p='["Új tétel","alap"]' type="button">+ Alap tétel</button>
+      <button class="add" data-add="spend" data-p='["Új tétel","valasztas"]' type="button">+ Választás tétel</button>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-h"><span class="n">3</span><h2>Mi jön be</h2><span class="tot" id="tot-inc"></span></div>
+    <p class="hint">Éves <b>nettó</b> összegek (adó után), életkor szerint. A „munka” pipa azt jelzi, hogy ebből számoljuk, mikor hagyhatod abba a munkát.</p>
+    <div class="rows" id="income"></div>
+    <div class="adds">
+      <button class="add" data-add="income" data-p='["Munka (nettó)",1]' type="button">+ Munka</button>
+      <button class="add" data-add="income" data-p='["Állami nyugdíj",0]' type="button">+ Nyugdíj</button>
+      <button class="add" data-add="income" data-p='["Bérleti díj",0]' type="button">+ Bérleti díj</button>
+    </div>
+    <div class="sub-h">Életesemények</div>
+    <p class="hint" style="margin-top:0">Ami egyszer vagy néhány évig megy: gyerek, lakásvásárlás, autócsere, örökség. Éves összeg, ennyi évig.</p>
+    <div class="rows" id="events"></div>
+    <div class="adds">
+      <button class="add" data-add="event" data-p='["Gyerek",12000,20,-1]' type="button">+ Gyerek (20 év)</button>
+      <button class="add" data-add="event" data-p='["Autócsere",25000,1,-1]' type="button">+ Nagy egyszeri kiadás</button>
+      <button class="add" data-add="event" data-p='["Lakás önrész",100000,1,-1]' type="button">+ Lakásvásárlás</button>
+      <button class="add" data-add="event" data-p='["Örökség",50000,1,1]' type="button">+ Örökség, bevétel</button>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-h"><span class="n">4</span><h2>Mi a cél</h2></div>
+    <div class="goals" id="goals">
+      <button class="goal" data-goal="build" type="button"><b>Felépítés</b><span>Egy adott korra érjen el a vagyon egy célösszeget.</span></button>
+      <button class="goal" data-goal="spend" type="button"><b>Felélés</b><span>Elkölteni, amit lehet. A végére csak egy tartalék maradjon.</span></button>
+      <button class="goal" data-goal="keep" type="button"><b>Megőrzés</b><span>A hozamból élni, a tőke a családnak, örökségnek megmarad.</span></button>
+    </div>
+    <div class="fields">
+      <div class="field"><label for="age">Életkorod most</label><input class="v" id="age" type="number" inputmode="numeric"></div>
+      <div class="field"><label for="horizon">Tervezés eddig a korig</label><input class="v" id="horizon" type="number" inputmode="numeric"></div>
+      <div class="field" id="f-goalAge"><label for="goalAge">Célkor</label><input class="v" id="goalAge" type="number" inputmode="numeric"></div>
+      <div class="field" id="f-goalAmount"><label for="goalAmount">Célösszeg</label><input class="v" id="goalAmount" type="number" inputmode="decimal"></div>
+      <div class="field" id="f-reserve"><label for="reserve">A végére maradjon</label><input class="v" id="reserve" type="number" inputmode="decimal"></div>
+    </div>
+    <details class="more" id="more">
+      <summary>Hozam és kockázat</summary>
+      <div class="fields">
+        <div class="field"><label for="rReal">Realista reálhozam %</label><input class="v" id="rReal" type="number" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="rPess">Pesszimista %</label><input class="v" id="rPess" type="number" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="rOpt">Optimista %</label><input class="v" id="rOpt" type="number" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="vol">Ingadozás</label>
+          <select id="vol"><option value="4">Alacsony (főleg készpénz, kötvény)</option><option value="9">Közepes (vegyes)</option><option value="13">Magas (főleg részvény)</option></select></div>
+      </div>
+      <p class="hint" style="margin-top:10px">A reálhozam az infláció feletti hozam. Egy világ-részvény ETF hosszú távon kb. 3-5%-ot hozott infláció fölött, a készpénz kb. 0%-ot. Mivel minden infláció fölött számolódik, a beírt összegek mai pénzben értendők.</p>
+    </details>
+  </section>
+</main>
+
+<aside class="results" id="results">
+  <div class="verdict">
+    <div class="k" id="v-k">Esély, hogy a terv kijön</div>
+    <div class="big"><span class="pct" id="v-pct">-</span><span class="lbl" id="v-lbl"></span></div>
+    <div class="meter"><i id="v-meter"></i></div>
+    <p class="say" id="v-say"></p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Nettó vagyon</div><div class="v" id="t-nw">-</div><div class="s" id="t-nw-s"></div></div>
+    <div class="tile"><div class="k">Felélhető rész</div><div class="v" id="t-liq">-</div><div class="s" id="t-liq-s"></div></div>
+    <div class="tile"><div class="k">Költés havonta</div><div class="v" id="t-sp">-</div><div class="s" id="t-sp-s"></div></div>
+    <div class="tile"><div class="k">Megtakarítás most</div><div class="v" id="t-sav">-</div><div class="s" id="t-sav-s"></div></div>
+    <div class="tile"><div class="k">Pénzügyi függetlenség</div><div class="v" id="t-fi">-</div><div class="s" id="t-fi-s"></div></div>
+    <div class="tile"><div class="k">Munka leállítható</div><div class="v" id="t-stop">-</div><div class="s" id="t-stop-s"></div></div>
+  </div>
+
+  <div class="card">
+    <h3>Miből áll a vagyon</h3>
+    <div class="stack" id="nw-stack"></div>
+    <div class="legend" id="nw-legend"></div>
+  </div>
+
+  <div class="card">
+    <h3 id="cs-h">Ennyit költhetsz a célhoz</h3>
+    <p class="cap" id="cs-cap"></p>
+    <div class="spend-split">
+      <div style="border-color:var(--accent)"><div class="k">Havonta összesen</div><div class="v" id="cs-tot">-</div><div class="s" id="cs-tot-s"></div></div>
+      <div style="border-color:var(--ink-2)"><div class="k">Ebből alap</div><div class="v" id="cs-base">-</div><div class="s">a mostani alap tételeid</div></div>
+      <div style="border-color:var(--signal)"><div class="k">Szabad keret</div><div class="v" id="cs-free">-</div><div class="s" id="cs-free-s"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>A pálya három piacon</h3>
+    <p class="cap">A felélhető vagyon alakulása a mostani költéssel. A sáv a 100 véletlen piaci pálya középső 80%-a a realista hozam körül.</p>
+    <div class="chart-wrap"><svg id="chart" viewBox="0 0 640 300" role="img" aria-label="A felélhető vagyon alakulása életkor szerint"></svg></div>
+    <div class="legend" id="ch-legend"></div>
+    <div class="readout" id="readout">Vidd az egeret a grafikonra az évenkénti értékekért.</div>
+    <div class="scroll">
+      <table class="scen">
+        <thead><tr><th>Piac</th><th>Hozam</th><th id="th-goal">A célkorban</th><th id="th-end">A végén</th><th>Elfogy</th></tr></thead>
+        <tbody id="scen"></tbody>
+      </table>
+    </div>
+  </div>
+</aside>
+</div>
+
+<div class="foot">
+  <p><b>Hogyan számol:</b> minden évben a felélhető vagyon nő a beírt reálhozammal, hozzáadódnak a bevételek és a bevételi események, levonódik a költés és a kiadási események. A „mennyit költhetsz” azt a havi összeget adja meg, amivel realista piacon pontosan eléred a célt. Az esély 1 000 véletlen piaci pályából számolódik: hány pályán marad a vagyon végig nulla felett, és éri el a célt.</p>
+  <p><b>Amit nem tud:</b> adót nem számol (nettó bevételt írj), a nyugdíjszámla zárolását és a lakás eladását nem modellezi külön, a jelzálog törlesztését a költéshez kell írni. Ez gondolkodási segéd, nem pénzügyi tanácsadás. Nagy döntés előtt érdemes szakemberrel átnézni.</p>
+</div>
+</div>
+
+<div class="minibar"><span>Nettó vagyon <b id="m-nw">-</b></span><span>Esély <b id="m-pct">-</b></span><a href="#results">Eredmény</a></div>
+
+<div class="modal" id="modal" hidden>
+  <div class="box">
+    <h3 id="md-h" style="font-size:18px">Adatok</h3>
+    <p class="hint" id="md-p" style="margin:6px 0 0"></p>
+    <textarea id="md-t" spellcheck="false"></textarea>
+    <div class="acts"><button class="btn" id="md-cancel" type="button">Bezárás</button><button class="btn primary" id="md-ok" type="button">OK</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='vagyonterv-v1';
+var TYPES={likvid:'Készpénz, számla',befektetes:'Befektetés',nyugdij:'Nyugdíjszámla',ingatlan:'Ingatlan',egyeb:'Egyéb'};
+var TCOL={likvid:'var(--accent)',befektetes:'var(--good)',nyugdij:'var(--warn)',ingatlan:'var(--signal)',egyeb:'var(--ink-2)'};
+var uid=function(){return Math.random().toString(36).slice(2,9);};
+
+function example(){return {ex:true,cur:'CHF',goal:'spend',age:38,horizon:90,goalAge:55,goalAmount:600000,reserve:50000,
+  rReal:3.3,rPess:1,rOpt:5,vol:'9',
+  assets:[{id:uid(),n:'Folyószámla',t:'likvid',v:12000,u:true},{id:uid(),n:'Tartalék számla',t:'likvid',v:25000,u:true},
+    {id:uid(),n:'ETF portfólió',t:'befektetes',v:115000,u:true},{id:uid(),n:'Nyugdíjszámla (3a, pénztár)',t:'nyugdij',v:48000,u:true},
+    {id:uid(),n:'Lakás, amiben lakom',t:'ingatlan',v:520000,u:false},{id:uid(),n:'Autó',t:'egyeb',v:15000,u:false}],
+  debts:[{id:uid(),n:'Jelzálog',v:360000}],
+  spend:[{id:uid(),n:'Lakhatás (kamat, rezsi, közös költség)',m:1700,k:'alap'},{id:uid(),n:'Élelmiszer, drogéria',m:700,k:'alap'},
+    {id:uid(),n:'Biztosítás, egészség',m:520,k:'alap'},{id:uid(),n:'Közlekedés, autó',m:350,k:'alap'},
+    {id:uid(),n:'Telefon, internet, előfizetések',m:110,k:'alap'},{id:uid(),n:'Ruha',m:70,k:'alap'},
+    {id:uid(),n:'Utazás',m:350,k:'valasztas'},{id:uid(),n:'Étterem, programok, kultúra',m:280,k:'valasztas'},
+    {id:uid(),n:'Tárgyak, hobbi',m:180,k:'valasztas'}],
+  income:[{id:uid(),n:'Munka (nettó)',y:82000,f:38,t:65,w:true},{id:uid(),n:'Állami nyugdíj',y:26000,f:65,t:99,w:false}],
+  events:[{id:uid(),n:'Gyerek',a:12000,f:40,y:20,d:-1},{id:uid(),n:'Örökség',a:80000,f:62,y:1,d:1}]};}
+function blank(){return {ex:false,cur:'CHF',goal:'spend',age:35,horizon:90,goalAge:55,goalAmount:500000,reserve:20000,
+  rReal:3.3,rPess:1,rOpt:5,vol:'9',
+  assets:[{id:uid(),n:'Folyószámla',t:'likvid',v:0,u:true},{id:uid(),n:'Befektetés',t:'befektetes',v:0,u:true}],
+  debts:[],
+  spend:[{id:uid(),n:'Lakhatás',m:0,k:'alap'},{id:uid(),n:'Élelmiszer, drogéria',m:0,k:'alap'},{id:uid(),n:'Biztosítás, egészség',m:0,k:'alap'},
+    {id:uid(),n:'Közlekedés',m:0,k:'alap'},{id:uid(),n:'Utazás',m:0,k:'valasztas'},{id:uid(),n:'Programok, étterem',m:0,k:'valasztas'},{id:uid(),n:'Tárgyak',m:0,k:'valasztas'}],
+  income:[{id:uid(),n:'Munka (nettó)',y:0,f:35,t:65,w:true},{id:uid(),n:'Állami nyugdíj',y:0,f:65,t:99,w:false}],
+  events:[]};}
+
+var S;
+try{var raw=localStorage.getItem(KEY); S=raw?JSON.parse(raw):null;}catch(e){S=null;}
+if(!S||!S.assets) S=example();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+var $=function(id){return document.getElementById(id);};
+var N=function(x){x=+x;return isFinite(x)?x:0;};
+function fmt(n){var neg=n<0;n=Math.round(Math.abs(n));var s=String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');return (neg?'-':'')+s;}
+function money(n){return fmt(n)+' '+S.cur;}
+function short(n){var a=Math.abs(n),neg=n<0?'-':'';
+  if(a>=1e6) return neg+(a/1e6).toFixed(a>=1e7?0:1).replace('.',',')+' M';
+  if(a>=1e4) return neg+Math.round(a/1e3)+'k';
+  return neg+fmt(a);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* ---------- szerkesztők ---------- */
+var SPEC={
+  assets:{cls:'r-asset',head:['Megnevezés','Típus','Érték','Felélhető',''],cells:function(r){return [
+    '<input data-k="n" value="'+esc(r.n)+'" aria-label="Megnevezés">',
+    '<select class="t-type" data-k="t" aria-label="Típus">'+Object.keys(TYPES).map(function(k){return '<option value="'+k+'"'+(r.t===k?' selected':'')+'>'+TYPES[k]+'</option>';}).join('')+'</select>',
+    '<input class="v" data-k="v" type="number" inputmode="decimal" value="'+r.v+'" aria-label="Érték">',
+    '<label class="chk"><input type="checkbox" data-k="u"'+(r.u?' checked':'')+' aria-label="Felélhető"></label>']; }},
+  debts:{cls:'r-debt',head:null,cells:function(r){return [
+    '<input data-k="n" value="'+esc(r.n)+'" aria-label="Tartozás">',
+    '<input class="v" data-k="v" type="number" inputmode="decimal" value="'+r.v+'" aria-label="Fennálló összeg">','<span class="head" style="text-align:center">tartozás</span>']; }},
+  spend:{cls:'r-spend',head:['Tétel','Havonta','Fajta',''],cells:function(r){return [
+    '<input data-k="n" value="'+esc(r.n)+'" aria-label="Tétel">',
+    '<input class="v" data-k="m" type="number" inputmode="decimal" value="'+r.m+'" aria-label="Havi összeg">',
+    '<select data-k="k" aria-label="Fajta"><option value="alap"'+(r.k==='alap'?' selected':'')+'>Alap</option><option value="valasztas"'+(r.k==='valasztas'?' selected':'')+'>Választás</option></select>']; }},
+  income:{cls:'r-inc',head:['Bevétel','Évente','-tól','-ig','Munka',''],cells:function(r){return [
+    '<input data-k="n" value="'+esc(r.n)+'" aria-label="Bevétel">',
+    '<input class="v" data-k="y" type="number" inputmode="decimal" value="'+r.y+'" aria-label="Éves nettó">',
+    '<span><span class="mob-lab">kortól</span><input class="v" data-k="f" type="number" inputmode="numeric" value="'+r.f+'" aria-label="Kortól"></span>',
+    '<span><span class="mob-lab">korig</span><input class="v" data-k="t" type="number" inputmode="numeric" value="'+r.t+'" aria-label="Korig"></span>',
+    '<label class="chk"><span class="mob-lab">munka</span><input type="checkbox" data-k="w"'+(r.w?' checked':'')+' aria-label="Munkajövedelem"></label>']; }},
+  events:{cls:'r-ev',head:['Esemény','Irány','Évente','Kortól','Évig',''],cells:function(r){return [
+    '<input data-k="n" value="'+esc(r.n)+'" aria-label="Esemény">',
+    '<select data-k="d" aria-label="Irány"><option value="-1"'+(r.d<0?' selected':'')+'>Kiadás</option><option value="1"'+(r.d>0?' selected':'')+'>Bevétel</option></select>',
+    '<input class="v" data-k="a" type="number" inputmode="decimal" value="'+r.a+'" aria-label="Éves összeg">',
+    '<span><span class="mob-lab">kortól</span><input class="v" data-k="f" type="number" inputmode="numeric" value="'+r.f+'" aria-label="Kortól"></span>',
+    '<span><span class="mob-lab">évig</span><input class="v" data-k="y" type="number" inputmode="numeric" value="'+r.y+'" aria-label="Hány évig"></span>']; }}
+};
+function renderList(key){
+  var sp=SPEC[key],box=$(key),h='';
+  if(sp.head) h+='<div class="row head '+sp.cls+'">'+sp.head.map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>';
+  if(!S[key].length) h+='<p class="hint" style="margin:4px 0">Még nincs tétel.</p>';
+  S[key].forEach(function(r){h+='<div class="row '+sp.cls+'" data-id="'+r.id+'">'+sp.cells(r).join('')+'<button class="del" type="button" aria-label="Törlés" title="Törlés">×</button></div>';});
+  box.innerHTML=h;
+}
+function renderAll(){
+  ['assets','debts','spend','income','events'].forEach(renderList);
+  ['age','horizon','goalAge','goalAmount','reserve','rReal','rPess','rOpt','vol'].forEach(function(k){$(k).value=S[k];});
+  $('cur').value=S.cur; $('ex-banner').hidden=!S.ex; goalUI(); calc();
+}
+function goalUI(){
+  [].forEach.call(document.querySelectorAll('.goal'),function(b){b.classList.toggle('on',b.dataset.goal===S.goal);});
+  $('f-goalAge').hidden=S.goal!=='build'; $('f-goalAmount').hidden=S.goal!=='build'; $('f-reserve').hidden=S.goal!=='spend';
+}
+['assets','debts','spend','income','events'].forEach(function(key){
+  var box=$(key);
+  box.addEventListener('input',function(e){
+    var row=e.target.closest('.row'),k=e.target.dataset.k; if(!row||!k) return;
+    var r=S[key].filter(function(x){return x.id===row.dataset.id;})[0]; if(!r) return;
+    if(e.target.type==='checkbox') r[k]=e.target.checked;
+    else if(e.target.type==='number'||k==='d') r[k]=N(e.target.value);
+    else r[k]=e.target.value;
+    S.ex=false; save(); calc();
+  });
+  box.addEventListener('change',function(e){ if(e.target.tagName==='SELECT'||e.target.type==='checkbox') box.dispatchEvent(new Event('input')); });
+  box.addEventListener('click',function(e){
+    if(!e.target.classList.contains('del')) return;
+    var id=e.target.closest('.row').dataset.id; S[key]=S[key].filter(function(x){return x.id!==id;});
+    save(); renderList(key); calc();
+  });
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-add]'); if(!b) return;
+  var p=JSON.parse(b.dataset.p),a=N(S.age),t=b.dataset.add;
+  if(t==='asset') S.assets.push({id:uid(),n:p[0],t:p[1],v:0,u:p[1]!=='ingatlan'});
+  if(t==='debt') S.debts.push({id:uid(),n:p[0],v:0});
+  if(t==='spend') S.spend.push({id:uid(),n:p[0],m:0,k:p[1]});
+  if(t==='income') S.income.push({id:uid(),n:p[0],y:0,f:p[1]?a:65,t:p[1]?65:99,w:!!p[1]});
+  if(t==='event') S.events.push({id:uid(),n:p[0],a:p[1],f:a+2,y:p[2],d:p[3]});
+  var key={asset:'assets',debt:'debts',spend:'spend',income:'income',event:'events'}[t];
+  save(); renderList(key); calc();
+  var rows=$(key).querySelectorAll('.row:not(.head)'); var last=rows[rows.length-1]; if(last){var i=last.querySelector('input');if(i){i.focus();i.select();}}
+});
+['age','horizon','goalAge','goalAmount','reserve','rReal','rPess','rOpt'].forEach(function(k){
+  $(k).addEventListener('input',function(){S[k]=N(this.value);S.ex=false;save();calc();});});
+$('vol').addEventListener('change',function(){S.vol=this.value;save();calc();});
+$('cur').addEventListener('change',function(){S.cur=this.value;save();calc();});
+$('goals').addEventListener('click',function(e){var b=e.target.closest('.goal');if(!b)return;S.goal=b.dataset.goal;save();goalUI();calc();});
+
+/* ---------- modell ---------- */
+function sum(a,f){return a.reduce(function(s,x){return s+N(f(x));},0);}
+function model(){
+  var age=Math.round(N(S.age)),H=Math.max(age+1,Math.round(N(S.horizon)));
+  var pot0=sum(S.assets.filter(function(a){return a.u;}),function(a){return a.v;});
+  var spendA=sum(S.spend,function(s){return s.m;})*12, baseA=sum(S.spend.filter(function(s){return s.k==='alap';}),function(s){return s.m;})*12;
+  var G,T,label;
+  if(S.goal==='build'){G=Math.min(H,Math.max(age+1,Math.round(N(S.goalAge))));T=N(S.goalAmount);}
+  else if(S.goal==='keep'){G=H;T=pot0;}
+  else {G=H;T=N(S.reserve);}
+  return {age:age,H:H,n:H-age,pot0:pot0,spendA:spendA,baseA:baseA,G:G,T:T};
+}
+function incAt(a,workTo){return sum(S.income.filter(function(r){var to=(r.w&&workTo!=null)?workTo:N(r.t);return a>=N(r.f)&&a<to;}),function(r){return r.y;});}
+function evAt(a){return sum(S.events.filter(function(e){return a>=N(e.f)&&a<N(e.f)+Math.max(1,N(e.y));}),function(e){return N(e.a)*(N(e.d)<0?-1:1);});}
+function project(M,o){
+  var pot=M.pot0,out=[pot];
+  for(var i=0;i<M.n;i++){var a=M.age+i, r=o.rates?o.rates[i]:o.r;
+    pot=pot*(1+r)+incAt(a,o.workTo)-o.spend+evAt(a); out.push(pot);}
+  return out;
+}
+function runout(M,arr){for(var i=1;i<arr.length;i++) if(arr[i]<0) return M.age+i; return null;}
+function okPath(M,arr){for(var i=1;i<=M.G-M.age;i++) if(arr[i]<0) return false; return arr[M.G-M.age]>=M.T-1;}
+function maxSpend(M,r){
+  var g=M.G-M.age, v0=project(M,{r:r,spend:0})[g], v1=project(M,{r:r,spend:1})[g], k=v0-v1;
+  return k>0?(v0-M.T)/k:0;
+}
+function earliestStop(M,r){
+  var work=S.income.filter(function(x){return x.w&&N(x.y)>0;}); if(!work.length) return {none:true};
+  var maxTo=Math.max.apply(null,work.map(function(x){return N(x.t);}));
+  for(var c=M.age;c<=Math.max(maxTo,M.age);c++){ if(okPath(M,project(M,{r:r,spend:M.spendA,workTo:c}))) return {age:c}; }
+  return {fail:true,maxTo:maxTo};
+}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function monteCarlo(M,r,vol,runs){
+  var rand=rng(20261021),ok=0,paths=[];
+  for(var p=0;p<runs;p++){var rates=[];
+    for(var i=0;i<M.n;i++){var u=Math.max(1e-9,rand()),v=rand();rates.push(r+vol*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v));}
+    var arr=project(M,{rates:rates,spend:M.spendA}); if(okPath(M,arr)) ok++; if(p<200) paths.push(arr);}
+  var band=[]; for(var i=0;i<=M.n;i++){var col=paths.map(function(a){return a[i];}).sort(function(a,b){return a-b;});
+    band.push([col[Math.floor(col.length*.1)],col[Math.floor(col.length*.9)]]);}
+  return {p:ok/runs,band:band};
+}
+
+/* ---------- eredmény ---------- */
+function calc(){
+  var M=model(), r=N(S.rReal)/100, rp=N(S.rPess)/100, ro=N(S.rOpt)/100, vol=N(S.vol)/100;
+  var assetsT=sum(S.assets,function(a){return a.v;}), debtT=sum(S.debts,function(d){return d.v;}), nw=assetsT-debtT;
+  $('tot-assets').textContent='nettó '+money(nw);
+  $('tot-spend').textContent=money(M.spendA/12)+' / hó';
+  var incNow=incAt(M.age), passive=sum(S.income.filter(function(x){return !x.w&&M.age>=N(x.f)&&M.age<N(x.t);}),function(x){return x.y;});
+  $('tot-inc').textContent='most '+money(incNow)+' / év';
+
+  $('t-nw').textContent=money(nw); $('t-nw-s').textContent='vagyon '+short(assetsT)+', tartozás '+short(debtT);
+  $('t-liq').textContent=money(M.pot0); $('t-liq-s').textContent=assetsT>0?Math.round(M.pot0/assetsT*100)+'% a vagyonból':'';
+  $('t-sp').textContent=money(M.spendA/12); $('t-sp-s').textContent='alap '+short(M.baseA/12)+', választás '+short((M.spendA-M.baseA)/12);
+  var sav=incNow-M.spendA+evAt(M.age);
+  $('t-sav').textContent=money(sav/12)+'/hó';
+  $('t-sav').style.color=sav>=0?'var(--good)':'var(--bad)';
+  $('t-sav-s').textContent=incNow>0?'a bevétel '+Math.round((incNow-M.spendA)/incNow*100)+'%-a, évente '+short(sav):'évente '+short(sav);
+  var fiNeed=Math.max(0,M.spendA-passive)*25, fiPct=fiNeed>0?M.pot0/fiNeed:1;
+  $('t-fi').textContent=Math.round(fiPct*100)+'%';
+  $('t-fi').style.color=fiPct>=1?'var(--good)':(fiPct>=.5?'var(--warn)':'var(--ink)');
+  $('t-fi-s').textContent='cél: '+short(fiNeed)+' (a nem fedezett költés 25-szöröse)';
+
+  var st=earliestStop(M,r);
+  if(st.none){$('t-stop').textContent='nincs munka';$('t-stop').style.color='var(--ink)';$('t-stop-s').textContent='nincs munkának jelölt bevétel';}
+  else if(st.fail){$('t-stop').textContent='nem jön ki';$('t-stop').style.color='var(--bad)';$('t-stop-s').textContent='még '+st.maxTo+' éves korig dolgozva sem, realista piacon';}
+  else {$('t-stop').textContent=st.age+' évesen';$('t-stop').style.color=st.age<=M.age?'var(--good)':'var(--ink)';
+    $('t-stop-s').textContent=st.age<=M.age?'már most, a mostani költéssel':'a mostani költéssel, realista piacon';}
+
+  /* vagyon összetétel */
+  var by={};S.assets.forEach(function(a){by[a.t]=(by[a.t]||0)+Math.max(0,N(a.v));});
+  var tot=Object.keys(by).reduce(function(s,k){return s+by[k];},0)||1;
+  $('nw-stack').innerHTML=Object.keys(TYPES).filter(function(k){return by[k];}).map(function(k){return '<i style="width:'+(by[k]/tot*100)+'%;background:'+TCOL[k]+'" title="'+TYPES[k]+'"></i>';}).join('');
+  $('nw-legend').innerHTML=Object.keys(TYPES).filter(function(k){return by[k];}).map(function(k){return '<span><i class="sw" style="background:'+TCOL[k]+'"></i>'+TYPES[k]+' <b>'+short(by[k])+'</b></span>';}).join('')+(debtT?'<span><i class="sw" style="background:var(--bad)"></i>Tartozás <b>-'+short(debtT)+'</b></span>':'');
+
+  /* mennyit költhetsz */
+  var ms=maxSpend(M,r), diff=ms-M.spendA, free=ms-M.baseA;
+  var gtxt={build:'Ennyit költhetsz, hogy '+M.G+' éves korodra meglegyen a '+short(M.T)+' cél',
+            spend:'Ennyit költhetsz, hogy '+M.H+' éves korodra '+short(M.T)+' maradjon',
+            keep:'Ennyit költhetsz úgy, hogy a mai tőke ('+short(M.T)+') megmaradjon'}[S.goal];
+  $('cs-h').textContent=gtxt; $('cs-cap').textContent='Realista piacon ('+String(S.rReal).replace('.',',')+'% reál), a bevételekkel és az eseményekkel együtt. Egész életre egyenletes havi összeg.';
+  $('cs-tot').textContent=money(ms/12);
+  $('cs-tot-s').textContent=(diff>=0?'+':'')+fmt(diff/12)+' a mostanihoz képest';
+  $('cs-tot-s').style.color=diff>=0?'var(--good)':'var(--bad)';
+  $('cs-base').textContent=money(M.baseA/12);
+  $('cs-free').textContent=money(free/12); $('cs-free').style.color=free<0?'var(--bad)':'var(--ink)';
+  $('cs-free-s').textContent=free<0?'az alap sincs fedezve':'utazás, programok, tárgyak';
+
+  /* forgatókönyvek */
+  var sc=[['Pesszimista',rp,'var(--signal)'],['Realista',r,'var(--accent)'],['Optimista',ro,'var(--good)']].map(function(x){
+    var arr=project(M,{r:x[1],spend:M.spendA});return {name:x[0],r:x[1],col:x[2],arr:arr,out:runout(M,arr),ok:okPath(M,arr)};});
+  $('th-goal').textContent=M.G+' évesen'; $('th-goal').hidden=M.G===M.H; $('th-end').textContent=M.H+' évesen';
+  $('scen').innerHTML=sc.map(function(s){var g=s.arr[M.G-M.age],e=s.arr[M.n];
+    return '<tr><td><i class="sw" style="background:'+s.col+';margin-right:7px"></i>'+s.name+'</td><td>'+(s.r*100).toFixed(1).replace('.',',')+'%</td>'+
+      (M.G===M.H?'':'<td>'+short(g)+'</td>')+'<td>'+short(e)+'</td><td>'+(s.out?'<span class="pill bad">'+s.out+' évesen</span>':'<span class="pill good">nem fogy el</span>')+'</td></tr>';}).join('');
+  [].forEach.call(document.querySelectorAll('#scen tr'),function(){});
+
+  var mc=monteCarlo(M,r,vol,1000), pct=Math.round(mc.p*100);
+  $('v-pct').textContent=pct+'%'; $('m-pct').textContent=pct+'%';
+  var col=pct>=85?'var(--good)':(pct>=60?'var(--warn)':'var(--bad)');
+  $('v-meter').style.width=pct+'%'; $('v-meter').style.background=col;
+  var goalWord={build:M.G+' éves korra eléred a '+short(M.T)+' célt',spend:'a pénz '+M.H+' éves korig kitart, és marad '+short(M.T),keep:'a tőke '+M.H+' éves korig megmarad'}[S.goal];
+  $('v-lbl').textContent='eséllyel '+goalWord+', ha így folytatod.';
+  var say;
+  if(pct>=85) say='Stabil terv. '+(diff>0?'Realista piacon havi '+fmt(diff/12)+'-tel többet is költhetnél, és még mindig elérnéd a célt.':'A tartalék kicsi, de a pálya rendben van.');
+  else if(pct>=60) say='Kijöhet, de nincs benne tartalék. Egy rossz évtized elviheti. '+(diff<0?'Havi '+fmt(-diff/12)+'-tel kevesebb költés tenné biztossá realista piacon.':'Érdemes a szabad keretből egy kicsit visszafogni az első években.');
+  else say='Így nem jön ki. '+(diff<0?'Realista piacon havi '+fmt(-diff/12)+' a hiány. ':'')+'Három kar van: kevesebb költés, tovább dolgozni, vagy szerényebb cél.';
+  if(sc[1].out) say+=' Realista piacon '+sc[1].out+' éves korodban fogy el a felélhető vagyon.';
+  $('v-say').textContent=say;
+  $('m-nw').textContent=short(nw)+' '+S.cur;
+
+  drawChart(M,sc,mc.band);
+}
+
+/* ---------- grafikon ---------- */
+var NS='http://www.w3.org/2000/svg';
+function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;}
+var CH=null;
+function niceStep(range){var raw=range/4,p=Math.pow(10,Math.floor(Math.log10(raw||1))),m=raw/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p;}
+function drawChart(M,sc,band){
+  var svg=$('chart');svg.innerHTML='';
+  var W=640,H=300,ML=52,MR=14,MT=18,MB=30,IW=W-ML-MR,IH=H-MT-MB;
+  var vals=[0,M.T];sc.forEach(function(s){vals=vals.concat(s.arr);});band.forEach(function(b){vals.push(b[0],b[1]);});
+  var hi=Math.max.apply(null,vals),lo=Math.min(0,Math.min.apply(null,vals));
+  lo=Math.max(lo,-hi*.35);
+  var step=niceStep(hi-lo);hi=Math.ceil(hi/step)*step;lo=Math.floor(lo/step)*step;if(hi===lo)hi=lo+step;
+  var X=function(a){return ML+(a-M.age)/M.n*IW;},Y=function(v){v=Math.max(lo,Math.min(hi,v));return MT+IH-(v-lo)/(hi-lo)*IH;};
+  for(var v=lo;v<=hi+1e-6;v+=step){svg.appendChild(el('line',{class:'gl',x1:ML,x2:W-MR,y1:Y(v),y2:Y(v)}));
+    svg.appendChild(el('text',{class:'ax',x:ML-6,y:Y(v)+4,'text-anchor':'end'},short(v)));}
+  if(lo<0) svg.appendChild(el('line',{x1:ML,x2:W-MR,y1:Y(0),y2:Y(0),stroke:'var(--ink-2)','stroke-width':1}));
+  var xs=M.n>40?10:5;
+  for(var a=Math.ceil(M.age/xs)*xs;a<=M.H;a+=xs) svg.appendChild(el('text',{class:'ax',x:X(a),y:H-8,'text-anchor':'middle'},a));
+  svg.appendChild(el('text',{class:'ax',x:W-MR,y:H-8,'text-anchor':'end'},'év'));
+  /* sáv */
+  var d='M'+band.map(function(b,i){return X(M.age+i).toFixed(1)+' '+Y(b[1]).toFixed(1);}).join('L')+
+        'L'+band.slice().reverse().map(function(b,i){return X(M.H-i).toFixed(1)+' '+Y(b[0]).toFixed(1);}).join('L')+'Z';
+  svg.appendChild(el('path',{d:d,fill:'var(--accent)',opacity:.13,stroke:'none'}));
+  /* munka vége */
+  var st=S.income.filter(function(x){return x.w&&N(x.y)>0;});
+  if(st.length){var wt=Math.max.apply(null,st.map(function(x){return N(x.t);}));
+    if(wt>M.age&&wt<M.H){svg.appendChild(el('line',{x1:X(wt),x2:X(wt),y1:MT,y2:MT+IH,stroke:'var(--line)','stroke-dasharray':'3 4'}));
+      svg.appendChild(el('text',{class:'mk',x:X(wt)+5,y:MT+10},'munka vége'));}}
+  sc.forEach(function(s,i){
+    svg.appendChild(el('path',{d:'M'+s.arr.map(function(v,j){return X(M.age+j).toFixed(1)+' '+Y(v).toFixed(1);}).join('L'),
+      fill:'none',stroke:s.col,'stroke-width':i===1?2.6:1.7,'stroke-dasharray':i===1?'':'5 4','stroke-linejoin':'round'}));
+    var e=s.arr[M.n];svg.appendChild(el('circle',{cx:X(M.H),cy:Y(e),r:3.2,fill:s.col}));
+  });
+  /* cél */
+  svg.appendChild(el('circle',{cx:X(M.G),cy:Y(M.T),r:5.5,fill:'var(--panel)',stroke:'var(--ink)','stroke-width':2}));
+  svg.appendChild(el('text',{class:'mk',x:X(M.G)-8,y:Y(M.T)-10,'text-anchor':M.G>M.age+M.n*.7?'end':'start'},'cél: '+short(M.T)));
+  var cur=el('line',{x1:0,x2:0,y1:MT,y2:MT+IH,stroke:'var(--ink-2)','stroke-width':1,opacity:0});svg.appendChild(cur);
+  CH={M:M,sc:sc,band:band,X:X,ML:ML,IW:IW,cur:cur,W:W};
+  $('ch-legend').innerHTML=sc.map(function(s){return '<span><i class="sw" style="background:'+s.col+'"></i>'+s.name+'</span>';}).join('')+
+    '<span><i class="sw" style="background:var(--accent);opacity:.3"></i>Sáv: 80% a pályákból</span>';
+}
+function hover(ev){
+  if(!CH) return; var svg=$('chart'),rc=svg.getBoundingClientRect(),x=(ev.clientX-rc.left)/rc.width*CH.W;
+  var i=Math.round((x-CH.ML)/CH.IW*CH.M.n); i=Math.max(0,Math.min(CH.M.n,i)); var a=CH.M.age+i;
+  CH.cur.setAttribute('x1',CH.X(a));CH.cur.setAttribute('x2',CH.X(a));CH.cur.setAttribute('opacity',.5);
+  $('readout').textContent=a+' évesen · pesszimista '+short(CH.sc[0].arr[i])+' · realista '+short(CH.sc[1].arr[i])+' · optimista '+short(CH.sc[2].arr[i])+' · sáv '+short(CH.band[i][0])+' és '+short(CH.band[i][1])+' között';
+}
+$('chart').addEventListener('mousemove',hover);
+$('chart').addEventListener('touchmove',function(e){if(e.touches[0])hover(e.touches[0]);},{passive:true});
+$('chart').addEventListener('click',hover);
+
+/* ---------- mentés, betöltés, üres lap ---------- */
+var mode=null;
+function toast(t){var x=$('toast');x.textContent=t;x.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){x.hidden=true;},2200);}
+function openModal(m){mode=m;$('modal').hidden=false;
+  if(m==='export'){$('md-h').textContent='Adatok mentése';$('md-p').textContent='Ez a szöveg az összes adatod. Másold ki és tedd el (jegyzet, email magadnak). Másik gépen a Betöltés gombbal visszahozható.';
+    $('md-t').value=JSON.stringify(S);$('md-ok').textContent='Másolás';}
+  else if(m==='import'){$('md-h').textContent='Betöltés';$('md-p').textContent='Illeszd be a korábban elmentett szöveget. A mostani adatok helyére kerül.';$('md-t').value='';$('md-ok').textContent='Betöltés';}
+  else {$('md-h').textContent='Üres lappal kezdesz?';$('md-p').textContent='Minden beírt szám törlődik ebből a böngészőből. Ha kell, előbb mentsd el az adatokat.';$('md-t').hidden=true;$('md-ok').textContent='Igen, törlés';}
+  if(m!=='reset'){$('md-t').hidden=false;setTimeout(function(){$('md-t').focus();$('md-t').select();},30);}
+}
+function closeModal(){$('modal').hidden=true;$('md-t').hidden=false;mode=null;}
+$('b-export').onclick=function(){openModal('export');};
+$('b-import').onclick=function(){openModal('import');};
+$('b-reset').onclick=$('b-reset2').onclick=function(){openModal('reset');};
+$('md-cancel').onclick=closeModal;
+$('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('modal').hidden)closeModal();});
+$('md-ok').onclick=function(){
+  if(mode==='export'){var t=$('md-t');t.select();
+    try{navigator.clipboard.writeText(t.value).then(function(){toast('Kimásolva');},function(){toast('Jelöld ki és másold kézzel');});}catch(e){toast('Jelöld ki és másold kézzel');}
+    return;}
+  if(mode==='import'){try{var d=JSON.parse($('md-t').value);if(!d||!d.assets)throw 0;d.ex=false;S=d;save();closeModal();renderAll();toast('Betöltve');}
+    catch(e){$('md-p').textContent='Ezt a szöveget nem tudom beolvasni. A Mentés gombnál kapott teljes szöveget illeszd be, a kapcsos zárójelekkel együtt.';}return;}
+  S=blank();save();closeModal();renderAll();toast('Üres lap kész');
+};
+
+renderAll();
+})();
+</script>
+
+</body></html>

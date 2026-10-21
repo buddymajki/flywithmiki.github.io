@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Blitzkrieg! Szóló</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#12202a; --bg2:#0d1820;
+  --panel:#1d3540; --panel2:#264651; --line:#0a1318;
+  --teal:#3e7f83; --teal-l:#5fa3a0;
+  --cream:#efe3c8; --cream2:#d9cba6;
+  --red:#c2352c; --red-d:#8e2018;
+  --gold:#e3b23c;
+  --land:#c07d38; --land-d:#8a5522;
+  --sea:#3ea7c4; --sea-d:#2a7a92;
+  --allies:#4f7bbf; --allies-t:#6f8f4f;
+  --axis:#8d949b; --axis-t:#7d848b;
+  --spec:#e8c33a;
+  --ok:#5ac27a;
+  --txt:#f2ead6; --muted:#a8bcc2;
+  --shadow:0 6px 18px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{margin:0;background:
+   radial-gradient(1200px 700px at 50% -10%, #1d3641 0%, transparent 60%), var(--bg);
+  color:var(--txt); font-family:'Inter',system-ui,sans-serif; font-size:14px;}
+h1,h2,h3,h4,.disp{font-family:'Oswald','Inter',sans-serif; letter-spacing:.02em; margin:0}
+button{font-family:inherit}
+.wrap{max-width:1500px;margin:0 auto;padding:12px 16px 60px}
+
+/* ---------- top bar ---------- */
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  background:linear-gradient(180deg,#24414d,#182d36);
+  border:1px solid #0a1318;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);
+  position:sticky;top:0;z-index:40;margin-bottom:12px}
+.brand{font-family:'Oswald';font-weight:700;font-size:22px;letter-spacing:.06em;
+  color:var(--cream);text-transform:uppercase;line-height:1}
+.brand span{color:var(--red);}
+.spacer{flex:1}
+.btn{background:#2f5663;color:var(--cream);border:1px solid #0d1b22;border-radius:8px;
+  padding:7px 12px;font-weight:600;font-size:13px;cursor:pointer;transition:.15s}
+.btn:hover{background:#3d6d7d}
+.btn.primary{background:var(--red);border-color:#6e150f}
+.btn.primary:hover{background:#d4453b}
+.btn.ghost{background:transparent;border-color:#3d6d7d;color:var(--muted)}
+.btn.ghost:hover{color:var(--cream);background:#24414d}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.langsw{display:flex;border:1px solid #3d6d7d;border-radius:8px;overflow:hidden}
+.langsw button{background:transparent;border:0;color:var(--muted);padding:7px 11px;font-weight:700;cursor:pointer;font-size:12px}
+.langsw button.on{background:var(--gold);color:#22303a}
+
+/* ---------- score strip ---------- */
+.scorestrip{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-bottom:12px}
+.vpbox{background:linear-gradient(180deg,#22404b,#162c35);border:1px solid #0a1318;border-radius:12px;
+  padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.vpbox .lbl{font-family:'Oswald';font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.vpbox .num{font-family:'Oswald';font-size:30px;font-weight:700;line-height:1}
+.dot{width:14px;height:14px;border-radius:50%;flex:none}
+.vptrack{flex:1;min-width:280px;background:linear-gradient(180deg,#22404b,#162c35);border:1px solid #0a1318;
+  border-radius:12px;padding:10px 12px;box-shadow:var(--shadow)}
+.vpcells{display:flex;gap:2px}
+.vpcell{flex:1;height:22px;border-radius:3px;background:#0f2028;position:relative;
+  display:flex;align-items:center;justify-content:center;font-size:9px;color:#5f7d88;font-weight:700}
+.vpcell.m5{background:#1c3a45;color:#9fc0c9}
+.vpcell .pin{position:absolute;inset:0;border-radius:3px}
+.vpcell .pin.a{background:var(--allies);box-shadow:inset 0 0 0 2px #fff3}
+.vpcell .pin.x{background:var(--axis)}
+.vpcell .pin.both{background:linear-gradient(90deg,var(--allies) 50%,var(--axis) 50%)}
+.vpcell.win{outline:2px solid var(--gold);outline-offset:-2px}
+
+/* ---------- layout ---------- */
+.cols{display:grid;grid-template-columns:1fr 340px;gap:14px;align-items:start}
+@media(max-width:1100px){.cols{grid-template-columns:1fr}}
+.boardgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:860px){.boardgrid{grid-template-columns:1fr}}
+
+/* ---------- theatre ---------- */
+.theatre{background:
+    linear-gradient(180deg, rgba(62,127,131,.35), rgba(15,32,40,.55)),
+    var(--panel);
+  border:1px solid #09141a;border-radius:12px;padding:10px;box-shadow:var(--shadow);position:relative}
+.theatre.closed{filter:grayscale(.75) brightness(.72)}
+.theatre.closed::after{content:attr(data-closed);position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-family:'Oswald';font-size:20px;letter-spacing:.2em;color:#fff;
+  background:rgba(8,16,20,.5);border-radius:12px;pointer-events:none;text-transform:uppercase}
+.th-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.th-name{font-family:'Oswald';font-weight:600;font-size:15px;letter-spacing:.08em;color:var(--cream);text-transform:uppercase}
+.th-lead{margin-left:auto;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:#0e1f27;color:var(--muted)}
+
+/* battle track */
+.track{display:flex;align-items:center;gap:2px;margin-bottom:8px}
+.trk-end{width:20px;height:20px;border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center}
+.tcell{flex:1;height:16px;min-width:5px;border-radius:2px;background:#cdd8cc;position:relative}
+.tcell.axisSide{background:#b9c2c9}
+.tcell.mid{background:var(--red)}
+.tcell.vpi{background:var(--gold)}
+.tcell.last{background:#8fa3a7;box-shadow:inset 0 0 0 1px #2c3d42}
+.tcell .mk{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:18px;height:18px;border-radius:50%;border:2px solid #f2ead6;z-index:2;
+  box-shadow:0 0 0 2px #0b161b,0 2px 5px rgba(0,0,0,.6)}
+.tcell .mk.a{background:var(--allies)}
+.tcell .mk.x{background:var(--axis)}
+
+/* campaign row */
+.camp{display:flex;align-items:center;gap:5px;margin-bottom:5px;padding:4px;border-radius:8px;width:max-content;max-width:100%}
+.camp.active{background:rgba(227,178,60,.10);box-shadow:inset 0 0 0 1px rgba(227,178,60,.35)}
+.camp.done{opacity:.55}
+.camp-vp{width:28px;height:30px;flex:none;margin-left:2px;
+  display:flex;align-items:center;justify-content:center;font-family:'Oswald';font-weight:700;font-size:15px;
+  color:#22303a;background:var(--cream);clip-path:polygon(50% 0,100% 18%,100% 74%,50% 100%,0 74%,0 18%)}
+
+/* battle space */
+.bs{width:44px;height:44px;flex:none;border-radius:5px;position:relative;cursor:default;
+  border:2px solid rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;
+  font-family:'Oswald';font-weight:700;color:#3a2410;font-size:13px;overflow:hidden;transition:.12s}
+.bs.L{background:linear-gradient(145deg,#d1904a,#a9672c)}
+.bs.S{background:linear-gradient(145deg,#52bcd8,#2f8aa6)}
+.bs.A{background:linear-gradient(135deg,#52bcd8 0 50%,#c07d38 50% 100%)}
+.bs .eff{position:relative;z-index:1;text-align:center;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.bs .eff svg{display:block;margin:0 auto}
+.bs.legal{cursor:pointer;box-shadow:0 0 0 3px var(--ok),0 0 14px rgba(90,194,122,.65);border-color:#0d1b22}
+.bs.legal:hover{transform:translateY(-2px) scale(1.06);z-index:5}
+.bs.hint{box-shadow:0 0 0 2px rgba(227,178,60,.8)}
+
+/* placed token on board */
+.tok{width:100%;height:100%;border-radius:3px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,.4)}
+.tok.side0{background:linear-gradient(160deg,#8aa860,#5e7f3f);color:#16210d}
+.tok.side1{background:linear-gradient(160deg,#c2c8cd,#8f979e);color:#1b2227}
+.tok.spec{background:linear-gradient(160deg,#f2d45c,#dfae22);color:#3a2b05}
+.tok .str{font-family:'Oswald';font-weight:700;font-size:16px;line-height:1;position:absolute;top:1px;left:3px}
+.tok .ab{position:absolute;top:1px;right:2px;font-size:9px;font-weight:800}
+.tok .gl{width:26px;height:26px;margin-top:5px;opacity:.9}
+
+/* ---------- side panel ---------- */
+.panel{background:linear-gradient(180deg,#22404b,#162c35);border:1px solid #0a1318;border-radius:12px;
+  padding:12px;box-shadow:var(--shadow);margin-bottom:12px}
+.panel h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.hand{display:flex;flex-wrap:wrap;gap:8px;min-height:60px}
+.card{width:64px;height:78px;border-radius:8px;cursor:pointer;position:relative;
+  border:2px solid rgba(0,0,0,.45);box-shadow:0 3px 8px rgba(0,0,0,.4);transition:.15s;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:5px}
+.card.side0{background:linear-gradient(160deg,#9cba6c,#5e7f3f);color:#16210d}
+.card.side1{background:linear-gradient(160deg,#ced4d9,#8f979e);color:#1b2227}
+.card.spec{background:linear-gradient(160deg,#f6dc6e,#dca90f);color:#3a2b05}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 16px rgba(0,0,0,.55)}
+.card.sel{outline:3px solid var(--gold);outline-offset:2px;transform:translateY(-6px)}
+.card.dead{opacity:.35;cursor:not-allowed;transform:none}
+.card .str{position:absolute;top:2px;left:5px;font-family:'Oswald';font-weight:700;font-size:22px;line-height:1}
+.card .ab{position:absolute;top:3px;right:4px;font-size:10px;font-weight:800;letter-spacing:-.02em}
+.card .gl{width:40px;height:40px;margin-bottom:2px}
+.card .nm{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;opacity:.8;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 3px}
+.card .i{position:absolute;bottom:2px;right:3px;width:13px;height:13px;border-radius:50%;
+  background:rgba(0,0,0,.35);color:#fff;font-size:9px;font-weight:700;display:flex;
+  align-items:center;justify-content:center;line-height:1}
+.card .i:hover{background:#000}
+
+.oppline{display:flex;flex-wrap:wrap;gap:5px}
+.oppslot{width:40px;height:48px;border-radius:6px;border:2px solid rgba(0,0,0,.4);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;font-size:8px}
+.oppslot.hidden{background:repeating-linear-gradient(45deg,#3a4a52,#3a4a52 5px,#32424a 5px,#32424a 10px)}
+
+.log{max-height:280px;overflow-y:auto;font-size:12.5px;line-height:1.5}
+.log p{margin:0 0 5px;padding:4px 7px;border-radius:6px;background:rgba(0,0,0,.18);color:#d5e2e6}
+.log p.mv{background:rgba(227,178,60,.13);border-left:3px solid var(--gold)}
+.log p.bot{background:rgba(194,53,44,.15);border-left:3px solid var(--red)}
+.log p.you{background:rgba(79,123,191,.15);border-left:3px solid var(--allies)}
+.log p.big{font-family:'Oswald';font-size:14px;letter-spacing:.04em}
+.log b{color:var(--cream)}
+
+.prompt{background:linear-gradient(180deg,#3a2a12,#241a0b);border:1px solid var(--gold);
+  border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.prompt .ttl{font-family:'Oswald';color:var(--gold);font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.prompt .opts{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ---------- modal ---------- */
+.ovl{position:fixed;inset:0;background:rgba(5,12,16,.82);backdrop-filter:blur(3px);z-index:100;
+  display:flex;align-items:center;justify-content:center;padding:20px}
+.ovl[hidden]{display:none}
+.modal{background:linear-gradient(180deg,#22404b,#14262e);border:1px solid #3d6d7d;border-radius:14px;
+  max-width:860px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.modal .mh{position:sticky;top:0;background:#1a323c;border-bottom:1px solid #3d6d7d;padding:12px 16px;
+  display:flex;align-items:center;gap:10px;z-index:2}
+.modal .mb{padding:16px}
+.modal h2{font-size:19px;color:var(--cream);letter-spacing:.06em;text-transform:uppercase}
+.modal h4{font-size:14px;color:var(--gold);margin:16px 0 6px;letter-spacing:.06em;text-transform:uppercase}
+.modal p,.modal li{line-height:1.6;color:#dde8eb}
+.modal ul{padding-left:18px;margin:6px 0}
+.reftbl{width:100%;border-collapse:collapse;margin:8px 0}
+.reftbl td{padding:7px 8px;border-bottom:1px solid #2d5260;vertical-align:top}
+.reftbl td:first-child{width:56px;text-align:center}
+.swatch{display:inline-flex;width:40px;height:40px;border-radius:5px;align-items:center;justify-content:center;
+  font-family:'Oswald';font-weight:700;color:#3a2410;font-size:13px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{background:#12262e;border:1px solid #2d5260;color:var(--muted);padding:6px 11px;border-radius:7px;
+  font-weight:600;font-size:12.5px;cursor:pointer}
+.tabs button.on{background:var(--gold);color:#22303a;border-color:var(--gold)}
+.setup-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.setup-row .lab{font-family:'Oswald';font-size:12px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:#12262e;border:1px solid #2d5260;color:#cfe0e4;padding:8px 12px;border-radius:9px;
+  cursor:pointer;font-size:13px;font-weight:600;text-align:left}
+.chip:hover{border-color:var(--gold)}
+.chip.on{background:var(--gold);color:#22303a;border-color:var(--gold)}
+.chip small{display:block;font-weight:500;opacity:.8;font-size:11px;margin-top:2px;max-width:220px}
+.chip.on small{opacity:.85}
+
+.tip{position:fixed;z-index:200;max-width:250px;background:#0d1b22;border:1px solid var(--gold);
+  border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.45;color:#e8f0f2;
+  box-shadow:0 8px 22px rgba(0,0,0,.6);pointer-events:none}
+.tip[hidden]{display:none}
+.tip b{color:var(--gold)}
+.foot{text-align:center;color:#5f7d88;font-size:11.5px;margin-top:18px;line-height:1.6}
+.badgeinfo{width:16px;height:16px;border-radius:50%;background:#2f5663;color:var(--cream);font-size:11px;
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-weight:700;border:0}
+.badgeinfo:hover{background:var(--gold);color:#22303a}
+.statrow{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-bottom:1px solid #22414c}
+.statrow:last-child{border:0}
+.statrow span:last-child{font-weight:700;color:var(--cream)}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">BLITZ<span>KRIEG!</span></div>
+    <div style="font-size:11px;color:var(--muted);letter-spacing:.14em;font-family:'Oswald'" data-i="soloTag">SZÓLÓ VÁLTOZAT</div>
+    <div class="spacer"></div>
+    <div class="langsw">
+      <button id="langHu" class="on" onclick="setLang('hu')">MAGYAR</button>
+      <button id="langEn" onclick="setLang('en')">ENGLISH</button>
+    </div>
+    <button class="btn ghost" onclick="openRules('rules')" data-i="btnRules">Szabályok</button>
+    <button class="btn ghost" onclick="openRules('spaces')" data-i="btnRef">Ikonok</button>
+    <button class="btn ghost" onclick="openRules('bots')" data-i="btnBots">Gépi ellenfél</button>
+    <button class="btn primary" onclick="openSetup()" data-i="btnNew">Új játék</button>
+  </div>
+
+  <div class="scorestrip">
+    <div class="vpbox">
+      <div class="dot" style="background:var(--allies)"></div>
+      <div>
+        <div class="lbl" id="lblAllies">Szövetségesek</div>
+        <div class="num" id="scA" style="color:var(--allies)">0</div>
+      </div>
+    </div>
+    <div class="vpbox">
+      <div class="dot" style="background:var(--axis)"></div>
+      <div>
+        <div class="lbl" id="lblAxis">Tengelyhatalmak</div>
+        <div class="num" id="scX" style="color:#c9d0d6">0</div>
+      </div>
+    </div>
+    <div class="vptrack">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <div class="lbl" style="font-family:'Oswald';font-size:11px;letter-spacing:.14em;color:var(--muted)" data-i="vpTrack">HADI GYŐZELMI PONTOK</div>
+        <button class="badgeinfo" onclick="tipKey(event,'ti_vp')">i</button>
+        <div class="spacer"></div>
+        <div style="font-size:11px;color:var(--muted)" id="turnInfo"></div>
+      </div>
+      <div class="vpcells" id="vpCells"></div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="boardgrid" id="board"></div>
+      <div class="foot" id="footNote"></div>
+    </div>
+
+    <div>
+      <div id="promptBox"></div>
+
+      <div class="panel">
+        <h3><span data-i="hReserve">Tartalékod</span>
+          <button class="badgeinfo" onclick="tipKey(event,'ti_reserve')">i</button>
+          <span class="spacer" style="flex:1"></span>
+          <span style="font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0" id="bagInfo"></span>
+        </h3>
+        <div class="hand" id="hand"></div>
+        <div id="handHint" style="font-size:11.5px;color:var(--muted);margin-top:8px"></div>
+      </div>
+
+      <div class="panel">
+        <h3><span data-i="hOpp">Ellenfél</span>
+          <button class="badgeinfo" onclick="tipKey(event,'ti_opp')">i</button>
+        </h3>
+        <div id="oppBox"></div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i="hLog">Napló</h3>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ovl" id="ovl" hidden onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="mh">
+      <h2 id="modalTitle"></h2>
+      <div class="spacer" style="flex:1"></div>
+      <button class="btn ghost" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mb" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+/* ==========================================================================
+   BLITZKRIEG! SOLO  -  data
+   Board data and unit values derived from the Blitzkrieg! Opponent Simulator
+   engine (BOS) supplied by the user. Game design: Paolo Mori / PSC Games.
+   ========================================================================== */
+
+const ALLIES = 0, AXIS = 1;
+
+/* ---- battle space effects (1..14) ---- */
+const EFF = {
+  1:{k:'industry'}, 2:{k:'industry2'}, 3:{k:'resIndustry'}, 4:{k:'research'},
+  5:{k:'research2'}, 6:{k:'bombing'}, 7:{k:'tac',n:1}, 8:{k:'tac',n:2},
+  9:{k:'str',n:1}, 10:{k:'str',n:2}, 11:{k:'str',n:3},
+  12:{k:'prop',n:1}, 13:{k:'prop',n:2}, 14:{k:'none'}
+};
+
+/* ---- the board ---------------------------------------------------------- */
+/* eff = battle space effect id, ter = L land / S sea / A land+sea           */
+const BOARD = [null,
+ { key:'we', vp:[0,2,3,5], trackMax:14, icons:[5,10], gridArea:'a',
+   camps:[null,
+     {eff:[1,4,12],  ter:['S','L','A']},
+     {eff:[6,1,14],  ter:['L','L','A']},
+     {eff:[3,11,14], ter:['A','L','A']}]},
+ { key:'pac', vp:[0,2,3,5], trackMax:14, icons:[5,10], gridArea:'c',
+   camps:[null,
+     {eff:[6,4],        ter:['S','S']},
+     {eff:[5,1,10,14],  ter:['S','S','S','A']},
+     {eff:[6,13,14],    ter:['S','A','A']}]},
+ { key:'ee', vp:[0,2,3,6], trackMax:14, icons:[5,10], gridArea:'b',
+   camps:[null,
+     {eff:[7,1],           ter:['L','L']},
+     {eff:[12,5,14],       ter:['L','L','A']},
+     {eff:[6,8,11,13,14],  ter:['L','L','L','L','L']}]},
+ { key:'afr', vp:[0,3,5], trackMax:11, icons:[4,8], gridArea:'d',
+   camps:[null,
+     {eff:[11,7,4,12], ter:['L','S','A','A']},
+     {eff:[8,2,14],    ter:['L','S','A']}]},
+ { key:'sea', vp:[0,2,4], trackMax:11, icons:[4,8], gridArea:'e',
+   camps:[null,
+     {eff:[13,12,9], ter:['S','A','A']},
+     {eff:[6,13,14], ter:['S','L','A']}]}
+];
+
+/* ---- unit tokens -------------------------------------------------------- */
+/* id 0..21  = standard tokens (each side has one copy of each)
+   id 22..37 = special weapons ("research pile")
+   type: L army / S navy / A airforce ; str = battle-track movement           */
+const AB = {BLITZ:'blitz', NOEFF:'noeff', BOMB:'bomb', ATOM:'atom',
+            SPY:'spy', SCI:'sci', GEN:'gen', ADM:'adm'};
+
+const U = [];
+function defU(id,key,type,str,ab){U[id]={id,key,type,str,ab:ab||null,spec:id>=22};}
+defU(0,'tank1','L',1);   defU(1,'tank1','L',1);   defU(2,'tank1','L',1);
+defU(3,'tank2','L',2);   defU(4,'tank2','L',2);
+defU(5,'tank3','L',3);   defU(6,'tank3','L',3);
+defU(7,'general','L',1,AB.GEN);
+defU(8,'ship1','S',1);   defU(9,'ship1','S',1);   defU(10,'ship1','S',1);
+defU(11,'ship2','S',2);  defU(12,'ship2','S',2);
+defU(13,'ship3','S',3);  defU(14,'ship3','S',3);
+defU(15,'admiral','S',1,AB.ADM);
+defU(16,'plane0b','A',0,AB.BLITZ);
+defU(17,'plane1','A',1); defU(18,'plane1','A',1); defU(19,'plane1','A',1);
+defU(20,'plane2','A',2); defU(21,'plane2','A',2);
+/* special weapons */
+defU(22,'tank1b','L',1,AB.BLITZ);
+defU(23,'tank4','L',4);  defU(24,'tank4','L',4);
+defU(25,'tank5','L',5,AB.NOEFF);
+defU(26,'carrier1b','S',1,AB.BLITZ);
+defU(27,'carrier2bomb','S',2,AB.BOMB);
+defU(28,'carrier4','S',4); defU(29,'carrier4','S',4);
+defU(30,'carrier5','S',5,AB.NOEFF);
+defU(31,'jet1bomb','A',1,AB.BOMB);
+defU(32,'jet3','A',3);   defU(33,'jet3','A',3);
+defU(34,'jet4','A',4,AB.NOEFF);
+defU(35,'atom','L',7,AB.ATOM);
+defU(36,'spy','A',0,AB.SPY);
+defU(37,'scientist','A',0,AB.SCI);
+
+const STD_IDS = [];  for(let i=0;i<22;i++) STD_IDS.push(i);
+const LAB_IDS = [];  for(let i=22;i<38;i++) LAB_IDS.push(i);
+
+/* ---- artwork: silhouettes ---------------------------------------------- */
+const GLYPH = {
+  tank:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M4 30h56v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6z"/><circle cx="12" cy="34" r="4.5" fill="#0003"/><circle cx="24" cy="34" r="4.5" fill="#0003"/><circle cx="36" cy="34" r="4.5" fill="#0003"/><circle cx="48" cy="34" r="4.5" fill="#0003"/><path d="M12 18h34v11H12z"/><path d="M22 9h17v9H22z"/><path d="M38 12h22v3H38z"/></svg>',
+  ship:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M2 30h60l-8 11H10L2 30z"/><path d="M12 20h40v10H12z"/><path d="M22 11h12v9H22z"/><path d="M27 2h3v9h-3z"/><path d="M40 15h6v5h-6z"/></svg>',
+  plane:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M30 2h4l3 16 25 8v5l-25-3-2 11 7 5v3l-10-3-10 3v-3l7-5-2-11-25 3v-5l25-8L30 2z"/></svg>',
+  general:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M8 26h48l4 8H4l4-8z"/><path d="M14 12h36v14H14z"/><path d="M20 4h24v8H20z"/><circle cx="32" cy="19" r="4" fill="#0004"/></svg>',
+  admiral:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M6 27h52l5 9H1l5-9z"/><path d="M16 14h32v13H16z"/><path d="M22 5h20v9H22z"/><path d="M32 14l6 6-6 6-6-6 6-6z" fill="#0004"/></svg>',
+  atom:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M32 2c7 0 12 6 12 12 0 4-2 6-2 9 0 4 6 5 6 10 0 6-7 11-16 11s-16-5-16-11c0-5 6-6 6-10 0-3-2-5-2-9C20 8 25 2 32 2z"/></svg>',
+  spy:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M4 18h56v5H4z"/><path d="M18 6h28v12H18z"/><circle cx="24" cy="31" r="7"/><circle cx="42" cy="31" r="7"/><path d="M29 30h8v3h-8z"/></svg>',
+  sci:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M26 2h12v10h-12z"/><path d="M28 12h8l14 26a4 4 0 0 1-3.5 6h-29A4 4 0 0 1 14 38L28 12z"/><circle cx="28" cy="34" r="3" fill="#0004"/><circle cx="37" cy="30" r="2.5" fill="#0004"/></svg>',
+  carrier:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M2 28h60l-7 12H9L2 28z"/><path d="M4 20h56v8H4z"/><path d="M44 8h8v12h-8z"/><path d="M20 14h14v3H20z"/></svg>',
+  jet:'<svg viewBox="0 0 64 44" fill="currentColor"><path d="M31 2h3l4 14 24 12v4l-24-5-1 9 8 6v3l-11-4-11 4v-3l8-6-1-9-24 5v-4l24-12L31 2z"/></svg>'
+};
+function glyphFor(u){
+  if(u.ab===AB.GEN) return GLYPH.general;
+  if(u.ab===AB.ADM) return GLYPH.admiral;
+  if(u.ab===AB.ATOM) return GLYPH.atom;
+  if(u.ab===AB.SPY) return GLYPH.spy;
+  if(u.ab===AB.SCI) return GLYPH.sci;
+  if(u.type==='L') return GLYPH.tank;
+  if(u.type==='S') return u.spec?GLYPH.carrier:GLYPH.ship;
+  return u.spec?GLYPH.jet:GLYPH.plane;
+}
+const ABMARK = {blitz:'⚡', noeff:'⊗', bomb:'✹', atom:'☢', spy:'?', sci:'⚗', gen:'+', adm:'+'};
+
+/* ---- battle-space icons (svg) ------------------------------------------ */
+const SVG_FACTORY='<svg width="22" height="18" viewBox="0 0 26 20" fill="currentColor"><path d="M1 19V8l7 4V8l7 4V6h3l1-6h3l1 6h2v13z"/></svg>';
+const SVG_COG='<svg width="19" height="19" viewBox="0 0 20 20" fill="currentColor"><path d="M10 6.4A3.6 3.6 0 1 0 10 13.6 3.6 3.6 0 0 0 10 6.4zm8 4.9v-2.6l-2.3-.4a5.9 5.9 0 0 0-.7-1.7l1.3-1.9-1.8-1.8-1.9 1.3a5.9 5.9 0 0 0-1.7-.7L10.6 1H8l-.4 2.5a5.9 5.9 0 0 0-1.7.7L4 2.9 2.2 4.7l1.3 1.9a5.9 5.9 0 0 0-.7 1.7L0 8.7v2.6l2.8.4c.2.6.4 1.2.7 1.7l-1.3 1.9 1.8 1.8 1.9-1.3c.5.3 1.1.6 1.7.7l.4 2.5h2.6l.4-2.5c.6-.2 1.2-.4 1.7-.7l1.9 1.3 1.8-1.8-1.3-1.9c.3-.5.6-1.1.7-1.7z"/></svg>';
+const SVG_BOMB='<svg width="18" height="20" viewBox="0 0 18 22" fill="currentColor"><path d="M9 0c1.6 2.2 2.4 4 2.4 6.2 2.6 1.4 4.3 4 4.3 7 0 4.3-3.4 7.7-6.7 7.7S2.3 17.5 2.3 13.2c0-3 1.7-5.6 4.3-7C6.6 4 7.4 2.2 9 0z"/></svg>';
+const SVG_SHIELD='<svg width="19" height="20" viewBox="0 0 20 22" fill="currentColor"><path d="M10 0l10 3.4v7.3C20 16.6 15.7 21 10 22 4.3 21 0 16.6 0 10.7V3.4z"/></svg>';
+
+function effIconHTML(e, forceDark){
+  const d = EFF[e];
+  const c = forceDark?'':'';
+  switch(d.k){
+    case 'industry':   return SVG_FACTORY;
+    case 'industry2':  return '<div style="display:flex;align-items:center;gap:1px;justify-content:center">'+SVG_FACTORY+'<b style="font-size:12px">2</b></div>';
+    case 'resIndustry':return '<div style="display:flex;align-items:center;gap:1px;justify-content:center;transform:scale(.85)">'+SVG_COG+SVG_FACTORY+'</div>';
+    case 'research':   return SVG_COG;
+    case 'research2':  return '<div style="display:flex;align-items:center;gap:1px;justify-content:center">'+SVG_COG+'<b style="font-size:12px">2</b></div>';
+    case 'bombing':    return SVG_BOMB;
+    case 'tac':        return '<span style="font-size:17px">+'+d.n+'</span>';
+    case 'str':        return '<span style="font-size:12px;letter-spacing:-.5px">&#8592;+'+d.n+'&#8594;</span>';
+    case 'prop':       return '<div style="position:relative;display:inline-block;color:#efe3c8">'+SVG_SHIELD+
+                              '<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#3a2410;padding-bottom:2px">'+d.n+'</span></div>';
+    default:           return '';
+  }
+}
+</script>
+
+<script>
+/* ==========================================================================
+   i18n
+   ========================================================================== */
+const I18N = {
+hu:{
+ soloTag:'SZÓLÓ VÁLTOZAT', btnRules:'Szabályok', btnRef:'Ikonok', btnBots:'Gépi ellenfél', btnNew:'Új játék',
+ allies:'Szövetségesek', axis:'Tengelyhatalmak', both:'mindkét fél',
+ vpTrack:'HADI GYŐZELMI PONTOK', hReserve:'Tartalékod', hOpp:'Ellenfél', hLog:'Napló',
+ th_we:'Nyugat-Európa', th_pac:'Csendes-óceán', th_ee:'Kelet-Európa',
+ th_afr:'Afrika és Közel-Kelet', th_sea:'Délkelet-Ázsia',
+ closed:'LEZÁRVA', leadA:'Szövetséges előny', leadX:'Tengely előny', leadN:'Döntetlen',
+ turnYou:'A te köröd', turnBot:'A gép köre', round:'kör',
+ bagInfo:(b,l)=>`zsák: ${b} · labor: ${l}`,
+ handHintPick:'Válassz egy egységet, majd egy kijelölt csataterületet.',
+ handHintPlace:'Kattints egy zöld kerettel jelölt csataterületre.',
+ handHintWait:'A gép gondolkodik…',
+ noLegal:'Nincs szabályos lépésed.',
+ /* units */
+ u_tank1:'Páncélos 1', u_tank2:'Páncélos 2', u_tank3:'Páncélos 3', u_tank4:'Nehézpáncélos 4',
+ u_tank5:'Elit páncélos 5', u_tank1b:'Villámpáncélos 1',
+ u_ship1:'Hadihajó 1', u_ship2:'Hadihajó 2', u_ship3:'Hadihajó 3',
+ u_carrier1b:'Villám-hordozó 1', u_carrier2bomb:'Bombázó hordozó 2',
+ u_carrier4:'Repülőgép-hordozó 4', u_carrier5:'Elit hordozó 5',
+ u_plane0b:'Villámgép 0', u_plane1:'Vadászgép 1', u_plane2:'Vadászgép 2',
+ u_jet1bomb:'Bombázó sugárhajtású 1', u_jet3:'Sugárhajtású 3', u_jet4:'Elit sugárhajtású 4',
+ u_general:'Tábornok', u_admiral:'Tengernagy', u_atom:'Atombomba', u_spy:'Kém', u_scientist:'Tudós',
+ t_L:'szárazföldi', t_S:'tengeri', t_A:'légi',
+ /* abilities */
+ ab_blitz:'Villámhadjárat: miután lehelyezted és lekezelted, azonnal letehetsz még egy egységet a tartalékodból ugyanabban a hadszíntéren. A kör végén így is csak egy egységet húzol.',
+ ab_noeff:'Különítmény: a lehelyezéskor figyelmen kívül hagyod az elfoglalt csataterület hatását.',
+ ab_bomb:'Bombázás: amikor végrehajtod a csataterület hatását, hajts végre egy bombázást is (az ellenfél véletlen egységet veszít a tartalékából).',
+ ab_atom:'Atombomba: szárazföldi egységnek számít. Lehelyezéskor 7 mezőt lépsz előre ezen a hadszíntéren, és 2 mezőt hátra minden más, még nyitott hadszíntér csatasávján.',
+ ab_spy:'Kém: lemásolja az ellenfél által utoljára letett egység értékét, típusát és képességét. Oda kell tenni, ahová a másolt típus tehető.',
+ ab_sci:'Tudós: bármelyik hadszíntér BÁRMELY szabad csataterületére leteheted (nem csak az aktív hadjáratba), hogy a hatását végrehajtsd. Nincs harcértéke, a csatajelző nem mozdul.',
+ ab_gen:'Tábornok: hadseregnek számít. Egy mezőt lépsz előre minden hadsereged és légiereg után, amit már bevetettél ezen a hadszíntéren (a tábornokkal együtt, a különleges fegyvereket nem számítva).',
+ ab_adm:'Tengernagy: haditengerészetnek számít. Egy mezőt lépsz előre minden flottád és légiereg után, amit már bevetettél ezen a hadszíntéren (a tengernaggyal együtt, a különleges fegyvereket nem számítva).',
+ /* effects */
+ e_industry:'Ipari termelés', e_industry2:'Fokozott ipari termelés', e_resIndustry:'Kutatóipar',
+ e_research:'Kutatás', e_research2:'Fokozott kutatás', e_bombing:'Bombázás',
+ e_tac:'Taktikai előny', e_str:'Stratégiai előny', e_prop:'Propaganda', e_none:'Nincs hatás',
+ ed_industry:'Húzz egy egységet a zsákodból a tartalékodba.',
+ ed_industry2:'Húzz két egységet a zsákodból a tartalékodba.',
+ ed_resIndustry:'Húzz egy véletlen különleges fegyvert a kutatási pakliból KÖZVETLENÜL a tartalékodba.',
+ ed_research:'Húzz egy véletlen különleges fegyvert a kutatási pakliból a ZSÁKODBA.',
+ ed_research2:'Húzz két véletlen különleges fegyvert a kutatási pakliból a ZSÁKODBA.',
+ ed_bombing:'Az ellenfél egy véletlenszerű egységet visszatesz a tartalékából a zsákjába.',
+ ed_tac:'Lépj ennyi mezőt előre annak a hadszíntérnek a csatasávján, ahova éppen letetted az egységet.',
+ ed_str:'Lépj ennyi mezőt előre BÁRMELY MÁS hadszíntér csatasávján. Ezzel a hatással nem léphetsz a sáv utolsó mezőjére.',
+ ed_prop:'Lépj ennyi mezőt előre a hadi győzelmi pontok sávján.',
+ ed_none:'Ez a csataterület elfoglalható, de nem vált ki hatást.',
+ /* terrain */
+ ter_L:'Szárazföldi mező: csak hadsereg vagy légierő teheti el.',
+ ter_S:'Tengeri mező: csak haditengerészet vagy légierő teheti el.',
+ ter_A:'Szárazföld/tenger mező: hadsereg, haditengerészet és légierő is teheti.',
+ /* prompts */
+ pStrat:'Stratégiai előny', pStratQ:(n)=>`Válaszd ki, melyik MÁSIK hadszíntéren lépsz előre ${n} mezőt.`,
+ pBlitz:'Villámhadjárat!', pBlitzQ:(t)=>`Letehetsz még egy egységet a(z) ${t} hadszíntéren, vagy passzolhatsz.`,
+ pPass:'Passz', pSci:'Tudós', pSciQ:'A tudóst bármelyik hadszíntér bármely szabad mezőjére leteheted.',
+ pSpy:'A kém lemásolja:', pSpyNone:'Az ellenfél még nem tett le egységet, így a kém 0 értékű légierőként működik.',
+ /* log */
+ lgStart:'A játék elkezdődött.', lgYouStart:'Kezdő tartalékod:',
+ lgPlaced:(w,u,e,t)=>`${w} letette: <b>${u}</b> → ${e} (${t})`,
+ lgYou:'Te', lgBot:'A gép',
+ lgAdv:(w,n,t)=>`${t}: ${w} ${n} mezőt lép előre.`,
+ lgRetreat:(w,n,t)=>`${t}: ${w} 2 mezőt hátrál.`,
+ lgDraw:(u)=>`A tartalékodba került: <b>${u}</b>`,
+ lgDrawBot:'A gép húzott egy egységet.',
+ lgResearch:(u)=>`Kifejlesztetted: <b>${u}</b>`,
+ lgResearchBot:'A gép kifejlesztett egy különleges fegyvert.',
+ lgBombYou:(u)=>`Bombáztak: elvesztetted ezt: <b>${u}</b>`,
+ lgBombBot:'Bombáztad az ellenfelet, egy egységét elvesztette.',
+ lgBombNone:'A bombázásnak nem volt célpontja.',
+ lgVp:(w,n)=>`${w}: +${n} győzelmi pont a csataterületről.`,
+ lgCampEnd:(t,w,n)=>`${t}: hadjárat lezárult · <b>${n} GYP</b> → ${w}`,
+ lgTheatreClosed:(t)=>`${t}: a hadszíntér lezárult.`,
+ lgTheatreWon:(t,w)=>`${t}: a csatasáv a végére ért, a hadszínteret megnyerte: ${w}!`,
+ lgBonus:(w,n)=>`${w} további <b>${n} GYP</b>-t kapott a hátralévő hadjáratokért.`,
+ lgFinalTurn:'A győzelmi határt elérték: a Szövetségesek utolsó köre következik.',
+ lgGameOver:'Játék vége', lgWinner:(w)=>`Győzelem: ${w}!`,
+ lgReasonVp:'A győzelmi pont célt elérték.',
+ lgReasonNoRes:(w)=>`${w}: nincs több szabályosan lehelyezhető egység.`,
+ lgSpy:(u)=>`A kém lemásolta ezt: <b>${u}</b>`,
+ lgStratagem:(s)=>`Hadicsel: <b>${s}</b>`,
+ lgRoll:(d,v)=>`Dobás (${d}): <b>${v}</b>`,
+ /* setup */
+ setupTitle:'Új játék', sSide:'Melyik oldalon játszol?',
+ sBot:'Gépi ellenfél', sDiff:'Nehézség', sStart:'Játék indítása',
+ sAlliesD:'A hivatalos szólószabály szerint a játékos a Szövetségeseket vezeti.',
+ sAxisD:'A Tengely kezd, így te lépsz először.',
+ diffEasy:'Könnyű', diffNormal:'Normál', diffHard:'Nehéz',
+ diffEasyD:'Nincs (vagy alig van) kezdeti előny, és a gép nem mindig a legjobb lépést választja.',
+ diffNormalD:'Kiegyensúlyozott: a gép kis kezdeti előnnyel indul.',
+ diffHardD:'Nagyobb kezdeti előny, és a gép mindig a legjobb lépést játssza.',
+ botStratD:'Erős, számoló ellenfél. Minden lehetséges lépést kiértékel (teljes szabálykészlet, rejtett tartalék). Ez a legjobb kihívás.',
+ botOffD:'A Dávid Turczi-féle hivatalos szólóbot: nyílt egységsor, prioritáslista és hadicsel-jelzők. Kiszámíthatóbb, de hiteles. A nehézség a hivatalos értékek szerint (3×+1 / 3×+2 / 4×+2).',
+ botBlitzD:'Egyszerű, kockavezérelt, kaotikus bot. Laza játékhoz és tanuláshoz.',
+ botStrat:'Stratéga (BOS)', botOff:'Hivatalos szólóbot', botBlitz:'BlitzBot',
+ /* tooltips */
+ ti_vp:'<b>Hadi győzelmi pontok.</b> A játék véget ér, ha valaki eléri a 25 pontot a köre végén. Ha a Tengely ér oda előbb, a Szövetségesek még egy kört kapnak. Döntetlen esetén a Szövetségesek nyernek.',
+ ti_reserve:'<b>Tartalék.</b> Minden köröd végén húzol egy egységet a zsákodból. Ha a köröd elején nem tudsz szabályosan lépni, veszítesz.',
+ ti_opp:'<b>Ellenfél.</b> A Stratéga bot tartaléka rejtett, ahogy az alapjátékban is. A hivatalos szólóbot nyílt egységsorral játszik.',
+ ti_track:'<b>Csatasáv.</b> A jelző mutatja, ki áll nyerésre a hadszíntéren. A hadjárat lezárásakor az nyeri a hadjárat pontjait, akinek az oldalán a jelző áll. A pajzs ikonoknál +1 extra pont jár. A sáv végére érve az egész hadszínteret megnyered.',
+ /* rules tabs */
+ tabOverview:'Áttekintés', tabTurn:'A kör menete', tabSpaces:'Csataterületek',
+ tabUnits:'Egységek', tabEnd:'Játék vége', tabBots:'Gépi ellenfelek'
+},
+en:{
+ soloTag:'SOLO VARIANT', btnRules:'Rules', btnRef:'Icons', btnBots:'Opponent', btnNew:'New game',
+ allies:'Allies', axis:'Axis', both:'both sides',
+ vpTrack:'WAR VICTORY TRACK', hReserve:'Your reserve', hOpp:'Opponent', hLog:'Log',
+ th_we:'Western Europe', th_pac:'Pacific Ocean', th_ee:'Eastern Europe',
+ th_afr:'Africa & Middle East', th_sea:'South East Asia',
+ closed:'CLOSED', leadA:'Allies leading', leadX:'Axis leading', leadN:'Level',
+ turnYou:'Your turn', turnBot:'Opponent turn', round:'round',
+ bagInfo:(b,l)=>`bag: ${b} · lab: ${l}`,
+ handHintPick:'Pick a unit, then a highlighted battle space.',
+ handHintPlace:'Click a battle space outlined in green.',
+ handHintWait:'The opponent is thinking…',
+ noLegal:'You have no legal move.',
+ u_tank1:'Army 1', u_tank2:'Army 2', u_tank3:'Army 3', u_tank4:'Elite army 4',
+ u_tank5:'Task force army 5', u_tank1b:'Blitz army 1',
+ u_ship1:'Navy 1', u_ship2:'Navy 2', u_ship3:'Navy 3',
+ u_carrier1b:'Blitz carrier 1', u_carrier2bomb:'Bombing carrier 2',
+ u_carrier4:'Elite carrier 4', u_carrier5:'Task force carrier 5',
+ u_plane0b:'Blitz airforce 0', u_plane1:'Airforce 1', u_plane2:'Airforce 2',
+ u_jet1bomb:'Bombing jet 1', u_jet3:'Elite jet 3', u_jet4:'Task force jet 4',
+ u_general:'General', u_admiral:'Admiral', u_atom:'Nuclear bomb', u_spy:'Spy', u_scientist:'Scientist',
+ t_L:'army', t_S:'navy', t_A:'airforce',
+ ab_blitz:'Blitz: after you place and resolve this token, you may immediately place another unit from your reserve in the same theatre. You still draw only one token at the end of your turn.',
+ ab_noeff:'Task force: when you place this token, ignore the effect of the occupied battle space.',
+ ab_bomb:'Bombing: when you carry out the battle space effect, also carry out a bombing effect (opponent discards a random unit from reserve).',
+ ab_atom:'Nuclear bomb: counts as an army. Advance seven spaces on this battle track and retreat two spaces on every other track that is not yet closed.',
+ ab_spy:'Spy: copies the value, type and ability of the unit token just placed by your opponent. It must be placed in a space legal for the copied type.',
+ ab_sci:'Scientist: may be placed on ANY free battle space of a theatre (not just the active campaign) to carry out its effect. It has no military value, so the battle marker does not move.',
+ ab_gen:'General: counts as an army. Advance one space for each army and airforce you have already deployed in this theatre (including the general, ignoring special weapons).',
+ ab_adm:'Admiral: counts as a navy. Advance one space for each navy and airforce you have already deployed in this theatre (including the admiral, ignoring special weapons).',
+ e_industry:'Industrial production', e_industry2:'Improved industrial production', e_resIndustry:'Research industry',
+ e_research:'Research', e_research2:'Improved research', e_bombing:'Bombing',
+ e_tac:'Tactical advantage', e_str:'Strategic advantage', e_prop:'Propaganda', e_none:'No effect',
+ ed_industry:'Draw one unit token from your bag and add it to your reserve.',
+ ed_industry2:'Draw two unit tokens from your bag and add them to your reserve.',
+ ed_resIndustry:'Draw one random token from the research pile and add it DIRECTLY to your reserve.',
+ ed_research:'Draw one random token from the research pile and add it to your BAG.',
+ ed_research2:'Draw two random tokens from the research pile and add them to your BAG.',
+ ed_bombing:'Your opponent puts one random unit token from their reserve back into their bag.',
+ ed_tac:'Advance this number of spaces on the battle track of the theatre where you just placed your token.',
+ ed_str:'Advance this number of spaces on the battle track of ANY OTHER theatre. You cannot move onto the last space of a track with this effect.',
+ ed_prop:'Advance this number of spaces on the war victory track.',
+ ed_none:'This battle space can be occupied but triggers no effect.',
+ ter_L:'Land space: only armies or airforces.',
+ ter_S:'Sea space: only navies or airforces.',
+ ter_A:'Land / sea space: armies, navies or airforces.',
+ pStrat:'Strategic advantage', pStratQ:(n)=>`Choose which OTHER theatre to advance ${n} space(s) in.`,
+ pBlitz:'Blitz!', pBlitzQ:(t)=>`You may place another unit in ${t}, or pass.`,
+ pPass:'Pass', pSci:'Scientist', pSciQ:'The scientist may go on any free space of any theatre.',
+ pSpy:'The spy copies:', pSpyNone:'Your opponent has not placed a unit yet, so the spy acts as a 0-value airforce.',
+ lgStart:'The game has begun.', lgYouStart:'Your starting reserve:',
+ lgPlaced:(w,u,e,t)=>`${w} played <b>${u}</b> → ${e} (${t})`,
+ lgYou:'You', lgBot:'The opponent',
+ lgAdv:(w,n,t)=>`${t}: ${w} advance ${n}.`,
+ lgRetreat:(w,n,t)=>`${t}: ${w} retreat ${n}.`,
+ lgDraw:(u)=>`Added to your reserve: <b>${u}</b>`,
+ lgDrawBot:'The opponent drew a unit.',
+ lgResearch:(u)=>`You researched: <b>${u}</b>`,
+ lgResearchBot:'The opponent researched a special weapon.',
+ lgBombYou:(u)=>`You were bombed and lost <b>${u}</b>`,
+ lgBombBot:'You bombed the opponent and they lost a unit.',
+ lgBombNone:'The bombing had no target.',
+ lgVp:(w,n)=>`${w} scored ${n} VP from the battle space.`,
+ lgCampEnd:(t,w,n)=>`${t}: campaign closed · <b>${n} VP</b> → ${w}`,
+ lgTheatreClosed:(t)=>`The ${t} theatre is now closed.`,
+ lgTheatreWon:(t,w)=>`${w} won the ${t} theatre! The battle marker reached the end.`,
+ lgBonus:(w,n)=>`${w} scored a further <b>${n} VP</b> from the remaining campaigns.`,
+ lgFinalTurn:'The winning score has been reached: the Allies take their final turn.',
+ lgGameOver:'Game over', lgWinner:(w)=>`Victory for the ${w}!`,
+ lgReasonVp:'The victory point target was achieved.',
+ lgReasonNoRes:(w)=>`${w}: no legal unit placement available.`,
+ lgSpy:(u)=>`The spy copied: <b>${u}</b>`,
+ lgStratagem:(s)=>`Stratagem: <b>${s}</b>`,
+ lgRoll:(d,v)=>`Roll (${d}): <b>${v}</b>`,
+ setupTitle:'New game', sSide:'Which side do you play?',
+ sBot:'Opponent AI', sDiff:'Difficulty', sStart:'Start game',
+ sAlliesD:'The official solo rules have you play the Allies.',
+ sAxisD:'The Axis take the first turn, so you would move first.',
+ diffEasy:'Easy', diffNormal:'Normal', diffHard:'Hard',
+ diffEasyD:'Little or no head start, and the bot does not always take its best move.',
+ diffNormalD:'Balanced: the bot starts with a small head start.',
+ diffHardD:'A bigger head start, and the bot always plays its best move.',
+ botStratD:'A strong calculating opponent. It evaluates every legal move under the full rules with a hidden reserve. The best challenge.',
+ botOffD:'The official Dávid Turczi solo bot: open unit line, priority list and stratagem tokens. More predictable, but authentic. Difficulty uses the official head starts (3×+1 / 3×+2 / 4×+2).',
+ botBlitzD:'A simple dice-driven, chaotic bot. Good for a relaxed game or for learning.',
+ botStrat:'Strategist (BOS)', botOff:'Official solo bot', botBlitz:'BlitzBot',
+ ti_vp:'<b>War victory track.</b> The game ends when a player has 25+ VP at the end of their turn. If the Axis get there first, the Allies take one final turn. A tie goes to the Allies.',
+ ti_reserve:'<b>Reserve.</b> You draw one token from your bag at the end of each turn. If you cannot place a token at the start of your turn, you lose.',
+ ti_opp:'<b>Opponent.</b> The Strategist bot keeps its reserve hidden, as in the two-player game. The official solo bot plays with an open unit line.',
+ ti_track:'<b>Battle track.</b> The marker shows who is currently winning the theatre. When a campaign closes, whoever the marker favours scores the campaign VP, plus 1 extra for each shield icon reached. Reaching the far end wins the whole theatre.',
+ tabOverview:'Overview', tabTurn:'Turn sequence', tabSpaces:'Battle spaces',
+ tabUnits:'Unit tokens', tabEnd:'End of game', tabBots:'Opponent AIs'
+}};
+
+let LANG = 'hu';
+function T(k){ const v = I18N[LANG][k]; return v===undefined ? (I18N.en[k]!==undefined?I18N.en[k]:k) : v; }
+function sideName(s){ return s===ALLIES ? T('allies') : T('axis'); }
+function unitName(u){ return T('u_'+u.key); }
+function effName(e){ const d=EFF[e]; let n=T('e_'+d.k); if(d.n!==undefined) n+=' '+d.n; return n; }
+function effDesc(e){ return T('ed_'+EFF[e].k); }
+function thName(t){ return T('th_'+BOARD[t].key); }
+</script>
+
+<script>
+/* ==========================================================================
+   ENGINE
+   ========================================================================== */
+let S = null;
+const rnd = n => Math.floor(Math.random()*n);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function newState(opt){
+  const st = {
+    bag:[STD_IDS.slice(), STD_IDS.slice()],
+    reserve:[[],[]],
+    lab: LAB_IDS.slice(),
+    score:[0,0],
+    track:[0,0,0,0,0,0],
+    curCamp:[0,1,1,1,1,1],
+    open:[0,1,1,1,1,1],
+    spaces:{},
+    playerSide: opt.playerSide,
+    botSide: 1-opt.playerSide,
+    botType: opt.botType,
+    diff: opt.diff,
+    lastPlaced:[null,null],
+    lastTheatre:0,
+    turn: AXIS,
+    over:false, winner:null, reason:'',
+    finalTurn:false,
+    round:1,
+    pendingStrategic:0, pendingBlitz:0,
+    supply:[], pendingReturn:null, stratagem:null, drawn:null
+  };
+  for(let t=1;t<=5;t++){
+    st.spaces[t]={};
+    for(let c=1;c<BOARD[t].camps.length;c++){
+      st.spaces[t][c]=BOARD[t].camps[c].eff.map(()=>null);
+    }
+  }
+  shuffle(st.bag[0]); shuffle(st.bag[1]); shuffle(st.lab);
+  return st;
+}
+
+/* ---- bag / reserve ------------------------------------------------------ */
+function drawBag(st,side,silent){
+  if(!st.bag[side].length) return null;
+  const id = st.bag[side].pop();
+  st.reserve[side].push(id);
+  if(!silent){
+    if(side===st.playerSide) logp(T('lgDraw')(unitName(U[id])),'');
+    else logp(T('lgDrawBot'),'');
+  }
+  return id;
+}
+function drawLab(st,side,toReserve,silent){
+  if(!st.lab.length) return null;
+  const id = st.lab.pop();
+  if(toReserve) st.reserve[side].push(id); else { st.bag[side].push(id); shuffle(st.bag[side]); }
+  if(!silent){
+    if(side===st.playerSide) logp(T('lgResearch')(unitName(U[id])),'');
+    else logp(T('lgResearchBot'),'');
+  }
+  return id;
+}
+function bombSide(st,victim,silent){
+  if(!st.reserve[victim].length){ if(!silent) logp(T('lgBombNone'),''); return; }
+  let i;
+  /* when the victim plays with an open unit line the attacker chooses:
+     the app takes the strongest non-special-weapon token                     */
+  if(victim===st.botSide && st.botType==='official'){
+    let best=-1;
+    st.reserve[victim].forEach((id,k)=>{
+      const sc = (U[id].spec?0:1000) + U[id].str*10;
+      if(sc>best){best=sc;i=k;}
+    });
+  } else i = rnd(st.reserve[victim].length);
+  const id = st.reserve[victim][i];
+  st.reserve[victim].splice(i,1);
+  st.bag[victim].push(id); shuffle(st.bag[victim]);
+  if(!silent){
+    if(victim===st.playerSide) logp(T('lgBombYou')(unitName(U[id])),'');
+    else logp(T('lgBombBot'),'');
+  }
+}
+
+/* ---- board helpers ------------------------------------------------------ */
+function freeCount(st,t,c){ let n=0; for(const s of st.spaces[t][c]) if(!s) n++; return n; }
+function terrainOk(type,ter){
+  if(ter==='A') return true;
+  if(ter==='L') return type==='L'||type==='A';
+  return type==='S'||type==='A';
+}
+function recomputeCurCamp(st,t){
+  const n = BOARD[t].camps.length-1;
+  for(let c=st.curCamp[t];c<=n;c++){ if(freeCount(st,t,c)>0){ st.curCamp[t]=c; return; } }
+  st.curCamp[t]=n+1; st.open[t]=0;
+}
+function effUnit(st,side,uid){
+  if(U[uid].ab===AB.SPY){
+    const cp = st.lastPlaced[1-side];
+    if(cp===null||cp===undefined||U[cp].ab===AB.SPY)
+      return {id:uid,key:'spy',type:'A',str:0,ab:null,spec:true,isSpy:true};
+    return Object.assign({},U[cp],{isSpy:true, spyOf:cp});
+  }
+  return U[uid];
+}
+function legalSpaces(st,side,uid){
+  const eu = effUnit(st,side,uid);
+  const out=[];
+  const sci = U[uid].ab===AB.SCI;
+  for(let t=1;t<=5;t++){
+    if(!st.open[t]) continue;
+    const last = BOARD[t].camps.length-1;
+    const from = st.curCamp[t], to = sci?last:st.curCamp[t];
+    for(let c=from;c<=to && c<=last;c++){
+      const cam = BOARD[t].camps[c];
+      for(let i=0;i<cam.eff.length;i++){
+        if(st.spaces[t][c][i]) continue;
+        if(terrainOk(eu.type, cam.ter[i])) out.push({t,c,i});
+      }
+    }
+  }
+  return out;
+}
+function hasLegalMove(st,side){
+  for(const uid of st.reserve[side]) if(legalSpaces(st,side,uid).length) return true;
+  return false;
+}
+function canPlaceInTheatre(st,side,t){
+  for(const uid of st.reserve[side]){
+    const eu=effUnit(st,side,uid);
+    const last=BOARD[t].camps.length-1;
+    const from=st.curCamp[t], to=(U[uid].ab===AB.SCI)?last:st.curCamp[t];
+    for(let c=from;c<=to && c<=last;c++)
+      for(let i=0;i<BOARD[t].camps[c].eff.length;i++)
+        if(!st.spaces[t][c][i] && terrainOk(eu.type,BOARD[t].camps[c].ter[i])) return true;
+  }
+  return false;
+}
+function countCommanded(st,side,t,excludeType){
+  let n=0;
+  for(let c=1;c<BOARD[t].camps.length;c++){
+    for(const s of st.spaces[t][c]){
+      if(!s||s.side!==side) continue;
+      const u = U[s.uid];
+      if(u.spec) continue;
+      if(u.type===excludeType) continue;
+      n++;
+    }
+  }
+  return n;
+}
+
+/* ---- track movement ----------------------------------------------------- */
+function advance(st,side,t,amount,silent,capBelowEnd){
+  if(amount<=0) return;
+  const max = BOARD[t].trackMax;
+  const lim = capBelowEnd ? max-1 : max;
+  if(side===ALLIES) st.track[t]=Math.max(-lim, st.track[t]-amount);
+  else              st.track[t]=Math.min( lim, st.track[t]+amount);
+  if(!silent) logp(T('lgAdv')(sideName(side),amount,thName(t)),'');
+}
+function retreatOthers(st,side,t,silent){
+  const opp = 1-side;
+  for(let k=1;k<=5;k++){
+    if(k===t||!st.open[k]) continue;
+    advance(st,opp,k,2,true,true);
+    if(!silent) logp(T('lgRetreat')(sideName(side),2,thName(k)),'');
+  }
+}
+
+/* ---- scoring ------------------------------------------------------------ */
+function campaignScore(st,t,c,side){
+  const B=BOARD[t]; let pts = B.vp[c];
+  const a = Math.abs(st.track[t]);
+  if(a>=B.icons[0]) pts++;
+  if(a>=B.icons[1]) pts++;
+  st.score[side]+=pts;
+  return pts;
+}
+function trackBonusVp(st,t){
+  const B=BOARD[t]; const a=Math.abs(st.track[t]); let n=0;
+  if(a>=B.icons[0]) n++;
+  if(a>=B.icons[1]) n++;
+  return n;
+}
+function closeCampaign(st,t,c,silent){
+  const winners=[];
+  if(st.track[t]<=0) winners.push(ALLIES);
+  if(st.track[t]>=0) winners.push(AXIS);
+  let pts=0;
+  winners.forEach(w=>{ pts = campaignScore(st,t,c,w); });
+  if(!silent){
+    const who = winners.length===2 ? T('both') : sideName(winners[0]);
+    logp(T('lgCampEnd')(thName(t),who,pts),'big');
+  }
+  recomputeCurCamp(st,t);
+  if(!st.open[t] && !silent) logp(T('lgTheatreClosed')(thName(t)),'');
+}
+function closeTheatreByTrack(st,side,t,silent){
+  st.open[t]=0;
+  if(!silent) logp(T('lgTheatreWon')(thName(t),sideName(side)),'big');
+  let bonus=0;
+  const n=BOARD[t].camps.length-1;
+  for(let c=st.curCamp[t];c<=n;c++){
+    if(freeCount(st,t,c)>0){
+      bonus += BOARD[t].vp[c];
+      st.score[side]+=BOARD[t].vp[c];
+      for(let i=0;i<st.spaces[t][c].length;i++)
+        if(!st.spaces[t][c][i]) doEffect(st,side,BOARD[t].camps[c].eff[i],t,silent);
+    }
+  }
+  const tb = trackBonusVp(st,t);
+  if(tb){ st.score[side]+=tb; bonus+=tb; }
+  st.curCamp[t]=n+1;
+  if(bonus && !silent) logp(T('lgBonus')(sideName(side),bonus),'');
+}
+
+/* ---- battle space effects ---------------------------------------------- */
+function doEffect(st,side,e,t,silent){
+  const d=EFF[e];
+  switch(d.k){
+    case 'industry':   drawBag(st,side,silent); break;
+    case 'industry2':  drawBag(st,side,silent); drawBag(st,side,silent); break;
+    case 'resIndustry':drawLab(st,side,true,silent); break;
+    case 'research':   drawLab(st,side,false,silent); break;
+    case 'research2':  drawLab(st,side,false,silent); drawLab(st,side,false,silent); break;
+    case 'bombing':
+      /* BlitzBot variant: for the human player a bombing space is +2 strength */
+      if(st.botType==='blitzbot' && side===st.playerSide) advance(st,side,t,2,silent,false);
+      else bombSide(st,1-side,silent);
+      break;
+    case 'tac':        advance(st,side,t,d.n,silent,false); break;
+    case 'str':
+      if(side===st.playerSide && !silent) st.pendingStrategic = d.n;
+      else { const ot = botPickOtherTheatre(st,side,d.n,t);
+             if(ot) advance(st,side,ot,d.n,silent,true); }
+      break;
+    case 'prop':
+      st.score[side]+=d.n;
+      if(!silent) logp(T('lgVp')(sideName(side),d.n),'');
+      break;
+  }
+}
+
+/* ---- closing checks shared by every placement --------------------------- */
+function postPlace(st,side,t,c,silent){
+  if(freeCount(st,t,c)===0 && st.open[t]) closeCampaign(st,t,c,silent);
+  if(st.open[t] && Math.abs(st.track[t])===BOARD[t].trackMax) closeTheatreByTrack(st,side,t,silent);
+}
+
+/* ---- the main placement ------------------------------------------------- */
+function placeUnit(st,side,handIdx,t,c,i,silent){
+  const uid = st.reserve[side][handIdx];
+  if(uid===undefined) return false;
+  const eu  = effUnit(st,side,uid);
+  const e   = BOARD[t].camps[c].eff[i];
+  st.lastTheatre = t;
+
+  if(!silent){
+    logp(T('lgPlaced')(side===st.playerSide?T('lgYou'):T('lgBot'),
+        (eu.isSpy && eu.spyOf!==undefined ? unitName(U[36])+' → '+unitName(eu) : unitName(eu)),
+        effName(e), thName(t)), (side===st.playerSide?'you':'bot')+' mv');
+  }
+
+  if(eu.ab!==AB.NOEFF) doEffect(st,side,e,t,silent);
+
+  let move = eu.str;
+  if(eu.ab===AB.ATOM) retreatOthers(st,side,t,silent);
+  if(eu.ab===AB.BOMB) bombSide(st,1-side,silent);
+  if(eu.ab===AB.GEN)  move = 1 + countCommanded(st,side,t,'S');
+  if(eu.ab===AB.ADM)  move = 1 + countCommanded(st,side,t,'L');
+
+  st.spaces[t][c][i] = {side, uid};
+  st.reserve[side].splice(handIdx,1);
+  st.lastPlaced[side] = (eu.isSpy && eu.spyOf!==undefined) ? eu.spyOf : uid;
+
+  if(U[uid].ab!==AB.SCI) advance(st,side,t,move,silent,false);
+
+  postPlace(st,side,t,c,silent);
+
+  if(eu.ab===AB.BLITZ && st.open[t] && st.reserve[side].length>0 && canPlaceInTheatre(st,side,t)){
+    st.pendingBlitz = t;
+  }
+  return true;
+}
+
+/* ---- BlitzBot placement: ignores terrain and battle space effects -------- */
+function bbPlace(st,side,handIdx,t,c,i,move){
+  const uid=st.reserve[side][handIdx];
+  if(uid===undefined) return;
+  st.lastTheatre=t;
+  logp(T('lgPlaced')(T('lgBot'),unitName(U[uid]),effName(BOARD[t].camps[c].eff[i]),thName(t)),'bot mv');
+  st.spaces[t][c][i]={side,uid};
+  st.reserve[side].splice(handIdx,1);
+  st.lastPlaced[side]=uid;
+  advance(st,side,t,move,false,false);
+  postPlace(st,side,t,c,false);
+}
+
+/* ---- end of turn -------------------------------------------------------- */
+function endTurn(st,side,silent,draw){
+  if(draw!==false) drawBag(st,side,silent);
+  if(st.score[ALLIES]>=25||st.score[AXIS]>=25){
+    if(side===AXIS){
+      if(!st.finalTurn){ st.finalTurn=true; if(!silent) logp(T('lgFinalTurn'),'big'); }
+    } else {
+      st.winner = (st.score[ALLIES]>=st.score[AXIS])?ALLIES:AXIS;
+      st.over=true; st.reason=T('lgReasonVp');
+      return;
+    }
+  }
+  st.turn = 1-side;
+  if(st.turn===AXIS) st.round++;
+  const nx=st.turn;
+  if(nx===st.botSide && st.botType==='blitzbot'){
+    if(!st.bag[nx].length && !st.reserve[nx].length){
+      st.winner=st.playerSide; st.over=true; st.reason=T('lgReasonNoRes')(sideName(nx));
+    }
+    return;
+  }
+  if(!st.reserve[nx].length || !hasLegalMove(st,nx)){
+    st.winner = 1-nx; st.over=true;
+    st.reason = T('lgReasonNoRes')(sideName(nx));
+  }
+}
+</script>
+
+<script>
+/* ==========================================================================
+   OPPONENT AIs
+   ========================================================================== */
+
+/* signed lead from `side` point of view */
+function lead(st,side,t){ return side===AXIS ? st.track[t] : -st.track[t]; }
+
+/* "strongest change" ranking used by the official bot (and by every bot for
+   the strategic advantage effect)                                           */
+function changeRank(before,after,max){
+  if(before<0 && after>0) return 700;      /* player lead -> bot lead        */
+  if(before===0 && after>0) return 600;    /* tie -> bot lead                */
+  if(before<0 && after===0) return 500;    /* player lead -> tie             */
+  if(after>=max-2 && after>before) return 400;   /* very large bot lead      */
+  if(before<=-(max-2) && after>before) return 300;/* reduce huge player lead */
+  if(after>before) return 200;
+  return 100;
+}
+function botPickOtherTheatre(st,side,amount,excludeT){
+  let best=null,bv=-1;
+  for(let t=1;t<=5;t++){
+    if(t===excludeT||!st.open[t]) continue;
+    const max=BOARD[t].trackMax;
+    const b=lead(st,side,t);
+    const a=Math.min(max-1,b+amount);
+    let v=changeRank(b,a,max)*10 + BOARD[t].vp[st.curCamp[t]]*2 + (a-b);
+    if(v>bv){bv=v;best=t;}
+  }
+  return best;
+}
+
+/* ==========================================================================
+   BOT 1 - "Strategist": 1-ply search with a positional evaluation
+   ========================================================================== */
+function fastClone(st){
+  const n = {
+    bag:[st.bag[0].slice(),st.bag[1].slice()],
+    reserve:[st.reserve[0].slice(),st.reserve[1].slice()],
+    lab:st.lab.slice(), score:st.score.slice(), track:st.track.slice(),
+    curCamp:st.curCamp.slice(), open:st.open.slice(), spaces:{},
+    playerSide:st.playerSide, botSide:st.botSide, botType:st.botType, diff:st.diff,
+    lastPlaced:st.lastPlaced.slice(), lastTheatre:st.lastTheatre, turn:st.turn, over:st.over, winner:st.winner,
+    reason:'', finalTurn:st.finalTurn, round:st.round,
+    pendingStrategic:0, pendingBlitz:0, stratagem:st.stratagem,
+    supply:[], pendingReturn:null, drawn:null
+  };
+  for(let t=1;t<=5;t++){ n.spaces[t]={};
+    for(let c=1;c<BOARD[t].camps.length;c++) n.spaces[t][c]=st.spaces[t][c].slice(); }
+  return n;
+}
+
+function evaluate(st,me){
+  const opp=1-me;
+  let v = 130*(st.score[me]-st.score[opp]);
+  if(st.score[me]>=25) v+=4000;
+  if(st.score[opp]>=25) v-=4000;
+
+  for(let t=1;t<=5;t++){
+    if(!st.open[t]) continue;
+    const B=BOARD[t], max=B.trackMax, d=lead(st,me,t);
+    const c=st.curCamp[t];
+    const campVp=B.vp[c];
+    let remain=0; for(let k=c;k<B.camps.length;k++) remain+=B.vp[k];
+    /* expected share of the active campaign */
+    const p = Math.max(-1,Math.min(1, d/(0.45*max)));
+    const icons = (Math.abs(d)>=B.icons[1]?2:(Math.abs(d)>=B.icons[0]?1:0));
+    v += p*(campVp+icons)*34;
+    /* how close is the campaign to closing (urgency) */
+    const free=freeCount(st,t,c), tot=B.camps[c].eff.length;
+    v += p*(campVp+icons)*16*(1-free/tot);
+    /* racing for the whole theatre */
+    const near = Math.max(0,d-(max-4));
+    v += near*remain*9;
+    const oppNear = Math.max(0,-d-(max-4));
+    v -= oppNear*remain*11;
+  }
+  /* material */
+  const rm=st.reserve[me], ro=st.reserve[opp];
+  v += Math.min(rm.length,6)*46;
+  v -= Math.min(ro.length,6)*30;
+  if(rm.length<=1) v-=520;
+  if(ro.length<=1) v+=380;
+  for(const u of rm) v += U[u].str*9 + (U[u].spec?26:0);
+  v += st.bag[me].length*3;
+  return v;
+}
+
+function stratBestMove(st,me,restrictT,slackOverride){
+  const cands=[];
+  const seen=new Set();
+  for(let h=0;h<st.reserve[me].length;h++){
+    const uid=st.reserve[me][h];
+    const key=uid+'|'+(U[uid].ab===AB.SPY?st.lastPlaced[1-me]:'');
+    for(const sp of legalSpaces(st,me,uid)){
+      if(restrictT && sp.t!==restrictT) continue;
+      const k=key+'@'+sp.t+'.'+sp.c+'.'+sp.i;
+      if(seen.has(k)) continue; seen.add(k);
+      const sim=fastClone(st);
+      placeUnit(sim,me,h,sp.t,sp.c,sp.i,true);
+      if(sim.pendingBlitz){
+        const b=stratBestMove(sim,me,sim.pendingBlitz);
+        if(b){ placeUnit(sim,me,b.h,b.t,b.c,b.i,true); }
+        sim.pendingBlitz=0;
+      }
+      cands.push({h,t:sp.t,c:sp.c,i:sp.i,v:evaluate(sim,me)});
+    }
+  }
+  if(!cands.length) return null;
+  cands.sort((a,b)=>b.v-a.v);
+  /* difficulty: how often the bot takes a slightly worse line */
+  const slack = slackOverride || (st.diff==='easy'?5:(st.diff==='normal'?2:1));
+  const pool = cands.slice(0,slack);
+  return pool[rnd(pool.length)];
+}
+
+/* ==========================================================================
+   BOT 2 - Official solo bot (Dávid Turczi)
+   ========================================================================== */
+const STRATAGEMS=['heavy','counter','economic','honor','rapid','rnd','secure','steamroll'];
+const STRAT_NAME={
+ hu:{heavy:'Nehézfegyverzet',counter:'Ellentámadás',economic:'Gazdasági hadviselés',honor:'A becsületért',
+     rapid:'Gyors bevetés',rnd:'Kutatás & fejlesztés',secure:'Biztosítás',steamroll:'Gőzhenger'},
+ en:{heavy:'Heavy weapons',counter:'Counterattack',economic:'Economic warfare',honor:'For the honour',
+     rapid:'Rapid deployment',rnd:'Research & development',secure:'Secure',steamroll:'Steamroll'}};
+const STRAT_TXT={
+ hu:{heavy:'Egységszűrő: ha van különleges fegyvere, csak azt játszik. Egyébként olyan egységet választ, amely a legerősebb változást okozza.',
+     counter:'Hadszíntér-szűrő: olyan hadszínteret választ, ahol a játékos vezet. Egységszűrő: a legerősebb változást okozó egység.',
+     economic:'Előnyben részesíti az ipari termelés és bombázás mezőket (4 egység alatt előbb az ipart).',
+     honor:'A legtöbb GYP-t érő hadjáratokat és a propaganda mezőket részesíti előnyben.',
+     rapid:'Egységszűrő: a sorban legbaloldalibb szabályos egységet játssza.',
+     rnd:'A kutatás mezőket részesíti előnyben. Ha nem kutatás mezőt választott, lehetőleg különleges fegyvert játszik.',
+     secure:'Hadszíntér-szűrő: olyan hadszínteret választ, ahol ő vezet.',
+     steamroll:'Újra az előző körben használt hadicselt alkalmazza.'},
+ en:{heavy:'Unit filter: ignore normal units while special weapons are available, otherwise pick a unit that causes the strongest change.',
+     counter:'Theatre filter: pick a theatre where the player is leading. Unit filter: strongest change.',
+     economic:'Prioritise industrial production and bombing spaces (industry first while below 4 units).',
+     honor:'Prioritise the highest scoring campaigns and propaganda spaces.',
+     rapid:'Unit filter: play the left-most legal unit in the line.',
+     rnd:'Prioritise research spaces. If no research space was chosen, prefer special weapon tokens.',
+     secure:'Theatre filter: pick a theatre where the bot is leading.',
+     steamroll:'Use the stratagem from the previous turn again.'}};
+function stratName(k){ return (STRAT_NAME[LANG]||STRAT_NAME.en)[k]; }
+function stratTxt(k){ return (STRAT_TXT[LANG]||STRAT_TXT.en)[k]; }
+
+/* would placing this unit here close AND win the campaign / theatre? */
+function wouldWin(st,me,h,t,c,i){
+  const sim=fastClone(st);
+  const openBefore=sim.open[t], campBefore=sim.curCamp[t], scoreBefore=sim.score[me];
+  placeUnit(sim,me,h,t,c,i,true);
+  const wonTheatre = openBefore && !sim.open[t] && lead(sim,me,t)>0;
+  const wonCamp = sim.curCamp[t]>campBefore && lead(sim,me,t)>=0;
+  return {theatre:wonTheatre, camp:wonCamp, gain:sim.score[me]-scoreBefore};
+}
+function unitStrongestChange(st,me,h,t,c,i){
+  const max=BOARD[t].trackMax, b=lead(st,me,t);
+  const sim=fastClone(st); placeUnit(sim,me,h,t,c,i,true);
+  return changeRank(b,lead(sim,me,t),max);
+}
+
+function officialMove(st,me,forceT){
+  const strat = st.stratagem;
+  const line = st.reserve[me];
+  if(!line.length) return null;
+
+  /* --- all legal (unit, theatre, campaign, space) triples --------------- */
+  let all=[];
+  for(let h=0;h<line.length;h++)
+    for(const sp of legalSpaces(st,me,line[h]))
+      all.push({h,t:sp.t,c:sp.c,i:sp.i});
+  if(forceT) all=all.filter(x=>x.t===forceT);
+  if(!all.length) return null;
+
+  /* ---------- 1. choose theatre ---------------------------------------- */
+  let theatres=[...new Set(all.map(x=>x.t))];
+  const winT=[], winC=[];
+  for(const x of all){ const w=wouldWin(st,me,x.h,x.t,x.c,x.i);
+    if(w.theatre) winT.push(x.t); if(w.camp) winC.push(x.t); }
+  if(winT.length) theatres=[...new Set(winT)];
+  else if(winC.length) theatres=[...new Set(winC)];
+  else {
+    /* stratagem theatre filter */
+    let f=theatres;
+    if(strat==='counter') f=theatres.filter(t=>lead(st,me,t)<0);
+    else if(strat==='secure') f=theatres.filter(t=>lead(st,me,t)>0);
+    else if(strat==='economic') f=theatres.filter(t=>hasEffInActive(st,t,[1,2,3,6]));
+    else if(strat==='rnd') f=theatres.filter(t=>hasEffInActive(st,t,[3,4,5]));
+    else if(strat==='honor'){
+      const mx=Math.max(...theatres.map(t=>BOARD[t].vp[st.curCamp[t]]));
+      f=theatres.filter(t=>BOARD[t].vp[st.curCamp[t]]===mx);
+      const p=f.filter(t=>hasEffInActive(st,t,[12,13]));
+      if(p.length) f=p;
+    }
+    if(f.length) theatres=f;
+    if(theatres.length>1){
+      const mx=Math.max(...theatres.map(t=>freeCount(st,t,st.curCamp[t])));
+      let g=theatres.filter(t=>freeCount(st,t,st.curCamp[t])===mx);
+      if(g.length>1){
+        const mv=Math.max(...g.map(t=>BOARD[t].vp[st.curCamp[t]]));
+        g=g.filter(t=>BOARD[t].vp[st.curCamp[t]]===mv);
+      }
+      theatres=g;
+    }
+  }
+  const T0=theatres.sort((a,b)=>a-b)[0];
+  all=all.filter(x=>x.t===T0);
+
+  /* ---------- 2. choose battle space ------------------------------------ */
+  let spaces=[...new Set(all.map(x=>x.c+'.'+x.i))].map(s=>{const [c,i]=s.split('.').map(Number);return {c,i};});
+  const winning=spaces.filter(s=>all.some(x=>x.c===s.c&&x.i===s.i&&
+      (()=>{const w=wouldWin(st,me,x.h,T0,s.c,s.i);return w.theatre||w.camp;})()));
+  if(winning.length) spaces=winning;
+  else{
+    const eOf=s=>BOARD[T0].camps[s.c].eff[s.i];
+    let f=null;
+    if(strat==='economic'){
+      const pref = st.reserve[me].length<4 ? [[1,2,3],[6]] : [[6],[1,2,3]];
+      for(const grp of pref){ const g=spaces.filter(s=>grp.includes(eOf(s))); if(g.length){f=g;break;} }
+    } else if(strat==='rnd'){
+      const g=spaces.filter(s=>[3,4,5].includes(eOf(s))); if(g.length) f=g;
+    } else if(strat==='honor'){
+      const g=spaces.filter(s=>[12,13].includes(eOf(s))); if(g.length) f=g;
+    }
+    if(f) spaces=f;
+    else{
+      const order=[];
+      if(st.score[me]>20) order.push([12,13]);
+      order.push([9,10,11]);
+      if(st.score[1-me]-st.score[me]>3) order.push([12,13]);
+      if(st.reserve[me].length<4) order.push([1,2,3]);
+      order.push([5],[4,3],[6],[7,8],[1,2],[12,13]);
+      for(const grp of order){ const g=spaces.filter(s=>grp.includes(eOf(s))); if(g.length){spaces=g;break;} }
+    }
+    spaces.sort((a,b)=> a.c-b.c || a.i-b.i);
+    spaces=[spaces[0]];
+  }
+  const SP=spaces[0];
+  all=all.filter(x=>x.c===SP.c&&x.i===SP.i);
+
+  /* ---------- 3. choose unit ------------------------------------------- */
+  let units=all.map(x=>x.h);
+  const w2=units.filter(h=>{const w=wouldWin(st,me,h,T0,SP.c,SP.i);return w.theatre||w.camp;});
+  if(w2.length) units=w2;
+  else{
+    if(strat==='heavy'){
+      const sp=units.filter(h=>U[st.reserve[me][h]].spec);
+      if(sp.length) units=sp;
+      else{
+        const mx=Math.max(...units.map(h=>unitStrongestChange(st,me,h,T0,SP.c,SP.i)));
+        units=units.filter(h=>unitStrongestChange(st,me,h,T0,SP.c,SP.i)===mx);
+      }
+    } else if(strat==='counter'){
+      const mx=Math.max(...units.map(h=>unitStrongestChange(st,me,h,T0,SP.c,SP.i)));
+      units=units.filter(h=>unitStrongestChange(st,me,h,T0,SP.c,SP.i)===mx);
+    } else if(strat==='rnd'){
+      if(![3,4,5].includes(BOARD[T0].camps[SP.c].eff[SP.i])){
+        const sp=units.filter(h=>U[st.reserve[me][h]].spec); if(sp.length) units=sp;
+      }
+    } else if(strat==='rapid'){
+      units=[Math.min(...units)];
+    }
+    if(units.length>1 && BOARD[T0].camps[SP.c].eff[SP.i]===14){
+      const nz=units.filter(h=>U[st.reserve[me][h]].str>0); if(nz.length) units=nz;
+    }
+    if(units.length>1 && freeCount(st,T0,SP.c)===1){
+      const nb=units.filter(h=>U[st.reserve[me][h]].ab!==AB.BLITZ); if(nb.length) units=nb;
+    }
+    if(units.length>1 && st.score[me]>20){
+      const mx=Math.max(...units.map(h=>U[st.reserve[me][h]].str));
+      units=units.filter(h=>U[st.reserve[me][h]].str===mx);
+    }
+    if(units.length>1){
+      const d=1+rnd(6);
+      logp(T('lgRoll')('d6',d),'');
+      units=[units[(d-1)%units.length]];
+    }
+  }
+  return {h:units[0], t:T0, c:SP.c, i:SP.i};
+}
+function hasEffInActive(st,t,list){
+  const c=st.curCamp[t]; if(c>=BOARD[t].camps.length) return false;
+  for(let i=0;i<BOARD[t].camps[c].eff.length;i++)
+    if(!st.spaces[t][c][i] && list.includes(BOARD[t].camps[c].eff[i])) return true;
+  return false;
+}
+
+/* ==========================================================================
+   BOT 3 - BlitzBot (unofficial, dice driven)
+   ========================================================================== */
+const BB_ORDER=[3,2,1,4,5];   /* 1=Eastern Europe 2=Pacific 3=Western Europe */
+function blitzbotTheatre(st,d){
+  let idx=(d-1)%5;
+  for(let k=0;k<5;k++){ const t=BB_ORDER[(idx+k)%5]; if(st.open[t]) return t; }
+  return null;
+}
+</script>
+
+<script>
+/* ==========================================================================
+   UI
+   ========================================================================== */
+let LOG=[];
+let sel=-1;            /* selected hand index */
+let busy=false;
+function logp(html,cls){ LOG.push({html,cls:cls||''}); }
+function renderLog(){
+  const el=document.getElementById('log');
+  el.innerHTML = LOG.slice(-70).map(l=>`<p class="${l.cls}">${l.html}</p>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+/* ---------- tokens ------------------------------------------------------- */
+function tokenHTML(uid,side,small){
+  const u=U[uid];
+  const cls = u.spec ? 'spec' : ('side'+side);
+  const showAb = u.ab && u.ab!==AB.GEN && u.ab!==AB.ADM;
+  const ab = showAb?`<span class="ab">${ABMARK[u.ab]}</span>`:'';
+  const str = (u.ab===AB.SPY||u.ab===AB.SCI)?'':`<span class="str">${u.str}${(u.ab===AB.GEN||u.ab===AB.ADM)?'+':''}</span>`;
+  return `<div class="tok ${cls}">${str}${ab}<div class="gl">${glyphFor(u)}</div></div>`;
+}
+function cardHTML(uid,side,idx,dead){
+  const u=U[uid];
+  const cls = u.spec ? 'spec' : ('side'+side);
+  const showAb = u.ab && u.ab!==AB.GEN && u.ab!==AB.ADM;
+  const ab = showAb?`<span class="ab">${ABMARK[u.ab]}</span>`:'';
+  const str = (u.ab===AB.SPY||u.ab===AB.SCI)?'':`<span class="str">${u.str}${(u.ab===AB.GEN||u.ab===AB.ADM)?'+':''}</span>`;
+  return `<div class="card ${cls} ${idx===sel?'sel':''} ${dead?'dead':''}" data-h="${idx}" onclick="pickCard(${idx})">
+      ${str}${ab}<div class="gl">${glyphFor(u)}</div>
+      <div class="nm">${unitName(u)}</div>
+      <div class="i" onclick="event.stopPropagation();tipUnit(event,${uid})">i</div></div>`;
+}
+
+/* ---------- board -------------------------------------------------------- */
+function renderBoard(){
+  const order=[1,3,2,4,5];
+  let legal=[];
+  if(sel>=0 && S && !S.over && S.turn===S.playerSide){
+    const uid=S.reserve[S.playerSide][sel];
+    if(uid!==undefined){
+      legal=legalSpaces(S,S.playerSide,uid);
+      if(S.pendingBlitz) legal=legal.filter(x=>x.t===S.pendingBlitz);
+    }
+  }
+  const lk=new Set(legal.map(x=>x.t+'.'+x.c+'.'+x.i));
+  let h='';
+  for(const t of order){
+    const B=BOARD[t];
+    const closed = !S.open[t];
+    const d = S.track[t];
+    const leadTxt = d<0?T('leadA'):(d>0?T('leadX'):T('leadN'));
+    h+=`<div class="theatre ${closed?'closed':''}" data-closed="${T('closed')}">
+      <div class="th-head"><div class="th-name">${thName(t)}</div>
+        <button class="badgeinfo" onclick="tipKey(event,'ti_track')">i</button>
+        <div class="th-lead">${leadTxt} ${d!==0?Math.abs(d):''}</div></div>`;
+    /* battle track */
+    h+='<div class="track"><div class="trk-end">'+
+       '<svg width="18" height="18" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#e8eef2"/><circle cx="10" cy="10" r="6" fill="#4f7bbf"/><circle cx="10" cy="10" r="3" fill="#c2352c"/></svg></div>';
+    for(let p=-B.trackMax;p<=B.trackMax;p++){
+      let c='tcell';
+      if(p===0) c+=' mid';
+      else{
+        if(p>0) c+=' axisSide';
+        const a=Math.abs(p);
+        if(a===B.icons[0]||a===B.icons[1]) c+=' vpi';
+        if(a===B.trackMax) c+=' last';
+      }
+      const marker = (S.track[t]===p)?`<div class="mk ${S.track[t]<0?'a':(S.track[t]>0?'x':'a')}" style="${S.track[t]===0?'background:linear-gradient(90deg,var(--allies) 50%,var(--axis) 50%)':''}"></div>`:'';
+      h+=`<div class="${c}">${marker}</div>`;
+    }
+    h+='<div class="trk-end">'+
+       '<svg width="18" height="18" viewBox="0 0 20 20"><rect x="0" y="0" width="20" height="20" rx="3" fill="#e8eef2"/><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#2b3238"/></svg></div></div>';
+    /* campaigns */
+    for(let c=1;c<B.camps.length;c++){
+      const cam=B.camps[c];
+      const done = freeCount(S,t,c)===0;
+      const act = (c===S.curCamp[t] && S.open[t]);
+      h+=`<div class="camp ${act?'active':''} ${done?'done':''}">`;
+      for(let i=0;i<cam.eff.length;i++){
+        const occ=S.spaces[t][c][i];
+        const isLegal = lk.has(t+'.'+c+'.'+i);
+        h+=`<div class="bs ${cam.ter[i]} ${isLegal?'legal':''}"
+              ${isLegal?`onclick="doPlace(${t},${c},${i})"`:''}
+              onmouseenter="tipSpace(event,${t},${c},${i})" onmouseleave="hideTip()">`;
+        h+= occ ? tokenHTML(occ.uid,occ.side) : `<div class="eff">${effIconHTML(cam.eff[i])}</div>`;
+        h+='</div>';
+      }
+      h+=`<div class="camp-vp">${B.vp[c]}</div></div>`;
+    }
+    h+='</div>';
+  }
+  document.getElementById('board').innerHTML=h;
+}
+
+/* ---------- vp track ----------------------------------------------------- */
+function renderVp(){
+  let h='';
+  for(let i=0;i<=30;i++){
+    const m=(i%5===0&&i>0);
+    const a=S.score[ALLIES]===i, x=S.score[AXIS]===i;
+    let pin='';
+    if(a&&x) pin='<div class="pin both"></div>';
+    else if(a) pin='<div class="pin a"></div>';
+    else if(x) pin='<div class="pin x"></div>';
+    h+=`<div class="vpcell ${m?'m5':''} ${i===25?'win':''}">${pin}${(m&&!pin)?i:''}</div>`;
+  }
+  document.getElementById('vpCells').innerHTML=h;
+  document.getElementById('scA').textContent=S.score[ALLIES];
+  document.getElementById('scX').textContent=S.score[AXIS];
+}
+
+/* ---------- hand / opponent --------------------------------------------- */
+function renderHand(){
+  const ps=S.playerSide;
+  const el=document.getElementById('hand');
+  let h='';
+  S.reserve[ps].forEach((uid,idx)=>{
+    let dead=false;
+    if(S.turn!==ps||S.over) dead=true;
+    else{
+      let ls=legalSpaces(S,ps,uid);
+      if(S.pendingBlitz) ls=ls.filter(x=>x.t===S.pendingBlitz);
+      if(!ls.length) dead=true;
+    }
+    h+=cardHTML(uid,ps,idx,dead);
+  });
+  el.innerHTML=h||'<div style="color:var(--muted)">—</div>';
+  document.getElementById('bagInfo').textContent=T('bagInfo')(S.bag[ps].length,S.lab.length);
+  const hint=document.getElementById('handHint');
+  if(S.over) hint.textContent='';
+  else if(S.turn!==ps) hint.textContent=T('handHintWait');
+  else hint.textContent = sel>=0?T('handHintPlace'):T('handHintPick');
+}
+function renderOpp(){
+  const bs=S.botSide, el=document.getElementById('oppBox');
+  let h='';
+  if(S.botType==='official'){
+    h+='<div class="oppline">'+S.reserve[bs].map(uid=>`<div style="width:44px">${tokenHTML(uid,bs)}</div>`).join('')+'</div>';
+    if(S.stratagem) h+=`<div style="margin-top:8px;font-size:12px"><b style="color:var(--gold)">${stratName(S.stratagem)}</b>
+      <button class="badgeinfo" onclick="tipHtml(event,'<b>'+stratName('${S.stratagem}')+'</b><br>'+stratTxt('${S.stratagem}'))">i</button>
+      <div style="color:var(--muted);margin-top:3px;line-height:1.4">${stratTxt(S.stratagem)}</div></div>`;
+  } else if(S.botType==='blitzbot'){
+    h+=`<div style="font-size:12.5px;color:var(--muted)">BlitzBot</div>`;
+  } else {
+    h+='<div class="oppline">'+S.reserve[bs].map(()=>'<div class="oppslot hidden"></div>').join('')+'</div>';
+  }
+  h+=`<div style="margin-top:10px">
+    <div class="statrow"><span>${T('hReserve')}</span><span>${S.reserve[bs].length}</span></div>
+    <div class="statrow"><span>${LANG==='hu'?'Zsák':'Bag'}</span><span>${S.bag[bs].length}</span></div>
+    <div class="statrow"><span>${LANG==='hu'?'Kutatási pakli':'Research pile'}</span><span>${S.lab.length}</span></div></div>`;
+  el.innerHTML=h;
+}
+
+/* ---------- prompts ------------------------------------------------------ */
+function renderPrompt(){
+  const el=document.getElementById('promptBox');
+  if(S.over){
+    el.innerHTML=`<div class="prompt"><div class="ttl">${T('lgGameOver')}</div>
+      <div style="font-size:15px;font-family:'Oswald';margin-bottom:4px">${T('lgWinner')(sideName(S.winner))}</div>
+      <div style="color:var(--muted);font-size:12.5px;margin-bottom:8px">${S.reason}</div>
+      <button class="btn primary" onclick="openSetup()">${T('btnNew')}</button></div>`;
+    return;
+  }
+  if(S.pendingStrategic){
+    let o='';
+    for(let t=1;t<=5;t++){
+      if(!S.open[t]) continue;
+      if(t===S.lastTheatre) continue;
+      o+=`<button class="btn" onclick="resolveStrategic(${t})">${thName(t)}</button>`;
+    }
+    if(!o) o=`<button class="btn" onclick="resolveStrategic(0)">${T('pPass')}</button>`;
+    el.innerHTML=`<div class="prompt"><div class="ttl">${T('pStrat')} +${S.pendingStrategic}</div>
+      <div style="font-size:12.5px;margin-bottom:8px">${T('pStratQ')(S.pendingStrategic)}</div>
+      <div class="opts">${o}</div></div>`;
+    return;
+  }
+  if(S.pendingBlitz && S.turn===S.playerSide){
+    el.innerHTML=`<div class="prompt"><div class="ttl">⚡ ${T('pBlitz')}</div>
+      <div style="font-size:12.5px;margin-bottom:8px">${T('pBlitzQ')(thName(S.pendingBlitz))}</div>
+      <div class="opts"><button class="btn" onclick="passBlitz()">${T('pPass')}</button></div></div>`;
+    return;
+  }
+  el.innerHTML='';
+}
+
+function renderAll(){
+  if(!S) return;
+  renderVp(); renderBoard(); renderHand(); renderOpp(); renderPrompt(); renderLog(); saveGame();
+  document.getElementById('turnInfo').textContent =
+     (S.over?'':(S.turn===S.playerSide?T('turnYou'):T('turnBot'))) + ' · ' + T('round') + ' ' + S.round;
+  document.getElementById('lblAllies').textContent=T('allies');
+  document.getElementById('lblAxis').textContent=T('axis');
+  document.getElementById('footNote').innerHTML =
+    (LANG==='hu'
+      ? 'Blitzkrieg! – tervezte Paolo Mori, kiadó PSC Games. Ez egy nem hivatalos, rajongói digitális szóló megvalósítás.'
+      : 'Blitzkrieg! designed by Paolo Mori, published by PSC Games. Unofficial fan-made digital solo implementation.');
+}
+
+/* ---------- tooltips ----------------------------------------------------- */
+function showTip(ev,html){
+  const el=document.getElementById('tip');
+  el.innerHTML=html; el.hidden=false;
+  const r=el.getBoundingClientRect();
+  let x=ev.clientX+14, y=ev.clientY+14;
+  if(x+r.width>innerWidth-8) x=innerWidth-r.width-8;
+  if(y+r.height>innerHeight-8) y=ev.clientY-r.height-12;
+  el.style.left=x+'px'; el.style.top=y+'px';
+}
+function hideTip(){ document.getElementById('tip').hidden=true; }
+function tipKey(ev,k){ ev.stopPropagation(); showTip(ev,T(k)); setTimeout(()=>document.addEventListener('click',hideTip,{once:true}),10); }
+function tipHtml(ev,h){ ev.stopPropagation(); showTip(ev,h); setTimeout(()=>document.addEventListener('click',hideTip,{once:true}),10); }
+function tipUnit(ev,uid){
+  const u=U[uid];
+  let h=`<b>${unitName(u)}</b><br>${T('t_'+u.type)}`;
+  if(u.ab!==AB.SPY&&u.ab!==AB.SCI) h+=` · ${LANG==='hu'?'erő':'strength'} ${u.str}${(u.ab===AB.GEN||u.ab===AB.ADM)?'+':''}`;
+  if(u.ab) h+='<br><br>'+T('ab_'+u.ab);
+  tipHtml(ev,h);
+}
+function tipSpace(ev,t,c,i){
+  const e=BOARD[t].camps[c].eff[i], ter=BOARD[t].camps[c].ter[i];
+  const occ=S.spaces[t][c][i];
+  let h=`<b>${effName(e)}</b><br>${effDesc(e)}<br><br>${T('ter_'+ter)}`;
+  if(occ) h=`<b>${unitName(U[occ.uid])}</b> (${sideName(occ.side)})<br><br>`+h;
+  showTip(ev,h);
+}
+</script>
+
+<script>
+/* ==========================================================================
+   GAME FLOW
+   ========================================================================== */
+let OPT = {playerSide:ALLIES, botType:'strategist', diff:'normal'};
+
+function startGame(opt){
+  OPT=Object.assign({},OPT,opt||{});
+  S=newState(OPT); LOG=[]; sel=-1; busy=false;
+  for(let i=0;i<3;i++) drawBag(S,S.playerSide,true);
+  const n = OPT.botType==='official'?5:(OPT.botType==='blitzbot'?0:3);
+  for(let i=0;i<n;i++) drawBag(S,S.botSide,true);
+  S.supply = STRATAGEMS.filter(x=>x!=='steamroll');
+  S.pendingReturn='steamroll';
+  applyDifficulty();
+  logp(T('lgStart'),'big');
+  logp(T('lgYouStart')+' '+S.reserve[S.playerSide].map(u=>unitName(U[u])).join(', '),'you');
+  S.turn=AXIS;
+  closeModal(); renderAll();
+  if(S.turn===S.botSide) setTimeout(botTurn,650);
+}
+function applyDifficulty(){
+  const off = OPT.botType==='official';
+  const tbl = off ? {easy:[3,1],normal:[3,2],hard:[4,2]}
+                  : {easy:[0,0],normal:[0,0],hard:[2,2]};
+  const [rolls,amt]=tbl[OPT.diff]||[0,0];
+  for(let r=0;r<rolls;r++){
+    const d=1+rnd(6);
+    let t;
+    if(d===6){ t=1; let best=-1;
+      for(let k=1;k<=5;k++) if(S.open[k]&&BOARD[k].vp[S.curCamp[k]]>best){best=BOARD[k].vp[S.curCamp[k]];t=k;} }
+    else t=d;
+    advance(S,S.botSide,t,amt,true,false);
+  }
+  if(rolls) logp((LANG==='hu'?'Nehézségi előny a gépnek: ':'Difficulty head start for the bot: ')+rolls+'×'+amt,'');
+}
+
+/* ---------- player actions ---------------------------------------------- */
+function pickCard(i){
+  if(S.over||S.turn!==S.playerSide||S.pendingStrategic) return;
+  const uid=S.reserve[S.playerSide][i];
+  let ls=legalSpaces(S,S.playerSide,uid);
+  if(S.pendingBlitz) ls=ls.filter(x=>x.t===S.pendingBlitz);
+  if(!ls.length) return;
+  sel = (sel===i)?-1:i;
+  renderAll();
+}
+function doPlace(t,c,i){
+  if(sel<0||S.over||S.turn!==S.playerSide) return;
+  hideTip();
+  const wasBlitz = !!S.pendingBlitz;
+  S.pendingBlitz=0;
+  placeUnit(S,S.playerSide,sel,t,c,i,false);
+  sel=-1;
+  afterPlayerPlacement();
+}
+function afterPlayerPlacement(){
+  renderAll();
+  if(S.pendingStrategic) return;          /* waiting for theatre choice */
+  if(S.pendingBlitz) return;              /* waiting for blitz choice   */
+  finishPlayerTurn();
+}
+function resolveStrategic(t){
+  const n=S.pendingStrategic; S.pendingStrategic=0;
+  if(t) advance(S,S.playerSide,t,n,false,true);
+  afterPlayerPlacement();
+}
+function passBlitz(){ S.pendingBlitz=0; afterPlayerPlacement(); }
+function finishPlayerTurn(){
+  endTurn(S,S.playerSide,false,true);
+  renderAll();
+  if(!S.over) setTimeout(botTurn,600);
+}
+
+/* ---------- bot turns ---------------------------------------------------- */
+function botTurn(sync){
+  if(S.over) return;
+  const bs=S.botSide;
+  if(S.botType==='blitzbot'){ blitzbotTurn(sync); return; }
+  if(S.botType==='official') drawStratagem();
+  let guard=0, mv;
+  const pick = (forceT)=> S.botType==='official'
+      ? officialMove(S,bs,forceT||0)
+      : stratBestMove(S,bs,forceT||0);
+  mv=pick(0);
+  while(mv && guard++<8){
+    S.pendingBlitz=0;
+    placeUnit(S,bs,mv.h,mv.t,mv.c,mv.i,false);
+    if(S.pendingBlitz && S.reserve[bs].length){
+      const t=S.pendingBlitz; S.pendingBlitz=0; mv=pick(t);
+    } else { S.pendingBlitz=0; mv=null; }
+  }
+  endTurn(S,bs,false,true);
+  if(sync) return;
+  renderAll();
+  if(!S.over && S.turn===S.botSide) setTimeout(botTurn,600);
+}
+function drawStratagem(){
+  if(!S.supply.length) S.supply=STRATAGEMS.slice();
+  const k=rnd(S.supply.length);
+  const drawn=S.supply.splice(k,1)[0];
+  if(S.pendingReturn) S.supply.push(S.pendingReturn);
+  S.pendingReturn=drawn;
+  const eff = (drawn==='steamroll' && S.stratagem) ? S.stratagem : (drawn==='steamroll'?'rapid':drawn);
+  S.drawn=drawn; S.stratagem=eff;
+  logp(T('lgStratagem')(stratName(drawn)+(drawn==='steamroll'?' → '+stratName(eff):'')),'bot');
+}
+
+function blitzbotTurn(sync){
+  const bs=S.botSide;
+  if(!S.bag[bs].length && !S.reserve[bs].length){
+    S.over=true; S.winner=S.playerSide; S.reason=T('lgReasonNoRes')(sideName(bs));
+    if(!sync) renderAll(); return;
+  }
+  let extra=0, first=true;
+  do{
+    const uid=drawBag(S,bs,true);
+    if(uid===null) break;
+    const h=S.reserve[bs].indexOf(uid);
+    const d1=1+rnd(6), d2=1+rnd(6);
+    if(first) logp(T('lgRoll')('2d6',d1+' / '+d2),'bot');
+    const t=blitzbotTheatre(S,d1);
+    if(t===null){ S.reserve[bs].splice(h,1); break; }
+    const c=S.curCamp[t];
+    let i=-1; for(let k=0;k<S.spaces[t][c].length;k++) if(!S.spaces[t][c][k]){i=k;break;}
+    if(i<0) break;
+    const u=U[uid];
+    let move=u.str, blitzAgain=false;
+    if(!first){ move=1; }
+    else if(u.spec){ move=5; }
+    else if(u.ab===AB.BLITZ){ blitzAgain=true; }
+    else if(u.ab===AB.GEN){ move=1+countCommanded(S,bs,t,'S'); }
+    else if(u.ab===AB.ADM){ move=1+countCommanded(S,bs,t,'L'); }
+    else{
+      if(d2>=1&&d2<=3) move=u.str+d2;
+      else if(d2===4){ const l=drawLab(S,bs,false,true); if(l!==null) logp(T('lgResearchBot'),'bot'); }
+      else if(d2===5){ bombSide(S,S.playerSide,false); }
+      else if(d2===6) blitzAgain=true;
+    }
+    bbPlace(S,bs,h,t,c,i,move);
+    first=false;
+    if(blitzAgain && extra<1 && (S.bag[bs].length||S.reserve[bs].length)){ extra++; continue; }
+    break;
+  } while(true);
+  endTurn(S,bs,false,false);
+  if(sync) return;
+  renderAll();
+  if(!S.over && S.turn===S.botSide) setTimeout(botTurn,600);
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+function closeModal(){ document.getElementById('ovl').hidden=true; }
+function showModal(title,body){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalBody').innerHTML=body;
+  document.getElementById('ovl').hidden=false;
+}
+let setupSel={playerSide:ALLIES,botType:'strategist',diff:'normal'};
+function openSetup(){
+  setupSel=Object.assign({},OPT);
+  showModal(T('setupTitle'),setupBody());
+}
+function setupBody(){
+  const c=(on)=>on?'chip on':'chip';
+  return `
+  <div class="setup-row"><div class="lab">${T('sSide')}</div><div class="chips">
+    <button class="${c(setupSel.playerSide===ALLIES)}" onclick="setupSet('playerSide',0)">${T('allies')}<small>${T('sAlliesD')}</small></button>
+    <button class="${c(setupSel.playerSide===AXIS)}" onclick="setupSet('playerSide',1)">${T('axis')}<small>${T('sAxisD')}</small></button>
+  </div></div>
+  <div class="setup-row"><div class="lab">${T('sBot')}</div><div class="chips">
+    <button class="${c(setupSel.botType==='strategist')}" onclick="setupSet('botType','strategist')">${T('botStrat')}<small>${T('botStratD')}</small></button>
+    <button class="${c(setupSel.botType==='official')}" onclick="setupSet('botType','official')">${T('botOff')}<small>${T('botOffD')}</small></button>
+    <button class="${c(setupSel.botType==='blitzbot')}" onclick="setupSet('botType','blitzbot')">${T('botBlitz')}<small>${T('botBlitzD')}</small></button>
+  </div></div>
+  <div class="setup-row"><div class="lab">${T('sDiff')}</div><div class="chips">
+    <button class="${c(setupSel.diff==='easy')}" onclick="setupSet('diff','easy')">${T('diffEasy')}<small>${T('diffEasyD')}</small></button>
+    <button class="${c(setupSel.diff==='normal')}" onclick="setupSet('diff','normal')">${T('diffNormal')}<small>${T('diffNormalD')}</small></button>
+    <button class="${c(setupSel.diff==='hard')}" onclick="setupSet('diff','hard')">${T('diffHard')}<small>${T('diffHardD')}</small></button>
+  </div></div>
+  <button class="btn primary" style="width:100%;padding:11px;font-size:15px" onclick="startGame(setupSel)">${T('sStart')}</button>`;
+}
+function setupSet(k,v){ setupSel[k]=v; document.getElementById('modalBody').innerHTML=setupBody(); }
+</script>
+
+<script>
+/* ==========================================================================
+   RULES / REFERENCE
+   ========================================================================== */
+function spaceRefTable(){
+  let h='<table class="reftbl">';
+  for(let e=1;e<=14;e++){
+    h+=`<tr><td><span class="swatch" style="background:linear-gradient(145deg,#d1904a,#a9672c)">${effIconHTML(e)}</span></td>
+        <td><b style="color:var(--cream)">${effName(e)}</b><br>${effDesc(e)}</td></tr>`;
+  }
+  h+='</table>';
+  h+=`<h4>${LANG==='hu'?'Mezőtípusok':'Space types'}</h4><table class="reftbl">
+   <tr><td><span class="swatch" style="background:linear-gradient(145deg,#d1904a,#a9672c)"></span></td><td>${T('ter_L')}</td></tr>
+   <tr><td><span class="swatch" style="background:linear-gradient(145deg,#52bcd8,#2f8aa6)"></span></td><td>${T('ter_S')}</td></tr>
+   <tr><td><span class="swatch" style="background:linear-gradient(135deg,#52bcd8 0 50%,#c07d38 50% 100%)"></span></td><td>${T('ter_A')}</td></tr></table>`;
+  return h;
+}
+function unitRefTable(){
+  const groups=[[0,3,5,7,8,11,13,15,16,17,20],[22,23,25,26,27,28,30,31,32,34,35,36,37]];
+  let h='';
+  [0,1].forEach(gi=>{
+    h+=`<h4>${gi===0?(LANG==='hu'?'Alap egységek (oldalanként 22 db)':'Standard tokens (22 per side)'):(LANG==='hu'?'Különleges fegyverek (kutatási pakli)':'Special weapons (research pile)')}</h4>`;
+    h+='<table class="reftbl">';
+    groups[gi].forEach(id=>{
+      const u=U[id];
+      const cnt=U.filter(x=>x.key===u.key).length;
+      h+=`<tr><td><div style="width:44px;height:44px;margin:auto">${tokenHTML(id,ALLIES)}</div></td>
+        <td><b style="color:var(--cream)">${unitName(u)}</b> <span style="color:var(--muted)">· ${T('t_'+u.type)}${(u.ab===AB.SPY||u.ab===AB.SCI)?'':' · '+(LANG==='hu'?'erő':'strength')+' '+u.str}${cnt>1?' · ×'+cnt:''}</span>
+        ${u.ab?'<br>'+T('ab_'+u.ab):''}</td></tr>`;
+    });
+    h+='</table>';
+  });
+  return h;
+}
+const RULES_HTML={
+hu:{
+ overview:`<p><b>Blitzkrieg!</b> – Paolo Mori játéka. Két koalíció, a Szövetségesek és a Tengelyhatalmak, a második világháború öt fő hadszínteréért küzd. Nincsenek kockák a harcban: az egységjelzőket osztod el a csataterületek között.</p>
+  <h4>A tábla</h4>
+  <ul><li><b>5 hadszíntér</b>, mindegyik 2–3 <b>hadjáratból</b> áll (egy sor csataterület).</li>
+  <li>Az <b>aktív hadjárat</b> a legfelső olyan sor, amelyben van még szabad mező. Csak ide tehetsz egységet (kivétel: a Tudós).</li>
+  <li>Minden hadszíntér tetején <b>csatasáv</b> van. A jelző helyzete mutatja, ki áll nyerésre.</li>
+  <li>A pajzs (arany) mezők a csatasávon extra győzelmi pontot érnek a hadjárat lezárásakor.</li></ul>
+  <h4>Egységek</h4>
+  <ul><li><b>Hadsereg</b>: szárazföldi és vegyes mezőre.</li>
+  <li><b>Haditengerészet</b>: tengeri és vegyes mezőre.</li>
+  <li><b>Légierő</b>: bármelyik mezőre.</li></ul>
+  <p>Minden oldal 22 jelzővel indul a zsákjában, és hármat húz a <b>tartalékába</b>. A kutatás mezők <b>különleges fegyvereket</b> adnak.</p>`,
+ turn:`<h4>A kör menete</h4>
+  <ol><li><b>Tegyél le egy egységet</b> a tartalékodból egy szabad csataterületre bármelyik hadszíntér aktív hadjáratában.</li>
+  <li><b>Hajtsd végre a mező hatását</b> (ha van).</li>
+  <li><b>Mozgasd a csatajelzőt</b> a saját oldalad felé annyi mezőt, amennyi az egység értéke.</li>
+  <li><b>Húzz egy új egységet</b> a zsákodból a tartalékodba. (Villámhadjárat esetén is csak egyet.)</li></ol>
+  <h4>Hadjárat lezárása</h4>
+  <p>Ha az utolsó szabad mezőt is elfoglalják egy sorban, a hadjárat lezárul. Azon az oldalon áll a csatajelző, aki megkapja a sor melletti győzelmi pontokat, plusz 1-1 pontot minden elért pajzs ikonért. Ha a jelző középen áll, mindkét fél megkapja a pontokat.</p>
+  <h4>Hadszíntér megnyerése</h4>
+  <p>Ha a csatajelző a saját oldalad legszélső mezőjére ér, azonnal megnyered az egész hadszínteret: a hátralévő hadjáratok pontjai a tiéd, a még üres mezők hatásai lefutnak a javadra, és a hadszíntér lezárul.</p>`,
+ end:`<h4>A játék vége</h4>
+  <ul><li>Ha valakinek a köre végén <b>25 vagy több</b> hadi győzelmi pontja van:
+    <ul><li>ha a Tengely ér oda előbb, a Szövetségesek kapnak még egy kört;</li>
+    <li>ha a Szövetségesek érik el előbb, ők nyernek;</li>
+    <li>döntetlen esetén a Szövetségesek nyernek.</li></ul></li>
+  <li>Ha a köröd elején nem tudsz szabályosan egységet letenni, az ellenfeled nyer.</li></ul>`,
+ bots:`<p>Három gépi ellenfél közül választhatsz. Mindegyik a teljes alapszabály szerint játszik.</p>
+  <h4>1. Stratéga (BOS) — ajánlott</h4>
+  <p>A feltöltött Blitzkrieg! Opponent Simulator motorjára épülő, továbbfejlesztett ellenfél. Minden lehetséges (egység × csataterület) párost végigszimulál, és pozíciókiértékeléssel választ: győzelmi pontok, csatasáv-előny, hadjáratok várható értéke, tartalék mérete és minősége. Rejtett tartalékkal játszik, mint egy emberi ellenfél. <b>Ez a legerősebb és a legjobb játékélményt adó opció.</b></p>
+  <h4>2. Hivatalos szólóbot (Dávid Turczi)</h4>
+  <p>A dobozban lévő hivatalos szólómodul. A gép <b>nyílt egységsorral</b> játszik (induláskor 5 jelző), és minden körben egy <b>hadicsel-jelzőt</b> húz, amely módosítja a döntéseit. A választás szigorú prioritáslista szerint történik: hadszíntér → csataterület → egység. Kiszámíthatóbb, mint a Stratéga, viszont hiteles és a nehézségi fokozatok a hivatalos szabály szerint működnek (3×+1, 3×+2, 4×+2 kezdeti előny).</p>
+  <h4>3. BlitzBot (nem hivatalos)</h4>
+  <p>Egyszerű, kockavezérelt bot. Húz egy jelzőt, dob két kockával: az első a hadszínteret, a második az akciót adja (+erő, kutatás, bombázás, villámhadjárat). A jelzőt mindig a sor bal szélére teszi, a mező hatását figyelmen kívül hagyja. A te köröddben a bombázás mezők helyett <b>+2 erő</b> jár. Laza, kaotikus játék.</p>
+  <h4>Eltérés a papír szabálytól</h4>
+  <p>Amikor te bombázol egy nyílt egységsorral játszó botot, a program automatikusan a legerősebb nem-különleges jelzőt választja ki (a papírszabály szerint te választanál).</p>`
+},
+en:{
+ overview:`<p><b>Blitzkrieg!</b> by Paolo Mori. Two coalitions, the Allies and the Axis, fight for the five main theatres of World War Two. Combat uses no dice: you allocate unit tokens to battle spaces.</p>
+  <h4>The board</h4>
+  <ul><li><b>5 theatres of operations</b>, each made of 2–3 <b>campaigns</b> (a row of battle spaces).</li>
+  <li>The <b>active campaign</b> is the topmost row with at least one free space. Only there may you place (the Scientist is the exception).</li>
+  <li>Each theatre has a <b>battle track</b> on top. The marker shows who is currently winning it.</li>
+  <li>The golden shield spaces on the track give extra victory points when a campaign closes.</li></ul>
+  <h4>Units</h4>
+  <ul><li><b>Armies</b>: land and land/sea spaces.</li>
+  <li><b>Navies</b>: sea and land/sea spaces.</li>
+  <li><b>Airforces</b>: any space.</li></ul>
+  <p>Each side starts with 22 tokens in its bag and draws three into its <b>reserve</b>. Research spaces grant <b>special weapons</b>.</p>`,
+ turn:`<h4>Turn sequence</h4>
+  <ol><li><b>Place a unit token</b> from your reserve on a free battle space in the active campaign of any theatre.</li>
+  <li><b>Carry out the battle space effect</b> (if any).</li>
+  <li><b>Move the battle marker</b> toward your end by the value of the token.</li>
+  <li><b>Draw a new token</b> from your bag into your reserve. (Only one, even after a blitz.)</li></ol>
+  <h4>Closing a campaign</h4>
+  <p>When the last free space of a row is occupied, that campaign closes. Whoever's side the battle marker is on scores the campaign victory points, plus 1 for each shield icon reached. If the marker is on the central space, both players score.</p>
+  <h4>Winning a theatre</h4>
+  <p>If the battle marker reaches the very last space on your side, you immediately win the whole theatre: you score the remaining campaigns, carry out the effects of every unoccupied space, and the theatre closes.</p>`,
+ end:`<h4>End of the game</h4>
+  <ul><li>When a player has <b>25 or more</b> war victory points at the end of their turn:
+    <ul><li>if the Axis get there first, the Allies take one final turn;</li>
+    <li>if the Allies get there first, they win;</li>
+    <li>a tie goes to the Allies.</li></ul></li>
+  <li>If at the start of your turn you cannot legally place a token, your opponent wins.</li></ul>`,
+ bots:`<p>Three opponents are available. All of them play the full base rules.</p>
+  <h4>1. Strategist (BOS) — recommended</h4>
+  <p>Built on the Blitzkrieg! Opponent Simulator engine you supplied, extended with a full search. It simulates every legal (unit × battle space) pair and scores the resulting position: victory points, battle-track advantage, expected value of each campaign, reserve size and quality. It keeps a hidden reserve, just like a human. <b>The strongest and most satisfying option.</b></p>
+  <h4>2. Official solo bot (Dávid Turczi)</h4>
+  <p>The official solo module from the box. The bot plays with an <b>open unit line</b> (5 tokens at setup) and draws a <b>stratagem token</b> each turn that bends its decisions. Selection follows a strict priority list: theatre → battle space → unit. More predictable than the Strategist, but authentic, and the difficulty levels follow the official rules (3×+1, 3×+2, 4×+2 head start).</p>
+  <h4>3. BlitzBot (unofficial)</h4>
+  <p>A simple dice-driven bot. It draws a token and rolls two dice: the first picks the theatre, the second the action (+strength, research, bombing raid, blitz). It always places on the left-most free space and ignores the space effect. On your turn, bombing spaces count as <b>+2 strength</b> instead. Loose and chaotic.</p>
+  <h4>Difference from the paper rules</h4>
+  <p>When you bomb a bot with an open unit line, the app automatically removes its strongest non-special token (on paper you would choose).</p>`
+}};
+function openRules(tab){
+  const R=RULES_HTML[LANG]||RULES_HTML.en;
+  const tabs=[['overview',T('tabOverview')],['turn',T('tabTurn')],['spaces',T('tabSpaces')],
+              ['units',T('tabUnits')],['end',T('tabEnd')],['bots',T('tabBots')]];
+  const body=(k)=> k==='spaces'?spaceRefTable(): k==='units'?unitRefTable(): R[k];
+  const t = (tab==='rules')?'overview':tab;
+  showModal('Blitzkrieg!',
+    '<div class="tabs">'+tabs.map(([k,n])=>`<button class="${k===t?'on':''}" onclick="openRules('${k}')">${n}</button>`).join('')+'</div>'+
+    '<div>'+body(t)+'</div>');
+}
+
+
+/* ---------- save / restore (per browser) --------------------------------- */
+function saveGame(){
+  try{
+    if(!S) return;
+    localStorage.setItem('bk_save', JSON.stringify({v:2,S,LOG:LOG.slice(-70),OPT}));
+  }catch(e){}
+}
+function loadGame(){
+  try{
+    const raw=localStorage.getItem('bk_save'); if(!raw) return false;
+    const d=JSON.parse(raw); if(!d||d.v!==2||!d.S||d.S.over) return false;
+    S=d.S; LOG=d.LOG||[]; OPT=d.OPT||OPT; sel=-1;
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ==========================================================================
+   LANGUAGE + INIT
+   ========================================================================== */
+function setLang(l){
+  LANG=l;
+  document.getElementById('langHu').className = l==='hu'?'on':'';
+  document.getElementById('langEn').className = l==='en'?'on':'';
+  document.querySelectorAll('[data-i]').forEach(e=>{ e.textContent=T(e.getAttribute('data-i')); });
+  try{ localStorage.setItem('bk_lang',l); }catch(e){}
+  if(!document.getElementById('ovl').hidden){
+    const ttl=document.getElementById('modalTitle').textContent;
+    if(ttl===T('setupTitle')||ttl===I18N.hu.setupTitle||ttl===I18N.en.setupTitle) openSetup();
+  }
+  renderAll();
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  let l='hu'; try{ l=localStorage.getItem('bk_lang')||'hu'; }catch(e){}
+  LANG=l;
+  document.getElementById('langHu').className = l==='hu'?'on':'';
+  document.getElementById('langEn').className = l==='en'?'on':'';
+  document.querySelectorAll('[data-i]').forEach(e=>{ e.textContent=T(e.getAttribute('data-i')); });
+  if(loadGame()){
+    renderAll();
+    if(!S.over && S.turn===S.botSide) setTimeout(botTurn,700);
+  } else {
+    startGame(OPT);
+    setTimeout(()=>openSetup(),150);
+  }
+});
+</script>
+
+</body>
+</html>
