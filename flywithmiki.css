@@ -243,3 +243,7 @@ hr { border: none; border-top: 1px solid var(--fwm-line); }
 ::-webkit-scrollbar-track { background: #eef3f7; }
 
 /* keep W3 layout helpers untouched: this skin restyles, it does not re-lay-out */
+
+/* menu: the same weights on every page. Main items bold, sub-items regular */
+.w3-sidebar .w3-padding-24 a { font-weight: 700; }
+.w3-sidebar .w3-padding-24 a[style*="padding-left:26px"] { font-weight: 400; }

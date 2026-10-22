@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://flywithmiki.com/Images_v2/13.webp"
   ],
   "priceRange": "CHF 185 - CHF 6000",
-  "description": "Swiss paragliding school in Kriens, Canton of Lucerne, Central Switzerland. Full pilot training to the SHV/IPPI4 licence in small groups (3-8 students per instructor), tandem flights and equipment, taught in English, German and Hungarian.",
+  "description": "Swiss paragliding school in Kriens, Canton of Lucerne, Central Switzerland. Full pilot training to the SHV/IPPI4 licence in small groups (max. 10 students per course), tandem flights and equipment, taught in English, German and Hungarian.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
@@ -125,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="manifest" href="site.webmanifest">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <style>
@@ -219,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Paragliding Links &amp; Webcams Switzerland | FLYwithMIKI" />
 <meta name="twitter:description" content="FLYwithMIKI - Useful links to paragliding related websites and to prepare yourself for your next flying adventure" />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=1">
+<link rel="stylesheet" href="flywithmiki.css?v=2">
 </head> 
 
 
@@ -260,30 +260,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
-    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
-    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-padding-16 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="academy.html" class="w3-bar-item w3-button" style="color:#0f8b8d">&#127891; Academy for Licensed Pilots</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-large w3-text-grey" style="font-weight:bold">
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
+  <div id="demoAcc3" class="w3-bar-block w3-hide w3-show" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="meteoAI.html" class="w3-bar-item w3-button" style="font-size:0.9em">AI Weather Briefing</a>
     <a href="emagram.html" class="w3-bar-item w3-button" style="font-size:0.9em">Emagram Analyser</a>
-    <a href="links.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Links &amp; Webcams</a>
+    <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
-  </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
-  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
-    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
-    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>

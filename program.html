@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://flywithmiki.com/Images_v2/13.webp"
   ],
   "priceRange": "CHF 185 - CHF 6000",
-  "description": "Swiss paragliding school in Kriens, Canton of Lucerne, Central Switzerland. Full pilot training to the SHV/IPPI4 licence in small groups (3-8 students per instructor), tandem flights and equipment, taught in English, German and Hungarian.",
+  "description": "Swiss paragliding school in Kriens, Canton of Lucerne, Central Switzerland. Full pilot training to the SHV/IPPI4 licence in small groups (max. 10 students per course), tandem flights and equipment, taught in English, German and Hungarian.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
@@ -127,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <style>
@@ -197,7 +197,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Daily Program | FLYwithMIKI Paragliding School" />
 <meta name="twitter:description" content="FLYwithMIKI - Check our daily program, where do we fly, what are the plans for the following days and weeks" />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=1">
+<link rel="stylesheet" href="flywithmiki.css?v=2">
 </head> 
 
 
@@ -238,30 +238,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Learn to Fly</a>
-    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensive Course 2027</a>
-    <a href="prices.html" class="w3-bar-item w3-button">Prices</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-padding-16 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="academy.html" class="w3-bar-item w3-button" style="color:#0f8b8d">&#127891; Academy for Licensed Pilots</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-large w3-text-grey" style="font-weight:bold">
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
-  <div id="demoAcc3" class="w3-bar-block" style="padding-left:20px">
-    <a href="program.html" class="w3-bar-item w3-button w3-light-grey" style="font-size:0.9em">Daily Program</a>
+  <div id="demoAcc3" class="w3-bar-block w3-hide w3-show" style="padding-left:20px">
+    <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
     <a href="meteoAI.html" class="w3-bar-item w3-button" style="font-size:0.9em">AI Weather Briefing</a>
     <a href="emagram.html" class="w3-bar-item w3-button" style="font-size:0.9em">Emagram Analyser</a>
     <a href="links.html" class="w3-bar-item w3-button" style="font-size:0.9em">Links &amp; Webcams</a>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
-  </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; For Licensed Pilots <i class="fa fa-caret-down"></i></a>
-  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
-    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Equipment</a>
-    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Maneuver Training</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
@@ -299,156 +305,578 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- PAGE HERO -->
  <div class="page-hero section-boxed">
-   <span class="hero-badge">Student Area</span>
-   <h1>Daily Program</h1>
-   <p class="hero-sub">Where and when we fly: the plan for the next school day, posted by Miki after the weather check, with meeting point and time.</p>
+   <span class="hero-badge">Student Area &middot; 2027 preview</span>
+   <h1>The 2027 Season</h1>
+   <p class="hero-sub">Every day we fly in 2027 on one page: the weekend school days for current students from January to March, the Trial Days and theory evenings in spring, the Intensive Course from 27 May to 15 August (four ground-school days, three intensive weeks, then weekends), and the Academy days and theory evenings for licensed pilots. Hover over a coloured day, or tap it, to see what happens on it.</p>
  </div>
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
 
-<!-- Daily program -->
-        <div class="w3-container w3-blue-light-gray w3-padding-32 w3-center" id="dailyp">
-           <div class="w3-content w3-padding w3-left-align" style="max-width:1000px">
-               
-                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                       <style> 
-                            table {
-                              border-collapse: collapse;
-                              margin-bottom: 20px;
-                                      }
-                            th, td {
-                               border: 1px solid #ddd;
-                               padding: 8px;
-                               text-align: left;
-                                    }
-                            th {
-                                background-color: #f2f2f2;
-                                 width: 100px; /* Set a fixed width for the first column */
-                                 }
-                            .event-container {
-                                 margin-bottom: 50px; /* Increased distance between events */
-                                 border-bottom: 1px solid #ddd;
-                                 padding-bottom: 20px;
-                                 }
-                             #dateHeader {
-                                     font-size: 28px; /* Bigger font size */
-                                     font-weight: bold; /* Bold text */
-                                     margin-bottom: 15px; /* Increased margin-bottom */
-                                 } 
-                        </style>
-                        
-          <div id="events"></div>
-          <script> $(document).ready(function () {
-            // Replace 'YOUR_API_KEY' with the API key you obtained
-            var apiKey = 'AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
-            // Replace 'YOUR_CALENDAR_ID' with the Calendar ID you obtained
-            var calendarId = 'mikiparagliding@gmail.com';
-            var apiUrl = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?key=' + apiKey;
-            // Get the current date and the date for the next day
-            var today = new Date();
-            var tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate() + 1);
-            // Format dates as per Google Calendar API requirements
-            var todayString = today.toISOString();
-            var tomorrowString = tomorrow.toISOString();
-            // Make the API request to get events for the next day
-            $.ajax({
-                url: apiUrl,
-                data: {
-                    timeMin: todayString,
-                    timeMax: tomorrowString,
-                    singleEvents: true,
-                    orderBy: 'startTime'
-                },
-                success: function (response) {
-                    // Process the response and display events on the page
-                    var eventsContainer = $('#events');
-                    response.items.forEach(function (event, index) {
-                        var eventContainer = $('<div class="event-container"></div>');
-                        var dateHeader = $('<div id="dateHeader"></div>');
-                        // Extract only the hour from the start time
-                        var startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
-                        var hourString = startTime ? startTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) : 'N/A';
-                        // Format the event date as DD.MM, DAY
-                        var eventDate = startTime ? new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()) : new Date(event.start.date);
-                        var eventFormatted = eventDate ? ((eventDate.getDate() < 10) ? '0' : '') + eventDate.getDate() + '.' + ((eventDate.getMonth() + 1 < 10) ? '0' : '') + (eventDate.getMonth() + 1) + ' - ' + getDayName(eventDate.getDay()) : 'N/A';
-                        dateHeader.text(eventFormatted);
-                        eventContainer.append(dateHeader);
-                        // Create HTML string with event details and start a new table for each event
-                        var eventHtml = '<table>';
-                        eventHtml += '<col width="100">'; // Set a fixed width for the first column
-                        eventHtml += '<tr><th>Program</th><td>' + event.summary + '</td></tr>';
-                        // Check if there is a meeting time before adding the meeting time line
-                        if (startTime) {
-                            eventHtml += '<tr><th>Meeting Time</th><td>' + hourString + '</td></tr>';
-                        }
-                        // Check if there is a meeting point before adding the meeting point line
-                        if (event.location) {
-                            eventHtml += '<tr><th>Meeting point</th><td>' + event.location + '</td></tr>';
-                        }
-                        // Check if there is a location before adding the map link
-                        if (event.location) {
-                            eventHtml += '<tr><th>Map</th><td><a href="' + getGoogleMapsLink(event.location) + '" target="_blank" rel="noopener noreferrer">Click here</a></td></tr>';
-                        }
-                        // Check if there is an online meeting link
-                        if (event.conferenceData && event.conferenceData.entryPoints && event.conferenceData.entryPoints.length > 0) {
-                            var meetingLink = event.conferenceData.entryPoints[0].uri;
-                            eventHtml += '<tr><th>Online Meeting</th><td><a href="' + meetingLink + '" target="_blank" rel="noopener noreferrer">Join Meeting</a></td></tr>';
-                        }
-                        // Check if there is a description before adding the description line
-                        if (event.description) {
-                            eventHtml += '<tr><th>Description</th><td>' + event.description + '</td></tr>';
-                        }
-                        // Close the table for each event
-                        eventHtml += '</table>';
-                        eventContainer.append(eventHtml);
-                        eventsContainer.append(eventContainer);
-                    });
-                },
-                error: function (error) {
-                    console.log('Error fetching events: ', error);
-                }
-            });
-            // Function to generate Google Maps link
-            function getGoogleMapsLink(location) {
-                // Encode the location for a URL
-                var encodedLocation = encodeURIComponent(location);
-                // Construct the Google Maps link
-                return 'https://www.google.com/maps/search/?api=1&query=' + encodedLocation;
-            }
-            // Function to get the day name in English
-            function getDayName(dayIndex) {
-                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-                return days[dayIndex];
-            }
-        }); </script>
-        </div>
-       
-       </div>            
-                
-                
-                
-                
-   <!--CALENDAR SECTION-->    
-<div style="max-width:1000px; margin: 0 auto; text-align: center;">
-    <h2 class="w3-center">School Calendar</h2>
-    <br>
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;ctz=Europe%2FZurich&amp;bgcolor=%23ffffff&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&amp;color=%23039BE5"
-            style="border: solid 1px #777; width: 100%; height: 550px;" frameborder="0" title="FLYwithMIKI-school calendar">
-    </iframe>
+<!-- ===== SCHOOL CALENDAR (custom, reads the same Google Calendar) ===== -->
+<div class="w3-container w3-padding-32" id="dailyp" style="background:#f7f9fb">
+  <div style="max-width:1040px;margin:auto">
+
+    <div class="fwm-preview">
+      <b>&#9889; The 2027 plan.</b> These are the planned 2027 dates. The weather decides each flying day: the final call comes at 20:00 the evening before, so check back here and in the group before your flying day.
+    </div>
+
+    <div id="fwmNext" class="fwm-next fwm-next-loading">Loading the 2027 plan&hellip;</div>
+
+    <div class="fwm-cal">
+      <div class="fwm-cal-head">
+        <button type="button" class="fwm-nav" id="fwmPrev" aria-label="Previous month">&#8249;</button>
+        <div class="fwm-cal-title" id="fwmMonth">&nbsp;</div>
+        <button type="button" class="fwm-nav" id="fwmNextM" aria-label="Next month">&#8250;</button>
+      </div>
+      <div class="fwm-views">
+        <button type="button" class="fwm-view" id="fwmViewMonth">Month</button>
+        <button type="button" class="fwm-view fwm-view-on" id="fwmViewYear">Year</button>
+      </div>
+      <div class="fwm-grid fwm-grid-head fwm-hide" id="fwmHead">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="fwm-grid fwm-hide" id="fwmGrid"></div>
+      <div class="fwm-year" id="fwmYear"></div>
+      <div class="fwm-legend">
+        <span><i class="fwm-dot fwm-c-trial"></i>&#127793; Trial Day</span>
+        <span><i class="fwm-dot fwm-c-theory"></i>&#128214; School theory, online</span>
+        <span><i class="fwm-dot fwm-c-atheory"></i>&#128218; Academy theory, online</span>
+        <span><i class="fwm-dot fwm-c-hill"></i>&#9968; Training hill</span>
+        <span><i class="fwm-dot fwm-c-intensive"></i>&#9889; Intensive weeks</span>
+        <span><i class="fwm-dot fwm-c-fly"></i>&#129666; High flights</span>
+        <span><i class="fwm-dot fwm-c-academy"></i>&#127891; Academy day</span>
+        <span><i class="fwm-dot fwm-c-office"></i>&#128172; Office hours, Tue and Thu 17:00 to 19:00</span>
+        <span><i class="fwm-dot fwm-c-off"></i>&#127965; Miki on holiday</span>
+        <span style="opacity:.7">Faded days are backups or still to be confirmed. Split days: two things on the same day, for example an Academy guest-coach day on an Intensive Course weekend</span>
+      </div>
+    </div>
+
+    <!-- The "what is coming up" list is switched off while the calendar shows the static 2027 preview.
+         Restore this block together with PREVIEW=false in the script below.
+    <h3 class="fwm-list-title" id="fwmListTitle">What is coming up</h3>
+    <div id="fwmList" class="fwm-list"></div>
+    -->
+    <p class="fwm-foot">What 2027 holds: weekend school days from January to March for the students who started before 2027, four theory evenings in April and two optional Trial Days for anyone who wants to try first, the Intensive Course from 27 May to 15 August (four ground-school days, three intensive weeks with flying every day, then Friday-to-Sunday weekends), and for licensed pilots the Academy: a spring and a summer weekend with Miki, two guest coach days, backup days and four Advanced Theory evenings online. From September to February the school is closed for teaching: we answer messages in fixed office hours (Tuesday and Thursday, 17:00 to 19:00), online, and do the paperwork. The empty weeks are deliberate: a school year without a real off-season is how instructors burn out, and a tired instructor is a safety risk. Weather can still move a day: the call comes at 20:00 the evening before.</p>
+  </div>
 </div>
 
 <style>
-    /* Make the iframe more responsive on smaller screens */
-    @media (max-width: 600px) {
-        iframe {
-            height: 400px; /* Adjust the height for mobile */
-        }
-        h2 {
-            font-size: 1.5em; /* Adjust the font size for mobile */
-        }
-    }
+.fwm-next{box-sizing:border-box;background:linear-gradient(135deg,#0077b6 0%,#00b4d8 100%);color:#fff;border-radius:16px;padding:22px 24px;margin:0 0 26px;box-shadow:0 6px 20px rgba(0,119,182,.18)}
+.fwm-next-loading{background:#e9eef2;color:#7b8794;box-shadow:none}
+.fwm-next .fwm-eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.72em;opacity:.9;margin:0 0 6px}
+.fwm-next h2{margin:0 0 4px;font-size:1.7em;line-height:1.15}
+.fwm-next .fwm-when{font-size:1.05em;opacity:.95;margin:0 0 10px}
+.fwm-next .fwm-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92em}
+.fwm-next a{color:#fff;text-decoration:underline}
+.fwm-next .fwm-desc{margin:12px 0 0;font-size:.9em;opacity:.93;line-height:1.5}
+.fwm-cal{background:#fff;border:1px solid #e3e8ec;border-radius:16px;padding:16px 16px 12px}
+.fwm-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.fwm-cal-title{font-weight:bold;font-size:1.25em;color:#24303a}
+.fwm-nav{border:1px solid #dfe5ea;background:#fff;color:#24303a;border-radius:10px;width:38px;height:38px;font-size:1.3em;line-height:1;cursor:pointer}
+.fwm-nav:hover{background:#f1f5f8}
+.fwm-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.fwm-grid-head span{text-align:center;font-size:.72em;text-transform:uppercase;letter-spacing:.08em;color:#8a97a3;padding:4px 0;font-weight:bold}
+.fwm-day{min-height:62px;min-width:0;overflow:hidden;border:1px solid #eef2f5;border-radius:10px;padding:5px 6px;background:#fff;display:flex;flex-direction:column;gap:3px}
+.fwm-day.fwm-empty{border-color:transparent;background:transparent}
+.fwm-day.fwm-has{cursor:pointer}
+.fwm-day.fwm-has:hover{border-color:#0077b6}
+.fwm-day.fwm-past{opacity:.45}
+.fwm-day.fwm-today{border-color:#e85d04;box-shadow:0 0 0 2px rgba(232,93,4,.15)}
+.fwm-day.fwm-sel{border-color:#0077b6;box-shadow:0 0 0 2px rgba(0,119,182,.18)}
+.fwm-num{font-size:.8em;color:#67747f;font-weight:bold}
+.fwm-chip{display:block;max-width:100%;font-size:.62em;line-height:1.25;border-radius:5px;padding:2px 4px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fwm-views{display:flex;gap:6px;justify-content:center;margin:0 0 12px}
+.fwm-view{border:1px solid #dfe5ea;background:#fff;color:#67747f;border-radius:20px;padding:6px 18px;font-size:.85em;cursor:pointer}
+.fwm-view-on{background:#0077b6;border-color:#0077b6;color:#fff;font-weight:bold}
+.fwm-hide{display:none!important}
+.fwm-year{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:14px}
+.fwm-mini{background:#fff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 10px 8px}
+.fwm-mini header{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 6px}
+.fwm-mini h4{margin:0;font-size:1em;color:#24303a;cursor:pointer}
+.fwm-mini h4:hover{color:#0077b6;text-decoration:underline}
+.fwm-mini .fwm-mcount{font-size:.68em;color:#8a97a3;font-variant-numeric:tabular-nums}
+.fwm-mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.fwm-mgrid b{font-size:.55em;font-weight:bold;color:#aab4bd;text-align:center;line-height:1.6}
+.fwm-mgrid span{aspect-ratio:1;border-radius:4px;background:#f2f5f8;font-size:.58em;color:#9aa6b1;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.fwm-mgrid span.fwm-none{background:transparent}
+.fwm-mgrid span.fwm-on{color:#fff;font-weight:bold;cursor:pointer}
+.fwm-mgrid span.fwm-on{flex-direction:column;gap:0;line-height:1}
+.fwm-mgrid span.fwm-on em{font-style:normal}
+.fwm-mgrid .fwm-yicon{font-style:normal;font-size:1.05em;line-height:1;margin-bottom:1px}
+.fwm-mgrid span.fwm-split{box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
+.fwm-mgrid span.fwm-on:hover{outline:2px solid #24303a;outline-offset:1px}
+.fwm-mgrid span.fwm-msel{outline:2px solid #e85d04;outline-offset:1px}
+/* on a big screen the card stays in view while you scroll through the year */
+@media (min-width:900px) and (min-height:700px){.fwm-next{position:sticky;top:12px;z-index:5}}
+.fwm-mgrid span.fwm-t{box-shadow:0 0 0 2px #e85d04}
+.fwm-mgrid span.fwm-c-hill{background:#2e7d32}
+.fwm-mgrid span.fwm-c-trial{background:#66bb6a}
+.fwm-mgrid span.fwm-c-fly{background:#0077b6}
+.fwm-mgrid span.fwm-c-theory{background:#4527a0}
+.fwm-mgrid span.fwm-c-atheory{background:#9c7fe0}
+.fwm-mgrid span.fwm-c-check{background:#e85d04}
+.fwm-mgrid span.fwm-c-siku{background:#00897b}
+.fwm-mgrid span.fwm-c-off{background:#aab4bd}
+.fwm-mgrid span.fwm-c-xc{background:#c2185b}
+.fwm-mgrid span.fwm-c-academy{background:#0f8b8d}
+.fwm-mgrid span.fwm-c-trip{background:#00a0c6}
+.fwm-mgrid span.fwm-on.fwm-tent{opacity:.45}
+.fwm-mgrid span.fwm-c-intensive{background:#e85d04}
+.fwm-mgrid span.fwm-c-exam{background:#2e7d32}
+.fwm-mgrid span.fwm-c-tandem{background:#00a896}
+.fwm-mgrid span.fwm-c-office{background:#b9d3e6}
+.fwm-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.fwm-c-hill{background:#2e7d32}.fwm-c-trial{background:#66bb6a}.fwm-c-fly{background:#0077b6}
+.fwm-c-theory{background:#4527a0}.fwm-c-atheory{background:#9c7fe0}.fwm-c-check{background:#e85d04}
+.fwm-c-siku{background:#00897b}.fwm-c-xc{background:#c2185b}.fwm-c-academy{background:#0f8b8d}.fwm-c-trip{background:#00a0c6}.fwm-c-off{background:#aab4bd}
+.fwm-c-intensive{background:#e85d04}.fwm-c-exam{background:#2e7d32}.fwm-c-tandem{background:#00a896}.fwm-c-office{background:#b9d3e6}
+.fwm-chip.fwm-tent{opacity:.6;border:1px dashed rgba(255,255,255,.75)}
+.fwm-day.fwm-tentday{background:repeating-linear-gradient(135deg,#fff,#fff 6px,#f6f8fa 6px,#f6f8fa 12px)}
+.fwm-preview{background:#fff4ec;border:1px solid #f3d9c6;border-left:5px solid #e85d04;border-radius:12px;padding:12px 16px;margin:0 0 18px;color:#5a4636;font-size:.92em;line-height:1.55}
+.fwm-legend span{display:inline-flex;align-items:center;gap:5px}
+.fwm-next .fwm-tentnote{margin:10px 0 0;font-size:.86em;opacity:.92}
+.fwm-nav[disabled]{cursor:default}
+.fwm-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;font-size:.78em;color:#67747f}
+.fwm-list-title{color:#24303a;margin:28px 0 10px}
+.fwm-item{background:#fff;border:1px solid #e3e8ec;border-left:5px solid #0077b6;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.fwm-item h4{margin:0 0 4px;font-size:1.08em;color:#24303a}
+.fwm-item .fwm-when{font-size:.86em;color:#67747f;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em}
+.fwm-item .fwm-meta{font-size:.9em;color:#4a5560;display:flex;flex-wrap:wrap;gap:6px 16px}
+.fwm-item .fwm-desc{font-size:.88em;color:#5a6672;margin:8px 0 0;line-height:1.55}
+.fwm-item.fwm-b-hill{border-left-color:#7a5cc7}.fwm-item.fwm-b-theory{border-left-color:#5b6b7a}
+.fwm-item.fwm-b-intensive{border-left-color:#e85d04}.fwm-item.fwm-b-office{border-left-color:#b9d3e6}.fwm-item.fwm-b-exam{border-left-color:#2e7d32}
+.fwm-item.fwm-b-tandem{border-left-color:#00a896}
+.fwm-foot{color:#8a97a3;font-size:.82em;margin-top:18px}
+@media(max-width:600px){.fwm-day{min-height:48px}.fwm-chip{height:6px;padding:0;font-size:0;border-radius:3px}.fwm-next h2{font-size:1.35em}}
 </style>
-   <!--CALENDAR SECTION-->    
+
+<script>
+(function(){
+  /* ==================================================================
+     TEMPORARY 2027 PREVIEW MODE
+     PREVIEW = true   the calendar draws the planned 2027 season from
+                      PLAN below and never calls the Google Calendar.
+     PREVIEW = false  back to the live school calendar: load() runs and
+                      the page behaves exactly as it did before.
+     Nothing in the live code path was removed. When switching back,
+     also restore the "what is coming up" block in the markup above.
+     ================================================================== */
+  var PREVIEW = true;
+  var YEAR    = 2027;
+
+  var API_KEY='AIzaSyD1D95EK_eIaKvMjrdMdEVbqnLdcmYG3Rw';
+  var CAL_ID='mikiparagliding@gmail.com';
+  var DAYNAME=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MONTH=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var ICON={off:'&#127965;',hill:'&#9968;',trial:'&#127793;',fly:'&#129666;',theory:'&#128214;',check:'&#128295;',
+            siku:'&#129466;',xc:'&#129517;',academy:'&#127891;',trip:'&#129309;',atheory:'&#128218;',intensive:'&#9889;',exam:'&#127942;',tandem:'&#9992;',office:''};
+  var SHORT={hill:'Training hill',trial:'Trial Day',fly:'High flights',theory:'School theory',check:'Check',
+             siku:'Safety',xc:'XC camp',academy:'Academy',trip:'Mini trip',atheory:'Academy theory',intensive:'Intensive Course',exam:'Exam',tandem:'Tandem',off:'Holiday',office:'Office hours'};
+
+  /* The planned 2027 season. Ranges are inclusive.
+     Categories: check, trial, theory (school), atheory (Academy), hill, fly, academy, trip, siku.
+     tentative:true draws the days faded, for everything that only runs if enough people sign up. */
+  var PLAN=[
+    {from:'2027-01-08',to:'2027-01-10',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-01-15',to:'2027-01-17',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-01-22',to:'2027-01-24',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-01-29',to:'2027-01-31',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-02-05',to:'2027-02-07',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-02-08',to:'2027-02-21',cat:'off',title:'Miki on holiday',
+     desc:'Two weeks off. No school days, and messages wait until I am back.'},
+    {from:'2027-02-23',to:'2027-02-23',cat:'atheory',title:'Academy: Advanced Theory, evening 1 of 4, advanced maneuvers',time:'19:00 to 21:00',
+     desc:'For licensed pilots, live online. Included in the Season Pass, otherwise CHF 60, all four CHF 200.'},
+    {from:'2027-02-26',to:'2027-02-28',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-03-05',to:'2027-03-07',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-03-12',to:'2027-03-14',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-03-19',to:'2027-03-21',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
+     note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
+     desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
+    {from:'2027-04-03',to:'2027-04-04',cat:'academy',title:'Academy: spring weekend',
+     note:'The weather decides which day comes first, announced in the group at 20:00 the evening before. A lost day moves to a backup day.',
+     desc:'Advanced groundhandling and advanced maneuver training, one day each. Season Pass holders.'},
+    {from:'2027-04-13',to:'2027-04-13',cat:'atheory',title:'Academy: Advanced Theory, evening 2 of 4, emagram and weather',time:'19:00 to 21:00',
+     desc:'For licensed pilots, live online. Included in the Season Pass, otherwise CHF 60, all four CHF 200.'},
+    {from:'2027-04-24',to:'2027-04-24',cat:'trial',title:'Trial Day on the training hill',loc:'Stans',
+     note:'Runs from 3 participants, decided two weeks before.',
+     desc:'One full day of groundhandling and first low flights, all equipment provided, CHF 300, credited against the Intensive Course if you book it. A separate offer for anyone who wants to try paragliding first; it is not part of the course.'},
+    {from:'2027-05-04',to:'2027-05-04',cat:'atheory',title:'Academy: Advanced Theory, evening 3 of 4, thermals and XC planning',time:'19:00 to 21:00',
+     desc:'For licensed pilots, live online. Included in the Season Pass, otherwise CHF 60, all four CHF 200.'},
+    {from:'2027-05-08',to:'2027-05-08',cat:'trial',title:'Trial Day on the training hill',loc:'Stans',
+     note:'Runs from 3 participants, decided two weeks before.',
+     desc:'The second and last Trial Day of the spring. Same as April: CHF 300, all equipment provided, credited against the Intensive Course.'},
+    {from:'2027-04-12',to:'2027-04-12',cat:'theory',title:'Intensive Course: online theory, evening 1 of 4',time:'19:00 to 21:00',
+     desc:'Meteorology first, because it decides every other decision you will make in the air. Live online, recorded for anyone who misses one.'},
+    {from:'2027-04-15',to:'2027-04-15',cat:'theory',title:'Intensive Course: online theory, evening 2 of 4',time:'19:00 to 21:00',
+     desc:'Aerodynamics and materials: what the wing does, why it does it, and what wears out.'},
+    {from:'2027-04-19',to:'2027-04-19',cat:'theory',title:'Intensive Course: online theory, evening 3 of 4',time:'19:00 to 21:00',
+     desc:'Flight technique and airspace law, the way they show up on a real day in Central Switzerland.'},
+    {from:'2027-04-22',to:'2027-04-22',cat:'theory',title:'Intensive Course: online theory, evening 4 of 4',time:'19:00 to 21:00',
+     desc:'Theory revision with practice questions, and the last open questions before the course.'},
+    {from:'2027-05-22',to:'2027-05-23',cat:'academy',title:'Academy: backup days',tentative:true,
+     note:'Used only if a spring coaching day was lost to the weather.',
+     desc:'A lost spring coaching day moves here. We decide at 20:00 the evening before.'},
+    {from:'2027-05-27',to:'2027-05-30',cat:'hill',title:'Intensive Course: ground school, training hill',loc:'Stans',
+     note:'For everyone. Thursday 27 May is Corpus Christi, a public holiday in Lucerne, so most people only need the Friday off. Runs from 4 paid deposits by 31 March 2027. Max. 10 students.',
+     desc:'Four days of launching, steering and landing, until the wing stops being a stranger. Video analysis right on the training hill.'},
+    {from:'2027-05-31',to:'2027-06-06',cat:'intensive',title:'Intensive Course: intensive week 1 of 3',loc:'Emmetten, Wolfenschiessen, Engelberg',
+     note:'We fly every day, with one weekday off a week, usually the one with the worst weather. Weekend students join Friday to Sunday. The call comes at 20:00 the evening before.',
+     desc:'For the intensive path: high flights every flyable day, fast progress while everything is fresh. Most intensive students are close to exam-ready after these three weeks and top up on the weekends.'},
+    {from:'2027-06-07',to:'2027-06-13',cat:'intensive',title:'Intensive Course: intensive week 2 of 3',loc:'Emmetten, Wolfenschiessen, Engelberg',
+     note:'We fly every day, with one weekday off a week, usually the one with the worst weather. Weekend students join Friday to Sunday. The call comes at 20:00 the evening before.',
+     desc:'For the intensive path: high flights every flyable day, fast progress while everything is fresh. Most intensive students are close to exam-ready after these three weeks and top up on the weekends.'},
+    {from:'2027-06-12',to:'2027-06-12',cat:'academy',title:'Academy: XC day with Marcel Schmid',
+     note:'Guest coach day, Season Pass. Backup: Sunday 13 June. Led by the guest coach. Date to be confirmed with Marcel.',
+     desc:'Marcel picks the place for the day and the level of the group and sets the line. Open seats for licensed pilots without a pass: CHF 350.'},
+    {from:'2027-06-13',to:'2027-06-13',cat:'academy',title:'Academy: backup day for the XC day',tentative:true,
+     note:'Used only if Saturday was not flyable.',
+     desc:'The backup day for the XC day with Marcel Schmid.'},
+    {from:'2027-06-14',to:'2027-06-20',cat:'intensive',title:'Intensive Course: intensive week 3 of 3',loc:'Emmetten, Wolfenschiessen, Engelberg',
+     note:'We fly every day, with one weekday off a week, usually the one with the worst weather. Weekend students join Friday to Sunday. The call comes at 20:00 the evening before.',
+     desc:'For the intensive path: high flights every flyable day, fast progress while everything is fresh. Most intensive students are close to exam-ready after these three weeks and top up on the weekends.'},
+    {from:'2027-06-22',to:'2027-06-22',cat:'atheory',title:'Academy: Advanced Theory, evening 4 of 4, risk assessment',time:'19:00 to 21:00',
+     desc:'For licensed pilots, live online. Included in the Season Pass, otherwise CHF 60, all four CHF 200.'},
+    {from:'2027-06-25',to:'2027-06-27',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. Come on all three days if you can; Saturday and Sunday are the core. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-02',to:'2027-07-04',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. On Saturday and Sunday a guest instructor teaches the course while Miki coaches the Academy.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-03',to:'2027-07-04',cat:'academy',title:'Academy: summer weekend',
+     note:'The call comes at 20:00 the evening before.',
+     desc:'Thermals with Miki, and a first XC line close to home when the day allows. Season Pass holders.'},
+    {from:'2027-07-09',to:'2027-07-11',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. Come on all three days if you can; Saturday and Sunday are the core. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-16',to:'2027-07-18',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. Come on all three days if you can; Saturday and Sunday are the core. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-23',to:'2027-07-25',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. Come on all three days if you can; Saturday and Sunday are the core. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-30',to:'2027-08-01',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. If the Academy needs its backup days, a guest instructor teaches the course on Saturday and Sunday.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-07-31',to:'2027-08-01',cat:'academy',title:'Academy: backup days',tentative:true,
+     note:'Used only if a summer coaching day was lost to the weather.',
+     desc:'A lost summer coaching day moves here. We decide at 20:00 the evening before.'},
+    {from:'2027-08-06',to:'2027-08-08',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. Friday to Sunday. Come on all three days if you can; Saturday and Sunday are the core. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-08-13',to:'2027-08-15',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
+     note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. The last course weekend. Friday to Sunday; the course ends on Sunday 15 August. The call for each day comes at 20:00 the evening before.',
+     desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
+    {from:'2027-08-14',to:'2027-08-14',cat:'academy',title:'Academy: hike &amp; fly day with Mihai Lazar',
+     note:'Guest coach day, Season Pass. Backup: Sunday 15 August. Led by the guest coach. Date to be confirmed with Mihai.',
+     desc:'Choosing a peak that works, packing light without cutting safety, judging a wild launch.'},
+    {from:'2027-09-06',to:'2027-10-03',cat:'off',title:'Miki on holiday',
+     desc:'Four weeks off. From September to February the school is closed for teaching: online office hours only.'},
+    {from:'2027-12-20',to:'2027-12-31',cat:'off',title:'Miki on holiday',
+     desc:'The last days of the year off. Messages wait until January.'}
+  ];
+
+  /* the same colours as the CSS classes, used to split a day when two things run in parallel */
+  var CATCOL={hill:'#2e7d32',trial:'#66bb6a',fly:'#0077b6',theory:'#4527a0',atheory:'#9c7fe0',check:'#e85d04',siku:'#00897b',off:'#aab4bd',xc:'#c2185b',academy:'#0f8b8d',trip:'#00a0c6',intensive:'#e85d04',exam:'#2e7d32',tandem:'#00a896',office:'#b9d3e6'};
+  var events=[], byDay={}, selected=null, hovered=null, view='month';
+  var cursor=new Date(); cursor.setDate(1); cursor.setHours(0,0,0,0);
+  if(PREVIEW){ cursor=new Date(YEAR,0,1); view='year'; }
+
+  function cat(t){
+    t=(t||'').toLowerCase();
+    if(t.indexOf('holiday')>-1||t.indexOf('no schooling')>-1||t.indexOf('szabads')>-1) return 'off';
+    if(t.indexOf('check')>-1||t.indexOf('repack')>-1) return 'check';
+    if(t.indexOf('trial')>-1||t.indexOf('taster')>-1) return 'trial';
+    if(t.indexOf('siku')>-1||t.indexOf('safety')>-1) return 'siku';
+    if(t.indexOf('xc')>-1||t.indexOf('cross')>-1||t.indexOf('thermal')>-1) return 'xc';
+    if(t.indexOf('theory')>-1||t.indexOf('online')>-1) return 'theory';
+    if(t.indexOf('exam')>-1) return 'exam';
+    if(t.indexOf('intensive')>-1) return 'intensive';
+    if(t.indexOf('tandem')>-1) return 'tandem';
+    if(t.indexOf('hill')>-1||t.indexOf('stans')>-1||t.indexOf('grundkurs')>-1) return 'hill';
+    return 'fly';
+  }
+  function dayKey(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  function startOf(ev){return new Date(ev.start.dateTime||ev.start.date+'T00:00:00');}
+  function isAllDay(ev){return !ev.start.dateTime;}
+  function hhmm(d){return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function maps(loc){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(loc);}
+
+  /* ---- the two sources, normalised into one shape ---- */
+  function fromGoogle(items){
+    /* Google gives an all-day event once, with an exclusive end date.
+       Spread it over every day it covers, so a 10-day intensive shows on all 10 days. */
+    var out=[];
+    items.forEach(function(e){
+      var s=startOf(e);
+      var link=e.hangoutLink||(e.conferenceData&&e.conferenceData.entryPoints&&e.conferenceData.entryPoints[0]&&e.conferenceData.entryPoints[0].uri)||'';
+      var last=new Date(s);
+      if(isAllDay(e) && e.end && e.end.date){ last=new Date(e.end.date+'T00:00:00'); last.setDate(last.getDate()-1); }
+      for(var d=new Date(s); d<=last; d.setDate(d.getDate()+1)){
+        out.push({key:dayKey(d),cat:cat(e.summary),title:e.summary||'School day',
+                  time:isAllDay(e)?'':hhmm(s),loc:e.location||'',desc:e.description||'',link:link,tentative:false,note:''});
+      }
+    });
+    return out;
+  }
+  function fromPlan(){
+    var out=[];
+    PLAN.forEach(function(p){
+      var a=new Date(p.from+'T00:00:00'), b=new Date(p.to+'T00:00:00');
+      for(var d=new Date(a); d<=b; d.setDate(d.getDate()+1)){
+        out.push({key:dayKey(d),cat:p.cat,title:p.title,time:p.time||'',loc:p.loc||'',
+                  desc:p.desc||'',link:'',tentative:!!p.tentative,note:p.note||''});
+      }
+    });
+    /* office hours: every Tuesday and Thursday, 17:00 to 19:00, online.
+       Not on holidays, not on course days, and paused during the intensive weeks. */
+    var busy={};
+    out.forEach(function(e){ if(e.cat==='off'||e.cat==='hill'||e.cat==='fly'||e.cat==='intensive') busy[e.key]=1; });
+    for(var d=new Date(YEAR,0,1); d.getFullYear()===YEAR; d.setDate(d.getDate()+1)){
+      var k=dayKey(d), wd=d.getDay();
+      if((wd!==2&&wd!==4) || busy[k] || (k>='2027-05-31'&&k<='2027-06-20')) continue;
+      out.push({key:k,cat:'office',title:'Office hours (online)',time:'17:00 to 19:00',loc:'',
+                desc:'Calls with Miki, and from March to August the 30-minute mentoring slots for Academy pass holders. Messages are answered within one working day, also outside these hours.',
+                link:'',tentative:false,note:''});
+    }
+    return out;
+  }
+  function setEvents(list){
+    events=list; byDay={};
+    events.forEach(function(e){ (byDay[e.key]=byDay[e.key]||[]).push(e); });
+    /* on a day with a holiday and a flying event, the flying event is the headline */
+    Object.keys(byDay).forEach(function(k){
+      var rank=function(e){ return e.cat==='off'?2:(e.cat==='office'?1:0); };
+      byDay[k].sort(function(a,b){ return rank(a)-rank(b); });
+    });
+    render();
+    lockCardHeight();
+  }
+
+  /* The top card gets the height of its tallest possible content, measured once at the
+     current width. Hovering then only swaps the text, and neither the card nor the
+     calendar below it moves. Measured again after resize and once the web fonts are in. */
+  function lockCardHeight(){
+    var box=document.getElementById('fwmNext'); if(!box) return;
+    var saveH=hovered, max=0, keys=Object.keys(byDay).slice(0,400);
+    box.style.minHeight='';
+    function h(){ return Math.ceil(box.getBoundingClientRect ? box.getBoundingClientRect().height : (box.offsetHeight||0)) || 0; }
+    keys.forEach(function(k){ hovered=k; renderDetail(); max=Math.max(max, h()); });
+    hovered=null; renderDetail(); max=Math.max(max, h());
+    hovered=saveH; renderDetail();
+    if(max) box.style.minHeight=max+'px';
+  }
+  var resizeTimer=null;
+  window.addEventListener('resize',function(){ clearTimeout(resizeTimer); resizeTimer=setTimeout(lockCardHeight,150); });
+  window.addEventListener('load',lockCardHeight);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(lockCardHeight); }
+
+  function eventsOn(key){ return byDay[key]||[]; }
+
+  function load(){
+    var from=new Date(); from.setDate(1); from.setMonth(from.getMonth()-1); from.setHours(0,0,0,0);
+    var to=new Date(from); to.setMonth(to.getMonth()+14);
+    var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events'
+      +'?key='+API_KEY+'&singleEvents=true&orderBy=startTime&maxResults=800'
+      +'&timeMin='+encodeURIComponent(from.toISOString())+'&timeMax='+encodeURIComponent(to.toISOString());
+    fetch(url).then(function(r){return r.json();}).then(function(d){
+      setEvents(fromGoogle((d.items||[]).filter(function(e){return e.status!=='cancelled' && e.start;})));
+    }).catch(function(){
+      document.getElementById('fwmNext').className='fwm-next fwm-next-loading';
+      document.getElementById('fwmNext').innerHTML='The calendar could not be loaded right now. '
+        +'<a href="https://calendar.google.com/calendar/embed?src=bWlraXBhcmFnbGlkaW5nQGdtYWlsLmNvbQ&ctz=Europe%2FZurich" target="_blank" rel="noopener noreferrer">Open it in Google Calendar</a>.';
+    });
+  }
+
+  /* ---- the card on top: next day by default, the hovered or clicked day otherwise ---- */
+  function defaultKey(){
+    var todayKey=dayKey(new Date()), keys=Object.keys(byDay).sort();
+    for(var i=0;i<keys.length;i++){ if(keys[i]>=todayKey) return keys[i]; }
+    return keys.length?keys[keys.length-1]:null;
+  }
+  function renderDetail(){
+    var box=document.getElementById('fwmNext');
+    var picked=hovered||selected, key=picked||defaultKey();
+    var evs=key?eventsOn(key):[];
+    if(!evs.length){
+      box.className='fwm-next fwm-next-loading';
+      box.innerHTML=PREVIEW?'Nothing planned on this day. Hover over a coloured day, or tap it, to see what happens on it.'
+                           :'No school day is posted yet. The next dates go up after the weather check.';
+      return;
+    }
+    var e=evs[0], d=new Date(key+'T00:00:00');
+    var eyebrow=picked?'Selected day':(PREVIEW?'First in the 2027 plan':'Next school day');
+    if(!picked && dayKey(new Date())===key) eyebrow='Today';
+    var html='<p class="fwm-eyebrow">'+eyebrow+'</p>';
+    html+='<h2>'+ICON[e.cat]+' '+esc(e.title)+'</h2>';
+    html+='<p class="fwm-when">'+DAYNAME[d.getDay()]+', '+d.getDate()+' '+MONTH[d.getMonth()]+' '+d.getFullYear()
+      +(e.time?' &middot; '+esc(e.time):'')+'</p>';
+    var meta=[];
+    if(e.loc) meta.push('&#128205; '+esc(e.loc)+' <a href="'+maps(e.loc)+'" target="_blank" rel="noopener noreferrer">map</a>');
+    if(e.link) meta.push('&#128187; <a href="'+e.link+'" target="_blank" rel="noopener noreferrer">Join online</a>');
+    if(meta.length) html+='<div class="fwm-meta">'+meta.join('')+'</div>';
+    if(e.desc) html+='<div class="fwm-desc">'+e.desc+'</div>';
+    if(evs.length>1) html+='<div class="fwm-desc">Also on this day: '+evs.slice(1).map(function(x){return esc(x.title);}).join(', ')+'</div>';
+    if(e.tentative) html+='<p class="fwm-tentnote">&#9888; '+esc(e.note||'This one runs only if enough people sign up.')+'</p>';
+    box.className='fwm-next'; box.innerHTML=html;
+  }
+
+  /* A click shows the day in the top card; clicking the same day again goes back to "next up".
+     The view stays where it is. Later a sign-up button can live in the card. */
+  function pick(k){
+    selected=(selected===k)?null:k; hovered=null;
+    if(view==='year'){ renderYear(); } else { renderGrid(); }
+    renderDetail();
+    var box=document.getElementById('fwmNext');
+    if(box && box.getBoundingClientRect){
+      var r=box.getBoundingClientRect();
+      if(r.top<0 || r.bottom>window.innerHeight){ box.scrollIntoView({behavior:'smooth',block:'start'}); }
+    }
+  }
+
+  function bindDay(el){
+    el.addEventListener('mouseenter',function(){ hovered=el.getAttribute('data-key'); renderDetail(); });
+    el.addEventListener('mouseleave',function(){ hovered=null; renderDetail(); });
+  }
+
+  function renderGrid(){
+    var grid=document.getElementById('fwmGrid'), out='';
+    document.getElementById('fwmMonth').textContent=MONTH[cursor.getMonth()]+' '+cursor.getFullYear();
+    var first=new Date(cursor), pad=(first.getDay()+6)%7;
+    var days=new Date(cursor.getFullYear(),cursor.getMonth()+1,0).getDate();
+    var todayKey=dayKey(new Date());
+    for(var i=0;i<pad;i++) out+='<div class="fwm-day fwm-empty"></div>';
+    for(var d=1;d<=days;d++){
+      var date=new Date(cursor.getFullYear(),cursor.getMonth(),d), key=dayKey(date);
+      var evs=eventsOn(key), cls='fwm-day';
+      if(evs.length) cls+=' fwm-has';
+      if(evs.length && evs[0].tentative) cls+=' fwm-tentday';
+      if(!PREVIEW && key<todayKey) cls+=' fwm-past';
+      if(key===todayKey) cls+=' fwm-today';
+      if(key===selected) cls+=' fwm-sel';
+      out+='<div class="'+cls+'" data-key="'+key+'">';
+      out+='<span class="fwm-num">'+d+'</span>';
+      evs.slice(0,2).forEach(function(e){
+        out+='<span class="fwm-chip fwm-c-'+e.cat+(e.tentative?' fwm-tent':'')+'" title="'+esc(e.title)+'">'
+            +ICON[e.cat]+' '+esc(SHORT[e.cat]||e.title)+'</span>';
+      });
+      if(evs.length>2) out+='<span class="fwm-num">+'+(evs.length-2)+'</span>';
+      out+='</div>';
+    }
+    grid.innerHTML=out;
+    Array.prototype.forEach.call(grid.querySelectorAll('.fwm-has'),function(el){
+      bindDay(el);
+      el.addEventListener('click',function(){ pick(el.getAttribute('data-key')); });
+    });
+  }
+
+  function renderYear(){
+    var box=document.getElementById('fwmYear'), y=cursor.getFullYear(), out='';
+    var todayKey=dayKey(new Date());
+    document.getElementById('fwmMonth').textContent=y;
+    for(var m=0;m<12;m++){
+      var first=new Date(y,m,1), pad=(first.getDay()+6)%7;
+      var days=new Date(y,m+1,0).getDate(), used=0, cells='';
+      for(var i=0;i<pad;i++) cells+='<span class="fwm-none"></span>';
+      for(var d=1;d<=days;d++){
+        var key=dayKey(new Date(y,m,d)), evs=eventsOn(key);
+        var cls=(key===todayKey?' fwm-t':'');
+        if(evs.length){
+          if(evs.some(function(e){return e.cat!=='off'&&e.cat!=='office';})) used++;
+          var tip=evs.map(function(e){return (e.time?e.time+' ':'')+e.title+(e.loc?' ('+e.loc+')':'');}).join(' | ');
+          /* the first day of an event carries its icon next to the day number;
+             a day with two things in parallel is split diagonally in both colours */
+          var prev=eventsOn(dayKey(new Date(y,m,d-1)));
+          var starter=null;
+          evs.forEach(function(e){ if(!starter&&!prev.some(function(p){return p.title===e.title;})) starter=e; });
+          var label=starter&&ICON[starter.cat]?'<i class="fwm-yicon">'+ICON[starter.cat]+'</i><em>'+d+'</em>':'<em>'+d+'</em>';
+          var col=function(e){return CATCOL[e.cat]+(e.tentative?'73':'');};
+          var split=(evs.length>1&&evs[1].cat!==evs[0].cat)?' style="background:linear-gradient(135deg,'+col(evs[0])+' 0 50%,'+col(evs[1])+' 50% 100%)"':'';
+          cells+='<span class="fwm-on fwm-c-'+evs[0].cat+(evs[0].tentative&&evs.length===1?' fwm-tent':'')+(split?' fwm-split':'')+(key===selected?' fwm-msel':'')+cls
+                +'"'+split+' data-key="'+key+'" title="'+d+' '+MONTH[m]+': '+esc(tip)+'">'+label+'</span>';
+        } else {
+          cells+='<span class="'+cls.replace(' ','')+'">'+d+'</span>';
+        }
+      }
+      out+='<div class="fwm-mini"><header><h4 data-m="'+m+'">'+MONTH[m]+'</h4>'
+        +'<span class="fwm-mcount">'+(used?used+(used===1?' day':' days'):'')+'</span></header>'
+        +'<div class="fwm-mgrid"><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><b>S</b></div>'
+        +'<div class="fwm-mgrid">'+cells+'</div></div>';
+    }
+    box.innerHTML=out;
+    Array.prototype.forEach.call(box.querySelectorAll('h4'),function(h){
+      h.addEventListener('click',function(){
+        cursor=new Date(y,parseInt(h.getAttribute('data-m'),10),1); selected=null; hovered=null; setView('month');
+      });
+    });
+    Array.prototype.forEach.call(box.querySelectorAll('.fwm-on'),function(el){
+      bindDay(el);
+      el.addEventListener('click',function(){ pick(el.getAttribute('data-key')); });
+    });
+  }
+
+  function updateNav(){
+    var prev=document.getElementById('fwmPrev'), next=document.getElementById('fwmNextM');
+    var atStart, atEnd;
+    if(view==='year'){ atStart=atEnd=PREVIEW; }
+    else { atStart=PREVIEW&&cursor.getMonth()===0; atEnd=PREVIEW&&cursor.getMonth()===11; }
+    prev.disabled=!!atStart; next.disabled=!!atEnd;
+    prev.style.opacity=atStart?'.3':'1'; next.style.opacity=atEnd?'.3':'1';
+  }
+
+  function setView(v){
+    view=v;
+    document.getElementById('fwmViewMonth').className='fwm-view'+(v==='month'?' fwm-view-on':'');
+    document.getElementById('fwmViewYear').className='fwm-view'+(v==='year'?' fwm-view-on':'');
+    document.getElementById('fwmHead').classList.toggle('fwm-hide', v!=='month');
+    document.getElementById('fwmGrid').classList.toggle('fwm-hide', v!=='month');
+    document.getElementById('fwmYear').classList.toggle('fwm-hide', v!=='year');
+    render();
+  }
+
+  function render(){
+    renderDetail();
+    if(view==='year'){ renderYear(); } else { renderGrid(); }
+    updateNav();
+  }
+
+  function step(delta){
+    if(view==='year'){
+      if(PREVIEW) return;                                  /* the preview is one year only */
+      cursor.setFullYear(cursor.getFullYear()+delta);
+    } else {
+      var nd=new Date(cursor.getFullYear(), cursor.getMonth()+delta, 1);
+      if(PREVIEW && nd.getFullYear()!==YEAR) return;       /* stay inside 2027 */
+      cursor=nd;
+    }
+    selected=null; hovered=null; render();
+  }
+
+  document.getElementById('fwmPrev').addEventListener('click',function(){ step(-1); });
+  document.getElementById('fwmNextM').addEventListener('click',function(){ step(1); });
+  document.getElementById('fwmViewMonth').addEventListener('click',function(){setView('month');});
+  document.getElementById('fwmViewYear').addEventListener('click',function(){setView('year');});
+
+  if(PREVIEW){ setEvents(fromPlan()); } else { load(); }
+})();
+</script>
+<!-- ===== /SCHOOL CALENDAR ===== -->
+    
 
     
     <!------PREPARATION---------->

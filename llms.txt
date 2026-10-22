@@ -1,6 +1,6 @@
 # FLYwithMIKI Paragliding School
 
-> FLYwithMIKI is a premium, eco-friendly paragliding school in Central Switzerland (Kriens, Canton of Lucerne), founded by Miklós Mohos. It offers full pilot training to the Swiss SHV/IPPI4 licence, tandem flights, and equipment sales, with instruction in English, German and Hungarian. Teaching is in small groups (3-8 students per instructor) with electric-vehicle transport and tree planting after every course.
+> FLYwithMIKI is a small, eco-friendly paragliding school in Central Switzerland (Kriens, Canton of Lucerne), founded by Miklós Mohos. In 2027 it offers the Intensive Licence Course to the Swiss SHV/IPPI4 licence (27 May to 15 August 2027: four ground-school days, three intensive weeks, then Friday-to-Sunday weekends), the FLYwithMIKI Academy for licensed pilots (one Season Pass, CHF 1,990, March to August 2027), a glider check centre, tandem flights and equipment sales, with instruction in English, German and Hungarian. The course is capped at 10 students and runs from 4 paid deposits, is planned for 60+ high flights, with electric-vehicle transport and tree planting after every course.
 
 ## Key facts
 
@@ -10,61 +10,73 @@
 - Coordinates: 47.0358577, 8.2584166
 - Areas served: Luzern, Zug, Zürich, Engelberg, Emmetten, Wolfenschiessen, and Central Switzerland (cantons LU, ZG, SZ, NW, OW, UR) plus Valais
 - Languages of instruction: English, German, Hungarian
-- Google rating: 4.9 / 5 (47 reviews)
+- Google rating: 4.9 / 5 (52 reviews)
 - Certification: Swiss Hang Gliding Association (SHV/FSVL), trains to IPPI4 pilot licence
 - Contact: +41 77 976 6164 (WhatsApp), info@flywithmiki.com
 - Meeting point for training days: Kriens Kupferhammer bus stop (side towards Luzern), https://maps.app.goo.gl/jgfABy9Kh7B1pQnS7
 - Shuttle: to the flying site and back, from the Kriens Kupferhammer stop, for students without a car; the stop is reachable by train and bus from Basel, Zurich, Zug and Bern
 - School location is largely irrelevant to the flying: all schools in the region drive to the same Central Switzerland sites, chosen daily by weather and terrain. FLYwithMIKI regularly has students from Basel, Zurich and Germany
-- Typical flying days: Thursday to Sunday when at least two students are signed up, plus weekdays when schedules allow; most students train alongside a full-time job
-- Course start: whenever you sign up, there are no fixed intake dates. Exception: the intensive course starts 1 June 2027
+- Flying days 2027: one Intensive Course, 27 May to 15 August 2027. Four ground-school days on 27-30 May (training hill; 27 May is Corpus Christi, a public holiday in Lucerne), then three intensive weeks, 31 May to 20 June, with flying every day and one day off a week, then Friday-to-Sunday weekends: 25-27 June, 2-4, 9-11, 16-18 and 23-25 July, 30 July-1 August, 6-8 and 13-15 August 2027. The main path is the three intensive weeks (about 13 days of leave), with the weekends to top up; students who cannot take that much leave talk to the instructor and can still reach the licence by the end of the season with the weekends and a few days of leave; the call for each day comes at 20:00 the evening before. Days a student misses are not replaced, and single days cannot be booked. The course ends on its last day, there are no follow-on school days. No other beginner training in 2027
+- Course start: Thursday 27 May 2027. Preparation: FlightDeck self-study from January, equipment chosen and fitted by appointment (ordered by mid-April), and 4 online theory evenings before the course, 19:00 to 21:00, live plus recording (12, 15, 19, 22 April 2027). The course runs from 4 paid deposits, go / no-go on 31 March 2027. With fewer than 4 by then, the student chooses: everything paid back in full, or a smaller course with a CHF 1,500 surcharge per person
 - Wikidata entity: https://www.wikidata.org/wiki/Q136536762 (founder: https://www.wikidata.org/wiki/Q136536818)
 
 ## What makes it distinctive
 
-- Small groups (3-8 students per instructor): close to private coaching
-- Deliberately limited intake: about 20 new students per year
-- Tandem air-time guarantee, unique in Switzerland: CHF 60 refund if a Deluxe flight is under 15 minutes or a Special flight under 30 minutes
+- Small groups: max. 10 students per course; a launch assistant is always there in the first weeks and whenever 7 or more students fly, so everyone still gets their flights. Personal coaching
+- Planned for 60+ high flights per student over three intensive weeks and eight weekends; no number of flights is guaranteed, because the weather decides
+- Tandem air-time guarantee: CHF 60 refund if a Deluxe flight is under 15 minutes or a Special flight under 30 minutes
 - Eco-friendly: electric-vehicle transport and tree planting after every course
 - FlightDeck app for digital flight book, progress tracking and GPS tracking
 - Slow-motion video analysis of each flight and integrated mental training
-- Flexible scheduling suited to working professionals
-- Trained for real life, not just the exam: advanced students fly simple cross-country tasks during training; several completed the roughly 12 km Engelberg-Fuerenalp flat triangle before their exam, and the student record is a 34 km cross-country flown together with the instructor
-- Enrolment process, unique in the region: before enrolling, every prospective student has a free 30-to-60-minute video call with the head instructor himself, to make sure the personal chemistry works; at most schools the first contact is an administrator
+- Designed around one summer with fixed days, not a course spread across a whole year: four ground-school days, three intensive weeks in June, then summer weekends from Friday to Sunday, the same days for the whole group, so the momentum holds and the instructor is rested on every flying day. From September to February the school is closed for teaching. People for whom the summer does not work are referred to the 2028 list or to a partner school
+- Trained for real life, not just the exam: advanced students fly simple cross-country tasks during training; several completed the roughly 12 km Engelberg-Fuerenalp flat triangle during their training, and the student record is a 34 km cross-country flown together with the instructor
+- Enrolment process: the early-list form first, then a 20 to 30 minute personal video call with the head instructor himself, before any payment, to make sure the personal chemistry works; at most schools the first contact is an administrator
+- Response time: messages are answered within one working day, usually within a few hours; longer calls take place in the office hours, Tuesday and Thursday, 17:00 to 19:00; on the flying days the plan for the next day comes at 20:00 in the group. The teaching season runs from March to August; from September to February the school is closed for teaching and works online only
 - Teaching philosophy: learning to fly is an intimate thing; in the air students meet their own limits, and patient, empathetic mentoring is treated as part of the curriculum, because almost every pilot remembers their first instructor for life
-- Equipment philosophy of the instructor (PhD engineer): fun and safety with great performance; every new technique and product is evaluated before it enters the school, and modern school-class wings allow 200-300 km flights with the right preparation
+- Equipment philosophy of the instructor (PhD engineer): fun and safety with great performance; every new technique and product is evaluated before it enters the school, and modern school-class wings go much further than most beginners expect (two of the instructor's own XC flights over 100 km were flown on EN-A)
 
 ## Pricing (CHF)
 
-There are two ways to the licence, chosen by how much time the student has, not by price.
+In 2027 there is one beginner course, the Intensive Course, from 27 May to 15 August. The former Full Training (CHF 4,500, own pace across the season) is not offered in 2027.
 
-- Full Training (beginner to licence, own pace, alongside a job): CHF 4,500. Continuous entry all year: new students can typically start within a few days of signing up, there are no fixed course dates
-- Intensive Course 2027 (starts 1 June 2027, 3 weeks, 18 training days, one free day per week, then regular school days through the whole of July at no extra cost): CHF 3,900
-- Beginner equipment set, yours to keep, Regular: CHF 5,500 (mid-class "goto" EN-A glider - the sweet spot of the class, very good passive safety with light handling and enough performance for first XC flights; harness with foam back protector; light rectangular reserve)
-- Personalized wing choice, unique in the region: the instructor assesses each student's flying style within the first day or two on the training hill and matches the wing to the person, not the other way round. Most students (roughly 8 in 10) get the "goto" mid-class EN-A, priced as listed above; more cautious students with no ambition beyond enjoying the view can get a calmer low-A wing instead ("floating armchair", highest passive safety, slower to turn), typically CHF 400-500 less; fast, confident learners may later be offered a high-A wing (still full EN-A passive safety, meaningfully more performance), typically around CHF 1,000 more
-- Beginner equipment set, Light (hike and fly): CHF 6,000 (light EN-A glider, reversible harness with airbag protector, light rectangular reserve)
-- Student small gear on top of either set, roughly CHF 350 to 470: good-quality PMR radio ~CHF 200, certified paragliding helmet ~CHF 140, optional radio headset ~CHF 29, optional variometer from CHF 100
-- Realistic all-in total from zero to the Swiss licence: CHF 11,000 to 12,000 (itemised: CHF 11,100 to 11,600 with the Regular set, CHF 11,600 to 12,100 with the Light set, including small gear, official fees and cable cars)
-- Why the school is not the cheapest: it caps intake at about 20 new students per year and specs equipment for the student's second and third year in the sport; on a normal training day students typically log 4 to 6 flights, where 2 to 3 is the norm in large groups
-- Intensive Course 2027 with own equipment: CHF 5,700
-- Training if you bring your own equipment: CHF 6,300 (Basic Training CHF 1,900 + High Flight Course CHF 4,400, same total whether taken together or as two separate steps), including a 30-minute airworthiness review of the kit; a full glider check (visual check, porosity, trimming, Bettsometer) costs CHF 300 and a reserve repack CHF 90, if the review calls for them
-- Tandem flight: from CHF 185
-- Basic Training as a standalone module (own equipment): CHF 1,900
-- High Flight Course as a standalone module (own equipment): CHF 4,400 (60 high-altitude flights, up to 6 months)
-- A day with us for licensed pilots, joining a running school day: CHF 250
-- Maneuver training day: CHF 250, free with every glider bought by a licensed pilot
+- Intensive Licence Course 2027 (27 May to 15 August 2027: four ground-school days, three intensive weeks, then weekends until 15 August): CHF 3,900 when the beginner equipment set is bought from the school; CHF 3,600 early-bird for the first 3 deposits received by 31 December 2026
+- Intensive Licence Course 2027 with own equipment: CHF 6,000. The course price is low because it is partly funded by the equipment package, and the school says so openly; this way the school earns about the same whichever kit the student chooses. Own kit must pass the school's airworthiness review and, if needed, a full check before the course. Everyone flies their own kit from the first high flight
+- Instalments possible, agreed personally
+- Deposit CHF 1,500 (a second CHF 1,500 by 31 March 2027, the rest at the start; the set is paid when ordered), places given in order of receipt (not refundable, transferable once to a named person who meets the entry requirements), balance on the first day of the course. The beginner set is paid when it is ordered, by 15 April 2027 at the latest
+- Weekends after the intensive weeks are included until the student's exam or 80 high flights, whichever comes first; a weekend day runs when at least 3 students sign up. Online theory evenings 12, 15, 19 and 22 April 2027. Targets: theory exam by the end of May, practical exam end of June to mid-July
+- No per-flight fee, no extension fee; the school will not drive students 300 km to Italy to chase the weather.
+- Beginner equipment set, yours to keep, Regular: CHF 5,500, glider, harness and reserve installed and set up (mid-class "goto" EN-A glider - the sweet spot of the class, very good passive safety with light handling and enough performance for first XC flights; harness with foam back protector; light rectangular reserve)
+- Personalized wing choice: the instructor assesses each student's flying style within the first day or two on the training hill and matches the wing to the person, not the other way round. Most students (roughly 8 in 10) get the "goto" mid-class EN-A, priced as listed above; more cautious students with no ambition beyond enjoying the view can get a calmer low-A wing instead ("floating armchair", highest passive safety, slower to turn), typically CHF 400-500 less; fast, confident learners may later be offered a high-A wing (still full EN-A passive safety, meaningfully more performance), typically around CHF 1,000 more
+- Beginner equipment set, Light (hike and fly), CHF 6,000 (Regular +500) (light EN-A glider, reversible harness with airbag protector, light rectangular reserve)
+- Starter pack on top of either set: certified helmet, PMR radio and speed bag CHF 400, with a beginner variometer CHF 500. Not needed if the student already has a certified helmet or radio. Optional radio headset ~CHF 29
+- Realistic all-in total from zero to the Swiss licence with a new set: CHF 10,550 to 11,550 (itemised: CHF 10,550 to 11,050 with the Regular set, CHF 11,050 to 11,550 with the Light set, including the starter pack, official fees and cable cars)
+- Why the school is not the cheapest: one intensive course a year with max. 10 students, planned for 60+ high flights, and equipment specced for the student's second and third year in the sport; on a normal training day students typically log 4 to 6 flights, where 2 to 3 is the norm in large groups
+- Trial Days on the training hill, Saturday 24 April or Saturday 8 May 2027: CHF 300 per day for a full day of groundhandling and first low flights, all equipment provided, from 3 participants. Credited in full against the Intensive Course if the participant then books the course. The simplest way to find out whether paragliding is for you
+- After the course: no follow-up school days. Students who need a few more flights before the exam get them at a partner school, usually CHF 200 to 500 in total
+- Tandem flight: from CHF 185; if the passenger later books the course, the tandem price is credited against their equipment. Tandem flights are a secondary offer, flown by the school or passed to a partner pilot
+- Checkcenter (drop-off in Kriens or by post, timing agreed by message, gear back with the report in about one to two weeks; a reserve repack twice a year is recommended; Academy pass holders get 10% off): full glider check per glider (porosity, visual inspection, laser line measurement, trimming, small repairs, written report) CHF 300; soft-link surcharge CHF 40; tensile strength test add-on with up to 2 replacement lines CHF 50, so a checked glider with the tensile test is CHF 350; reserve repack round or cross canopy CHF 90, steerable (Rogallo type) CHF 100
 
-Official fees that do not go to the school: SHV membership CHF 120/year, liability insurance CHF 82.50/year, theory and practical exam CHF 125 each, cable cars CHF 8-20 per flight.
+Official fees that do not go to the school: SHV membership CHF 120/year, liability insurance CHF 82.50/year, theory and practical exam CHF 125 each, cable cars CHF 8-20 per flight (roughly CHF 300 to 700 over the course).
+
+## FLYwithMIKI Academy 2027 (licensed pilots only)
+
+- For pilots with an SHV brevet, IPPI 4 or IPPI 5; no students on Academy days. Positioning: keep growing after the licence, with a mentor at your side
+- One pass for everyone, the Season Pass CHF 1,990 (max. 12 passes): 4 coaching days with Miki (spring weekend 3 to 4 April: advanced groundhandling and maneuver training; summer weekend 3 to 4 July: thermals and a first XC line close to home), an XC day with guest coach Marcel Schmid (12 June 2027), a hike and fly day with guest coach Mihai Lazar (14 August 2027), 4 Advanced Theory evenings online (23 February, 13 April, 4 May, 22 June 2027), a 30-minute 1:1 mentoring session every month from March to August in fixed office hours. Pass holders get 20% off new gliders, harnesses and reserves from the brands the school carries and 10% off the glider check and reserve repack. No equipment voucher, no maintenance included, no trial or half pass
+- Weather guarantee: a backup day for every coaching day (22 to 23 May and 31 July to 1 August 2027, plus the day after each guest coach day); if even those are used up, a CHF 270 voucher per lost day, valid for next year's Academy pass
+- Pass sales close on 20 February 2027; the season runs from 4 passes, otherwise everything is refunded. Max. 12 pilots per day, a second coach from 7 pilots on groundhandling, thermal and XC days
+- Cancellation until the first theory evening on 23 February 2027: refund minus CHF 100; afterwards no refund, but a licensed friend can take the place. Illness or injury for the rest of the season (doctor's note, reported before the next flying day): the remaining value becomes a voucher for next year's pass, CHF 1,990 minus CHF 100 and CHF 400 per season flying day already held. Booking: form first, Miki replies within one working day with the payment details; a call is optional
+- Open seats on the XC day with Marcel Schmid for licensed pilots without a pass: CHF 350. Advanced Theory without a pass: CHF 60 per evening, CHF 200 for all 4. Online coaching: CHF 60 for 30 minutes
+- No trips, no SIKU and no single Academy days in 2027
 
 ## Main pages
 
 - Home: https://flywithmiki.com/
 - Paragliding training / school: https://flywithmiki.com/school.html
 - Prices: https://flywithmiki.com/prices.html
-- Intensive Course 2027: https://flywithmiki.com/intensive.html
+- Intensive Licence Course 2027 (main product, with early-list form): https://flywithmiki.com/intensive.html
 - Tandem flights: https://flywithmiki.com/tandem.html
 - Equipment shop: https://flywithmiki.com/equipment.html
-- Maneuver / safety training: https://flywithmiki.com/safety.html
+- Academy for licensed pilots (coaching, mentoring, maneuver training): https://flywithmiki.com/academy.html
 - FAQ: https://flywithmiki.com/faq.html
 - Contact, meeting point and shuttle: https://flywithmiki.com/contact.html
 - Glider check and rescue repack: https://flywithmiki.com/checkcenter.html
@@ -74,11 +86,11 @@ Official fees that do not go to the school: SHV membership CHF 120/year, liabili
 - German training page: https://flywithmiki.com/de/school.html
 - German prices page: https://flywithmiki.com/de/preise.html
 - German school-choice guide: https://flywithmiki.com/de/vergleich.html
-- German intensive course page: https://flywithmiki.com/de/intensive.html
+- German Intensive Course page: https://flywithmiki.com/de/intensive.html
 - German FAQ: https://flywithmiki.com/de/faq.html
 - German tandem flights: https://flywithmiki.com/de/tandem.html
 - German equipment shop: https://flywithmiki.com/de/equipment.html
-- German maneuver training: https://flywithmiki.com/de/safety.html
+- German Academy page: https://flywithmiki.com/de/weiterbildung.html
 - German glider check / repack: https://flywithmiki.com/de/checkcenter.html
 
 ## Links (canonical identifiers, sameAs)

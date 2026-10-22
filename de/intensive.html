@@ -49,7 +49,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://flywithmiki.com/Images_v2/13.webp"
   ],
   "priceRange": "CHF 185 - CHF 6000",
-  "description": "Schweizer Gleitschirmschule in Kriens, Kanton Luzern, Zentralschweiz. Vollstaendige Pilotenausbildung bis zum SHV/IPPI4-Brevet in kleinen Gruppen (3-8 Schueler pro Fluglehrer), Tandemfluege und Ausruestung, auf Deutsch, Englisch und Ungarisch.",
+  "description": "Schweizer Gleitschirmschule in Kriens, Kanton Luzern, Zentralschweiz. Vollstaendige Pilotenausbildung bis zum SHV/IPPI4-Brevet in kleinen Gruppen (max. 10 Schueler pro Kurs), Tandemfluege und Ausruestung, auf Deutsch, Englisch und Ungarisch.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
@@ -110,35 +110,99 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
   "@context": "https://schema.org",
   "@type": "Course",
-  "name": "Gleitschirm Intensivkurs 2027, 3 Wochen + 1 Monat",
-  "description": "3-woechiger Intensivkurs in der Zentralschweiz im Juni 2027, danach regulaere Schulungstage den ganzen Juli hindurch. Von null bis pruefungsbereit. Max. 12 Teilnehmende.",
+  "@id": "https://flywithmiki.com/de/intensive.html#course",
+  "name": "Gleitschirm-Intensivkurs 2027, Schweiz",
+  "description": "Gleitschirmkurs in der Zentralschweiz von null bis zum Schweizer SHV-Brevet (IPPI 4) in einem Sommer: vier Grundkurs-Tage vom 27. bis 30. Mai 2027, dann drei Intensivwochen (31. Mai bis 20. Juni) und Wochenenden Freitag bis Sonntag bis 15. August 2027. Max. 10 Schüler, ab 4 Anzahlungen, auf 60+ Höhenflüge ausgelegt; die meisten brauchen 55 bis 80 bis zur Prüfung.",
   "provider": {
-    "@id": "https://flywithmiki.com/#organization",
-    "@type": "EducationalOrganization",
-    "name": "FLYwithMIKI Gleitschirmschule",
-    "url": "https://flywithmiki.com"
+    "@id": "https://flywithmiki.com/#organization"
   },
-  "offers": {
-    "@type": "Offer",
-    "price": "3900",
-    "priceCurrency": "CHF",
-    "availability": "https://schema.org/PreOrder",
-    "url": "https://flywithmiki.com/de/intensive.html"
-  }
+  "inLanguage": [
+    "de",
+    "en",
+    "hu"
+  ],
+  "courseCode": "INT-2027",
+  "educationalCredentialAwarded": "Schweizer SHV-Gleitschirmbrevet (IPPI 4)",
+  "timeRequired": "P3M",
+  "hasCourseInstance": [
+    {
+      "@type": "CourseInstance",
+      "name": "Brevet-Intensivkurs 2027, 27. Mai bis 15. August 2027",
+      "courseMode": "onsite",
+      "courseSchedule": {
+        "@type": "Schedule",
+        "startDate": "2027-05-27",
+        "endDate": "2027-08-15",
+        "repeatFrequency": "Weekly",
+        "scheduleTimezone": "Europe/Zurich"
+      },
+      "courseWorkload": "PT8H",
+      "startDate": "2027-05-27",
+      "endDate": "2027-08-15",
+      "maximumAttendeeCapacity": 10,
+      "location": {
+        "@type": "Place",
+        "name": "Zentralschweiz: Stans, Emmetten, Wolfenschiessen, Engelberg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kriens",
+          "postalCode": "6012",
+          "addressRegion": "Kanton Luzern",
+          "addressCountry": "CH"
+        }
+      },
+      "instructor": {
+        "@id": "https://flywithmiki.com/#miklos-mohos"
+      }
+    }
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Kurspreis, wenn das Einsteigerset bei der Schule gekauft wird",
+      "category": "Paid",
+      "price": "3900",
+      "priceCurrency": "CHF",
+      "availability": "https://schema.org/PreOrder",
+      "validFrom": "2026-09-01",
+      "url": "https://flywithmiki.com/de/intensive.html#apply"
+    },
+    {
+      "@type": "Offer",
+      "name": "Frühbucherpreis, ersten 3 Anzahlungen bis 31. Dezember 2026",
+      "category": "Paid",
+      "price": "3600",
+      "priceCurrency": "CHF",
+      "availability": "https://schema.org/LimitedAvailability",
+      "validFrom": "2026-09-01",
+      "validThrough": "2026-12-31",
+      "url": "https://flywithmiki.com/de/intensive.html#apply"
+    },
+    {
+      "@type": "Offer",
+      "name": "Kurspreis mit eigener Ausrüstung (inkl. Lufttüchtigkeits-Review)",
+      "category": "Paid",
+      "price": "6000",
+      "priceCurrency": "CHF",
+      "availability": "https://schema.org/PreOrder",
+      "validFrom": "2026-09-01",
+      "url": "https://flywithmiki.com/de/intensive.html#apply"
+    }
+  ]
 }
 </script>
 
-        <title>3-Wochen Gleitschirm-Intensivkurs 2027 Schweiz | FLYwithMIKI</title>
+        <title>Gleitschirm-Intensivkurs 2027 Schweiz: Brevet in einem Sommer | FLYwithMIKI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-        <meta name="description" content="3-wöchiger Gleitschirm-Intensivkurs in der Zentralschweiz, Juni 2027, plus Schulungstage im Juli. Max. 12 Teilnehmende. Jetzt auf die Frühbucherliste.">
+        <meta name="description" content="Gleitschirmfliegen lernen in einem Sommer in der Zentralschweiz: vier Grundkurs-Tage Ende Mai, drei Intensivwochen im Juni, dann Wochenenden bis Mitte August. Von null bis zum Schweizer Brevet, max. 10 Schüler, auf 60+ Höhenflüge ausgelegt, auf Deutsch oder Englisch.">
         <meta name="author" content="Miklos Mohos - FLYwithMIKI">
         <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://flywithmiki.com/de/intensive.html" />
         <meta property="og:url" content="https://flywithmiki.com/de/intensive.html" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="FLYwithMIKI" />
-        <meta property="og:title" content="3-Wochen Gleitschirm-Intensivkurs 2027 Schweiz | FLYwithMIKI" />
-        <meta property="og:description" content="3-wöchiger Gleitschirm-Intensivkurs in der Zentralschweiz, Juni 2027, plus Schulungstage im Juli. Max. 12 Teilnehmende. Jetzt auf die Frühbucherliste." />
+        <meta property="og:title" content="Gleitschirm-Intensivkurs 2027 Schweiz: Brevet in einem Sommer | FLYwithMIKI" />
+        <meta property="og:description" content="Gleitschirmfliegen lernen in einem Sommer in der Zentralschweiz: vier Grundkurs-Tage Ende Mai, drei Intensivwochen im Juni, dann Wochenenden bis Mitte August. Von null bis zum Schweizer Brevet, max. 10 Schüler, auf 60+ Höhenflüge ausgelegt, auf Deutsch oder Englisch." />
         <meta property="og:image" content="https://flywithmiki.com/Images_v2/12.webp" />
 		<!-- Favicons: relative paths so they resolve on the live site AND in local preview -->
 		<link rel="icon" href="../favicon.ico" sizes="any">
@@ -148,7 +212,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="manifest" href="../site.webmanifest">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
@@ -193,15 +257,34 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .int-check li { margin-bottom:8px; line-height:1.6; }
                 /* site-wide card consistency */
         .w3-card, .w3-card-4 { border-radius: 16px; overflow: hidden; }
+        /* promo video block, copied from intensive.html */
+        .promo-block { text-align:center; }
+        .promo-video { display:block; margin:0 auto; border-radius:16px; background:#000; box-shadow:0 4px 20px rgba(0,0,0,0.18); max-width:100%; height:auto; }
+        .promo-landscape { width:100%; max-width:860px; aspect-ratio:16 / 9; }
+        .promo-portrait  { display:none; width:100%; max-width:320px; aspect-ratio:9 / 16; }
+        @media (max-width: 767px) { .promo-landscape { display:none; } .promo-portrait { display:block; } }
+        .promo-stage .promo-full { display:none; }
+        .promo-stage.playing .promo-loop { display:none; }
+        .promo-stage.playing .promo-full.promo-landscape { display:block; }
+        @media (max-width: 767px) {
+            .promo-stage.playing .promo-full.promo-landscape { display:none; }
+            .promo-stage.playing .promo-full.promo-portrait { display:block; }
+        }
+        .promo-play-btn {
+            display:inline-block; margin-top:14px; padding:12px 26px; border:none; border-radius:30px;
+            background:#0077b6; color:#fff; font-weight:bold; font-size:1em; cursor:pointer;
+            font-family:"Montserrat",sans-serif; transition:transform .2s, box-shadow .2s;
+        }
+        .promo-play-btn:hover { transform:translateY(-2px); box-shadow:0 4px 15px rgba(0,0,0,0.2); }
         </style>
         <link rel="alternate" hreflang="en" href="https://flywithmiki.com/intensive.html" />
     <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/intensive.html" />
     <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/intensive.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="3-Wochen Gleitschirm-Intensivkurs 2027 Schweiz | FLYwithMIKI" />
-<meta name="twitter:description" content="3-wöchiger Gleitschirm-Intensivkurs in der Zentralschweiz, Juni 2027, plus Schulungstage im Juli. Max. 12 Teilnehmende. Jetzt auf die Frühbucherliste." />
+<meta name="twitter:title" content="Gleitschirm-Intensivkurs 2027 Schweiz: Brevet in einem Sommer | FLYwithMIKI" />
+<meta name="twitter:description" content="Gleitschirmfliegen lernen in einem Sommer in der Zentralschweiz: vier Grundkurs-Tage Ende Mai, drei Intensivwochen im Juni, dann Wochenenden bis Mitte August. Von null bis zum Schweizer Brevet, max. 10 Schüler, auf 60+ Höhenflüge ausgelegt, auf Deutsch oder Englisch." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="../flywithmiki.css?v=1">
+<link rel="stylesheet" href="../flywithmiki.css?v=2">
 </head>
 
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -234,12 +317,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="school.html" class="w3-bar-item w3-button">Gleitschirm-Ausbildung</a>
-    <a href="intensive.html" class="w3-bar-item w3-button w3-light-grey" style="color:#e85d04; font-size:0.72em; padding-left:26px">&#9889; Intensivkurs 2027</a>
-    <a href="preise.html" class="w3-bar-item w3-button">Preise</a>
+    <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Fliegen lernen: Intensivkurs</a>
+    <a href="preise.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Preise</a>
+    <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">So unterrichten wir</a>
     <a href="vergleich.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Schulwahl-Guide</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-padding-16 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="weiterbildung.html" class="w3-bar-item w3-button" style="color:#0f8b8d">&#127891; Academy f&uuml;r brevetierte Piloten</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <div class="w3-large w3-text-grey" style="font-weight:bold">
     <a href="faq.html" class="w3-bar-item w3-button">FAQ</a>
     <a href="kontakt.html" class="w3-bar-item w3-button">Kontakt</a>
+  </div>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
+    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Ausr&uuml;stung &amp; Shop</a>
+    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: Schirm-Check &amp; Retterpackung</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
   <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
@@ -253,14 +349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="../shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffern-Rechner</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('accPilots');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#9992;&#65039; Für brevetierte Piloten <i class="fa fa-caret-down"></i></a>
-  <div id="accPilots" class="w3-bar-block w3-hide" style="padding-left:20px">
-    <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Shop / Ausrüstung</a>
-    <a href="safety.html" class="w3-bar-item w3-button" style="font-size:0.9em">Manövertraining</a>
-    <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter</a>
-  </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemflüge</a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemfl&uuml;ge</a>
 </nav>
 
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
@@ -276,135 +365,311 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  <!-- PROMO BANNER -->
  <div class="promo-banner promo-intensive" style="background:linear-gradient(135deg,#e85d04 0%,#ffb703 100%)">
-    &#9889; Intensivkurs 2027: Frühbucherliste jetzt offen. Die Ersten erhalten CHF 300 Rabatt. <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!">Auf die Liste &rarr;</a>
+    &#9728;&#65039; Brevet-Intensivkurs 2027 &middot; 27. Mai bis 15. August &middot; Frühbucherpreis CHF 3'600 für die ersten 3 Anzahlungen. Der erste Schüler hat sich schon angemeldet. <a href="#apply">Auf die Frühbucherliste &rarr;</a>
  </div>
 
  <!-- HERO -->
  <div class="page-hero section-boxed hero-intensive" style="background:linear-gradient(135deg,#2b1a0e 0%,#e85d04 70%,#ffb703 100%)">
-   <span class="hero-badge">&#9889; Neu für Sommer 2027 &middot; Max. 12 Teilnehmende</span>
-   <h1>Der Intensivkurs 2027</h1>
-   <p class="hero-sub"><b>3 Wochen fokussierte Ausbildung, danach ein voller Monat Schulungstage geschenkt.</b></p>
-   <p class="hero-note">Die meisten Intensivkurse enden mit der Prüfung und einem Händedruck. Unserer endet mit der Prüfung und <i>einem Monat echtem Fliegen</i>, mit deinem Fluglehrer an deiner Seite. So wirst du Pilot, nicht nur Lizenzinhaber.</p>
-   <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin:0 0 10px">
-     <div style="background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.5);border-radius:16px;padding:14px 26px;min-width:230px">
+   <span class="hero-badge">&#9728;&#65039; 27. Mai bis 15. August 2027 &middot; Zentralschweiz &middot; Max. 10 Schüler</span>
+   <h1>Der Brevet-Intensivkurs 2027</h1>
+   <p class="hero-sub"><b>Von null bis zum Schweizer Brevet in einem Sommer: vier Grundkurs-Tage Ende Mai, drei Intensivwochen im Juni, dann Wochenenden bis Mitte August.</b></p>
+   <div style="display:flex;justify-content:center;margin:0 0 6px">
+     <div style="background:rgba(255,255,255,0.2);border:3px solid #fff;border-radius:16px;padding:14px 30px;min-width:240px">
        <div style="font-size:2.4em;font-weight:bold;line-height:1.1">CHF 3'900</div>
-       <div style="font-size:0.88em;opacity:0.92;margin-top:4px">mit unserem kompletten Ausrüstungspaket</div>
-     </div>
-     <div style="background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.25);border-radius:16px;padding:14px 26px;min-width:230px">
-       <div style="font-size:2.4em;font-weight:bold;line-height:1.1">CHF 5'700</div>
-       <div style="font-size:0.88em;opacity:0.92;margin-top:4px">mit eigener Ausrüstung</div>
+       <div style="font-size:0.88em;opacity:0.92;margin-top:4px">+ dein Set<br><b>CHF 3'600</b> Frühbucherpreis für die ersten 3 Anzahlungen bis 31. Dez. 2026<br>&#128293; Der erste Schüler für 2027 hat sich schon angemeldet</div>
      </div>
    </div>
-   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 6px">Frühbucher: <b>CHF 300 Rabatt</b> für die ersten Anmeldungen. Preise werden noch finalisiert; Listenmitglieder erhalten Erstzugang und den fixierten Rabatt.</p>
-   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 24px">&#128197; Termine: <b>ab 1. Juni 2027</b> (3 Wochen, 18 Trainingstage, ein freier Tag pro Woche), danach reguläre Schulungstage den ganzen Juli hindurch</p>
-   <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Unverbindlich auf die Liste</a>
+   <p style="font-size:0.85em;opacity:0.9;margin:6px 0 6px">Eigene Ausrüstung: CHF 6'000 &middot; Schnuppertag: CHF 300, wird angerechnet &middot; <a href="preise.html" style="color:#fff">Alle Preise &rarr;</a></p>
+   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 6px">Eine Anzahlung von CHF 1'500 sichert deinen Platz; der Frühbucherpreis gilt für die ersten 3 Anzahlungen bis 31. Dezember 2026. <a href="#pay" style="color:#fff">Wann du was bezahlst &darr;</a></p>
+   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 6px">&#128197; Grundkurs: <b>Donnerstag, 27. bis Sonntag, 30. Mai 2027</b>. Intensivwochen: <b>Montag, 31. Mai bis Sonntag, 20. Juni</b>, jeden Tag mit einem freien Tag pro Woche. Dann Freitag bis Sonntag: 25. bis 27. Juni, 2. bis 4. Juli, 9. bis 11. Juli, 16. bis 18. Juli, 23. bis 25. Juli, 30. Juli bis 1. August, 6. bis 8. August und 13. bis 15. August.</p>
+   <p style="font-size:0.85em;opacity:0.85;margin:2px 0 24px">Max. 10 Schüler. Der Kurs findet ab 4 bezahlten Anzahlungen statt, Entscheid am <b>31. März 2027</b>.</p>
+   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 auto 22px;max-width:760px">
+     <span style="background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 14px;font-size:0.88em">&#128101; Max. 10 Schüler, ein Fluglehrer</span>
+     <span style="background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 14px;font-size:0.88em">&#128483;&#65039; Auf Deutsch oder Englisch, Funk inklusive</span>
+     <span style="background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 14px;font-size:0.88em">&#127909; Videoanalyse am Übungshang</span>
+     <span style="background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 14px;font-size:0.88em">&#129666; 4 bis 6 Flüge an einem guten Tag</span>
+   </div>
+   <a href="#apply" class="hero-btn hero-btn-wa">&#128203; Auf die Frühbucherliste (gratis, unverbindlich)</a>
    <a href="#how" class="hero-btn">So funktioniert's &#8595;</a>
  </div>
 
- <!-- WHY DIFFERENT -->
- <div class="w3-container w3-padding-32" style="max-width:900px;margin:auto;text-align:center">
-   <h2 style="color:#e85d04"><b>Warum «3 Wochen + 1 Monat»?</b></h2>
-   <p class="w3-justify" style="color:#444;line-height:1.7">Klassische Intensivkurse haben eine bekannte Schwäche: Du lernst schnell, bestehst die Prüfung, und stehst dann mit drei Wochen Erfahrung plötzlich allein in der Luft. Viele frische Pilotinnen und Piloten werden unsicher und hören leise wieder auf. Genau dafür haben wir diesen Kurs gebaut: Nach deinem 3-Wochen-Block <b>kommst du den ganzen Juli weiter an unsere regulären Schulungstage, im Preis inbegriffen</b>. Gleicher Fluglehrer, gleiches Funkgerät im Ohr, gleiches Team am Startplatz, aber jetzt fliegst du als Pilot und festigst alles Gelernte. Du gehst mit Brevet <i>und</i> Selbstvertrauen nach Hause.</p>
+ <!-- WANN DU WAS BEZAHLST -->
+ <div id="pay" class="w3-container w3-padding-24" style="max-width:760px;margin:auto">
+   <h2 style="color:#e85d04;text-align:center"><b>Wann du was bezahlst</b></h2>
+   <ol style="line-height:1.75;color:#333;padding-left:22px">
+     <li><b>Jetzt:</b> die gratis Frühbucherliste und ein Gespräch von 20 bis 30 Minuten mit Miki. Du zahlst nichts.</li>
+     <li><b>Buchung:</b> eine Anzahlung von CHF 1'500 sichert deinen Platz. Sie wird nicht zurückerstattet, du kannst sie aber einmal auf eine namentlich genannte Person übertragen.</li>
+     <li><b>Bis 31. März 2027:</b> die zweiten CHF 1'500. Der Kurs findet ab 4 bezahlten Anzahlungen statt; sind es weniger, entscheidest du: alles Bezahlte vollständig zurück, oder ein kleinerer Kurs mit CHF 1'500 Aufpreis pro Person.</li>
+     <li><b>Wenn wir dein Set bestellen, spätestens am 15. April 2027:</b> dein Einsteigerset, ab CHF 5'500, dazu das Starterpaket (Helm, Funkgerät, Speedbag) für CHF 400.</li>
+     <li><b>Erster Kurstag, 27. Mai 2027:</b> der Rest des Kurspreises, CHF 900 (CHF 600 mit dem Frühbucherpreis, CHF 3'000 mit eigener Ausrüstung).</li>
+   </ol>
+   <p style="color:#555;font-size:0.92em;line-height:1.7">Ratenzahlung ist möglich, nach persönlicher Absprache. Offizielle Gebühren und Bergbahnen, rund CHF 750 bis 1'150, gehen an den SHV, die Versicherung und die Bergbahnen, nicht an uns. Zuerst ausprobieren? Der Schnuppertag (24. April oder 8. Mai 2027, CHF 300) ist ein separates Angebot und wird angerechnet, wenn du danach buchst. <a href="agb.html#intensive-2027" style="color:#e85d04">Vollständige Buchungsbedingungen</a></p>
  </div>
 
- <!-- HOW IT WORKS -->
+ <!-- WHY DIFFERENT -->
+ <div class="w3-container w3-padding-32" style="max-width:1000px;margin:auto;text-align:center">
+   <h2 style="color:#e85d04"><b>Der Plan: drei Intensivwochen im Juni</b></h2>
+   <p style="color:#444;line-height:1.7;max-width:760px;margin:0 auto 14px">Grundkurs vom 27. bis 30. Mai, dann drei Wochen lang jeden Tag fliegen, mit einem freien Tag pro Woche: rund 13 Ferientage. Die meisten sind Ende Juni fast prüfungsbereit und holen den Rest an den Sommerwochenenden.</p>
+   <div style="border:2px solid #0077b6;border-radius:14px;padding:14px 18px;max-width:760px;margin:0 auto 18px;text-align:left;color:#444;line-height:1.65"><b style="color:#0077b6">&#128197; Keine drei Wochen frei?</b> Sprich mit Miki. Mit den Sommerwochenenden und ein paar Ferientagen kommst du trotzdem bis Ende Saison zum Brevet; wir planen es gemeinsam im Gespräch.</div>
+   <style>
+     .cal-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; max-width:960px; margin:0 auto 14px; }
+     .cal-m { width:100%; border-collapse:separate; border-spacing:3px; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); font-size:0.85em; }
+     .cal-m caption { font-weight:bold; color:#e85d04; padding:6px 0; }
+     .cal-m th { color:#999; font-weight:normal; padding:3px 0; }
+     .cal-m td { text-align:center; padding:5px 0; color:#bbb; }
+     .cal-m td.th { background:#7b5ea7; color:#fff; border-radius:6px; }
+     .cal-m td.gs { background:#8a3b12; color:#fff; border-radius:6px; }
+     .cal-m td.iw { background:#e85d04; color:#fff; border-radius:6px; }
+     .cal-m td.we { background:#0077b6; color:#fff; border-radius:6px; }
+     .cal-key { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 18px; font-size:0.88em; color:#444; margin:4px auto 10px; max-width:860px; }
+     .cal-key span::before { content:""; display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; background:var(--c); }
+   </style>
+   <h2 id="calendar" style="color:#e85d04"><b>Dein Kurskalender 2027</b></h2>
+   <div class="cal-key"><span style="--c:#7b5ea7">Online-Theorieabend, 19:00 bis 21:00 Uhr (mit Aufzeichnung)</span><span style="--c:#8a3b12">Grundkurs, alle</span><span style="--c:#e85d04">Intensivwochen: jeden Tag fliegen, ein freier Tag pro Woche</span><span style="--c:#0077b6">Wochenend-Flugtage, Freitag bis Sonntag</span></div>
+   <div class="cal-grid">
+     <table class="cal-m"><caption>April 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr><tr><td class="th">12</td><td>13</td><td>14</td><td class="th">15</td><td>16</td><td>17</td><td>18</td></tr><tr><td class="th">19</td><td>20</td><td>21</td><td class="th">22</td><td>23</td><td>24</td><td>25</td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr></table>
+     <table class="cal-m"><caption>Mai 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr><tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr><tr><td>24</td><td>25</td><td>26</td><td class="gs">27</td><td class="gs">28</td><td class="gs">29</td><td class="gs">30</td></tr><tr><td class="iw">31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+     <table class="cal-m"><caption>Juni 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td class="iw">1</td><td class="iw">2</td><td class="iw">3</td><td class="iw">4</td><td class="iw">5</td><td class="iw">6</td></tr><tr><td class="iw">7</td><td class="iw">8</td><td class="iw">9</td><td class="iw">10</td><td class="iw">11</td><td class="iw">12</td><td class="iw">13</td></tr><tr><td class="iw">14</td><td class="iw">15</td><td class="iw">16</td><td class="iw">17</td><td class="iw">18</td><td class="iw">19</td><td class="iw">20</td></tr><tr><td>21</td><td>22</td><td>23</td><td>24</td><td class="we">25</td><td class="we">26</td><td class="we">27</td></tr><tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr></table>
+     <table class="cal-m"><caption>Juli 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td>1</td><td class="we">2</td><td class="we">3</td><td class="we">4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td class="we">9</td><td class="we">10</td><td class="we">11</td></tr><tr><td>12</td><td>13</td><td>14</td><td>15</td><td class="we">16</td><td class="we">17</td><td class="we">18</td></tr><tr><td>19</td><td>20</td><td>21</td><td>22</td><td class="we">23</td><td class="we">24</td><td class="we">25</td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td class="we">30</td><td class="we">31</td><td></td></tr></table>
+     <table class="cal-m"><caption>August 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="we">1</td></tr><tr><td>2</td><td>3</td><td>4</td><td>5</td><td class="we">6</td><td class="we">7</td><td class="we">8</td></tr><tr><td>9</td><td>10</td><td>11</td><td>12</td><td class="we">13</td><td class="we">14</td><td class="we">15</td></tr><tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr><tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr><tr><td>30</td><td>31</td><td></td><td></td><td></td><td></td><td></td></tr></table>
+   </div>
+   <p style="color:#555;font-size:0.9em;line-height:1.6;max-width:760px;margin:0 auto 22px">Das Wetter entscheidet jeden Tag: Der definitive Entscheid kommt am Vorabend um 20:00 Uhr. Die Wochenenden sind bis zu deiner Prüfung oder 80 Höhenflügen inbegriffen, und ein Wochenendtag findet ab 3 Schülern statt.</p>
+   <h2 style="color:#e85d04"><b>Warum ein Sommer, und warum Intensivwochen?</b></h2>
+   <p class="w3-justify" style="color:#444;line-height:1.7">Ein Kurs, der übers ganze Jahr verteilt ist, hat eine bekannte Schwäche: Jede Lücke bricht deinen Rhythmus, und Wetter und Kalender passen selten zusammen. Ein Sommer mit fixen Tagen hält den Schwung, und die ganze Gruppe fliegt zusammen, an denselben Tagen. In den drei Intensivwochen im Juni passiert der schnellste Fortschritt: jeden Tag fliegen, solange alles frisch ist. Die Wochenenden geben dann allen, intensiv oder nicht, den Raum für die 55 bis 80 Flüge, die die meisten für die Prüfung brauchen. Ein verregnetes Wochenende ist eines von acht, nicht ein Drittel deines Kurses.</p>
+   <p class="w3-justify" style="color:#444;line-height:1.7"><b>Und wir unterrichten Anfänger bewusst nur im Sommer.</b> Von Juni bis August fliegt die Schule; von September bis Februar ist sie für den Unterricht geschlossen, und diese Zeit geht in die Büroarbeit und in die Erholung des Fluglehrers. Genau darum hast du ihn an deinen Flugtagen ganz, ausgeruht. Ein ausgeruhter Fluglehrer ist ein sichererer Fluglehrer.</p>
+   <p class="w3-justify" style="color:#444;line-height:1.7"><b>Warum gerade der Sommer?</b> Die längsten Tage, die meisten fliegbaren Wochenenden, warme Startplätze: Von Juni bis August fliegst du in der Zentralschweiz pro Wochenende mehr als in jeder anderen Jahreszeit. So kommst du am schnellsten voran, mit möglichst wenig Ferientagen. Die starke Mittagsthermik ist nichts für Anfänger, darum fliegen wir dich in der ruhigen Morgen- und Abendluft; die langen Tage lassen Platz für beides.</p>
+   <p class="w3-justify" style="color:#444;line-height:1.7"><b>Im Sommer zwei, drei Wochen weg?</b> Das geht den meisten so. Sag es uns früh, dann planen wir deinen Fortschritt im Gespräch darum herum.</p>
+ </div>
+
+  <!-- PROMO VIDEO -->
+ <div class="section-boxed promo-block" id="video" style="background:#f9f9f9;border:1px solid #eee">
+   <h2 style="margin-top:0"><b>Ein Sommer davon</b></h2>
+   <p style="color:#555;max-width:700px;margin:0 auto 18px">Tägliches Fliegen in der Zentralschweiz: der Übungshang, die Bergstarts, die Fluggebiete, die du diesen Sommer fliegen wirst.</p>
+   <div class="promo-stage">
+     <video class="promo-video promo-landscape promo-loop" autoplay muted loop playsinline preload="metadata" poster="../video/promo_poster_16x9.jpg">
+       <source src="../video/promo_loop_16x9.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-portrait promo-loop" autoplay muted loop playsinline preload="metadata" poster="../video/promo_poster_9x16.jpg">
+       <source src="../video/promo_loop_9x16.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-landscape promo-full" playsinline preload="none" poster="../video/promo_poster_16x9.jpg">
+       <source src="../video/promo_16x9.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-portrait promo-full" playsinline preload="none" poster="../video/promo_poster_9x16.jpg">
+       <source src="../video/promo_9x16.mp4" type="video/mp4">
+     </video>
+   </div>
+   <button class="promo-play-btn" onclick="playFullPromo(this)">&#9654; Ganzen Film mit Ton ansehen (56 s)</button>
+   <p style="color:#999;font-size:0.82em;margin:10px 0 0">Die Vorschau läuft ohne Ton. Drück den Knopf für den ganzen Film.</p>
+ </div>
+
+<!-- HOW IT WORKS -->
  <div class="w3-container w3-padding-32" id="how" style="max-width:800px;margin:auto">
    <h2 class="w3-center" style="color:#e85d04"><b>So funktioniert's</b></h2>
    <div class="int-step">
      <div class="int-step-num">1</div>
-     <div><b>Vor dem Kurs (ab Frühling 2027)</b><br><span style="color:#555">Theorie-Selbststudium mit der FlightDeck-App (ca. 1 Std./Tag über 2 bis 3 Wochen), SHV-Mitgliedschaft und Versicherung, Ausrüstungsanpassung bei uns und 1 bis 2 Groundhandling-Tage, damit deine Hände den Schirm schon kennen. Wir begleiten dich bei jedem Schritt per WhatsApp.</span></div>
+     <div><b>Ab Januar: Theorie in deinem Tempo</b><br><span style="color:#555">Theorie im Selbststudium mit der FlightDeck-App (etwa 1 Stunde pro Tag während 2 bis 3 Wochen, wann es dir passt), SHV-Mitgliedschaft und Versicherung richten wir mit dir ein.</span></div>
    </div>
    <div class="int-step">
      <div class="int-step-num">2</div>
-     <div><b>Woche 1: Grundlagen</b><br><span style="color:#555">Übungshang: Starten, Steuern, Landen. Erste Höhenflüge mit Funkbegleitung ab Wochenmitte, wenn Wetter und dein Fortschritt es erlauben. Jeden Abend Videoanalyse.</span></div>
+     <div><b>Bis Mitte April: dein Set</b><br><span style="color:#555">Wir wählen dein Set zusammen aus und passen es bei einem Termin in Kriens an; bestellt wird bis Mitte April. Bringst du eigenes Material mit? Es bekommt vor dem Kurs einen Lufttüchtigkeits-Check, damit bei uns nichts Unbekanntes fliegt. Willst du Gleitschirmfliegen zuerst ausprobieren? Ein <b>Schnuppertag</b> am Übungshang (Samstag, 24. April oder Samstag, 8. Mai 2027, CHF 300, Ausrüstung inklusive, angerechnet, wenn du danach buchst) ist ein separates Angebot, nicht Teil des Kurses; er findet ab 3 Teilnehmenden statt.</span></div>
    </div>
    <div class="int-step">
      <div class="int-step-num">3</div>
-     <div><b>Wochen 2 und 3: Fliegen, fliegen, fliegen</b><br><span style="color:#555">Tägliche Höhenflüge (wetterabhängig) in unseren Zentralschweizer Fluggebieten: Emmetten, Wolfenschiessen, Engelberg und mehr. Manövertraining, Thermik-Grundlagen, Prüfungsvorbereitung. Ziel: die rund 50 Flüge und Prüfungsreife bis Ende Woche 3. Ein Ruhetag pro Woche, dein Körper wird es uns danken.</span></div>
+     <div><b>April: 4 Online-Theorieabende</b><br><span style="color:#555">19:00 bis 21:00 Uhr, live online und aufgezeichnet für alle, die einen verpassen: <b>12., 15., 19. und 22. April 2027</b>. Abend 1 Meteorologie, Abend 2 Aerodynamik und Material, Abend 3 Flugtechnik und Luftrecht, Abend 4 Prüfungsfragen.</span></div>
    </div>
    <div class="int-step">
      <div class="int-step-num">4</div>
-     <div><b>Die Prüfung</b><br><span style="color:#555">SHV-Praxisprüfung in Wolfenschiessen, dort, wo du trainiert hast. Klaut das Wetter zu viele Tage, trägt dich dein inbegriffener Schulmonat einfach bis zur Prüfung: Niemandem läuft die Zeit davon.</span></div>
+     <div><b>Grundkurs, Donnerstag, 27. bis Sonntag, 30. Mai</b><br><span style="color:#555">Vier Tage am Übungshang in Stans: starten, steuern, landen, bis der Schirm kein Fremder mehr ist. Der Donnerstag ist Fronleichnam, im Kanton Luzern ein Feiertag, die meisten brauchen also nur den Freitag frei. Videoanalyse direkt am Übungshang: Du siehst deinen Start in Zeitlupe, bevor du den nächsten machst. Die ersten Höhenflüge folgen am ersten Juni-Wochenende, für alle, die bereit sind.</span></div>
    </div>
    <div class="int-step">
      <div class="int-step-num">5</div>
-     <div><b>+ 1 Monat als Pilot, mit uns (inbegriffen)</b><br><span style="color:#555">Der ganze Juli an unseren regulären Schulungstagen: begleitetes freies Fliegen, deine ersten Thermikflüge, Fluggebiets-Briefings, Feintuning der Ausrüstung. Das macht aus einem Brevet echtes Können, und es ist inbegriffen, kein Upsell. In dieser Phase startest du meist schon völlig selbstständig, ohne Startleiter: genau das ist das Ziel.</span></div>
+     <div><b>31. Mai bis 15. August: Höhenflüge</b><br><span style="color:#555">Intensivwochen vom 31. Mai bis 20. Juni: Wir fliegen jeden Tag, mit einem freien Tag pro Woche, meist dem mit dem schlechtesten Wetter. Danach Wochenenden von Freitag bis Sonntag bis 15. August. Die Wochenenden sind inklusive bis zur Prüfung oder 80 Höhenflügen, was zuerst eintritt; ein Wochenendtag findet ab 3 Anmeldungen statt. Intensiv-Schüler kommen an jedem Tag der drei Wochen und holen den Rest an den Wochenenden; Wochenend-Schüler kommen Freitag bis Sonntag, Samstag und Sonntag sind der Kern. Der Entscheid für jeden Tag kommt am Vorabend um 20:00 Uhr. Emmetten, Wolfenschiessen, Engelberg und mehr. Manövertraining, Thermik-Grundlagen, Prüfungsvorbereitung. Die meisten brauchen 55 bis 80 Höhenflüge bis zur Prüfung; der Kurs ist <b>auf 60+ ausgelegt</b>.</span></div>
+   </div>
+   <div class="int-step">
+     <div class="int-step-num">6</div>
+     <div><b>Prüfungsbereit</b><br><span style="color:#555">Wir bereiten dich auf die SHV-Theorie- und Praxisprüfung vor; die Prüfungen buchst du selbst beim SHV. Ziele: Theorieprüfung bis Ende Mai, Praxisprüfung Ende Juni bis Mitte Juli. Mit bestandener Theorie meldest du dich gleich für die Praxis an, abmelden geht bis zum Vortag.</span></div>
+   </div>
+   <div class="int-step">
+     <div class="int-step-num">7</div>
+     <div><b>Am 15. August noch nicht prüfungsbereit?</b><br><span style="color:#555">Der Kurs endet an seinem letzten Tag, eine Verlängerungsgebühr gibt es nicht. Brauchst du noch Flüge, machst du sie bei einer Partnerschule, der wir vertrauen, und wir geben deinen Ausbildungsstand weiter. Du bezahlst sie direkt: typisch CHF 20 bis 30 pro Flug oder CHF 150 bis 190 pro Tag. Wer das braucht, braucht meist 10 bis 20 Flüge, rund CHF 200 bis 500.</span></div>
    </div>
  </div>
 
- <!-- WHO IT'S FOR / PREREQUISITES -->
+ <!-- WHO IT'S FOR / NOT FOR -->
  <div class="w3-container w3-padding-32" style="background:#fff4ec">
-   <div style="max-width:900px;margin:auto">
+   <div style="max-width:1000px;margin:auto">
      <div class="w3-row-padding">
        <div class="w3-col m6" style="margin-bottom:16px">
          <h3 style="color:#e85d04"><b>Dieser Kurs passt zu dir, wenn&hellip;</b></h3>
          <ul class="int-check" style="color:#444;padding-left:20px">
-           <li>du 3 zusammenhängende Wochen frei nehmen kannst (Juni 2027) und das Brevet <b>dieses Jahr</b> willst, nicht «irgendwann»</li>
-           <li>du Struktur, Momentum und ein fixes Ziel willst statt verstreuter Wochenenden</li>
-           <li>du kleine Gruppen schätzt: wir begrenzen diesen Kurs auf <b>12 Teilnehmende</b>, und ab der 7. Anmeldung stösst ein zweiter Fluglehrer oder Fluglehrer-Aspirant zum Team, dazu Startleiter bei jedem Start</li>
-           <li>du einigermassen fit bist (wer einen kleinen Hügel hochlaufen kann, schafft das) und mindestens 15 Jahre alt</li>
+           <li>du im Juni drei Wochen frei nehmen kannst oder deine Sommerwochenenden fürs Fliegen frei hältst, und das Brevet <b>dieses Jahr</b> willst, nicht "irgendwann"</li>
+           <li>du Struktur, Schwung und eine fixe Gruppe willst, statt einzelne Tage zu buchen</li>
+           <li>dir kleine Gruppen wichtig sind: max. <b>10 Schüler</b>. Ein Startassistent ist in den ersten Wochen immer dabei und später, sobald 7 oder mehr Schüler fliegen, damit alle ihre Flüge bekommen. Verglichen mit einer Gruppe von 20 ist das doppelt so viel Fluglehrerzeit für dich</li>
+           <li>du auf Deutsch oder Englisch lernen willst (Ungarisch geht auch, auch am Funk in der Luft)</li>
+           <li>du einigermassen fit bist (wenn du einen kleinen Hügel hochwandern kannst, passt das) und mindestens 15 Jahre alt</li>
          </ul>
        </div>
        <div class="w3-col m6" style="margin-bottom:16px">
-         <h3 style="color:#e85d04"><b>Was wir vor Tag 1 von dir brauchen</b></h3>
+         <h3 style="color:#8a3a00"><b>Dieser Kurs passt NICHT zu dir, wenn&hellip;</b></h3>
          <ul class="int-check" style="color:#444;padding-left:20px">
-           <li>Theorie vorbereitet mit der FlightDeck-App (wir sehen deinen Fortschritt und helfen, wo du feststeckst)</li>
-           <li>SHV-Mitgliedschaft (CHF 120/Jahr) und Haftpflicht (CHF 82.50/Jahr), wir führen dich durch</li>
-           <li>Ausrüstung angepasst und bereit (unser Paket oder dein geprüftes eigenes Material)</li>
-           <li>1 bis 2 Groundhandling-Tage bei uns im Frühling, im Kurspreis inbegriffen</li>
+           <li>du einzelne Tage buchen willst, wann es dir passt. Der Kurs läuft an fixen Tagen für die ganze Gruppe, und verpasste Tage werden nicht ersetzt</li>
+           <li>du das günstigste Brevet der Schweiz willst. Es gibt günstigere Kurse; sie laufen mit viel grösseren Gruppen</li>
+           <li>du erwartest, dass wir dem Wetter nach Italien nachfahren. Wir bleiben hier, und drei Intensivwochen plus acht Wochenenden lassen Raum für das, was das Wetter wegnimmt</li>
+           <li>du einen grossen Club mit grossem Shop und jeden Tag einem anderen Fluglehrer willst</li>
          </ul>
        </div>
+     </div>
+     <div style="background:#fff;border:1px solid #f3d9c6;border-radius:14px;padding:16px 20px;margin-top:6px">
+       <h3 style="color:#e85d04;margin:0 0 8px"><b>Was wir vor dem ersten Tag von dir brauchen</b></h3>
+       <ul class="int-check" style="color:#444;padding-left:20px;margin:0">
+         <li>Theorie vorbereitet mit der FlightDeck-App und den 4 Online-Theorieabenden (wir verfolgen deinen Fortschritt und helfen, wo du hängst)</li>
+         <li>SHV-Mitgliedschaft und Haftpflicht, wir führen dich durch</li>
+         <li>Deine eigene Ausrüstung angepasst und bereit: unser Set, oder dein Material nach unserem Check. Nach den Schnuppertagen gibt es keine Schulausrüstung</li>
+         <li>Dein Set, im Frühling bei einem Termin mit uns ausgewählt und angepasst</li>
+       </ul>
      </div>
    </div>
  </div>
 
  <!-- INCLUDED / NOT INCLUDED -->
- <div class="w3-container w3-padding-32" style="max-width:900px;margin:auto">
+ <div class="w3-container w3-padding-32" style="max-width:1000px;margin:auto">
    <div class="w3-row-padding">
      <div class="w3-col m6" style="margin-bottom:16px">
        <h3 style="color:#2e7d32"><b>&#9989; Inbegriffen</b></h3>
        <ul class="int-check" style="color:#444;padding-left:20px">
-         <li>3-Wochen-Intensivblock: gesamte Schulung, Funkbegleitung, Videoanalyse</li>
-         <li><b>+ reguläre Schulungstage den ganzen Juli nach dem Block</b></li>
-         <li>Groundhandling-Vorbereitungstage im Frühling</li>
-         <li>Volle Theorie-Unterstützung und FlightDeck-App</li>
-         <li>Prüfungsvorbereitung und Begleitung am Prüfungstag</li>
-         <li>Schulausrüstung für die Übungshang-Phase</li>
+         <li>Die vier Grundkurs-Tage, die drei Intensivwochen und die Wochenenden (bis zur Prüfung oder 80 Höhenflügen), Mai bis August: aller Unterricht, Funkbegleitung, Videoanalyse</li>
+         <li><b>Auf 60+ Höhenflüge ausgelegt.</b> Die meisten erreichen über den Sommer die 55 bis 80, die sie für die Prüfung brauchen</li>
+         <li>4 Online-Theorieabende und volle Unterstützung in der FlightDeck-App</li>
+         <li>Prüfungsvorbereitung</li>
+         <li>Keine Gebühr pro Flug, keine Verlängerungsgebühr</li>
          <li>25 gepflanzte Bäume &#127795;</li>
        </ul>
      </div>
      <div class="w3-col m6" style="margin-bottom:16px">
        <h3 style="color:#c62828"><b>&#10060; Nicht inbegriffen (ehrliche Liste)</b></h3>
        <ul class="int-check" style="color:#444;padding-left:20px">
-         <li>Bergbahnen: rechne mit rund CHF 8 bis 20 pro Flug</li>
-         <li>SHV-Prüfungsgebühren: CHF 125 (Theorie) + CHF 125 (Praxis)</li>
-         <li>SHV-Mitgliedschaft CHF 120/Jahr + Haftpflicht CHF 82.50/Jahr</li>
-         <li>Deine Ausrüstung (unser Einsteigerset, CHF 5'500 Regular oder CHF 6'000 Light, gehört dir) plus Kleinmaterial: PMR-Funkgerät ~200, zertifizierter Helm ~140, optional Headset und Vario</li>
-         <li>Unterkunft und Verpflegung (wir empfehlen gerne lokale Optionen)</li>
+         <li>Offizielle Gebühren und Bergbahnen: SHV-Mitgliedschaft, Haftpflicht, die zwei SHV-Prüfungen und die Bergbahnen, zusammen rund CHF 750 bis 1'150</li>
+         <li><b>Deine Ausrüstung: Ab dem ersten Höhenflug fliegt jeder den eigenen Schirm.</b> Unser Einsteigerset ab CHF 5'500, es gehört dir, plus unser Starterpaket mit Helm, PMR-Funkgerät und Speedbag, CHF 400</li>
+         <li>Zusätzliche Flüge nach dem Kurs, falls du sie vor der Prüfung brauchst: bei einer Partnerschule</li>
+         <li>Unterkunft und Verpflegung, falls du in der Nähe übernachten willst (mit der Buchungsbestätigung schicken wir dir eine Liste lokaler Optionen)</li>
        </ul>
      </div>
    </div>
-   <p class="w3-center" style="color:#777;font-size:0.9em">Keine versteckten Extras. Die vollständige Kostenrechnung findest du in unserem <a href="../faq.html" style="color:#e85d04">FAQ (englisch)</a>.</p>
+   <p class="w3-center" style="color:#777;font-size:0.9em">Keine versteckten Extras. Realistische Gesamtkosten von null bis zum Brevet mit neuem Set: <b>CHF 10'550 bis 11'550</b>. Die aufgelistete Version steht auf der <a href="preise.html#breakdown" style="color:#e85d04">Preisseite</a>.</p>
  </div>
 
  <!-- FAQ MINI -->
  <div class="w3-container w3-padding-32" style="background:#f9f9f9">
    <div style="max-width:800px;margin:auto">
      <h2 class="w3-center" style="color:#e85d04"><b>Gute Fragen</b></h2>
-     <p><b>Was, wenn das Wetter nicht mitspielt?</b><br><span style="color:#555">Schweizer Realität: Es wird nicht jeder Tag fliegbar sein. Genau dafür gibt es den inbegriffenen Schulmonat, er fängt Wetterverluste auf. Du zahlst nichts extra und dir läuft die Zeit nicht davon.</span></p>
-     <p><b>Reichen 3 Wochen, um sicher zu fliegen?</b><br><span style="color:#555">Drei Wochen reichen für die Prüfungsreife, aber ehrlich gesagt nicht für echtes Pilotenkönnen. Genau darum gibt es das +1-Monat. Wir wollen Piloten ausbilden, nicht Lizenzen drucken.</span></p>
-     <p><b>Was, wenn ich in den 3 Wochen nicht fertig werde?</b><br><span style="color:#555">Dein inbegriffener Schulmonat trägt dich weiter. Falls du noch mehr Zeit brauchst, gibt es unsere reguläre Schulverlängerung (CHF 750 / 3 Monate), bei Juniwetter und täglichem Training brauchen sie die wenigsten.</span></p>
-     <p><b>Was unterscheidet das von der Vollausbildung?</b><br><span style="color:#555">Gleicher Fluglehrer, gleiche Fluggebiete, gleiche Standards. Die Vollausbildung (CHF 4'500) verteilt sich auf bis zu 12 Monate in deinem Tempo, ideal neben dem Job. Der Intensivkurs komprimiert den Weg in einen Sommer mit fixer Gruppe und fixem Ziel, und kostet weniger, weil er konzentriert ist.</span></p>
-     <p><b>Anzahlung und Stornierung?</b><br><span style="color:#555"><!-- TODO_TERMS -->Die Frühbucherliste ist gratis und unverbindlich. Die Buchungsbedingungen (Anzahlung, Stornierung) publizieren wir mit den definitiven Daten, Listenmitglieder sehen sie zuerst.</span></p>
+     <p><b>Was passiert bei schlechtem Wetter?</b><br><span style="color:#555">Schweizer Realität: Manche Tage sind nicht fliegbar. Darum läuft der Kurs über einen ganzen Sommer: Ein verregnetes Wochenende ist eines von acht, nicht ein Drittel deines Kurses. Wir entscheiden am Vorabend um 20:00 Uhr. <b>Wir fahren dir nicht 300 km nach Italien nach, um dem Wetter hinterherzujagen.</b> Mit drei Intensivwochen und acht Wochenenden entscheiden ein paar verlorene Tage nicht über deinen Kurs.</span></p>
+     <p><b>Reicht ein Sommer, um sicher zu fliegen?</b><br><span style="color:#555">Mit 55 bis 80 Höhenflügen bist du prüfungsbereit, aber ein sicherer Pilot fliegt danach weiter. Das ist die ehrliche Antwort. Wir bilden lieber Piloten aus, als Brevets zu drucken.</span></p>
+     <p><b>Kann ich das Schweizer Brevet in einem Sommer auf Deutsch oder Englisch machen?</b><br><span style="color:#555">Ja. Briefings, Theorieabende und Funkbegleitung laufen auf Deutsch oder Englisch; Ungarisch geht auch, auch am Funk in der Luft.</span></p>
+     <p><b>Und wenn ich am 15. August noch nicht prüfungsbereit bin?</b><br><span style="color:#555">Der Kurs ist auf 60+ Höhenflüge ausgelegt, und die meisten sind bis dann prüfungsbereit. Brauchst du noch Flüge, machst du sie bei einer Partnerschule, der wir vertrauen, mit deinem Ausbildungsstand übergeben: typisch CHF 20 bis 30 pro Flug oder CHF 150 bis 190 pro Tag, meist rund CHF 200 bis 500 insgesamt, direkt an die Partnerschule bezahlt. Es gibt keine Verlängerungsgebühr.</span></p>
+     <p><b>Was passiert nach dem Kurs?</b><br><span style="color:#555">Wir übergeben dich an die lokalen Clubs und, wenn du weitere begleitete Flüge willst, an Partnerschulen, denen wir vertrauen. Für brevetierte Piloten gibt es die <a href="weiterbildung.html" style="color:#e85d04">FLYwithMIKI Academy</a>: Coaching-Tage, 1:1-Mentoring und Theorie für Fortgeschrittene, März bis August.</span></p>
+     <p><b>Brauche ich eigene Ausrüstung?</b><br><span style="color:#555">Ja, ab dem ersten Höhenflug. Entweder unser Einsteigerset, für dich ausgesucht und eingestellt, es bleibt dir, oder dein eigenes Material nach unserem Lufttüchtigkeits-Review. Mit eigener Ausrüstung kostet der Kurs CHF 6'000: Unser Kurspreis ist tief, weil er teilweise über das Ausrüstungspaket finanziert wird, und das sagen wir dir lieber offen. So verdienen wir ungefähr gleich viel, egal wofür du dich entscheidest, und unser Rat zu deinem Material bleibt ehrlich. Schulausrüstung gibt es nur an den Schnuppertagen im Frühling.</span></p>
+     <p><b>Ich habe schon woanders angefangen. Kann ich einsteigen?</b><br><span style="color:#555">Ja. Nach einem kurzen Einstufungsgespräch steigst du dort in den Kurs ein, wo es für dich passt. Wohnst du in der Schweiz, brauchst du das SHV-Brevet, um hier regelmässig zu fliegen; eine ausländische Lizenz oder eine IPPI-Karte deckt Gastpiloten, nicht Einwohner.</span></p>
+     <p><b>Kann ich stattdessen einzelne Tage buchen?</b><br><span style="color:#555">Nein. Der Kurs läuft an fixen Tagen für die ganze Gruppe: So kann ein Fluglehrer eine kleine Gruppe gut unterrichten, ohne das ganze Jahr auf Abruf zu sein. Tage, die du selbst verpasst, werden nicht ersetzt. Passt der Sommer für dich nicht, setz dich auf die Liste für 2028, oder frag uns nach einer Partnerschule.</span></p>
+     <p><b>Wann antwortet ihr auf Nachrichten?</b><br><span style="color:#555">Während des Kurses kommt der Plan für den nächsten Tag um 20:00 Uhr in der Gruppe. Auf Nachrichten antworten wir innert eines Arbeitstages, meist innert weniger Stunden. Längere Gespräche finden in der Sprechstunde statt, Dienstag und Donnerstag, 17:00 bis 19:00 Uhr.</span></p>
+     <p><b>Anzahlung, Go/No-go und Stornierung?</b><br><span style="color:#555">Eine Anzahlung von CHF 1'500 sichert deinen Platz; weitere CHF 1'500 sind bis 31. März 2027 fällig (wer später bucht, zahlt beides zusammen), der Rest am ersten Kurstag. Die Anzahlung wird nicht zurückerstattet, kann aber einmal auf eine namentlich genannte Person übertragen werden, die deinen Platz übernimmt. Der Kurs findet ab 4 bezahlten Anzahlungen statt; wir entscheiden am <b>31. März 2027</b>. Sind es bis dann weniger als 4, entscheidest du: alles Bezahlte vollständig zurück, oder ein kleinerer Kurs mit CHF 1'500 Aufpreis pro Person. Tage, die du selbst verpasst, sind verbraucht. Das Einsteigerset wird bezahlt, wenn wir es für dich bestellen, spätestens am 15. April 2027. Ratenzahlung ist möglich, das besprechen wir persönlich. Die vollständigen Buchungsbedingungen stehen in unseren <a href="agb.html" style="color:#e85d04">AGB</a>.</span></p>
    </div>
  </div>
 
+ <!-- APPLY / EARLY LIST FORM -->
+ <style>
+   .int-form label{display:block;font-size:0.88em;font-weight:bold;color:#003049;margin:12px 0 4px}
+   .int-form input[type=text],.int-form input[type=email],.int-form input[type=tel],.int-form select,.int-form textarea{width:100%;padding:11px 13px;border:1px solid #d9c7b8;border-radius:10px;font-family:inherit;font-size:1em;box-sizing:border-box;background:#fff}
+   .int-form .two{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+   @media(max-width:600px){.int-form .two{grid-template-columns:1fr}}
+ </style>
+ <div class="w3-container w3-padding-32" id="apply" style="background:#fff4ec">
+   <div style="max-width:760px;margin:auto">
+     <h2 class="w3-center" style="color:#e85d04"><b>Auf die Frühbucherliste</b></h2>
+     <p class="w3-center" style="color:#555;max-width:640px;margin:0 auto 18px">Gratis und unverbindlich. Du bekommst die Buchungsbedingungen zuerst, einen kurzen Videocall mit Miki, sobald die Daten für dich passen, und den Frühbucherpreis, wenn deine Anzahlung zu den ersten drei gehört, die bis 31. Dezember 2026 eingehen. Lieber WhatsApp? <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!" target="_blank" rel="noopener noreferrer" style="color:#e85d04"><b>Direkt schreiben &rarr;</b></a></p>
+     <div id="apply-thanks" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:16px;margin:0 0 18px;color:#1b5e20;text-align:center"><b>Danke, du bist auf der Liste.</b> Miki antwortet persönlich innert eines Arbeitstages.</div>
+     <form class="int-form" action="https://formsubmit.co/info@flywithmiki.com" method="POST" style="background:#fff;border:1px solid #f3d9c6;border-radius:16px;padding:8px 24px 22px;box-shadow:0 6px 24px rgba(13,36,54,0.06)">
+       <input type="hidden" name="_subject" value="Brevet-Intensivkurs 2027: Frühbucherliste">
+       <input type="hidden" name="_template" value="table">
+       <input type="hidden" name="_next" value="https://flywithmiki.com/de/intensive.html?sent=1#apply">
+       <input type="text" name="_honey" style="display:none">
+       <div class="two">
+         <div><label for="ap-name">Dein Name</label><input id="ap-name" type="text" name="name" required></div>
+         <div><label for="ap-email">E-Mail</label><input id="ap-email" type="email" name="email" required placeholder="du@beispiel.ch"></div>
+       </div>
+       <div class="two">
+         <div><label for="ap-phone">WhatsApp oder Telefon (optional)</label><input id="ap-phone" type="tel" name="phone" placeholder="+41 ..."></div>
+         <div><label for="ap-block">Wie willst du starten?</label>
+           <select id="ap-block" name="block" required>
+             <option value="Mit dem Grundkurs, 27. bis 30. Mai 2027">Mit dem Grundkurs, 27. bis 30. Mai 2027</option>
+             <option value="Zuerst ein Schnuppertag (24. April oder 8. Mai, CHF 300)">Zuerst ein Schnuppertag (24. April oder 8. Mai, CHF 300)</option>
+             <option value="Noch unsicher">Noch unsicher</option>
+           </select></div>
+       </div>
+       <div class="two">
+         <div><label for="ap-weeks">Welches Tempo passt dir?</label>
+           <select id="ap-weeks" name="pace" required>
+             <option value="">Bitte wählen</option>
+             <option value="Intensiv: drei Wochen im Juni">Intensiv: drei Wochen im Juni (rund 13 Ferientage)</option>
+             <option value="Wochenenden bis 15. August">Nur Wochenenden, ich kann keine drei Wochen frei nehmen</option>
+             <option value="Noch nicht sicher">Noch nicht sicher</option>
+           </select></div>
+         <div><label for="ap-total">Die realistischen Gesamtkosten sind CHF 10'550 bis 11'550</label>
+           <select id="ap-total" name="seen_total" required>
+             <option value="">Bitte wählen</option>
+             <option value="Gesehen, passt in mein Budget">Gesehen, passt in mein Budget</option>
+             <option value="Ich habe Fragen dazu">Ich habe Fragen dazu</option>
+           </select></div>
+       </div>
+       <div class="two">
+         <div><label for="ap-exp">Deine Erfahrung</label>
+           <select id="ap-exp" name="experience" required>
+             <option value="Kompletter Anfaenger">Kompletter Anfänger</option>
+             <option value="Ein paar Tandem- oder Schnupperfluege">Ein paar Tandem- oder Schnupperflüge</option>
+             <option value="Ausbildung woanders begonnen, noch kein Brevet">Ausbildung woanders begonnen, noch kein Brevet</option>
+             <option value="Im Ausland brevetiert, kein Schweizer Brevet">Im Ausland brevetiert, kein Schweizer Brevet</option>
+           </select></div>
+         <div><label for="ap-gear">Ausrüstung</label>
+           <select id="ap-gear" name="equipment" required>
+             <option value="Ich wuerde das Set bei euch kaufen">Ich würde das Set bei euch kaufen</option>
+             <option value="Ich habe eigenes Material">Ich habe eigenes Material</option>
+             <option value="Noch unsicher">Noch unsicher</option>
+           </select></div>
+       </div>
+       <label for="ap-src">Wie hast du uns gefunden?</label>
+       <select id="ap-src" name="found_us" required>
+         <option value="">Bitte wählen</option>
+         <option value="KI-Assistent (ChatGPT, Claude, Gemini, Perplexity)">Ein KI-Assistent (ChatGPT, Claude, Gemini, Perplexity)</option>
+         <option value="Google-Suche">Google-Suche</option>
+         <option value="Ein Freund oder ein anderer Pilot">Ein Freund oder ein anderer Pilot</option>
+         <option value="Instagram oder YouTube">Instagram oder YouTube</option>
+         <option value="Anderes">Anderes</option>
+       </select>
+       <label for="ap-msg">Möchtest du Miki etwas sagen oder fragen? (optional)</label>
+       <textarea id="ap-msg" name="message" rows="3" placeholder="Deine Termine, deine Sorgen, deine Fragen"></textarea>
+       <button type="submit" style="display:block;width:100%;background:#e85d04;color:white;border:none;border-radius:30px;padding:14px;font-size:1.05em;font-weight:bold;cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:18px">&#9889; Auf die Liste</button>
+       <p style="color:#888;font-size:0.82em;margin:10px 0 0;text-align:center">Kein Spam, kein Newsletter. Du hörst persönlich von Miki, und die Liste wird am Ende der Saison 2027 gelöscht.</p>
+     </form>
+   </div>
+ </div>
+ <script>
+   if (location.search.indexOf('sent=1') > -1) { var t = document.getElementById('apply-thanks'); if (t) t.style.display = 'block'; }
+   if (typeof playFullPromo !== 'function') {
+     function playFullPromo(btn){
+       var block = btn.closest('.promo-block'); var stage = block.querySelector('.promo-stage'); stage.classList.add('playing');
+       stage.querySelectorAll('.promo-loop').forEach(function(v){ try { v.pause(); } catch(e){} });
+       var sel = (window.innerWidth < 768) ? '.promo-full.promo-portrait' : '.promo-full.promo-landscape';
+       var v = stage.querySelector(sel); if (v) { v.muted = false; v.controls = true; v.play(); } btn.style.display = 'none';
+     }
+   }
+ </script>
+
  <!-- FINAL CTA -->
  <div style="background:linear-gradient(135deg,#2b1a0e 0%,#e85d04 100%);color:white;padding:48px 20px;text-align:center">
-   <h2 style="margin:0 0 8px"><b>12 Plätze. Ein Sommer. Ein Leben lang fliegen.</b></h2>
-   <p style="opacity:0.9;max-width:600px;margin:0 auto 20px">Jetzt unverbindlich auf die Frühbucherliste: Erstzugang zu den Daten und CHF 300 Rabatt für die Ersten, fix.</p>
-   <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:white;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px">&#128172; Per WhatsApp auf die Liste</a>
-   <a href="mailto:info@flywithmiki.com?subject=Intensivkurs%202027%20Fr%C3%BChbucherliste" style="display:inline-block;background:rgba(255,255,255,0.18);color:white;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px;border:2px solid rgba(255,255,255,0.4)">&#9993; Oder per E-Mail</a>
+   <h2 style="margin:0 0 8px"><b>Max. 10 Schüler. Ein Sommer. Ein Leben lang in der Luft.</b></h2>
+   <p style="opacity:0.9;max-width:600px;margin:0 auto 20px">Grundkurs vom 27. bis 30. Mai, drei Intensivwochen im Juni, dann Wochenenden bis 15. August 2027. Auf 60+ Höhenflüge ausgelegt. Sei unter den ersten drei Anzahlungen bis 31. Dezember, dann gehört dir der Frühbucherpreis von CHF 3'600.</p>
+   <a href="#apply" style="display:inline-block;background:#ffffff;color:#e85d04;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px">&#128203; Auf die Frühbucherliste</a>
+   <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20setz%20mich%20auf%20die%20Intensivkurs-2027-Liste!" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:white;padding:14px 32px;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;margin:6px">&#128172; Oder per WhatsApp</a>
  </div>
 
 <!------------------------FOOTER------------------------------------->
@@ -455,5 +720,14 @@ function handleButtonClick(language) {
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+
+<script>
+// separate GA4 key event for the early list (set up the trigger on "early_list_submit" in GTM)
+var _ef = document.querySelector('form.int-form'); if (_ef) _ef.addEventListener('submit', function () {
+  var b = document.getElementById('ap-block');
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'early_list_submit', block: b ? b.value : '', lang: 'DE' });
+});
+</script>
 </body>
 </html>
