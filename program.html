@@ -355,19 +355,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h3 class="fwm-list-title" id="fwmListTitle">What is coming up</h3>
     <div id="fwmList" class="fwm-list"></div>
     -->
-    <p class="fwm-foot">What 2027 holds: weekend school days from January to March for the students who started before 2027, four theory evenings in April and two optional Trial Days for anyone who wants to try first, the Intensive Course from 27 May to 15 August (four ground-school days, three intensive weeks with flying every day, then Friday-to-Sunday weekends), and for licensed pilots the Academy: a spring and a summer weekend with Miki, two guest coach days, backup days and four Advanced Theory evenings online. From September to February the school is closed for teaching: we answer messages in fixed office hours (Tuesday and Thursday, 17:00 to 19:00), online, and do the paperwork. The empty weeks are deliberate: a school year without a real off-season is how instructors burn out, and a tired instructor is a safety risk. Weather can still move a day: the call comes at 20:00 the evening before.</p>
+    <p class="fwm-foot">What 2027 holds: weekend school days from January to March for the students who started before 2027, four theory evenings in April and two optional Trial Days for anyone who wants to try first, the Intensive Course from 27 May to 15 August (four ground-school days, three intensive weeks with flying every day, then Friday-to-Sunday weekends), and for licensed pilots the Academy: a season start weekend in March and a summer weekend in July with Miki, two guest coach days (XC in April, hike and fly in October), backup days and four Advanced Theory evenings online. From September to February the school is closed for teaching: we answer messages in fixed office hours (Tuesday and Thursday, 17:00 to 19:00), online, and do the paperwork. The empty weeks are deliberate: a school year without a real off-season is how instructors burn out, and a tired instructor is a safety risk. Weather can still move a day: the call comes at 20:00 the evening before.</p>
   </div>
 </div>
 
 <style>
-.fwm-next{box-sizing:border-box;background:linear-gradient(135deg,#0077b6 0%,#00b4d8 100%);color:#fff;border-radius:16px;padding:22px 24px;margin:0 0 26px;box-shadow:0 6px 20px rgba(0,119,182,.18)}
+.fwm-next{box-sizing:border-box;background:linear-gradient(135deg,#0077b6 0%,#00b4d8 100%);color:#fff;border-radius:16px;padding:14px 18px;margin:0 0 20px;box-shadow:0 6px 20px rgba(0,119,182,.18)}
 .fwm-next-loading{background:#e9eef2;color:#7b8794;box-shadow:none}
 .fwm-next .fwm-eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.72em;opacity:.9;margin:0 0 6px}
-.fwm-next h2{margin:0 0 4px;font-size:1.7em;line-height:1.15}
-.fwm-next .fwm-when{font-size:1.05em;opacity:.95;margin:0 0 10px}
+.fwm-next .fwm-when{font-size:1.15em;font-weight:bold;margin:0 0 8px}
+.fwm-ev{background:rgba(255,255,255,.14);border-radius:10px;margin:6px 0 0}
+.fwm-ev summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 12px;font-weight:bold;line-height:1.3}
+.fwm-ev summary::-webkit-details-marker{display:none}
+.fwm-ev summary small{font-weight:normal;opacity:.85}
+.fwm-ev-tent summary{opacity:.85}
+.fwm-ev-more{flex:none;font-size:.78em;font-weight:normal;border:1px solid rgba(255,255,255,.6);border-radius:14px;padding:2px 10px}
+.fwm-ev-more::after{content:' BE'}
+.fwm-ev[open] .fwm-ev-more::after{content:' B4'}
+.fwm-ev[open]{padding-bottom:10px}
+.fwm-ev .fwm-meta,.fwm-ev .fwm-desc,.fwm-ev .fwm-tentnote{padding:0 12px}
 .fwm-next .fwm-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92em}
 .fwm-next a{color:#fff;text-decoration:underline}
-.fwm-next .fwm-desc{margin:12px 0 0;font-size:.9em;opacity:.93;line-height:1.5}
+.fwm-next .fwm-desc{margin:6px 0 0;font-size:.9em;opacity:.93;line-height:1.5}
 .fwm-cal{background:#fff;border:1px solid #e3e8ec;border-radius:16px;padding:16px 16px 12px}
 .fwm-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .fwm-cal-title{font-weight:bold;font-size:1.25em;color:#24303a}
@@ -406,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .fwm-mgrid span.fwm-on:hover{outline:2px solid #24303a;outline-offset:1px}
 .fwm-mgrid span.fwm-msel{outline:2px solid #e85d04;outline-offset:1px}
 /* on a big screen the card stays in view while you scroll through the year */
-@media (min-width:900px) and (min-height:700px){.fwm-next{position:sticky;top:12px;z-index:5}}
+@media (min-width:900px) and (min-height:700px){.fwm-next{position:sticky;top:12px;z-index:5;max-height:34vh;overflow-y:auto}}
 .fwm-mgrid span.fwm-t{box-shadow:0 0 0 2px #e85d04}
 .fwm-mgrid span.fwm-c-hill{background:#2e7d32}
 .fwm-mgrid span.fwm-c-trial{background:#66bb6a}
@@ -446,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .fwm-item.fwm-b-intensive{border-left-color:#e85d04}.fwm-item.fwm-b-office{border-left-color:#b9d3e6}.fwm-item.fwm-b-exam{border-left-color:#2e7d32}
 .fwm-item.fwm-b-tandem{border-left-color:#00a896}
 .fwm-foot{color:#8a97a3;font-size:.82em;margin-top:18px}
-@media(max-width:600px){.fwm-day{min-height:48px}.fwm-chip{height:6px;padding:0;font-size:0;border-radius:3px}.fwm-next h2{font-size:1.35em}}
+@media(max-width:600px){.fwm-day{min-height:48px}.fwm-chip{height:6px;padding:0;font-size:0;border-radius:3px}.fwm-next .fwm-when{font-size:1.05em}}
 </style>
 
 <script>
@@ -507,9 +516,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {from:'2027-03-19',to:'2027-03-21',cat:'fly',title:'School days for current students: high flights',loc:'Central Switzerland',
      note:'Only for students who started before 2027 and are finishing their training. From 2027 new students train in the Intensive Course.',
      desc:'Friday to Sunday, high flights on the flyable days. The call for the next day is posted in the group by 20:00 the evening before.'},
-    {from:'2027-04-03',to:'2027-04-04',cat:'academy',title:'Academy: spring weekend',
+    {from:'2027-03-27',to:'2027-03-28',cat:'academy',title:'Academy: season start weekend',
      note:'The weather decides which day comes first, announced in the group at 20:00 the evening before. A lost day moves to a backup day.',
-     desc:'Advanced groundhandling and advanced maneuver training, one day each. Season Pass holders.'},
+     desc:'Advanced groundhandling and advanced maneuver training, one day each, to get ready for the season. Season Pass holders.'},
+    {from:'2027-04-10',to:'2027-04-11',cat:'academy',title:'Academy: backup days',tentative:true,
+     note:'Used only if a coaching day of the season start weekend was lost to the weather.',
+     desc:'A lost March coaching day moves here. We decide at 20:00 the evening before.'},
+    {from:'2027-04-17',to:'2027-04-17',cat:'academy',title:'Academy: XC day with Marcel Schmid',
+     note:'Guest coach day, Season Pass. Backups: Sunday 25 April and Sunday 2 May. Led by the guest coach.',
+     desc:'Marcel picks the place for the day and the level of the group and sets the line. Open seats for licensed pilots without a pass: CHF 350.'},
+    {from:'2027-04-25',to:'2027-04-25',cat:'academy',title:'Academy: backup day for the XC day',tentative:true,
+     note:'Used only if 17 April was not flyable.',
+     desc:'The first backup day for the XC day with Marcel Schmid.'},
+    {from:'2027-05-02',to:'2027-05-02',cat:'academy',title:'Academy: backup day for the XC day',tentative:true,
+     note:'Used only if 17 and 25 April were not flyable.',
+     desc:'The second backup day for the XC day with Marcel Schmid.'},
     {from:'2027-04-13',to:'2027-04-13',cat:'atheory',title:'Academy: Advanced Theory, evening 2 of 4, emagram and weather',time:'19:00 to 21:00',
      desc:'For licensed pilots, live online. Included in the Season Pass, otherwise CHF 60, all four CHF 200.'},
     {from:'2027-04-24',to:'2027-04-24',cat:'trial',title:'Trial Day on the training hill',loc:'Stans',
@@ -528,9 +549,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      desc:'Flight technique and airspace law, the way they show up on a real day in Central Switzerland.'},
     {from:'2027-04-22',to:'2027-04-22',cat:'theory',title:'Intensive Course: online theory, evening 4 of 4',time:'19:00 to 21:00',
      desc:'Theory revision with practice questions, and the last open questions before the course.'},
-    {from:'2027-05-22',to:'2027-05-23',cat:'academy',title:'Academy: backup days',tentative:true,
-     note:'Used only if a spring coaching day was lost to the weather.',
-     desc:'A lost spring coaching day moves here. We decide at 20:00 the evening before.'},
     {from:'2027-05-27',to:'2027-05-30',cat:'hill',title:'Intensive Course: ground school, training hill',loc:'Stans',
      note:'For everyone. Thursday 27 May is Corpus Christi, a public holiday in Lucerne, so most people only need the Friday off. Runs from 4 paid deposits by 31 March 2027. Max. 10 students.',
      desc:'Four days of launching, steering and landing, until the wing stops being a stranger. Video analysis right on the training hill.'},
@@ -540,12 +558,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {from:'2027-06-07',to:'2027-06-13',cat:'intensive',title:'Intensive Course: intensive week 2 of 3',loc:'Emmetten, Wolfenschiessen, Engelberg',
      note:'We fly every day, with one weekday off a week, usually the one with the worst weather. Weekend students join Friday to Sunday. The call comes at 20:00 the evening before.',
      desc:'For the intensive path: high flights every flyable day, fast progress while everything is fresh. Most intensive students are close to exam-ready after these three weeks and top up on the weekends.'},
-    {from:'2027-06-12',to:'2027-06-12',cat:'academy',title:'Academy: XC day with Marcel Schmid',
-     note:'Guest coach day, Season Pass. Backup: Sunday 13 June. Led by the guest coach. Date to be confirmed with Marcel.',
-     desc:'Marcel picks the place for the day and the level of the group and sets the line. Open seats for licensed pilots without a pass: CHF 350.'},
-    {from:'2027-06-13',to:'2027-06-13',cat:'academy',title:'Academy: backup day for the XC day',tentative:true,
-     note:'Used only if Saturday was not flyable.',
-     desc:'The backup day for the XC day with Marcel Schmid.'},
     {from:'2027-06-14',to:'2027-06-20',cat:'intensive',title:'Intensive Course: intensive week 3 of 3',loc:'Emmetten, Wolfenschiessen, Engelberg',
      note:'We fly every day, with one weekday off a week, usually the one with the worst weather. Weekend students join Friday to Sunday. The call comes at 20:00 the evening before.',
      desc:'For the intensive path: high flights every flyable day, fast progress while everything is fresh. Most intensive students are close to exam-ready after these three weeks and top up on the weekends.'},
@@ -581,11 +593,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {from:'2027-08-13',to:'2027-08-15',cat:'fly',title:'Intensive Course: weekend high flights',loc:'Emmetten, Wolfenschiessen, Engelberg',tentative:true,
      note:'Runs when at least 3 students sign up. Included until your exam or 80 high flights, whichever comes first. The last course weekend. Friday to Sunday; the course ends on Sunday 15 August. The call for each day comes at 20:00 the evening before.',
      desc:'High flights on the flyable days: launching, landing, maneuvers, thermal basics and exam preparation. Most students need 55 to 80 high flights before the exam.'},
-    {from:'2027-08-14',to:'2027-08-14',cat:'academy',title:'Academy: hike &amp; fly day with Mihai Lazar',
-     note:'Guest coach day, Season Pass. Backup: Sunday 15 August. Led by the guest coach. Date to be confirmed with Mihai.',
-     desc:'Choosing a peak that works, packing light without cutting safety, judging a wild launch.'},
     {from:'2027-09-06',to:'2027-10-03',cat:'off',title:'Miki on holiday',
      desc:'Four weeks off. From September to February the school is closed for teaching: online office hours only.'},
+    {from:'2027-10-09',to:'2027-10-09',cat:'academy',title:'Academy: hike &amp; fly day with Mihai Lazar',
+     note:'Guest coach day, Season Pass. Backups: Sunday 10, Saturday 16 and Sunday 17 October. Led by the guest coach. Date to be confirmed with Mihai.',
+     desc:'Choosing a peak that works, packing light without cutting safety, judging a wild launch, in the clear autumn air.'},
+    {from:'2027-10-10',to:'2027-10-10',cat:'academy',title:'Academy: backup day for the hike &amp; fly day',tentative:true,
+     note:'Used only if 9 October was not flyable.',
+     desc:'The first backup day for the hike and fly day with Mihai Lazar.'},
+    {from:'2027-10-16',to:'2027-10-17',cat:'academy',title:'Academy: backup days for the hike &amp; fly day',tentative:true,
+     note:'Used only if 9 and 10 October were not flyable.',
+     desc:'The further backup days for the hike and fly day with Mihai Lazar.'},
     {from:'2027-12-20',to:'2027-12-31',cat:'off',title:'Miki on holiday',
      desc:'The last days of the year off. Messages wait until January.'}
   ];
@@ -719,20 +737,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                            :'No school day is posted yet. The next dates go up after the weather check.';
       return;
     }
-    var e=evs[0], d=new Date(key+'T00:00:00');
+    var d=new Date(key+'T00:00:00');
     var eyebrow=picked?'Selected day':(PREVIEW?'First in the 2027 plan':'Next school day');
     if(!picked && dayKey(new Date())===key) eyebrow='Today';
     var html='<p class="fwm-eyebrow">'+eyebrow+'</p>';
-    html+='<h2>'+ICON[e.cat]+' '+esc(e.title)+'</h2>';
     html+='<p class="fwm-when">'+DAYNAME[d.getDay()]+', '+d.getDate()+' '+MONTH[d.getMonth()]+' '+d.getFullYear()
-      +(e.time?' &middot; '+esc(e.time):'')+'</p>';
-    var meta=[];
-    if(e.loc) meta.push('&#128205; '+esc(e.loc)+' <a href="'+maps(e.loc)+'" target="_blank" rel="noopener noreferrer">map</a>');
-    if(e.link) meta.push('&#128187; <a href="'+e.link+'" target="_blank" rel="noopener noreferrer">Join online</a>');
-    if(meta.length) html+='<div class="fwm-meta">'+meta.join('')+'</div>';
-    if(e.desc) html+='<div class="fwm-desc">'+e.desc+'</div>';
-    if(evs.length>1) html+='<div class="fwm-desc">Also on this day: '+evs.slice(1).map(function(x){return esc(x.title);}).join(', ')+'</div>';
-    if(e.tentative) html+='<p class="fwm-tentnote">&#9888; '+esc(e.note||'This one runs only if enough people sign up.')+'</p>';
+      +(evs.length>1?' &middot; '+evs.length+' things on this day':'')+'</p>';
+    /* one short line per event; the details open on a click, so two events on a day stay apart */
+    evs.forEach(function(e){
+      var body='', meta=[];
+      if(e.loc) meta.push('&#128205; '+esc(e.loc)+' <a href="'+maps(e.loc)+'" target="_blank" rel="noopener noreferrer">map</a>');
+      if(e.link) meta.push('&#128187; <a href="'+e.link+'" target="_blank" rel="noopener noreferrer">Join online</a>');
+      if(meta.length) body+='<div class="fwm-meta">'+meta.join('')+'</div>';
+      if(e.desc) body+='<div class="fwm-desc">'+e.desc+'</div>';
+      if(e.tentative) body+='<p class="fwm-tentnote">&#9888; '+esc(e.note||'This one runs only if enough people sign up.')+'</p>';
+      html+='<details class="fwm-ev'+(e.tentative?' fwm-ev-tent':'')+'"><summary><span class="fwm-ev-t">'+ICON[e.cat]+' '+esc(e.title)
+        +(e.time?' <small>'+esc(e.time)+'</small>':'')
+        +'</span><span class="fwm-ev-more">Details</span></summary>'+(body||'<div class="fwm-desc">No further details.</div>')+'</details>';
+    });
     box.className='fwm-next'; box.innerHTML=html;
   }
 
