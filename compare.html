@@ -176,10 +176,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="manifest" href="site.webmanifest">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/vendor/w3.css">
+        <link rel="stylesheet" href="assets/fonts/montserrat-roboto400.css">
+        <link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
 
 <style>
             html {scroll-behavior: smooth;}
@@ -259,7 +258,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="How to Choose a Paragliding School in Switzerland | FLYwithMIKI" />
 <meta name="twitter:description" content="The 8 questions that actually matter when comparing Swiss paragliding schools: real all-in cost, equipment ties, group size, flights per day, gear and radio quality, verifiable instructor credentials." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=2">
+<link rel="stylesheet" href="flywithmiki.css?v=3">
 </head>
 
 
@@ -273,21 +272,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container ">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Close menu" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <div class="w3-margin w3-center">
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
+        <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
     </div>
     <!--Language menu -->
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
       <a href="compare.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
       </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
       <a href="de/vergleich.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
       </a>
      </div>
      </div>
@@ -296,7 +295,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
-    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Dates &amp; Prices</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
   </div>
@@ -310,13 +309,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Already a pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -326,13 +327,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
-  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">&#9776;</a>
+  <a href="#" role="button" aria-label="Open menu" aria-controls="mySidebar" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">&#9776;</a>
 </header>
 
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -414,7 +413,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <h3><span class="q-num">5</span> How old is the training gear, and what radio will be in your ear?</h3>
      <p>Almost nobody asks this one, and it is a genuine look under the hood. Your very first days on the training hill are the most formative of your whole flying life, and they are exactly where equipment quality matters most. A modern school wing inflates willingly and rewards you for doing things right; a worn-out, end-of-life wing fights you on every launch, and a beginner has no way of knowing whether the problem is the wing or themselves. Many quietly conclude it is themselves. The radio is the same story: your instructor's voice is your lifeline in the air, and it should arrive through a robust radio built for flying, loud and clear through a headset, not through a bargain handset that crackles or drops out at the moment you need it most.</p>
      <div class="q-ask"><b>Ask:</b> &ldquo;How old are the school wings I will learn on at the training hill? And what radios do you use for guidance in the air?&rdquo;</div>
-     <div class="q-us"><b>Our answer:</b> on the Trial Days you learn on our modern, well-maintained school wings, so you need no equipment of your own to try it. In the course you fly your own new set from the ground school on, chosen and sized for you, so your hands learn one wing from the start. In the air you hear us through good-quality PMR radios with headsets, the same setup we recommend you buy for yourself (about CHF 200 plus CHF 29 for the headset). You are welcome to come by and test the gear beforehand.</div>
+     <div class="q-us"><b>Our answer:</b> on the Trial Days you learn on good-quality school wings, new or barely used, never end-of-life wings, so you need no equipment of your own to try it. In the course you fly your own brand-new set from the basic course on, where many schools still start beginners on older school wings; chosen and sized for you, so your hands learn one wing from the start. In the air you hear us through good-quality PMR radios with headsets, the same setup we recommend you buy for yourself (about CHF 200 plus CHF 29 for the headset). You are welcome to come by and test the gear beforehand.</div>
    </div>
 
    <div class="q-card">
@@ -494,9 +493,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <img width="1650" height="156" src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p>Imprint: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Switzerland &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
 </footer>
 <!------------------------FOOTER------------------------------------->
@@ -517,6 +517,7 @@ function myAccFunc(id) {
     x.previousElementSibling.className =
     x.previousElementSibling.className.replace(" w3-green", "");
   }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 
 // Open and close sidebar
@@ -530,5 +531,14 @@ function w3_close() {
 }
 </script>
 
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
+</script>
 </body>
 </html>

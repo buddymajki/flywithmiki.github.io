@@ -147,10 +147,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/w3.css">
+  <link rel="stylesheet" href="assets/fonts/montserrat-roboto.css">
+  <link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
   <style>
     html { scroll-behavior: smooth; }
     .w3-sidebar a { font-family: "Roboto", sans-serif; font-size: 1.5em; }
@@ -277,7 +276,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Contact FLYwithMIKI | Shuttle, Meeting Point &amp; Direct Line to Miki" />
 <meta name="twitter:description" content="Reach Miki directly by WhatsApp, phone or email. Shuttle to the flying site and back from Kriens Kupferhammer bus stop, easy by train from Basel, Z&uuml;rich, Zug and Bern." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=2">
+<link rel="stylesheet" href="flywithmiki.css?v=3">
 </head>
 <body class="w3-white w3-content" style="max-width:1600px">
 
@@ -289,20 +288,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Close menu" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <div class="w3-margin w3-center">
-      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
+      <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
     </div>
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
         <div class="w3-col s6 m6 l6 w3-center">
-          <a href="faq.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+          <a href="contact.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
           </a>
         </div>
         <div class="w3-col s6 m6 l6 w3-center">
-          <a href="de/faq.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+          <a href="de/kontakt.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+            <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
           </a>
         </div>
       </div>
@@ -311,7 +310,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
-    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Dates &amp; Prices</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
   </div>
@@ -325,13 +324,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Already a pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -341,8 +342,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Overlay on small screens -->
@@ -353,7 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Top menu on small screens -->
   <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white" style="height:4em">
-    <a href="#" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+    <a href="#" role="button" aria-label="Open menu" aria-controls="mySidebar" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
   </header>
 
   <!-- Push down content on small screens -->
@@ -445,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="cf-msg" style="font-size:0.88em; font-weight:bold">Your message</label>
         <textarea id="cf-msg" name="message" required rows="5" placeholder="What would you like to ask or book? Roughly when would you like to start, and have you flown before?" style="width:100%; padding:12px 14px; border:none; border-radius:10px; margin:6px 0 16px; font-family:inherit; font-size:1em"></textarea>
         <button type="submit" style="display:block; width:100%; background:#25D366; color:white; border:none; border-radius:30px; padding:14px; font-size:1.05em; font-weight:bold; cursor:pointer; font-family:inherit">Send to Miki</button>
-      </form>
+      </form><p style="font-size:0.85em;color:#667;margin:8px 0 0">We use your details only to answer you and to handle your request: <a href="privacy.html" style="color:#0077b6">Privacy Policy</a>.</p>
     </div>
   </div>
 
@@ -456,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <tr><td style="width:38%"><b>School base</b></td><td>Kriens 6012, Canton of Lucerne, Central Switzerland</td></tr>
       <tr><td><b>Shuttle pickup</b></td><td>Kriens, Kupferhammer bus stop (side towards Luzern) &middot; <a href="https://maps.app.goo.gl/jgfABy9Kh7B1pQnS7" target="_blank" rel="noopener noreferrer">map</a></td></tr>
       <tr><td><b>Languages</b></td><td>English, German, Hungarian</td></tr>
-      <tr><td><b>Intensive Licence Course 2027</b></td><td>27 May to 15 August: four ground-school days, three intensive weeks, then weekends. No other beginner training</td></tr>
+      <tr><td><b>Intensive Licence Course 2027</b></td><td>27 May to 15 August: four basic-course days, three intensive weeks, then weekends. No other beginner training</td></tr>
       <tr><td><b>Office hours</b></td><td>On the flying days: 20:00 in the group. Messages: answer within one working day, usually within a few hours. Calls: Tuesday and Thursday, 17:00 to 19:00 (paused during the intensive weeks, 31 May to 20 June 2027)</td></tr>
       <tr><td><b>Phone</b></td><td><a href="tel:+41779766164">+41 77 976 6164</a> (WhatsApp on the same number)</td></tr>
       <tr><td><b>Email</b></td><td><a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></td></tr>
@@ -469,9 +468,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Footer -->
   <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <img width="1650" height="156" src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p>Imprint: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Switzerland &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
@@ -496,6 +496,7 @@ function myAccFunc(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) { x.className += " w3-show"; }
   else { x.className = x.className.replace(" w3-show", ""); }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -518,6 +519,15 @@ function handleButtonClick(language) {
   }
   if (newPath !== currentPath) { newPath += fileName; window.location.href = newPath; }
 }
+</script>
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
 </script>
 </body>
 </html>

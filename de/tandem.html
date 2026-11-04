@@ -47,7 +47,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "https://flywithmiki.com/Images_v2/13.webp"
   ],
   "priceRange": "CHF 185 - CHF 6000",
-  "description": "Schweizer Gleitschirmschule in Kriens, Kanton Luzern, Zentralschweiz. Vollstaendige Pilotenausbildung bis zum SHV/IPPI4-Brevet in kleinen Gruppen (max. 10 Schueler pro Kurs), Tandemfluege und Ausruestung, auf Deutsch, Englisch und Ungarisch.",
+  "description": "Schweizer Gleitschirmschule in Kriens, Kanton Luzern, Zentralschweiz. Vollständige Pilotenausbildung bis zum SHV/IPPI4-Brevet in kleinen Gruppen (max. 10 Schüler pro Kurs), Tandemflüge und Ausrüstung, auf Deutsch, Englisch und Ungarisch.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q136536762",
     "https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw",
@@ -126,10 +126,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="manifest" href="../site.webmanifest">
 
 
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../assets/vendor/w3.css">
+        <link rel="stylesheet" href="../assets/fonts/montserrat-roboto400.css">
+        <link rel="stylesheet" href="../assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
         
         <style>
             html {scroll-behavior: smooth;}
@@ -246,7 +245,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Tandem Gleitschirmfliegen Schweiz | CHF 185-350 | FLYwithMIKI" />
 <meta name="twitter:description" content="Tandem Gleitschirmfliegen in der Schweiz ab CHF 185. Umweltfreundlich, Baumpflanzung, Foto/Video inklusive. Luzern, Engelberg, Pilatus, Rigi. Professionelle Piloten." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="../flywithmiki.css?v=2">
+<link rel="stylesheet" href="../flywithmiki.css?v=3">
 </head> 
 
 
@@ -261,10 +260,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container ">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Menü schliessen" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI Gleitschirmschule Logo" loading="lazy"> 
+        <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI Gleitschirmschule Logo" loading="lazy"> 
         </a> 
     </div>
     <!--Language menu -->
@@ -272,12 +271,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
       <a href="../tandem.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
       </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
       <a href="tandem.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
       </a>
      </div>
      </div>
@@ -288,7 +287,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Fliegen lernen: Intensivkurs</a>
-    <a href="preise.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Preise</a>
+    <a href="preise.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Daten &amp; Preise</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">So unterrichten wir</a>
     <a href="vergleich.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Schulwahl-Guide</a>
   </div>
@@ -302,13 +301,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="kontakt.html" class="w3-bar-item w3-button">Kontakt</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Schon Pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Ausr&uuml;stung &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: Schirm-Check &amp; Retterpackung</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemfl&uuml;ge</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="../program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Tagesprogramm</a>
     <a href="../meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -318,15 +319,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="../flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="../shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-Ziffern-Rechner</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandemfl&uuml;ge</a>
 </nav>
 
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
   
-  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+  <a href="#" role="button" aria-label="Menü öffnen" aria-controls="mySidebar" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -349,7 +348,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
  <!-- PROMO BANNER -->
  <div class="promo-banner">
-    &#9728;&#65039; Brevet-Intensivkurs 2027 &middot; 27. Mai bis 15. August &middot; Frühbucher: CHF 300 Rabatt auf dein Ausrüstungsset für die ersten 3 Anzahlungen. <a href="intensive.html" style="background:#e85d04">Zum Kurs &rarr;</a>
+    &#127793; Umweltfreundliche Tandemflüge ab CHF 185: Fotos & Baumpflanzung inklusive! <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20Tandemflug%20buchen">Per WhatsApp buchen &rarr;</a>
  </div>
  <!-- HERO -->
  <div class="page-hero section-boxed" id="Tandem">
@@ -360,13 +359,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <p style="margin:0;font-size:1.12em"><b>&#9989; Unsere Flugzeit-Garantie</b></p>
      <p style="margin:6px 0 0;font-size:0.95em;opacity:0.95">Zu kurze Flüge sind überall die Beschwerde Nr. 1 beim Tandemfliegen. Nicht bei uns: Dauert dein Deluxe-Flug weniger als 15 Minuten oder dein Special-Flug weniger als 30 Minuten, <b>bekommst du CHF 60 zurück. Garantiert, ohne Diskussion.</b></p>
    </div>
-   <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Tandemflug buchen</a>
+   <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Tandemflug buchen</a>
    <a href="#tandem" class="hero-btn">Pakete ansehen &#8595;</a>
  </div>
 
  <!-- INTRO section -------------------------------------------------------------------------------------------------------------->
  <div class="w3-container w3-white w3-center w3-padding-32">
-        <img class="w3-image w3-round-xxlarge" src="https://flywithmiki.com/Images_v2/td.webp" alt="Gleitschirm-Tandemflug über der Zentralschweiz mit FLYwithMIKI" style="width:100%; max-width:1000px" loading="lazy">
+        <img width="1100" height="496" class="w3-image w3-round-xxlarge" src="https://flywithmiki.com/Images_v2/td.webp" alt="Gleitschirm-Tandemflug über der Zentralschweiz mit FLYwithMIKI" style="width:100%; max-width:1000px" loading="lazy">
 
  <!-- TANDEM-----------PARALLAX effekt:background-attachment:fixed;---------------------------------------------------------------------------->
 <!-- background-image: url('https://flywithmiki.com/Images_v2/19.webp'); background-repeat:no-repeat;background-position:center; background-size:auto;-->
@@ -387,7 +386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li class="w3-white w3-text-grey">&#10060; Verlängerte Flugzeit</li>
               <li class="w3-white w3-text-grey">&#10060; Bergbahnticket</li>
               <li class="w3-light-grey w3-center">
-              <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20BASIC%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a>
+              <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20BASIC%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a>
               </li>
               </ul>
            </div>
@@ -403,7 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                <li class="w3-white ">&#9989; <b>  Foto - Video</b></li>
                <li class="w3-white w3-text-grey">&#10060;  Verlängerte Flugzeit</li>
                <li class="w3-white w3-text-grey">&#10060; Bergbahnticket</li>
-               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20STANDARD%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
+               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20STANDARD%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
               </ul>
             </div>
 
@@ -422,7 +421,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                <li class="w3-white ">&#9989; <b>  Foto - Video</b></li>
                <li class="w3-white">&#9989;  <b>Verlängerte Flugzeit</b></li>
                <li class="w3-white w3-text-grey">&#10060; Bergbahnticket</li>
-               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20DELUXE%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
+               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20DELUXE%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
               </ul>
             </div>
         </div>
@@ -438,7 +437,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                <li class="w3-white ">&#9989; <b>  Foto - Video</b></li>
                <li class="w3-white">&#9989;  <b>Verlängerte Flugzeit</b></li>
                <li class="w3-white w3-text-grey">&#10060; Bergbahnticket</li>
-               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20SPECIAL%20Tandemflug%20buchen%20(Pilatus/Rigi)" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
+               <li class="w3-light-grey w3-center"><a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20SPECIAL%20Tandemflug%20buchen%20(Pilatus/Rigi)" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#25D366; color:white"><b>&#128172; JETZT BUCHEN</b></a></li>
               </ul>
             </div>
         </div>
@@ -457,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="background:#fff4ec;border:2px dashed #e85d04;border-radius:16px;max-width:760px;margin:10px auto 20px;padding:20px 22px;text-align:center">
           <p style="margin:0 0 6px;font-size:1.2em"><b>&#127873; Verschenk das Fliegen</b></p>
           <p style="margin:0 0 12px;color:#555;font-size:0.95em">Ein Geschenkgutschein für einen Tandemflug ist das Geburtstagsgeschenk, das niemand vergisst. 12 Monate gültig, frei übertragbar, für jedes Paket.</p>
-          <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20Tandemflug-GESCHENKGUTSCHEIN%20kaufen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#e85d04; color:white"><b>Geschenkgutschein bestellen</b></a>
+          <a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20Tandemflug-GESCHENKGUTSCHEIN%20kaufen" target="_blank" rel="noopener noreferrer" class="w3-button w3-round-xlarge w3-padding-large" style="background-color:#e85d04; color:white"><b>Geschenkgutschein bestellen</b></a>
         </div>
 
         <!-- REVIEW ASK -->
@@ -565,9 +564,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <img src="../Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <img width="1650" height="156" src="../Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>Alle Rechte vorbehalten.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">Allgemeine Geschäftsbedingungen (AGB)</a></p>
+  <p>Impressum: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Schweiz &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+  <p><a href="../agb.html#deutsch" target="_blank" rel="noopener noreferrer">Allgemeine Geschäftsbedingungen (AGB)</a> &middot; <a href="../privacy.html#deutsch">Datenschutzerklärung</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV-Eintrag</a></p>
    
 </footer>
@@ -590,6 +590,7 @@ function myAccFunc(id) {
     x.previousElementSibling.className = 
     x.previousElementSibling.className.replace(" w3-green", "");
   }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 
 var myIndex = 0;
@@ -666,10 +667,19 @@ function handleButtonClick(language) {
 </script>
 
 <!-- FLOATING WHATSAPP BUTTON -->
-<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20moechte%20einen%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="WhatsApp">
+<a href="https://wa.me/41779766164/?text=Hallo%20Miki,%20ich%20m%C3%B6chte%20einen%20Tandemflug%20buchen" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
+</script>
 </body>
 
 </html>

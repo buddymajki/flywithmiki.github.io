@@ -25,7 +25,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Paragliding Academy 2027 for Licensed Pilots: Coaching, Mentoring and Theory | Central Switzerland | FLYwithMIKI</title>
+<title>Paragliding Academy 2027 for Licensed Pilots | FLYwithMIKI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content="Coaching for licensed pilots in Central Switzerland, March to October 2027: one Season Pass, CHF 1,990, with 4 coaching days with Miki, an XC day with Marcel Schmid, a hike and fly day with Mihai Lazar, theory evenings online and monthly 1:1 mentoring. Weather guarantee, max. 12 places.">
 <meta name="author" content="Miklos Mohos - FLYwithMIKI">
@@ -45,10 +45,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/vendor/w3.css">
+<link rel="stylesheet" href="assets/fonts/montserrat-roboto.css">
+<link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
 
 <style>
   html { scroll-behavior: smooth; }
@@ -500,7 +499,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 <!-- EducationEvent schema: add one block per date pair once the dates are fixed (startDate, endDate, location, offers in CHF, organizer, performer = Miki or the partner, eventStatus, backup date in the description). -->
-<link rel="stylesheet" href="flywithmiki.css?v=2">
+<link rel="stylesheet" href="flywithmiki.css?v=3">
 </head>
 
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -513,20 +512,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu (Academy goes first under "For Licensed Pilots" once it is live) -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Close menu" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <div class="w3-margin w3-center">
-      <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
+      <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"></a>
     </div>
     <div class="w3-margin w3-display-container">
       <div class="w3-row">
         <div class="w3-col s6 m6 l6 w3-center">
           <a href="academy.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-            <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+            <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
           </a>
         </div>
         <div class="w3-col s6 m6 l6 w3-center">
           <a href="de/weiterbildung.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-            <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+            <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
           </a>
         </div>
       </div>
@@ -534,7 +533,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
-    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Dates &amp; Prices</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
   </div>
@@ -548,13 +547,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Already a pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -564,13 +565,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white" style="height:4em">
-  <a href="#" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">&#9776;</a>
+  <a href="#" role="button" aria-label="Open menu" aria-controls="mySidebar" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">&#9776;</a>
 </header>
 
 <!-- Overlay -->
@@ -612,8 +611,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="sub-h"><span class="ac-eyebrow">Advanced Theory <small>(online)</small></span><p>Live online, 19:00 to 21:00.</p></div>
     <div class="season" id="online-theory">
-      <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-maneuvers.jpg');background-size:230%;background-position:58% 42%"><span>23 Feb</span></div><div class="bd"><h3>Advanced maneuvers</h3><p>What happens in every important maneuver, and which tool to use when.</p></div></div>
-      <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-emagram.png');background-size:150%;background-position:45% 72%;background-color:#fff"><span>13 Apr</span></div><div class="bd"><h3>Emagram and weather</h3><p>Read the emagram yourself: cloud base, inversions, thermal strength, the flyable window.</p></div></div>
+      <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-maneuvers.webp');background-size:230%;background-position:58% 42%"><span>23 Feb</span></div><div class="bd"><h3>Advanced maneuvers</h3><p>What happens in every important maneuver, and which tool to use when.</p></div></div>
+      <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-emagram.webp');background-size:150%;background-position:45% 72%;background-color:#fff"><span>13 Apr</span></div><div class="bd"><h3>Emagram and weather</h3><p>Read the emagram yourself: cloud base, inversions, thermal strength, the flyable window.</p></div></div>
       <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-xc.svg')"><span>4 May</span></div><div class="bd"><h3>Thermals and XC planning</h3><p>Where thermals come from, how to centre them, how to plan a line.</p></div></div>
       <div class="step"><div class="ph" style="background-image:url('Images_v2/academy/theory-risk.svg')"><span>22 Jun</span></div><div class="bd"><h3>Risk assessment</h3><p>What leads to accidents, and how to make good decisions in the air.</p></div></div>
     </div>
@@ -636,8 +635,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="guests">
-      <div class="guest"><img src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel Schmid, cross-country coach" loading="lazy"><div><span class="g-tag">Guest coach day</span><h3>XC with Marcel Schmid</h3><p>Three decades in the Swiss air and one of the best cross-country pilots in the country. Your next step in distance: he picks the best place for the day and for the group's level, from Central Switzerland to the Valais, and sets the line. You fly it. FAI badge flights confirmed on the day, online debrief with Miki afterwards. Places the Season Pass holders leave free are open to licensed pilots without a pass, CHF 350.</p></div></div>
-      <div class="guest"><img src="https://flywithmiki.com/Images_v2/Mihai.webp" alt="Mihai Lazar, hike and fly coach" loading="lazy"><div><span class="g-tag">Guest coach day</span><h3>Hike &amp; fly with Mihai Lazar</h3><p>Competition pilot and hike &amp; fly specialist: choosing a peak that works, packing light without cutting safety, judging a wild launch.</p></div></div>
+      <div class="guest"><img width="1094" height="820" src="https://flywithmiki.com/Images_v2/Marcel.webp" alt="Marcel Schmid, cross-country coach" loading="lazy"><div><span class="g-tag">Guest coach day</span><h3>XC with Marcel Schmid</h3><p>Three decades in the Swiss air and one of the best cross-country pilots in the country. Your next step in distance: he picks the best place for the day and for the group's level, from Central Switzerland to the Valais, and sets the line. You fly it. FAI badge flights confirmed on the day, online debrief with Miki afterwards. Places the Season Pass holders leave free are open to licensed pilots without a pass, CHF 350.</p></div></div>
+      <div class="guest"><img width="900" height="675" src="https://flywithmiki.com/Images_v2/Mihai.webp" alt="Mihai Lazar, hike and fly coach" loading="lazy"><div><span class="g-tag">Guest coach day</span><h3>Hike &amp; fly with Mihai Lazar</h3><p>Competition pilot and hike &amp; fly specialist: choosing a peak that works, packing light without cutting safety, judging a wild launch.</p></div></div>
     </div>
     <p class="g-note">Included in the Season Pass.</p>
 
@@ -655,7 +654,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="ac-eyebrow">Your mentor</span>
     <h2 class="ac-h">Small groups. Personal mentoring. The only way I know to make better pilots.</h2>
     <div class="mentor">
-      <img src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki Mohos, SHV/BAZL paragliding instructor and mentor of the FLYwithMIKI Academy" loading="lazy">
+      <img width="1094" height="820" src="https://flywithmiki.com/Images_v2/Miki.webp" alt="Miki Mohos, SHV/BAZL paragliding instructor and mentor of the FLYwithMIKI Academy" loading="lazy">
       <div><h3>Miki Mohos</h3><p class="cred">SHV/BAZL instructor no. 54547 &middot; 250+ pilots trained &middot; flying since 2017</p><p class="big">I believe there is only one way to become a better pilot: someone who knows you, watches you fly, and builds your next step around you.</p><p>I bring teaching experience from the University of Bern and a long interest in psychology. Two pilots can fly the same thermal and live through two completely different flights. So I look at the person first: how you experience a situation, what makes you tense, what gives you confidence.</p><p>Empathy is not a soft extra in this sport. It is how fear turns into skill. Your training plan follows your attitude and your pace, not a fixed syllabus.</p></div>
     </div>
     <div class="quotes">
@@ -878,15 +877,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label class="check"><input type="checkbox" name="terms_accepted" value="yes" required> <span>I have read and accept the <a href="agb.html#academy" target="_blank" rel="noopener noreferrer">participation terms</a>.</span></label>
       <button type="submit" style="display:block; width:100%; background:var(--ac); color:white; border:none; border-radius:30px; padding:14px; font-size:1.05em; font-weight:bold; cursor:pointer; font-family:'Montserrat',sans-serif; margin-top:18px">&#127891; Send my booking request</button>
       <p style="color:#888; font-size:0.82em; margin:10px 0 0; text-align:center">No newsletter. Miki answers within one working day.</p>
-    </form>
+    </form><p style="font-size:0.85em;color:#667;margin:8px 0 0">We use your details only to answer you and to handle your request: <a href="privacy.html" style="color:#0077b6">Privacy Policy</a>.</p>
   </div>
 
 
   <!-- FOOTER -->
   <footer class="w3-container w3-center w3-light-grey w3-tiny">
-    <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+    <img width="1650" height="156" src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
     <p>&copy; 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-    <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&amp;C / AGB)</a></p>
+    <p>Imprint: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Switzerland &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+    <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&amp;C / AGB)</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   </footer>
 </div>
 
@@ -900,6 +900,7 @@ function myAccFunc(id) {
     x.className = x.className.replace(" w3-show", "");
     x.previousElementSibling.className = x.previousElementSibling.className.replace(" w3-green", "");
   }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -919,6 +920,15 @@ var _af = document.getElementById('academy-form'); if (_af) _af.addEventListener
 
 <script>
 function ghPlay(el) { el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/UinUDk5Szt0?autoplay=1&rel=0" title="Advanced groundhandling" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'; el.onclick = null; }
+</script>
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
 </script>
 </body>
 </html>

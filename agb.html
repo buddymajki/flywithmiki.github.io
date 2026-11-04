@@ -125,10 +125,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="manifest" href="site.webmanifest">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/vendor/w3.css">
+        <link rel="stylesheet" href="assets/fonts/montserrat-roboto400.css">
+        <link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
         
         <style>
              .webcam-card { width: 100%; margin-bottom: 20px; /* Add margin between cards */ }
@@ -193,16 +192,13 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
     <link rel="canonical" href="https://flywithmiki.com/agb.html" />
-    <link rel="alternate" hreflang="en" href="https://flywithmiki.com/agb.html" />
-    <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/agb.html" />
-    <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/agb.html" />
 <meta name="robots" content="index, follow" />
 <meta property="og:site_name" content="FLYwithMIKI" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="General Terms &amp; Conditions (AGB) | FLYwithMIKI" />
 <meta name="twitter:description" content="FLYwithMIKI - General Terms and Conditions for our students, pilots, customers and tandem passengers" />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=2">
+<link rel="stylesheet" href="flywithmiki.css?v=3">
 </head> 
 
 
@@ -216,10 +212,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container ">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Close menu" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo - General Terms and Conditions" loading="lazy"> 
+        <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo - General Terms and Conditions" loading="lazy"> 
         </a> 
     </div>
     <!--Language menu -->
@@ -227,12 +223,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
       <a href="agb.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
       </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
-      <a href="de/agb.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+      <a href="#deutsch" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
       </a>
      </div>
      </div>
@@ -243,7 +239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
-    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Dates &amp; Prices</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
   </div>
@@ -257,13 +253,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Already a pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -273,8 +271,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 
@@ -284,7 +280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
   
-  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+  <a href="#" role="button" aria-label="Open menu" aria-controls="mySidebar" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -310,11 +306,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="w3-container w3-card-4 w3-white w3-margin w3-padding-16 w3-justify">
     <h1 class="w3-center">General Terms and Conditions (GTC / AGB)</h1>
     <p class="w3-center w3-small">Version / Stand: 10.09.2026</p>
+    <p class="w3-center"><a href="#english">English</a> &middot; <a href="#deutsch" hreflang="de">Deutsch</a></p>
+    <div id="english">
     <p>These terms and conditions apply automatically to all individuals who purchase and/or participates any service, material, course, or flight from <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong>, whether online or offline.</p>
     
     <h3>1. Training, Courses, and Trips for Students and Licensed Pilots</h3>
     <p style="background:#eef6fb;border-left:4px solid #0b79c0;border-radius:6px;padding:8px 12px">Section 1 applies to training contracts concluded before 1 January 2027 (the former Full Training). For the Intensive Licence Course 2027, section 1a applies; for the Academy, section 3a.</p>
-    <h4>English:</h4>
     <p>
       All participants in training courses, instructional flights, and organized trips must have the following mandatory insurance:
       <ul>
@@ -368,65 +365,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       For any inquiries regarding refunds, please contact us at <strong>info@flywithmiki.com</strong>.
     </p>
     
-    <h4>Deutsch:</h4>
-    <p>
-      Alle Teilnehmer an Schulungskursen, Ausbildungsflugen und organisierten Ausflugen mussen die folgenden obligatorischen Versicherungen besitzen:
-      <ul>
-        <li>Haftpflichtversicherung gemass Schweizer Gesetzgebung</li>
-        <li>Unfallversicherung</li>
-        <li>Rettungsversicherung (<strong>dringend empfohlen</strong>)</li>
-      </ul>
-      Das Fliegen erfolgt auf eigenes Risiko der Teilnehmer. <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> und seine Ausbilder oder Mitarbeiter ubernehmen keine Haftung fur Unfalle, Verletzungen oder Schaden, die wahrend der Aktivitaten auftreten konnen. Es liegt in der Verantwortung des Teilnehmers, sicherzustellen, dass er gesundheitlich in der Lage ist, an Gleitschirmaktivitaten teilzunehmen. Teilnehmer verpflichten sich, <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> und dessen Mitarbeiter von jeglichen Anspruchen, die aus ihrer Teilnahme an den Aktivitaten entstehen, schadlos zu halten.
-    </p>
-    
-    <h4>Kursdauer und Medizinische Verlängerung:</h4>
-    <p>
-      Die Dauer jedes Gleitschirmkurses ist auf der Rechnung angegeben. Schüler müssen alle praktischen und theoretischen Ausbildungen innerhalb der angegebenen Dauer abschliessen.
-    </p>
-    <p>
-      <strong>Medizinische Verlängerung:</strong> Kann ein Schüler aus medizinischen Gründen <strong>länger als einen (1) Monat</strong> ununterbrochen nicht fliegen, wird die Kursdauer kostenlos um die ärztlich bestätigte Dauer der Flugunfähigkeit verlängert, höchstens jedoch um sechs (6) Monate. Dafür gilt:
-    </p>
-    <ul>
-      <li>Der Schüler informiert die Flugschule <strong>innerhalb einer (1) Woche</strong> nach Beginn der Flugunfähigkeit und gibt an, wie lange er voraussichtlich nicht fliegen kann.</li>
-      <li>Der Schüler reicht ein ärztliches Attest ein, das den Zeitraum der Flugunfähigkeit bestätigt.</li>
-      <li>Wird die Flugschule später informiert, wird die Verlängerung erst ab dem Tag der Meldung berechnet.</li>
-    </ul>
-    <p>
-      Dauert die Flugunfähigkeit länger als sechs (6) Monate, gilt die untenstehende Rückerstattungsrichtlinie, oder der Schüler kann eine kostenpflichtige Schulverlängerung buchen. Falls die normale Kursdauer abgelaufen ist, sind die Schüler herzlich eingeladen, gegen eine zusätzliche Gebühr länger in der Schule zu bleiben. Wir bieten Schulverlängerungen zu attraktiven Preisen für diejenigen an, die mehr Zeit benötigen, um ihre Ausbildung abzuschliessen.
-    </p>
-    
-    <h4>Ruckerstattungsrichtlinie - Gleitschirmkurse</h4>
-    <p>
-      Bei <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> setzen wir uns fur eine qualitativ hochwertige Gleitschirmausbildung ein. Aufgrund der Art unserer Kurse und der Vorab-Bindung von Ressourcen gilt folgende <strong>strikte Ruckerstattungsrichtlinie</strong>:
-      <br><br>
-      <strong>Keine Ruckerstattung nach Kursbeginn</strong>
-      <br>
-      Sobald ein Schuler <strong>einen Teil des Trainings begonnen hat</strong> (einschliesslich Ground Training, Uebungshang-Sitzungen oder Theoriekursen), <strong>werden keine Ruckerstattungen gewahrt</strong>.
-      <br><br>
-      <strong>Ruckerstattung aufgrund Schwerwiegender Medizinischer Bedingungen (Mindestens 6 Monate Flugunfahigkeit)</strong>
-      <br>
-      Eine teilweise Ruckerstattung wird <strong>nur</strong> gewahrt, wenn ein Schuler aufgrund einer nachgewiesenen medizinischen Erkrankung, die das Fliegen verhindert (bestatigt durch einen zugelassenen Arzt), und die voraussichtlich <strong>langer als sechs (6) Monate</strong> andauern wird, den Kurs nicht fortsetzen kann.
-      <br><br>
-      <strong>Berechnung des Ruckerstattungsbetrags:</strong>
-      <ul>
-        <li>Eine nicht erstattungsfahige <strong>Verwaltungsgebuhr von 200 CHF</strong> wird vom Gesamtkurspreis abgezogen.</li>
-        <li><strong>600 CHF</strong> werden fur jedes Datum abgezogen, an dem der Schuler an einer Flugaktivitat teilgenommen hat (Ground Handling, Uebungshang oder Hohenfluge).</li>
-        <li><strong>100 CHF</strong> werden fur jede besuchte Theoriestunde abgezogen.</li>
-        <li>Der verbleibende Betrag wird innerhalb von funf (5) Werktagen nach Genehmigung der Ruckerstattungsanfrage zuruckerstattet.</li>
-      </ul>
-      <br>
-      <strong>Ruckerstattungsprozess:</strong>
-      <br>
-      Um eine Ruckerstattung unter diesen Umstanden zu beantragen, muss der Schuler ein arztliches Attest vorlegen, das die Erkrankung und deren bestatigte oder erwartete Dauer (muss 6 Monate uberschreiten) und deren Auswirkungen auf die Fahigkeit zur Fortsetzung der Gleitschirmausbildung bestatigt. Durch die Anmeldung zu unseren Kursen erkennen die Schuler diese Ruckerstattungsrichtlinie an und stimmen ihr zu.
-      <br><br>
-      Bei Fragen zu Ruckerstattungen wenden Sie sich bitte an <strong>info@flywithmiki.com</strong>.
-    </p>
-
     <!-- INTENSIVE 2027 TERMS START: approved by Miki 2026-10-21 -->
     <br><br>
     <h3 id="intensive-2027">1a. Intensive Licence Course 2027: Booking Terms</h3>
-    <p style="font-style:italic">These terms apply to the Intensive Licence Course 2027 (27 May to 15 August 2027: four ground-school days from 27 to 30 May, three intensive weeks from 31 May to 20 June, then Friday-to-Sunday weekends).</p>
-    <h4>English:</h4>
+    <p style="font-style:italic">These terms apply to the Intensive Licence Course 2027 (27 May to 15 August 2027: four basic-course days from 27 to 30 May, three intensive weeks from 31 May to 20 June, then Friday-to-Sunday weekends).</p>
     <ol>
       <li><b>Reservation.</b> A place is reserved when the deposit of CHF 1,500 has been received. Places are given in the order in which deposits arrive.</li>
       <li><b>Price and payment.</b> The course costs CHF 3,900. The first three deposits received by 31 December 2026 get CHF 300 off the equipment set bought from the school (early-bird). A second instalment of CHF 1,500 is due by 31 March 2027 (at booking, if you book later); the balance is due on the first day of the course. The equipment set is paid when it is ordered.</li>
@@ -435,30 +377,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><b>Missed days.</b> Course days the student does not attend are forfeited. They are not refunded or replaced.</li>
       <li><b>High flights.</b> The course is planned for at least 60 high flights per student. Because the weather decides, no number of flights is guaranteed. Days lost to the weather are not replaced.</li>
       <li><b>Course days and the end of the course.</b> The course runs on the published days, the same for the whole group; each student chooses which of them to attend (intensive weeks, weekends or both). The decision whether a day flies is made at 20:00 the evening before. The weekends after the intensive weeks are included until the student's practical exam or 80 high flights, whichever comes first; a weekend day runs when at least 3 students sign up. The course ends on its last published day. There is no extension fee.</li>
-      <li><b>Equipment.</b> Every student flies their own certified equipment from the first high flight. A beginner set bought from FLYwithMIKI is paid in full before it is ordered, by 15 April 2027 at the latest. Equipment not bought from FLYwithMIKI must pass our airworthiness review and, if required, a full check before the course.</li>
-      <li><b>Trial Days.</b> A Trial Day costs CHF 300, paid when booked, and is credited against the course price if the participant books the course. It runs from 3 participants, decided two weeks before; otherwise the participant moves to the other Trial Day or is refunded in full.</li>
+      <li><b>Equipment.</b> Every student flies their own certified equipment from the first high flight. A beginner set bought from FLYwithMIKI is paid in full before it is ordered, by 15 April 2027 at the latest. Equipment not bought from FLYwithMIKI must pass our airworthiness review and, if required, a full check before the course. If the set cannot be ordered by 15 April 2027 (late booking), it may arrive after the course starts; until then the student rents equipment by arrangement.</li>
+      <li><b>Trial Days.</b> A Trial Day costs CHF 300, paid when booked, and is credited against the course price if the participant books the course. It runs from 2 participants, decided two weeks before; if it does not run, or the weather does not allow flying, the participant moves to the next Trial Day or is refunded in full.</li>
+      <li><b>Basic course only.</b> The four basic-course days (27 to 30 May 2027) can be booked on their own for CHF 1,900, paid when booked, school equipment provided. If the participant then books the Intensive Course 2027, the full amount is credited against the course price. Places depend on the equipment sizes available. The basic course runs on the published days and ends on 30 May 2027; how many of them fly depends on the weather. Participants who continue with the Intensive Course simply carry on with the group in the intensive weeks. Participants who do not continue and had fewer than 3 flyable days receive a voucher for a free instructional tandem flight. Beyond that, days lost to weather are not refunded.</li>
       <li><b>Entry requirements.</b> Minimum age 15; parental consent for students under 18; SHV membership; liability insurance; theory prepared before the course.</li>
       <li><b>Insurance.</b> The student is responsible for having accident insurance that covers paragliding.</li>
-    </ol>
-    <h4>Deutsch:</h4>
-    <ol>
-      <li><b>Reservation.</b> Ein Platz ist reserviert, sobald die Anzahlung von CHF 1'500 eingegangen ist. Die Plätze werden in der Reihenfolge des Zahlungseingangs vergeben.</li>
-      <li><b>Preis und Zahlung.</b> Der Kurs kostet CHF 3'900. Die ersten drei Anzahlungen, die bis 31. Dezember 2026 eingehen, erhalten CHF 300 Rabatt auf das bei der Schule gekaufte Ausrüstungsset (Frühbucher). Eine zweite Rate von CHF 1'500 ist bis 31. März 2027 fällig (bei späterer Buchung sofort); der Restbetrag ist am ersten Kurstag fällig. Das Ausrüstungsset wird bei der Bestellung bezahlt.</li>
-      <li><b>Mindestgrösse.</b> Der Kurs findet ab 4 bezahlten Anzahlungen statt; entschieden wird am 31. März 2027. Bei weniger als 4 Anzahlungen bis dann wählt der Schüler: Alle Zahlungen werden voll zurückerstattet, oder der Kurs findet mit weniger Schülern und einem Zuschlag von CHF 1'500 pro Person statt.</li>
-      <li><b>Annullierung durch den Schüler.</b> Die Anzahlung wird nicht zurückerstattet. Sie kann einmal übertragen werden, auf eine namentlich genannte Person, welche die Voraussetzungen erfüllt.</li>
-      <li><b>Verpasste Tage.</b> Kurstage, an denen der Schüler nicht teilnimmt, verfallen. Sie werden weder zurückerstattet noch ersetzt.</li>
-      <li><b>Höhenflüge.</b> Der Kurs ist auf mindestens 60 Höhenflüge pro Schüler ausgelegt. Weil das Wetter entscheidet, wird keine Anzahl Flüge garantiert. Tage, die das Wetter nimmt, werden nicht ersetzt.</li>
-      <li><b>Kurstage und Ende des Kurses.</b> Der Kurs findet an den publizierten Tagen statt, für die ganze Gruppe dieselben; jeder Schüler wählt, an welchen er teilnimmt (Intensivwochen, Wochenenden oder beides). Ob ein Tag geflogen wird, entscheiden wir am Vorabend um 20:00. Die Wochenenden nach den Intensivwochen sind inklusive bis zur Praxisprüfung oder 80 Höhenflügen, was zuerst eintritt; ein Wochenendtag findet ab 3 Anmeldungen statt. Der Kurs endet an seinem letzten publizierten Tag. Es gibt keine Verlängerungsgebühr.</li>
-      <li><b>Ausrüstung.</b> Jeder Schüler fliegt ab dem ersten Höhenflug mit eigener, zertifizierter Ausrüstung. Ein bei FLYwithMIKI gekauftes Anfänger-Set wird vor der Bestellung vollständig bezahlt, spätestens am 15. April 2027. Ausrüstung, die nicht bei FLYwithMIKI gekauft wurde, muss unser Lufttüchtigkeits-Review und, falls nötig, einen vollständigen Check vor dem Kurs bestehen.</li>
-      <li><b>Schnuppertage.</b> Ein Schnuppertag kostet CHF 300, bezahlt bei der Buchung, und wird an den Kurspreis angerechnet, wenn der Teilnehmer den Kurs bucht. Er findet ab 3 Teilnehmenden statt, entschieden zwei Wochen vorher; sonst wechselt der Teilnehmer auf den anderen Schnuppertag oder bekommt den vollen Betrag zurück.</li>
-      <li><b>Voraussetzungen.</b> Mindestalter 15 Jahre; Einverständnis der Eltern unter 18; SHV-Mitgliedschaft; Haftpflichtversicherung; Theorie vor dem Kurs vorbereitet.</li>
-      <li><b>Versicherung.</b> Der Schüler ist selbst dafür verantwortlich, eine Unfallversicherung zu haben, die das Gleitschirmfliegen abdeckt.</li>
     </ol>
     <!-- INTENSIVE 2027 TERMS END -->
 
     <br><br>
     <h3>2. Student Activity and Proficiency</h3>
-    <h4>English:</h4>
     <p>
         The safety of all students is the <strong>top priority</strong> of the School. Consistent and regular participation is required to maintain the necessary proficiency for high-altitude flights.
         <br><br>
@@ -475,28 +403,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         The Instructor reserves the right to refuse a student access to high-altitude flights until the mandatory safety check on the training hill is successfully completed.
     </p>
     
-    <h4>Deutsch:</h4>
-    <p>
-        Die Sicherheit aller Studenten hat <strong>oberste Prioritat</strong> fur die Schule. Eine konsequente und regelmassige Teilnahme ist erforderlich, um die notwendige Flugtuchtigkeit fur Hohenfluge aufrechtzuerhalten.
-        <br><br>
-        <strong>Obligatorisches Auffrischungstraining (6-Monats-Regel):</strong>
-        <br>
-        Wenn der letzte Hohenflug eines Studenten <strong>langer als sechs (6) Monate</strong> zuruckliegt, ist der Student <strong>verpflichtet</strong>, zum Uebungshang zuruckzukehren, um einem Fluglehrer zu demonstrieren, dass seine Starttechnik und das Ground Handling fur weitere Hohenfluge noch ausreichend sind. Diese Massnahme dient <strong>ausschliesslich Sicherheitszwecken</strong>.
-        <br><br>
-        <strong>Kosten fur das Uebungshang-Training:</strong>
-        <ul>
-            <li>Wenn der Stundenplan der Schule regelmassige Uebungshang-Sitzungen enthalt, ist die Teilnahme an der obligatorischen Auffrischung <strong>kostenlos</strong>.</li>
-            <li>Benotigt der Student ein Auffrischungstraining ausserhalb der geplanten Uebungshang-Sitzungen der Schule, wird eine Gebuhr von <strong>250 CHF pro Sitzung</strong> erhoben.</li>
-        </ul>
-        <br>
-        Der Fluglehrer behalt sich das Recht vor, einem Studenten den Zugang zu Hohenflugen zu verweigern, bis die obligatorische Sicherheitsuberprufung am Uebungshang erfolgreich abgeschlossen wurde.
-    </p>
-
-    
     <br><br>
     <h3>3. Tandem Paragliding: Waiver of Liability and Cancellation Policy</h3>
     
-    <h4>English:</h4>
     <p>
       The Passenger understands that paragliding can be dangerous, and there is a possibility of serious, or even fatal, accidents. Knowing this, the Passenger confirms:
       <ol>
@@ -522,37 +431,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <strong>Passenger Cancellation:</strong> A passenger may cancel their flight reservation and receive a <strong>full refund</strong> only if the cancellation request is received <strong>at least 12 hours</strong> prior to the agreed-upon meeting time. Cancellations made less than 12 hours before the meeting time, or failure to appear at the meeting point (<strong>No-Show</strong>), will result in <strong>no refund</strong> being issued.
     </p>
     
-    <h4>Deutsch:</h4>
-    <p>
-      Der Passagier versteht, dass Gleitschirmfliegen gefahrlich sein kann und es die Moglichkeit schwerer oder sogar todlicher Unfalle gibt. In diesem Wissen bestatigt der Passagier:
-      <ol>
-        <li>Dass es <strong>ausschliesslich die Entscheidung des Passagiers</strong> ist, zu fliegen.</li>
-        <li>Der Passagier versichert, dass er uber die entsprechenden Versicherungen verfugt, insbesondere:
-          <ul>
-            <li>Unfallversicherung</li>
-            <li>Rettungsversicherung</li>
-            <li>Kranken-/Behandlungsversicherung, die alle das Gleitschirmfliegen abdecken und den Schweizer Zivil- und Luftfahrtgesetzen entsprechen.</li>
-          </ul>
-        </li>
-      </ol>
-      Der Passagier verzichtet hiermit auf jegliche Haftung gegenuber dem Piloten und <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> fur jeglichen Schaden, der ihm durch Fahrlassigkeit oder Unfall entstehen konnte. Der Passagier erklart, keine Massnahmen zu ergreifen oder Dritte anzuweisen oder zu unterstutzen, Massnahmen gegen den Piloten oder die Schule zu ergreifen, unabhangig von den Umstanden oder Folgen des Fluges.
-    </p>
-    <p>
-      Der Passagier verzichtet unwiderruflich auf jegliche Rechte auf Wiedergutmachung gemass US-amerikanischem oder auslandischem Recht und erklart, dass ausschliesslich Schweizer Recht im Kanton Luzern Anwendung findet. Die oben genannten Zusicherungen gelten fur einen unbefristeten Zeitraum.
-    </p>
-    
-    <h4>Rucktritts- und Ruckerstattungsrichtlinie fur Tandemfluge:</h4>
-    <p>
-        <strong>Wetterbedingungen:</strong> Kann der Tandemflug aufgrund ungeeigneter Wetterbedingungen (z.B. starker Wind, Regen, schlechte Sicht) nicht stattfinden, wird die Reservierung auf einen einvernehmlich vereinbarten neuen Termin <strong>verschoben</strong>. Bei wetterbedingten Absagen erfolgt <strong>keine Ruckerstattung</strong>, aber das Ticket behalt seine Gultigkeit fur die Umbuchung.
-        <br><br>
-        <strong>Stornierung durch den Passagier:</strong> Ein Passagier kann seine Flugreservierung stornieren und erhalt eine <strong>vollstandige Ruckerstattung</strong> nur dann, wenn die Stornierungsanfrage <strong>mindestens 12 Stunden</strong> vor dem vereinbarten Treffpunkt eingeht. Stornierungen, die weniger als 12 Stunden vor dem Treffpunkt erfolgen, oder das Nichterscheinen am Treffpunkt (<strong>No-Show</strong>), fuhren dazu, dass <strong>keine Ruckerstattung</strong> erfolgt.
-    </p>
-
     <!-- ACADEMY TERMS START: approved by Miki 2026-10-21 -->
     <br><br>
     <h3 id="academy">3a. FLYwithMIKI Academy: Participation Terms</h3>
     <p style="font-style:italic">Applies to the Season Pass 2027.</p>
-    <h4>English:</h4>
     <ol>
       <li><b>Who can take part.</b> Licensed paraglider pilots (SHV brevet, IPPI 4 or IPPI 5) with valid liability and accident insurance that covers paragliding, flying their own airworthy, checked equipment. No students on Academy days.</li>
       <li><b>Own responsibility.</b> Every participant flies, and on the hike and fly day also walks, on their own responsibility. The coach gives suggestions and briefings. The decision to launch, to fly a maneuver or to land is always the pilot's.</li>
@@ -568,7 +450,142 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><b>Returning pass holders.</b> Pass holders of the current season may book a pass for the following season during a priority window before sales open to everyone.</li>
       <li><b>Not included.</b> Cable cars, accommodation, meals, travel and retrieve.</li>
     </ol>
-    <h4>Deutsch:</h4>
+    <!-- ACADEMY TERMS END -->
+
+    <br><br>
+    <h3>4. Governing Law and Jurisdiction</h3>
+    <p>The applicable law for all agreements with <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> is Swiss law. The place of jurisdiction is the Kanton of Luzern.</p>
+    <br><br>
+    <h3>5. Validity and Changes of these Terms</h3>
+    <p>The version of these terms that is valid at the time of registration or booking applies. The current version is always available at <a href="https://flywithmiki.com/agb.html">flywithmiki.com/agb.html</a>, and its date is shown at the top of the page. The school may amend these terms. Students with an ongoing course are informed of changes in writing (e.g. by e-mail or WhatsApp). If a student does not object within 30 days of being informed, the new version is deemed accepted. If the student objects, the previous version continues to apply to them.</p>
+    </div>
+
+    <div id="deutsch" lang="de">
+    <hr style="margin:40px 0 24px">
+    <h2 class="w3-center">Allgemeine Geschäftsbedingungen (AGB)</h2>
+    <p class="w3-center w3-small">Stand: 10.09.2026</p>
+    <p>Diese Geschäftsbedingungen gelten automatisch für alle Personen, die eine Dienstleistung, ein Material, einen Kurs oder einen Flug von <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> kaufen und/oder daran teilnehmen, ob online oder offline.</p>
+
+    <h3>1. Ausbildung, Kurse und Ausflüge für Schüler und lizenzierte Piloten</h3>
+    <p style="background:#eef6fb;border-left:4px solid #0b79c0;border-radius:6px;padding:8px 12px">Abschnitt 1 gilt für Ausbildungsverträge, die vor dem 1. Januar 2027 abgeschlossen wurden (die frühere Grundausbildung). Für den Brevet-Intensivkurs 2027 gilt Abschnitt 1a, für die Academy Abschnitt 3a.</p>
+    <p>
+      Alle Teilnehmer an Schulungskursen, Ausbildungsflügen und organisierten Ausflügen müssen die folgenden obligatorischen Versicherungen besitzen:
+      <ul>
+        <li>Haftpflichtversicherung gemäss Schweizer Gesetzgebung</li>
+        <li>Unfallversicherung</li>
+        <li>Rettungsversicherung (<strong>dringend empfohlen</strong>)</li>
+      </ul>
+      Das Fliegen erfolgt auf eigenes Risiko der Teilnehmer. <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> und seine Ausbilder oder Mitarbeiter übernehmen keine Haftung für Unfälle, Verletzungen oder Schäden, die während der Aktivitäten auftreten können. Es liegt in der Verantwortung des Teilnehmers, sicherzustellen, dass er gesundheitlich in der Lage ist, an Gleitschirmaktivitäten teilzunehmen. Teilnehmer verpflichten sich, <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> und dessen Mitarbeiter von jeglichen Ansprüchen, die aus ihrer Teilnahme an den Aktivitäten entstehen, schadlos zu halten.
+    </p>
+
+    <h4>Kursdauer und Medizinische Verlängerung:</h4>
+    <p>
+      Die Dauer jedes Gleitschirmkurses ist auf der Rechnung angegeben. Schüler müssen alle praktischen und theoretischen Ausbildungen innerhalb der angegebenen Dauer abschliessen.
+    </p>
+    <p>
+      <strong>Medizinische Verlängerung:</strong> Kann ein Schüler aus medizinischen Gründen <strong>länger als einen (1) Monat</strong> ununterbrochen nicht fliegen, wird die Kursdauer kostenlos um die ärztlich bestätigte Dauer der Flugunfähigkeit verlängert, höchstens jedoch um sechs (6) Monate. Dafür gilt:
+    </p>
+    <ul>
+      <li>Der Schüler informiert die Flugschule <strong>innerhalb einer (1) Woche</strong> nach Beginn der Flugunfähigkeit und gibt an, wie lange er voraussichtlich nicht fliegen kann.</li>
+      <li>Der Schüler reicht ein ärztliches Attest ein, das den Zeitraum der Flugunfähigkeit bestätigt.</li>
+      <li>Wird die Flugschule später informiert, wird die Verlängerung erst ab dem Tag der Meldung berechnet.</li>
+    </ul>
+    <p>
+      Dauert die Flugunfähigkeit länger als sechs (6) Monate, gilt die untenstehende Rückerstattungsrichtlinie, oder der Schüler kann eine kostenpflichtige Schulverlängerung buchen. Falls die normale Kursdauer abgelaufen ist, sind die Schüler herzlich eingeladen, gegen eine zusätzliche Gebühr länger in der Schule zu bleiben. Wir bieten Schulverlängerungen zu attraktiven Preisen für diejenigen an, die mehr Zeit benötigen, um ihre Ausbildung abzuschliessen.
+    </p>
+
+    <h4>Rückerstattungsrichtlinie, Gleitschirmkurse</h4>
+    <p>
+      Bei <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> setzen wir uns für eine qualitativ hochwertige Gleitschirmausbildung ein. Aufgrund der Art unserer Kurse und der Vorab-Bindung von Ressourcen gilt folgende <strong>strikte Rückerstattungsrichtlinie</strong>:
+      <br><br>
+      <strong>Keine Rückerstattung nach Kursbeginn</strong><br>
+      Sobald ein Schüler <strong>einen Teil des Trainings begonnen hat</strong> (einschliesslich Ground Training, Übungshang-Sitzungen oder Theoriekursen), <strong>werden keine Rückerstattungen gewährt</strong>.
+      <br><br>
+      <strong>Rückerstattung aufgrund schwerwiegender medizinischer Bedingungen (mindestens 6 Monate Flugunfähigkeit)</strong><br>
+      Eine teilweise Rückerstattung wird <strong>nur</strong> gewährt, wenn ein Schüler aufgrund einer nachgewiesenen medizinischen Erkrankung, die das Fliegen verhindert (bestätigt durch einen zugelassenen Arzt), und die voraussichtlich <strong>länger als sechs (6) Monate</strong> andauern wird, den Kurs nicht fortsetzen kann.
+      <br><br>
+      <strong>Berechnung des Rückerstattungsbetrags:</strong>
+      <ul>
+        <li>Eine nicht erstattungsfähige <strong>Verwaltungsgebühr von 200 CHF</strong> wird vom Gesamtkurspreis abgezogen.</li>
+        <li><strong>600 CHF</strong> werden für jedes Datum abgezogen, an dem der Schüler an einer Flugaktivität teilgenommen hat (Ground Handling, Übungshang oder Höhenflüge).</li>
+        <li><strong>100 CHF</strong> werden für jede besuchte Theoriestunde abgezogen.</li>
+        <li>Der verbleibende Betrag wird innerhalb von fünf (5) Werktagen nach Genehmigung der Rückerstattungsanfrage zurückerstattet.</li>
+      </ul>
+      <br>
+      <strong>Rückerstattungsprozess:</strong><br>
+      Um eine Rückerstattung unter diesen Umständen zu beantragen, muss der Schüler ein ärztliches Attest vorlegen, das die Erkrankung und deren bestätigte oder erwartete Dauer (muss 6 Monate überschreiten) sowie deren Auswirkungen auf die Fähigkeit zur Fortsetzung der Gleitschirmausbildung bestätigt. Durch die Anmeldung zu unseren Kursen erkennen die Schüler diese Rückerstattungsrichtlinie an und stimmen ihr zu.
+      <br><br>
+      Bei Fragen zu Rückerstattungen wenden Sie sich bitte an <strong>info@flywithmiki.com</strong>.
+    </p>
+
+    <!-- INTENSIVE 2027 TERMS START: approved by Miki 2026-10-21 -->
+    <br><br>
+    <h3 id="de-intensive-2027">1a. Brevet-Intensivkurs 2027: Buchungsbedingungen</h3>
+    <p style="font-style:italic">Diese Bedingungen gelten für den Brevet-Intensivkurs 2027 (27. Mai bis 15. August 2027: vier Grundkurs-Tage vom 27. bis 30. Mai, drei Intensivwochen vom 31. Mai bis 20. Juni, dann Wochenenden von Freitag bis Sonntag).</p>
+    <ol>
+      <li><b>Reservation.</b> Ein Platz ist reserviert, sobald die Anzahlung von CHF 1'500 eingegangen ist. Die Plätze werden in der Reihenfolge des Zahlungseingangs vergeben.</li>
+      <li><b>Preis und Zahlung.</b> Der Kurs kostet CHF 3'900. Die ersten drei Anzahlungen, die bis 31. Dezember 2026 eingehen, erhalten CHF 300 Rabatt auf das bei der Schule gekaufte Ausrüstungsset (Frühbucher). Eine zweite Rate von CHF 1'500 ist bis 31. März 2027 fällig (bei späterer Buchung sofort); der Restbetrag ist am ersten Kurstag fällig. Das Ausrüstungsset wird bei der Bestellung bezahlt.</li>
+      <li><b>Mindestgrösse.</b> Der Kurs findet ab 4 bezahlten Anzahlungen statt; entschieden wird am 31. März 2027. Bei weniger als 4 Anzahlungen bis dann wählt der Schüler: Alle Zahlungen werden voll zurückerstattet, oder der Kurs findet mit weniger Schülern und einem Zuschlag von CHF 1'500 pro Person statt.</li>
+      <li><b>Annullierung durch den Schüler.</b> Die Anzahlung wird nicht zurückerstattet. Sie kann einmal übertragen werden, auf eine namentlich genannte Person, welche die Voraussetzungen erfüllt.</li>
+      <li><b>Verpasste Tage.</b> Kurstage, an denen der Schüler nicht teilnimmt, verfallen. Sie werden weder zurückerstattet noch ersetzt.</li>
+      <li><b>Höhenflüge.</b> Der Kurs ist auf mindestens 60 Höhenflüge pro Schüler ausgelegt. Weil das Wetter entscheidet, wird keine Anzahl Flüge garantiert. Tage, die das Wetter nimmt, werden nicht ersetzt.</li>
+      <li><b>Kurstage und Ende des Kurses.</b> Der Kurs findet an den publizierten Tagen statt, für die ganze Gruppe dieselben; jeder Schüler wählt, an welchen er teilnimmt (Intensivwochen, Wochenenden oder beides). Ob ein Tag geflogen wird, entscheiden wir am Vorabend um 20:00. Die Wochenenden nach den Intensivwochen sind inklusive bis zur Praxisprüfung oder 80 Höhenflügen, was zuerst eintritt; ein Wochenendtag findet ab 3 Anmeldungen statt. Der Kurs endet an seinem letzten publizierten Tag. Es gibt keine Verlängerungsgebühr.</li>
+      <li><b>Ausrüstung.</b> Jeder Schüler fliegt ab dem ersten Höhenflug mit eigener, zertifizierter Ausrüstung. Ein bei FLYwithMIKI gekauftes Anfänger-Set wird vor der Bestellung vollständig bezahlt, spätestens am 15. April 2027. Ausrüstung, die nicht bei FLYwithMIKI gekauft wurde, muss unser Lufttüchtigkeits-Review und, falls nötig, einen vollständigen Check vor dem Kurs bestehen. Kann das Set nicht bis 15. April 2027 bestellt werden (späte Buchung), kommt es eventuell erst nach Kursbeginn; bis dahin mietet der Schüler nach Absprache eine Ausrüstung.</li>
+      <li><b>Schnuppertage.</b> Ein Schnuppertag kostet CHF 300, bezahlt bei der Buchung, und wird an den Kurspreis angerechnet, wenn der Teilnehmer den Kurs bucht. Er findet ab 2 Teilnehmenden statt, entschieden zwei Wochen vorher; findet er nicht statt oder lässt das Wetter kein Fliegen zu, wechselt der Teilnehmer auf den nächsten Schnuppertag oder bekommt den vollen Betrag zurück.</li>
+      <li><b>Nur Grundkurs.</b> Die vier Grundkurs-Tage (27. bis 30. Mai 2027) sind einzeln buchbar, CHF 1'900, bezahlt bei der Buchung, Schulausrüstung gestellt. Bucht der Teilnehmer danach den Intensivkurs 2027, wird der volle Betrag an den Kurspreis angerechnet. Die Plätze hängen von den verfügbaren Ausrüstungsgrössen ab. Der Grundkurs findet an den publizierten Tagen statt und endet am 30. Mai 2027; wie viele davon geflogen werden, hängt vom Wetter ab. Wer mit dem Intensivkurs weitermacht, fliegt in den Intensivwochen einfach mit der Gruppe weiter. Wer nicht weitermacht und weniger als 3 fliegbare Tage hatte, bekommt einen Gutschein für einen kostenlosen Schulungstandemflug. Darüber hinaus werden wetterbedingt ausgefallene Tage nicht zurückerstattet.</li>
+      <li><b>Voraussetzungen.</b> Mindestalter 15 Jahre; Einverständnis der Eltern unter 18; SHV-Mitgliedschaft; Haftpflichtversicherung; Theorie vor dem Kurs vorbereitet.</li>
+      <li><b>Versicherung.</b> Der Schüler ist selbst dafür verantwortlich, eine Unfallversicherung zu haben, die das Gleitschirmfliegen abdeckt.</li>
+    </ol>
+    <!-- INTENSIVE 2027 TERMS END -->
+
+    <br><br>
+    <h3>2. Aktivität und Flugtüchtigkeit der Schüler</h3>
+    <p>
+      Die Sicherheit aller Schüler hat <strong>oberste Priorität</strong> für die Schule. Eine konsequente und regelmässige Teilnahme ist erforderlich, um die notwendige Flugtüchtigkeit für Höhenflüge aufrechtzuerhalten.
+      <br><br>
+      <strong>Obligatorisches Auffrischungstraining (6-Monats-Regel):</strong><br>
+      Wenn der letzte Höhenflug eines Schülers <strong>länger als sechs (6) Monate</strong> zurückliegt, ist der Schüler <strong>verpflichtet</strong>, zum Übungshang zurückzukehren, um einem Fluglehrer zu demonstrieren, dass seine Starttechnik und das Ground Handling für weitere Höhenflüge noch ausreichend sind. Diese Massnahme dient <strong>ausschliesslich Sicherheitszwecken</strong>.
+      <br><br>
+      <strong>Kosten für das Übungshang-Training:</strong>
+      <ul>
+        <li>Wenn der Stundenplan der Schule regelmässige Übungshang-Sitzungen enthält, ist die Teilnahme an der obligatorischen Auffrischung <strong>kostenlos</strong>.</li>
+        <li>Benötigt der Schüler ein Auffrischungstraining ausserhalb der geplanten Übungshang-Sitzungen der Schule, wird eine Gebühr von <strong>250 CHF pro Sitzung</strong> erhoben.</li>
+      </ul>
+      <br>
+      Der Fluglehrer behält sich das Recht vor, einem Schüler den Zugang zu Höhenflügen zu verweigern, bis die obligatorische Sicherheitsüberprüfung am Übungshang erfolgreich abgeschlossen wurde.
+    </p>
+
+    <br><br>
+    <h3>3. Tandem-Gleitschirmfliegen: Haftungsausschluss und Stornierungsrichtlinie</h3>
+    <p>
+      Der Passagier versteht, dass Gleitschirmfliegen gefährlich sein kann und die Möglichkeit schwerer oder sogar tödlicher Unfälle besteht. In diesem Wissen bestätigt der Passagier:
+      <ol>
+        <li>Dass es <strong>ausschliesslich die Entscheidung des Passagiers</strong> ist, zu fliegen.</li>
+        <li>Der Passagier versichert, dass er über die entsprechenden Versicherungen verfügt, insbesondere:
+          <ul>
+            <li>Unfallversicherung</li>
+            <li>Rettungsversicherung</li>
+            <li>Kranken-/Behandlungsversicherung, alle decken das Gleitschirmfliegen ab und entsprechen den Schweizer Zivil- und Luftfahrtgesetzen.</li>
+          </ul>
+        </li>
+      </ol>
+      Der Passagier verzichtet hiermit auf jegliche Haftung gegenüber dem Piloten und <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> für jeglichen Schaden, der ihm durch Fahrlässigkeit oder Unfall entstehen könnte. Der Passagier erklärt, keine Massnahmen zu ergreifen oder Dritte anzuweisen oder zu unterstützen, Massnahmen gegen den Piloten oder die Schule zu ergreifen, unabhängig von den Umständen oder Folgen des Fluges.
+    </p>
+    <p>
+      Der Passagier verzichtet unwiderruflich auf jegliche Rechte auf Wiedergutmachung gemäss US-amerikanischem oder ausländischem Recht und erklärt, dass ausschliesslich Schweizer Recht im Kanton Luzern Anwendung findet. Die oben genannten Zusicherungen gelten für einen unbefristeten Zeitraum.
+    </p>
+
+    <h4>Rücktritts- und Rückerstattungsrichtlinie für Tandemflüge:</h4>
+    <p>
+      <strong>Wetterbedingungen:</strong> Kann der Tandemflug aufgrund ungeeigneter Wetterbedingungen (z.B. starker Wind, Regen, schlechte Sicht) nicht stattfinden, wird die Reservierung auf einen einvernehmlich vereinbarten neuen Termin <strong>verschoben</strong>. Bei wetterbedingten Absagen erfolgt <strong>keine Rückerstattung</strong>, aber das Ticket behält seine Gültigkeit für die Umbuchung.
+      <br><br>
+      <strong>Stornierung durch den Passagier:</strong> Ein Passagier kann seine Flugreservierung stornieren und erhält eine <strong>vollständige Rückerstattung</strong> nur dann, wenn die Stornierungsanfrage <strong>mindestens 12 Stunden</strong> vor dem vereinbarten Treffpunkt eingeht. Stornierungen, die weniger als 12 Stunden vor dem Treffpunkt erfolgen, oder das Nichterscheinen am Treffpunkt (<strong>No-Show</strong>), führen dazu, dass <strong>keine Rückerstattung</strong> erfolgt.
+    </p>
+
+    <!-- ACADEMY TERMS START: approved by Miki 2026-10-21 -->
+    <br><br>
+    <h3 id="de-academy">3a. FLYwithMIKI Academy: Teilnahmebedingungen</h3>
+    <p style="font-style:italic">Gilt für den Saison-Pass 2027.</p>
     <ol>
       <li><b>Wer teilnehmen kann.</b> Brevetierte Gleitschirmpiloten (SHV-Brevet, IPPI 4 oder IPPI 5) mit gültiger Haftpflicht- und Unfallversicherung, die das Gleitschirmfliegen abdeckt, und mit eigener, lufttüchtiger, gecheckter Ausrüstung. An Academy-Tagen sind keine Schüler dabei.</li>
       <li><b>Eigene Verantwortung.</b> Alle Teilnehmenden fliegen, und am Hike-and-Fly-Tag laufen sie auch, auf eigene Verantwortung. Der Coach gibt Vorschläge und Briefings. Die Entscheidung zu starten, ein Manöver zu fliegen oder zu landen, liegt immer beim Piloten.</li>
@@ -587,21 +604,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ACADEMY TERMS END -->
 
     <br><br>
-    <h3>4. Governing Law and Jurisdiction</h3>
-    <p>The applicable law for all agreements with <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> is Swiss law. The place of jurisdiction is the Kanton of Luzern.</p>
+    <h3>4. Anwendbares Recht und Gerichtsstand</h3>
+    <p>Das anwendbare Recht für alle Vereinbarungen mit <strong>M. Mohos - FLYwithMIKI Gleitschirmschule</strong> ist Schweizer Recht. Der Gerichtsstand ist der Kanton Luzern.</p>
+
     <br><br>
-    <h3>5. Validity and Changes of these Terms</h3>
-    <h4>English:</h4>
-    <p>The version of these terms that is valid at the time of registration or booking applies. The current version is always available at <a href="https://flywithmiki.com/agb.html">flywithmiki.com/agb.html</a>, and its date is shown at the top of the page. The school may amend these terms. Students with an ongoing course are informed of changes in writing (e.g. by e-mail or WhatsApp). If a student does not object within 30 days of being informed, the new version is deemed accepted. If the student objects, the previous version continues to apply to them.</p>
-    <h4>Deutsch:</h4>
-    <p>Es gilt die zum Zeitpunkt der Anmeldung bzw. Buchung gültige Fassung dieser AGB. Die jeweils aktuelle Fassung ist jederzeit unter <a href="https://flywithmiki.com/de/agb.html">flywithmiki.com/de/agb.html</a> abrufbar, das Datum der Fassung steht oben auf der Seite. Die Flugschule kann diese AGB ändern. Schüler mit laufendem Kurs werden über Änderungen schriftlich informiert (z. B. per E-Mail oder WhatsApp). Widerspricht ein Schüler nicht innerhalb von 30 Tagen nach der Mitteilung, gilt die neue Fassung als angenommen. Bei einem Widerspruch gilt für ihn weiterhin die bisherige Fassung.</p>
-    
+    <h3>5. Gültigkeit und Änderungen dieser AGB</h3>
+    <p>Es gilt die zum Zeitpunkt der Anmeldung bzw. Buchung gültige Fassung dieser AGB. Die jeweils aktuelle Fassung ist jederzeit unter <a href="https://flywithmiki.com/agb.html#deutsch">flywithmiki.com/agb.html#deutsch</a> abrufbar, das Datum der Fassung steht oben auf der Seite. Die Flugschule kann diese AGB ändern. Schüler mit laufendem Kurs werden über Änderungen schriftlich informiert (z. B. per E-Mail oder WhatsApp). Widerspricht ein Schüler nicht innerhalb von 30 Tagen nach der Mitteilung, gilt die neue Fassung als angenommen. Bei einem Widerspruch gilt für ihn weiterhin die bisherige Fassung.</p>
+    </div>
 </div>
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <img width="1650" height="156" src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p>Imprint: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Switzerland &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
@@ -627,6 +643,7 @@ function myAccFunc(id) {
     x.previousElementSibling.className = 
     x.previousElementSibling.className.replace(" w3-green", "");
   }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 
 var myIndex = 0;
@@ -705,6 +722,15 @@ function handleButtonClick(language) {
 
 
 
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
+</script>
 </body>
 
 </html>

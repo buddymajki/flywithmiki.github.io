@@ -130,10 +130,9 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="manifest" href="site.webmanifest">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/vendor/w3.css">
+        <link rel="stylesheet" href="assets/fonts/montserrat-roboto400.css">
+        <link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
         
 <style>
            * {
@@ -336,7 +335,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Paragliding Prices CHF 3900 Switzerland | FLYwithMIKI" />
 <meta name="twitter:description" content="Every price in one place, no fine print: training CHF 3900, beginner set from CHF 5500, official SHV fees. Realistic total to your Swiss licence: CHF 10550-11550." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=2">
+<link rel="stylesheet" href="flywithmiki.css?v=3">
 </head> 
 
 
@@ -352,10 +351,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Sidebar/menu   <!--return false ez szedi ki az onclick-nél, hogy ne kapjon hülyét-->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:300px" id="mySidebar">
   <div class="w3-container w3-display-container ">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
+    <i onclick="w3_close()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();w3_close()}" role="button" tabindex="0" aria-label="Close menu" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i> <!-- felülre hozza az oldalsó menüt kis képernyőnél kattintásnál -->
     
     <div class="w3-margin w3-center"> 
-        <a href="./"><img src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> 
+        <a href="./"><img width="480" height="480" src="https://flywithmiki.com/Images_v2/g760.webp" style="width:90%" alt="FLYwithMIKI paragliding school logo" loading="lazy"> 
         </a> 
     </div>
     <!--Language menu -->
@@ -363,12 +362,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="w3-row">
        <div class="w3-col s6 m6 l6 w3-center">
       <a href="prices.html" hreflang="en" aria-label="English version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/eng.svg" style="width:100%" alt="English version" loading="lazy">
       </a>
      </div>
      <div class="w3-col s6 m6 l6 w3-center">
       <a href="de/preise.html" hreflang="de" aria-label="Deutsche Version" class="w3-hover-opacity" style="display:inline-block; width:40%; line-height:0">
-        <img src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
+        <img width="800" height="800" src="https://flywithmiki.com/Images_v2/ger.svg" style="width:100%" alt="Deutsche Version" loading="lazy">
       </a>
      </div>
      </div>
@@ -379,7 +378,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="w3-padding-24 w3-large w3-text-grey" style="font-weight:bold">
     <a href="intensive.html" class="w3-bar-item w3-button" style="color:#e85d04">&#129666; Learn to Fly: Intensive Course</a>
-    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Prices</a>
+    <a href="prices.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">Dates &amp; Prices</a>
     <a href="school.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How We Teach</a>
     <a href="compare.html" class="w3-bar-item w3-button" style="font-size:0.72em; padding-left:26px">How to Choose a School</a>
   </div>
@@ -393,13 +392,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAccGear');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Shop &amp; Checkcenter <i class="fa fa-caret-down"></i></a>
+  <a onclick="myAccFunc('demoAccGear');return false" href="#" aria-expanded="false" aria-controls="demoAccGear" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#128295; Already a pilot? <i class="fa fa-caret-down"></i></a>
   <div id="demoAccGear" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="equipment.html" class="w3-bar-item w3-button" style="font-size:0.9em">Equipment &amp; Shop</a>
     <a href="checkcenter.html" class="w3-bar-item w3-button" style="font-size:0.9em">Checkcenter: glider check &amp; repack</a>
   </div>
   <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a onclick="myAccFunc('demoAcc3');return false" href="#" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:1.15em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
+  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
+  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
+  <a onclick="myAccFunc('demoAcc3');return false" href="#" aria-expanded="false" aria-controls="demoAcc3" class="w3-button w3-text-grey w3-block w3-white w3-left-align" style="font-size:0.95em">&#127891; Student Area <i class="fa fa-caret-down"></i></a>
   <div id="demoAcc3" class="w3-bar-block w3-hide" style="padding-left:20px">
     <a href="program.html" class="w3-bar-item w3-button" style="font-size:0.9em">Daily Program</a>
     <a href="meteo.html" class="w3-bar-item w3-button" style="font-size:0.9em">Meteo</a>
@@ -409,14 +410,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="flightdeck.html" class="w3-bar-item w3-button" style="font-size:0.9em">FlightDeck</a>
     <a href="shv-calc.html" class="w3-bar-item w3-button" style="font-size:0.9em">SHV-digit calculator</a>
   </div>
-  <hr style="border:none; border-top:1px solid #ddd; margin:4px 8px">
-  <a href="tandem.html" class="w3-bar-item w3-button" style="color:#0077b6; font-size:1.15em">&#9992; Tandem Flights</a>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-center w3-opacity w3-hover-opacity-off w3-hide-large w3-white " style="height:4em">
   
-  <a href="#" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
+  <a href="#" role="button" aria-label="Open menu" aria-controls="mySidebar" class="" style="font-size:3em; text-decoration:none" onclick="w3_open(); return false">☰</a>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -468,6 +467,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    </div>
 
 
+   <p style="margin:18px 0 0;font-size:0.95em"><a href="#try-first" style="color:#fff;font-weight:bold">&#127793; Not ready for all of it? Try it first: Trial Day CHF 300 or Basic Course CHF 1,900, both credited &darr;</a></p>
    <a href="#choose" style="display:inline-block;background:rgba(255,255,255,0.18);color:white;padding:14px 32px;border-radius:30px;font-size:1.05em;font-weight:bold;text-decoration:none;margin:22px 6px 0;border:2px solid rgba(255,255,255,0.4)">What is in the course? &#8595;</a>
  </div>
 
@@ -490,16 +490,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <!-- THE COURSE -->
  <div class="section" id="choose">
    <h2 style="color:#e85d04;text-align:center;margin:0 0 6px"><b>The Intensive Licence Course 2027</b></h2>
-   <p style="text-align:center;color:#888;margin:0 0 24px;font-size:0.95em">One summer, one course, one price. Everything below this is the honest small print, not a second offer.</p>
+   <p style="text-align:center;color:#888;margin:0 0 24px;font-size:0.95em">One summer, one course, one price. Below it: two small ways to try it first, then the honest small print.</p>
 
    <div style="max-width:680px;margin:0 auto">
      <div class="choice-card" style="border-color:#e85d04">
        <div class="choice-q" style="background:#e85d04">&#9889; From zero to your Swiss licence in one summer</div>
        <div class="choice-body">
-         <div class="choice-headline"><b style="color:#7a3200">CHF 3,900</b><span style="color:#555">27 May to 15 August 2027 (four ground-school days, three intensive weeks, then weekends)</span></div>
+         <div class="choice-headline"><b style="color:#7a3200">CHF 3,900</b><span style="color:#555">27 May to 15 August 2027 (four basic-course days, three intensive weeks, then weekends)</span></div>
          <p style="margin:6px 0 0;color:#555"><b>Early-bird:</b> CHF 300 off your equipment set for the first three deposits received by 31 December 2026. Instalments are possible, we agree them with you personally.</p>
          <ul>
-           <li><b>Three intensive weeks in June</b>: four ground-school days from 27 to 30 May, then three intensive weeks from 31 May to 20 June (flying every day, one day off a week, about 13 days of leave), then Friday-to-Sunday weekends until 15 August to top up (until your exam or 80 high flights; a weekend day runs from 3 students). Can't take three weeks off? Talk to Miki.</li>
+           <li><b>Three intensive weeks in June</b>: four basic-course days from 27 to 30 May, then three intensive weeks from 31 May to 20 June (flying every day, one day off a week, about 13 days of leave), then Friday-to-Sunday weekends until 15 August to top up (until your exam or 80 high flights; a weekend day runs from 3 students). Can't take three weeks off? No problem: you plan the weekends with Miki in the 20-minute call.</li>
            <li><b>Planned for 60+ high flights</b>; most students need 55 to 80 before the exam. We do not guarantee a number: the weather decides</li>
            <li>FlightDeck self-study from January, plus 4 live online theory evenings before the course (recorded too)</li>
            <li>Max. 10 students. A launch assistant is always there in the first weeks and whenever 7 or more students fly, so everyone still gets their flights</li>
@@ -521,12 +521,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      </div>
    </div>
  </div>
+ <!-- TRY IT FIRST -->
+ <div class="section" id="try-first" style="text-align:center">
+ <style>
+   .try-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; max-width:760px; margin:0 auto 10px; text-align:left; }
+   .try-card { background:#fff; border-radius:14px; padding:16px 18px; border-top:6px solid #25a55f; box-shadow:0 4px 14px rgba(0,0,0,0.08); }
+   .try-card.gk { border-top-color:#ffb703; }
+   .try-card .t-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+   .try-card .t-name { font-size:1.15em; font-weight:bold; color:#1d2b36; }
+   .try-card .t-price { font-size:1.3em; font-weight:bold; color:#1f8a4f; white-space:nowrap; }
+   .try-card.gk .t-price { color:#b7791f; }
+   .try-card ul { margin:8px 0 0; padding-left:18px; color:#4a5a66; font-size:0.92em; line-height:1.6; }
+ </style>
+   <h2 style="color:#e85d04;margin:0 0 6px"><b>Not sure yet? Try it first</b></h2>
+   <p style="color:#555;margin:0 auto 18px;max-width:640px;line-height:1.65">No equipment to buy, no commitment to the whole course. You like it? <b>What you paid is credited in full</b> when you book the Intensive Course.</p>
+   <div class="try-grid">
+     <div class="try-card"><div class="t-head"><span class="t-name">Trial Day</span><span class="t-price">CHF 300</span></div>
+       <ul><li>One day on the training hill, your first small flights</li><li>All equipment included</li></ul></div>
+     <div class="try-card gk"><div class="t-head"><span class="t-name">Basic Course</span><span class="t-price">CHF 1,900</span></div>
+       <ul><li>4 days: training hill and your first high flight</li><li>All equipment included</li></ul></div>
+   </div>
+   <a href="intensive.html#try" style="color:#e85d04;font-weight:bold">Dates and details &rarr;</a>
+ </div>
+
  <!-- INCLUDED STRIP -->
  <div class="section">
    <div style="background:#0077b6;color:white;text-align:center;border-radius:16px;padding:28px 24px">
      <h3 style="margin:0 0 16px;font-size:1em;text-transform:uppercase;letter-spacing:1px;opacity:0.85">The course includes everything:</h3>
      <div class="w3-row-padding">
-       <div class="w3-col m3 s6" style="padding:8px"><b>Training Hill</b><br><span style="font-size:0.85em;opacity:0.85">in the ground school, end of May</span></div>
+       <div class="w3-col m3 s6" style="padding:8px"><b>Training Hill</b><br><span style="font-size:0.85em;opacity:0.85">in the basic course, end of May</span></div>
        <div class="w3-col m3 s6" style="padding:8px"><b>Every High Flight</b><br><span style="font-size:0.85em;opacity:0.85">no per-flight fee, ever</span></div>
        <div class="w3-col m3 s6" style="padding:8px"><b>Full Theory</b><br><span style="font-size:0.85em;opacity:0.85">4 online evenings before the course</span></div>
        <div class="w3-col m3 s6" style="padding:8px"><b>60+ High Flights</b><br><span style="font-size:0.85em;opacity:0.85">planned, no per-flight fee</span></div>
@@ -535,7 +558,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        <div class="w3-col m3 s6" style="padding:8px"><b>FlightDeck App</b><br><span style="font-size:0.85em;opacity:0.85">digital progress tracking</span></div>
        <div class="w3-col m3 s6" style="padding:8px"><b>Video Analysis</b><br><span style="font-size:0.85em;opacity:0.85">on the training hill, every day</span></div>
        <div class="w3-col m3 s6" style="padding:8px"><b>25 Trees Planted &#127795;</b><br><span style="font-size:0.85em;opacity:0.85">our ECO pledge</span></div>
-       <div class="w3-col m3 s6" style="padding:8px"><b>Instructional Tandem</b><br><span style="font-size:0.85em;opacity:0.85">optional with Miki</span></div>
      </div>
    </div>
  </div>
@@ -544,10 +566,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <div class="section">
    <div class="info-box" style="margin-top:0">
      <p style="margin:0 0 14px;color:#222;font-size:1.05em"><b>Anything else? Just ask me.</b> In 2027 everything has fixed dates: the Intensive Course with its Trial Days, the Academy for licensed pilots, so there is no long list to choose from.</p>
-     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>The summer does not work for you?</b> Then we would rather say it now: in 2027 there is no other beginner course. <a href="intensive.html#apply" style="color:#0077b6">Join the list for 2028</a>, or ask us and we point you to a partner school.</p>
-     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>Want to try it first?</b> A <b>Trial Day</b> on the training hill, 24 April or 8 May 2027, all equipment provided, credited if you book the course. Or sit under a wing first with an <a href="tandem.html" style="color:#0077b6">instructional tandem flight</a>.</p>
+     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>The summer does not work for you?</b> Then we would rather say it now: in 2027 there is no other licence course. <a href="intensive.html#apply" style="color:#0077b6">Join the list for 2028</a>, or ask us and we point you to a partner school.</p>
+     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>Want to try it first?</b> <a href="#try-first" style="color:#0077b6">Trial Day or basic course &uarr;</a>, or sit under a wing first with an <a href="tandem.html" style="color:#0077b6">instructional tandem flight</a>.</p>
      <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>Already started somewhere else?</b> You join the course where it fits you, after a short level-assessment call. <a href="intensive.html#apply" style="color:#0077b6">Ask about the course &rarr;</a></p>
-     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>Already licensed?</b> The <a href="academy.html" style="color:#0077b6"><b>FLYwithMIKI Academy 2027</b></a>: one Season Pass, coaching with a mentor at your side from March to August.</p>
+     <p style="margin:0 0 8px;color:#444;line-height:1.65"><b>Already licensed?</b> The <a href="academy.html" style="color:#0077b6"><b>FLYwithMIKI Academy 2027</b></a>: one Season Pass, coaching with a mentor at your side from March to October.</p>
      <p style="margin:0;color:#444;line-height:1.65"><b>Need a check or a repack?</b> Glider check and reserve repack by your instructor, with a written report. <a href="checkcenter.html" style="color:#0077b6">Checkcenter &rarr;</a></p>   </div>
  </div>
 
@@ -733,11 +755,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    <div style="overflow-x:auto">
    <table class="price-table">
      <tr class="head"><th>Training</th><th class="num">CHF</th></tr>
-     <tr><td>Intensive Licence Course 2027 (27 May to 15 August: four ground-school days, three intensive weeks, then weekends; planned for 60+ high flights)</td><td class="num"><b>3,900</b></td></tr>
+     <tr><td>Intensive Licence Course 2027 (27 May to 15 August: four basic-course days, three intensive weeks, then weekends; planned for 60+ high flights)</td><td class="num"><b>3,900</b></td></tr>
      <tr><td>Early-bird: first three deposits received by 31 December 2026, discount on the school equipment set</td><td class="num">&minus;300</td></tr>
      <tr><td>Intensive Licence Course 2027, with your own equipment (incl. 30-min equipment review)</td><td class="num">6,000</td></tr>
-     <tr><td colspan="2" style="font-size:0.85em;color:#777;background:#fafafa">In 2027 there is no season path (the former Full Training) and no standalone modules. One intensive course a year, by design.</td></tr>
-     <tr><td>Trial Day on the training hill (24 April or 8 May 2027), all equipment provided, per day, credited against the Intensive Course. Runs from 3 participants</td><td class="num">300</td></tr>
+     <tr><td colspan="2" style="font-size:0.85em;color:#777;background:#fafafa">In 2027 there is no season path (the former Full Training) One intensive course a year, by design; the basic course can be booked on its own.</td></tr>
+     <tr><td>Trial Day on the training hill (20 March, 24 April or 8 May 2027), all equipment provided, per day, max. 3 new students, credited against the Intensive Course. Runs from 2 participants</td><td class="num">300</td></tr>
+     <tr><td>Basic course only, 27 to 30 May 2027 (4 days: training hill and your first high flight), equipment provided, credited in full against the Intensive Course</td><td class="num">1,900</td></tr>
 
      <tr class="head"><th>Equipment</th><th class="num">CHF</th></tr>
      <tr><td>Regular set (mid-class EN-A glider, harness with foam protector, light rectangular reserve)</td><td class="num"><b>5,500</b></td></tr>
@@ -776,7 +799,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
    <div class="w3-center w3-padding-24" style="background:#f0f8ff;border-radius:16px;margin:28px 0 8px">
      <p class="w3-large" style="color:#0077b6;font-weight:bold;margin:0 0 10px">Not sure which one is yours?</p>
-     <p style="color:#555;margin:0 0 16px">Tell me what your calendar looks like and I will tell you straight whether the intensive course is realistic for you, including "not this year". And before you pay anything, we have a short video call in the office hours to find out whether the chemistry is right too.</p>
+     <p style="color:#555;margin:0 0 16px">Tell me what your calendar looks like and I will tell you straight whether the intensive course is realistic for you, including "not this year". And before you book the Intensive Course, we have a short video call in the office hours to find out whether the chemistry is right too. A Trial Day needs no call.</p>
      <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'm%20interested%20in%20paragliding%20training,%20can%20you%20help%20me%20choose%20a%20course?" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:white;padding:14px 32px;border-radius:30px;font-weight:bold;text-decoration:none;font-size:1.05em">&#128172; Ask Miki on WhatsApp</a>
    </div>
  </div>
@@ -784,9 +807,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!------------------------FOOTER------------------------------------->
 <footer class="w3-container w3-center w3-light-grey w3-tiny">
-  <img src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
+  <img width="1650" height="156" src="Images_v2/logo1.webp" alt="FLYwithMIKI Paragliding" class="fwm-footer-logo" loading="lazy">
   <p>© 2026 Miklos Mohos - FLYwithMIKI Gleitschirmschule. <br>All rights reserved.</p>
-  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a></p>
+  <p>Imprint: FLYwithMIKI.com - M. Mohos, Obernauerstrasse 88, 6012 Obernau (Kriens), Switzerland &middot; UID CHE-174.682.071 &middot; <a href="mailto:info@flywithmiki.com">info@flywithmiki.com</a></p>
+  <p><a href="agb.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions (GT&C / AGB)</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   <p style="margin:4px 0"><a href="https://www.instagram.com/fly_with_miki/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-instagram"></i> Instagram</a> <a href="https://www.youtube.com/channel/UC-DhcIKXajL2LsoYRLH8Imw" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none"><i class="fa fa-youtube-play"></i> YouTube</a> <a href="https://www.shv-fsvl.ch/einfach-finden/detail/miklos-mohos/" target="_blank" rel="noopener noreferrer" style="margin:0 8px; color:#555; text-decoration:none">SHV Registry</a></p>
    
 </footer>
@@ -809,6 +833,7 @@ function myAccFunc(id) {
     x.previousElementSibling.className = 
     x.previousElementSibling.className.replace(" w3-green", "");
   }
+  if (x.previousElementSibling) x.previousElementSibling.setAttribute("aria-expanded", x.className.indexOf("w3-show") != -1);
 }
 
 var myIndex = 0;
@@ -922,6 +947,15 @@ function showAud(which){
     if (el && el.tagName === 'DETAILS') el.open = true;
   });
 })();
+</script>
+<script>
+// conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var ev = h.indexOf('wa.me/') !== -1 ? 'whatsapp_click' : h.indexOf('tel:') === 0 ? 'phone_click' : h.indexOf('mailto:') === 0 ? 'email_click' : null;
+  if (ev) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ev, link_url: h.split('?')[0], page_lang: document.documentElement.lang }); }
+});
 </script>
 </body>
 
