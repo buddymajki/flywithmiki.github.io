@@ -532,13 +532,22 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .start-step .step-badge { width:34px; height:34px; border-radius:50%; background:#0077b6; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; margin-bottom:10px; }
         .start-step b.step-title { display:block; color:#003049; margin-bottom:6px; }
         .start-step p { margin:0; font-size:0.9em; color:#555; line-height:1.6; }
-        </style>
+                .impact-card { display:flex; align-items:center; gap:18px; margin:16px; padding:22px 24px; border:2px solid #123b2e; border-radius:18px; color:#123b2e !important; text-decoration:none; text-align:left; background:#fff; }
+        .impact-card:hover { background:#f2faf6; }
+        .impact-card > span { display:block; }
+        .impact-card .ic-main { display:block; font-family:"Montserrat",sans-serif; font-weight:700; font-size:1.35em; line-height:1.25; }
+        .impact-card .ic-sub { display:block; margin-top:4px; }
+        .impact-card .ic-total { display:block; margin-top:10px; font-size:0.95em; }
+        .impact-card .ic-total b { font-size:1.3em; }
+        .impact-card .ic-link { display:block; margin-top:6px; font-size:0.85em; color:#1d7a55; font-weight:bold; }
+        @media (max-width:640px) { .impact-card { flex-direction:column; text-align:center; } }
+</style>
 
 
         <link rel="alternate" hreflang="en" href="https://flywithmiki.com/" />
     <link rel="alternate" hreflang="de" href="https://flywithmiki.com/de/" />
     <link rel="alternate" hreflang="x-default" href="https://flywithmiki.com/" />
-<link rel="stylesheet" href="flywithmiki.css?v=3">
+<link rel="stylesheet" href="flywithmiki.css?v=4">
 </head> 
 
 
@@ -672,16 +681,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="s-when">Basic course included, all the way to your licence. Plus your own set</div>
       </a>
     </div>
-    <p class="ladder-note"><a href="intensive.html#try" style="color:#fff">Only the basic course, with your first high flight? CHF 1,900, also credited &rarr;</a></p>
-    <div style="margin:4px 0 6px"><a class="hero-btn hero-btn-wa" href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'd%20like%20to%20talk%20about%20the%20Intensive%20Licence%20Course%202027" target="_blank" rel="noopener noreferrer">&#128172; Talk to Miki</a> <a class="hero-btn" href="intensive.html">Explore the Course</a></div>
+    <div style="margin:4px 0 6px"><a class="hero-btn" href="intensive.html#apply" style="background:#e85d04;border-color:#e85d04">&#9997;&#65039; Sign up for 2027</a> <a class="hero-btn" href="intensive.html">Explore the Course</a></div>
     <div class="aud-split"></div>
     <h2 class="aud-label">&#127891; Are you licensed? Become a better and safer pilot</h2>
     <a class="pilot-band" href="academy.html">
-      <div><div class="pb-tag">FLYwithMIKI Academy</div><div class="pb-name">Coaching days, guest coaches, 1:1 mentoring</div></div>
+      <div><div class="pb-tag">FLYwithMIKI Academy</div><div class="pb-name">Your whole flying season with a coach</div><div class="pb-txt">Coaching days, guest coaches and 1:1 mentoring, March to October</div></div>
       <div class="pb-price">CHF 1,990<small>Season Pass</small></div>
     </a>
     <a class="path-small" href="tandem.html">&#9992; Just once, as a passenger? Tandem flights from CHF 185 &rarr;</a>
-    <p class="hero-where">&#128205; Meeting point in Kriens (Luzern), flying all over Central Switzerland: Engelberg, Emmetten, Rigi, Zugerberg and more. In English, German or Hungarian. <a href="contact.html">Getting here &rarr;</a></p>
+    <p class="hero-where">&#128205; Meeting point in Kriens, near Lucerne, easy by train from Zürich and Zug. <a href="contact.html">Getting here &rarr;</a></p>
  </div>
 
  <!-- PROMO VIDEO: right under the hero, the proof in 56 seconds -->
@@ -1124,11 +1132,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               <div class="w3-half">
                <div class="w3-card-4 w3-white w3-auto w3-display-container w3-section" style="height:100%">
-				<a href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer">
-				  <img class="w3-image" src="https://ij0mlb3e7b.execute-api.us-east-1.amazonaws.com/Prod/impact-badge?businessId=76b63279-46c8-4c66-8fd9-820387ec0dbe&orientation=vertical&mainData=trees&treesData=t+of+carbon+sequestered&plasticData=&kelpData=&textColor=%23586573&iconsColor=%231dae80&statFillColor=%23FFFFFF&statStrokeColor=%23B7EFE9&backgroundColor=%23ffffff&treesIcon=SvgAsset12" alt="Verified carbon offset impact - trees planted and CO2 sequestered by FLYwithMIKI paragliding school" />
-				</a>
+               <a class="impact-card" href="https://app.ecodrive.community/public-dashboard/76b63279-46c8-4c66-8fd9-820387ec0dbe" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false" style="flex:none"><path d="M32 58V34M32 44l-8-7M32 40l7-6M24 58h16" fill="none" stroke="#123b2e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 36c-6 0-10-5-9-10 1-4 4-6 7-6 0-7 6-12 13-11 5 0 9 4 10 8 5-1 10 3 10 9 0 5-4 9-9 9" fill="none" stroke="#123b2e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="ic-main">25 trees planted per student</span><span class="ic-sub">Protecting the planet while paragliding</span><span class="ic-total"><b>579</b> trees planted so far (November 2026)</span><span class="ic-link">See the verified impact on Ecodrive &rarr;</span></span></a>
                <p class="w3-xlarge">Verified impact, not green-washing</p>
-               <p class="w3-display-bottommidle w3-justify w3-padding">Our tree planting is verified by Ecodrive-Veritree, a reputable US-based tech company, so the impact is transparent and real. Click the badge to see our live project page on our partner's website.</p>
+               <p class="w3-display-bottommidle w3-justify w3-padding">Our tree planting is verified by Ecodrive-Veritree, a reputable US-based tech company, so the impact is transparent and real. The card above opens our live project page on our partner's website.</p>
                </div>
               </div>
          </div>

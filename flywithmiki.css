@@ -251,3 +251,7 @@ hr { border: none; border-top: 1px solid var(--fwm-line); }
 /* images carry width/height so the browser reserves their space before they load;
    height:auto keeps the rendered size exactly as before (zero specificity: any other height rule still wins) */
 :where(img[width][height]) { height: auto; }
+
+/* boxed sections and heroes never touch the screen edge: below their 1000px max-width they keep a small gutter */
+.section-boxed { width: calc(100% - 32px); }
+@media (max-width: 600px) { .section-boxed { width: calc(100% - 20px); } }
