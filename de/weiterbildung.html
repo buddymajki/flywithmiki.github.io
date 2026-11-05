@@ -398,6 +398,23 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   #pass .pt .ssn { width: 32%; }
   .season.three { grid-template-columns: repeat(3, 1fr); }
   @media (max-width: 900px) { .season.three { grid-template-columns: 1fr; } }
+  /* hero offer box: the pass, its price and its contents at a glance */
+  .ac-hero p.ac-intro { font-size: 1.08em; margin: 0 0 18px; }
+  .ac-offer { display: flex; gap: 18px; align-items: stretch; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.35); border-radius: 16px; padding: 16px 18px; margin: 0 0 20px; }
+  .ac-offer-price { flex: none; display: flex; flex-direction: column; justify-content: center; text-align: center; padding-right: 18px; border-right: 1px solid rgba(255,255,255,0.3); }
+  .ac-offer-price b { font-family: "Montserrat", sans-serif; font-size: 1.9em; line-height: 1.1; color: #fff; white-space: nowrap; }
+  .ac-offer-price small { font-size: 0.78em; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ac-offer-list { list-style: none; margin: 0; padding: 0; font-size: 0.95em; line-height: 1.45; }
+  .ac-offer-list li { margin: 3px 0; }
+  .ac-offer-list b { color: var(--ac-mint); }
+  .ac-hero .ac-hero-cta .btn-ghost { margin: 0; }
+  @media (max-width: 640px) {
+    .ac-offer { flex-direction: column; gap: 10px; }
+    .ac-offer-price { padding: 0 0 10px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
+  }
+  /* the photo hero keeps a small gutter on narrower screens, like the other boxed sections */
+  @media (max-width: 1072px) { .ac-hero { margin-left: 16px; margin-right: 16px; } }
+  @media (max-width: 600px) { .ac-hero { margin-left: 10px; margin-right: 10px; } }
 </style>
 
 <script type="application/ld+json">
@@ -436,7 +453,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Was passiert, wenn das Wetter einen Tag verhindert?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Jeder Coaching-Tag hat einen Ersatztag, ein verlorener Tag wird dorthin verschoben. Ein Tag gilt als durchgeführt, sobald wir mindestens einen halben Tag trainiert haben, am Boden oder in der Luft, auch wenn du selbst nicht startest; stoppt uns das Wetter früher, bekommst du einen halben Ersatztag. Sind sogar die Ersatztage aufgebraucht, bekommst du pro verlorenem Tag einen Gutschein über CHF 270, wie in der Wettergarantie beschrieben."
+        "text": "Jeder Coaching-Tag hat einen Ersatztag, ein verlorener Tag wird dorthin verschoben. Ein Tag gilt als durchgeführt, sobald wir mindestens einen halben Tag trainiert haben, am Boden oder in der Luft, auch wenn du selbst nicht startest; stoppt uns das Wetter früher, bekommst du einen halben Ersatztag. Sind sogar die Ersatztage aufgebraucht, bekommst du pro verlorenem Tag einen Gutschein über CHF 250, für den Academy-Pass der nächsten Saison oder für Ausrüstung bei FLYwithMIKI, wie in der Wettergarantie beschrieben."
       }
     },
     {
@@ -499,7 +516,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 <!-- EducationEvent-Schema: pro Datenpaar einen Block ergänzen, sobald die Daten fix sind (startDate, endDate, location, offers in CHF, organizer, performer = Miki oder der Partner, eventStatus, Ersatztage in der Beschreibung). -->
-<link rel="stylesheet" href="../flywithmiki.css?v=4">
+<link rel="stylesheet" href="../flywithmiki.css?v=5">
 </head>
 
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -584,17 +601,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- HERO -->
   <section class="ac-hero">
     <div class="ac-hero-in">
-      <span class="ac-kicker">FLYwithMIKI Academy 2027</span>
-      <h1>Das Brevet war der Anfang.<br><span>Wachse weiter, mit einem Mentor an deiner Seite.</span></h1>
-      <div class="ac-pillars"><span>&#129309; Mentoring</span><span>&#128218; Theorie</span><span>&#129666; Flugtage</span></div>
-      <p class="ac-watch">Die meisten Piloten bleiben nach dem Brevet stehen. Hier wächst jeder Teil deines Fliegens weiter, und Miki bleibt die ganze Saison an deiner Seite.</p>
-      <p class="ac-rating"><a href="#mentor">&#11088; 4.9 auf Google &middot; 52 Bewertungen</a></p>
-      <a href="#pass" class="btn-main">&#127915; Zum Saison-Pass</a>
-      <p class="ac-price">Ein Saison-Pass, CHF 1'990 &middot; max. 12 Plätze &middot; Verkauf bis 20. Februar 2027</p>
-      <div class="ac-keys"><span>&#128293; Begrenzte Plätze</span><span>Kleine Gruppen</span><span>1:1-Mentoring mit Miki</span></div>
-      <p class="ac-fine">Nur für brevetierte Piloten &middot; <a href="#weather">Wettergarantie</a></p>
+      <span class="ac-kicker">FLYwithMIKI Academy 2027 &middot; für brevetierte Piloten</span>
+      <h1>Deine ganze Flugsaison<br><span>mit einem Coach an deiner Seite.</span></h1>
+      <p class="ac-intro">Coaching von März bis Oktober 2027, nah zu Hause in der Zentralschweiz: Flugtage mit Miki und zwei Gast-Coaches, Theorieabende und persönliches Mentoring.</p>
+      <div class="ac-offer">
+        <div class="ac-offer-price"><small>Saison-Pass</small><b>CHF 1'990</b><small>alles inklusive</small></div>
+        <ul class="ac-offer-list">
+          <li>&#129666; <b>4 Flugtage mit Miki</b>: Groundhandling, Manöver, Thermik und erstes XC</li>
+          <li>&#129517; <b>2 Gast-Coach-Tage</b>: XC mit Marcel Schmid, Hike &amp; Fly mit Mihai Lazar</li>
+          <li>&#128218; <b>4 Online-Theorieabende</b></li>
+          <li>&#129309; <b>1:1-Mentoring jeden Monat</b>, März bis August</li>
+          <li>&#9730;&#65039; <b>Wettergarantie</b>: für jeden Coaching-Tag ein Ersatztag</li>
+        </ul>
+      </div>
+      <div class="ac-hero-cta"><a href="#book" class="btn-main">&#127891; Saison-Pass buchen</a><a href="#dates" class="btn-ghost">Zu den Daten</a></div>
+      <p class="ac-fine">Max. 12 Piloten &middot; Verkauf bis 20. Februar 2027 &middot; <a href="#mentor">&#11088; 4.9 auf Google (52 Bewertungen)</a> &middot; SHV-Brevet oder IPPI 4/5</p>
     </div>
   </section>
+
+  <!-- DATEN -->
+  <div class="ac-wrap" id="dates" style="padding-top:8px">
+    <style>
+      .ac-cal { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; max-width:960px; margin:0 auto 12px; }
+      .ac-cal table { width:100%; border-collapse:separate; border-spacing:3px; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); font-size:0.85em; }
+      .ac-cal caption { font-weight:bold; color:var(--ac); padding:6px 0; }
+      .ac-cal th { color:#999; font-weight:normal; padding:3px 0; }
+      .ac-cal td { text-align:center; padding:5px 0; color:#bbb; border-radius:6px; }
+      .ac-cal td.th { background:#7b5ea7; color:#fff; }
+      .ac-cal td.mk { background:#0f8b8d; color:#fff; font-weight:bold; }
+      .ac-cal td.gc { background:#0d2436; color:#fff; font-weight:bold; }
+      .ac-cal td.bk { background:#cfeceb; color:#0d2436; box-shadow:inset 0 0 0 1px #8fcfcc; }
+      .ac-key { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 18px; font-size:0.88em; color:#444; margin:4px auto 14px; max-width:880px; }
+      .ac-key span::before { content:""; display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; background:var(--c); }
+      @media (max-width:600px) { .ac-cal { grid-template-columns:repeat(2,1fr); gap:8px; } .ac-cal table { font-size:0.72em; border-spacing:1px; } .ac-cal td { padding:3px 0; } .ac-cal caption { padding:4px 0; } }
+      .ac-all { color:#555; font-size:0.9em; line-height:1.6; max-width:820px; margin:0 auto 6px; text-align:center; }
+    </style>
+    <span class="ac-eyebrow">Daten 2027</span>
+    <h2 class="ac-h">Die Daten 2027</h2>
+    <div class="ac-key"><span style="--c:#7b5ea7">Online-Theorieabend, 19:00 bis 21:00 Uhr</span><span style="--c:#0f8b8d">Coaching-Tag mit Miki</span><span style="--c:#0d2436">Gast-Coach-Tag: XC mit Marcel Schmid (17. April), Hike &amp; Fly mit Mihai Lazar (9. Oktober)</span><span style="--c:#cfeceb">Ersatztag, nur wenn das Wetter einen Tag verhindert</span></div>
+    <div class="ac-cal">
+      <table><caption>Februar 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr><tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr><tr><td>22</td><td class="th" title="Online-Theorieabend">23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr></table>
+      <table><caption>März 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr><tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr><tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td class="mk" title="Coaching-Tag mit Miki">27</td><td class="mk" title="Coaching-Tag mit Miki">28</td></tr><tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr></table>
+      <table><caption>April 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="bk" title="Ersatztag">10</td><td class="bk" title="Ersatztag">11</td></tr><tr><td>12</td><td class="th" title="Online-Theorieabend">13</td><td>14</td><td>15</td><td>16</td><td class="gc" title="Gast-Coach-Tag">17</td><td>18</td></tr><tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="bk" title="Ersatztag">25</td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr></table>
+      <table><caption>Mai 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td class="bk" title="Ersatztag">2</td></tr><tr><td>3</td><td class="th" title="Online-Theorieabend">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr><tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr><tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr><tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+      <table><caption>Juni 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr><tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr><tr><td>21</td><td class="th" title="Online-Theorieabend">22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr><tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr></table>
+      <table><caption>Juli 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td>1</td><td>2</td><td class="mk" title="Coaching-Tag mit Miki">3</td><td class="mk" title="Coaching-Tag mit Miki">4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr><tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr><tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="bk" title="Ersatztag">31</td><td></td></tr></table>
+      <table><caption>August 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="bk" title="Ersatztag">1</td></tr><tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr><tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr><tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr><tr><td>30</td><td>31</td><td></td><td></td><td></td><td></td><td></td></tr></table>
+      <table><caption>Oktober 2027</caption><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr><tr><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr><tr><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td class="gc" title="Gast-Coach-Tag">9</td><td class="bk" title="Ersatztag">10</td></tr><tr><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td class="bk" title="Ersatztag">16</td><td class="bk" title="Ersatztag">17</td></tr><tr><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr><tr><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr></table>
+    </div>
+    <p class="ac-all"><b>Alle Daten:</b> Theorieabende 23. Februar, 13. April, 4. Mai, 22. Juni &middot; Coaching mit Miki 27. bis 28. März und 3. bis 4. Juli &middot; XC mit Marcel Schmid 17. April &middot; Hike &amp; Fly mit Mihai Lazar 9. Oktober &middot; Ersatztage 10. bis 11. und 25. April, 2. Mai, 31. Juli bis 1. August, 10., 16. und 17. Oktober.</p>
+    <p class="date-note">4 bis 12 Piloten pro Flugtag. Die Daten stehen im Winter fest und verschieben sich nur auf die Ersatztage.</p>
+  </div>
+
+  <!-- DER PASS -->
+  <div class="ac-wrap" id="pass">
+    <span class="ac-eyebrow">Ein Pass &middot; max. 12 Plätze</span>
+    <h2 class="ac-h">Der Saison-Pass: CHF 1'990</h2>
+    <p class="ac-lead">Ein Pass, alle bekommen dasselbe: die ganze Saison mit Miki und den Gast-Coaches.</p>
+    <div class="pt-below" style="max-width:760px; margin:0 auto">
+      <p><b>Was ist das wert?</b> 4 Coaching-Tage mit Miki CHF 1'120 + 2 Gast-Coach-Tage CHF 700 + 4 Theorie-Abende CHF 240 + 6 Mentoring-Gespräche CHF 360 = CHF 2'420. Die Mitgliederpreise für Ausrüstung und Checks kommen dazu und sind nicht eingerechnet.</p>
+      <p class="small">Pass-Verkauf bis 20. Februar 2027. Bis zum ersten Theorie-Abend am 23. Februar kannst du stornieren und bekommst alles zurück ausser CHF 100; danach wird der Pass nicht zurückerstattet. Max. 12 Pässe pro Jahr. Du kannst an einem Tag nicht? Schick einen brevetierten Freund an deiner Stelle.</p>
+      <p style="text-align:center; margin-top:16px"><a href="#book" class="btn-main" style="background:var(--ac); color:#fff !important" onclick="document.getElementById('ac-prod').value='Season Pass 2027 (CHF 1,990)'">Saison-Pass buchen</a></p>
+    </div>
+  </div>
 
   <!-- DIE SAISON -->
   <div class="ac-wrap" id="season" style="padding-top:8px">
@@ -668,41 +737,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="quotes-more">Bewertet mit 4.9 &#11088; auf Google (52 Bewertungen) &middot; <a href="https://maps.app.goo.gl/VwwLdoB2JXL1x1f77" target="_blank" rel="noopener noreferrer">Alle Bewertungen lesen</a></p>
   </div>
 
-  <!-- DER PASS -->
-  <div class="ac-wrap" id="pass">
-    <span class="ac-eyebrow">Ein Pass &middot; max. 12 Plätze</span>
-    <h2 class="ac-h">Der Saison-Pass</h2>
-    <p class="ac-lead">Ein Pass, alle bekommen dasselbe: die ganze Saison mit Miki und den Gast-Coaches.</p>
-    <div class="table-scroll" id="flex">
-      <table class="pt">
-        <tr><th></th>
-          <th class="ssn"><span class="tag">2027</span><span class="nm">Saison-Pass</span><span class="was">Wert CHF 2'420</span><span class="pr">CHF 1'990</span><span class="sub">Die ganze Saison</span></th></tr>
-        <tr><td class="f">4 Tage Coaching mit Miki<small>Groundhandling, Manöver, 2 Tage Thermik und erster Streckenflug</small></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">1 Tag XC mit Marcel Schmid</td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">1 Tag Hike &amp; Fly mit Mihai Lazar</td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">4 Advanced-Theory-Abende online</td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">1:1-Mentoring mit Miki<small>30 Minuten jeden Monat, März bis August, in der fixen Sprechstunde</small></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">Wettergarantie<small>Für jeden Coaching-Tag ein Ersatztag, danach Geld zurück</small></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td class="f">Preise für Pass-Inhaber<small>20% auf den Listenpreis von Schirmen, Gurtzeugen und Rettern, 10% auf Schirm-Check und Retterpackung</small></td><td class="ssn"><span class="y">&#10003;</span></td></tr>
-        <tr><td></td><td class="ssn cta"><a href="#book" class="btn-main" onclick="document.getElementById('ac-prod').value='Season Pass 2027 (CHF 1,990)'">Saison-Pass buchen</a></td></tr>
-      </table>
-    </div>
-    <div class="pt-below">
-      <details class="faq"><summary>Was ist das wert?</summary><p>4 Coaching-Tage mit Miki CHF 1'120 + 2 Gast-Coach-Tage CHF 700 + 4 Theorie-Abende CHF 240 + 6 Mentoring-Gespräche CHF 360 = CHF 2'420. Die Mitgliederpreise für Ausrüstung und Checks kommen dazu und sind nicht eingerechnet.</p></details>
-      <p class="small">Pass-Verkauf bis 20. Februar 2027. Bis zum ersten Theorie-Abend am 23. Februar kannst du stornieren und bekommst alles zurück ausser CHF 100; danach wird der Pass nicht zurückerstattet. Max. 12 Pässe pro Jahr. Du kannst an einem Tag nicht? Schick einen brevetierten Freund an deiner Stelle.</p>
-    </div>
-  </div>
-
   <!-- WETTERGARANTIE -->
   <div class="wg" id="weather">
     <div class="wg-in">
       <div class="wg-badge"><span>&#9730;&#65039;</span>Wetter-<br>garantie</div>
       <div><h3>Wettergarantie: Du verlierst keinen Flugtag ans Wetter</h3>
-        <p><b>Für jeden Coaching-Tag ein Ersatztag.</b> Ein Tag, der ans Wetter verloren geht, wird auf einen Ersatztag verschoben. Gewinnt das Wetter trotzdem, bekommst du pro verlorenem Tag <b>einen Gutschein über CHF 270</b> für den Academy-Pass im nächsten Jahr.</p>
+        <p><b>Für jeden Coaching-Tag ein Ersatztag.</b> Ein Tag, der ans Wetter verloren geht, wird auf einen Ersatztag verschoben. Gewinnt das Wetter trotzdem, bekommst du pro verlorenem Tag <b>einen Gutschein über CHF 250</b>: für den Academy-Pass der nächsten Saison oder für Ausrüstung bei FLYwithMIKI.</p>
         <details class="more"><summary>Das Kleingedruckte</summary>
           <p>Ersatztage: 10. bis 11. April und 31. Juli bis 1. August für die Tage mit Miki, 25. April und 2. Mai für den XC-Tag mit Marcel, 10., 16. und 17. Oktober für den Hike-&amp;-Fly-Tag mit Mihai. Wir entscheiden am Vorabend um 20:00 Uhr und posten es in der Gruppe.</p>
           <p>Ein Tag gilt als durchgeführt, sobald wir mindestens einen halben Tag trainiert haben, am Boden oder in der Luft, auch wenn du selbst nicht startest. Stoppt uns das Wetter früher, zählt er als halber Tag und du bekommst einen halben Ersatztag. Gar kein Training möglich? Dann wird der ganze Tag verschoben.</p>
           <p>Die Garantie zählt die Flugtage der Saison, nicht deine eigene Teilnahme: Alle Pass-Inhaber bekommen pro fehlendem Tag dasselbe.</p>
+          <p>Der Gutschein wird nicht bar ausbezahlt. Du wählst, wofür du ihn einsetzt: für den Academy-Pass der nächsten Saison (gültig für diese Saison) oder für Schirme, Gurtzeuge und Retter, die du bei FLYwithMIKI kaufst (3 Jahre gültig).</p>
         </details></div>
     </div>
   </div>
@@ -715,42 +760,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="rule"><b>Die Saison findet ab 4 Pässen statt.</b> Mit 4 verkauften Pässen findet jeder Flugtag statt. Weniger bis am 20. Februar? Du bekommst dein Geld zurück.</div>
       <div class="rule"><b>Das Wetter wählt das Thema.</b> März: zuerst Groundhandling oder Manöver, als Vorbereitung auf die Saison. April: der grosse XC-Tag mit Marcel. Juli: Thermik und, wenn der Tag es zulässt, eine erste Linie nah von zu Hause. Oktober: Hike &amp; Fly mit Mihai.</div>
       <div class="rule"><b>Entscheid am Vorabend.</b> Um 20:00 Uhr postet Miki in der Gruppe, ob geflogen wird, und das Thema.</div>
-      <div class="rule"><b>Du kannst nicht?</b> Schick einen brevetierten Freund an deiner Stelle.</div>
-      <div class="rule"><b>Nächstes Jahr wieder dabei?</b> Pass-Inhaber buchen zuerst, und deine zweite Saison hat höhere Ziele.</div>
       <div class="rule" style="grid-column:1 / -1"><b>Nicht inbegriffen:</b> Bergbahnen, Unterkunft, Verpflegung, Rückholdienst. Du brauchst ein eigenes Brevet, eine eigene gecheckte Ausrüstung und eine eigene Versicherung.</div>
     </div>
-  </div>
-
-  <!-- DATEN -->
-  <div class="ac-wrap" id="dates" style="padding-top:8px">
-    <span class="ac-eyebrow">Daten 2027</span>
-    <h2 class="ac-h">Die Daten 2027</h2>
-    <p class="ac-lead">6 Coaching-Daten, 6 Ersatzdaten und 4 Theorie-Abende.</p>
-    <div class="table-scroll">
-      <table class="date-table">
-        <tr><th></th><th>Daten</th><th>Thema</th></tr>
-        <tr><td><b>Saisonstart-Wochenende</b></td><td>27. bis 28. März</td><td>Advanced Groundhandling und Advanced Manöver, je ein Tag, je nach Wetter</td></tr>
-        <tr><td><b>XC-Tag</b></td><td>Samstag, 17. April, Ersatztage Sonntag, 25. April und Sonntag, 2. Mai</td><td>Streckenflug mit Gast-Coach Marcel Schmid; freie Plätze für Piloten ohne Pass CHF 350</td></tr>
-        <tr><td><b>Sommer-Wochenende</b></td><td>3. bis 4. Juli</td><td>Thermik und erster Streckenflug mit Miki</td></tr>
-        <tr><td><b>Hike-&amp;-Fly-Tag</b></td><td>Samstag, 9. Oktober, Ersatztage Sonntag, 10., Samstag, 16. und Sonntag, 17. Oktober</td><td>Hike &amp; Fly mit Gast-Coach Mihai Lazar</td></tr>
-        <tr><td><b>Ersatztage mit Miki</b></td><td>10. bis 11. April, 31. Juli bis 1. August</td><td>Wenn das Wetter einen Flugtag verhindert</td></tr>
-        <tr><td><a href="#online-theory"><b>Advanced Theory</b></a></td><td>23. Feb., 13. Apr., 4. Mai, 22. Juni</td><td>Online, 19:00 bis 21:00 Uhr</td></tr>
-      </table>
-    </div>
-    <p class="date-note">4 bis 12 Piloten pro Flugtag. Die Daten stehen im Winter fest und verschieben sich nur auf die Ersatztage.</p>
   </div>
 
   <!-- FAQ -->
   <div class="ac-wrap" id="faq" style="padding-top:8px">
     <h2 class="ac-h">Gute Fragen</h2>
     <div style="max-width:820px; margin:18px auto 0">
-      <details class="faq"><summary>Sind an diesen Tagen auch Flugschüler dabei?</summary><p>Nein. Die Flugtage sind nur für brevetierte Piloten: SHV-Brevet, IPPI 4 oder IPPI 5. Das gilt für Pass-Inhaber und für Freunde, die du an deiner Stelle schickst. Flugschüler trainieren in den eigenen Kursen der Schule.</p></details>
       <details class="faq"><summary>Wie gross sind die Gruppen?</summary><p>Klein genug für persönliches Coaching. An Groundhandling-, Thermik- und XC-Tagen sind es max. 6 Piloten pro Coach: Ab 7 Piloten kommt ein zweiter erfahrener Coach dazu. An Manövertagen fliegst du einzeln mit Miki am Funk, und ein Startleiter sorgt für schnelle Abläufe. Max. 12 Pässe pro Jahr, also nie mehr als 12 Piloten an einem Tag.</p></details>
-      <details class="faq"><summary>Was passiert, wenn das Wetter einen Tag verhindert?</summary><p>Jeder Coaching-Tag hat einen Ersatztag, ein verlorener Tag wird dorthin verschoben. Ein Tag gilt als durchgeführt, sobald wir mindestens einen halben Tag trainiert haben, am Boden oder in der Luft, auch wenn du selbst nicht startest; stoppt uns das Wetter früher, bekommst du einen halben Ersatztag. Sind sogar die Ersatztage aufgebraucht, bekommst du pro verlorenem Tag einen Gutschein über CHF 270, wie in der <a href="#weather">Wettergarantie</a> beschrieben.</p></details>
-      <details class="faq"><summary>Welches Thema ist an welchem Tag?</summary><p>Das Wetter entscheidet. Im März machen wir einen Groundhandling-Tag und einen Manöver-Tag als Vorbereitung auf die Saison, Miki wählt, was zuerst kommt; im April folgt der grosse XC-Tag mit Marcel; im Juli sind beide Tage Thermik und, wenn die Luft es zulässt, eine erste Linie nah von zu Hause, um zu verfeinern, was du mit Marcel geflogen bist; der Hike-and-Fly-Tag mit Mihai schliesst die Saison im Oktober ab. Miki wählt das Thema, das zum Tag passt, und kündigt es in der Gruppe an, meistens am Vorabend.</p></details>
       <details class="faq"><summary>Und wenn ich an einem Tag nicht kann?</summary><p>Schick einen brevetierten Freund an deiner Stelle. Bist du krank, kannst du stattdessen an jedem Ersatztag mitmachen, der stattfindet. Wegen Krankheit oder Verletzung für den Rest der Saison draussen? Melde es Miki vor dem nächsten Flugtag, mit Arztzeugnis, dann wird der Rest deines Passes ein Gutschein für den Academy-Pass im nächsten Jahr: CHF 1'990 minus CHF 100 Bearbeitungsgebühr und CHF 400 für jeden Flugtag, den die Saison schon durchgeführt hat. Andere verpasste Tage werden nicht zurückerstattet, auch nicht, wenn ein Ersatztag, an dem du mitmachen wolltest, wegen Wetter ausfällt: Die Wettergarantie deckt die Flugtage der Saison, nicht deine eigene Teilnahme. Nur so bleibt der Pass so günstig.</p></details>
       <details class="faq"><summary>Kann ich den Pass stornieren?</summary><p>Bis zum ersten Theorie-Abend am 23. Februar bekommst du alles zurück ausser CHF 100. Danach wird der Pass nicht zurückerstattet, aber du kannst einen brevetierten Freund an deiner Stelle schicken.</p></details>
-      <details class="faq"><summary>Hilfst du bei der Ausrüstung?</summary><p>Ja. Die Ausrüstungsberatung ist gratis, wenn du deine Ausrüstung <a href="equipment.html">bei uns</a> kaufst, und kostet CHF 200, wenn du sie woanders kaufst. Pass-Inhaber bekommen 20% auf neue Schirme, Gurtzeuge und Retter der Marken, die wir führen, und 10% auf Schirm-Check und Retterpackung.</p></details>
+      <details class="faq"><summary>Hilfst du bei der Ausrüstung?</summary><p>Ja. Die Ausrüstungsberatung ist gratis, wenn du deine Ausrüstung <a href="equipment.html">bei uns</a> kaufst, und kostet CHF 200, wenn du sie woanders kaufst.</p></details>
       <details class="faq"><summary>Kann ich Online-Coaching auch ohne Pass buchen?</summary><p>Ja. CHF 60 für 30 Minuten in der wöchentlichen Sprechstunde (März bis August), zu allem, was dich als Pilot beschäftigt: XC-Analyse, dein Flugtag, Ausrüstung, Wetter oder Kopf. Mentoring ist im Pass inbegriffen: jeden Monat ein 30-Minuten-Gespräch, März bis August.</p></details>
       <details class="faq"><summary>Wie laufen die Online-Abende ab?</summary><p>Sie sind live und dauern zwei Stunden. Ein Abend kostet CHF 60, alle 4 Abende CHF 200, und im Saison-Pass sind sie inbegriffen. Wer als Pass-Inhaber einen Abend verpasst, bekommt die Aufzeichnung.</p></details>
       <details class="faq"><summary>Macht eine zweite Saison Sinn?</summary><p>Ja. Die Themen bleiben, deine Ziele wachsen: ein längerer Streckenflug, anspruchsvollere Manöver, stärkere Thermik. Miki legt zu Beginn jeder Saison deine persönlichen Ziele fest. Die Pass-Inhaber dieses Jahres bekommen ausserdem ein Vorkaufsfenster für den Pass des nächsten Jahres, bevor er für alle in den Verkauf geht.</p></details>
@@ -768,43 +789,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- MORE: WHY AND COMPARISON -->
   <div class="ac-wrap" id="more" style="padding-top:8px">
     <span class="ac-eyebrow">Mehr über die Academy</span>
-    <h2 class="ac-h">Warum die Academy, und wie sie sich vergleicht</h2>
+    <h2 class="ac-h">Wie sich die Academy vergleicht</h2>
     <div style="max-width:960px; margin:18px auto 0">
-      <details class="faq" id="why"><summary>Warum die Academy?</summary><div style="padding:0 16px 16px">
-    <h2 class="ac-h">Die Saison, die jeder Pilot eigentlich vorhat</h2>
-    <p class="ac-lead">Nach dem Brevet wachsen deine Fähigkeiten weiter, oder sie verblassen langsam. Der Pass macht aus dem Üben einen Plan.</p>
-    <div class="why-grid">
-      <div class="why"><div class="wi">&#128064;</div><div><h3>Jemand schaut dir wirklich zu</h3><p>Im Club oder am Fly-together-Wochenende macht jeder sein eigenes Ding. Hier schaut Miki deinen Start, deine Kurven und deine Landung an, sagt dir per Funk, was du ändern sollst, und bespricht jeden Flug mit dir.</p></div></div>
-      <div class="why"><div class="wi">&#127919;</div><div><h3>Was jeder regelmässige Pilot braucht</h3><p>Schirmkontrolle, Thermik und Streckenflug, jede Saison trainiert, in der Reihenfolge, die die Saison braucht.</p></div></div>
-      <div class="why"><div class="wi">&#128197;</div><div><h3>Einmal planen, dann einfach fliegen</h3><p>Fixe Wochenenden in deiner Nähe, im Winter publiziert, mit Ersatztagen. Keine Ferientage, kein Hotel.</p></div></div>
-      <div class="why"><div class="wi">&#128295;</div><div><h3>Mitgliederpreise für Ausrüstung</h3><p>20% auf neue Schirme, Gurtzeuge und Retter unserer Marken, 10% auf Check und Retterpackung.</p></div></div>
-    </div>
-  </div></details>
       <details class="faq" id="compare"><summary>Im Vergleich mit einer typischen Reise oder einem Club-Wochenende</summary><div style="padding:0 16px 16px">
-    <h2 class="ac-h">Die Academy oder eine typische Gleitschirmreise?</h2>
+    <h3 class="ac-h" style="font-size:1.45em">Die Academy, eine typische Reise oder ein Club-Wochenende?</h3>
     <p class="ac-lead">Beides hat seinen Platz. Grün ist gut für dich, Rot kostet dich.</p>
     <div class="table-scroll">
       <table class="vs">
-        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy</th><th class="them">Typische Gleitschirmreise</th></tr>
-        <tr><td class="f">Ferientage nötig</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Nur Wochenenden</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">Eine ganze Woche Ferien</span></td></tr>
-        <tr><td class="f">Zusatzkosten für Hotel, Restaurants, Reise</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Du schläfst zu Hause</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">Zusätzlich zum Preis, jeden Tag</span></td></tr>
-        <tr><td class="f">Wettergarantie</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Für jeden Tag ein Ersatztag, dann ein Gutschein über CHF 270 pro verlorenem Tag</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Ein verlorener Tag ist meist weg</span></td></tr>
-        <tr><td class="f">Persönliches Coaching nach jedem Flug</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Kleine Gruppen, persönliches Feedback</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Oft ein Briefing, dann bist du auf dich gestellt</span></td></tr>
-        <tr><td class="f">Komplettes Programm</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Groundhandling, Manöver, Thermik, Streckenflug und Theorie</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Meist ein Schwerpunkt</span></td></tr>
-        <tr><td class="f">Vertraute Fluggebiete</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Das Wichtige dort trainieren, wo du die ganze Saison fliegst, in der Zentralschweiz</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Neue Gebiete, jeden Tag improvisieren</span></td></tr>
-        <tr><td class="f">Mitgliederpreise für Ausrüstung und Checks</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">-20% auf Ausrüstung, -10% auf Check und Retterpackung</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Nicht inbegriffen</span></td></tr>
-        <tr><td class="f">Ein Preis für die ganze Saison</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">CHF 1'990, das ganze Coaching inbegriffen</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Etwa gleich viel für eine Woche, wenn das Wetter mitspielt</span></td></tr>
-      </table>
-    </div>
-
-    <h3 class="ac-h" style="font-size:1.45em; margin-top:34px">Die Academy oder Club / Fly-together-Wochenende?</h3>
-    <p class="ac-lead">Gleicher Berg, gleicher Himmel. Der Unterschied: ob dir jemand zuschaut.</p>
-    <div class="table-scroll">
-      <table class="vs">
-        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy</th><th class="them">Club oder Fly-together-Wochenende</th></tr>
-        <tr><td class="f">Jemand schaut dir beim Fliegen zu</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Miki verfolgt deinen Start, deine Kurven und deine Landung</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Jeder ist mit seinem eigenen Flug beschäftigt</span></td></tr>
-        <tr><td class="f">Feedback nach jedem Flug</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Per Funk während dem Flug, danach ein Debriefing</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Vielleicht ein Tipp an der Bar, wenn du fragst</span></td></tr>
-        <tr><td class="f">Ein Plan für deine Saison</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Die richtigen Themen in der richtigen Reihenfolge, persönliche Ziele</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Jeder macht an dem Tag, was er will</span></td></tr>
+        <tr><th class="f"></th><th class="us">FLYwithMIKI Academy</th><th class="them">Typische Gleitschirmreise</th><th class="them">Club oder Fly-together-Wochenende</th></tr>
+        <tr><td class="f">Ferientage nötig</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Nur Wochenenden</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">Eine ganze Woche Ferien</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
+        <tr><td class="f">Zusatzkosten für Hotel, Restaurants, Reise</td><td class="us"><span class="ic">&#10007;</span><span class="vs-why">Du schläfst zu Hause</span></td><td class="them"><span class="ic">&#10003;</span><span class="vs-why">Zusätzlich zum Preis, jeden Tag</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
+        <tr><td class="f">Wettergarantie</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Für jeden Tag ein Ersatztag, dann ein Gutschein über CHF 250 pro verlorenem Tag</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Ein verlorener Tag ist meist weg</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
+        <tr><td class="f">Persönliches Coaching nach jedem Flug</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Kleine Gruppen, persönliches Feedback</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Oft ein Briefing, dann bist du auf dich gestellt</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Jeder ist mit seinem eigenen Flug beschäftigt</span></td></tr>
+        <tr><td class="f">Komplettes Programm</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Groundhandling, Manöver, Thermik, Streckenflug und Theorie</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Meist ein Schwerpunkt</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Jeder macht an dem Tag, was er will</span></td></tr>
+        <tr><td class="f">Vertraute Fluggebiete</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">Das Wichtige dort trainieren, wo du die ganze Saison fliegst, in der Zentralschweiz</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Neue Gebiete, jeden Tag improvisieren</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
+        <tr><td class="f">Mitgliederpreise für Ausrüstung und Checks</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">-20% auf Ausrüstung, -10% auf Check und Retterpackung</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Nicht inbegriffen</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
+        <tr><td class="f">Ein Preis für die ganze Saison</td><td class="us"><span class="ic">&#10003;</span><span class="vs-why">CHF 1'990, das ganze Coaching inbegriffen</span></td><td class="them"><span class="ic">&#10007;</span><span class="vs-why">Etwa gleich viel für eine Woche, wenn das Wetter mitspielt</span></td><td class="them" style="text-align:center; color:#9aa7b0">&ndash;</td></tr>
       </table>
     </div>
   </div></details>

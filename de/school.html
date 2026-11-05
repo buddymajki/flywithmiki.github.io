@@ -372,7 +372,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Gleitschirm-Ausbildung Schritt für Schritt | FLYwithMIKI" />
 <meta name="twitter:description" content="Gleitschirm-Ausbildung vom Anfänger bis zum Brevet. Kleine Gruppen, umweltfreundlicher E-Transport, Videoanalyse & Mentaltraining. FLYwithMIKI Schweiz." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="../flywithmiki.css?v=4">
+<link rel="stylesheet" href="../flywithmiki.css?v=5">
 </head>
 
 
@@ -650,26 +650,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!------Flight Deck---------->
-         <div class="w3-content phase-section" style="max-width:1000px; padding-top:6px; padding-bottom:6px">
-       <details class="hook">
-        <summary>
-          <span class="hook-icon">&#128241;</span>
-          <span><span class="hook-title">Der digitale Vorsprung: FlightDeck</span>
-          <span class="hook-teaser">Dein Fortschritt, die Man&ouml;verliste und die Theorie in einer App, gratis f&uuml;r unsere Sch&uuml;ler</span></span>
-          <span class="hook-plus">+</span>
-        </summary>
-        <div class="hook-body">
-			 <p class="w3-justify"> Lass veraltete Papier-Flugbücher und verstreute Notizen hinter dir. Das <strong>Flight Deck</strong> ist unsere exklusive digitale Plattform, die die Effizienz und Sicherheit deiner Gleitschirm-Ausbildung maximiert. Anders als bei traditionellen Methoden bist du mit diesem System immer mit deinem Fortschritt und deinem Fluglehrer verbunden.</p>
-
-			 <p class="w3-justify">
-			 <img width="1653" height="1104" class="phase-figure" src="https://flywithmiki.com/Images_v2/flightdeck.webp" alt="FlightDeck Dashboard für Fortschritts-Tracking" loading="lazy">
-
-			 <strong>Sieh deinen Erfolg:</strong> Das Herzstück ist das persönliche <ins>Dashboard</ins>, auf dem du deinen Fortschritt entlang der Ausbildungs-Meilensteine visuell verfolgen kannst. Diese Transparenz ist ein starker Motivator. Du bekommst <ins>sofortigen Zugriff</ins> auf eine umfassende Manöverliste, die das obligatorische SHV-Ausbildungsprogramm ergänzt und erweitert. Diese einzigartige Struktur sorgt dafür, dass Manöver in einer viel <ins>logischeren, aufeinander aufbauenden Reihenfolge</ins> unterrichtet werden, was den Ausbildungsprozess reibungsloser und sicherer macht.             <br><br>
-			 <strong>Zusammenarbeit mit dem Fluglehrer:</strong> Die Plattform zeigt deinem Fluglehrer deinen Fortschritt in Echtzeit. Diese sofortige Transparenz ist entscheidend: Sie ermöglicht es uns, gemeinsam schnell zu entscheiden, was du als Nächstes üben und entwickeln solltest. Indem Flight Deck Rätselraten eliminiert und die Kommunikation vereinfacht, wird deine gesamte Ausbildung deutlich <ins>effizienter und sicherer</ins>, und jeder Flug ist fokussiert und produktiv.
-			 </p>
-        </div>
-       </details>
-		 </div>
+  <!-- FLIGHTDECK APP -->
+  <div class="fd" id="app">
+    <span class="fd-kicker">Unsere eigene App &middot; iPhone &amp; Android &middot; gratis für jeden Schüler</span>
+    <h2 class="fd-title"><b>FlightDeck: die App, die deine Flüge für dich einträgt</b></h2>
+    <p class="fd-lead">Kein Papier-Flugbuch, kein Formular nach einem langen Tag. Miki hat FlightDeck für seine eigenen Schüler gebaut: Die App erkennt Start und Landung, trägt den Flug in dein Flugbuch ein und schickt ihn an Miki. Du siehst jederzeit, wo du stehst, und er auch.</p>
+    <div class="fd-phones">
+      <figure><img src="../Images_v2/flightdeck/in-flight-de.webp" width="360" height="750" alt="FlightDeck App: Start erkannt" loading="lazy"><figcaption>Start erkannt</figcaption></figure>
+      <figure><img src="../Images_v2/flightdeck/landed-de.webp" width="360" height="750" alt="FlightDeck App: Gelandet: ein Tipp zum Speichern" loading="lazy"><figcaption>Gelandet: ein Tipp zum Speichern</figcaption></figure>
+      <figure><img src="../Images_v2/flightdeck/flightbook-de.webp" width="360" height="750" alt="FlightDeck App: Dein Flugbuch" loading="lazy"><figcaption>Dein Flugbuch</figcaption></figure>
+      <figure><img src="../Images_v2/flightdeck/dashboard-de.webp" width="360" height="750" alt="FlightDeck App: Dein Fortschritt" loading="lazy"><figcaption>Dein Fortschritt</figcaption></figure>
+      <figure><img src="../Images_v2/flightdeck/checklist-de.webp" width="360" height="750" alt="FlightDeck App: Jede Übung abgehakt" loading="lazy"><figcaption>Jede Übung abgehakt</figcaption></figure>
+      <figure><img src="../Images_v2/flightdeck/tests-de.webp" width="360" height="750" alt="FlightDeck App: Theorie-Tests" loading="lazy"><figcaption>Theorie-Tests</figcaption></figure>
+    </div>
+    <div class="fd-grid">
+      <div class="fd-item"><span class="fd-ic">&#128747;</span><div><b>Start und Landung, automatisch erkannt</b>GPS und Bewegungssensoren erkennen Start und Landung, mit Tonsignal. Zu Fuss gehen oder Bahnfahren startet keinen Flug.</div></div>
+      <div class="fd-item"><span class="fd-ic">&#128214;</span><div><b>Mit einem Tipp ins Flugbuch</b>Start- und Landeplatz, Flugzeit und Höhendifferenz sind schon ausgefüllt. Tracklogs lassen sich als GPX, IGC oder KML importieren.</div></div>
+      <div class="fd-item"><span class="fd-ic">&#9989;</span><div><b>Miki sieht jeden Flug</b>Deine Flüge gehen zur Bestätigung an Miki, so beginnt jeder Schulungstag genau dort, wo du aufgehört hast.</div></div>
+      <div class="fd-item"><span class="fd-ic">&#128202;</span><div><b>Dein Fortschritt auf einen Blick</b>Flüge, Flugzeit und Flugtage, und der Ausbildungsplan, Übung für Übung abgehakt.</div></div>
+      <div class="fd-item"><span class="fd-ic">&#128221;</span><div><b>Theorie und Tests</b>Theorie im Selbststudium und Tests, die mit deinem Ausbildungsstand freigeschaltet werden, bis zur Prüfungsvorbereitung.</div></div>
+      <div class="fd-item"><span class="fd-ic">&#128197;</span><div><b>Kurskalender</b>Für Theorieabende und Flugtage meldest du dich mit einem Tipp an.</div></div>
+    </div>
+    <p class="fd-more">Funktioniert auch ohne Empfang am Startplatz &middot; Deutsch, Englisch, Italienisch, Französisch &middot; nach dem Brevet bleibt sie dein persönliches Flugbuch</p>
+    <p class="fd-cta"><a href="../flightdeck.html" class="fd-link">So bekommst du Zugang &rarr;</a></p>
+    <p class="fd-demo">Die Screens zeigen Demodaten.</p>
+  </div>
     <!------Flight Deck---------->
 
 
