@@ -314,6 +314,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="w3-container w3-padding-32" id="dailyp" style="background:#f7f9fb">
   <div style="max-width:1040px;margin:auto">
 
+    <!-- live: the next school days from the Google Calendar; stays hidden when there is nothing in the next 14 days -->
+    <div id="fwmNow" class="fwm-now" hidden>
+      <h2 class="fwm-now-title">&#128197; Coming up</h2>
+      <p class="fwm-now-sub">Live from the school calendar. The plan for 2027 follows below.</p>
+      <div id="fwmNowList"></div>
+    </div>
+
     <div class="fwm-preview">
       <b>&#9889; The 2027 plan.</b> These are the planned 2027 dates. The weather decides each flying day: the final call comes at 20:00 the evening before, so check back here and in the group before your flying day.
     </div>
@@ -454,6 +461,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .fwm-item.fwm-b-intensive{border-left-color:#e85d04}.fwm-item.fwm-b-office{border-left-color:#b9d3e6}.fwm-item.fwm-b-exam{border-left-color:#2e7d32}
 .fwm-item.fwm-b-tandem{border-left-color:#00a896}
 .fwm-foot{color:#8a97a3;font-size:.82em;margin-top:18px}
+.fwm-now{margin:0 0 26px}
+.fwm-now-title{color:#24303a;margin:0 0 2px;font-size:1.4em}
+.fwm-now-sub{color:#67747f;font-size:.9em;margin:0 0 12px}
+.fwm-item .fwm-tag{display:inline-block;background:#e85d04;color:#fff;border-radius:10px;padding:1px 8px;margin-right:6px;font-weight:bold;letter-spacing:.04em}
+.fwm-item.fwm-b-off{border-left-color:#aab4bd}.fwm-item.fwm-b-fly{border-left-color:#0077b6}.fwm-item.fwm-b-trial{border-left-color:#66bb6a}
 @media(max-width:600px){.fwm-day{min-height:48px}.fwm-chip{height:6px;padding:0;font-size:0;border-radius:3px}.fwm-next .fwm-when{font-size:1.05em}}
 </style>
 
@@ -896,7 +908,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('fwmViewMonth').addEventListener('click',function(){setView('month');});
   document.getElementById('fwmViewYear').addEventListener('click',function(){setView('year');});
 
-  if(PREVIEW){ setEvents(fromPlan()); } else { load(); }
+  /* ---- "Coming up": while the calendar shows the 2027 plan, the next real school days
+     still come live from the Google Calendar, above the plan. Hidden when there are none. ---- */
+  function cleanDesc(html){
+    /* keep the text, line breaks, bold/italic and http(s) links of a calendar description; drop everything else */
+    var doc=new DOMParser().parseFromString('<div>'+(html||'')+'</div>','text/html');
+    function walk(n){
+      if(n.nodeType===3) return esc(n.nodeValue).replace(/\n/g,'<br>');
+      if(n.nodeType!==1) return '';
+      var inner=Array.prototype.map.call(n.childNodes,walk).join(''), t=n.tagName.toLowerCase();
+      if(t==='br') return '<br>';
+      if(t==='b'||t==='strong'||t==='i'||t==='em') return '<'+t+'>'+inner+'</'+t+'>';
+      if(t==='a'){ var h=n.getAttribute('href')||''; return /^https?:\/\//i.test(h)?'<a href="'+esc(h)+'" target="_blank" rel="noopener noreferrer">'+inner+'</a>':inner; }
+      if(t==='p'||t==='div'||t==='li') return inner+'<br>';
+      return inner;
+    }
+    return walk(doc.body.firstChild).replace(/(<br>)+$/,'');
+  }
+  function loadNow(){
+    var box=document.getElementById('fwmNow'), list=document.getElementById('fwmNowList');
+    if(!box||!list||!window.fetch) return;
+    var from=new Date(); from.setHours(0,0,0,0);
+    var to=new Date(from); to.setDate(to.getDate()+14);
+    var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events'
+      +'?key='+API_KEY+'&singleEvents=true&orderBy=startTime&maxResults=6'
+      +'&timeMin='+encodeURIComponent(from.toISOString())+'&timeMax='+encodeURIComponent(to.toISOString());
+    fetch(url).then(function(r){return r.json();}).then(function(d){
+      var items=(d.items||[]).filter(function(e){return e.status!=='cancelled' && e.start;});
+      if(!items.length) return;
+      var todayKey=dayKey(new Date()), tm=new Date(); tm.setDate(tm.getDate()+1);
+      var tomorrowKey=dayKey(tm);
+      /* the same event on several days (a schooling weekend) becomes one card with all its dates */
+      var groups=[], byId={};
+      items.forEach(function(e){
+        var id=(e.summary||'')+'|'+(e.description||'')+'|'+(e.location||'');
+        if(!byId[id]){ byId[id]={e:e,days:[]}; groups.push(byId[id]); }
+        byId[id].days.push(e);
+      });
+      list.innerHTML=groups.map(function(g){
+        var e=g.e, c=cat(e.summary), tag='';
+        /* "Sun 8, Fri 13, Sat 14, Sun 15 November": the month only where it changes */
+        var when=g.days.map(function(x,i){
+          var s=startOf(x), k=dayKey(s), nx=g.days[i+1]?startOf(g.days[i+1]):null;
+          if(!tag) tag=k===todayKey?'Today':(k===tomorrowKey?'Tomorrow':'');
+          var mon=(!nx||nx.getMonth()!==s.getMonth())?' '+MONTH[s.getMonth()]:'';
+          return (g.days.length>1?DAYNAME[s.getDay()].slice(0,3)+' ':DAYNAME[s.getDay()]+', ')+s.getDate()+mon+(isAllDay(x)?'':' &middot; '+hhmm(s));
+        }).join(', ');
+        var meta=[];
+        if(e.location) meta.push('&#128205; '+esc(e.location)+' <a href="'+maps(e.location)+'" target="_blank" rel="noopener noreferrer">map</a>');
+        var link=e.hangoutLink||(e.conferenceData&&e.conferenceData.entryPoints&&e.conferenceData.entryPoints[0]&&e.conferenceData.entryPoints[0].uri)||'';
+        if(/^https?:\/\//i.test(link)) meta.push('&#128187; <a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Join online</a>');
+        return '<div class="fwm-item fwm-b-'+c+'">'
+          +'<p class="fwm-when">'+(tag?'<span class="fwm-tag">'+tag+'</span>':'')+when+'</p>'
+          +'<h4>'+(ICON[c]||'')+' '+esc(e.summary||'School day')+'</h4>'
+          +(meta.length?'<div class="fwm-meta">'+meta.join('')+'</div>':'')
+          +(e.description?'<div class="fwm-desc">'+cleanDesc(e.description)+'</div>':'')
+          +'</div>';
+      }).join('');
+      box.hidden=false;
+      lockCardHeight();
+    }).catch(function(){ /* nothing to show: the 2027 plan below stays as it is */ });
+  }
+
+  if(PREVIEW){ setEvents(fromPlan()); loadNow(); } else { load(); }
 })();
 </script>
 <!-- ===== /SCHOOL CALENDAR ===== -->
