@@ -163,6 +163,12 @@ img { max-width: 100%; }
 .hero-btn-wa { background: var(--fwm-green); border-color: var(--fwm-green); }
 .cta-btn-primary { background: var(--fwm-blue) !important; }
 .promo-play-btn { background: var(--fwm-blue); }
+/* promo films: the new film is the main button, the short film the quiet one */
+.promo-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 10px; }
+.promo-play-btn.promo-alt-btn { background: #fff; color: var(--fwm-blue); box-shadow: inset 0 0 0 2px var(--fwm-blue); }
+.hero-btn[data-film="season"] { background: #fff; color: #0d2436; border-color: #fff; }
+.hero-btn.promo-alt-btn { background: transparent; }
+.promo-play-btn.is-playing, .hero-btn.is-playing { opacity: 0.55; }
 
 /* ---------- cards: one radius, one border, one shadow ---------- */
 .w3-card, .w3-card-4,

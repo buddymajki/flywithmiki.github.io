@@ -236,7 +236,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* groundhandling video: click-to-play, YouTube loads only after the click */
   .gh-vid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; align-items: center; background: #fff; border-radius: 18px; padding: 16px; margin-top: 22px; box-shadow: 0 8px 26px rgba(13,36,54,0.08); }
   .gh-vid .vbox { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #0d2436 center / cover no-repeat; cursor: pointer; }
-  .gh-vid .vbox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .gh-vid .vbox iframe, .gh-vid .vbox video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
   .gh-vid .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: rgba(13,36,54,0.78); border: 3px solid #fff; color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center; padding-left: 5px; }
   .gh-vid .vbox:hover .play { background: var(--ac); }
   .gh-vid h3 { margin: 0 0 6px; font-family: "Montserrat", sans-serif; }
@@ -516,7 +516,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 <!-- EducationEvent schema: add one block per date pair once the dates are fixed (startDate, endDate, location, offers in CHF, organizer, performer = Miki or the partner, eventStatus, backup date in the description). -->
-<link rel="stylesheet" href="flywithmiki.css?v=5">
+<link rel="stylesheet" href="flywithmiki.css?v=6">
 </head>
 
 <body class="w3-white w3-content" style="max-width:1600px">
@@ -782,6 +782,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- VIDEO -->
   <div class="ac-wrap" id="video" style="padding-top:0">
     <div class="gh-vid">
+      <div class="vbox" style="background-image:url('video/season_poster_16x9.webp')" onclick="seasonPlay(this)" role="button" tabindex="0" aria-label="Watch: a season with FLYwithMIKI, with sound"><span class="play">&#9658;</span></div>
+      <div><span class="ac-eyebrow">Video: one season, 1:51</span><h3>Miki on the radio</h3><p>From the ground briefing to maneuvers in the air: one season in Central Switzerland, with Miki's real radio instructions. Turn the sound on.</p><p style="font-size:0.8em;color:#8a99a4;margin-top:8px">Part of the in-flight footage: camera by <a href="https://alexandruep.com" target="_blank" rel="noopener noreferrer" style="color:inherit">alexandruep.com</a>.</p></div>
+    </div>
+    <div class="gh-vid">
       <div class="vbox" style="background-image:url('https://flywithmiki.com/Images_v2/academy-groundhandling.webp')" onclick="ghPlay(this)" role="button" tabindex="0" aria-label="Watch: groundhandling"><span class="play">&#9658;</span></div>
       <div><span class="ac-eyebrow">Watch: groundhandling</span><h3>Advanced groundhandling in action</h3><p>A real session in Wolfenschiessen: wing control, reflexes and footwork, the base for everything that happens later in the air.</p></div>
     </div>
@@ -921,6 +925,7 @@ var _af = document.getElementById('academy-form'); if (_af) _af.addEventListener
 
 <script>
 function ghPlay(el) { el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/UinUDk5Szt0?autoplay=1&rel=0" title="Advanced groundhandling" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'; el.onclick = null; }
+function seasonPlay(el) { el.innerHTML = '<video src="video/season_16x9.mp4" poster="video/season_poster_16x9.webp" title="A season with FLYwithMIKI" controls autoplay playsinline></video>'; el.onclick = null; }
 </script>
 <script>
 // conversion signals for GTM: WhatsApp, phone and e-mail clicks (GA gets them only under the visitor's CookieYes consent)

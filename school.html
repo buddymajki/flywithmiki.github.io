@@ -285,10 +285,10 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @media (max-width: 767px) { .promo-landscape { display:none; } .promo-portrait { display:block; } }
         .promo-stage .promo-full { display:none; }
         .promo-stage.playing .promo-loop { display:none; }
-        .promo-stage.playing .promo-full.promo-landscape { display:block; }
+        .promo-stage.playing .promo-full.active.promo-landscape { display:block; }
         @media (max-width: 767px) {
-            .promo-stage.playing .promo-full.promo-landscape { display:none; }
-            .promo-stage.playing .promo-full.promo-portrait { display:block; }
+            .promo-stage.playing .promo-full.active.promo-landscape { display:none; }
+            .promo-stage.playing .promo-full.active.promo-portrait { display:block; }
         }
         .promo-play-btn {
             display:inline-block; margin-top:14px; padding:12px 26px; border:none; border-radius:30px;
@@ -372,7 +372,7 @@ j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="How Paragliding Training Works, Step by Step | FLYwithMIKI" />
 <meta name="twitter:description" content="Paragliding training, beginner to license. Small groups, eco-friendly EV transport, video analysis & mental training. FLYwithMIKI Switzerland." />
 <meta name="twitter:image" content="https://flywithmiki.com/Images_v2/12.webp" />
-<link rel="stylesheet" href="flywithmiki.css?v=5">
+<link rel="stylesheet" href="flywithmiki.css?v=6">
 </head> 
 
 
@@ -493,15 +493,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <video class="promo-video promo-portrait promo-loop" autoplay muted loop playsinline preload="metadata" poster="video/promo_poster_9x16.webp">
        <source src="video/promo_loop_9x16.mp4" type="video/mp4">
      </video>
-     <video class="promo-video promo-landscape promo-full" playsinline preload="none" poster="video/promo_poster_16x9.webp">
+     <video class="promo-video promo-landscape promo-full" data-film="short" playsinline preload="none" poster="video/promo_poster_16x9.webp">
        <source src="video/promo_16x9.mp4" type="video/mp4">
      </video>
-     <video class="promo-video promo-portrait promo-full" playsinline preload="none" poster="video/promo_poster_9x16.webp">
+     <video class="promo-video promo-portrait promo-full" data-film="short" playsinline preload="none" poster="video/promo_poster_9x16.webp">
        <source src="video/promo_9x16.mp4" type="video/mp4">
      </video>
+     <video class="promo-video promo-landscape promo-full" data-film="season" playsinline preload="none" poster="video/season_poster_16x9.webp">
+       <source src="video/season_16x9.mp4" type="video/mp4">
+     </video>
+     <video class="promo-video promo-portrait promo-full" data-film="season" playsinline preload="none" poster="video/season_poster_9x16.webp">
+       <source src="video/season_9x16.mp4" type="video/mp4">
+     </video>
    </div>
-   <button class="hero-btn" onclick="playFullPromo(this)">&#9654; Watch the full film with sound (56 s)</button>
-   <p class="hero-note" style="margin:8px auto 20px">Filmed with our own students. The preview plays without sound.</p>
+   <button class="hero-btn" data-film="season" onclick="playFullPromo(this)">&#9654; New film: hear Miki on the radio (1:51)</button>
+   <button class="hero-btn promo-alt-btn" data-film="short" onclick="playFullPromo(this)">&#9654; Short film (56 s)</button>
+   <p class="hero-note" style="margin:8px auto 20px">Filmed with our own students. The preview plays without sound. In the new film you hear Miki's real radio instructions from training flights. Part of the in-flight footage: camera by <a href="https://alexandruep.com" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">alexandruep.com</a>.</p>
    <a href="prices.html" class="hero-btn">See Course Prices</a>
    <a href="https://wa.me/41779766164/?text=Hi%20Miki,%20I'd%20like%20to%20know%20more%20about%20your%20school" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-wa">&#128172; Ask Miki Anything</a>
  </div>
@@ -866,12 +873,13 @@ function handleButtonClick(language) {
 function playFullPromo(btn){
   var block = btn.closest('.promo-block');
   var stage = block.querySelector('.promo-stage');
+  var film = btn.getAttribute('data-film');
+  var orient = (window.innerWidth < 768) ? '.promo-portrait' : '.promo-landscape';
   stage.classList.add('playing');
-  stage.querySelectorAll('.promo-loop').forEach(function(v){ try { v.pause(); } catch(e){} });
-  var sel = (window.innerWidth < 768) ? '.promo-full.promo-portrait' : '.promo-full.promo-landscape';
-  var v = stage.querySelector(sel);
-  if (v) { v.muted = false; v.controls = true; v.play(); }
-  btn.style.display = 'none';
+  stage.querySelectorAll('video').forEach(function(x){ try { x.pause(); } catch(e){} x.classList.remove('active'); });
+  var v = stage.querySelector('.promo-full' + orient + (film ? '[data-film="' + film + '"]' : ''));
+  if (v) { v.classList.add('active'); v.muted = false; v.controls = true; v.play(); }
+  block.querySelectorAll('[data-film]').forEach(function(b){ if (b.tagName === 'BUTTON') b.classList.toggle('is-playing', b === btn); });
 }
 </script>
 <script>
